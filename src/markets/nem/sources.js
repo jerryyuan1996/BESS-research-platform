@@ -16,6 +16,7 @@
 import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  fastFrequencyResponse: { file:'AEMO — Fast Frequency Response', status:['Official — Public','官方 — 公开'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'9 Oct 2023', cy:'Very Fast FCAS: final rule 15 July 2021; market commencement 9 October 2023', url:'https://www.aemo.com.au/initiatives/major-programs/nem-reform-program/nem-reform-program-initiatives/fast-frequency-response', lastChecked:'2026-11-10' },
   /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
   ...QUOTE_SOURCES,
   qed: { file:'AEMO — Quarterly Energy Dynamics', status:['Official — Final','官方 — 最终'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'Jul 2026', cy:'Q2 2026 prices, dispatch, battery revenue and FCAS', url:'https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/nem-forecasting-and-planning/quarterly-energy-dynamics' },

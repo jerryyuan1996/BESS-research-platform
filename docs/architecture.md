@@ -3,6 +3,12 @@
 A public static site. Vite, vanilla JavaScript, ES modules, HTML, CSS. No framework, no backend,
 no database, no authentication, no server-side rendering.
 
+Current-state check: **10 November 2026**, against main `f52894bd0b362f675650829da172da330998c538`.
+The registry has **18 allocation markets and 16 distinct research dashboards**; Japan's three
+regional markets share one dashboard. Fifteen market entries have released investment stories,
+including NEM, ERCOT and all three Japan regions. This is code availability, not a claim that every
+story's current production content has passed independent acceptance.
+
 ---
 
 ## The shape
@@ -47,9 +53,13 @@ no database, no authentication, no server-side rendering.
                        ├── caiso ┘
                        ├── jp_tokyo    ┐
                        ├── jp_kyushu   ├─ one Japan dashboard, three regional lenses
-                       └── jp_hokkaido ┘
+                       ├── jp_hokkaido ┘
+                       ├── fi
+                       ├── ca_on
+                       ├── sa
+                       └── es
 
-        14 allocation markets · 12 detail dashboards
+        18 allocation markets · 16 detail dashboards
         all expose the same module contract:
             { manifest, comparison, sources, tabs, dashboard }
 
@@ -104,8 +114,8 @@ participates in every home-page comparison and renders a pending-migration page 
 These are different counts and the codebase keeps them apart.
 
 ```javascript
-ALLOCATION_MARKETS()   // 14 — exposures a portfolio can hold
-DETAIL_DASHBOARDS()    // 12 — research documents
+ALLOCATION_MARKETS()   // 18 — registered allocation exposures
+DETAIL_DASHBOARDS()    // 16 — distinct research dashboards
 ```
 
 Tokyo, Kyushu and Hokkaido are three allocation markets and one dashboard. For a portfolio they are
@@ -130,7 +140,7 @@ documents.
 
 ### Two lineages behind one contract
 
-All five markets expose the identical five-key surface, but they are built two different ways —
+All markets expose the same contract, but the original migrated dashboards have two lineages —
 because the prototype itself contained two generations of code.
 
 | | WA | GB · IE · RO · PL |
@@ -208,8 +218,19 @@ is rather than being guessed at.
 ```
 /                        home / global cockpit
 /data                    data status — feeds, freshness, and automation's limits
+/returns                 cross-market returns and comparison
+/investment-lab          cross-market underwriting workspace
+/changes                 dated changes to analyst records
+/scout                   scouting-market cards
+/desk                    analyst review queue
+/news                    public industry news
+/policy                  policy radar, versioned snapshot
+/policy/compare          policy comparison
+/policy/dossiers/:id     policy dossier
+/policy/stories/:id      policy story
 /markets/:slug           a market dashboard, default tab
 /markets/:slug/:tab      a market dashboard, deep-linked tab
+/projects/:slug/:tab      local confidential dossier; all slugs return 404 in production
 ```
 
 `/data` was added with the live-data layer. A site that fetches automatically owes its reader a page
@@ -221,6 +242,37 @@ unrecognised tab falls back to the market's default rather than 404ing.
 
 `/compare`, `/methodology` and `/portfolio` are named as future routes and are deliberately not
 built. Adding one is a single entry in `parseRoute`.
+
+## Loading, stories and policy boundaries
+
+The market page resolves dashboard code on demand. NEM, GB, IE, PL and RO additionally load
+sections per requested tab through `prepareSections` / `loadSections`; a deep link waits for its
+own section rather than downloading every tab. The original five-key module contract also permits
+`loadDashboard` as the asynchronous renderer alternative. Japan's three regions share a loader.
+
+`src/experience/story/registry.js` owns the fifteen released investment-story entries. They load
+only when opened and validate the investor lens plus call/play/duration anchor; mismatches fall
+back to research. Public reading has a separate approval boundary: fifteen public story entries
+and history-only reading for Ontario, Saudi Arabia and Spain. A story release flag is not approval
+to publish confidential or new observed content.
+
+The main platform remains static. The owner's private BESS decision console is deployed separately
+and holds evidence and the analyst's decisions; it is not imported by the
+public bundle. Policy pages read an immutable approved snapshot. At the checked commit, the public
+index has one static historical version and zero exposed pending reviews, but the complete snapshot
+contains **27 unresolved mappings** (DE 5, GB 8, NEM 7, WA 7), including unmapped records. The index
+is a projection, not evidence that review is complete.
+
+Daily public-data ETL and deterministic policy discovery remain in one logical cycle at **06:17
+UTC**. Policy-model evaluation is a separate, explicit manual-only operation; enabling permission
+alone must not let the daily workflow call a model. Input bytes, model tokens and dollar budgets
+have different limits. No dynamic-source permission, paid evaluation or automatic policy
+publication is enabled by this architecture update. See [manual evaluation](policy-intelligence/manual-shadow-evaluation.md)
+and [policy acceptance](policy-intelligence/acceptance-plan.md).
+
+Investment ratings, revenue assumptions and dated rationale remain analyst-owned. Screening stays
+**NPV at 2%**, with no added IRR filter. Historical rationale is retained beside current model
+evidence rather than silently overwritten.
 
 The `vercel.json` rewrite covers these too — the SPA fallback is a wildcard, so no new rule was needed.
 

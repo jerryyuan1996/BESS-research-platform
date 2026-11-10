@@ -37,7 +37,7 @@ test('policy transport fixes its approved endpoint and cannot inherit another ag
 
 test('mocked SDK responses still pass the independent local contract before leaving shadow mode',async()=>{
   const fetch=globalThis.fetch,headers=process.env.ANTHROPIC_CUSTOM_HEADERS;
-  const config={enabled:true,publicationEnabled:false,approvalId:'synthetic',provider:'anthropic',model:'synthetic-model',maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,validatedGoldCases:12,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
+  const config={enabled:true,publicationEnabled:false,approvalId:'synthetic',provider:'anthropic',model:'synthetic-model',maxSerializedInputBytes:16000,maxInputTokens:12000,maxOutputTokens:3000,maxDailyUSD:0.1,wallTimeMs:1000,validatedGoldCases:12,inputUSDPerMTokens:1,outputUSDPerMTokens:2,priceSource:'https://www.anthropic.com/pricing'};
   let calls=0;
   try{
     delete process.env.ANTHROPIC_CUSTOM_HEADERS;
@@ -55,11 +55,28 @@ test('mocked SDK responses still pass the independent local contract before leav
         assert.equal('maxLength' in schema.properties.claims.items.properties.evidence.items.anyOf[0].properties.quote,false);
         return new Response(JSON.stringify({id:'synthetic-response',type:'message',role:'assistant',model:'synthetic-model',content:[{type:'text',text:JSON.stringify(candidate)}],stop_reason:'end_turn',usage:{input_tokens:500,output_tokens:200}}),{status:200,headers:{'content-type':'application/json'}});
       };
-      const result=await researchShadow({changedDocuments:[{sourceId:'test-source'}],invoke:policyTransport({key:'synthetic-policy-key',config}),config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:bodies(),now:NOW});
+      const result=await researchShadow({countInputTokens:async()=>500,changedDocuments:[{sourceId:'test-source'}],invoke:policyTransport({key:'synthetic-policy-key',config}),config,ledger:{reservedUSD:0,worstCaseCallUSD:0.018},context:CONTEXT,bodies:bodies(),now:NOW});
       assert.equal(result.status,expected);assert.equal(result.canPublish,false);assert.equal(result.published,false);
     }
     assert.equal(calls,4);
   }finally{
     globalThis.fetch=fetch;if(headers===undefined)delete process.env.ANTHROPIC_CUSTOM_HEADERS;else process.env.ANTHROPIC_CUSTOM_HEADERS=headers;
   }
+});
+
+test('dedicated token-count preflight sends the identical model/system/messages/schema without generation',async()=>{
+  const fetch=globalThis.fetch,headers=process.env.ANTHROPIC_CUSTOM_HEADERS;
+  let calls=0;
+  try{
+    delete process.env.ANTHROPIC_CUSTOM_HEADERS;
+    const input={system:'Synthetic token boundary',evidence:'Synthetic UTF-8 汉',previousPolicy:null,model:'synthetic-model',maxOutputTokens:3000};
+    const {max_tokens,...expected}=policyModelRequest(input);
+    globalThis.fetch=async(url,init)=>{
+      calls++;assert.equal(new URL(typeof url==='string'?url:url.url).href,'https://api.anthropic.com/v1/messages/count_tokens');
+      assert.deepEqual(JSON.parse(init.body),expected);assert.equal(new Headers(init.headers).get('x-api-key'),'synthetic-policy-key');
+      return new Response(JSON.stringify({input_tokens:12000}),{status:200,headers:{'content-type':'application/json'}});
+    };
+    const invoke=policyTransport({key:'synthetic-policy-key',config:{provider:'anthropic',model:'synthetic-model',wallTimeMs:1000}});
+    assert.equal(await invoke.countInputTokens({...input,signal:new AbortController().signal}),12000);assert.equal(calls,1);
+  }finally{globalThis.fetch=fetch;if(headers===undefined)delete process.env.ANTHROPIC_CUSTOM_HEADERS;else process.env.ANTHROPIC_CUSTOM_HEADERS=headers;}
 });

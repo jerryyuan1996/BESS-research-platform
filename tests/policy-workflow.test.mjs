@@ -19,17 +19,18 @@ test('policy process has read-only permissions, no saved credential, no model ke
   }
 });
 test('refresh tolerates policy failure without ignoring explicit workflow cancellation',()=>{
-  assert.match(job('refresh'),/needs: \[policy-discovery, policy-research\]/);assert.match(job('refresh'),/!cancelled\(\)/);assert.match(job('refresh'),/needs\.policy-discovery\.result/);
+  assert.match(job('refresh'),/needs: \[policy-discovery\]/);assert.match(job('refresh'),/!cancelled\(\)/);assert.match(job('refresh'),/needs\.policy-discovery\.result/);
   assert.doesNotMatch(job('refresh'),/needs\.policy-discovery\.result == 'success'/);
 });
 
-test('model job cannot acquire the publisher credential or monthly model identity',()=>{
-  const model=executable(job('policy-research'));
-  assert.match(model,/contents: read/);assert.match(model,/actions: read/);assert.match(model,/persist-credentials: false/);
-  assert.doesNotMatch(model,/contents: write|pull-requests: write|VERCEL_TOKEN|ANTHROPIC_API_KEY|git push|git commit/);
-  assert.match(model,/POLICY_MODEL_API_KEY/);assert.match(model,/daily-slot\.mjs/);assert.match(model,/scan-artifact\.mjs/);
-  const publisher=executable(job('refresh'));assert.doesNotMatch(publisher,/POLICY_MODEL_API_KEY/);
-  assert.match(publisher,/publish-candidate\.mjs/);
+test('daily and dispatched ETL cannot invoke a policy model or publish model candidates',()=>{
+  assert.equal(job('policy-research'),'');
+  assert.doesNotMatch(executable(workflow),/POLICY_MODEL_API_KEY|POLICY_EVALUATION_API_KEY|policy\/research\.mjs|policy\/evaluate-shadow\.mjs|publish-candidate\.mjs|policy-candidate/);
+  assert.doesNotMatch(job('policy-discovery'),/ai_enabled|authorize\.mjs/);
+  const research=readFileSync(new URL('../scripts/policy/research.mjs',import.meta.url),'utf8');
+  assert.match(research,/manual_only/);assert.doesNotMatch(research,/policyTransport|researchShadow|API_KEY|fetchPolicyEvidence/);
+  const authorization=readFileSync(new URL('../scripts/policy/authorize.mjs',import.meta.url),'utf8');
+  assert.match(authorization,/const enabled=false/);
 });
 test('one normal refresh commit/push and one exact-SHA gated publish remain',()=>{
   const refresh=executable(job('refresh'));assert.equal((refresh.match(/git commit /g)||[]).length,1);

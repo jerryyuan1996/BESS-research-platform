@@ -25,6 +25,35 @@ async function historyFor(owner){
 }
 const nodes=h=>h.cards.flatMap(c=>c.blocks.filter(b=>b.t==='timeline').flatMap(b=>b.items));
 
+/* Keep the frozen relocation contract unchanged. The analyst-authorised factual
+   correction is the only exception, asserted separately below against AEMO:
+   https://www.aemo.com.au/initiatives/major-programs/nem-reform-program/nem-reform-program-initiatives/fast-frequency-response
+   Reversing these exact edits for the old hash check still protects every other
+   original character, rather than regenerating a baseline around changed copy. */
+function beforeApprovedNemCorrection(text){
+  const edits=[
+    ["y:'2017–2023'", "y:'2017–2021'"],
+    ['The first large NEM batteries earned most of their revenue in FCAS as synchronous plant retired and inertia thinned. The AEMC made the final rule for very fast raise and lower FCAS on 15 July 2021; AEMO opened those markets on 9 October 2023.', 'The first large NEM batteries earned most of their revenue in FCAS, and AEMO introduced very fast raise and lower markets in 2021 as synchronous plant retired and inertia thinned.'],
+    ['随着同步机组退役、惯量下降，NEM首批大型电池的收入主要来自FCAS。AEMC于2021年7月15日制定极快速上调与下调FCAS的最终规则；AEMO于2023年10月9日启动这两个市场。', 'NEM首批大型电池的收入主要来自FCAS；随着同步机组退役、惯量下降，AEMO于2021年设立了极快速上调与下调市场。'],
+    ["        { t:'src', src: SRC.fastFrequencyResponse, use:['Very Fast FCAS final rule on 15 July 2021 and market commencement on 9 October 2023','极快速FCAS最终规则制定于2021年7月15日，市场启动于2023年10月9日'] },\n", ''],
+  ];
+  for(const [corrected,original]of edits){
+    assert.equal(text.split(corrected).length,2,'only the exact reviewed NEM correction is exempt from the original hash');
+    text=text.replace(corrected,original);
+  }
+  return text;
+}
+
+test('NEM history separates the Very Fast FCAS final rule from market commencement in both languages',async()=>{
+  const h=await historyFor('nem'),event=nodes(h)[0];
+  assert.equal(event.y,'2017–2023');
+  assert.match(event.p[0],/AEMC made the final rule.*15 July 2021; AEMO opened those markets on 9 October 2023/);
+  assert.match(event.p[1],/AEMC于2021年7月15日制定.*最终规则；AEMO于2023年10月9日启动/);
+  const source=h.cards[0].blocks.find(b=>b.t==='src'&&b.src.url.endsWith('/fast-frequency-response'));
+  assert.ok(source,'the corrected claim links the primary market-commencement record');
+  assert.equal(source.src.lastChecked,'2026-11-10');
+});
+
 test('all registered histories are covered without asserting three missing original Story approvals',async()=>{
   assert.deepEqual(Object.keys(PUBLIC_READING_CATALOG).sort(),marketIds().sort());
   assert.equal(Object.keys(contract.owners).length,16);
@@ -41,7 +70,7 @@ test('all registered histories are covered without asserting three missing origi
 
 test('full original source expressions preserve every period, title, paragraph, capital lens and context',async()=>{
   for(const [owner,c]of Object.entries(contract.owners)){
-    const text=await source(c.target),ast=parseAst(text),all=[];walk(ast,n=>{if(n.start!=null)all.push(n);});
+    const current=await source(c.target),text=owner==='nem'?beforeApprovedNemCorrection(current):current,ast=parseAst(text),all=[];walk(ast,n=>{if(n.start!=null)all.push(n);});
     const hashes=new Set(all.map(n=>hash(text.slice(n.start,n.end))));
     const body=all.find(n=>n.type==='ReturnStatement'&&property(n.argument,'cards'))?.argument;
     assert.ok(body,owner);

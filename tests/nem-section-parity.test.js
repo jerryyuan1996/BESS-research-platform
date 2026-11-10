@@ -29,9 +29,42 @@ import { buildAllNemSections, digests } from './helpers/nem-sections.mjs';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FIXTURE = JSON.parse(readFileSync(path.join(REPO, 'tests/fixtures/nem-sections-content.json'), 'utf8'));
 
+/* The pre-split fixture remains frozen. On 10 November 2026 the analyst
+   authorised correcting the Very Fast FCAS rule/launch dates and adding their
+   primary source. Assert those exact new fields before reversing only them for
+   the original digest. All other fields, including the investment meaning and
+   every other history node, still have to match the pre-split content. */
+function beforeApprovedFcasCorrection(sections){
+  const story=sections.story,card=story.blocks[1],timeline=card.blocks[1],event=timeline.items[0];
+  assert.equal(timeline.t,'timeline');
+  assert.equal(event.y,'2017–2023');
+  assert.deepEqual(event.p,[
+    'The first large NEM batteries earned most of their revenue in FCAS as synchronous plant retired and inertia thinned. The AEMC made the final rule for very fast raise and lower FCAS on 15 July 2021; AEMO opened those markets on 9 October 2023.',
+    '随着同步机组退役、惯量下降，NEM首批大型电池的收入主要来自FCAS。AEMC于2021年7月15日制定极快速上调与下调FCAS的最终规则；AEMO于2023年10月9日启动这两个市场。',
+  ]);
+  assert.deepEqual(card.blocks[3],{
+    t:'src',
+    src:{
+      file:'AEMO — Fast Frequency Response',status:['Official — Public','官方 — 公开'],
+      provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+      date:'9 Oct 2023',cy:'Very Fast FCAS: final rule 15 July 2021; market commencement 9 October 2023',
+      url:'https://www.aemo.com.au/initiatives/major-programs/nem-reform-program/nem-reform-program-initiatives/fast-frequency-response',
+      lastChecked:'2026-11-10',
+    },
+    use:['Very Fast FCAS final rule on 15 July 2021 and market commencement on 9 October 2023','极快速FCAS最终规则制定于2021年7月15日，市场启动于2023年10月9日'],
+  },'only this exact sourced correction is excluded from the original content digest');
+  const originalEvent={...event,y:'2017–2021',p:[
+    'The first large NEM batteries earned most of their revenue in FCAS, and AEMO introduced very fast raise and lower markets in 2021 as synchronous plant retired and inertia thinned.',
+    'NEM首批大型电池的收入主要来自FCAS；随着同步机组退役、惯量下降，AEMO于2021年设立了极快速上调与下调市场。',
+  ]};
+  const originalTimeline={...timeline,items:[originalEvent,...timeline.items.slice(1)]};
+  const originalCard={...card,blocks:card.blocks.filter((_,i)=>i!==3).map((b,i)=>i===1?originalTimeline:b)};
+  return {...sections,story:{...story,blocks:story.blocks.map((b,i)=>i===1?originalCard:b)}};
+}
+
 test('every NEM section is byte-for-byte what the pre-split file produced', async () => {
   const sections = await buildAllNemSections();
-  const now = digests(sections);
+  const now = digests(beforeApprovedFcasCorrection(sections));
 
   assert.deepEqual(Object.keys(now).sort(), Object.keys(FIXTURE.sections).sort(),
     'a section has appeared or disappeared since the fixture was taken');

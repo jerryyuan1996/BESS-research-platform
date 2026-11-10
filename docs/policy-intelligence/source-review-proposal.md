@@ -75,3 +75,76 @@ GB also has a real later timetable revision: the [3 June 2026 letter](https://ww
 The earlier incomplete GB letter downloads are a historical retrieval result, not the current state. Both complete originals now match the independently supplied byte hashes. The resumed review also retrieved original legal/rule/guide sources and examined 24 existing bilingual chapter pairs. Sixteen consolidated source-backed reference cases and a separate scope supplement remain in ignored review output; none is an accepted historical gold case or analyst content decision.
 
 See [the current source review checkpoint](source-review-checkpoint-2026-11-06.md) for exact URLs/locators, the two new GB hashes, complete/incomplete retrieval counts, rights findings and remaining market scope. Source inventory/profile approvals and every model/evaluation/publication switch remain unchanged and OFF. The private predecessor drafts are preserved.
+
+## Decision-console source audit — 10 November 2026
+
+**Four source groups researched, none enabled.** All remain at evidence stage. This audit is read-only public-source research and documentation, not approval to dynamically fetch, transmit to a model, translate protected expression or publish changed policy records. Access, third-party reuse rights, user permission, validator acceptance and investment decisions are separate gates.
+
+**四组来源已整理，均未启用，仍处证据阶段。** 本审计仅只读研究公开来源并记录，不批准动态抓取、向模型传输、翻译受保护表达或发布变更政策记录。来源可访问、第三方使用权、用户许可、校验器验收与投资决定分别处理。
+
+The console baseline is main `f52894bd0b362f675650829da172da330998c538`, snapshot `366275d243854a017d6b8ef54ac5fc94d58a5d06e10406d469622fac21091a8b`, checked `2026-11-10T09:17:39.170705+00:00`. It has **one historical public version**, 27 actual pending reassessments and no approved dynamic sources. Older zero-version statements in predecessor packets describe their then-current state. The historical static admission does not cover these new observations or a changed source hash.
+
+控制台基线已有**一版历史公开内容**、27项实际待重新评估、零项已批准动态来源。旧文档的零版本描述当时状态；历史静态接纳不覆盖本次新观察或变化的来源哈希。
+
+### Fresh official observations / 本次官方来源观察
+
+Retrieval date for every successful row is **2026-11-10 UTC**, through the permitted web-text research tool. The tool may return an indexed/cached representation (some marked crawled yesterday/two days ago); this date is the research observation date, not a claim of live-origin bytes, original hashes, publisher update time or exhaustive legal currentness. No raw original-byte receipt, trusted source profile or public canonical record was created. Only original URLs are listed, so a reviewer can inspect the cited context independently.
+
+每条成功观察日期均为**2026-11-10 UTC**，经许可网页文本工具取得；工具可能返回索引／缓存内容。该日期是研究观察日，不声称实时源站字节、原件哈希、发布方更新时间或完整现行法律。未生成原始字节回执、可信来源配置或公开规范记录；以下仅列原始链接供独立复核。
+
+| Official source / 官方来源 | Locator and bounded observation / 位置与有限结论 |
+| --- | --- |
+| [DE AgNes register](https://www.bundesnetzagentur.de/1059162) | Consultation/FID clarification: still describes a draft and proposed 2026 decision; 25% is not a universal minimum. / 征询及FID澄清：仍为草案并计划2026年决定；25%不是普遍最低门槛。 |
+| [DE BKZ FAQ](https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/Speicher/_faq/faq_table4.html) | First three FAQs and FCA section: case-specific charges and contractual flexibility, not uniform battery exemption. / 前三问及FCA：个案收费与合同灵活性，不是电池统一豁免。 |
+| [DE StromVKG](https://www.gesetze-im-internet.de/stromvkg/BJNR0D2AB0026.html) | Header; §§12(5)–(6), 13, 87: 21 July 2026 statute; tender classes and state-aid condition remain distinct. / 标题及所列条款：2026年7月21日法律，招标类别与国家援助条件分开。 |
+| [DE imprint](https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html) | Legal notices 4–5, Copyright: different data and default BY-ND terms; non-disruptive access requirement. / 法律声明4–5及版权：数据与默认禁止演绎许可有别，访问不得影响他人使用。 |
+| [Ofgem TM04+ package](https://www.ofgem.gov.uk/decision/decision-connections-reform-package-tm04) | Publication 15 April 2025; package separates methodology, code and licence decisions. / 2025年4月15日发布；方法、代码、许可证决定分开。 |
+| [Gate 2 decision](https://www.ofgem.gov.uk/sites/default/files/2025-04/Gate-2-Criteria-Methodology-Final-Decision.pdf) | PDF pp.2,4,6,11; attribution, criteria, ¶1.9 standstill and ¶3.4 positions. / 第2、4、6、11页：署名、准则、等待期及各方意见。 |
+| [June timetable letter](https://www.ofgem.gov.uk/sites/default/files/2026-06/OFGEM-E12.14-decision-letter-FINAL.pdf) | PDF p.3: issuance deadlines versus distribution completion expectations. / 第3页：要约发出期限与配电完成预期分开。 |
+| [October timetable letter](https://www.ofgem.gov.uk/sites/default/files/2026-10/Ofgem-agreement-for-revision-to-G2TWQ-timetable.pdf) | PDF pp.1–3: Phase 1 issuance only moves to 31 October; no actual completion proven. / 第1–3页：仅第一阶段发出期限改为10月31日；未证明实际完成。 |
+| [GB CM official collection](https://www.gov.uk/government/publications/capacity-market-rules) | Documents/updates: last updated 27 July 2026; July consolidation expressly informal, No.2–4 separately listed. / 文件／更新：2026年7月27日更新；七月合订本明确非正式，另列第2–4号。 |
+| [CM No.2](https://assets.publishing.service.gov.uk/media/6a3bf038da47783d877239d9/The_Capacity_Market__Amendment___No._2__Rules_2026.pdf) | PDF pp.3–4,6: effect tied to Regulations; battery nomination minimum 50% of specified calculation. / 第3–4、6页：生效与条例挂钩；电池申报下限为指定计算值50%。 |
+| [CM No.3](https://assets.publishing.service.gov.uk/media/6a562f692cbe5d1c179a6487/The_Capacity_Market__Amendment___No._3__Rules_2026.pdf) | PDF pp.3,52: relative next-day commencement and shared-agreement cap. / 第3、52页：相对次日生效及共享协议上限。 |
+| [CM No.4](https://assets.publishing.service.gov.uk/media/6a562f722cbe5d1c179a6488/The_Capacity_Market__Amendment___No._4__Rules_2026.pdf) | PDF pp.3,44: 17 July 2026 effect; storage reporting chain. / 第3、44页：2026年7月17日生效及储能报告链。 |
+| [GB CM response](https://assets.publishing.service.gov.uk/media/6a0449b6e71c4cdf4026bae7/capacity-market-proposed-changes-for-prequalification-2026-gov-response.pdf) | PDF pp.2,12: OGL/exclusions; MPCM not implemented ahead of 2026 prequalification, not permanent abandonment. / 第2、12页：OGL／排除项；2026预审前不实施MPCM，不等于永久放弃。 |
+| [Ofgem copyright](https://www.ofgem.gov.uk/c-ofgem-2026) | Copyright section: Crown/OGL permission excludes logos and identified third-party material. / 版权节：王室版权／OGL许可排除标志及标明的第三方内容。 |
+| [NESO methodology collection](https://www.neso.energy/industry-information/connections-reform/connections-reform-design-documents-and-methodologies) | Phase 3 June 2026 section distinguishes proposed/updated/submitted-for-Ofgem-review content from final versions. / 第三阶段2026年6月节区分建议／更新／提交Ofgem复核与最终版本。 |
+
+### Source groups: separate uses and decisions / 来源分组：用途与待决项
+
+#### `source-de` — Germany / 德国
+
+- **Fetch:** bounded public official page research succeeded as above; the AgNes attachment was not freshly rehashed. No redirect/attachment allowlist or continuing fetch permission was enabled. **Summary:** facts-only independent paraphrase and links are the present scope. / **取得：**上述有限官方页面研究成功，未重新核对草案附件原件哈希，未启用跳转／附件白名单或持续抓取。**摘要：**当前限独立事实转述及链接。
+- **Translation/publication:** BNetzA's default BY-ND notice must not be turned into permission for distributed adapted translations. Classify each draft/website work separately from statutory text under [UrhG §5](https://www.gesetze-im-internet.de/urhg/__5.html) and, where relevant, [§62](https://www.gesetze-im-internet.de/urhg/__62.html)/[§63](https://www.gesetze-im-internet.de/urhg/__63.html). These linked legal bases are historical packet references, not newly read statutes in this audit. / **翻译／发布：**默认禁止演绎许可不等于可传播改编译文；草案／网页与法条须逐件分类，适用时另核相关法条；这些法律依据沿用历史材料，本次未新读。
+- **Model transmission:** OFF; public access and a reuse grant cannot supply the user's model/provider authorization. / **模型传输：**关闭；公开访问及使用权不能代替用户对模型／供应商的授权。
+- **Currentness:** register corroborates draft wording, not exhaustive absence of a final order elsewhere. StromVKG §87 approval notice and operative tender/project applicability are not established. / **现行性：**登记页仅印证草案措辞，不穷尽其他最终决定；第87条批准公告及实际招标／项目适用性未确立。
+- **Options:** accept only this bounded research record; revise into exact host/path/document/version and use scopes after review; reject activation and retain fixed historical content. **Recommendation: evidence stage, not ready.** / **选项：**仅接受有限研究记录；复核后修订为精确主机／路径／文件／版本及用途；或拒绝启用，仅保留历史内容。**建议仍处证据阶段，未就绪。**
+
+#### `source-gb` — Great Britain / 英国
+
+- **Fetch:** specific official Ofgem, GOV.UK/assets and NESO pages were read. An Ofgem source profile cannot silently cover the other hosts. **Summary/translation:** Crown/OGL grants allow qualifying attributed reuse/adaptation; apply each document's notice/title and third-party/logo exclusions. Existing grants do not require asking for the same copyright permission again. / **取得：**读取所列官方页面；Ofgem来源配置不能自动覆盖其他主机。**摘要／翻译：**合格王室版权材料可按OGL署名使用／改编，仍须逐件遵守标题、第三方及标志排除项；已有许可不应重复索取。
+- **Model transmission/publication:** both remain separately unapproved for new content; an OGL grant is not a user instruction to transmit or publish. / **模型传输／发布：**新内容仍分别未获用户批准；OGL不是用户传输或发布指令。
+- **Currentness:** original approval, licence standstill, later methodology review, June/October timetable, No.2 commencement instrument, No.3 making date and No.4 reporting must be reconciled. No actual 31 October delivery or project offer/award was obtained. An informal consolidation is a research aid. / **现行性：**须协调原批准、许可证等待期、后续方法复核、六月／十月时间表、第2号生效条例、第3号制定日及第4号报告；未取得10月31日实际交付或项目要约／授标；非正式合订本仅辅助研究。
+- **Options:** accept scoped historical evidence/attribution; revise exact registrations after operative-chain and bilingual review; reject dynamic activation. **Recommendation: evidence stage, not ready.** / **选项：**接受有限历史证据／署名；正式链及双语复核后修订精确登记；或拒绝动态启用。**建议仍处证据阶段，未就绪。**
+
+#### `source-nem` — NEM, separate from WA / NEM，与西澳分开
+
+- **Fetch:** no new requests to previously denied AEMC/AEMO/ASL targets; their recorded 403 stops are respected. Existing independent government-hosted 2021 originals remain historical evidence, not a route around denial. No fresh external original evidence was admitted for the seven mappings. / **取得：**不重试此前被拒的AEMC／AEMO／ASL目标，遵守403停止；已有独立政府托管2021原件仅为历史证据，不作为绕过拒绝路径；七项映射未接纳新外部原件。
+- **Summary/translation:** final determination's selected-reproduction notice is not a blanket rule licence. The separate amending rule does not inherit it. For AEMO-owned material apply the exact incorporated permission only when established; the prior packet's unestablished incorporation remains unresolved. CIS Tender10 CC BY4.0 and NSW Tender9 general-use grants already exist, subject to their own attribution/exclusions. Facts-only bilingual paraphrases are not translated original excerpts. / **摘要／翻译：**最终决定的有限复制声明不是所有规则的普遍许可，独立修订规则不继承；AEMO材料仅在具体引入许可确立后适用，旧材料未确立的问题仍在；CIS及NSW指南已有各自署名／排除条件下的许可；双语事实转述不是原文译引。
+- **Model transmission/publication:** OFF for new sources/versions; exact user/provider/use authorization is absent and cannot be inferred from host or source licence. / **模型传输／发布：**新来源／版本保持关闭，不能从主机或许可推断用户／供应商／用途授权。
+- **Currentness:** current consolidated NER amendments, operational implementation, FCAS guide/service/facility qualification, CIS/LTESA addenda/outcomes and executed contracts remain missing. 2021 participation does not prove current absence of capacity mechanisms or support income; 8h NSW route is not the priced 4h CIS case. / **现行性：**仍缺现行NER修订链、运营实施、FCAS指南／服务／设施资格、招标补遗／结果及已签合同；2021参与规则不能证明当前没有容量机制或支持收入；NSW8小时路线不是已定价4小时CIS情形。
+- **Options:** accept stored historical boundaries only; revise source-specific rights/current-law evidence via a permitted route; reject activation until complete. **Recommendation: evidence stage, not ready.** / **选项：**仅接受已有历史边界；经许可路径补逐来源权利／现行法；或拒绝启用直至完整。**建议仍处证据阶段，未就绪。**
+
+#### `source-wa` — Western Australia / 西澳
+
+- **Fetch:** automated WA.gov.au acquisition remains stopped under the previously reviewed [terms](https://www.wa.gov.au/terms-of-use). This audit did not request that host or retry earlier AEMO denials. An owner instruction cannot waive a third-party prohibition. / **取得：**按此前已读条款继续停止自动取得WA.gov.au；本次未请求该主机或重试AEMO拒绝；用户指令不能豁免第三方禁令。
+- **Summary/translation/publication:** use only existing admitted facts-only paraphrases/metadata. Gazette-specific notices are distinct from the WA Legislation CC licence, which excludes Gazettes. The ESM rule/consultation document needs its own applicable-use basis; no generic licence is transferred across hosts/document types. No source bodies or translated excerpts are added here. / **摘要／翻译／发布：**仅用已接纳事实转述／元数据；公报独立声明不同于排除公报的西澳法律CC许可；ESM规则／征询文件各需适用依据，不跨主机／文件转用许可；本次不加入原文或译引。
+- **Model transmission:** OFF; existing source access and private review cannot authorize provider transmission. / **模型传输：**关闭；已有访问或私下复核不授权供应商传输。
+- **Currentness:** schedules have distinct making/publication/effect dates; schedule6 retains its immediately-after relation, schedule7 notice remains unknown. As-at-1-October ESM Rules are not proof of all later amendments. Facility Capacity Credits, FCESS accreditation and NCESS access are separate decisions. / **现行性：**制定／刊发／生效日分开；附表6保留紧接之后，附表7通知未知；10月1日版本不证明后续修订完整；项目容量信用、FCESS认证及NCESS接入分别决定。
+- **Options:** accept only fixed historical facts; revise after a lawful official acquisition route and exact reuse/currentness/independent review; reject dynamic activation. **Recommendation: evidence stage, not ready.** / **选项：**仅接受固定历史事实；合法官方取得路径及精确使用权／现行性／独立复核后修订；或拒绝动态启用。**建议仍处证据阶段，未就绪。**
+
+### Delivery and verification boundary / 交付与核验边界
+
+The [existing decision packet](offline-review-decision-2026-11-06.md#decision-console-evidence-audit--10-november-2026) now supplies all 27 case IDs, original retrieval times/content hashes, provision locators, date classifications, exact bilingual thesis substrings and accept/revise/reject recommendations. Independent bounded semantic/bilingual review of this prepared evidence was completed on 10 November 2026, including verification of the notice-date correction; original-byte revalidation, complete current-law review, mapping acceptance and permission/investment approval remain outside that review. Documentation is local and awaits the repository confidentiality scan and normal commit/review pipeline. No new dynamic configuration, fetch adapter, paid call, publication authorization, public snapshot, view-store text or model parameter was changed by this audit.
+
+原决策材料现覆盖27项ID、原始检索时间／内容哈希、条款位置、日期种类、精确双语论点子句及三类建议。已于2026年11月10日完成所整理证据范围内的独立语义／双语复核，并确认通知日期修正；该复核不包含原始字节重新核验、完整现行法审查、映射接纳或权限／投资批准。文档尚在本地，等待保密扫描及正常提交／复核流程；本审计不修改动态配置、抓取适配器、付费调用、发布授权、公开快照、观点文本或模型参数。

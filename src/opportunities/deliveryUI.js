@@ -34,13 +34,13 @@ export function executionTimelines(comparison,row,investor){
     wrapper.replaceChildren(h('p',{class:'ix-time-origin'},h('strong',{},'T+0 · '),L(T_ZERO),
       L(comparison.stage==='greenfield'?['. This custom case enters before RTB.','. 当前自定义方案从绿地阶段进入。']:
         ['. The common reference case enters at RTB.','. 统一参考项目按RTB交割进入。'])),
-      switches,h('div',{class:'ix-plan-heading'},h('h3',{},L(path.label)),
+      ...[switches].filter(Boolean),h('div',{class:'ix-plan-heading'},h('h3',{},L(path.label)),
         h('p',{class:'ix-caption'},L(['COD ','投运 ']),time(t.codMonths),' · ',L(['Revenue eligibility ','收入资格 ']),time(t.qualifiedMonths),
           ' · ',L([path.reference.input.annual.length+'-year all-equity hold',path.reference.input.annual.length+'年全股权长持']))),
       h('div',{class:'ix-execution-layout','data-plan':path.id},
         h('article',{class:'ix-delivery-column is-single'},h('ol',{class:'ix-milestones'},t.milestones.map(item))),
         h('aside',{class:'ix-execution-cash'},monthlyCashChart(t,{plan:path.id}))),
-      later,h('p',{class:'ix-caption'},L(t.targetBasis)));
+      ...[later].filter(Boolean),h('p',{class:'ix-caption'},L(t.targetBasis)));
     if(focus)wrapper.querySelector('.ix-plan-switch [data-plan="'+selected+'"]')?.focus({preventScroll:true});
   }
   draw();return wrapper;

@@ -19,16 +19,22 @@ export function evaluationCorpusProblems(cases,{evidenceProofs=new Map()}={}){
 
 /** One externally reserved invocation. Expected labels are never passed to the
  * transport. The returned summary cannot grant live publication authority. */
-export async function runManualShadowCase({cases,caseId,config,ledger,invoke,context,now,scanEvidence,independentCheck,evidenceProofs}){
+export async function runManualShadowCase({cases,caseId,config,ledger,invoke,countInputTokens,context,now,scanEvidence,independentCheck,evidenceProofs}){
   const problems=evaluationCorpusProblems(cases,{evidenceProofs});
   const selected=cases?.find(c=>c.id===caseId);
   if(problems.length||!selected)return {status:'disabled',problems,canPublish:false};
-  const body=selected.body;const source=Object.fromEntries(['id','url','publisher','title','language','authority','locator','contentHash','issuedAt','checkedAt','rights'].filter(key=>key in selected.source).map(key=>[key,selected.source[key]]));
-  if(source.rights)source.rights=Object.fromEntries(['metadata','termsURL','reviewed','reproduction','attribution','license','changes'].filter(key=>key in source.rights).map(key=>[key,source.rights[key]]));
+  const {source,excerpt:body}=manualCaseDocument(selected);
   if(typeof scanEvidence!=='function'||await scanEvidence({body,source})!==true||typeof independentCheck!=='function')return {status:'disabled',problems:['Independent confidentiality and semantic validators required'],canPublish:false};
-  const result=await researchShadow({changedDocuments:[{sourceId:source.id,source,excerpt:body}],invoke,config:{...config,validatedGoldCases:12},ledger,context,bodies:new Map([[source.id,body]]),now});
-  if(result.status!=='shadow_valid')return {status:result.status,canPublish:false,usage:result.usage??null};
-  if(await independentCheck({candidate:result.candidate,source,body})!==true)return {status:'quarantined',canPublish:false,usage:result.usage};
+  const result=await researchShadow({changedDocuments:[{sourceId:source.id,source,excerpt:body}],invoke,countInputTokens,config:{...config,validatedGoldCases:12},ledger,context,bodies:new Map([[source.id,body]]),now});
+  if(result.status!=='shadow_valid')return {status:result.status,canPublish:false,preflightInputTokens:result.preflightInputTokens??null,usage:result.usage??null};
+  if(await independentCheck({candidate:result.candidate,source,body})!==true)return {status:'quarantined',canPublish:false,preflightInputTokens:result.preflightInputTokens??null,usage:result.usage};
   const actualReview=result.reviews.length>0;
-  return {status:'evaluated',caseId,expectedReview:selected.expectedReview,actualReview,matched:actualReview===selected.expectedReview,usage:result.usage,canPublish:false};
+  return {status:'evaluated',caseId,expectedReview:selected.expectedReview,actualReview,matched:actualReview===selected.expectedReview,preflightInputTokens:result.preflightInputTokens,usage:result.usage,canPublish:false};
+}
+
+/** The exact whitelisted evidence envelope used for both request binding and transport. */
+export function manualCaseDocument(selected){
+  const source=Object.fromEntries(['id','url','publisher','title','language','authority','locator','contentHash','issuedAt','checkedAt','rights'].filter(key=>key in selected.source).map(key=>[key,selected.source[key]]));
+  if(source.rights)source.rights=Object.fromEntries(['metadata','termsURL','reviewed','reproduction','attribution','license','changes'].filter(key=>key in source.rights).map(key=>[key,source.rights[key]]));
+  return {sourceId:source.id,source,excerpt:selected.body};
 }
