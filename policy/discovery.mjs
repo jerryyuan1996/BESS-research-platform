@@ -2,6 +2,8 @@ import { sourceDigest,digest } from './integrity.mjs';
 import { safeURL } from './schema.mjs';
 export const DISCOVERY_LIMITS=Object.freeze({bytes:1_000_000,timeoutMs:15_000,retries:2,redirects:3});
 export const cycleId=now=>new Date(now).toISOString().slice(0,10);
+export const retryableFailure=reason=>['network_error','offline'].includes(reason)||/^http_5\d\d$|^robots_http_5\d\d$/.test(reason);
+const permissionStop=reason=>/^(?:http_|robots_http_)(?:401|403|429)$/.test(reason)||['robots_denied','invalid_robots_document','unreviewed_redirect','unreviewed_redirect_path'].includes(reason);
 export function canonicalURL(value){const u=new URL(value);u.hash='';for(const key of [...u.searchParams.keys()])if(/^utm_|^fbclid$/.test(key))u.searchParams.delete(key);u.searchParams.sort();return u.href;}
 /** Conservative robots handling. A denial is retained even if another group
  * might be more permissive; uncertainty reduces coverage, never expands it. */
@@ -24,10 +26,12 @@ async function boundedText(response,maxBytes){
   while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>maxBytes){await reader.cancel();throw new Error('size_limit');}chunks.push(value);}
   return new TextDecoder().decode(Buffer.concat(chunks));
 }
-async function fetchReviewed(url,source,fetcher,limits){
+async function fetchReviewed(url,source,fetcher,limits,pathPermitted=null){
   let current=url;
   for(let hop=0;hop<=limits.redirects;hop++){
     if(!safeURL(current)||new URL(current).hostname!==source.host)throw new Error('unreviewed_redirect');
+    if(source.metadataScope && (pathPermitted||new URL(current).pathname!=='/robots.txt') && !source.metadataScope.pageURLs?.includes(current))throw new Error('unreviewed_redirect_path');
+    if(pathPermitted&&!pathPermitted(new URL(current).pathname))throw new Error('robots_denied');
     const response=await fetcher(current,{redirect:'manual',headers:{'user-agent':'BESSPolicyResearch/1.0'},signal:AbortSignal.timeout(limits.timeoutMs)});
     if([301,302,303,307,308].includes(response.status)){const next=response.headers.get('location');if(!next)throw new Error('redirect_without_target');current=new URL(next,current).href;continue;}
     return {response,url:canonicalURL(current)};
@@ -40,11 +44,20 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
   const old=new Map(previous.map(x=>[x.identity,x]));
   for(const source of sources){
     const identity=`${source.jurisdiction}:${source.officialId}`;
-    const base={id:source.id,identity,jurisdiction:source.jurisdiction,markets:[...source.markets],language:source.language,title:source.title,sourceURL:source.url,checkedAt,cycle};
+    const base={id:source.id,identity,jurisdiction:source.jurisdiction,markets:[...source.markets],language:source.language,title:source.title,sourceURL:source.url,checkedAt,cycle,...(source.blockedReason?{blockedReason:source.blockedReason}:{})};
     const prior=old.get(identity);
-    const retain=(status)=>records.push({...base,status,lastSuccessfulAt:prior?.lastSuccessfulAt??null,lastKnownGood:prior?.lastKnownGood??null});
+    const scopeVersion=source.metadataScope?.reviewVersion??'unversioned';
+    const retain=(status,extra={})=>records.push({...base,status,lastSuccessfulAt:prior?.lastSuccessfulAt??null,lastKnownGood:prior?.lastKnownGood??null,
+      ...(prior?.stopReason?{stopReason:prior.stopReason,stopScopeVersion:prior.stopScopeVersion,stoppedAt:prior.stoppedAt,priorStatus:prior.priorStatus??prior.status}:{}),...extra});
     if(killSwitch){retain('disabled');continue;}
-    if(!source.reviewed||!source.rightsReviewed){retain('pending_source_review');continue;}
+    if(!(source.reviewed&&source.rightsReviewed)&&!source.metadataScope?.reviewed){retain('pending_source_review');continue;}
+    if(prior?.stopReason&&prior.stopScopeVersion===scopeVersion){
+      retain('blocked_after_denial',{stopReason:prior.stopReason,stopScopeVersion:prior.stopScopeVersion,stoppedAt:prior.stoppedAt,priorStatus:prior.priorStatus??prior.status});continue;
+    }
+    // A restored same-day attempt is not another request, including after denial.
+    if(source.metadataScope?.reviewed&&prior?.cycle===cycle&&!['pending_source_review','disabled'].includes(prior.status)){
+      records.push({...prior,status:'same_cycle_retained',priorStatus:prior.priorStatus??prior.status});continue;
+    }
     if(!safeURL(source.url)||new URL(source.url).hostname!==source.host){retain('unreviewed_host');continue;}
     const url=canonicalURL(source.url);
     if(seenURLs.has(url)||seenIdentities.has(identity)){retain('duplicate');continue;}seenURLs.add(url);seenIdentities.add(identity);
@@ -52,18 +65,25 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
     for(let attempt=0;attempt<=limits.retries;attempt++){
       try{
         const robot=await fetchReviewed(new URL('/robots.txt',url).href,source,fetcher,limits);
-        if(robot.response.status!==404){if(!robot.response.ok)throw new Error('robots_unavailable');if(!robotsPermit(await boundedText(robot.response,100_000),new URL(url).pathname)){failure='robots_denied';break;}}
-        const result=await fetchReviewed(url,source,fetcher,limits);if(!result.response.ok)throw new Error(`http_${result.response.status}`);
-        if(result.url!==url){const robotPath=new URL(result.url).pathname;if(robot.response.status!==404&&!robotsPermit(await boundedText((await fetchReviewed(new URL('/robots.txt',url).href,source,fetcher,limits)).response,100_000),robotPath))throw new Error('robots_denied');}
+        let robotsText=null;
+        if(robot.response.status!==404){
+          if(!robot.response.ok)throw new Error(`robots_http_${robot.response.status}`);
+          const robotsType=robot.response.headers.get('content-type')||'';
+          robotsText=await boundedText(robot.response,100_000);
+          if(/(?:text\/html|application\/xhtml)/i.test(robotsType)||/<\s*(?:!doctype\s+html|html|head|body)\b/i.test(robotsText))throw new Error('invalid_robots_document');
+        }
+        // The same host's cached rules apply BEFORE every page/redirect GET.
+        const pathPermitted=pathname=>robotsText===null||robotsPermit(robotsText,pathname);
+        const result=await fetchReviewed(url,source,fetcher,limits,pathPermitted);if(!result.response.ok)throw new Error(`http_${result.response.status}`);
         const type=result.response.headers.get('content-type')||'';if(!/^text\/(?:html|plain)|application\/(?:json|xml)/i.test(type))throw new Error('unsupported_document_type');
         const body=await boundedText(result.response,limits.bytes);if(!body.trim())throw new Error('empty_document');
         const hash=sourceDigest(body);const document={url:result.url,contentHash:hash,observedAt:checkedAt,publishedAt:null,effectiveAt:null};
         if(onDocument)await onDocument({source,document,body});
         const unchanged=prior?.lastKnownGood?.contentHash===hash;
         records.push({...base,status:unchanged?'unchanged':'changed',lastSuccessfulAt:checkedAt,lastKnownGood:unchanged?prior.lastKnownGood:document});success=true;break;
-      }catch(error){failure=/^[a-z_0-9]+$/.test(error.message)?error.message:'network_error';if(attempt<limits.retries)await sleep(250*(2**attempt));}
+      }catch(error){failure=/^[a-z_0-9]+$/.test(error.message)?error.message:'network_error';if(!retryableFailure(failure))break;if(attempt<limits.retries)await sleep(250*(2**attempt));}
     }
-    if(!success)retain(failure);
+    if(!success)retain(failure,permissionStop(failure)?{stopReason:failure,stopScopeVersion:scopeVersion,stoppedAt:checkedAt}:{});
     await sleep(250);
   }
   // Exclude check timestamps from identity: repeat checks do not manufacture content.

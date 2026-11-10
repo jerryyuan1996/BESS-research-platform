@@ -13,7 +13,7 @@ test('one ordinary daily schedule initiates both streams; monthly/weekly schedul
 });
 test('policy process has read-only permissions, no saved credential, no model key and no publisher import',()=>{
   const policy=executable(job('policy-discovery'));
-  assert.match(policy,/contents: read/);assert.match(policy,/persist-credentials: false/);assert.doesNotMatch(policy,/contents: write|pull-requests: write|secrets\.|git push|git commit|ANTHROPIC|OPENAI/);
+  assert.match(policy,/contents: read/);assert.match(policy,/actions: read/);assert.match(policy,/persist-credentials: false/);assert.doesNotMatch(policy,/contents: write|pull-requests: write|secrets\.|git push|git commit|ANTHROPIC|OPENAI/);
   for(const rel of ['../policy/discovery.mjs','../scripts/policy/discover.mjs']){
     const code=readFileSync(new URL(rel,import.meta.url),'utf8');assert.doesNotMatch(code,/viewWriter|etl\/rules|authorMayWrite|publishPolicySnapshot|src\/markets|src\/comparison|local-data/);
   }
@@ -76,7 +76,22 @@ test('manual dry run suppresses rules, commits and drift proposal without adding
   assert.match(job('refresh'),/id: rules\n\s+if: inputs.dry_run != true/);assert.match(job('refresh'),/id: commit\n\s+if: inputs.dry_run != true/);assert.match(job('propose'),/inputs.dry_run != true/);
   assert.match(workflow,/group: live-data\n\s+cancel-in-progress: false/);
 });
-test('unreviewed source proposal remains inactive and no AI output can publish',()=>{
+test('only two narrow metadata scopes activate; broader source rights and AI publication stay off',()=>{
   assert.equal(POLICY_SOURCES.length,4);for(const source of POLICY_SOURCES){assert.equal(source.reviewed,false);assert.equal(source.rightsReviewed,false);}
+  assert.deepEqual(POLICY_SOURCES.filter(s=>s.metadataScope?.reviewed).map(s=>s.id),['de-agnes','gb-connections']);
+  for(const source of POLICY_SOURCES.filter(s=>s.metadataScope?.reviewed)){
+    assert.equal(source.metadataScope.purpose,'metadata_discovery_only');assert.deepEqual(source.metadataScope.attachmentDownloadHosts,[]);
+  }
   const cli=readFileSync(new URL('../scripts/policy/discover.mjs',import.meta.url),'utf8');assert.match(cli,/publicationEnabled:false/);assert.doesNotMatch(cli,/publishPolicySnapshot/);
+});
+
+test('discovery publishes actual coverage to its job summary, not just workflow success',()=>{
+  assert.match(job('policy-discovery'),/cat etl\/out\/policy-discovery\.md >> "\$GITHUB_STEP_SUMMARY"/);
+  assert.match(job('policy-discovery'),/path: \|\n\s+etl\/out\/policy-discovery\.json\n\s+etl\/out\/policy-discovery\.md\n\s+etl\/out\/policy-discovery-journal\.json/);
+  assert.match(job('policy-discovery'),/retention-days: 90/);
+  assert.match(job('policy-discovery'),/python scripts\/policy\/restore-discovery\.py/);
+  assert.doesNotMatch(job('policy-discovery'),/actions\/cache/);
+  const cli=readFileSync(new URL('../scripts/policy/discover.mjs',import.meta.url),'utf8');
+  assert.match(cli,/coverage:discoveryCoverage\(result\.records\)/);
+  assert.match(cli,/discoverySummary\(result\)/);
 });
