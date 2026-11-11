@@ -11,7 +11,7 @@ import { link, sectionTitle, eyebrow, metric } from '../experience/chrome.js';
 import { money, pct } from '../experience/model.js';
 import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES, opportunitiesFor, opportunityById, RESEARCH_DATE } from './catalog.js';
 import { compareOpportunity, defaultOpportunityStage, beatsConventional } from './model.js';
-import { REVENUE_MECHANISMS, revenueMechanismsFor } from './revenue.js';
+import { REVENUE_MECHANISMS, MECHANISM_RESEARCH, revenueMechanismsFor } from './revenue.js';
 
 const session = new Map();
 const external = (url, label) => h('a', { href:url, target:'_blank', rel:'noopener noreferrer' }, L(label), ' ↗');
@@ -23,8 +23,33 @@ const ownedRoute = (r,investor) => r?.route === 'sale'
   : L(['Long-term hold','长期持有']);
 
 
-export function revenueMechanismSection(row) {
+/* Research in context, for a market whose research is placed: each mechanism
+   card carries the research that explains it, and research with no card above
+   it on this route follows the cards, so a reader on a merchant route still
+   finds the award research. `research` is { under(slot, label), across(label) }
+   from the market page, or null. */
+const RESEARCH_LABEL = {
+  award: ['Research on long-term awards and capacity payments','长期中标与容量付费研究'],
+  merchant: ['Research on energy trading','电能量交易研究'],
+  ancillary: ['Research on ancillary and balancing services','辅助服务与平衡服务研究'],
+};
+export function revenueMechanismSection(row, research = null) {
   const route = row.play?.route || baseStrategy(row.market);
+  const explained = new Set();
+  const behind = id => {
+    const slot = MECHANISM_RESEARCH[id];
+    if (!research || !slot || explained.has(slot)) return null;
+    explained.add(slot);
+    return research.under(slot, ['Research behind this mechanism','该机制背后的研究']);
+  };
+  const section = revenueMechanismCards(row, route, behind);
+  if (research) section.append(...[
+    ...Object.keys(RESEARCH_LABEL).filter(slot => !explained.has(slot)).map(slot => research.under(slot, RESEARCH_LABEL[slot])),
+    research.across?.(['Research across the revenue mechanisms','跨收入机制的研究']),
+  ].filter(Boolean));
+  return section;
+}
+function revenueMechanismCards(row, route, behind) {
   return h('section',{class:'ix-section',id:'revenue-drivers'},
     sectionTitle(['WHY THE REVENUE EXISTS','收入背后的经济动因'],['Who pays, and why?','谁在付钱，为什么付钱？'],
       ['Mechanism facts are linked below. Pricing incentives and investment implications are the platform’s economic interpretation.','机制事实附有来源；定价动因和投资含义为平台的经济解读。']),
@@ -40,7 +65,8 @@ export function revenueMechanismSection(row) {
           [['How the price forms','为什么这样定价'],'pricing'],[['Short- and long-term drivers','短期与长期驱动'],'drivers'],
         ].map(([label,key])=>h('article',{},h('h4',{},L(label)),h('p',{},L(m[key]))))),
         h('p',{class:'ix-mechanism-discipline'},h('strong',{},L(['Underwriting implication: ','对投资测算的含义：'])),L(m.discipline)),
-        h('div',{class:'ix-mechanism-sources'},m.sources.map(([label,url])=>external(url,label))));
+        h('div',{class:'ix-mechanism-sources'},m.sources.map(([label,url])=>external(url,label))),
+        behind(id));
     }));
 }
 

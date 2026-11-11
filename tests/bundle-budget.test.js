@@ -279,8 +279,14 @@ const BUDGET = {
      Each change alone fits inside 171; together they do not. This is a measured
      raise with both contributors named, not a slack allowance — and it leaves
      1.48 kB of room, so the next change here still has to justify itself.
-     See docs/p1-sections-pilot.md. */
-  sharedTotal: 173,
+     See docs/p1-sections-pilot.md.
+
+     RAISED FROM 173 TO 174 (2026-11-11) for research in context: the engine
+     every market carries can now hand a chapter of the market page the cards
+     it asks for (researchExcerpt in _shared/engine.js, with researchUnits.js).
+     Measured 172.85 on main at 294f801 and 173.71 with it, +0.86. Bytes that
+     were added, for all sixteen dashboards at once; 0.29 of room is left. */
+  sharedTotal: 174,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {

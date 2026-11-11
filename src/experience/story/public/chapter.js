@@ -50,6 +50,10 @@ export function renderChapter(data,id,ctx){
       finally{holder.setAttribute('aria-busy','false');}
     };draw();
   }
+  /* The research behind the chapter, where the market's research is placed
+     (src/experience/researchMap.js). The page supplies the closed disclosure;
+     this reading imports no research and fetches none until it is opened. */
+  if(['system','mechanism'].includes(id)){const behind=ctx.researchContext?.(id);if(behind)node.append(behind);}
   const all=Object.entries(data.sources||{}).filter(([,s])=>s.url);
   const sectionSourceIds=new Set([...(data.sourceIdsByChapter?.[id]||[]),...data.extracts[id==='history'?'history':id==='system'?'system':'mechanism'].flatMap(e=>e.sourceIds),...(data.regionalSourceIds||[])]);
   const selected=all.filter(([key])=>sectionSourceIds.has(key));

@@ -39,6 +39,16 @@ export function researchSummary(container, route) {
   engine.researchSummary(container, route, markets);
 }
 
+/* Research in context: the cards a chapter of the market page asks for, lifted
+   out of the research itself (see researchExcerpt in _shared/engine.js). The
+   market page always names one area, so each of Tokyo, Kyushu and Hokkaido
+   shows its own regional cards; the default namespace is bound first, as
+   dashboard() binds it, because the scorecard reads the area through it. */
+export function researchExcerpt(route, picks) {
+  activeRegion.id = REGIONS.some(([id]) => id === route.region) ? route.region : 'tokyo';
+  return engine.researchExcerpt(route, markets, picks);
+}
+
 export const state = engine.state;
 
 export function dashboard(container, route){

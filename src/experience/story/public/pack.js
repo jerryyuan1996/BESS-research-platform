@@ -75,7 +75,7 @@ export function open(ctx){
         chapter==='history'||summary.historyOnly?import('./history.js').then(module=>module.loadResearchHistory(ctx.id)):null]);
       if(closed||run!==version)return;
       data=content;
-      const node=renderer.renderChapter({...data,historyResearch:researchHistory},chapter,{alive:()=>alive()&&run===version,research,researchUrl:ctx.researchUrl,legacy:ctx.id==='ercot'?null:legacy});
+      const node=renderer.renderChapter({...data,historyResearch:researchHistory},chapter,{alive:()=>alive()&&run===version,research,researchUrl:ctx.researchUrl,legacy:ctx.id==='ercot'?null:legacy,researchContext:ctx.researchContext});
       const versionNote=initial.version&&initial.version!==PUBLIC_VERSION?h('p',{role:'status',class:'public-version-note'},L(['This link names an older edition. Showing the current edition: ','链接指向其他版本。当前显示最新版本：']),PUBLIC_VERSION):null;
       body.replaceChildren(...(versionNote?[versionNote]:[]),node,
         h('footer',{class:'public-chapter-footer'},h('span',{},L(summary.historyOnly?['Existing research history','既有研究历程']:['Market background & investment logic','市场背景与投资逻辑'])),
