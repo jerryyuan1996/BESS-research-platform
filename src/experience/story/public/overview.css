@@ -37,3 +37,9 @@
  .public-overview-reading .ix-text-link { grid-column:1/-1; font-size:var(--fs-2xs); }
 }
 @media print { .public-story-trigger { display:none; } .public-overview { break-inside:avoid; } }
+/* A shared reading entrance, not another model or a scaled dispatch chart. */
+.public-overview{padding:clamp(20px,3vw,40px);margin:16px 0 32px;border:1px solid var(--ix-line);border-radius:var(--r-lg);background:linear-gradient(125deg,rgba(47,113,88,.07),transparent 70%)}
+.public-overview-art{display:block;width:100%;max-height:170px;color:var(--ix-green);margin-bottom:18px;transition:transform .2s ease}.public-overview:hover .public-overview-art{transform:translateY(-2px)}
+.public-chapter-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}.public-chapter-steps button{display:flex;align-items:center;gap:9px;text-align:left;border:1px solid var(--ix-line);border-radius:var(--r-md);background:transparent;color:inherit;font:inherit;font-size:var(--fs-xs);padding:10px;min-height:44px;cursor:pointer}.public-chapter-steps span{color:var(--ix-green);font-variant-numeric:tabular-nums}.public-chapter-steps button:hover{border-color:var(--ix-green)}.public-chapter-steps button:focus-visible{outline:3px solid var(--ix-green);outline-offset:3px}.public-status:empty{display:none}
+@media(max-width:720px){.public-overview{padding:18px}.public-overview-reading{display:block}.public-overview-art{max-height:110px;margin:0 0 12px}.public-chapter-steps{grid-template-columns:1fr 1fr}.public-chapter-steps button{font-size:var(--fs-xs)}}
+@media(prefers-reduced-motion:reduce){.public-overview-art{transition:none}.public-overview:hover .public-overview-art{transform:none}}

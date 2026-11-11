@@ -1,14 +1,17 @@
 import {h} from '../../../utils/dom.js';
 import {L} from '../../../app/i18n.js';
 import {CHAPTERS} from './content.js';
-import {approvalRecordUrl} from './approvalRecords.js';
 import {renderResearchHistory,renderHistoryProvenance} from './historyChapter.js';
 
+// Audit dispositions remain in the source registry; readers see the reuse boundary.
+const readerReuse=text=>text
+  .replace(/ Recorded under ro-build-evidence\.md §8; the analyst confirms the basis at G-2\./,'')
+  .replace(/B-PL-RIGHTS closed at G-2 on 3 November 2026: official material on the art\. 4 basis, with the analyst recording this source-by-source disposition\./,'Official material on the art. 4 basis.');
 const P=(text,cls='')=>h('p',{class:cls},L(text));
 const TEXT={
-  excerpt:['Reference · original signed script','参考事实 · 原签核脚本原文'],
-  draft:['Public interpretation · review pending','公共解读 · 待确认'],
-  fact:['Source-backed background · reorganised for public review','有来源背景 · 公共重组待确认'],
+  excerpt:['Research excerpt','研究摘录'],
+  draft:['Economic interpretation','经济机制解读'],
+  fact:['Sourced background','有来源的背景'],
   physical:['Power changes immediately; energy limits how long it can continue. Charging and discharging use the same connection. Controls must respect the connection agreement as well as the battery’s usable energy.', '功率可以快速改变，但电量限制了动作能持续多久。充放电共用同一并网连接。控制系统既要遵守并网协议，也要服从电池可用电量限制。'],
   equipment:['Cells and racks store DC energy. The PCS converts DC and AC; the transformer matches the grid voltage. Protection, metering, the busbar and the point of connection complete the electrical path.', '电芯与机架储存直流电量。PCS完成交直流转换，变压器匹配电网电压。保护、计量、母线与并网点共同组成完整电气路径。'],
   limit:['An illustration is not a dispatch model. The same power and energy cannot be promised twice; conversion losses, charging access and delivery obligations constrain compatible services.', '示意图不是调度模型。同一份功率和电量不能重复承诺；转换损耗、充电准入及交付义务，共同限制可兼容服务。'],
@@ -17,14 +20,15 @@ const TEXT={
 export function renderChapter(data,id,ctx){
   const heading=h('h3',{tabindex:'-1'},L(CHAPTERS.find(c=>c[0]===id)[1]));
   const node=h('article',{class:'public-chapter','data-chapter':id},heading);
-  if(data.checkedAfterG1)node.append(h('p',{class:'public-version-note public-source-check-note',role:'status'},L(['Source check recorded after original G-1 sign-off: ','原脚本 G-1 签核后有来源核对记录：']),data.latestCheckedOn,' · ',L(['A later check does not establish changed source content or new approval.','仅表示核对时间，不代表原文变化或新增批准。'])));
+  if(data.latestCheckedOn)node.append(h('p',{class:'public-version-note public-source-check-note'},L(['Sources last checked: ','来源最近核对：']),data.latestCheckedOn));
+  const sourceHref=url=>url?.includes('/jerryyuan1996/BESS-research-platform')?ctx.researchUrl:url;
   const badge=text=>h('p',{class:'public-content-label'},L(text));
   const excerpts=section=>data.extracts[section].map(e=>h('blockquote',{class:'public-reference'},badge(TEXT.excerpt),h('h4',{},L(e.question)),P(e.text),
-    h('details',{},h('summary',{},L(['Excerpt provenance','原文追溯'])),h('small',{},e.shotId,' · ',e.claimIds.join(' / ')))));
-  if(id==='history')node.append(renderResearchHistory(data.historyResearch));
+    h('details',{},h('summary',{},L(['Excerpt provenance','原文追溯'])),h('ul',{},(e.sourceIds||[]).map(key=>data.sources[key]).filter(source=>source?.url).map(source=>h('li',{},h('a',{href:sourceHref(source.url),target:'_blank',rel:'noopener noreferrer'},source.title)))))));
+  if(id==='history')node.append(renderResearchHistory(data.historyResearch,ctx.researchUrl));
   if(data.summary.historyOnly){
-    if(id==='research')node.append(renderHistoryProvenance(data.historyResearch),
-      P(['This entry relocates the existing research history only. No public investment thesis or original Story G-1 approval is asserted.','本入口仅迁移既有研究历程，不确立新的公共投资逻辑或原Story G-1批准。']),
+    if(id==='research')node.append(renderHistoryProvenance(data.historyResearch,ctx.researchUrl),
+      P(['Market development history from the existing research.','既有研究中的市场发展历程。']),
       h('button',{type:'button',class:'ix-button',onclick:ctx.research},L(['Open full research','打开完整研究'])));
     return node;
   }
@@ -33,7 +37,7 @@ export function renderChapter(data,id,ctx){
   if(id==='storage')node.append(badge(TEXT.draft),P(TEXT.equipment,'public-chapter-lead'),P(TEXT.physical),P(TEXT.limit));
   if(id==='judgement')node.append(badge(TEXT.draft),P(data.summary.logic,'public-chapter-lead'),
     h('div',{class:'public-condition-card'},h('strong',{},L(['What would change this reading','会改变当前解读的条件'])),P(data.summary.condition)),
-    P(TEXT.interpretation),P(['Fair · the new public interpretation awaits content confirmation; dated source records remain inspectable below.', '一般 · 新的公共解读仍待内容确认；下方可核查带日期的来源记录。'],'public-evidence-marker'));
+    P(TEXT.interpretation),P(['Fair evidence · inspect the dated sources and conditions below.', '证据一般 · 请结合下方带日期的来源与成立条件阅读。'],'public-evidence-marker'));
   if(['system','mechanism','storage'].includes(id)){
     const holder=h('div',{class:'public-scene-host','aria-busy':'true'},L(['Loading explanatory scene…','正在加载机制示意图…']));
     node.append(holder);
@@ -50,31 +54,24 @@ export function renderChapter(data,id,ctx){
   const sectionSourceIds=new Set([...(data.sourceIdsByChapter?.[id]||[]),...data.extracts[id==='history'?'history':id==='system'?'system':'mechanism'].flatMap(e=>e.sourceIds),...(data.regionalSourceIds||[])]);
   const selected=all.filter(([key])=>sectionSourceIds.has(key));
   const refs=id==='research'||data.sourceGroups?all:(selected.length?selected:all.slice(0,5));
-  const sourceList=entries=>h('ul',{},entries.map(([key,s])=>h('li',{'data-source-id':key},h('a',{href:s.url,target:'_blank',rel:'noopener noreferrer'},s.title),
-    h('small',{},key,s.checkedOn?' · '+s.checkedOn:''),
+  const sourceList=entries=>h('ul',{},entries.map(([key,s])=>h('li',{'data-source-id':key},h('a',{href:sourceHref(s.url),target:'_blank',rel:'noopener noreferrer'},s.title),
+    s.checkedOn?h('small',{},L(['Sources last checked: ','来源最近核对：']),s.checkedOn):null,
     typeof s.locator==='string'?h('p',{class:'public-source-locator'},s.locator):null,
-    s.reuse?.constraints?h('p',{class:'public-source-locator'},s.reuse.constraints):null)));
+    s.reuse?.constraints?h('p',{class:'public-source-locator'},readerReuse(s.reuse.constraints)):null)));
   const renderedSources=data.sourceGroups?data.sourceGroups.map(group=>h('section',{class:'public-source-group','data-source-scope':group.id},
     h('h4',{},L(group.title)),sourceList(refs.filter(([key])=>group.ids.includes(key))))):sourceList(refs);
   node.append(h('details',{class:'public-chapter-sources',...(id==='research'?{open:''}:{})},
     h('summary',{},L(['Source records & original scope','来源记录与原适用范围'])),
-    P(['Public edition '+data.version+' · Public logic review pending.', '公共版本'+data.version+' · 公共逻辑待确认。']),
-    h('p',{'data-date-kind':'g1'},L(['Original script G-1 sign-off: ','原脚本 G-1 签核：']),
-      h('a',{href:approvalRecordUrl(data.approvalRecords.g1Record),target:'_blank',rel:'noopener noreferrer'},data.summary.g1ApprovedOn)),
-    data.latestCheckedOn?h('p',{'data-date-kind':'source-check'},L(['Latest recorded source check: ','最近来源核对记录：']),data.latestCheckedOn):null,
-    ...data.approvalRecords.supplements.map(event=>h('p',{'data-date-kind':'supplement'},L(['Supplementary original-content approval: ','原内容补充批准：']),
-      h('a',{href:approvalRecordUrl(event.record),target:'_blank',rel:'noopener noreferrer'},event.on),' · ',L(event.scope))),
-    data.approvalRecords.originalG2.on?h('p',{'data-date-kind':'g2'},L(['Original scoped G-2 release sign-off: ','原研究范围 G-2 放行签核：']),
-      h('a',{href:approvalRecordUrl(data.approvalRecords.originalG2.record),target:'_blank',rel:'noopener noreferrer'},data.approvalRecords.originalG2.on)):null,
+    data.latestCheckedOn?h('p',{'data-date-kind':'source-check'},L(['Sources last checked: ','来源最近核对：']),data.latestCheckedOn):null,
     renderedSources,
-    h('a',{href:`https://github.com/jerryyuan1996/BESS-research-platform/blob/c0229820ff609e38f45b259c3abf9a948aaee51c/${data.script}`,target:'_blank',rel:'noopener noreferrer'},L(['Original script & approval scope ↗','原脚本与签核范围 ↗'])),
-    P(['Original script version: '+data.legacyVersion+'. Original investor, strategy and stage restrictions remain in force. Public edits have no new Jerry sign-off.', '原脚本版本：'+data.legacyVersion+'。原投资人、策略与阶段限制继续有效；公共编辑尚无新的Jerry签核。'])));
+    h('a',{href:ctx.researchUrl},L(['Full market research ↗','完整市场研究 ↗']))));
+
   if(id==='research')node.append(h('div',{class:'ix-actions'},
     h('button',{type:'button',class:'ix-button',onclick:ctx.research},L(['Open full research','打开完整研究'])),
-    ctx.legacy?h('button',{type:'button',class:'ix-button ix-outline',onclick:ctx.legacy},L(['Original scoped story','原适用范围Story'])):null));
+    ctx.legacy?h('button',{type:'button',class:'ix-button ix-outline',onclick:ctx.legacy},L(['Investor-specific story','投资人专项叙事'])):null));
   if(id==='research'&&Object.keys(data.internalReferences).length)node.append(h('section',{class:'public-internal-references'},
     h('h4',{},L(['Existing research & model context','既有研究与模型背景'])),
     P(['These internal research links retain their original scope. They are distinct from the external primary evidence above.','以下为保留原适用范围的内部研究入口，与上方外部原始证据分别列示。']),
-    h('ul',{},Object.values(data.internalReferences).map(s=>h('li',{},h('a',{href:s.url},s.title))))));
+    h('ul',{},Object.values(data.internalReferences).map(s=>h('li',{},h('a',{href:sourceHref(s.url)},s.title))))));
   return node;
 }

@@ -16,7 +16,10 @@ function coverage(){for(const id of historyOnly)test(id+' · existing history fo
     await trigger.click();await expectCompleteHistory(page,id,locale);
     const dialog=page.locator('.public-story-dialog');await expect(dialog.locator('.public-story-nav button')).toHaveCount(2);
     await dialog.locator('[data-chapter=research]').click();await expect(dialog.locator('.public-history-provenance')).toBeVisible();
-    await expect(dialog).toContainText(locale==='en'?'No public investment thesis':'不确立新的公共投资逻辑');
+    await expect(dialog.locator('.public-chapter[data-chapter=research]')).toContainText(locale==='en'?'Market development history from the existing research.':'既有研究中的市场发展历程。');
+    await expect(dialog.locator('.public-chapter-footer')).toContainText(locale==='en'?'Existing research history':'既有研究历程');
+    expect(await dialog.locator('.public-story-nav button').evaluateAll(buttons=>buttons.map(button=>button.dataset.chapter))).toEqual(['history','research']);
+    await expect(dialog.locator('.public-scene-host,.public-power-scene')).toHaveCount(0);
     await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
   }
   expect(errors).toEqual([]);

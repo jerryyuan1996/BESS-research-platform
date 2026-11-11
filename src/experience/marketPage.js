@@ -101,7 +101,7 @@ function renderMarket(container, row, route) {
   if(publicEntry){
     const loadOverview=()=>publicEntry.loadOverview().then(module=>{
       if(!publicHost.isConnected)return;
-      publicHost.replaceWith(module.renderPublicOverview(mf.id,{name:marketName(row),open:trigger=>openPublicFrom(null,trigger),researchUrl:`${caseUrl(row)}/home`}));
+      publicHost.replaceWith(module.renderPublicOverview(mf.id,{name:marketName(row),open:(trigger,chapter)=>openPublicFrom(chapter?{chapter}:null,trigger),researchUrl:`${caseUrl(row)}/home`}));
       if(route?.story?.shot?.startsWith('public-')&&!storyOpen())openPublicFrom(route.story);
       if(window.location.hash==='#overview')content.querySelector('#overview')?.scrollIntoView();
     }).catch(()=>{if(publicHost.isConnected)publicHost.replaceChildren(button(['Retry market background','重试市场背景'],loadOverview,'ix-outline'),link(`${caseUrl(row)}/home`,['Full research ↗','完整研究 ↗'],'ix-text-link'));});

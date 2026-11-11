@@ -21,7 +21,7 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await expect(profile).toBeVisible();await expect(profile).toHaveValue(investor);
       const bound=await trigger.boundingBox();expect(bound.y+bound.height).toBeLessThanOrEqual(page.viewportSize().height);
       const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
-      await expect(overview.locator('[data-date-kind=g1]')).toContainText(c.g1ApprovedOn);
+      await expect(overview.locator('[data-date-kind=g1]')).toHaveCount(0);
       await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(c.evidenceCheckedOn?1:0);
       if(c.evidenceCheckedOn)await expect(overview.locator('[data-date-kind=source-check]')).toContainText(c.evidenceCheckedOn);
       const order=await overview.evaluate(el=>['decision','bankable','revenue'].every(id=>{const target=document.getElementById(id);return !target||Boolean(el.compareDocumentPosition(target)&Node.DOCUMENT_POSITION_FOLLOWING);}));expect(order).toBe(true);
@@ -29,7 +29,7 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await trigger.click();const dialog=page.locator('.public-story-dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-chapter=history].public-chapter')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
       await expectCompleteHistory(page,id,locale);
-      await expect(dialog.locator('.public-source-check-note')).toHaveCount(c.evidenceCheckedOn&&c.evidenceCheckedOn>c.g1ApprovedOn?1:0);
+      await expect(dialog.locator('.public-source-check-note')).toHaveCount((await loadPublicContent(id)).latestCheckedOn?1:0);
       await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
       const text=await dialog.locator('.public-chapter').innerText();if(expectedMechanism)expect(text).toBe(expectedMechanism);else expectedMechanism=text;
       await expect(dialog.locator('.public-power-scene')).toHaveAttribute('data-market',id);
@@ -106,20 +106,20 @@ test('the first screen fetches no complete narrative or SVG; subsequent chapters
   await page.waitForLoadState('networkidle');const count=fetched.length;await page.locator('.public-story-nav button[data-chapter=storage]').click();await page.locator('.public-power-scene').waitFor();await page.waitForLoadState('networkidle');expect(fetched.length).toBe(count);
 });
 
-test('original approval events and later source checks remain distinct, including an older-edition link',async({page})=>{
+test('source dates remain visible while internal approval events stay out of reader-facing content',async({page})=>{
   await page.goto('/markets/ercot?view=story&chapter=history&shot=public-en-2026-11-06-1-history');
   let dialog=page.locator('.public-story-dialog');await expect(dialog).toHaveAttribute('data-version',PUBLIC_VERSION);
   await expect(dialog.locator('.public-source-check-note')).toContainText('2026-11-02');
-  await expect(dialog.locator('.public-source-check-note')).toContainText('does not establish changed source content or new approval');
-  await expect(dialog).toContainText('Showing the current review draft');
+  await expect(dialog.locator('.public-source-check-note')).toContainText('Sources last checked');
+  await expect(dialog).toContainText('Showing the current edition');
   await dialog.locator('.public-story-nav button[data-chapter=research]').click();
-  await expect(dialog.locator('[data-date-kind=g1]')).toContainText('2026-11-01');
+  await expect(dialog.locator('[data-date-kind=g1]')).toHaveCount(0);
   await expect(dialog.locator('[data-date-kind=source-check]')).toContainText('2026-11-02');
   await expect(dialog.locator('[data-date-kind=g2]')).toHaveCount(0);
   await page.goto('/markets/finland');await page.locator('.public-story-trigger').click();dialog=page.locator('.public-story-dialog');
   await dialog.locator('.public-story-nav button[data-chapter=research]').click();
-  await expect(dialog.locator('[data-date-kind=g1]')).toContainText('2026-10-31');
-  await expect(dialog.locator('[data-date-kind=supplement]')).toContainText('2026-11-01');
+  await expect(dialog.locator('[data-date-kind=g1]')).toHaveCount(0);
+  await expect(dialog.locator('[data-date-kind=supplement]')).toHaveCount(0);
 });
 
 test.describe('touch panning',()=>{
@@ -143,4 +143,32 @@ test.describe('touch panning',()=>{
     await page.locator('[data-flow=charge]').tap();await expect(page.locator('[data-flow=charge]')).toHaveAttribute('aria-pressed','true');
     await page.screenshot({path:info.outputPath('touch-annotation.png')});
   });
+});
+
+test('all eighteen markets expose clean bilingual reader copy and same-market research links',async({page})=>{
+  test.setTimeout(240000);
+  const allSlugs={...slugs,ca_on:'ontario',sa:'saudi-arabia',es:'spain'};
+  const internal=/G-[12]|sign.off|签核|公共(?:逻辑|解读|迁移|重组)待确认|(?:public|relocation|interpretation) review pending|current review draft|no new Jerry/i;
+  for(const locale of ['en','zh']){
+    await page.goto('/');
+    await page.evaluate(locale=>localStorage.setItem('hub_lang',locale),locale);
+    for(const [id,slug] of Object.entries(allSlugs)){
+      await page.goto('/markets/'+slug);
+      const overview=page.locator('#overview');
+      await expect(page.locator('.public-story-trigger')).toBeVisible();
+      expect(await overview.innerText(),id+'/'+locale+' overview').not.toMatch(internal);
+      await page.locator('.public-story-trigger').click();
+      const dialog=page.locator('.public-story-dialog');
+      await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','history');
+      for(const chapter of ['history','research']){
+        await dialog.locator('.public-story-nav button[data-chapter='+chapter+']').click();
+        await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter',chapter);
+        expect(await dialog.innerText(),id+'/'+locale+'/'+chapter).not.toMatch(internal);
+        await expect(dialog.locator('a[href*="github.com/jerryyuan1996/BESS-research-platform"]')).toHaveCount(0);
+        await expect(dialog.locator('a[href="/markets/'+slug+'/home"]').first()).toBeAttached();
+      }
+      await page.keyboard.press('Escape');
+      await expect(page.locator('.public-story-trigger')).toBeFocused();
+    }
+  }
 });

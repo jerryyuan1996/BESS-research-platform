@@ -93,6 +93,6 @@ export function renderScene(data,initial='system'){
     description.textContent=part?L(part[2]||data.summary.condition):L(['Select a numbered part to focus the layer and read its role. Green: network; blue: AC; amber: DC. Arrows are illustrative.', '点击编号聚焦图层并阅读作用。绿色：电网；蓝色：交流；琥珀色：直流。箭头仅为示意。']);
   }
   draw();root.append(modes,view,h('p',{class:'public-scene-scroll-hint'},L(['Swipe the drawing on smaller screens; all annotations are also available below.','小屏可横向滑动图示；全部注释也可在下方阅读。'])),controls,parts,description,
-    h('figcaption',{},L(['Original schematic · public interpretation review pending · physical need → qualification → payment. Source records are in this chapter.', '原创示意图 · 公共解读待确认 · 物理需求 → 资格 → 付款。本章附来源记录。'])));
+    h('figcaption',{},L(['Schematic · physical need → qualification → payment. Source records are in this chapter.', '示意图 · 物理需求 → 资格 → 付款。本章附来源记录。'])));
   return root;
 }

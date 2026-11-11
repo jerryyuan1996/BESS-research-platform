@@ -56,7 +56,7 @@ export function open(ctx){
     }},Object.entries(regions).map(([id,label])=>h('option',{value:id,...(id===ctx.id?{selected:''}:{})},L(label)))):null;
     const head=h('header',{class:'public-story-head'},
       h('div',{},h('p',{class:'ix-eyebrow'},L(['PUBLIC MARKET READING','公共市场叙事'])),h('h2',{id:'public-story-title'},L(ctx.name)),
-        h('p',{class:'public-story-meta'},L(summary.historyOnly?['All investors · Existing history · relocation review pending','所有投资人 · 既有历程 · 公共迁移待确认']:['All investors · Public logic review pending','所有投资人 · 公共逻辑待确认']),' · ',PUBLIC_VERSION)),
+        h('p',{class:'public-story-meta'},L(summary.historyOnly?['All investors · Market development history','所有投资人 · 市场发展历程']:['All investors · Market background & investment logic','所有投资人 · 市场背景与投资逻辑']),' · ',PUBLIC_VERSION)),
       h('div',{class:'public-story-tools'},...(regionSelect?[regionSelect]:[]),langBtn,
         h('button',{type:'button',class:'ix-button ix-outline public-research-button',onclick:research},L(['Full research ↗','完整研究 ↗'])),closeBtn));
     nav=h('nav',{class:'public-story-nav','aria-label':L(['Public story chapters','公共叙事章节'])},chapters.map(([id,title],i)=>h('button',{type:'button','data-chapter':id,onclick:()=>show(id)},String(i+1).padStart(2,'0'),' · ',L(title))));
@@ -75,10 +75,10 @@ export function open(ctx){
         chapter==='history'||summary.historyOnly?import('./history.js').then(module=>module.loadResearchHistory(ctx.id)):null]);
       if(closed||run!==version)return;
       data=content;
-      const node=renderer.renderChapter({...data,historyResearch:researchHistory},chapter,{alive:()=>alive()&&run===version,research,legacy:ctx.id==='ercot'?null:legacy});
-      const versionNote=initial.version&&initial.version!==PUBLIC_VERSION?h('p',{role:'status',class:'public-version-note'},L(['This link names an older edition. Showing the current review draft: ','链接指向其他版本。当前显示最新待确认稿：']),PUBLIC_VERSION):null;
+      const node=renderer.renderChapter({...data,historyResearch:researchHistory},chapter,{alive:()=>alive()&&run===version,research,researchUrl:ctx.researchUrl,legacy:ctx.id==='ercot'?null:legacy});
+      const versionNote=initial.version&&initial.version!==PUBLIC_VERSION?h('p',{role:'status',class:'public-version-note'},L(['This link names an older edition. Showing the current edition: ','链接指向其他版本。当前显示最新版本：']),PUBLIC_VERSION):null;
       body.replaceChildren(...(versionNote?[versionNote]:[]),node,
-        h('footer',{class:'public-chapter-footer'},h('span',{},L(summary.historyOnly?['Existing research history','既有研究历程']:['Original script G-1 sign-off: ','原脚本 G-1 签核：']),summary.g1ApprovedOn||''),
+        h('footer',{class:'public-chapter-footer'},h('span',{},L(summary.historyOnly?['Existing research history','既有研究历程']:['Market background & investment logic','市场背景与投资逻辑'])),
           chapter!=='research'?h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>show(chapters[chapters.findIndex(c=>c[0]===chapter)+1][0])},L(['Next chapter →','下一章 →'])):h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>close()},L(['Return to overview','返回市场概况']))));
       body.scrollTop=0;
       if(reading){

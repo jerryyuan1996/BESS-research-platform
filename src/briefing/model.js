@@ -19,6 +19,7 @@
    Layering: no DOM. Pure given its inputs; the inputs are read in disk.js.
    --------------------------------------------------------------------------- */
 
+import { ARCHETYPES } from '../governance/archetypes.js';
 import { ARCHETYPE_IDS } from '../governance/investability.js';
 import { playsOf } from '../governance/plays.js';
 import { byExpected, isResolved } from '../governance/triggers.js';
@@ -230,5 +231,5 @@ export function homeProjection(briefing){
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};
   for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
-  return { ...rest, lastApproved: Object.fromEntries(reviewStatus.map(r => [r.market, r.lastApprovedChange])), ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
+  return { ...rest, lastApproved: Object.fromEntries(reviewStatus.map(r => [r.market, r.lastApprovedChange])), investorPerspectives: Object.fromEntries(Object.entries(ARCHETYPES).map(([id,a]) => [id,{who:a.who,entersAt:a.entersAt}])), ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
 }
