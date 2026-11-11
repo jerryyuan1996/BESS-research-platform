@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-10T15:00:46.021Z",
+  "fetchedAt": "2026-11-11T14:31:07.259Z",
   "coverage": {
-    "from": "2025-11-10T16:00:00.000Z",
-    "to": "2026-11-10T22:00:00.000Z",
+    "from": "2025-11-11T15:00:00.000Z",
+    "to": "2026-11-11T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8767
+    "points": 8768
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-10",
-      "n": 8,
-      "mean": 33.27,
-      "min": 4.99,
-      "max": 69.43,
-      "spread": 33.27,
-      "charge": null,
-      "discharge": 33.27
-    },
-    {
       "d": "2025-11-11",
-      "n": 24,
-      "mean": 9.99,
+      "n": 9,
+      "mean": 5.56,
       "min": 2.5,
-      "max": 56.67,
-      "spread": 9.99,
+      "max": 7.51,
+      "spread": 5.56,
       "charge": null,
-      "discharge": 9.99
+      "discharge": 5.56
     },
     {
       "d": "2025-11-12",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-10",
-      "n": 23,
-      "mean": 6.95,
+      "n": 24,
+      "mean": 6.78,
       "min": 1.6,
       "max": 28.87,
-      "spread": 6.95,
+      "spread": 6.78,
       "charge": null,
-      "discharge": 6.95
+      "discharge": 6.78
+    },
+    {
+      "d": "2026-11-11",
+      "n": 23,
+      "mean": 10.67,
+      "min": 2,
+      "max": 41.77,
+      "spread": 10.67,
+      "charge": null,
+      "discharge": 10.67
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-up.json",
-    "contentChecksum": "sha256:519c4f5fa916627ec7b48fda7ebd8b87679e39444b7013cada5a292d1e8f7945",
-    "points": 8767
+    "contentChecksum": "sha256:e9b83b13174a1c3627b739f72ab9dda9495a46241ef74bbfbd5f7af8bff8a886",
+    "points": 8768
   },
-  "summaryChecksum": "sha256:cdce3733de73a172f71681cf0682242e2028eb76901b916a4a51a5df6b99186f"
+  "summaryChecksum": "sha256:18d8656807c4ee7b9a779330070e81d2eb8ef6a51f277970224b622f08e29481"
 }

@@ -13,10 +13,10 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-10T15:00:53.907Z",
+  "fetchedAt": "2026-11-11T14:31:14.752Z",
   "coverage": {
-    "from": "2025-11-10T16:00:00.000Z",
-    "to": "2026-11-11T14:00:00.000Z",
+    "from": "2025-11-11T15:00:00.000Z",
+    "to": "2026-11-12T13:00:00.000Z",
     "resolution": "PT60M",
     "points": 8783
   },
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-10",
-      "n": 8,
-      "mean": 2.75,
-      "min": 1,
-      "max": 3,
-      "spread": 2.75,
-      "charge": null,
-      "discharge": 2.75
-    },
-    {
       "d": "2025-11-11",
-      "n": 24,
-      "mean": 2.25,
+      "n": 9,
+      "mean": 3.46,
       "min": 1,
       "max": 5.7,
-      "spread": 2.25,
+      "spread": 3.46,
       "charge": null,
-      "discharge": 2.25
+      "discharge": 3.46
     },
     {
       "d": "2025-11-12",
@@ -3693,7 +3683,17 @@
     },
     {
       "d": "2026-11-11",
-      "n": 15,
+      "n": 24,
+      "mean": 1.03,
+      "min": 1,
+      "max": 1.69,
+      "spread": 1.03,
+      "charge": null,
+      "discharge": 1.03
+    },
+    {
+      "d": "2026-11-12",
+      "n": 14,
       "mean": 1,
       "min": 1,
       "max": 1,
@@ -3704,8 +3704,8 @@
   ],
   "sourceSnapshot": {
     "file": "fi-afrr-down.json",
-    "contentChecksum": "sha256:f078b0610cb50c84ae6818909abe370cd42b6a01c6cf27813c0ffa8758e26c0e",
+    "contentChecksum": "sha256:a931bd5fe361247306148bdc9cbbaf9f9db5110ff261499edccbbd7258097920",
     "points": 8783
   },
-  "summaryChecksum": "sha256:c6b7997a101a8225c319a57e45fc9d8e0cf0f6c58f2d0f37f3877971a034b80f"
+  "summaryChecksum": "sha256:e2c5750774012939dc62a673e76e1decff9257c2e939f1f529c9ead6aad66ef9"
 }
