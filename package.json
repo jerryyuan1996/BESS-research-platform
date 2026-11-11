@@ -47,7 +47,11 @@
     "audit:links": "node scripts/link-audit.mjs",
     "view:check-held": "node scripts/view/check-held.mjs",
     "view:track-record": "node scripts/view/track-record.mjs",
-    "view:scout-status": "node scripts/view/scout-status.mjs"
+    "view:scout-status": "node scripts/view/scout-status.mjs",
+    "review:packet": "node scripts/review/packet.mjs",
+    "review:check": "node scripts/review/check.mjs",
+    "review:decide": "node scripts/review/decide.mjs",
+    "review:status": "node scripts/review/status.mjs"
   },
   "engines": {
     "node": ">=22.12.0"

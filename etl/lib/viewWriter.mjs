@@ -2,9 +2,8 @@
    THE VIEW WRITER — the only code that writes view/.
 
    One writer, as boundary.mjs is the only code that writes published data.
-   The ETL has two exits now and this is the second: boundary.mjs writes
-   public/data/public/ and validates a snapshot; this writes view/ and
-   validates a judgement. Neither can reach the other's directory, and neither
+   The observation boundary writes public/data/public/ and validates a snapshot;
+   this writer validates and persists explicitly approved analyst judgements. Neither can reach the other's directory, and neither
    can reach src/.
 
    It validates before it writes, so an invalid change is never on disk, and it
@@ -22,11 +21,11 @@
    the scout roster the change is a card's: read against the card schema, the
    card rights and the card live list. Otherwise it is a market's, exactly as
    before the tier existed. No argument a caller passes can choose the tier.
-   The agent is live on cards only, and it has one writing method here,
-   applyScoutRun, which refuses any id that is not in the roster.
+   Only the analyst is live on either tier. The historical applyScoutRun
+   entrypoint rejects machine authors and any id outside the roster.
 
-   TWO DOORS. A rule and the agent come in from etl/rules.mjs and
-   agent/run.mjs. The analyst comes in through the command line in scripts/,
+   TWO CAPABILITIES. Rules and agents receive createReadOnlyViewStore, with
+   reads and prepare only. The analyst receives the writer through scripts/,
    which wraps this store with the one check that needs his private overlay.
    This module never reads that overlay and has no path to it: a held view is
    refused here unless the caller supplies the check, and no caller under etl/
@@ -490,4 +489,15 @@ export function createViewStore(root = VIEW_ROOT, { heldReason = null, heldMissi
     root, read, readAll, changelog, prepare, apply, prepareBatch, applyBatch, revertChange, revert,
     readCard, readAllCards, passes, scoutLive, scoutRunState, prepareScoutChange, prepareScoutRun, applyScoutRun, removeCardChanges,
   };
+}
+
+/** Read-only capabilities for unattended observation and manual model reports.
+ * Preparation validates prospective changes but never persists them. */
+export function createReadOnlyViewStore(root = VIEW_ROOT, options = {}){
+  const store = createViewStore(root, options);
+  return Object.freeze(Object.fromEntries([
+    'root', 'read', 'readAll', 'changelog', 'prepare', 'prepareBatch',
+    'readCard', 'readAllCards', 'passes', 'scoutLive', 'scoutRunState',
+    'prepareScoutChange', 'prepareScoutRun',
+  ].map(key => [key, store[key]])));
 }

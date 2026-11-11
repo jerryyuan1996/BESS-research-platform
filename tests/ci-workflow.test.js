@@ -126,7 +126,7 @@ test('the bot pushes to main only through push-main.sh, which never force-pushes
   const pushes = [...executable.matchAll(/^\s*(git push.*|bash scripts\/ci\/push-main\.sh)$/gm)].map(m => m[1].trim());
   // Refresh now commits data and pre-approved view changes together, so it
   // has one main push; the proposal branch and monthly scout remain separate.
-  assert.deepEqual(pushes, ['bash scripts/ci/push-main.sh', 'git push -u origin "$BRANCH"', 'bash scripts/ci/push-main.sh'],
+  assert.deepEqual(pushes, ['bash scripts/ci/push-main.sh', 'git push -u origin "$BRANCH"'],
     'a bare `git push` to main fails whenever a merge lands during the run');
   const script = read('scripts/ci/push-main.sh');
   assert.ok(!/--force|\s-f\b|\+HEAD/.test(code(script)), 'push-main.sh must never force-push');

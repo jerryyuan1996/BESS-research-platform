@@ -356,7 +356,7 @@ Two layering rules extend the table above:
 | `derive/` | `governance/` | any DOM, any market module |
 | `live/` | everything shared, `governance/`, `derive/` | `etl/` |
 | `etl/` | `src/` freely | — (but may only *write* to `public/data/`, and to the view store through `etl/lib/viewWriter.mjs`) |
-| `agent/` | `src/governance/`, market source registers, `src/scout/sources.js`, `view/schema/`, `etl/lib/viewWriter.mjs` | — (runs in CI only; may write scout cards through the writer once live there, and nothing else ever) |
+| `agent/` | `src/governance/`, market source registers, `src/scout/sources.js`, `view/schema/`, `etl/lib/viewWriter.mjs` | — (runs in CI only; receives a read-only store; explicit dispatch only; reports proposals and never writes views) |
 | `scout/` | `governance/`, the shared UI, the registry for the navigation strip | `comparison/`, `entry/`, a market module, a market view |
 
 `governance/` and `derive/` touch no DOM, for the same reason `comparison/` does not: the ETL runs
@@ -378,15 +378,12 @@ Live data does not change that. The pipeline runs in CI, not in the browser; cre
 secrets and never reach the bundle; and the site remains a folder of static files that works
 completely with zero snapshots present.
 
-**And no automated methodology.** Judgement publishes automatically after validation; methodology
-never does. A grade or a verdict in the view store may be changed by a rule the analyst wrote in
-advance, through the view writer's gate, and every such change is a line on `/changes` naming the
-rule and its evidence. A scout card — a market with no dashboard — is written by the agent from
-pages the analyst listed, through the same writer and a gate of its own, once the analyst has made
-the agent live on cards. Every weight, anchor, limit, score band and discount rate was set by a person
-and can only be changed by a person, as can every model assumption in `src/`. That boundary is
-enforced in code and asserted by `tests/governance.test.js` and `tests/view-automation.test.js` — see
-[`governance.md`](governance.md).
+**Observations automatic; judgement analyst-only (2026-11-11).** Daily ETL may publish
+validated public observations and deterministic metrics, not approved views. Rule crossings
+are prepared and reported, never applied. Agent and scout jobs are manual dispatch only and
+receive a read-only store with no persistence methods. Frozen analyst-only live-author lists
+also guard the full writer. Historical machine records remain readable. Methodology and
+assumptions require explicit analyst changes. See [`governance.md`](governance.md).
 
 **Where the automation lives.**
 
@@ -397,9 +394,9 @@ enforced in code and asserted by `tests/governance.test.js` and `tests/view-auto
 | `src/governance/triggers.js` | A trigger's `when` and `effect`; the test a rule puts to a snapshot |
 | `view/schema/view.mjs` | Who may write which field; the machine gate |
 | `etl/lib/viewWriter.mjs` | The only code that writes `view/` |
-| `etl/rules.mjs` | Runs each data rule after a refresh |
-| `agent/core.mjs` | The dry monthly pass over due triggers on core markets |
-| `agent/scout.mjs` | The scout pass: three cards a run, from listed pages only |
+| `etl/rules.mjs` | Reports each data-rule crossing after a refresh, with no view writes |
+| `agent/core.mjs` | The explicitly dispatched report-only pass over due triggers on core markets |
+| `agent/scout.mjs` | The explicitly dispatched report-only scout pass, from listed pages only |
 | `src/governance/scout.js` | Which markets have a card, and the limits on a card and a scout run. Methodology |
 | `src/scout/sources.js` | The pages the agent may read for each scout market, with their terms. Methodology |
 | `view/schema/scout.mjs` | A card's schema, rights and gate; the pass log and the streak |

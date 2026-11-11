@@ -1,28 +1,25 @@
 # Governance — who may change what
 
-**Judgement publishes automatically after validation; methodology never does.**
+**Observations publish automatically; judgement and strategy require an analyst decision.**
 
-This platform fetches public data automatically and recomputes its model automatically. Since
-2026-10-11 it may also change a grade or a verdict automatically, when a rule the analyst wrote in
-advance fires, and the change passes a validation gate. It never changes methodology: a scoring
-weight, a grade anchor, a limit, a score band or a discount rate. This document is the rule, the
-mechanism that enforces it, and the reasoning behind both.
+As of 2026-11-11, public observations and deterministic metrics still refresh automatically.
+Models still recompute under approved assumptions. Rules only report threshold crossings;
+agent and scout analysis are hand-started and report-only. Neither may persist a view.
 
-Until 2026-10-11 the rule was "no judgement is automated". The analyst reversed it on 2026-10-10
-(`investment-view-revision-plan-2026-10-10.md` §7) and the change was built to
-`investability-phase-3-plan.md`, which lists every test that was rewritten and why. The scouting
-tier, where an AI agent is an author, was built to `investability-phase-4-plan.md`.
+This explicitly supersedes the automatic-judgement policy introduced on 2026-10-11 in
+`investability-phase-3-plan.md` and the prospective live-scout design in
+`investability-phase-4-plan.md`. Historical rule/agent authors and changelog records remain
+valid for audit and replay; new live application is analyst-only. Methodology still cannot be
+changed or proposed by automation.
 
-**What a reader is looking at.** A grade or a verdict on a market dashboard was set by the analyst,
-or was changed by one of his rules when a published figure crossed the line he set. A scouting
-card, for a market with no dashboard, is written by an AI agent from public pages the analyst
-listed, and spot-checked by him; `/scout` says so once, at the top. Nothing on any page marks an
-individual change. The changelog does: `/changes` shows every change with who made it, when, what
-it held before and after, the reason and the evidence.
+**What a reader is looking at.** Published market and scout views are approved analyst views.
+A model may draft a proposal, but the analyst applies the decision. `/changes` retains original
+historical authorship, reasons and evidence. No refresh implies approval of a strategy change.
 
-**Where the agent stands today.** It writes nothing. It is built to write scout cards and is dry on
-them until the analyst adds it to one list, and it is dry on every core market with no date set for
-that to change. See *The scouting tier* below.
+**Capability boundary.** `LIVE_AUTHORS` and `SCOUT_LIVE_AUTHORS` are frozen `['analyst']`.
+Rules and agents receive `createReadOnlyViewStore()`, which exposes reads and preparation only,
+not apply, batch apply, scout apply, revert or deletion. Preparation validates evidence, pins,
+rights and caps without persisting. The original write store remains for the analyst CLI.
 
 ---
 
@@ -33,8 +30,8 @@ that to change. See *The scouting tier* below.
 | Observed public data | **Publishes automatically** after validation |
 | Deterministic derived metrics | **Publishes automatically** after validation |
 | Model outputs | **Recompute automatically** — using the currently *approved* methodology and assumptions |
-| Judgement in the view store: grades, verdicts, the thesis, triggers, plays | **Publishes automatically** after validation, within the rights of the author that wrote it — see *The view store* below |
-| A scout card: facts, grades, verdicts, triggers, a return signal | **Publishes automatically** after validation, written by the agent once it is live on cards — see *The scouting tier* below |
+| Judgement in the view store: grades, verdicts, the thesis, triggers, plays | **Analyst application only** after review; automation may prepare a proposal |
+| A scout card: facts, grades, verdicts, triggers, a return signal | **Analyst application only**; agent drafts remain report-only |
 | Analyst assumptions in the model | Automation may **propose**. It may never apply. |
 | Methodology: scoring weights, grade anchors, knock-outs and limits, score bands, discount rates and exit yields, the comparison window, the limits on a machine run, **which markets are scouted and which pages the agent may read** | Automation may **not change one and may not even propose it** |
 | The analyst's held view, and any record he has pinned | His alone |
@@ -66,7 +63,7 @@ one parses as a view-store path, for any author.
 
 The old `narrative.thesis` field still lives in `src/` and stays `methodology`. The manifest `status`
 field and the composite score were retired on 2026-10-12.
-The thesis a machine may write is the view store's own.
+The thesis a machine may propose is the view store's own; only the analyst applies it.
 
 ### Why `view` and `methodology` are separate
 
@@ -117,13 +114,12 @@ schema, [`view/schema/view.mjs`](../view/schema/view.mjs), holds a rights table 
 | A held view | yes | no | no |
 | A pinned record | yes | no | no |
 | A practitioner grade | yes | no | no |
-| Changes are applied | yes | yes | **no** — the agent runs dry |
+| Changes are applied | yes | **no** — report only | **no** — report only |
 
-`LIVE_AUTHORS` is `['analyst', 'rule']`, and it is the list for core markets. On a market the agent
-is a permitted author and not a live one: its change can be prepared and reported, and the writer
-refuses to apply it. Adding it to that list is the analyst's decision, to be considered only after
-it has earned it on scout cards. Scout cards have their own list, their own rights and their own
-gate; nothing in this table was widened for them.
+`LIVE_AUTHORS` and `SCOUT_LIVE_AUTHORS` are frozen `['analyst']`. The permissions table
+above describes preparation rights for rule/agent authors, not permission to apply. Historical
+machine authors remain parseable; neither a trigger crossing nor a clean scout streak grants
+live write authority.
 
 ### Rules
 
@@ -140,17 +136,17 @@ figure crosses this line, make this change*.
   note: ['…the reason recorded when it fires…', '…'] }
 ```
 
-[`etl/rules.mjs`](../etl/rules.mjs) runs after each refresh. It reads the dataset's published
-summary, tests the `when`, and hands the effect to the view writer. It decides nothing: the line,
-the figure and the change were all written in advance, and the writer checks that the change is
-exactly the rule's effect. `node etl/rules.mjs --dry-run` tests every rule and writes nothing.
+[`etl/rules.mjs`](../etl/rules.mjs) runs after each refresh. It reads the published summary,
+tests the threshold, and validates the proposed effect with `prepareBatch`. A crossing is
+reported as `crossed`, writes zero view files, and exits successfully. Invalid rules or rejected
+proposals fail the command. Both ordinary invocation and legacy `--dry-run` are report-only.
 
 - **An effect names fields, and few of them**: a grade's number, trend and trend cause; a verdict's
   call, review date and triggers. No spelling reaches a held view, a pin, a basis, evidence, the
   thesis, another trigger or methodology.
-- **A rule fires once.** It is armed when the analyst writes its trigger record and stays fired until
-  he writes that record again. A second run on the same snapshot does nothing, a figure hovering at
-  the line cannot flap, and a change he reverted stays reverted.
+- **A crossing is not an application.** Repeated crossings remain report-only. Historical
+  already-applied rules retain their re-arm semantics for audit compatibility; no new machine
+  changelog entry is created or marked applied by a report.
 - **A rule is not tested on a snapshot it cannot trust**: one this run did not fetch and validate,
   one past its own staleness limit, one whose checksum does not verify, or a price-derived figure
   over fewer than 300 days.
@@ -164,7 +160,7 @@ written in. A test fails if the threshold stops matching that derivation.
 
 [`agent/`](../agent/) is for what no rule anticipated: an event trigger has no feed, so somebody has
 to establish from a source that the event happened. On core markets, which this section describes,
-it runs **in CI only, and dry**. Its other pass, over scout cards, is the next section.
+it runs **in CI only, report-only, and only on explicit `run_agent: true` dispatch**. Its other pass, over scout cards, is the next section.
 
 - It looks at markets with a trigger due inside 30 days, or overdue.
 - Its own code fetches the pages those triggers cite and hashes them. The model is given the text
@@ -182,7 +178,7 @@ it runs **in CI only, and dry**. Its other pass, over scout cards, is the next s
 Nine markets with no dashboard have a **card** each: Sweden, Estonia, Lithuania; Spain, the
 Netherlands, Bulgaria; Chile, Ontario, Saudi Arabia. A card is a first screen and nothing more: at
 most ten sourced facts, a grade on each dimension a public page can be quoted for, a verdict for
-each investor, and no return. **This is where the agent is an author**, because there is no prior
+each investor, and no return. **This is where the agent may draft a proposal**, because there is no prior
 judgement to overwrite and a wrong call costs least.
 
 **What is the analyst's, and where it is kept from a machine.**
@@ -193,8 +189,8 @@ judgement to overwrite and a wrong call costs least.
 | Which pages the agent may read, and what each page's terms say | [`src/scout/sources.js`](../src/scout/sources.js) | nothing: `src/` |
 | The limits on a card and on a scout run; the exit streak; the graduation rule | `src/governance/scout.js` | nothing: `src/` |
 | The card schema, the rights below, the gate | [`view/schema/scout.mjs`](../view/schema/scout.mjs) | nothing: neither writer can write `view/schema/` |
-| The card | `view/scout/<id>.json` | write it, through the gate, once live |
-| One line per live scout run | `view/scout/passes.jsonl` | append it, in the same call as the cards |
+| The card | `view/scout/<id>.json` | prepare a proposal only |
+| One line per live scout run | `view/scout/passes.jsonl` | historical audit log; automated passes do not append |
 
 **The tier of a change is decided by its id, never by the caller.** An id in the roster is a card's
 change, read against the card schema, rights and live list. Any other id is a market's. The two
@@ -244,11 +240,9 @@ a verdict, and guardrail C compares with a previous value. On a card creation is
 | G | Every verdict, created or moved, needs one official source or two independent ones |
 | H, I | The same digest and the same `revert`, plus `scout-remove` for a whole card |
 
-**The scout pass** ([`agent/scout.mjs`](../agent/scout.mjs)) runs once a month, on the 1st.
-That run covers every region, with one pass per region in roster order, so each card is reviewed
-monthly. It can also be run by hand, one region at a time, through the `scout_region` input of the
-workflow's dispatch. Dispatching several regions back to back cancels all but the latest queued
-one, because the `live-data` concurrency group keeps only one pending run. For each market it fetches the listed pages,
+**The scout pass** ([`agent/scout.mjs`](../agent/scout.mjs)) has no cron. It starts only
+from an explicit regional `scout_region` dispatch, with read-only repository permissions.
+Ordinary refresh dispatch invokes neither agent nor scout. For each market it fetches the listed pages,
 gives the model the card as it stands with the anchors and the page text, and turns the answer
 into whole-record changes. The model has no tools, no search and follows no links.
 
@@ -256,18 +250,15 @@ into whole-record changes. The model has no tools, no search and follows no link
   shown to the model. A page its site's `robots.txt` disallows is not fetched.
 - Each quotation is checked character for character against the page. Each change is put to the
   gate in order. One that fails is dropped, recorded with its reason, and counted.
-- What survives is written: a card may be partial, and a dimension with no quotable source stays
+- What survives is reported, never written: a card may be partial, and a dimension with no quotable source stays
   ungraded and is listed as ungraded.
 
-**Dry, and how it goes live.** `SCOUT_LIVE_AUTHORS` in `view/schema/scout.mjs` is `['analyst']`.
-While the agent is not in it the pass prepares, reports and writes nothing, and the workflow job
-holds `contents: read`. Making it live is one pull request the analyst merges, changing those two
-lines together; a test fails if they disagree. `LIVE_AUTHORS`, the list for core markets, does not
-move. Before that pull request, the first dry reports are read for: that the model call works at
-all; which listed pages CI can fetch; that no quotation failed; every gate rejection; and the
-Chinese.
+**Report-only, with no live toggle.** The read-only capability and frozen live lists prevent
+model proposals from applying. The scout workflow has no commit, push or publish job. Reports
+must be reviewed by the analyst, who applies any accepted change explicitly. No fixture or
+maturity streak activates automatic publication.
 
-**The exit condition.** A pass is **clean** when a page was read and the model answered for every
+**Historical maturity metric (not an activation gate).** A pass is **clean** when a page was read and the model answered for every
 card in it and **no proposal was rejected**, for evidence or anything else. The agent is considered
 for core markets only after **six consecutive clean live passes** — every card created once and
 reviewed once — with every card spot-checked. A repeat pass inside 25 days is not a review and
@@ -363,13 +354,11 @@ roster. Not `view/schema/`, which says who may write what, and not `src/`. It va
 writes, and appends the changelog in the same call. A batch that fails anywhere, or exceeds the
 cap, writes nothing. A scout write never touches a market's file or the index of their verdicts.
 
-A test asserts that no other file under `etl/` or `agent/` so much as imports a filesystem write API,
-and that the view writer is imported from exactly three files: `etl/rules.mjs`, `agent/run.mjs` and
-the analyst's command line. Within `agent/`, only the scout pass names the writer's one writing
-method for cards, and that method refuses an id outside the roster before it prepares anything.
-The workflow checks the walls again after every run — a rules run may change `view/markets/`,
-`view/index.json` and the changelog; a scout run may change `view/scout/` and the changelog — and
-scans a view change against the confidentiality marker set before committing it.
+Tests assert that no other ETL or agent file imports a filesystem write API. Rules and the
+agent runner import only the read-only capability, with no apply or revert methods. No agent
+module names a persistence method. After refresh the workflow permits changes only in
+`public/data/` and uncommitted `etl/out/`; after agent/scout analysis it permits only `etl/out/`.
+The observation commit is confidentiality-scanned. There is no scout commit or publish path.
 
 ### 1a. The analyst's door
 
@@ -387,8 +376,7 @@ all.
 | May write | `public/data/` only | analyst files, on a throwaway branch |
 | Output reaches the site | directly | only through a human merge |
 
-`etl/rules.mjs` is a third, and belongs with the first: unattended, commits to `main`, and may write
-only the view store through its writer.
+`etl/rules.mjs` is a third: unattended, report-only, and never commits or changes the view store.
 
 The guarantee is not that no program can edit `src/`. It is that **no unattended program can**, and
 that nothing an automated proposal touches reaches the published site without someone merging it.

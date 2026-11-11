@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* ---------------------------------------------------------------------------
-   THE AGENT'S DAILY PASS — the program the workflow runs.
+   THE AGENT'S EXPLICITLY DISPATCHED PASS — the program the workflow runs.
 
    agent/core.mjs is the agent. This file gives it the two things it needs
    from the outside world, a way to fetch a page and a way to ask the model,
@@ -18,20 +18,16 @@
    and if this program is started without one anyway it says so and exits
    cleanly, having fetched nothing and asked nothing.
 
-   THE DAILY PASS WRITES NOTHING TO THE VIEW. See agent/core.mjs.
+   BOTH PASSES RECEIVE A READ-ONLY STORE AND WRITE ONLY REPORTS.
+   They have no scheduled trigger and no capability to apply a strategy.
 
-   THE SCOUT PASS WRITES SCOUT CARDS, once the analyst has made the agent live
-   on them, and nothing else ever. See agent/scout.mjs. Until then it is dry
-   too. Which of the two this program runs is the first argument.
-
-   Usage (in the workflow):
-     node agent/run.mjs                      the monthly pass over markets, dry
-     node agent/run.mjs --scout [region]     one scout pass; with no region,
-                                             the one the day of the month names
+   Usage (explicit workflow dispatch only):
+     node agent/run.mjs                      report on due core-market triggers
+     node agent/run.mjs --scout [region]     report on the selected scout region
    --------------------------------------------------------------------------- */
 import { pathToFileURL } from 'node:url';
 
-import { createViewStore, writeRunReport } from '../etl/lib/viewWriter.mjs';
+import { createReadOnlyViewStore, writeRunReport } from '../etl/lib/viewWriter.mjs';
 import { runAgent, renderAgentReport } from './core.mjs';
 import { PROMPT_VERSION, MODEL } from './prompt.mjs';
 import { runScoutPass, renderScoutReport, robotsAllows, AGENT_TOKEN } from './scout.mjs';
@@ -108,7 +104,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
        for the workflow's commit message, and every pass in full beneath. */
     const passes = [];
     for (const region of scoutRegions(process.argv[3])){
-      passes.push(await runScoutPass({ store: createViewStore(), region, fetchPage, robots, askModel }));
+      passes.push(await runScoutPass({ store: createReadOnlyViewStore(), region, fetchPage, robots, askModel }));
     }
     const report = passes.map(renderScoutReport).join('\n\n');
     console.log(report);
@@ -121,7 +117,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
     await writeRunReport('scout-report.json', `${JSON.stringify(summary, null, 2)}\n`);
     process.exit(0);
   }
-  const result = await runAgent({ store: createViewStore(), registers, fetchPage, askModel });
+  const result = await runAgent({ store: createReadOnlyViewStore(), registers, fetchPage, askModel });
   const report = renderAgentReport(result);
   console.log(report);
   await writeRunReport('agent-report.md', `${report}\n`);

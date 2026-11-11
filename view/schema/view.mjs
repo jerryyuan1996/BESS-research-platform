@@ -272,13 +272,13 @@ export const MACHINE_AUTHORS = ['rule', 'agent'];
 /**
  * The authors whose changes to a MARKET are applied. The agent is permitted
  * and not live: on a market it runs dry, reporting what it would have changed,
- * until it has earned the core markets on scout cards (plan §8). Adding it
- * here is that decision, and it is the analyst's.
+ * under the analyst-only decision of 2026-11-11. Machine proposals may
+ * be prepared for review but may never be applied unattended.
  *
  * Scout cards have their own list, SCOUT_LIVE_AUTHORS in scout.mjs. This one
  * does not answer for them and that one does not answer for a market.
  */
-export const LIVE_AUTHORS = ['analyst', 'rule'];
+export const LIVE_AUTHORS = Object.freeze(['analyst']);
 
 /**
  * Who may write a held view: the analyst, and this list does not grow.

@@ -8,7 +8,7 @@ const job=id=>workflow.split(`\n  ${id}:\n`)[1]?.split(/\n  [a-z][a-z-]*:\n/)[0]
 const executable=s=>s.split('\n').filter(line=>!line.trim().startsWith('#')).join('\n');
 test('one ordinary daily schedule initiates both streams; monthly/weekly schedules survive',()=>{
   const crons=[...workflow.matchAll(/- cron: '([^']+)'/g)].map(x=>x[1]);
-  assert.deepEqual(crons,['17 6 * * *','43 5 2 * *','7 6 3 * *','23 4 1 * *','7 23 * * 0']);
+  assert.deepEqual(crons,['17 6 * * *','7 6 3 * *','7 23 * * 0']);
   assert.doesNotMatch(workflow,/17 \*\/6/);assert.match(job('policy-discovery'),/17 6 \* \* \*/);assert.match(job('refresh'),/17 6 \* \* \*/);
 });
 test('policy process has read-only permissions, no saved credential, no model key and no publisher import',()=>{

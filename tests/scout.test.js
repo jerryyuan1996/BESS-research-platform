@@ -100,14 +100,6 @@ const rejects = (promise, pattern) => assert.rejects(promise, (error) => {
 });
 const files = async (root) => (await readdir(root, { recursive: true })).map(f => f.replace(/\\/g, '/')).sort();
 
-/* The flip, as the analyst will make it: the agent added to the card list.
-   Done on the real list, for one test at a time, and always undone. */
-async function withAgentLive(run){
-  SCOUT_LIVE_AUTHORS.push('agent');
-  try { return await run(); }
-  finally { SCOUT_LIVE_AUTHORS.splice(SCOUT_LIVE_AUTHORS.indexOf('agent'), 1); }
-}
-
 /* ---- the roster ---------------------------------------------------------------- */
 
 test('the roster is the first batch less Ontario, which was registered, and none is a registered market', async () => {
@@ -120,7 +112,7 @@ test('the roster is the first batch less Ontario, which was registered, and none
     assert.ok(SCOUT_REGIONS[region].label[0] && SCOUT_REGIONS[region].label[1]);
   }
   assert.equal(MAX_SCOUT_CARDS_PER_RUN, 3, 'a run covers one region');
-  assert.equal(SCOUT_DAY_OF_MONTH, 1, 'one run a month, covering every region');
+  assert.equal(SCOUT_DAY_OF_MONTH, null, 'scout analysis is dispatch-only');
 
   /* THE TWO TIERS DO NOT OVERLAP. The id is what decides which rights a
      change is read against, so an id in both would be a core market the agent
@@ -186,7 +178,7 @@ test('nothing in view.mjs was widened for the scout tier', () => {
   /* The core tables, value for value. A change to any of these is a change to
      what a machine may do on a market, and is not this phase's to make. */
   assert.deepEqual(PERMITTED_AUTHORS, ['analyst', 'rule', 'agent']);
-  assert.deepEqual(LIVE_AUTHORS, ['analyst', 'rule']);
+  assert.deepEqual(LIVE_AUTHORS, ['analyst']);
   assert.deepEqual(HELD_AUTHORS, ['analyst']);
   assert.deepEqual(AUTHOR_RIGHTS.agent, {
     grades:   { create: false, replace: true, remove: false, fields: ['grade', 'trend', 'trendCause', 'reason', 'evidence', 'basis'] },
@@ -483,75 +475,46 @@ test('the agent is dry on scout cards until the analyst adds it to the card list
   assert.deepEqual(await files(root), [], 'a dry agent left something on disk');
 }));
 
-test('live on cards, the agent still cannot reach a market: not through the scout door and not through any other', async () => {
-  await scratch(async (store, root) => {
-    await withAgentLive(async () => {
-      assert.equal(store.scoutLive('agent'), true);
-      const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
+test('frozen analyst-only permissions reject machine writes on cards and markets', () => scratch(async (store, root) => {
+  assert.ok(Object.isFrozen(SCOUT_LIVE_AUTHORS));
+  assert.ok(Object.isFrozen(LIVE_AUTHORS));
+  assert.throws(() => SCOUT_LIVE_AUTHORS.push('agent'), TypeError);
+  assert.equal(store.scoutLive('agent'), false);
+  const core = { market: 'fi', path: 'grades.gridScarcity', to: grade(), author: agent, reason, evidence: [quoted()] };
+  await rejects(store.prepareScoutChange(core, NOW, await store.scoutRunState()), /is not in the scout roster/);
+  await rejects(store.applyScoutRun([core], {}, NOW), /is not in the scout roster/);
+  await rejects(store.apply({ market: 'fi', path: 'thesis', to: reason, author: agent, reason, evidence: [quoted()] }, NOW), /is not live|refused to agent/);
+  assert.deepEqual(await files(root), []);
+}));
 
-      /* A core market's record, dressed as a scout change in every way a caller could. */
-      const core = { market: 'fi', path: 'grades.gridScarcity', to: grade(), author: agent, reason, evidence: [quoted()] };
-      for (const dressed of [core, { ...core, tier: 'scout' }, { ...core, scout: true }, { ...core, path: 'facts', to: [] }]){
-        await rejects(store.applyScoutRun([dressed], pass, NOW), /is not in the scout roster — a scout run writes cards and nothing else/);
-        await rejects(store.applyScoutRun([change('grades.gridScarcity', grade()), dressed], pass, NOW), /is not in the scout roster/);
-        await rejects(store.prepareScoutChange(dressed, NOW, await store.scoutRunState()), /is not in the scout roster/);
-      }
-      /* And through the ordinary doors the agent is exactly as dry on a market as it was. */
-      assert.deepEqual(LIVE_AUTHORS, ['analyst', 'rule']);
-      await rejects(store.apply({ market: 'fi', path: 'thesis', to: reason, author: agent, reason, evidence: [quoted()] }, NOW), /is not live|refused to agent/);
-      await rejects(store.applyBatch([{ market: 'fi', path: 'triggers.fi-x', to: { ...trigger({ id: 'fi-x', market: 'fi' }), source: { publisher: 'P', url: 'https://p.example/x', access: 'opened' } }, author: agent, reason, evidence: [{ ...quoted(), url: 'https://p.example/x' }] }], NOW), /is not live/);
-      assert.deepEqual(await files(root), [], 'something was written');
-    });
-  });
-});
-
-test('live, a scout run writes the cards, one changelog line a record and one pass line, and never the index', () => scratch(async (store, root) => {
-  await withAgentLive(async () => {
-    const changes = [
-      change('triggers.bg-capacity-auction', trigger()),
-      change('grades.gridScarcity', grade()),
-      change('facts', [{ text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] }]),
-      change('verdicts.developer', verdict({ call: 'wait', changesIf: ['bg-capacity-auction'], reviewBy: '2027-07-31' })),
-    ];
-    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 4, unfetched: [], unanswered: [], rejected: [] };
-    const result = await store.applyScoutRun(changes, pass, NOW);
-    assert.equal(result.entries.length, 4);
-    assert.equal(result.pass.written, 4);
-    assert.equal(result.pass.clean, true);
-    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/bg.json', 'scout/passes.jsonl'], 'no market file and no index');
-
-    const card = await store.readCard('bg');
-    assert.deepEqual(validateCard(card), []);
-    assert.equal(card.verdicts.developer.call, 'wait');
-    assert.equal(card.grades.gridScarcity.author, 'agent');
-    const log = await store.changelog();
-    assert.ok(log.every(e => e.tier === 'scout' && e.author.kind === 'agent' && e.author.model && e.author.prompt === SCOUT_PROMPT_VERSION));
-    assert.deepEqual(await store.passes(), [result.pass]);
-    assert.deepEqual(await store.readAllCards(), [card]);
-    assert.deepEqual(await store.readAll(), [], 'a scout write made a market view');
-
-    /* I — one change undone by id, as the analyst, and the whole card removed. */
-    const undone = await store.revert(log[1].id, new Date('2026-11-12T00:00:00Z')).catch(e => e);
-    assert.match(undone.message, /which is not graded on this card/, 'a grade a verdict rests on is not pulled from under it');
-    const removal = await store.removeCardChanges('bg');
-    assert.deepEqual(removal.map(c => c.path), ['verdicts.developer', 'triggers.bg-capacity-auction', 'grades.gridScarcity', 'facts']);
-    await store.applyBatch(removal, new Date('2026-11-12T01:00:00Z'));
-    assert.ok(cardIsEmpty(await store.readCard('bg')));
-
-    /* A run over a cap writes no card and is recorded as a pass that was not clean. */
-    const again = await store.applyScoutRun([change('grades.gridScarcity', grade(), { market: 'bg' })], { ...pass, run: '2026-12-11T04:30:00.000Z', proposed: 1 }, new Date('2026-12-11T04:30:00Z'));
-    assert.equal(again.pass.clean, true);
-    const over = ['gridScarcity', 'foreignEntry', 'policyStability', 'debtAvailability'];
-    for (const [i, d] of over.entries()){
-      if (d !== 'gridScarcity') await store.apply({ market: 'bg', path: `grades.${d}`, to: grade({ dimension: d, author: 'analyst' }), author: analyst, reason }, new Date(`2026-12-12T0${i}:00:00Z`));
-    }
-    const four = over.map(d => change(`grades.${d}`, grade({ dimension: d, grade: 4 })));
-    const refused = await store.applyScoutRun(four, { ...pass, run: '2027-01-11T04:30:00.000Z', proposed: 4 }, new Date('2027-01-11T04:30:00Z'));
-    assert.equal(refused.pass.written, 0);
-    assert.equal(refused.pass.clean, false);
-    assert.match(refused.pass.rejected[0].why, /replace 4 existing records and the cap is 3/);
-    assert.equal((await store.readCard('bg')).grades.gridScarcity.grade, 3, 'a refused run changed a card');
-  });
+test('scout proposals validate without writes; only analyst application persists a card', () => scratch(async (store, root) => {
+  const changes = [
+    change('triggers.bg-capacity-auction', trigger()),
+    change('grades.gridScarcity', grade()),
+    change('facts', [{ text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] }]),
+    change('verdicts.developer', verdict({ call: 'wait', changesIf: ['bg-capacity-auction'], reviewBy: '2027-07-31' })),
+  ];
+  const prepared = await store.prepareScoutRun(changes, NOW);
+  assert.equal(prepared.length, 4);
+  assert.deepEqual(await files(root), []);
+  await rejects(store.applyScoutRun(changes, {}, NOW), /is not live/);
+  const approved = changes.map(c => ({ ...c, author: analyst, to: Array.isArray(c.to) ? c.to : { ...c.to, ...(c.to.author ? {author: 'analyst'} : {}) } }));
+  await store.applyBatch(approved, NOW);
+  const card = await store.readCard('bg');
+  assert.deepEqual(validateCard(card), []);
+  assert.equal(card.grades.gridScarcity.author, 'analyst');
+  assert.ok((await store.changelog()).every(e => e.author.kind === 'analyst'));
+  assert.deepEqual(await store.passes(), []);
+  assert.deepEqual(await store.readAll(), []);
+  const log = await store.changelog();
+  await rejects(store.revert(log[1].id, new Date('2026-11-12T00:00:00Z')), /which is not graded on this card/);
+  const removal = await store.removeCardChanges('bg');
+  assert.deepEqual(removal.map(c => c.path), ['verdicts.developer', 'triggers.bg-capacity-auction', 'grades.gridScarcity', 'facts']);
+  await store.applyBatch(removal, new Date('2026-11-12T01:00:00Z'));
+  assert.ok(cardIsEmpty(await store.readCard('bg')));
+  const dimensions = ['gridScarcity', 'foreignEntry', 'policyStability', 'debtAvailability'];
+  for (const dimension of dimensions) await store.apply({ market:'bg', path:`grades.${dimension}`, to:grade({dimension, author:'analyst'}), author:analyst, reason }, new Date('2026-12-11T04:30:00Z'));
+  await rejects(store.prepareScoutRun(dimensions.map(d => change(`grades.${d}`, grade({dimension:d, grade:4}))), new Date('2027-01-11T04:30:00Z')), /replace 4 existing records and the cap is 3/);
 }));
 
 /* ---- the pass log and the exit condition -------------------------------------------- */
@@ -870,30 +833,14 @@ test('the model is not asked what it remembers: no page read, no question, and a
   assert.equal(robotsAllows('User-agent: *\nDisallow: /*.pdf$', '/a/b.pdf?x=1'), true);
 }));
 
-test('live, the pass writes what survived and records itself, clean or not', () => scratch(async (store, root) => {
-  await withAgentLive(async () => {
-    const result = await scoutPass(store, { bg: answer() });
-    assert.equal(result.live, true);
-    assert.equal(result.pass.written, 4);
-    /* Not clean: the Netherlands had no page whose terms were read. */
-    assert.equal(result.pass.clean, false);
-    assert.deepEqual(result.pass.unfetched, ['nl']);
-    assert.deepEqual(await files(root), ['changelog.jsonl', 'scout', 'scout/bg.json', 'scout/passes.jsonl']);
-    assert.deepEqual(validateCard(await store.readCard('bg')), []);
-    assert.deepEqual(validatePass((await store.passes())[0]), []);
-    assert.match(renderScoutReport(result), /4 records written\. This pass is NOT clean\./);
-
-    /* A month later the model moves the call one place, with a source. */
-    const later = new Date('2026-12-11T04:30:00Z');
-    const moved = await scoutPass(store, { bg: { ...EMPTY, verdicts: [{ ...answer().verdicts[0], call: 'opportunistic', waits_for: '', review_by: '' }] } }, { now: later });
-    assert.equal(moved.pass.written, 1);
-    assert.equal((await store.readCard('bg')).verdicts.developer.call, 'opportunistic');
-    assert.equal((await store.readCard('bg')).verdicts.developer.route, 'greenfield');
-    const last = (await store.changelog()).pop();
-    assert.equal(last.from.call, 'wait');
-    assert.equal(last.to.call, 'opportunistic');
-    assert.equal(cleanStreak(await store.passes()), 0);
-  });
+test('a scout pass cannot write even when a supplied store advertises live permission', () => scratch(async (store, root) => {
+  const result = await scoutPass({ ...store, scoutLive: () => true, applyScoutRun: () => { throw new Error('writing is forbidden'); } }, { bg: answer() });
+  assert.equal(result.live, false);
+  assert.equal(result.pass.written, 0);
+  assert.equal(result.wouldWrite, 4);
+  assert.deepEqual(result.pass.unfetched, ['nl']);
+  assert.deepEqual(await files(root), []);
+  assert.match(renderScoutReport(result), /Report-only scout analysis/);
 }));
 
 /* ---- the pages, as data ---------------------------------------------------------------- */
@@ -962,66 +909,36 @@ test('the status command reports the streak, each card and whether it was checke
   assert.match(renderScoutStatus(before), /Consecutive clean passes: 0 of 6/);
   assert.match(renderScoutStatus(before), /The exit condition is not met\./);
 
-  await withAgentLive(async () => {
-    const pass = { run: RUN, region: 'southern-eastern-europe', cards: ['bg'], model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 1, unfetched: [], unanswered: [], rejected: [] };
-    await store.applyScoutRun([change('grades.gridScarcity', grade())], pass, NOW);
-    const card = await store.readCard('bg');
-    assert.equal(checkState(card, await store.changelog()), 'never');
-    await store.apply({ market: 'bg', path: 'checked', to: { asOf: '2026-11-12', note: null }, author: analyst, reason }, new Date('2026-11-12T00:00:00Z'));
-    assert.equal(checkState(await store.readCard('bg'), await store.changelog()), '2026-11-12');
-    /* The agent may not write the analyst's check, and a later machine write makes it stale. */
-    await rejects(store.prepare(change('checked', { asOf: '2026-11-13', note: null }), NOW), /may not write checked on a scout card/);
-    await store.applyScoutRun([change('grades.gridScarcity', grade({ grade: 4, asOf: '2026-12-11' }))], { ...pass, run: '2026-12-11T04:30:00.000Z' }, new Date('2026-12-11T04:30:00Z'));
-    assert.equal(checkState(await store.readCard('bg'), await store.changelog()), 'stale');
-    const status = await scoutStatus(store);
-    assert.equal(status.streak, 2);
-    assert.equal(status.rows.find(r => r.id === 'bg').check, 'stale');
-    assert.match(renderScoutStatus(status), /bg\s+Bulgaria\s+1\/12 graded\s+0\/4 verdicts\s+last pass 2026-12-11\s+spot-check: written since the last check/);
-  });
+  await store.apply({ market:'bg', path:'grades.gridScarcity', to:grade({author:'analyst'}), author:analyst, reason }, NOW);
+  await store.apply({ market: 'bg', path: 'checked', to: { asOf: '2026-11-12', note: null }, author: analyst, reason }, new Date('2026-11-12T00:00:00Z'));
+  assert.equal(checkState(await store.readCard('bg'), await store.changelog()), '2026-11-12');
+  await rejects(store.prepare(change('checked', { asOf: '2026-11-13', note: null }), NOW), /may not write checked on a scout card/);
+  const status = await scoutStatus(store);
+  assert.equal(status.live, false);
+  assert.equal(status.streak, 0);
+  assert.equal(status.rows.find(r => r.id === 'bg').check, '2026-11-12');
 }));
 
 /* ---- the workflow ---------------------------------------------------------------------- */
 
 const agentJob = (wf) => wf.slice(wf.indexOf('\n  agent:\n'), wf.indexOf('\n  scout:\n')).split('\n').filter(line => !/^\s*#/.test(line)).join('\n');
 
-test('the scout job can write only while the agent is live on cards, and never a market', async () => {
+test('agent and scout are explicit read-only dispatches without a publish path', async () => {
   const wf = await readFile(path.join(REPO, '.github', 'workflows', 'etl.yml'), 'utf8');
-  const start = wf.indexOf('\n  scout:\n'), end = wf.indexOf('\n  publish-scout:\n');
-  assert.ok(start > 0 && end > start, 'no scout job');
-  const job = wf.slice(start, end);
-  const executable = job.split('\n').filter(line => !/^\s*#/.test(line)).join('\n');
-
-  /* TWO LOCKS, MOVED TOGETHER. The list in the schema decides whether the
-     writer applies; the job's permission decides whether a commit could be
-     pushed. One without the other is a mistake in either direction. */
-  const mayPush = /permissions:\s*\n\s*contents: write/.test(executable);
-  assert.equal(mayPush, SCOUT_LIVE_AUTHORS.includes('agent'), 'the scout job\'s write permission and SCOUT_LIVE_AUTHORS disagree');
-
-  assert.match(executable, /node agent\/run\.mjs --scout/);
-  /* The private folder is always in a checkout, because its README is
-     committed. So the check is that it holds nothing else, and the committed
-     tree is asserted to agree: a check that failed on the folder merely
-     existing could never pass, and did not, the first time the job ran. */
-  for (const part of [agentJob(wf), executable]){
-    assert.match(part, /find local-data -mindepth 1 ! -path local-data\/README\.md/, 'the job does not check what the private folder holds');
-    assert.ok(!/\[ -e local-data \]/.test(part), 'the job fails on the private folder existing, which it always does');
+  const job = wf.slice(wf.indexOf('\n  scout:\n'), wf.indexOf('\n  weekly-briefing:\n'));
+  assert.ok(job.length > 0);
+  assert.ok(!wf.includes('publish-scout:'));
+  for (const part of [agentJob(wf), job]) {
+    assert.match(part, /github.event_name == 'workflow_dispatch'/);
+    assert.match(part, /contents: read/);
+    assert.match(part, /Confirm .*wrote nothing/);
+    assert.ok(!/git add |git push|git commit/.test(part));
+    assert.match(part, /find local-data -mindepth 1 ! -path local-data\/README\.md/);
   }
-  assert.ok(existsSync(path.join(REPO, 'local-data', 'README.md')), 'the private folder\'s README is not committed, so the check above tests the wrong thing');
-  /* What it stages and what it lets through are view/scout/ and the changelog. */
-  assert.match(executable, /':!view\/scout' ':!view\/changelog\.jsonl' ':!etl\/out'\)/);
-  for (const add of executable.match(/git add [^\n]+/g) || []){
-    assert.equal(add.trim(), 'git add view/scout view/changelog.jsonl', `the scout job stages something else: ${add}`);
-  }
-  assert.ok((executable.match(/git add /g) || []).length >= 2);
-  assert.ok(!/view\/markets|view\/index\.json|public\/data|\bsrc\b/.test(executable), 'the scout job names a core market\'s view, the index, published data or src/');
-  assert.match(executable, /npm run guard:staged/, 'the cards are not scanned before the commit');
-  /* The monthly pass over markets is untouched: read-only, and it still confirms it wrote nothing. */
-  const agent = wf.slice(wf.indexOf('\n  agent:\n'), start);
-  assert.match(agent, /permissions:\s*\n\s*contents: read/);
-  assert.match(agent, /Confirm the agent wrote nothing/);
-  assert.ok(!/--scout/.test(agent));
-  /* The cron's day is the schedule's day, and it is one day a month. */
-  assert.match(wf, new RegExp(`cron: '23 4 ${SCOUT_DAY_OF_MONTH} \\* \\*'`));
+  assert.match(agentJob(wf), /inputs.run_agent == true/);
+  assert.match(job, /inputs.scout_region != ''/);
+  assert.match(job, /node agent\/run\.mjs --scout/);
+  assert.deepEqual([...wf.matchAll(/cron: '([^']+)'/g)].map(m => m[1]), ['17 6 * * *', '7 6 3 * *', '7 23 * * 0']);
 });
 
 /* ---- the committed store ------------------------------------------------------------- */
@@ -1046,7 +963,7 @@ test('every committed card is valid, is a roster market\'s, and was written thro
   for (const entry of log){
     assert.ok(isScoutId(entry.market), `${entry.id}: a scout line for an id that is not in the roster`);
     if (entry.author.kind !== 'agent') continue;
-    assert.ok(SCOUT_LIVE_AUTHORS.includes('agent'), `${entry.id}: an agent line while the agent is not live on cards`);
+    assert.ok(entry.at < '2026-11-11', `${entry.id}: machine application after analyst-only closure`);
     assert.ok(passes.some(p => p.run === entry.author.run && p.cards.includes(entry.market)), `${entry.id}: written in a run the pass log does not hold`);
     assert.ok(entry.evidence.length && entry.evidence.every(e => /^sha256:[0-9a-f]{64}$/.test(e.sha256) && e.quote), `${entry.id}: no hashed quotation`);
   }

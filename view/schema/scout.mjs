@@ -248,11 +248,10 @@ export function validateCard(card){
  * The authors whose changes to a CARD are applied. Apart from LIVE_AUTHORS in
  * view.mjs, which is the list for core markets and is not this one.
  *
- * The agent is not in it yet: until the analyst adds it, the scout pass runs
- * dry on cards as the daily pass does on markets. Adding it is the decision
- * revision plan §8 reserves to him, and it is one line.
+ * Only the analyst applies changes. Scout analysis is hand-started and
+ * report-only; no runtime switch can make an automated author live.
  */
-export const SCOUT_LIVE_AUTHORS = ['analyst'];
+export const SCOUT_LIVE_AUTHORS = Object.freeze(['analyst']);
 
 const WHOLE = { create: true, replace: true, remove: true, fields: null };
 

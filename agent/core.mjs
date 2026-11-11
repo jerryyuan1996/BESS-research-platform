@@ -3,7 +3,7 @@
 
    The agent is for what no rule anticipated: an event trigger has no feed, so
    somebody has to establish that the event happened, from a source. This is
-   the monthly pass:
+   the explicitly dispatched pass:
 
        pick the markets with a trigger due soon, or overdue
        for each: fetch the pages those triggers cite, and hash them
@@ -141,7 +141,7 @@ export function changeFromProposal(proposal, { view, pages, runAt, model }){
 }
 
 /**
- * The monthly pass. Writes nothing.
+ * The explicitly dispatched pass. Writes nothing.
  *
  * @param store      a view store; only read, changelog and prepare are used
  * @param registers  async (marketId) => that market's source register, or null

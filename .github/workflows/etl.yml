@@ -1,83 +1,32 @@
 name: Live data
 
-# Eight jobs, and the split is the governance model expressed as CI. The rule
-# is: judgement publishes automatically after validation; methodology never
-# does.
-#
-#   refresh   unattended. Fetches, validates, commits observed data and
-#             deterministic derived metrics straight to main. Then runs the
-#             rules: a trigger the analyst wrote in advance, with a threshold
-#             and a change, is tested against what was just fetched, and if it
-#             fires the change is written to the view store through the view
-#             writer's gate and committed. It can only touch public/data/ and
-#             three kinds of file under view/ — enforced in code, and checked
-#             again below. Never src/, where methodology lives.
-#
-#   publish   calls ci.yml on the commit refresh just pushed: the full test
-#             job, then the scanned-artefact deploy. Skipped when no data
-#             changed. It is here because the push above is made with
-#             GITHUB_TOKEN, and GitHub starts no workflow for such a push — a
-#             data commit on main does not reach the site unless this job runs.
-#
-#   propose   opens a pull request when drift is material. Never merges it.
-#             Runs on a branch, edits the analyst-controlled value there, and
-#             stops. A human decides. Model assumptions still move this way.
-#
-#   agent     once a month, DRY. Reads the pages that due triggers cite and
-#             reports what it would have changed. It has read-only permissions,
-#             writes nothing to the repository, and does nothing at all until a
-#             model key exists as a repository secret.
-#
-#   scout     once a month, every region in one run, so every scout card is
-#             reviewed monthly. Reads the pages the analyst listed for three
-#             markets with no dashboard and writes their cards — once the
-#             analyst has made the agent live on scout cards. Until then it is
-#             DRY like the agent job: read-only permissions, and the view
-#             writer refuses to apply. Live, it may change view/scout/ and the
-#             changelog and nothing else: never a core market's view, never
-#             the index, never src/. Checked below, then scanned, before the
-#             commit.
-#
-#   publish-scout  calls ci.yml on the commit a scout pass pushed, for the
-#             reason publish does.
-#
-#   digest    once a month. Posts the machine-written changes of the last
-#             thirty-one days as an issue, so none goes unseen.
-#
-#   weekly-briefing  every Monday morning in Perth. Posts the briefing — the
-#             call, what changed in the week, what is coming, the shortlist,
-#             what to build, the next actions and the analyst's queue — as one
-#             issue per week, built by the same model as the home page. No
-#             model is asked and no key is needed; it reads and posts, and has
-#             no write access to the repository.
-#
-# Nothing in this file may be given auto-merge. That is deliberate and it is the
-# single most important line in the workflow. A rule's change does not need
-# one: it is not a pull request. It is a validated write, like the data.
+# Observations are automatic; investment judgement belongs to the analyst.
+# refresh may commit public/data only. Rules report possible changes without
+# writing view/. Agent and scout are explicit manual report-only jobs.
+# No workflow may merge a proposal automatically.
 
 on:
   schedule:
     # Owner-approved unified daily market ETL + policy discovery cycle.
     # Source latency and scheduler drift are additional to this ~24h cadence.
     - cron: '17 6 * * *'
-    # The agent's dry pass, once a month. No job that asks a model runs more
-    # often than monthly: the analyst's ruling of 2026-10-12.
-    - cron: '43 5 2 * *'
     # The monthly digest of machine changes.
     - cron: '7 6 3 * *'
-    # The scout pass: the 1st of the month, every region in one run. The day is
-    # SCOUT_DAY_OF_MONTH in src/governance/scout.js.
-    - cron: '23 4 1 * *'
     # The weekly briefing: Sunday 23:07 UTC, which is Monday 07:07 in Perth.
     - cron: '7 23 * * 0'
   workflow_dispatch:
     inputs:
+      run_agent:
+        description: 'Start a report-only agent review instead of refreshing data'
+        required: false
+        type: boolean
+        default: false
       only:
         description: 'Comma-separated dataset ids (blank = all)'
         required: false
         type: string
       dry_run:
-        description: 'Fetch and report without committing data, applying rules or publishing'
+        description: 'Fetch and report without committing data or publishing'
         required: false
         type: boolean
         default: false
@@ -113,7 +62,7 @@ permissions:
 jobs:
   policy-discovery:
     name: Policy discovery, shadow only
-    if: github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true)
+    if: github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true && inputs.run_agent != true)
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -154,7 +103,7 @@ jobs:
     needs: [policy-discovery]
     # Not on the agent's, the digest's or the scout pass's schedule: those run
     # their own job. Nor when a scout pass was asked for by hand.
-    if: ${{ !cancelled() && (github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true)) }}
+    if: ${{ !cancelled() && (github.event.schedule == '17 6 * * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.weekly_briefing != true && inputs.run_agent != true)) }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -208,57 +157,21 @@ jobs:
           if [ "$ETL_DRY_RUN" = "true" ]; then ARGS+=(--dry-run); fi
           node scripts/ci/timed.mjs "etl fetch" -- node etl/run.mjs "${ARGS[@]}"
 
-      - name: Apply rules
-        # After the refresh, in the same job, so a rule tests only what this run
-        # fetched and validated (etl/out/summary.json says which). A rule that
-        # fires writes view/ through etl/lib/viewWriter.mjs and nothing else. A
-        # rejected change leaves a report and writes nothing; the data is still
-        # published, and the job fails at its end so somebody looks.
+      - name: Test rules, report only
         id: rules
         if: inputs.dry_run != true
         run: node etl/rules.mjs || echo "rejected=true" >> "$GITHUB_OUTPUT"
 
       - name: Check the walls held
-        # Belt and braces. The two writers make writing anywhere else throw, but
-        # a workflow that verifies the invariant after the fact costs nothing and
-        # catches a bad merge that weakened it. Two directories, and inside
-        # view/ only the three kinds of file the view writer owns: never
-        # view/schema/, which says who may write what, and never src/.
+        # A rule crossing must never alter the approved view or methodology.
         run: |
-          OUTSIDE=$(git status --porcelain --untracked-files=all -- . ':!public/data' ':!view/markets' ':!view/index.json' ':!view/changelog.jsonl' ':!etl/out')
+          OUTSIDE=$(git status --porcelain --untracked-files=all -- . ':!public/data' ':!etl/out')
           if [ -n "$OUTSIDE" ]; then
-            echo "::error::Automation modified files outside public/data/ and the view store:"
+            echo "::error::Automation modified files outside public/data/:"
             echo "$OUTSIDE"
             exit 1
           fi
-          echo "Confirmed: only public/data/ and the view store were modified."
-
-      - name: Scan the view change before it is committed
-        id: viewscan
-        # The last line of the validation gate: the confidentiality scan passes
-        # on the result. A rule writes only what the analyst wrote in advance,
-        # so this should never find anything — which is the reason to check. If
-        # it fails, or cannot run, the view change is discarded and the job
-        # fails after the data is safely published.
-        env:
-          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
-          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
-        run: |
-          if [ -z "$(git status --porcelain -- view)" ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git add view/markets view/index.json view/changelog.jsonl
-          if [ -n "$GUARD_MARKER_SET" ] && npm run guard:staged; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "::error::The view change did not pass the confidentiality scan and was discarded."
-            git reset -q -- view
-            git checkout -- view
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "discarded=true" >> "$GITHUB_OUTPUT"
-          fi
-          git reset -q
+          echo "Confirmed: only public/data/ was modified."
 
       - name: Commit published data
         id: commit
@@ -268,18 +181,13 @@ jobs:
           # untracked file, which `git diff` never reports. Using it skipped the
           # first Fingrid snapshots as "nothing changed" on 2026-10-30.
           DATA_CHANGED=$(git status --porcelain --untracked-files=all -- public/data)
-          if [ -z "$DATA_CHANGED" ] && [ "${{ steps.viewscan.outputs.changed }}" != "true" ]; then
+          if [ -z "$DATA_CHANGED" ]; then
             echo "Nothing changed this run."
             echo "committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name  "bess-etl[bot]"
           git config user.email "bess-etl[bot]@users.noreply.github.com"
-          if [ "${{ steps.viewscan.outputs.changed }}" = "true" ]; then
-            # One combined cycle commit. Rule history remains in the unchanged
-            # view changelog and can still be reverted through its own writer.
-            git add view/markets view/index.json view/changelog.jsonl
-          fi
           git add public/data
           # The commit message carries the run summary, so `git log public/data`
           # reads as the data's provenance history rather than a wall of
@@ -288,7 +196,7 @@ jobs:
           npm run etl:verify
           npm run guard:staged
           git commit -m "data: daily refresh ${UPDATED}" \
-                     -m "Validated observed data and existing pre-approved rule changes only; policy remains shadow-only. No analyst assumption was modified." \
+                     -m "Validated observed data only; rule reports and policy discovery do not change the approved strategy." \
                      -m "$(node -e "const s=require('./etl/out/summary.json');console.log('Failed: '+(s.failed.map(f=>f.id+' ('+f.status+')').join(', ')||'none'))")"
           # Rebases onto main and retries if a merge landed during the run
           # (run 41399142010 failed here with "fetch first"). A conflict fails
@@ -331,8 +239,8 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           if [ -f etl/out/rules-report.md ]; then cat etl/out/rules-report.md >> "$GITHUB_STEP_SUMMARY"; fi
 
-      - name: Fail if a view change was rejected or discarded
-        if: steps.rules.outputs.rejected == 'true' || steps.viewscan.outputs.discarded == 'true'
+      - name: Fail if a rule proposal was invalid
+        if: steps.rules.outputs.rejected == 'true'
         run: exit 1
 
   publish:
@@ -453,10 +361,8 @@ jobs:
 
   agent:
     name: Agent, dry run
-    # Once a day, or by hand. It reports and writes nothing: read-only
-    # permissions, no commit step, and the view writer refuses an agent's
-    # change in any case until the analyst makes the agent a live author.
-    if: github.event.schedule == '43 5 2 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region == '' && inputs.verify_release != true)
+    # Explicit manual request only; a data refresh never calls a model.
+    if: github.event_name == 'workflow_dispatch' && inputs.run_agent == true && inputs.verify_release != true && inputs.scout_region == '' && inputs.weekly_briefing != true
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -532,26 +438,11 @@ jobs:
 
   scout:
     name: Scout pass
-    # Once a month on the 1st, every region in one run, with one pass per
-    # region in roster order. Or by hand, one region at a time, with the
-    # scout_region input. Dispatching several regions back to back cancels all
-    # but the latest queued one: the live-data concurrency group keeps only one
-    # pending run.
-    #
-    # DRY UNTIL THE ANALYST SAYS OTHERWISE, AND THE SWITCH IS NOT IN THIS FILE.
-    # Whether the agent's changes to a scout card are applied is
-    # SCOUT_LIVE_AUTHORS in view/schema/scout.mjs. While the agent is not in
-    # that list the pass prepares, reports and writes nothing, and the steps
-    # below that check, scan and commit find nothing to do. `contents: read`
-    # is the second lock: making the agent live means changing both, in one
-    # pull request the analyst merges.
-    if: github.event.schedule == '23 4 1 * *' || (github.event_name == 'workflow_dispatch' && inputs.scout_region != '')
+    # Explicit regional review only, with no writing or publishing capability.
+    if: github.event_name == 'workflow_dispatch' && inputs.scout_region != '' && inputs.verify_release != true && inputs.run_agent != true && inputs.weekly_briefing != true
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    outputs:
-      committed: ${{ steps.commit.outputs.committed }}
-      sha: ${{ steps.commit.outputs.sha }}
     env:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       SCOUT_REGION: ${{ inputs.scout_region }}
@@ -589,74 +480,15 @@ jobs:
         if: env.ANTHROPIC_API_KEY != ''
         run: node agent/run.mjs --scout
 
-      - name: Confirm only scout cards and the changelog changed
+      - name: Confirm the scout wrote nothing
         if: env.ANTHROPIC_API_KEY != ''
-        # The wall, checked from outside the program that is held by it. A
-        # scout pass may change view/scout/ and append to the changelog. It may
-        # not change a core market's view, the index of their verdicts, the
-        # schema, or anything outside view/.
         run: |
-          OUTSIDE=$(git status --porcelain --untracked-files=all -- . ':!view/scout' ':!view/changelog.jsonl' ':!etl/out')
-          if [ -n "$OUTSIDE" ]; then
-            echo "::error::The scout pass modified files outside view/scout/ and the changelog:"
-            echo "$OUTSIDE"
+          CHANGED=$(git status --porcelain --untracked-files=all -- . ':!etl/out')
+          if [ -n "$CHANGED" ]; then
+            echo "::error::The scout modified the repository:"
+            echo "$CHANGED"
             exit 1
           fi
-          BAD=$(git status --porcelain --untracked-files=all -- view/scout | grep -vE ' view/scout/([a-z][a-z0-9_]*\.json|passes\.jsonl)$' || true)
-          if [ -n "$BAD" ]; then
-            echo "::error::The scout pass left a file in view/scout/ that is not a card or the pass log:"
-            echo "$BAD"
-            exit 1
-          fi
-          echo "Confirmed: only scout cards, the pass log and the changelog were modified."
-
-      - name: Scan the cards before they are committed
-        id: scan
-        if: env.ANTHROPIC_API_KEY != ''
-        # The last line of the gate: the confidentiality scan passes on the
-        # result. The agent cannot see anything private, so this should never
-        # find anything — which is the reason to check. If it fails, or cannot
-        # run, the pass is discarded whole.
-        env:
-          GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
-          GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
-        run: |
-          if [ -z "$(git status --porcelain -- view)" ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git add view/scout view/changelog.jsonl
-          if [ -n "$GUARD_MARKER_SET" ] && npm run guard:staged; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "::error::The scout pass did not pass the confidentiality scan and was discarded."
-            git reset -q -- view
-            git checkout -- view
-            git clean -fdq -- view/scout
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "discarded=true" >> "$GITHUB_OUTPUT"
-          fi
-          git reset -q
-
-      - name: Commit the cards
-        id: commit
-        if: env.ANTHROPIC_API_KEY != ''
-        run: |
-          if [ "${{ steps.scan.outputs.changed }}" != "true" ]; then
-            echo "Nothing to commit: the pass was dry, or it changed nothing."
-            echo "committed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          git config user.name  "bess-etl[bot]"
-          git config user.email "bess-etl[bot]@users.noreply.github.com"
-          git add view/scout view/changelog.jsonl
-          REGION=$(node -e "console.log(require('./etl/out/scout-report.json').region)")
-          WRITTEN=$(node -e "console.log(require('./etl/out/scout-report.json').pass.written)")
-          git commit -m "view: scout pass ${REGION}, ${WRITTEN} records" \
-                     -m "Written by the agent through the view writer's gate, to scout cards only. Every record carries a quotation found in a page fetched in this run; the changelog line holds it, and the weekly digest gives the command that undoes it."
-          bash scripts/ci/push-main.sh
-          echo "committed=true" >> "$GITHUB_OUTPUT"
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Publish the pass report
         if: env.ANTHROPIC_API_KEY != ''
@@ -671,26 +503,6 @@ jobs:
       - name: Report to the job summary
         if: env.ANTHROPIC_API_KEY != ''
         run: cat etl/out/scout-report.md >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Fail if the pass was discarded
-        if: steps.scan.outputs.discarded == 'true'
-        run: exit 1
-
-  publish-scout:
-    name: Test and publish the scout commit
-    needs: scout
-    if: needs.scout.outputs.committed == 'true' && github.ref == 'refs/heads/main'
-    permissions:
-      contents: read
-    uses: ./.github/workflows/ci.yml
-    with:
-      ref: ${{ needs.scout.outputs.sha }}
-    secrets:
-      GUARD_MARKER_SET: ${{ secrets.GUARD_MARKER_SET }}
-      GUARD_FINGERPRINT_KEY: ${{ secrets.GUARD_FINGERPRINT_KEY }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   digest:
     name: Monthly digest of machine changes

@@ -1,5 +1,5 @@
 /* ---------------------------------------------------------------------------
-   THE SCOUT PASS — the agent writing scout cards.
+   THE SCOUT PASS — report-only proposals for scout cards.
 
    One pass covers one region: three markets with no dashboard. For each:
 
@@ -9,13 +9,9 @@
        check every quotation against the page it cites
        put each change to the view writer's gate, in order
 
-   and then, once for the pass, hand what survived to the writer.
-
-   THIS IS THE ONE PLACE THE AGENT WRITES, AND IT WRITES CARDS ONLY. The
-   writer's applyScoutRun refuses an id that is not in the scout roster, and
-   refuses the agent altogether until the analyst has made it live on cards.
-   Until then this runs dry: it prepares, reports and writes nothing. The
-   daily pass over markets, agent/core.mjs, is separate and still dry.
+   and prepare the surviving proposals as a batch, without applying them.
+   The pass runs only on explicit dispatch and receives a read-only store.
+   Core-market analysis is separate and also report-only.
 
    IT READS ONLY WHAT IS ON THE LIST. No search, no following links. A page
    whose terms nobody has read is probed — fetched for its status and thrown
@@ -271,7 +267,7 @@ export function spotCheckSample(cardId, written, runAt){
 export async function runScoutPass({ store, region, fetchPage, robots, askModel, now = new Date(), sources = scoutSources }){
   const runAt = now.toISOString();
   const ids = scoutIdsIn(region);
-  const live = store.scoutLive('agent');
+  const live = false; // Analysis is report-only, regardless of the supplied store.
   const state = await store.scoutRunState();
   const pass = { run: runAt, region, cards: ids, model: MODEL, prompt: SCOUT_PROMPT_VERSION, pages: [], proposed: 0, written: 0, unfetched: [], unanswered: [], rejected: [] };
   const cards = [], changes = [];
@@ -328,11 +324,9 @@ export async function runScoutPass({ store, region, fetchPage, robots, askModel,
     }
   }
 
-  /* Live, the writer applies the run and records the pass in one call. Dry,
-     nothing is written anywhere and the pass is only reported. */
+  /* Validate the whole proposal batch. Nothing is written to the view or pass log. */
   let recorded = { ...pass, written: 0 };
-  if (live) recorded = (await store.applyScoutRun(changes, pass, now)).pass;
-  else {
+  {
     try { await store.prepareScoutRun(changes, now); }
     catch (error){ recorded.rejected = [...pass.rejected, { card: null, record: null, why: error.message }]; }
   }
@@ -348,7 +342,7 @@ export function renderScoutReport(result){
     `## Scout pass — ${result.region} — ${result.runAt}${result.live ? '' : ' (dry run, nothing written)'}`, '',
     `Model \`${pass.model}\`, prompt \`${pass.prompt}\`. ${result.live
       ? `${pass.written} records written. This pass is ${pass.clean ? 'clean' : 'NOT clean'}.`
-      : `The agent is not live on scout cards: ${result.wouldWrite} records would have been written.`}`, '',
+      : `Report-only scout analysis: ${result.wouldWrite} records would have been written.`}`, '',
     '### Pages', '',
   ];
   for (const p of pass.pages) lines.push(`- ${p.card} \`${p.key}\` — ${p.status} — terms: ${p.terms} — ${p.publisher}, ${p.url}`);

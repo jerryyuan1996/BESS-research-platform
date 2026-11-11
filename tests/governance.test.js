@@ -285,7 +285,7 @@ test('judgement is view-store content; methodology cannot be written or proposed
   assert.deepEqual(Object.keys(VIEW_AUTHORITY).sort(), [...VIEW_SECTIONS].sort(), 'every section of a market view is classified');
   for (const section of VIEW_SECTIONS){
     assert.equal(viewAuthority(section), AUTHORITY.VIEW);
-    assert.equal(canMachineWrite(viewAuthority(section)), true);
+    assert.equal(canMachineWrite(viewAuthority(section)), false);
   }
   /* Anything that is not a section fails closed, as every other table does. */
   for (const notASection of ['weights', 'anchors', 'limits', 'bands', 'assumptions', 'held', 'schema']){
@@ -329,12 +329,12 @@ test('the sponsor underwriting position is declared, not defaulted', () => {
   }
 });
 
-test('three things are machine-writable: observed, derived, view', () => {
+test('only observations, deterministic derived metrics and official forecasts are machine-writable', () => {
   /* Two classes of content until 2026-10-11, three now. Exactly these. */
   assert.deepEqual([...MACHINE_WRITABLE].sort(), [
-    AUTHORITY.DERIVED, AUTHORITY.DERIVED_OBSERVED, AUTHORITY.OBSERVED, AUTHORITY.OFFICIAL_FORECAST, AUTHORITY.VIEW,
+    AUTHORITY.DERIVED, AUTHORITY.DERIVED_OBSERVED, AUTHORITY.OBSERVED, AUTHORITY.OFFICIAL_FORECAST,
   ].sort());
-  for (const a of [AUTHORITY.ANALYST, AUTHORITY.ANALYST_SCENARIO, AUTHORITY.METHODOLOGY, AUTHORITY.CONFIG, AUTHORITY.ILLUSTRATIVE_SEED]){
+  for (const a of [AUTHORITY.VIEW, AUTHORITY.ANALYST, AUTHORITY.ANALYST_SCENARIO, AUTHORITY.METHODOLOGY, AUTHORITY.CONFIG, AUTHORITY.ILLUSTRATIVE_SEED]){
     assert.equal(canMachineWrite(a), false, `${a} must not be machine-writable`);
   }
 
@@ -416,7 +416,7 @@ test('methodology is unwritable by every author, machine or not, through the vie
 
   /* A scout card's sections are classified, and what is not a section fails
      closed: the analyst's spot-check among them. */
-  for (const section of Object.keys(SCOUT_AUTHORITY)) assert.equal(canMachineWrite(scoutAuthority(section)), true);
+  for (const section of Object.keys(SCOUT_AUTHORITY)) assert.equal(canMachineWrite(scoutAuthority(section)), false);
   assert.deepEqual([...Object.keys(SCOUT_AUTHORITY), 'checked'].sort(), [...SCOUT_SECTIONS].sort());
   for (const notWritable of ['checked', 'roster', 'sources', 'weights', 'irr']) assert.equal(scoutAuthority(notWritable), AUTHORITY.METHODOLOGY);
 
