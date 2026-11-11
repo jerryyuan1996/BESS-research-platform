@@ -5,33 +5,10 @@
    analyst judgement. Nothing else in the codebase may decide that a value is
    machine-writable; everything asks here.
 
-   The rule, stated once:
-
-     JUDGEMENT PUBLISHES AUTOMATICALLY AFTER VALIDATION; METHODOLOGY NEVER DOES.
-
-     Observed public data and deterministic derived metrics publish
-     automatically after validation. So, since 2026-10-11, does judgement held
-     in the view store — a grade, a verdict, the thesis — when a rule the
-     analyst wrote in advance fires, or when an agent brings a fetched source,
-     and the change passes the validation gate. Model outputs recompute
-     automatically using the currently APPROVED methodology and assumptions.
-     Automation never modifies methodology: scoring weights, grade anchors,
-     knock-outs and limits, score bands, discount rates and exit yields, the
-     comparison window. It may not even propose a change to one. Model
-     assumptions in src/ are still changed by an evidence-backed pull request
-     that a human merges, or does not.
-
-   The distinction that matters most is VIEW vs METHODOLOGY. A grade is a
-   reading against an anchor, and readings change when the world does; an
-   observation or a source can bear on one. An anchor, a weight or a discount
-   rate is a position — no observation implies it, and a machine has no
-   standing to argue one. The two used to share a class and a wall. They no
-   longer share either: judgement lives in view/, behind its own writer and
-   gate, and methodology stays in src/, which nothing unattended can write.
-
-   ANALYST is the class between them, unchanged: automation may *propose* a
-   change to an analyst assumption, because an observation exists that bears on
-   it, and may not apply one.
+   Since 2026-11-11: observations publish automatically after validation;
+   judgement and strategy require an explicit analyst decision. Rule and model
+   proposals remain valid, but have no live write authority. Methodology cannot
+   be proposed by automation. Historical machine-authored records remain valid.
 
    Layering: this module imports only schema and assumption constants. No DOM, no
    market module, no ETL code. Both the browser app and the Node ETL import it,
@@ -75,9 +52,9 @@ export const AUTHORITY = {
 
   /**
    * Judgement held in the view store: a grade, a verdict, the thesis, a
-   * trigger. A machine author may write it — through the view writer, inside
+   * trigger. A machine author may propose it — through the view writer, inside
    * the rights its kind has, and only past the validation gate. This class
-   * says the content is the kind a machine may change; view/schema/view.mjs
+   * says the content is the kind a machine may propose; view/schema/view.mjs
    * says which machine, which field, and on what evidence.
    */
   VIEW: 'view',
@@ -88,14 +65,14 @@ export const AUTHORITY = {
 
 /**
  * Classes automation is permitted to write directly: what it observed, what
- * it computed from that, and — through the view writer's gate — the view.
+ * it computed from that, and published official forecasts. Never the view.
  */
 export const MACHINE_WRITABLE = new Set([
   AUTHORITY.OBSERVED,
   AUTHORITY.DERIVED,
   AUTHORITY.DERIVED_OBSERVED,
   AUTHORITY.OFFICIAL_FORECAST,
-  AUTHORITY.VIEW,
+
 ]);
 
 /**
@@ -162,7 +139,7 @@ export const SCOUT_AUTHORITY = {
 };
 
 /** Classes automation may raise a pull request against. */
-export const MACHINE_PROPOSABLE = new Set([AUTHORITY.ANALYST]);
+export const MACHINE_PROPOSABLE = new Set([AUTHORITY.ANALYST, AUTHORITY.VIEW]);
 
 /**
  * Every field of the market comparison interface, classified.
@@ -712,6 +689,6 @@ export const AUTHORITY_LABEL = {
   [AUTHORITY.ILLUSTRATIVE_SEED]: ['Illustrative — excluded from investment metrics', '示例数据 — 不计入投资指标'],
   [AUTHORITY.ANALYST]: ['Analyst assumption — automation may propose, not change', '分析师假设 — 自动化仅可建议，不可更改'],
   [AUTHORITY.METHODOLOGY]: ['Analyst methodology — human-set only', '分析师方法论 — 仅由人工设定'],
-  [AUTHORITY.VIEW]: ['View — judgement that publishes after validation', '观点 — 经校验后自动发布的判断'],
+  [AUTHORITY.VIEW]: ['View — judgement applied only by the analyst', '观点 — 仅由分析师确认并应用的判断'],
   [AUTHORITY.CONFIG]: ['Configuration', '配置'],
 };

@@ -139,9 +139,9 @@ export const MAX_SCOUT_CARDS_PER_RUN = 3;
  * The cadence: each card once a month, in ONE run on this day of the month.
  * The run makes one pass a region, in roster order, because a pass touches
  * three cards. The analyst's ruling of 2026-10-12: no automation that asks a
- * model runs more often than monthly.
+ * model runs more often than monthly. Superseded 2026-11-11: no scout cron; explicit dispatch only.
  */
-export const SCOUT_DAY_OF_MONTH = 1;
+export const SCOUT_DAY_OF_MONTH = null; // Hand-start only; retained for historical compatibility.
 
 /** The most text of one fetched page the model is given. */
 export const SCOUT_MAX_PAGE_CHARS = 60000;

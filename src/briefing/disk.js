@@ -61,7 +61,15 @@ export async function readBriefingInputs(root = REPO_ROOT, { watch = () => {} } 
   /* The headlines themselves are in the snapshot; the summary only counts them. */
   const newsFile = path.join(root, 'public', 'data', 'public', 'industry-news.json');
   const news = existsSync(newsFile) ? (watch(newsFile), await readJson(newsFile)) : null;
-  return { views, changelog, summaries, news };
+  const reviews = [];
+  const reviewsDir = path.join(root, 'docs', 'strategy-reviews');
+  if (existsSync(reviewsDir)) {
+    for (const entry of (await readdir(reviewsDir, { withFileTypes: true })).filter(e => e.isDirectory() && /^review-[a-z0-9-]+$/.test(e.name)).sort((a,b) => a.name.localeCompare(b.name))) {
+      const file = path.join(reviewsDir, entry.name, 'review.json');
+      if (existsSync(file)) { watch(file); reviews.push(await readJson(file)); }
+    }
+  }
+  return { views, changelog, summaries, news, reviews };
 }
 
 /**
@@ -82,7 +90,7 @@ export async function briefingFromDisk({ root = REPO_ROOT, now = new Date(), ove
   try {
     return buildBriefing({
       markets, views: [...views.values()], changelog: inputs.changelog, ledgerFor,
-      summaries: inputs.summaries, news: inputs.news, catalogue: DATASETS, now,
+      summaries: inputs.summaries, news: inputs.news, reviews: inputs.reviews, catalogue: DATASETS, now,
     });
   } finally {
     clearObservedFx();

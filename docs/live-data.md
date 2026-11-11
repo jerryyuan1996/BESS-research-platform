@@ -40,11 +40,11 @@ job is not evidence of collected policies. The page-hash/link detector retains a
 90-day metadata index in Actions artifacts, restored only from the latest successful policy job
 on main ETL (even if its market refresh failed); lost or ambiguous history stops collection. It is not
 a durable or complete archive of policy releases. First observation is not publication or legal
-effectiveness. No policy model is invoked. One combined data/rule commit
+effectiveness. No policy model is invoked. One validated observation-data commit
 explicitly calls the existing reusable CI on its exact SHA, since a bot push starts no workflow.
-An unchanged cycle does not commit or deploy. Manual `dry_run` fetches/reports without applying
-rules, committing, opening a drift proposal or publishing. Monthly agents and the weekly briefing
-are unchanged. Source data may lag by roughly 24 hours plus source latency, scheduling drift and
+An unchanged cycle does not commit or deploy. Manual `dry_run` fetches/reports without committing, opening a drift proposal or publishing. Rules always report only, with zero
+view writes. Agent and scout have no cron and require explicit dispatch; weekly briefing and
+monthly digest remain scheduled. Source data may lag by roughly 24 hours plus source latency, scheduling drift and
 failures; the snapshots retain their actual fetched timestamps rather than claiming real-time data.
 
 ---

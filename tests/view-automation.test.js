@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
    MACHINE AUTHORS AT THE GATE.
 
-   Rules and an agent may write the view. These tests are the other half of
+   Rules and an agent may prepare proposals, never apply them. These tests are the other half of
    that sentence: what they may not do. One block per guardrail of the
    revision plan §7.6, by letter, each tested against the writer itself and a
    temporary store — never the committed one.
@@ -18,7 +18,7 @@ import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
-import { createViewStore, ViewRejected, writeRunReport } from '../etl/lib/viewWriter.mjs';
+import { createViewStore, createReadOnlyViewStore, ViewRejected, writeRunReport } from '../etl/lib/viewWriter.mjs';
 import {
   AUTHOR_RIGHTS, MACHINE_AUTHORS, LIVE_AUTHORS, machineProblems, evidenceProblems, verdictEvidenceSuffices,
   validateChangelogEntry, effectChanges,
@@ -491,11 +491,7 @@ test('the agent has no tools, no shell and no way to the view but the gate', asy
     const source = await readFile(new URL(file, dir), 'utf8');
     assert.ok(!/child_process|node:vm|\beval\(|new Function|node:fs/.test(source), `agent/${file} reaches for a shell, an evaluator or the filesystem`);
     assert.ok(!/\.apply\(|applyBatch|\.revert\(/.test(source), `agent/${file} calls a writing method of the store`);
-    /* ONE EXCEPTION SINCE THE SCOUTING TIER, and it is one method in one
-       file: the scout pass hands its run to applyScoutRun, which writes scout
-       cards and refuses every other id. Nothing else under agent/ names it,
-       and the monthly pass over markets still only prepares. */
-    assert.equal(/applyScoutRun/.test(source), file === 'scout.mjs', `agent/${file}: only the scout pass calls applyScoutRun`);
+    assert.ok(!/applyScoutRun/.test(source), `agent/${file} names the persistence method`);
     if (file !== 'scout.mjs') assert.ok(!/prepareScoutChange|prepareScoutRun|scoutRunState/.test(source), `agent/${file} prepares a scout run`);
   }
   const core = await readFile(new URL('core.mjs', dir), 'utf8');
@@ -523,3 +519,23 @@ test('a run report can only land in etl/out', async () => {
     await assert.rejects(writeRunReport(name, 'x'), /not a report name/, name);
   }
 });
+
+
+test('automation receives a frozen read/prepare capability without any persistence method', () => scratch(async (_store, root) => {
+  const reader = createReadOnlyViewStore(root);
+  assert.ok(Object.isFrozen(reader));
+  for (const forbidden of ['apply', 'applyBatch', 'applyScoutRun', 'revert', 'revertChange', 'removeCardChanges']) assert.equal(reader[forbidden], undefined, forbidden);
+  const before = await disk(root);
+  const change = gradeChange({ grade: 3 });
+  const single = await reader.prepare(change, NOW);
+  const batch = await reader.prepareBatch([change], NOW);
+  assert.deepEqual(single.entry, batch[0].entry);
+  assert.equal(single.entry.author.kind, 'agent');
+  assert.deepEqual(await disk(root), before);
+  const runner = await readFile(new URL('../agent/run.mjs', import.meta.url), 'utf8');
+  const rules = await readFile(new URL('../etl/rules.mjs', import.meta.url), 'utf8');
+  for (const source of [runner, rules]) {
+    assert.match(source, /createReadOnlyViewStore/);
+    assert.ok(!/\bcreateViewStore\b/.test(source));
+  }
+}));

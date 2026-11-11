@@ -167,8 +167,8 @@ export function renderScoutPage(app){
 
   const intro = spacedCard(['What a scouting card is', '观察卡片是什么'], []);
   intro.append(h('div', { class: 'cap' }, L([
-    'Scouting cards are written by an AI agent from public pages the analyst listed, and spot-checked by him. Every grade and verdict rests on a quotation that was found, word for word, in a page fetched in that run. No return is modelled: a card grades how a market can be entered, how durable the case is and how capital behaves, and says nothing about what an asset earns.',
-    '观察卡片由AI智能体依据分析师列出的公开页面撰写，并由分析师抽查。每一项评级和结论都以当次运行所抓取页面中逐字找到的引文为依据。本层不对回报建模：卡片只评估市场如何进入、投资逻辑是否持久以及资本条件如何，不涉及资产能赚多少。',
+    'Scouting proposals are drafted by an AI agent from public pages the analyst listed, then reviewed and applied only by the analyst. Automatic analysis and publication are disabled. Every grade and verdict rests on a quotation that was found, word for word, in a page fetched in that run. No return is modelled: a card grades how a market can be entered, how durable the case is and how capital behaves, and says nothing about what an asset earns.',
+    '观察卡片提案由AI智能体依据分析师列出的公开页面起草，仅由分析师审核并应用。自动分析与发布均已关闭。每一项评级和结论都以当次运行所抓取页面中逐字找到的引文为依据。本层不对回报建模：卡片只评估市场如何进入、投资逻辑是否持久以及资本条件如何，不涉及资产能赚多少。',
   ])));
   intro.append(h('div', { class: 'vb-line' }, L(GRADUATION_RULE)));
   intro.append(h('div', { class: 'vb-line vb-aside' },

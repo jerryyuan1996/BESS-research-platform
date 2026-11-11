@@ -106,6 +106,12 @@ function renderLang(b, lens, days, siteUrl, lang){
   }
   lines.push('');
 
+  if (b.reviewStatus?.length) {
+    lines.push(L('## Observation and strategy review', '## 数据观察与策略复核'), '');
+    for (const r of b.reviewStatus) lines.push(`- ${marketLink(r.market)} · ${L('observation', '最近观察')}: ${cell(r.latestObservation || '—')} · ${L('analysed snapshot', '已分析快照')}: ${cell(r.lastAnalysedSnapshot || '—')} · ${L('approved strategy', '已批准策略')}: ${cell(r.approvedStrategyVersion || '—')} · ${L('last approved change', '最近批准变更')}: ${cell(r.lastApprovedChange || '—')}`);
+    lines.push('');
+  }
+
   const mine = b.queue.filter(q => q.kind !== 'disagreement' || q.archetype === lens);
   const others = b.queue.length - mine.length;
   lines.push(L(`## Analyst queue (${mine.length})`, `## 分析师待办（${mine.length}）`), '');

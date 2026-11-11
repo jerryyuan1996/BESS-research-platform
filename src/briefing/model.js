@@ -36,6 +36,7 @@ import { callSentence, buildLine, routeNames, flagText, marketName, inSentence }
 import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 import { collectChanges } from './changes.js';
 import { buildQueue } from './queue.js';
+import { statusForMarket } from '../governance/review.js';
 
 export const BRIEFING_VERSION = 1;
 export const DEFAULT_LENS = 'infraFund';
@@ -53,7 +54,7 @@ const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected
  * @param input.catalogue  the dataset catalogue
  * @param input.now        a Date
  */
-export function buildBriefing({ markets, views, changelog, ledgerFor, summaries, news = null, catalogue, now }){
+export function buildBriefing({ markets, views, changelog, ledgerFor, summaries, news = null, reviews = [], catalogue, now }){
   const on = now.toISOString().slice(0, 10);
   const viewById = new Map(views.map(v => [v.marketId, v]));
   const returnGrades = returnGradesFor(markets, BRIEFING_EXIT_YEAR);
@@ -161,6 +162,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     grids,
     changes,
     queue,
+    reviewStatus: views.map(v => statusForMarket({ market: v.marketId, summaries, changelog, reviews })),
   };
 }
 
@@ -223,10 +225,10 @@ export function designProjection(briefing){
 }
 
 export function homeProjection(briefing){
-  const { queue, ...rest } = briefing;
+  const { queue, reviewStatus = [], ...rest } = briefing;
   const byKind = {};
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};
   for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
-  return { ...rest, ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
+  return { ...rest, lastApproved: Object.fromEntries(reviewStatus.map(r => [r.market, r.lastApprovedChange])), ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
 }

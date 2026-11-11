@@ -251,7 +251,9 @@ test('every machine-written line in the committed store is accounted for', async
      change to any of these lists is a governance decision, not an edit. */
   assert.deepEqual(PERMITTED_AUTHORS, ['analyst', 'rule', 'agent']);
   assert.deepEqual(MACHINE_AUTHORS, ['rule', 'agent']);
-  assert.deepEqual(LIVE_AUTHORS, ['analyst', 'rule'], 'the agent runs dry until the analyst makes it live');
+  assert.deepEqual(LIVE_AUTHORS, ['analyst']);
+  assert.ok(Object.isFrozen(LIVE_AUTHORS));
+  assert.ok(Object.isFrozen(SCOUT_LIVE_AUTHORS));
   assert.deepEqual(HELD_AUTHORS, ['analyst'], 'this list does not grow');
   /* Scout cards have a live list of their own. The agent joins THAT one when
      the analyst says so, and LIVE_AUTHORS above does not move when it does. */
@@ -261,7 +263,8 @@ test('every machine-written line in the committed store is accounted for', async
   /* A scout line is the scouting tier's: tests/scout.test.js accounts for
      those. Here, the one thing that must hold of them from this side — */
   for (const entry of all.filter(e => e.tier === 'scout')){
-    assert.ok(SCOUT_LIVE_AUTHORS.includes(entry.author.kind), `${entry.id}: written by "${entry.author.kind}", which is not live on scout cards`);
+    assert.ok(PERMITTED_AUTHORS.includes(entry.author.kind), `${entry.id}: unknown historical author`);
+    if (entry.author.kind !== 'analyst') assert.ok(entry.at < '2026-11-11', `${entry.id}: machine application after analyst-only closure`);
   }
   /* — and the one that must hold of every market, whatever the card list says:
      NO LINE ON A CORE MARKET IS THE AGENT'S. */
@@ -275,7 +278,8 @@ test('every machine-written line in the committed store is accounted for', async
 
   entries.forEach((entry, i) => {
     const kind = entry.author.kind;
-    assert.ok(LIVE_AUTHORS.includes(kind), `${entry.id}: written by "${kind}", which is not live`);
+    assert.ok(PERMITTED_AUTHORS.includes(kind), `${entry.id}: unknown historical author`);
+    if (kind !== 'analyst') assert.ok(entry.at < '2026-11-11', `${entry.id}: machine application after analyst-only closure`);
     if (kind === 'rule'){
       /* A rule line traces to a rule the analyst wrote before it fired, and to
          the snapshot it fired on. */

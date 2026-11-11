@@ -23,12 +23,22 @@ const KIND = {
   overdue:        [['Catalysts that passed with no outcome recorded', '已过期但尚未录入结果的触发事件'], ['Record what happened, or move the date.', '录入发生了什么，或调整日期。']],
   disagreement:   [['Calls that run against their economics', '与经济性不一致的结论'], ['Rule on the call, or on the design it names.', '对结论或其所针对的设计作出裁定。']],
   'stale-reason': [['Reasons that quote an old engine figure', '引用旧引擎数字的理由'], ['Rewrite the reason; the grade need not move.', '改写理由；评级不必随之变动。']],
-  rule:           [['Rules near or over their line', '接近或越过阈值的规则'], ['A rule fires on the next refresh once its line is crossed.', '一旦越过阈值，规则将在下次刷新时触发。']],
+  rule:           [['Rules near or over their line', '接近或越过阈值的规则'], ['A crossing is reported for an analyst decision; a refresh never applies it.', '越过阈值时仅报告并等待分析师决定；刷新不会应用该变更。']],
   review:         [['Reviews due within thirty days', '三十天内到期的复核'], ['Confirm the call, or change it.', '确认结论，或作出调整。']],
   action:         [['Actions past their date', '已逾期的行动'], ['Do it, re-date it, or drop it.', '执行、改期或撤销。']],
   soon:           [['Catalysts due within fourteen days', '十四天内到期的触发事件'], ['Be ready to record the outcome.', '准备录入结果。']],
   feed:           [['Stale feeds', '过期数据源'], ['Check the refresh job and the source.', '检查刷新任务与数据源。']],
 };
+
+const REVIEW_LABELS = {
+  'observations available': ['Observations available', '已有观察数据'],
+  'analysis not started': ['Analysis not started', '尚未分析'],
+  'analysis complete': ['Analysis complete', '分析完成'],
+  'awaiting decision': ['Awaiting decision', '等待决定'],
+  approved: ['Approved', '已批准'], rejected: ['Rejected', '已拒绝'],
+  deferred: ['Deferred', '已暂缓'], applied: ['Applied', '已应用'], released: ['Released', '已发布'],
+};
+const reviewStateLabel = status => REVIEW_LABELS[status] || [status, status];
 
 export function renderDeskPage(app){
   const b = BRIEFING;
@@ -43,6 +53,16 @@ export function renderDeskPage(app){
 
   main.append(h('div', { class: 'cap bf-asof' }, L([`${b.queue.length} items. Built ${b.builtAt.slice(0, 10)}.`, `${b.queue.length}项。生成于${b.builtAt.slice(0, 10)}。`])));
   if (!b.queue.length) main.append(h('div', { class: 'card' }, L(['Nothing is waiting. Every call is current.', '没有待办。所有结论均为最新。'])));
+
+  if (b.reviewStatus?.length) main.append(h('section', { class: 'card bf-card', 'data-review-status': '' },
+    h('h2', { class: 'bf-h' }, L(['Observation and strategy review', '数据观察与策略复核'])),
+    h('ul', { class: 'bf-list' }, b.reviewStatus.map(r => h('li', { class: 'bf-li' },
+      h('strong', {}, L(b.markets[r.market]?.name || [r.market, r.market])),
+      h('div', {}, L(['Latest observation: ', '最近观察：']), r.latestObservation || '—'),
+      h('div', {}, L(['Last analysed snapshot: ', '最近分析快照：']), r.lastAnalysedSnapshot || '—'),
+      h('div', {}, L(['Approved strategy version: ', '已批准策略版本：']), h('code', {}, r.approvedStrategyVersion || '—')),
+      h('div', {}, L(['Last approved change: ', '最近批准变更：']), r.lastApprovedChange || '—'),
+      h('div', {}, L(['Review state: ', '复核状态：']), L(reviewStateLabel(r.status))))))));
 
   for (const kind of QUEUE_ORDER){
     const items = b.queue.filter(q => q.kind === kind);

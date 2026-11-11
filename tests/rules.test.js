@@ -105,24 +105,25 @@ test('a rule does not fire while its line is not crossed', () => scratch(async (
   assert.deepEqual(await files(root), before);
 }));
 
-test('a rule that fires writes the market file, the index and one changelog line naming it and its evidence', () => scratch(async (store, root) => {
+test('a crossing prepares evidenced entries without changing the market, index or changelog', () => scratch(async (store, root) => {
+  const before = await files(root);
   const result = await go(store, { spreadMean: 44.2 });
-  assert.equal(result.reports[0].status, RULE_STATUS.FIRED);
-  assert.equal(result.written, 1);
+  assert.equal(result.reports[0].status, RULE_STATUS.CROSSED);
+  assert.equal(result.written, 0);
   assert.equal(result.rejected, null);
 
   /* The record: exactly the effect's fields changed, and the stamps. */
   const view = await store.read('wa');
   assert.deepEqual(validateMarketView(view), []);
-  assert.deepEqual(view.grades.assetReturn, {
-    ...GRADE, trend: 'deteriorating', trendCause: RULE.effect[1].to, author: 'rule', asOf: '2026-10-12',
-  });
+  assert.deepEqual(view.grades.assetReturn, GRADE);
+  assert.deepEqual(await files(root), before);
+  assert.deepEqual(result.entries[0].to, { ...GRADE, trend: 'deteriorating', trendCause: RULE.effect[1].to, author: 'rule', asOf: '2026-10-12' });
   assert.equal(view.grades.assetReturn.grade, 4, 'the grade number is not the rule\'s to move');
 
   /* One line, and it says who, why and on what. */
   const log = await store.changelog();
-  assert.equal(log.length, 3);
-  const entry = log[2];
+  assert.equal(log.length, 2);
+  const entry = result.entries[0];
   assert.deepEqual(validateChangelogEntry(entry), []);
   assert.deepEqual(entry.author, { kind: 'rule', rule: RULE.id, run: NOW.toISOString() });
   assert.equal(entry.trigger, RULE.id);
@@ -145,26 +146,26 @@ test('a rule that fires writes the market file, the index and one changelog line
   assert.ok(existsSync(path.join(root, 'index.json')));
 }));
 
-test('a rule fires once: a second run on the same snapshot writes nothing', () => scratch(async (store, root) => {
+test('repeated crossings remain report-only and are not marked applied', () => scratch(async (store, root) => {
   await go(store, { spreadMean: 44.2 });
   const after = await files(root);
   for (const spreadMean of [44.2, 30, 60]){
     const again = await go(store, { spreadMean }, { now: new Date('2026-10-13T06:00:00Z') });
-    assert.equal(again.reports[0].status, RULE_STATUS.ALREADY_FIRED);
+    assert.equal(again.reports[0].status, spreadMean < THRESHOLD ? RULE_STATUS.CROSSED : RULE_STATUS.NOT_MET);
     assert.equal(again.written, 0);
     assert.equal(again.rejected, null);
   }
   assert.deepEqual(await files(root), after);
 }));
 
-test('a dry run reports the change and writes nothing; the real run then makes that change', () => scratch(async (store, root) => {
+test('both legacy dry-run and ordinary invocation prepare the same report without writing', () => scratch(async (store, root) => {
   const before = await files(root);
   const dry = await go(store, { spreadMean: 44.2 }, { dryRun: true });
-  assert.equal(dry.reports[0].status, RULE_STATUS.FIRED);
+  assert.equal(dry.reports[0].status, RULE_STATUS.CROSSED);
   assert.equal(dry.written, 0);
   assert.equal(dry.entries.length, 1);
   assert.deepEqual(await files(root), before);
-  assert.match(renderRulesReport(dry), /dry run, nothing written/);
+  assert.match(renderRulesReport(dry), /report only, nothing written/);
   assert.match(renderRulesReport(dry), /Would change `wa` `grades\.assetReturn`/);
 
   const real = await go(store, { spreadMean: 44.2 });
@@ -211,7 +212,9 @@ test('a pinned grade, a practitioner grade and a trigger with no effect are all 
 
   /* A pin that has ended no longer holds. */
   await scratch(async (store) => {
-    assert.equal((await go(store, { spreadMean: 30 })).written, 1);
+    const result = await go(store, { spreadMean: 30 });
+    assert.equal(result.written, 0);
+    assert.equal(result.entries.length, 1);
   }, { grade: { ...GRADE, lockedUntil: '2026-10-11' } });
 
   await scratch(async (store) => {
@@ -248,28 +251,19 @@ test('over the cap, the run writes nothing at all', () => scratch(async (store, 
 
   /* With room under the cap, all four go through as one run. */
   const all = await runRules({ store, now: NOW, fetched: ['wa-wem-prices'], readSummary: async () => summary({ spreadMean: 30 }), cap: 4 });
-  assert.equal(all.written, 4);
+  assert.equal(all.written, 0);
+  assert.equal(all.entries.length, 4);
+  assert.deepEqual(await files(root), before);
 }));
 
-test('the analyst reverts a rule\'s change with one command, and the rule stays fired until he re-arms it', () => scratch(async (store) => {
-  const fired = (await go(store, { spreadMean: 44.2 })).entries[0];
-  const reverted = await store.revert(fired.id, new Date('2026-10-13T09:00:00Z'));
+test('only an analyst can apply and revert a reported crossing', () => scratch(async (store) => {
+  const proposed = (await go(store, { spreadMean: 44.2 })).changes[0];
+  await assert.rejects(store.apply(proposed, NOW), /is not live/);
+  const applied = await store.apply({ ...proposed, author: analyst, to: { ...proposed.to, author: 'analyst' } }, NOW);
+  const reverted = await store.revert(applied.id, new Date('2026-10-13T09:00:00Z'));
   assert.equal(reverted.author.kind, 'analyst');
-  assert.equal(reverted.reverts, fired.id);
+  assert.equal(reverted.reverts, applied.id);
   assert.deepEqual((await store.read('wa')).grades.assetReturn, GRADE);
-
-  /* The snapshot still crosses the line. The rule does not fight the revert. */
-  const again = await go(store, { spreadMean: 44.2 }, { now: new Date('2026-10-14T06:00:00Z') });
-  assert.equal(again.reports[0].status, RULE_STATUS.ALREADY_FIRED);
-  assert.equal(again.written, 0);
-
-  /* Rewriting the trigger record arms it again. */
-  await store.apply({ market: 'wa', path: `triggers.${RULE.id}`, to: { ...RULE, when: { ...RULE.when, value: 44 } }, reason, author: analyst }, new Date('2026-10-15T09:00:00Z'));
-  const rearmed = await go(store, { spreadMean: 43 }, { now: new Date('2026-10-16T06:00:00Z'), readSummary: async () => summary({ spreadMean: 43, fetchedAt: '2026-10-16T04:00:00.000Z' }) });
-  assert.equal(rearmed.written, 1);
-
-  /* A revert is refused once the record has moved on. */
-  await assert.rejects(store.revert(fired.id), /has changed since/);
   await assert.rejects(store.revert('no-such-id'), /not a changelog id/);
 }));
 

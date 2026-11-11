@@ -3,7 +3,7 @@
    THE RULES ENGINE.
 
    A rule is a trigger the analyst wrote in advance, with a `when` and an
-   `effect`: "when this published figure crosses this line, make this change".
+   `effect`: "when this published figure crosses this line, propose this change".
    This program runs after each refresh and does the mechanical half.
 
        for each data trigger in the view that carries an effect
@@ -12,8 +12,8 @@
          refuse to test a snapshot this run did not fetch, a stale one, one
            whose checksum does not verify, or too short a window
          test the `when`
-       gather the changes of every rule that fired
-       hand them to the view writer as one batch, or print them (--dry-run)
+       gather the changes of every rule that crossed
+       validate through prepareBatch, report them, and never apply them
 
    WHAT IT DECIDES: nothing. The line, the figure and the change were all
    written by the analyst. This reads a number and compares it. The view
@@ -25,13 +25,13 @@
    analyst's private overlay and tests/view.test.js asserts that it never
    names it.
 
-   WHAT IT WRITES: the view, through etl/lib/viewWriter.mjs and only through
-   it; and a report under etl/out/, which is not committed.
+   WHAT IT WRITES: a report under etl/out/, which is not committed.
+   The view-store capability is read-only and has no persistence methods.
 
    Usage:
      node etl/rules.mjs                    after `node etl/run.mjs`, in the same job
      node etl/rules.mjs --dry-run          test every rule, write nothing
-     node etl/rules.mjs --any-snapshot     dry run only: test snapshots on disk
+     node etl/rules.mjs --any-snapshot     report on snapshots on disk
                                            without a run summary to check them against
    --------------------------------------------------------------------------- */
 import { pathToFileURL } from 'node:url';
@@ -42,11 +42,11 @@ import { MIN_WINDOW_DAYS, EVIDENCE_CLASS } from '../src/governance/automation.js
 import { effectChanges, ruleHasFired } from '../view/schema/view.mjs';
 import { readSnapshot, readTextIfPresent } from './lib/boundary.mjs';
 import { sha256 } from './lib/envelope.mjs';
-import { createViewStore, writeRunReport, ViewRejected } from './lib/viewWriter.mjs';
+import { createReadOnlyViewStore, writeRunReport, ViewRejected } from './lib/viewWriter.mjs';
 
 /** Why a rule was not tested, or what the test found. */
 export const RULE_STATUS = {
-  FIRED: 'fired',                 // the line was crossed and the change is in the batch
+  CROSSED: 'crossed',                 // the line was crossed and the change is in the batch
   NOT_MET: 'not-met',             // tested, and the line was not crossed
   ALREADY_FIRED: 'already-fired', // fired since it was armed; waiting to be re-armed
   NOT_FETCHED: 'not-fetched',     // the dataset was not fetched and validated in this run
@@ -129,7 +129,7 @@ export async function evaluateRules({ views, changelog, readSummary, fetched, no
         trigger: trigger.id, reason: trigger.note, evidence,
       }));
       changes.push(...made);
-      say(RULE_STATUS.FIRED, null, { ...seen, paths: made.map(c => c.path) });
+      say(RULE_STATUS.CROSSED, null, { ...seen, paths: made.map(c => c.path) });
     }
   }
   return { runAt, reports, changes };
@@ -147,19 +147,17 @@ export async function runRules({ store, readSummary, fetched, now = new Date(), 
   const options = cap === undefined ? {} : { cap };
   let entries = [], rejected = null;
   try {
-    entries = dryRun
-      ? (await store.prepareBatch(evaluated.changes, now, options)).map(p => p.entry)
-      : await store.applyBatch(evaluated.changes, now, options);
+    entries = (await store.prepareBatch(evaluated.changes, now, options)).map(p => p.entry);
   } catch (error){
     if (!(error instanceof ViewRejected)) throw error;
     rejected = { reason: error.message, changes: evaluated.changes };
   }
-  return { ...evaluated, dryRun, entries, rejected, written: !dryRun && !rejected ? entries.length : 0 };
+  return { ...evaluated, dryRun, entries, rejected, written: 0, reportOnly: true };
 }
 
 /** The report a person reads. */
 export function renderRulesReport(result){
-  const lines = [`## Rules — ${result.runAt}${result.dryRun ? ' (dry run, nothing written)' : ''}`, ''];
+  const lines = [`## Rules — ${result.runAt} (report only, nothing written)`, ''];
   if (!result.reports.length) lines.push('No data rule is armed in the view store.');
   for (const r of result.reports){
     const read = r.observed === undefined || r.observed === null ? '' : ` — read ${r.observed}`;
@@ -170,7 +168,7 @@ export function renderRulesReport(result){
   if (result.rejected) lines.push(`**Rejected, nothing written.** ${result.rejected.reason}`);
   else if (!result.entries.length) lines.push('No change to the view.');
   else for (const e of result.entries){
-    lines.push(`${result.dryRun ? 'Would change' : 'Changed'} \`${e.market}\` \`${e.path}\` — ${e.reason[0]}`);
+    lines.push(`Would change \`${e.market}\` \`${e.path}\` — ${e.reason[0]}`);
   }
   return lines.join('\n');
 }
@@ -181,10 +179,6 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
   const argv = process.argv.slice(2);
   const dryRun = argv.includes('--dry-run');
   const anySnapshot = argv.includes('--any-snapshot');
-  if (anySnapshot && !dryRun){
-    console.error('--any-snapshot is for dry runs: a real run tests only what its own refresh fetched.');
-    process.exit(2);
-  }
 
   /* The refresh this run follows says which datasets it fetched and
      validated. Without it nothing is tested, except in a dry run that asks. */
@@ -200,7 +194,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
   }
 
   const result = await runRules({
-    store: createViewStore(),
+    store: createReadOnlyViewStore(),
     readSummary: (id) => readSnapshot(summaryFile(id)),
     fetched, dryRun,
   });
@@ -210,5 +204,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href){
   await writeRunReport('rules-report.json', `${JSON.stringify({ runAt: result.runAt, dryRun, reports: result.reports, written: result.written, entries: result.entries.map(e => e.id), rejected: result.rejected }, null, 2)}\n`);
   if (result.rejected) await writeRunReport('view-rejected.json', `${JSON.stringify(result.rejected, null, 2)}\n`);
   /* A rejection is a fault in a rule or in the gate, and somebody should look. */
-  if (result.rejected) process.exit(1);
+  if (result.rejected || result.reports.some(r => r.status === RULE_STATUS.INVALID)) process.exit(1);
 }

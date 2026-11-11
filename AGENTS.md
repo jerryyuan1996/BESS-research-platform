@@ -27,8 +27,8 @@ A battery-storage (BESS) investment research platform: a static Vite site (nativ
 ## Automation and release
 
 - The ETL refreshes public data once daily (06:17 UTC), in the same logical cycle as deterministic Policy Intelligence discovery, and commits validated snapshots to `main`. The analyst approved this cadence change on 2026-11-05. Policy model calls/publication remain disabled pending concrete authorization. That history is the audit trail: never rewrite or regenerate snapshots to hide a difference.
-- Model-driven jobs (agent, scout, digest) run on a schedule at most once a month, with the model set in `agent/prompt.mjs`. The analyst may dispatch any of them by hand at any time. Do not propose a more frequent schedule or a larger model without evidence.
-- Judgement may publish automatically after validation; methodology never does. See `docs/governance.md`.
+- Agent and scout model analysis is explicit dispatch only, never part of an ordinary refresh. Daily observed-data ETL, weekly briefing and monthly digest retain their schedules. Do not add automatic strategy analysis or publication.
+- Observations publish automatically after validation; judgement and strategy are analyst-only. Rules report crossings without writes. Use read-only view-store capabilities for automation. See `docs/governance.md`.
 - GitHub Actions builds the site, scans the exact output and deploys it to Vercel with `--prebuilt`. Vercel is not connected to Git. Never deploy around this pipeline; see `docs/publishing.md`.
 - Automation minutes are a budget: keep GitHub Actions under 2,000 minutes a month. Pull-request checks run the fast gates and a smoke suite; the full browser suite runs on `main` before every deploy, and on a pull request only when it carries the `full-check` label. See `docs/ci-performance.md`.
 
