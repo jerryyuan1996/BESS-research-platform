@@ -427,7 +427,11 @@ const BUDGET = {
     // Three 15/20/25-year references replace two: includes tax/lifetime
     // provenance and reverse construction limits. Packed tuples and rounded
     // display money reduce 40.61 to 36.80 KiB; no engine is loaded on home.
-    'briefing-data': 42.25, // 2026-11-10: daily public-data refresh measured 42.02 KiB; owner-approved +0.25 KiB (+0.6%) data headroom.
+    // RAISED FROM 42.25 TO 43 after the original metadata allowance was
+    // separately landed. Last-approved provenance measured 42.12 KiB;
+    // canonical perspective audience/entry data measures approximately 42.4.
+    // No engine or full review report is loaded on the home page.
+    'briefing-data': 43,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

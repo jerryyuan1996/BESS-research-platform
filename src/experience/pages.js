@@ -1,3 +1,4 @@
+import {renderPerspectives} from './perspectives.js';
 import { loadInvestmentSummary } from '../opportunities/summaryData.js';
 import { HOME_BRIEFING } from '../briefing/homeData.js';
 import { currentThesis, basisNote, decisionReasons, decisionPanel, contractEvidence, marginText, availability } from './decision.js';
@@ -116,7 +117,7 @@ export async function renderExperience(container, route, market) {
 function renderHome(container, rows) {
   const lead = featuredOpportunity(rows,lens());
   const content = main();
-  content.append(metaBar('01', ['THE INVESTMENT BRIEF', '投资简报']));
+  content.append(metaBar('01', ['THE INVESTMENT BRIEF', '投资简报']),renderPerspectives());
   const hero = h('section', { class: 'ix-home-hero' },
     h('div', { class: 'ix-hero-copy' }, eyebrow(['GLOBAL ENERGY. FOCUSED CAPITAL.', '全球能源转型 · 精准配置资本']),
       h('h1', {}, L(['Capital priorities.\nConditions first.', '投资重点，\n进入条件。'])),

@@ -1,5 +1,7 @@
 import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
+import {overviewArt} from './overviewArt.js';
+import {CHAPTERS} from './chapters.js';
 import { PUBLIC_READING_CATALOG } from './historyCatalog.js';
 
 export function renderPublicOverview(id, { name, open, researchUrl }){
@@ -16,11 +18,15 @@ export function renderPublicOverview(id, { name, open, researchUrl }){
         h('p', { class:'public-logic' }, L(c.historyOnly?['Read the complete timeline, explanations and capital lenses from the existing market research.','阅读既有市场研究的完整时间线、解释与资本视角。']:c.logic)),
         c.historyOnly?null:h('p', { class:'public-condition' }, h('strong',{},L(['Key condition · ', '成立条件 · '])), L(c.condition))),
       h('aside', { class:'public-overview-reading' },
+        overviewArt(c.historyOnly?'history':c.theme),
         h('p', { class:'public-scope' }, L(name), ' · ', L(['All investors', '所有投资人'])),
         trigger,
-        h('p', { class:'public-reading-time' }, L(['Full research history · read at your pace · EN / 简体中文', '完整研究历程 · 按需阅读 · EN / 简体中文'])),
-        h('p', { class:'public-status' }, L(c.historyOnly?['Existing history · public relocation review pending','既有历程 · 公共迁移待确认']:['Public logic · review pending', '公共逻辑 · 待确认'])),
-        c.g1ApprovedOn?h('p', { class:'public-source-date', 'data-date-kind':'g1' }, L(['Original script G-1 sign-off: ', '原脚本 G-1 签核：']), c.g1ApprovedOn):null,
-        c.evidenceCheckedOn?h('p', { class:'public-source-date', 'data-date-kind':'source-check' }, L(['Source check recorded: ', '来源核对记录：']), c.evidenceCheckedOn):null,
+        h('nav', {class:'public-chapter-steps','aria-label':L(['Reading chapters','阅读章节'])},
+          CHAPTERS.filter(([chapter])=>!c.historyOnly||['history','research'].includes(chapter)).map(([chapter,title],i)=>{
+            const button=h('button',{type:'button','data-public-chapter':chapter,onclick:()=>open(button,chapter)},h('span',{'aria-hidden':'true'},String(i+1).padStart(2,'0')),L(title));
+            return button;
+          })),
+        h('p',{class:'public-status','role':'status'}),
+        c.evidenceCheckedOn?h('p', { class:'public-source-date', 'data-date-kind':'source-check' }, L(['Sources last checked: ', '来源最近核对：']), c.evidenceCheckedOn):null,
         h('a',{href:researchUrl,class:'ix-text-link'},L(['Sources & full research ↗','来源与完整研究 ↗'])))));
 }

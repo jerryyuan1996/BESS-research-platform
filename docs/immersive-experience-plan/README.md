@@ -186,3 +186,7 @@ v1.2 checks, 30 October 2026:
 - A scan against `local-data/markers.json` found no confidential markers.
 
 The pack grew to about 179 KiB, mostly the Chinese drafts and the source records. Only Markdown in this folder changed, so no application tests, build or deployment were run.
+
+### Four investor perspectives
+
+The home briefing presents four comparable investor cards before the lead opportunity. Audience and typical entry stages are projected from `ARCHETYPES`; the current lead uses the same `featuredOpportunity(opportunities(lens), lens)` selection as the hero. Priority labels explain the perspective, not new scoring rules. Selection uses the existing persisted `hub_lens` preference and updates the existing page, with focus restored to the selected card. A stored preference collapses to four compact choices with a reversible comparison disclosure. Small screens use stacked details, while desktop compares all four cards. No capital thresholds, model numbers, ranking weights or entry criteria change.

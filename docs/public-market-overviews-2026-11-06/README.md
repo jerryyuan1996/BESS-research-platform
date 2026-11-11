@@ -48,3 +48,9 @@ The current [acceptance record](history/acceptance.md), [18-market coverage](his
 The complete local browser run records 407 passed, 0 failed, 0 flaky and 15 original duplicate-project skips. Local code evidence is bound to `45a916e8affdd08e5172138d89276518c1fbbcaa`; a later evidence-only commit is separately checked by exact-head CI. Publication and merge status are authoritative in the final PR and Actions records.
 
 Use the repository's Node 22 runtime, locked dependencies and real confidentiality setup. Run the required unit/current/build/budget/browser/ETL checks and staged/exact-built-output scans. Show only a compiled preview. Publish only through the existing scanned GitHub Actions/Vercel pipeline.
+
+### Reader entrance and provenance presentation
+
+The shared market entrance now has a lightweight, theme-specific schematic poster and chapter shortcuts. All 18 markets retain their existing reading scope: Ontario, Saudi Arabia and Spain offer history and research only. Posters are decorative, not scaled system or dispatch diagrams. Chapter shortcuts use the existing route/dialog lifecycle and return focus to their initiating button.
+
+Reader copy distinguishes research excerpts, economic interpretation and sourced background without showing internal G-1/G-2 or editorial-review labels. Approval records, release gates, source-check dates, source links, policy-effective status, research facts and model assumptions remain unchanged. Excerpt provenance points to named sources and the market research/data tabs. Reduced-motion readers receive no poster movement.

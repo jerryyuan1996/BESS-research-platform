@@ -39,14 +39,8 @@ export async function loadPublicContent(id){
     regionalSourceIds:data.regionalEvidence?.[id]||[],extracts:data.extracts||{history:[],system:[],mechanism:[]}};
 }
 
-export const CHAPTERS = [
-  ['history',['Historical background','历史背景']],
-  ['system',['System tensions','系统矛盾']],
-  ['mechanism',['Market mechanism','市场机制']],
-  ['storage',['Storage value','储能价值']],
-  ['judgement',['Conditions & counter-evidence','判断与反证']],
-  ['research',['Sources & further research','深入研究与来源']],
-];
+export {CHAPTERS} from './chapters.js';
+import {CHAPTERS} from './chapters.js';
 // Locale and version ride in the existing whitelisted shot id. Market and region
 // are the route itself. Legacy shot ids and all original URLs remain untouched.
 export const publicPlace = (chapter,locale='en',version=PUBLIC_VERSION) => ({
