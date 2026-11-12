@@ -1,4 +1,4 @@
-// Chinese editorial translations of the 12 November 2026 public-feed snapshot.
+// Chinese editorial translations of the current 12 November 2026 public-feed snapshot.
 // Exact original strings bind each field; changed publisher text never inherits an old translation.
 export const NEWS_ZH = {
   "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=2dqapfzrlc": {
@@ -109,26 +109,6 @@ export const NEWS_ZH = {
     "summary": [
       "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…",
       "德国申请并网的储能项目远超电网承载能力，因此从先到先得转向按项目成熟度分配容量，优先支持已具备开工条件的项目。"
-    ]
-  },
-  "https://www.energy-storage.news/australias-nem-bess-stored-energy-hits-record-20-17gwh-up-203-in-a-year/": {
-    "title": [
-      "Australia’s NEM BESS-stored energy hits record 20.17GWh, up 203% in a year",
-      "澳大利亚 NEM 电池储能存量电量创 20.17GWh 新高，同比增长 203%"
-    ],
-    "summary": [
-      "Energy held in battery energy storage systems (BESS) across Australia's NEM reached a record 20.17GWh on 6 November.",
-      "11 月 6 日，澳大利亚国家电力市场（NEM）电池储能系统中的存量电量达到创纪录的 20.17GWh。"
-    ]
-  },
-  "https://www.energy-storage.news/pacific-blue-refers-855mwh-battery-storage-system-in-victoria-to-australias-epbc-act/": {
-    "title": [
-      "Pacific Blue refers 855MWh battery storage system in Victoria to Australia’s EPBC Act",
-      "Pacific Blue 向澳大利亚联邦环境审批提交维州 855MWh 储能项目"
-    ],
-    "summary": [
-      "Australian renewable energy generator and retailer Pacific Blue has referred an 855MWh BESS in Victoria to Australia's EPBC Act.",
-      "澳大利亚可再生能源发电与零售企业 Pacific Blue 已依据《环境保护与生物多样性保护法》（EPBC 法）提交维州一座 855MWh 储能项目。"
     ]
   },
   "https://www.energy-storage.news/bloombergnef-us-midterm-results-likely-a-net-positive-for-bess-despite-data-centre-headwinds/": {
@@ -311,26 +291,6 @@ export const NEWS_ZH = {
       "Uplight 的 Gisela Glandt 认为，围绕用户实际行为重设计需求响应和虚拟电厂方案，有助于提高参与度及电力系统灵活性。"
     ]
   },
-  "https://www.pv-magazine.com/2026/11/12/mexicos-distributed-solar-capacity-tops-5-65-gw/": {
-    "title": [
-      "Mexico’s distributed solar capacity tops 5.65 GW",
-      "墨西哥分布式光伏装机超过 5.65GW"
-    ],
-    "summary": [
-      "Mexico's cumulative distributed generation capacity reached 5.68 GW at the end of June 2026, following the addition of 485.76 MW in the first half of the year. Solar accounted for nearly all new capacity, with 484.36 MW added during the period. The post Mexico’s distributed solar capacity tops 5.65 GW appeared first…",
-      "截至 2026 年 6 月底，墨西哥分布式发电累计装机达 5.68GW，上半年新增 485.76MW，其中光伏贡献 484.36MW，几乎占全部新增容量。"
-    ]
-  },
-  "https://www.pv-magazine.com/2026/11/12/romania-allows-surplus-pv-electricity-credits-across-multiple-properties/": {
-    "title": [
-      "Romania allows surplus PV electricity credits across multiple properties",
-      "罗马尼亚允许余电抵扣额度用于多处房产"
-    ],
-    "summary": [
-      "Romania has approved new rules allowing solar prosumers to use surplus electricity credits to offset bills at multiple properties served by the same supplier. The changes could improve rooftop PV economics for households and businesses with multiple consumption locations. The post Romania allows surplus PV electrici…",
-      "罗马尼亚批准新规，允许光伏产消者以余电额度抵扣同一售电商服务的多处房产电费，有望改善拥有多个用电地点的家庭和企业的屋顶光伏经济性。"
-    ]
-  },
   "https://www.energy-storage.news/must-be-ready-and-able-to-deliver-energyaustralia-pays-au750000-over-alleged-fcas-failures-at-four-bess/": {
     "title": [
       "‘Must be ready and able to deliver’: EnergyAustralia pays AU$750,000 over alleged FCAS failures at four BESS",
@@ -351,26 +311,6 @@ export const NEWS_ZH = {
       "Alinta Energy 位于西澳 Wagerup 火电站的 100MW/200MWh 储能系统，自 9 月起已投入商业运营。"
     ]
   },
-  "https://www.pv-magazine.com/2026/11/12/solar-storage-project-providing-round-the-clock-power-in-drc-congo/": {
-    "title": [
-      "Major solar-storage project provides round-the-clock power in DRC Congo",
-      "刚果（金）大型光储项目提供全天候电力"
-    ],
-    "summary": [
-      "The facility, featuring a 233 MW solar array, provides a guaranteed 30 MW of baseload power around the clock to Africa’s largest copper mine. It displaced around 4 million liters of diesel in its first month of operation. The post Major solar-storage project provides round-the-clock power in DRC Congo appeared first…",
-      "该项目配套 233MW 光伏，向非洲最大铜矿提供全天候有保障的 30MW 基荷电力；投运首月减少约 400 万升柴油使用。"
-    ]
-  },
-  "https://www.pv-magazine.com/2026/11/12/researchers-demonstrate-that-lbic-phase-mapping-can-accurately-detect-interconnection-defects-in-solar-modules/": {
-    "title": [
-      "Researchers show LBIC phase mapping accurately detects solar module interconnection defect",
-      "瑞典研究：LBIC 相位成像可准确识别光伏组件互联缺陷"
-    ],
-    "summary": [
-      "Researchers in Sweden have demonstrated that LBIC phase mapping can detect interconnection defects in solar modules by identifying local variations in electrical resistance and contact quality. The technique enables high-resolution analysis of electrical contacts before and after lamination, helping identify potenti…",
-      "研究人员利用光束诱导电流（LBIC）相位成像识别局部电阻与接触质量变化，可在层压前后对光伏组件电接触进行高分辨率分析。"
-    ]
-  },
   "https://www.energy-storage.news/what-six-months-of-dutch-market-data-tell-us-about-the-true-worth-of-renewables-bess-dispatch-optimisation/": {
     "title": [
       "What six months of Dutch market data tell us about the true worth of renewables & BESS dispatch optimisation",
@@ -379,16 +319,6 @@ export const NEWS_ZH = {
     "summary": [
       "Analysis of optimiser performance in the Dutch electricity market highlights the need to separate claims and forecasting from realistic outcomes, writes Omer Bumin of trading infrastructure software company Powerlys.",
       "Powerlys 的 Omer Bumin 分析荷兰电力市场优化商的实际表现，强调应区分宣传主张、预测与真实交易结果。"
-    ]
-  },
-  "https://www.pv-magazine.com/2026/11/12/longi-launches-new-products-for-the-australian-market/": {
-    "title": [
-      "Longi launches new products for the Australian market",
-      "隆基面向澳大利亚市场推出新产品"
-    ],
-    "summary": [
-      "At All Energy Australia, LONGi unveiled new solar PV modules and showcased the company’s energy storage products. Brett Robinson, senior manager for LONGi Solar Australia, says the new X12 module is well-suited for the country’s compact roofs. Dennis She, VP at LONGi Group and CEO of LONGi Energy Storage, says the c…",
-      "隆基在 All Energy Australia 展会上发布新光伏组件并展示储能产品。其澳大利亚业务负责人表示，X12 组件适合当地面积较紧凑的屋顶。"
     ]
   },
   "https://www.pv-magazine.com/2026/11/12/financial-institutions-back-2-gw-of-solar-in-turkiye/": {
@@ -429,6 +359,76 @@ export const NEWS_ZH = {
     "summary": [
       "Kazakhstan is proposing a new mechanism allowing renewable energy generators to sell electricity to the country's single buyer after at least 36 months under bilateral contracts. The measure aims to reduce offtake risks, improve revenue certainty and make projects more attractive to investors and lenders. The post K…",
       "哈萨克斯坦拟允许可再生能源发电商履行至少 36 个月双边合同后，转向全国单一购电方售电，以降低售电风险、提高收入确定性及融资吸引力。"
+    ]
+  },
+  "https://www.pv-magazine.com/2026/11/12/dutch-parliament-backs-legal-framework-for-balcony-pv/": {
+    "title": [
+      "Dutch Parliament backs legal framework for balcony PV",
+      "荷兰议会支持制定阳台光伏法律框架"
+    ],
+    "summary": [
+      "Politicians in the Netherlands have supported calls for a framework covering the connection of balcony solar systems to be drafted before the spring of next year. The post Dutch Parliament backs legal framework for balcony PV appeared first on pv magazine Global .",
+      "荷兰政界支持在明年春季前起草阳台光伏系统并网框架。"
+    ]
+  },
+  "https://www.energy-storage.news/german-utility-to-build-7-5mw-30mwh-project-using-eos-zinc-bromide-battery-tech/": {
+    "title": [
+      "German utility to build 7.5MW/30MWh project using Eos’ zinc-bromide battery tech",
+      "德国公用事业公司将采用 Eos 溴化锌技术建设 7.5 MW／30 MWh 储能项目"
+    ],
+    "summary": [
+      "Stadtwerke Gaggenau, a municipal utility in Germany, has hired a general contractor to build a 4-hour BESS project using the zinc-bromide technology from US firm Eos Energy Enterprises.",
+      "德国市政公用事业公司 Stadtwerke Gaggenau 已聘请总承包商，拟采用美国 Eos Energy Enterprises 的溴化锌技术建设四小时储能项目。"
+    ]
+  },
+  "https://www.pv-magazine.com/2026/11/12/chasing-the-sun-feasible-co2-supply-as-a-gateway-to-low-cost-e-fuel-production/": {
+    "title": [
+      "Chasing the sun: Feasible CO₂ supply as a gateway to low-cost e-fuel production",
+      "追逐阳光：可行的二氧化碳供应有望降低电制燃料成本"
+    ],
+    "summary": [
+      "Scalable synthetic e-fuels require low-cost renewable electricity and sustainable carbon, but best solar sites and major carbon sources are rarely neighbors. To overcome this geographic mismatch, new modeling shows that shipping CO₂ to sunny regions lowers fuel costs more effectively than transmitting power. Transpo…",
+      "大规模合成电制燃料需要低成本可再生电力和可持续碳源，但优质光照区域往往远离主要碳源。新模型显示，相比输电，将二氧化碳运往光照充足地区能更有效地降低燃料成本。"
+    ]
+  },
+  "https://www.pv-magazine.com/2026/11/12/sweden-plans-new-inverter-and-battery-database/": {
+    "title": [
+      "Sweden plans new inverter and battery database",
+      "瑞典拟建立逆变器与电池数据库"
+    ],
+    "summary": [
+      "Sweden plans to launch a voluntary database for solar inverters, battery storage systems and bidirectional EV charging equipment in 2027, replacing its existing pre-assessment system for new listings. The database will provide standardized technical documentation to support grid connection assessments by network ope…",
+      "瑞典拟于 2027 年推出自愿参与的光伏逆变器、电池储能及双向电动车充电设备数据库，取代新增设备的现有预评估机制，以标准化技术资料支持并网评估。"
+    ]
+  },
+  "https://www.pv-magazine.com/2026/11/12/octopus-aims-to-mobilize-600-million-for-asian-renewables/": {
+    "title": [
+      "Octopus aims to mobilize $600 million for Asian renewables",
+      "Octopus 拟为亚洲可再生能源筹集 6 亿美元"
+    ],
+    "summary": [
+      "Octopus Energy has launched an Asia fund whose first investment backs a Manila developer targeting 450 MW of solar and 350 MWh of battery storage by 2030. The post Octopus aims to mobilize $600 million for Asian renewables appeared first on pv magazine Global .",
+      "Octopus Energy 推出亚洲基金，首笔投资支持一家马尼拉开发商；后者计划到 2030 年建设 450 MW 光伏及 350 MWh 电池储能。"
+    ]
+  },
+  "https://www.pv-magazine.com/2026/11/12/spanish-ipp-deploys-automated-solar-installation-platform-at-457-mw-texas-project/": {
+    "title": [
+      "Spanish IPP deploys automated solar installation platform at 457 MW Texas project",
+      "西班牙独立发电商在得州 457 MW 项目采用自动化光伏安装平台"
+    ],
+    "summary": [
+      "Matrix Renewables is using Terabase Energy's Terafab V2 automated construction platform at its 457 MW Tormes Solar project in Navarro County, Texas. The system combines robotic module assembly, automated quality inspection, autonomous transport vehicles and digital construction management tools. The post Spanish IPP…",
+      "Matrix Renewables 正在美国得克萨斯州纳瓦罗县 457 MW 的 Tormes 光伏项目使用 Terabase Energy 的 Terafab V2 自动化施工平台，集成组件机器人装配、自动质检、自主运输和数字化施工管理。"
+    ]
+  },
+  "https://www.energy-storage.news/dc-bidirectional-charging-and-data-centre-demand-are-reshaping-the-case-for-us-ders/": {
+    "title": [
+      "DC bidirectional charging and data centre demand are reshaping the case for US DERs",
+      "直流双向充电与数据中心需求正在重塑美国分布式能源的应用价值"
+    ],
+    "summary": [
+      "As data centre demand surges, utilities and developers are turning to distributed energy resources (DERs) to ease grid strain.",
+      "随着数据中心需求快速增长，公用事业公司和开发商正借助分布式能源资源（DER）缓解电网压力。"
     ]
   }
 };
