@@ -185,15 +185,6 @@ function loadExperiencePage(app,load,draw,page){
   }).catch(error=>pageLoadFailure(holder,error,page));
 }
 
-let newsPage=null;
-function renderNews(app){
-  ++experienceToken;
-  if(newsPage)return void newsPage.renderNewsPage(app);
-  loadExperiencePage(app,()=>import('../news/newsPage.js'),module=>{
-    newsPage=module;module.renderNewsPage(app);
-  },'news');
-}
-
 let experiencePage=null;
 let experienceToken=0;
 function renderExperiencePage(app,route,market){
@@ -212,6 +203,16 @@ function renderPolicy(app,route,market=null){
 export function render(){
   invalidateMarketRender();
   const route = currentRoute();
+  if (route.name === 'news') {
+    const params = new URLSearchParams(location.search);
+    if (!params.has('type')) params.set('type', 'news');
+    history.replaceState(history.state, '', `/policy?${params}${location.hash === '#headlines' ? '#radar' : location.hash}`);
+    route.name = 'policy'; route.kind = 'radar';
+  }
+  if (route.name === 'market' && bySlug(route.slug) && ['grid','entry','revenue','rcm','capacity','energy','fcess','services','duration'].includes(route.tab)) {
+    route.research = { kind: ['grid','entry'].includes(route.tab) ? 'grid' : 'revenue', section: route.sub || (route.tab === 'revenue' ? '' : route.tab) };
+    route.tab = null;
+  }
   document.documentElement.lang = htmlLang();
 
   const app = $id('app');
@@ -239,11 +240,6 @@ export function render(){
     const market = route.name === 'market' ? bySlug(route.slug) : null;
     document.title = L(['Global BESS', '全球储能']) + ' | ' + (market ? L(market.manifest.name) : route.name === 'returns' ? L(['Global opportunities', '全球投资机会']) : L(['Investment brief', '投资简报']));
     return void renderExperiencePage(app, route, market);
-  }
-
-  if (route.name === 'news'){
-    document.title = L(['Global BESS', '全球储能']) + ' | ' + L(['Industry news', '行业新闻']);
-    return void renderNews(app);
   }
 
   if (route.name === 'market'){

@@ -1,3 +1,4 @@
+import { drawOverviewGrid } from '../_shared/overviewGrid.js';
 /* ---------------------------------------------------------------------------
    Ontario — dashboard. Wiring only; the shared block engine draws everything.
 
@@ -35,3 +36,7 @@ export function dashboard(container, route){
 }
 
 export default dashboard;
+
+export function renderOverviewGrid(container, route = {}) {
+  drawOverviewGrid(container, 'ca_on', route.region);
+}

@@ -64,15 +64,15 @@ for (const { id, slug } of MARKETS){
       expect(asked).toEqual(['case']);
     });
 
-    test('a pasted deep link opens its section and rewrites the old address', async ({ page }) => {
+    test('a legacy grid address opens its reader and preserves the bookmark', async ({ page }) => {
       const asked = sectionRequests(page, id);
       await page.goto(MARKET + '/grid');
 
-      await expect(page.locator('[data-section="grid"] .sect')).toBeVisible();
-      /* /grid was its own tab before the seven-tab merge; the page rewrites
-         the address in place to the tab that now holds it. */
-      await expect(page).toHaveURL(new RegExp(`/markets/${slug}/entry/grid$`));
-      expect([...new Set(asked)].sort()).toEqual(['entry', 'grid']);
+      await expect(page.locator('.market-research-dialog [role="tabpanel"]')).toHaveAttribute('aria-busy','false');
+      /* /grid was its own tab before the seven-tab merge; the reader now
+         opens at the original address. */
+      await expect(page).toHaveURL(new RegExp(`/markets/${slug}/grid$`));
+      expect(asked).toEqual(expect.arrayContaining(['entry','grid']));
     });
 
     test('every tab renders its sections, one load at a time', async ({ page }) => {
@@ -83,8 +83,6 @@ for (const { id, slug } of MARKETS){
 
       const sectionsByTab = [
         ['Market Story', ['home', 'story']],
-        ['Revenue & Design', ['capacity']],
-        ['Entry & Delivery', ['entry', 'grid']],
         ['Competition & Demand', ['pipeline']],
         ['Capital & Exit', ['portfolio']],
         ['Evidence', ['data']],
@@ -131,25 +129,27 @@ for (const { id, slug } of MARKETS){
 
       await page.goto(MARKET + '/case');
       await tab(page, 'Market Story').click();
-      await tab(page, 'Entry & Delivery').click();
+      await tab(page, 'Evidence').click();
 
-      await expect(page.locator('[data-section="grid"] .sect')).toBeVisible();
+      await expect(page.locator('[data-section="data"] .sect')).toBeVisible();
       await page.waitForTimeout(2_000);
       await expect(page.locator('[data-section="home"]')).toHaveCount(0);
       await expect(page.locator('[data-section="story"]')).toHaveCount(0);
-      await expect(page.locator('[data-section="grid"]')).toHaveCount(1);
-      await expect(page).toHaveURL(new RegExp(`/markets/${slug}/entry$`));
+      await expect(page.locator('[data-section="data"]')).toHaveCount(1);
+      await expect(page).toHaveURL(new RegExp(`/markets/${slug}/evidence$`));
     });
 
     test('the SVG grid map and the source drawers still render', async ({ page }) => {
       await page.goto(MARKET + '/entry/grid');
-      await expect(page.locator('[data-section="grid"] .geo-grid-map svg')).toBeVisible({ timeout: 30_000 });
+      await expect(page.locator('.market-overview-map .geo-grid-map svg')).toBeAttached({ timeout: 30_000 });
 
       /* A source drawer is attached to a CARD that carries a `src` binding, so
          it lives on the grid and story tabs — not on the evidence tab, whose
          sources are a registry TABLE. All four markets have them here; looking
          for them under [data-section="data"] would assert against an empty
          set and prove nothing. */
+      await page.keyboard.press('Escape');
+      await page.goto(MARKET + '/story');
       const drawer = page.locator('.source-drawer').first();
       await expect(drawer).toBeVisible();
       await expect(drawer).toHaveJSProperty('open', false);

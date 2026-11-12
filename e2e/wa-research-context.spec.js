@@ -48,22 +48,24 @@ test('WA controls repaint connected excerpts without closing disclosures or chan
   expect(errors).toEqual([]);
 });
 
-test('WA repeated excerpts stay in sync and full research navigation releases their render binding', async({page}) => {
+test('WA reader controls stay in sync with connected research and survive evidence navigation', async({page}) => {
   await visit(page);
   const bankable = context(page, 'bankable');
-  const award = context(page, 'revenue-drivers', 'award');
-  await open(bankable); await open(award);
-  await tab(bankable, 'rcm').getByRole('button', { name: 'Real (2028 A$)', exact: true }).click();
-  await expect(tab(award, 'rcm').getByRole('button', { name: 'Real (2028 A$)', exact: true })).toHaveClass(/active/);
-  await award.locator('.ix-research-tab-link').click();
-  await expect(page).toHaveURL(/\/markets\/western-australia\/rcm$/);
-  const nominal = page.getByRole('button', { name: 'Nominal A$', exact: true });
-  await nominal.click(); await expect(nominal).toHaveClass(/active/);
-  await expect(page.locator('.ix-research-context')).toHaveCount(0);
+  await open(bankable);
+  await tab(bankable, 'rcm').getByRole('button', { name: 'Real (2028 A$)', exact: true }).first().click();
+  await page.locator('[data-market-research="revenue"]').click();
+  const reader = page.locator('.market-research-dialog');
+  await expect(reader.locator('[role="tabpanel"]')).toHaveAttribute('aria-busy','false');
+  await expect(reader.getByRole('button', {name:'Real (2028 A$)', exact:true})).toHaveClass(/active/);
+  await reader.getByRole('button', {name:'Nominal A$', exact:true}).click();
+  await expect(tab(bankable,'rcm').getByRole('button',{name:'Nominal A$', exact:true})).toHaveClass(/active/);
+  await reader.locator('.market-reader-source-link a').click();
+  await expect(page).toHaveURL(/\/markets\/western-australia\/evidence$/);
+  await expect(reader).toHaveCount(0);
   await page.goBack();
   await expect(page).toHaveURL(/\/markets\/western-australia$/);
-  await open(context(page, 'bankable'));
-  await expect(tab(context(page, 'bankable'), 'rcm').getByRole('button', { name: 'Nominal A$', exact: true })).toHaveClass(/active/);
+  await open(context(page,'bankable'));
+  await expect(tab(context(page,'bankable'),'rcm').getByRole('button',{name:'Nominal A$',exact:true})).toHaveClass(/active/);
 });
 
 test('WA story bridge in the reading opens the actual tab and Back restores the market', async({page}) => {

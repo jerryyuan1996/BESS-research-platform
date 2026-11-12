@@ -1,6 +1,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
+import { newsTextPair } from './localization.js';
 
 const DATA_URL = '/data/public/industry-news.json';
 const investmentRank = item => {
@@ -37,8 +38,8 @@ h('a', {
   href:item.url,
   target:'_blank',
   rel:'noopener noreferrer',
-}, item.title),
-compact ? null : (item.summary ? h('p', { class:'news-summary' }, item.summary) : null));
+}, L(newsTextPair(item))),
+compact ? null : (item.summary ? h('p', { class:'news-summary' }, L(newsTextPair(item,'summary'))) : null));
 
 async function loadNews(){
   const response = await fetch(DATA_URL, { cache:'no-cache' });
@@ -59,10 +60,10 @@ export function renderNewsPreview(parent){
   const body = loadingState();
   const more = h('a', {
     class:'btn news-more',
-    href:'/news',
+    href:'/policy?type=news',
     onclick:(event) => {
       event.preventDefault();
-      navigate('/news');
+      navigate('/policy?type=news');
       window.scrollTo(0, 0);
     },
   }, L(['More news →', '更多新闻 →']));

@@ -24,6 +24,7 @@
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import { newsTextPair } from '../news/localization.js';
 import { app, requestRender, setLens, readSeen, writeSeen, DEFAULT_LENS } from '../app/state.js';
 import { navigate } from '../app/router.js';
 import { markets, byId } from '../markets/registry.js';
@@ -113,7 +114,7 @@ function whatChanged(b, lens, seen){
       list.append(h('li', { class: 'bf-li bf-news' },
         h('span', { class: 'bf-date' }, shortDay(c.at)),
         h('span', { class: 'bf-tags' }, c.markets.map(m => h('span', { class: 'bf-tag' }, L(b.markets[m]?.name || [m, m])))),
-        h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer' }, c.title),
+        h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer' }, L(newsTextPair(c))),
         h('span', { class: 'bf-src' }, ` · ${c.publisher}`)));
     } else {
       list.append(h('li', { class: `bf-li bf-${c.cls}` }, h('span', { class: 'bf-date' }, shortDay(c.at)), h('span', {}, L(c.text))));
@@ -131,7 +132,7 @@ function whatChanged(b, lens, seen){
     empty ? h('div', { class: 'bf-empty' }, L(['Nothing material.', '没有重要变化。'])) : list,
     h('div', { class: 'bf-more-links' },
       h('a', { href: '/changes', onclick: go('/changes') }, L(['Every change ▸', '全部变更 ▸'])), ' · ',
-      h('a', { href: '/news', onclick: go('/news') }, L(['Every headline ▸', '全部新闻 ▸']))));
+      h('a', { href: '/policy?type=news', onclick: go('/policy?type=news') }, L(['Every headline ▸', '全部新闻 ▸']))));
 }
 
 function whatsComing(b, view, todayMs){

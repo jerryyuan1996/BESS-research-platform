@@ -1,3 +1,4 @@
+import { drawOverviewGrid } from '../_shared/overviewGrid.js';
 /* ---------------------------------------------------------------------------
    National Electricity Market — dashboard.
 
@@ -64,3 +65,9 @@ export function dashboard(container, route){
 }
 
 export default dashboard;
+
+export async function renderOverviewGrid(container, route = {}) {
+  await loadSections(engine.api, ['grid']);
+  if (!container.isConnected) return;
+  drawOverviewGrid(container, 'nem', route.region);
+}

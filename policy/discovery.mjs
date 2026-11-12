@@ -4,6 +4,14 @@ export const DISCOVERY_LIMITS=Object.freeze({bytes:1_000_000,timeoutMs:15_000,re
 export const cycleId=now=>new Date(now).toISOString().slice(0,10);
 export const retryableFailure=reason=>['network_error','offline'].includes(reason)||/^http_5\d\d$|^robots_http_5\d\d$/.test(reason);
 const permissionStop=reason=>/^(?:http_|robots_http_)(?:401|403|429)$/.test(reason)||['robots_denied','invalid_robots_document','unreviewed_redirect','unreviewed_redirect_path'].includes(reason);
+export function validRobotsDocument(body,type=''){
+  if(/<\s*(?:!doctype|\/?[a-z])\b|[\u0000-\u0008]/i.test(body))return false;
+  if(!/(?:text\/html|application\/xhtml)/i.test(type))return true;
+  // Some official servers mislabel a real plain-text robots file as HTML.
+  // Only a complete, recognisable rules document can override that MIME label.
+  const lines=body.split(/\r?\n/).map(s=>s.replace(/#.*/,'').trim()).filter(Boolean);
+  return lines.some(s=>/^user-agent:\s*\S+/i.test(s)) && lines.every(s=>/^(?:user-agent|allow|disallow|sitemap|crawl-delay|host):\s*[^<>]*$/i.test(s));
+}
 export function canonicalURL(value){const u=new URL(value);u.hash='';for(const key of [...u.searchParams.keys()])if(/^utm_|^fbclid$/.test(key))u.searchParams.delete(key);u.searchParams.sort();return u.href;}
 /** Conservative robots handling. A denial is retained even if another group
  * might be more permissive; uncertainty reduces coverage, never expands it. */
@@ -47,6 +55,9 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
     const base={id:source.id,identity,jurisdiction:source.jurisdiction,markets:[...source.markets],language:source.language,title:source.title,sourceURL:source.url,checkedAt,cycle,...(source.blockedReason?{blockedReason:source.blockedReason}:{})};
     const prior=old.get(identity);
     const scopeVersion=source.metadataScope?.reviewVersion??'unversioned';
+    const renewedReview=Boolean(prior?.stopReason&&prior.stopScopeVersion!==scopeVersion);
+    const accessHistory=[...(prior?.accessHistory||[])];
+    if(accessHistory.length)base.accessHistory=accessHistory;
     const retain=(status,extra={})=>records.push({...base,status,lastSuccessfulAt:prior?.lastSuccessfulAt??null,lastKnownGood:prior?.lastKnownGood??null,
       ...(prior?.stopReason?{stopReason:prior.stopReason,stopScopeVersion:prior.stopScopeVersion,stoppedAt:prior.stoppedAt,priorStatus:prior.priorStatus??prior.status}:{}),...extra});
     if(killSwitch){retain('disabled');continue;}
@@ -55,12 +66,13 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
       retain('blocked_after_denial',{stopReason:prior.stopReason,stopScopeVersion:prior.stopScopeVersion,stoppedAt:prior.stoppedAt,priorStatus:prior.priorStatus??prior.status});continue;
     }
     // A restored same-day attempt is not another request, including after denial.
-    if(source.metadataScope?.reviewed&&prior?.cycle===cycle&&!['pending_source_review','disabled'].includes(prior.status)){
+    if(source.metadataScope?.reviewed&&prior?.cycle===cycle&&!renewedReview&&!['pending_source_review','disabled'].includes(prior.status)){
       records.push({...prior,status:'same_cycle_retained',priorStatus:prior.priorStatus??prior.status});continue;
     }
     if(!safeURL(source.url)||new URL(source.url).hostname!==source.host){retain('unreviewed_host');continue;}
     const url=canonicalURL(source.url);
     if(seenURLs.has(url)||seenIdentities.has(identity)){retain('duplicate');continue;}seenURLs.add(url);seenIdentities.add(identity);
+    if(renewedReview){accessHistory.push({reason:prior.stopReason,scopeVersion:prior.stopScopeVersion,stoppedAt:prior.stoppedAt,reviewedAt:checkedAt});base.accessHistory=accessHistory;}
     let success=false;let failure='unavailable';
     for(let attempt=0;attempt<=limits.retries;attempt++){
       try{
@@ -70,7 +82,7 @@ export async function discoverPolicies({sources,previous=[],now=new Date(),fetch
           if(!robot.response.ok)throw new Error(`robots_http_${robot.response.status}`);
           const robotsType=robot.response.headers.get('content-type')||'';
           robotsText=await boundedText(robot.response,100_000);
-          if(/(?:text\/html|application\/xhtml)/i.test(robotsType)||/<\s*(?:!doctype\s+html|html|head|body)\b/i.test(robotsText))throw new Error('invalid_robots_document');
+          if(!validRobotsDocument(robotsText,robotsType))throw new Error('invalid_robots_document');
         }
         // The same host's cached rules apply BEFORE every page/redirect GET.
         const pathPermitted=pathname=>robotsText===null||robotsPermit(robotsText,pathname);

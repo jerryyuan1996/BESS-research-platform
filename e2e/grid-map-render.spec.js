@@ -40,7 +40,13 @@ const MARKETS = [
   { slug:'romania', id:'ro', manifest:'ro-transmission.manifest.json' },
 ];
 
-const mapPath = (slug) => `/markets/${slug}/grid`;
+const mapPath = (slug) => `/markets/${slug}`;
+
+async function gotoMap(page, slug) {
+  await page.goto(mapPath(slug));
+  await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
+  await page.locator('.market-map-options > summary').click();
+}
 
 /** What the layer currently holds, per band group. */
 const readLayer = () => {
@@ -84,7 +90,7 @@ async function zoomIntoDetail(page){
 test('every market draws exactly the segments its manifest declares', async ({ page, request }) => {
   for (const market of MARKETS){
     const manifest = await (await request.get(`/data/grid/${market.manifest}`)).json();
-    await page.goto(mapPath(market.slug));
+    await gotoMap(page, market.slug);
     await expect(page.locator('.geo-grid-map svg')).toBeVisible();
     await expect(page.locator('.geo-band').first()).toBeAttached();
     await expect.poll(async () => (await page.evaluate(readLayer)).groups
@@ -129,7 +135,7 @@ test('a band is fetched when it is wanted and never before', async ({ page }) =>
     const match = /\/data\/grid\/(.+\.json)$/.exec(request.url());
     if (match) requested.push(match[1]);
   });
-  await page.goto(mapPath('great-britain'));
+  await gotoMap(page, 'great-britain');
   await expect(page.locator('.geo-band').first()).toBeAttached();
   await expect.poll(async () => (await page.evaluate(readLayer)).groups
     .some(group => group.subpaths > 0), { timeout:20000 }).toBe(true);
@@ -153,7 +159,7 @@ test('a band is fetched when it is wanted and never before', async ({ page }) =>
 });
 
 test('repeated zooming never duplicates or rebuilding the layer', async ({ page }) => {
-  await page.goto(mapPath('great-britain'));
+  await gotoMap(page, 'great-britain');
   await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
   await zoomIntoDetail(page);
 
@@ -192,7 +198,7 @@ test('repeated zooming never duplicates or rebuilding the layer', async ({ page 
 });
 
 test('selecting a marker does not rebuild the geometry it sits on', async ({ page }) => {
-  await page.goto(mapPath('western-australia'));
+  await gotoMap(page, 'western-australia');
   const marker = page.locator('.geo-point-layer .geo-marker').first();
   await expect(marker).toBeVisible();
   /* The page scrolls its own section into view shortly after it renders, which
@@ -229,7 +235,7 @@ test('selecting a marker does not rebuild the geometry it sits on', async ({ pag
 });
 
 test('the map keeps its box while a band arrives', async ({ page }) => {
-  await page.goto(mapPath('great-britain'));
+  await gotoMap(page, 'great-britain');
   await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
   const before = await page.locator('.geo-map-pane').boundingBox();
   await zoomIntoDetail(page);
@@ -244,7 +250,7 @@ test('a map whose network data fails still draws, and says nothing it cannot bac
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.route('**/data/grid/**', route => route.abort());
-  await page.goto(mapPath('great-britain'));
+  await gotoMap(page, 'great-britain');
 
   await expect(page.locator('.geo-grid-map svg')).toBeVisible();
   await expect(page.locator('.geo-country').first()).toBeVisible();
@@ -259,7 +265,7 @@ test('a band that arrives in parts is drawn whole or not at all', async ({ page 
   /* Italy's 132–219 kV class ships as two files. Dropping one must not paint a
      network with half of northern Italy missing: the band is all or nothing. */
   await page.route('**/it-transmission-132-219.part2.json', route => route.abort());
-  await page.goto(mapPath('italy'));
+  await gotoMap(page, 'italy');
   await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
   await zoomIntoDetail(page);
 
@@ -273,7 +279,7 @@ test('a band that arrives in parts is drawn whole or not at all', async ({ page 
 });
 
 test('the map is usable at 390 px as well as 1440 px', async ({ page }) => {
-  await page.goto(mapPath('germany'));
+  await gotoMap(page, 'germany');
   await expect(page.locator('.geo-grid-map svg')).toBeVisible();
   await expect(page.locator('.geo-zoom-controls')).toBeVisible();
   await zoomIntoDetail(page);
@@ -292,7 +298,7 @@ test('a pending detail band cannot be mistaken for a settled drawing', async ({ 
     requested = true; await held; await route.continue();
   });
   try {
-    await page.goto(mapPath('great-britain'));
+    await gotoMap(page, 'great-britain');
     await expect(page.locator('.geo-transmission-line').first()).toBeVisible();
     const reading = zoomIntoDetail(page).then(() => { settled = true; });
     await expect.poll(() => requested).toBe(true);

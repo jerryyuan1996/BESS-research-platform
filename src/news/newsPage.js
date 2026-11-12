@@ -1,8 +1,8 @@
 import { eventDue, eventCountdown } from './eventDates.js';
 /* ---------------------------------------------------------------------------
-   INDUSTRY NEWS — what is coming, and what just happened.
+   MARKET WATCH — the calendar inside the shared intelligence reader.
 
-   Two sources, one page:
+   Two existing sources, presented on demand:
 
      the view store's triggers   every dated or announced event a call names in
                                  `changesIf`: auctions, rule changes, bills, grid
@@ -26,17 +26,16 @@ import { eventDue, eventCountdown } from './eventDates.js';
 import '../styles/news.css';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import { newsTextPair } from './localization.js';
 import { app, setLens, requestRender } from '../app/state.js';
 import { byId } from '../markets/registry.js';
 import { boardTriggers, boardViewFor } from '../markets/viewBoard.js';
-import { tagHeadline } from '../governance/newsTags.js';
 import { dimension } from '../governance/investability.js';
 import { isResolved, byExpected } from '../governance/triggers.js';
 import { playTitle } from '../governance/playTitle.js';
 import { CALLS, LENSES } from '../experience/model.js';
-import { siteHeader, siteFooter, link, eyebrow, sectionTitle } from '../experience/chrome.js';
+import { link, eyebrow, sectionTitle } from '../experience/chrome.js';
 
-const DATA_URL = '/data/public/industry-news.json';
 const DAY = 86_400_000;
 const RING_DAYS = 45, PREPARE_DAYS = 120, WARN_DAYS = 365;
 
@@ -59,12 +58,6 @@ function dateText(expected){
   return d ? `${d} ${MONTHS[m - 1]} ${y}` : `${MONTHS[m - 1]} ${y}`;
 }
 const countdown = e => L(eventCountdown(e));
-const newsDate = value => {
-  const date = new Date(value);
-  if (!Number.isFinite(date.getTime())) return '';
-  return date.toLocaleDateString(zh() ? 'zh-CN' : 'en-GB', { year: 'numeric', month: 'short', day: '2-digit' });
-};
-
 /* ---- events ---------------------------------------------------------------- */
 
 const marketName = id => { const m = byId(id); return m ? L(m.manifest.shortName || m.manifest.name) : id; };
@@ -153,7 +146,7 @@ function bellCard(e, headlines){
           h('p', {}, L(a.text)))))
         : h('p', {}, L(HOW_TO_POSITION[e.direction]))),
     related.length ? h('div', { class: 'nw-related' }, h('span', { class: 'ix-mono' }, L(['OTHER NEWS FROM THIS MARKET', '该市场其他动态'])),
-      related.map(n => h('a', { href: n.url, target: '_blank', rel: 'noopener noreferrer' }, n.title, ' ↗'))) : null,
+      related.map(n => h('a', { href: n.url, target: '_blank', rel: 'noopener noreferrer' }, L(newsTextPair(n)), ' ↗'))) : null,
     h('div', { class: 'nw-bell-foot' }, link(marketHref(e.market)+(e.actions[0]?.play?.id?'?play='+encodeURIComponent(e.actions[0].play.id)+'#route-options':''), ['Open the affected investment route ↗', '查看受影响的投资路线 ↗'], 'ix-text-link')));
 }
 
@@ -194,100 +187,22 @@ function calendar(events, today){
       h('span', { class: 'nw-down' }, L(['could close', '可能收紧']))));
 }
 
-/* ---- headlines ------------------------------------------------------------- */
-
-const CATEGORIES = [
-  ['all', ['All', '全部']],
-  ['platform', ['Platform markets', '平台覆盖市场']],
-  ['capital', ['Capital & M&A', '资本与并购']],
-  ['policy', ['Policy & trade', '政策与贸易']],
-  ['grid', ['Grid & markets', '电网与市场']],
-  ['technology', ['Technology', '储能技术']],
-];
-
-async function loadNews(){
-  const response = await fetch(DATA_URL, { cache: 'no-cache' });
-  if (!response.ok) throw new Error(`news snapshot ${response.status}`);
-  const snapshot = await response.json();
-  const items = [...(snapshot.series || [])].reverse().map(item => ({ ...item, markets: tagHeadline(item) }));
-  return { snapshot, items };
-}
-
-function headline(item, eventMarkets){
-  const linked = item.markets.some(m => eventMarkets.has(m));
-  return h('article', { class: 'nw-item', 'data-news-category': item.category || 'grid' },
-    h('div', { class: 'nw-item-meta' },
-      h('span', {}, item.source), h('span', {}, item.categoryLabel || item.category), h('time', { datetime: item.t || '' }, newsDate(item.t))),
-    h('a', { class: 'nw-item-title', href: item.url, target: '_blank', rel: 'noopener noreferrer' }, item.title),
-    item.summary ? h('p', {}, item.summary.replace(/\s*The post .* appeared first on .*$/s, '')) : null,
-    item.markets.length ? h('div', { class: 'nw-item-tags' },
-      item.markets.map(m => link(marketHref(m), marketName(m), 'nw-chip')),
-      linked ? h('span', { class: 'nw-chip nw-chip-bell' }, L(['Upcoming event in this market', '该市场有待发生事件'])) : null) : null);
-}
-
-function renderHeadlines(host, items, eventMarkets, snapshot){
-  const state = { category: items.some(i => i.markets.length) ? 'platform' : 'all', market: 'all' };
-  const list = h('div', { class: 'nw-list' });
-  const tabs = h('div', { class: 'ix-segments nw-filters', role: 'group', 'aria-label': L(['Filter headlines', '筛选新闻']) });
-  const covered = [...new Set(items.flatMap(i => i.markets))].sort((a, b) => marketName(a).localeCompare(marketName(b)));
-  const select = h('select', { 'aria-label': L(['Filter by market', '按市场筛选']), onchange: e => { state.market = e.target.value; draw(); } },
-    h('option', { value: 'all' }, L(['All markets', '全部市场'])), covered.map(m => h('option', { value: m }, marketName(m))));
-  const draw = () => {
-    for (const b of tabs.children) b.setAttribute('aria-pressed', String(b.dataset.category === state.category));
-    const shown = items.filter(i =>
-      (state.category === 'all' || (state.category === 'platform' ? i.markets.length : i.category === state.category))
-      && (state.market === 'all' || i.markets.includes(state.market)));
-    list.replaceChildren(...(shown.length ? shown.map(i => headline(i, eventMarkets))
-      : [h('p', { class: 'nw-quiet' }, L(['No headline matches this filter.', '当前筛选条件下暂无新闻。']))]));
-  };
-  for (const [id, label] of CATEGORIES){
-    tabs.append(h('button', { type: 'button', 'data-category': id, onclick: () => { state.category = id; draw(); } }, L(label)));
-  }
-  const sources = snapshot.derived?.sourceStatus || [];
-  host.replaceChildren(
-    h('div', { class: 'nw-filter-bar' }, tabs, select),
-    list,
-    h('p', { class: 'ix-caption nw-sources' }, L(['Public feeds: ', '公开新闻源：']),
-      ...sources.flatMap((s, i) => [i ? ' · ' : '', h('a', { href: s.homepage, target: '_blank', rel: 'noopener noreferrer', class: s.status === 'ok' ? '' : 'nw-stale' }, s.source)]),
-      ' · ', L(['latest item ', '最新条目 ']), newsDate(snapshot.coverage?.to),
-      ' · ', L(['titles, short excerpts and links only; articles stay with their publishers.', '仅保留标题、短摘要与链接，全文归原发布方。'])));
-  draw();
-}
-
-/* ---- page ------------------------------------------------------------------- */
-
 function metaBar(){
   const select = h('select', { 'aria-label': L(['Investor profile', '投资者类型']), onchange: e => { setLens(e.target.value); requestRender(); } },
     Object.entries(LENSES).map(([id, label]) => h('option', { value: id }, L(label))));
   select.value = lens();
-  return h('div', { class: 'ix-meta-bar' }, h('span', { class: 'ix-mono' }, `04 / ${L(['INDUSTRY NEWS', '行业新闻'])}`),
+  return h('div', { class: 'ix-meta-bar' }, h('span', { class: 'ix-mono' }, L(['MARKET WATCH', '市场观察'])),
     h('label', { class: 'ix-select-label' }, h('span', {}, L(['INVESTOR VIEW', '投资者视角'])), select));
 }
 
-export function renderNewsPage(container){
-  container.classList.add('ix-app');
-  container.append(siteHeader('news'));
-  const today = todayISO();
-  const events = upcomingEvents(today);
-  const bells = events.filter(e => e.bell);
-  const ringing = bells.filter(e => e.bell === 'ring');
-  const risks = events.filter(e => e.direction === 'down' && (e.days === null || (e.days >= 0 && e.days <= WARN_DAYS)));
-  const overdue = events.filter(e => e.days !== null && e.days < 0);
-  const eventMarkets = new Set(events.filter(e => e.days === null || e.days <= WARN_DAYS).map(e => e.market));
-
-  const content = h('main', { id: 'ix-main', class: 'ix-container nw-page', tabindex: -1 });
+export function renderEventWatch(container,{headlines=[],marketId=null}={}){
+  const today=todayISO();
+  const events=upcomingEvents(today).filter(e=>!marketId||e.market===marketId);
+  const bells=events.filter(e=>e.bell);
+  const risks=events.filter(e=>e.direction==='down'&&(e.days===null||(e.days>=0&&e.days<=WARN_DAYS)));
+  const overdue=events.filter(e=>e.days!==null&&e.days<0);
+  const content=h('div',{class:'nw-page'});
   content.append(metaBar());
-  content.append(h('section', { class: 'ix-page-intro nw-intro' },
-    eyebrow(['WHAT IS COMING · WHAT JUST HAPPENED', '即将发生 · 刚刚发生']),
-    h('h1', {}, L(['Policy moves first.\nCapital follows.', '政策先行，\n资本随后。'])),
-    h('p', { class: 'ix-lead' }, L(['Auctions, rule changes and grid orders that can open a market, dated and tied to the investor calls they would move. Then the week’s storage headlines.',
-      '可能打开市场的拍卖、规则变化与电网指令，按日期列出，并对应到将受影响的投资结论；随后是本周储能新闻。'])),
-    h('div', { class: 'nw-summary' },
-      h('div', {}, h('strong', {}, String(ringing.length)), h('span', {}, L(['ringing within 45 days', '45天内紧急提示']))),
-      h('div', {}, h('strong', {}, String(bells.length)), h('span', {}, L(['opportunity bells in 12 months', '12个月内机会提示']))),
-      h('div', {}, h('strong', {}, String(risks.length)), h('span', {}, L(['risks on watch', '风险观察']))),
-      h('div', {}, h('strong', {}, String(new Set(events.map(e => e.market)).size)), h('span', {}, L(['markets with open events', '有待发生事件的市场']))))));
-
   const bellHost = h('div', { class: 'nw-bells' });
   content.append(h('section', { class: 'ix-section', id: 'bell' },
     h('div', { class: 'ix-heading-row' }, sectionTitle(['THE OPPORTUNITY BELL', '机会提示'], ['Events that could open a market.', '可能打开市场的事件。'],
@@ -300,24 +215,6 @@ export function renderNewsPage(container){
         h('ul', { class: 'nw-risks' }, overdue.map(riskRow))) : null),
     h('div', { id: 'calendar' }, sectionTitle(['POLICY & MARKET CALENDAR', '政策与市场日历'], ['The next twelve months.', '未来十二个月。']), calendar(events, today))));
 
-  const newsHost = h('div', { class: 'nw-news', 'aria-busy': 'true' }, h('p', { class: 'nw-quiet' }, L(['Loading the latest public feeds…', '正在读取最新公开新闻源…'])));
-  content.append(h('section', { class: 'ix-section', id: 'headlines' },
-    sectionTitle(['STORAGE HEADLINES', '储能新闻'], ['What the market is reading.', '市场正在关注什么。'],
-      ['Tagged to the platform’s markets. A headline in a market with an upcoming event is flagged.', '已标注对应的平台市场；所在市场有待发生事件的新闻会被标出。']),
-    newsHost));
-  container.append(content, siteFooter());
-
-  const drawBells = (headlines = []) => bellHost.replaceChildren(...(bells.length ? bells.map(e => bellCard(e, headlines))
-    : [h('p', { class: 'nw-quiet' }, L(['No opportunity event is dated inside twelve months.', '十二个月内暂无已定日期的机会事件。']))]));
-  drawBells();
-  loadNews().then(({ snapshot, items }) => {
-    if (!newsHost.isConnected) return;
-    drawBells(items);
-    renderHeadlines(newsHost, items, eventMarkets, snapshot);
-    newsHost.setAttribute('aria-busy', 'false');
-  }).catch(() => {
-    if (!newsHost.isConnected) return;
-    newsHost.replaceChildren(h('p', { class: 'nw-quiet' }, L(['The news snapshot is unavailable right now. The event radar above is unaffected.', '新闻快照暂不可用；上方事件提示不受影响。'])));
-    newsHost.setAttribute('aria-busy', 'false');
-  });
+  bellHost.replaceChildren(...(bells.length?bells.map(e=>bellCard(e,headlines)):[h('p',{class:'nw-quiet'},L(['No opportunity event is dated inside twelve months.','十二个月内暂无已定日期的机会事件。']))]));
+  container.append(content);
 }

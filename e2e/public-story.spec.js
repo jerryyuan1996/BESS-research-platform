@@ -17,15 +17,23 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await page.goto('/markets/'+slug);
       const overview=page.locator('#overview[data-public-market]'),trigger=page.locator('.public-story-trigger');
       await expect(trigger).toBeVisible();await expect(overview).toHaveAttribute('data-version',PUBLIC_VERSION);
+      {
+        await expect(overview.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
+        await expect(overview.locator('.geo-map-pane svg')).toBeVisible();
+      }
       const profile=page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true});
       await expect(profile).toBeVisible();await expect(profile).toHaveValue(investor);
-      const bound=await trigger.boundingBox();expect(bound.y+bound.height).toBeLessThanOrEqual(page.viewportSize().height);
+      const context=page.locator('.market-overview-context');
+      await expect(context).toHaveAttribute('aria-busy','false');
+      await expect(context.locator('.market-context-card')).toBeVisible();
+      const bound=await trigger.boundingBox(),card=await context.boundingBox();
+      expect(bound.y).toBeGreaterThanOrEqual(card.y+card.height);
+      expect(bound.y-card.y-card.height).toBeLessThanOrEqual(21);
       const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
       await expect(overview.locator('[data-date-kind=g1]')).toHaveCount(0);
-      await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(c.evidenceCheckedOn?1:0);
-      if(c.evidenceCheckedOn)await expect(overview.locator('[data-date-kind=source-check]')).toContainText(c.evidenceCheckedOn);
+      await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(0);
       const order=await overview.evaluate(el=>['decision','bankable','revenue'].every(id=>{const target=document.getElementById(id);return !target||Boolean(el.compareDocumentPosition(target)&Node.DOCUMENT_POSITION_FOLLOWING);}));expect(order).toBe(true);
-      const summary=await overview.innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
+      const summary=await overview.locator('.market-overview-story').innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
       await trigger.click();const dialog=page.locator('.public-story-dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-chapter=history].public-chapter')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
       await expectCompleteHistory(page,id,locale);
@@ -48,6 +56,8 @@ test.describe('iPad touch matrix',()=>{
 
 test('keyboard, history, language, deep links and repeated opening preserve the reading place',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/markets/nem');
+  await expect(page.locator('.market-overview-context')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
   const trigger=page.locator('.public-story-trigger');await trigger.waitFor();await trigger.focus();
   const scroll=await page.evaluate(()=>scrollY);await page.keyboard.press('Enter');
   const dialog=page.locator('.public-story-dialog');await expect(dialog.getByRole('button',{name:'Close market background'})).toBeFocused();

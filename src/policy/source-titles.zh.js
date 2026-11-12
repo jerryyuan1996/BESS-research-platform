@@ -1,0 +1,27 @@
+// Display labels only. Original evidence titles, locators and immutable hashes remain intact.
+const titles={
+  'Bundesnetzagentur storage FAQ: Baukostenzuschuss':'德国联邦网络局储能问答：建设成本分摊费（BKZ）',
+  'AgNes, proceeding GBK-25-01-1#3':'AgNes 网络电价改革程序：GBK-25-01-1#3',
+  'Entwurf der Festlegung AgNes, GBK-25-01-1#3':'AgNes 决定草案：GBK-25-01-1#3',
+  'StromVKG: Gesetz zur Sicherung der Versorgungssicherheit Strom und zur Bereitstellung neuer Kapazitäten':'StromVKG：电力供应安全与新增容量保障法',
+  'AgNes: Reform der Netzentgeltsystematik':'AgNes：网络电价体系改革',
+  'Bundesnetzagentur starts consultation on reform of electricity network tariff system':'德国联邦网络局启动电网收费体系改革征询',
+  'Decision: Gate 2 Criteria Methodology':'决定：第二阶段（Gate 2）准入标准方法',
+  'Decision on the alternative Gate 2 to Whole Queue timetable, 3 June 2026':'2026 年 6 月 3 日决定：全队列第二阶段并网改革替代时间表',
+  'Agreement for revision to Gate 2 to Whole Queue timetable, 2 October 2026':'2026 年 10 月 2 日同意修订全队列第二阶段并网改革时间表',
+  'Capacity Market: proposed changes for prequalification 2026, government response':'容量市场：2026 年资格预审改革提案的政府回应',
+  'The Capacity Market (Amendment) (No.3) Rules 2026':'2026 年容量市场（第 3 号修订）规则',
+  'The Capacity Market (Amendment) (No.2) Rules 2026':'2026 年容量市场（第 2 号修订）规则',
+  'The Capacity Market (Amendment) (No.4) Rules 2026':'2026 年容量市场（第 4 号修订）规则',
+  'Integrating energy storage systems into the NEM, final determination':'储能系统接入 NEM：最终决定',
+  'National Electricity Amendment (Integrating energy storage systems into the NEM) Rule 2021 No.13':'2021 年第 13 号国家电力修订规则：储能系统接入 NEM',
+  'Battery Energy Storage System guide to Contingency FCAS registration, version 5.0':'电池储能系统事故调频辅助服务注册指南，第 5.0 版',
+  'Capacity Investment Scheme Tender 10: NEM Dispatchable Capacity Tender Guidelines':'容量投资计划第 10 轮招标：NEM 可调度容量招标指南',
+  'NSW Electricity Infrastructure Roadmap Guidelines: Tender Round 9, LDS Infrastructure':'新南威尔士州电力基础设施路线图指南：第 9 轮长时储能招标',
+  'Government Gazette WA, 14 January 2025, No.3, notice EN401':'西澳政府公报：2025 年 1 月 14 日第 3 期，EN401 公告',
+  'Government Gazette WA, 13 January 2026, No.6, notice EE401':'西澳政府公报：2026 年 1 月 13 日第 6 期，EE401 公告',
+  'Wholesale Electricity Market Amendment (RCM Reviews Sequencing) Rules 2025':'2025 年批发电力市场修订规则：备用容量机制审查实施顺序',
+  'Electricity System and Market Rules, as at 1 October 2026':'电力系统与市场规则（截至 2026 年 10 月 1 日）',
+  'Response to stakeholder submissions: WEM Investment Certainty and RCM Review amending rules':'利益相关方意见回应：WEM 投资确定性与备用容量机制审查修订规则',
+};
+export const policySourceTitle=source=>[source.title,titles[source.title]||source.title];

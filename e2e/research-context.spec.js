@@ -8,12 +8,12 @@ import {picksFor} from '../src/experience/researchMap.js';
 
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});
 
-const RESEARCH=/\/assets\/(?:research-context-|market-(?:nem|jp)-|section-nem-)/;
-const PAGE_CHAPTERS=['revenue-drivers','revenue-drivers','revenue-drivers','bankable','revenue','execution','downside','sources'];
+const PAGE_CHAPTERS=['bankable','revenue','execution','downside','sources'];
 async function visit(page,slug,locale='en'){
   await page.goto('/');await page.evaluate(locale=>localStorage.setItem('hub_lang',locale),locale);
   await page.goto('/markets/'+slug);await expect(page.locator('#sources')).toBeVisible();
   await expect(page.locator('#revenue-drivers')).toBeVisible();
+  await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
 }
 const disclosure=(scope,chapter,slot)=>scope.locator(`.ix-research-context[data-research-chapter="${chapter}"]`+(slot?`[data-research-slot=${slot}]`:':not([data-research-slot])'));
 
@@ -24,8 +24,9 @@ test('every chapter of the NEM page carries its research, closed, and opening on
   const all=page.locator('main .ix-research-context');
   expect(await all.evaluateAll(nodes=>nodes.map(n=>n.dataset.researchChapter))).toEqual(PAGE_CHAPTERS);
   expect(await all.evaluateAll(nodes=>nodes.some(n=>n.open))).toBe(false);
-  expect(fetched.filter(url=>RESEARCH.test(url))).toEqual([]);
+  expect(fetched.filter(url=>/\/assets\/research-context-/.test(url))).toEqual([]);
 
+  const before=fetched.length;
   const bankable=disclosure(page,'bankable');
   await bankable.locator('summary').first().click();
   const body=bankable.locator('.ix-research-context-body');
@@ -34,7 +35,7 @@ test('every chapter of the NEM page carries its research, closed, and opening on
   /* The sections asked for, and no others. */
   const picks=picksFor('nem','bankable');
   expect(await body.locator('.ix-research-group').evaluateAll(nodes=>nodes.map(n=>n.dataset.researchSection))).toEqual(picks.map(pick=>pick.section));
-  const sections=fetched.map(url=>/section-nem-([a-z]+)-/.exec(url)?.[1]).filter(Boolean);
+  const sections=fetched.slice(before).map(url=>/section-nem-([a-z]+)-/.exec(url)?.[1]).filter(Boolean);
   expect(sections.filter(name=>['capacity','energy','services','grid','story','pipeline','duration'].includes(name))).toEqual([]);
   /* One card opens with the disclosure; the rest wait, and draw when opened. */
   const cards=body.locator('.ix-research-card');
@@ -46,7 +47,7 @@ test('every chapter of the NEM page carries its research, closed, and opening on
   await expect(closed.locator('.ix-research-card-body')).not.toBeEmpty();
   /* The heading is the line the reader pressed, not repeated inside the card. */
   await expect(closed.locator('.ix-research-card-body > .card > h3')).toHaveCount(0);
-  /* Each group links to the tab its cards come from, which is still there. */
+  /* Existing section links remain valid, including migrated readers. */
   const link=body.locator('.ix-research-tab-link').last();
   await expect(link).toHaveAttribute('href','/markets/nem/'+picks.at(-1).section);
   const count=fetched.length;
@@ -57,28 +58,22 @@ test('every chapter of the NEM page carries its research, closed, and opening on
   expect(errors).toEqual([]);
 });
 
-test('each revenue mechanism carries the research that explains it',async({page})=>{
+test('revenue research has one shared reader instead of repeated mechanism disclosures',async({page})=>{
   await visit(page,'nem');
-  for(const slot of ['award','merchant','ancillary']){
-    const node=disclosure(page,'revenue-drivers',slot);
-    await expect(node).toHaveCount(1);
-    /* Research that explains a mechanism on this route sits inside that mechanism's card. */
-    const card=page.locator('details.ix-mechanism').filter({has:node});
-    if(await card.count())await card.locator('> summary').click();
-    await node.locator('summary').first().click();
-    const body=node.locator('.ix-research-context-body');
-    await expect(body).toHaveAttribute('aria-busy','false');
-    expect(await body.locator('.ix-research-group').evaluateAll(nodes=>nodes.map(n=>n.dataset.researchSection))).toEqual(picksFor('nem','revenue-drivers',slot).map(pick=>pick.section));
-    expect(await body.locator('.ix-research-card').count()).toBeGreaterThan(0);
-  }
+  await expect(page.locator('#revenue-drivers .ix-research-context')).toHaveCount(0);
+  await page.locator('[data-market-research=revenue]').click();
+  const reader=page.locator('.market-research-dialog');
+  await expect(reader.getByRole('tab')).toHaveCount(4);
+  await page.keyboard.press('Escape');
   /* Nothing in an opened panel reaches past the page. */
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
 });
 
 test('Japan shows each area its own research, in Chinese as in English',async({page})=>{
   await visit(page,'japan-kyushu','zh');
-  /* Japan also has research that spans the mechanisms, under its own line. */
-  await expect(disclosure(page,'revenue-drivers')).toHaveCount(1);
+  /* Revenue research now has one market-bound reader entrance. */
+  await expect(disclosure(page,'revenue-drivers')).toHaveCount(0);
+  await expect(page.locator('[data-market-research=revenue]')).toHaveAttribute('data-market','jp_kyushu');
   const downside=disclosure(page,'downside');
   await expect(downside.locator('summary').first()).toHaveText('本节背后的研究');
   await downside.locator('summary').first().click();
@@ -102,7 +97,7 @@ test('the market-background reading carries research under System tensions and M
     await expect(node.locator('summary').first()).toHaveText('Research behind this chapter');
     expect(await node.evaluate(n=>n.open)).toBe(false);
   }
-  expect(fetched.filter(url=>/\/assets\/(?:research-context-|market-nem-)/.test(url))).toEqual([]);
+  expect(fetched.filter(url=>/\/assets\/research-context-/.test(url))).toEqual([]);
   const node=disclosure(dialog,'mechanism');
   await node.locator('summary').first().click();
   await expect(node.locator('.ix-research-context-body')).toHaveAttribute('aria-busy','false');
@@ -146,9 +141,7 @@ for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
     await visit(page,slug,locale);
     expect(fetched.some(url => /\/assets\/research-context-/.test(url))).toBe(false);
     const panels=page.locator('main .ix-research-context');
-    const expectedTargets=['revenue-drivers:award','revenue-drivers:merchant','revenue-drivers:ancillary',
-      ...(['jp','de','it','ercot'].includes(owner)?['revenue-drivers']:[]),
-      ...(owner==='sa'?['bankable','execution','sources']:['bankable','revenue','execution','downside','sources'])];
+    const expectedTargets=owner==='sa'?['bankable','execution','sources']:['bankable','revenue','execution','downside','sources'];
     expect(await panels.evaluateAll(nodes=>nodes.map(node=>node.dataset.researchChapter+
       (node.dataset.researchSlot?':'+node.dataset.researchSlot:'')).sort())).toEqual(expectedTargets.sort());
     if(owner==='sa'){
@@ -175,8 +168,7 @@ for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
       expect(await cards.evaluateAll(nodes => nodes.filter(node => node.open).length)).toBe(1);
       await expect(body.locator('.ix-research-card[open] .ix-research-card-body').first()).not.toBeEmpty();
       if(owner==='sa') for(const card of await cards.all()){
-        /* All fourteen non-history units must be reachable even without a
-           priced model. The fifteenth is the existing history reading. */
+        /* Open each remaining context card even in an unpriced market. */
         surfaced.add(await card.evaluate(node=>node.closest('[data-research-section]').dataset.researchSection+'/'+node.dataset.researchCard));
         await card.evaluate(node=>{node.open=true;});
         await expect(card.locator('.ix-research-card-body')).not.toBeEmpty();
@@ -188,7 +180,7 @@ for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
       expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
       await panel.locator(':scope > summary').click();
     }
-    if(owner==='sa')expect(surfaced.size).toBe(14);
+    // Complete migrated-section coverage is asserted against original units in market-explorer.spec.js.
     /* Reuse this page and its already fetched research for the two public
        reading chapters. The separate NEM test above holds cold-load laziness;
        this matrix checks all routes without another navigation per chapter. */

@@ -27,6 +27,7 @@ test('the new Spain case states its execution assumptions and retains a downside
 });
 test('a month-only event keeps its uncertainty in both languages',async({page})=>{
   await page.goto('/news');
+  await page.locator('#event-watch>summary').click();
   await expect(page.getByText('Expected month; exact date unconfirmed').first()).toBeVisible();
   await expect(page.getByText('Due by tomorrow',{exact:true})).toHaveCount(0);
   await expect(page.getByText('OTHER NEWS FROM THIS MARKET').first()).toBeVisible();

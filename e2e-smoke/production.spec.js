@@ -78,7 +78,7 @@ const ROUTES = {
   home: { path: '/', ready: '#app select[aria-label="Investor profile"]' },
   gb: { path: '/markets/great-britain', ready: '#bankable' },
   wa: { path: '/markets/western-australia', ready: '#bankable' },
-  news: { path: '/news', ready: '#headlines' },
+  news: { path: '/news', ready: '#radar' },
   returns: { path: '/returns', ready: '.ix-results tbody tr' },
 };
 
@@ -128,12 +128,13 @@ function assertChunksServed(chunks){
     .toBeGreaterThan(0);
 }
 
-test('the news page and the cross-market investment view open', async ({ page }) => {
+test('the legacy news link opens the shared radar and the cross-market investment view opens', async ({ page }) => {
   const problems = watchForBreakage(page);
 
   await page.goto(ROUTES.news.path);
   await expect(page.locator(ROUTES.news.ready)).toBeAttached();
-  await expect(page.locator('#bell .nw-bell, #bell .nw-quiet').first()).toBeVisible();
+  await expect(page).toHaveURL(/\/policy\?type=news$/);
+  await expect(page.locator('[data-news-item]').first()).toBeAttached();
 
   await page.goto(ROUTES.returns.path);
   await expect(page.locator('h1')).toBeVisible();

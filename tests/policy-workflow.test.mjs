@@ -76,9 +76,9 @@ test('manual dry run suppresses rules, commits and drift proposal without adding
   assert.match(job('refresh'),/id: rules\n\s+if: inputs.dry_run != true/);assert.match(job('refresh'),/id: commit\n\s+if: inputs.dry_run != true/);assert.match(job('propose'),/inputs.dry_run != true/);
   assert.match(workflow,/group: live-data\n\s+cancel-in-progress: false/);
 });
-test('only two narrow metadata scopes activate; broader source rights and AI publication stay off',()=>{
-  assert.equal(POLICY_SOURCES.length,4);for(const source of POLICY_SOURCES){assert.equal(source.reviewed,false);assert.equal(source.rightsReviewed,false);}
-  assert.deepEqual(POLICY_SOURCES.filter(s=>s.metadataScope?.reviewed).map(s=>s.id),['de-agnes','gb-connections']);
+test('reviewed metadata scopes activate; original denied sources and broader publication stay off',()=>{
+  assert.equal(POLICY_SOURCES.length,8);for(const source of POLICY_SOURCES){assert.equal(source.reviewed,false);assert.equal(source.rightsReviewed,false);}
+  assert.deepEqual(POLICY_SOURCES.filter(s=>s.metadataScope?.reviewed).map(s=>s.id),['de-agnes','gb-connections','nem-iess-aemo','wa-wic-aemo','nem-iess-technical','wa-brcp-era']);
   for(const source of POLICY_SOURCES.filter(s=>s.metadataScope?.reviewed)){
     assert.equal(source.metadataScope.purpose,'metadata_discovery_only');assert.deepEqual(source.metadataScope.attachmentDownloadHosts,[]);
   }

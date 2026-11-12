@@ -38,6 +38,8 @@ export function discoverySummary(report) {
     'Journal and Actions artifacts retain rolling 90-day metadata, not a durable cumulative policy archive or complete legal database. Artifacts may be public; no source body, private notes or strategy is stored.',
     'Bundesnetzagentur attribution: original-title metadata from https://www.bundesnetzagentur.de/1059162; terms: https://www.bundesnetzagentur.de/DE/Service/Impressum/start.html.',
     'Ofgem attribution: Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/). Source-use exclusions: https://www.ofgem.gov.uk/c-ofgem-2026.',
+    'AEMO attribution: original link metadata from AEMO-owned public implementation pages; https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions. No third-party document body is collected.',
+    'ERA attribution: original link metadata from the Economic Regulation Authority capacity benchmark procedure directory; https://www.erawa.com.au/disclaimer. Original WA.gov.au acquisition remains stopped; ERA procedure monitoring does not substitute for complete WIC legal coverage.',
     '',
   ].join('\n');
 }

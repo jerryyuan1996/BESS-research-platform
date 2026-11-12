@@ -147,10 +147,7 @@ function renderMarket(container, row, route) {
   const dropSpecial = () => { specialHost.remove(); content.querySelector('.ix-section-nav a[href="#opportunity-comparison"]')?.remove(); };
   const loadOpportunity = () => import('../opportunities/ui.js').then(module => {
     if (!opportunityHost.isConnected) return;
-    opportunityHost.replaceChildren(module.revenueMechanismSection(row, researchPlaced(m) && {
-      under: (slot, label) => researchDisclosure(m, 'revenue-drivers', { slot, label }),
-      across: researchPlaced(m).across ? label => researchDisclosure(m, 'revenue-drivers', { label }) : null,
-    }));
+    opportunityHost.replaceChildren(module.revenueMechanismSection(row));
     opportunityHost.setAttribute('aria-busy','false');
     const screen = module.specialOpportunityScreen(row, investor);
     const special = screen.valid.length ? module.opportunityComparison(row, investor, { only: screen.valid }) : null;
@@ -167,6 +164,12 @@ function renderMarket(container, row, route) {
     opportunityHost.setAttribute('aria-busy','false');
   });
   loadOpportunity();
+  if (route?.research) {
+    const {kind, section} = route.research;
+    import('./marketResearchDialog.js').then(({openMarketResearch}) => {
+      if (content.isConnected) openMarketResearch(mf.id, kind, content.querySelector('[data-market-research="'+kind+'"]'), section);
+    }).catch(() => { if(content.isConnected) content.append(button(['Retry research','重试研究'],()=>requestRender(),'ix-outline')); });
+  }
   if (!data.unavailable) {
     content.append(bankableSection(data), revenueSection(data));
   } else content.append(h('section', { id: 'bankable', class: 'ix-panel ix-section' }, h('h2', {}, L(['Investment case in research', '投资方案研究中'])), h('p', {}, L(['This market does not yet have a complete return model. Continue with the market research and execution plan.', '本市场尚无完整回报模型，可继续查看市场研究与执行计划。'])),

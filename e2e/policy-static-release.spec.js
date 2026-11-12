@@ -5,16 +5,32 @@ const admission=JSON.parse(fs.readFileSync(new URL('../policy/static-release-adm
 const snapshot=JSON.parse(fs.readFileSync(new URL('../public/data/public/policy/snapshots/'+admission.releaseSnapshotHash+'.json',import.meta.url),'utf8'));
 test.beforeEach(async({page})=>page.addInitScript(()=>localStorage.setItem('hub_lang','en')));
 
+test('live combined radar includes news geography and preserves original publication dates',async({page},info)=>{
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/policy');
+  await expect(page.locator('.policy-map svg')).toHaveCount(1);
+  await expect(page.locator('[data-news-item]').first()).toBeAttached();
+  await expect(page.locator('.intelligence-summary')).toContainText('Historical snapshot');
+  await expect(page.locator('.intelligence-map-news').first()).toBeAttached();
+  await page.getByRole('button',{name:'Switch to Chinese'}).click();
+  if(info.project.name==='mobile')await page.getByRole('button',{name:'覆盖地图',exact:true}).click();
+  await expect(page.locator('.policy-map svg')).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  await page.screenshot({path:`.tmp/intelligence-demo-${info.project.name}.png`,fullPage:true});
+  expect(errors).toEqual([]);
+});
+
 test('real historical Radar serves the exact admitted source snapshot without original excerpts',async({page})=>{
   const response=await page.request.get('/data/public/policy/index.json');expect(response.ok()).toBe(true);expect(response.headers()['content-type']).toContain('application/json');
   const index=await response.json();expect(index.head).toBe(admission.releaseSnapshotHash);expect(index.versions).toEqual([admission.releaseSnapshotHash]);
   const source=await page.request.get('/data/public/policy/snapshots/'+index.head+'.json');const actual=await source.json();expect(digest(actual)).toBe(index.head);
   expect(actual.sources).toHaveLength(47);expect(actual.claims).toHaveLength(90);expect(actual.stories).toHaveLength(4);expect(actual.reviews).toHaveLength(27);
   expect(actual.claims.every(c=>c.evidence.every(e=>e.reproduction==='withheld'&&!Object.hasOwn(e,'quote')))).toBe(true);
-  await page.goto('/policy');await expect(page.getByRole('heading',{name:'Global Policy Radar'})).toBeVisible();await expect(page.locator('.policy-event')).toHaveCount(20);
-  await expect(page.locator('[data-policy-historical-scope]')).toContainText('complete current law is not established');
-  await expect(page.getByLabel('Author source check',{exact:true})).toBeVisible();await expect(page.getByText('Snapshot prepared',{exact:false})).toBeVisible();
-  await page.getByRole('button',{name:'Switch to Chinese'}).click();await expect(page.locator('[data-policy-historical-scope]')).toContainText('完整现行法律状态尚未确立');
+  await page.goto('/policy?type=policy');await expect(page.getByRole('heading',{name:'Global intelligence radar'})).toBeVisible();await expect(page.locator('.policy-event')).toHaveCount(20);
+  await expect(page.locator('[data-policy-historical-scope]')).toContainText('does not reverify historical policy');
+  await page.locator('.intelligence-advanced>summary').click();
+  await expect(page.getByLabel('Author source check',{exact:true})).toBeVisible();await expect(page.getByText('Historical snapshot',{exact:false})).toBeVisible();
+  await page.getByRole('button',{name:'Switch to Chinese'}).click();await expect(page.locator('[data-policy-historical-scope]')).toContainText('不会重新核实历史政策');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 });
 

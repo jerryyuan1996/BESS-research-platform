@@ -47,7 +47,8 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   await page.getByRole('button',{name:'Save investment case',exact:true}).click();
   const download=await downloadPromise;
   const record=JSON.parse(await readFile(await download.path(),'utf8'));
-  if(process.env.PLATFORM_TEST_BASE_URL){
+  // A local preview can supply a base URL without a production release stamp.
+  if(process.env.PLATFORM_TEST_BASE_URL && process.env.RELEASE_SHA){
     const response=await page.request.get('/release.json');const stamp=await response.json();
     expect(stamp.commit).toBe(process.env.RELEASE_SHA);expect(record.modelCommit).toBe(stamp.commit);
     expect(Object.keys(record.dataVintages)).not.toHaveLength(0);
@@ -95,13 +96,14 @@ test('the matrix panel fits every market and industry news rings its upcoming ev
     });
     expect(overflow).toBe(false);
   }
-  await expect(page.locator('.ix-header a[href="/news"]').first()).toBeAttached();
+  await expect(page.locator('.ix-header a[href="/policy"]').first()).toBeAttached();
   await page.goto('/news');
-  await expect(page.getByRole('heading',{name:'Policy moves first. Capital follows.',exact:true})).toBeVisible();
+  await expect(page.getByRole('heading',{name:'Global intelligence radar',exact:true})).toBeVisible();
+  await page.locator('#event-watch>summary').click();
   await expect(page.locator('#bell .nw-bell, #bell .nw-quiet').first()).toBeVisible();
   await expect(page.locator('#calendar .nw-cal-month').first()).toBeVisible();
-  await page.getByRole('button',{name:'All',exact:true}).click();
-  await expect(page.locator('#headlines .nw-item').first()).toBeVisible();
+  await page.getByRole('button',{name:'Industry news',exact:true}).click();
+  await expect(page.locator('[data-news-item]').first()).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
   expect(errors).toEqual([]);
 });

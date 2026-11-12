@@ -9,7 +9,7 @@ for(const market of ['pjm','ercot','caiso'])for(const lang of ['en','zh'])test(`
   await page.goto('/');
     await page.evaluate(value=>localStorage.setItem('hub_lang',value),lang);
     const ready=page.waitForResponse(isInventory);
-    await page.goto(`/markets/${market}/grid`);
+    await page.goto(`/markets/${market}`);
     const response=await ready;expect(response.ok()).toBe(true);const data=await response.json();
     const projects=data.series.filter(p=>p.marketId===market),located=projects.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon));
     const panel=page.locator(`.eia-inventory[data-market="${market}"]`);
@@ -23,6 +23,7 @@ for(const market of ['pjm','ercot','caiso'])for(const lang of ['en','zh'])test(`
     await page.locator('.geo-period-group button[data-period="current"]').click();
     await expect.poll(()=>markerIds(page)).toEqual(located.map(p=>p.id).sort());
     for(const title of await page.locator('.geo-project.cluster title').allTextContents())expect(title).toContain(lang==='en'?'generator units':'台机组');
+    await page.locator('.market-map-options > summary').click();
     const toggle=page.locator('.geo-layer-toggle.project input');
     await toggle.uncheck();await expect(page.locator('.geo-project-layer [data-project-ids]')).toHaveCount(0);
     await toggle.check();await expect.poll(()=>markerIds(page)).toEqual(located.map(p=>p.id).sort());
@@ -48,7 +49,7 @@ for(const market of ['pjm','ercot','caiso'])for(const lang of ['en','zh'])test(`
 
 test('failed inventory leaves the existing map usable and retry adds projects without replacing its geometry',async({page})=>{
   let fail=true;await page.route('**'+PATH,route=>fail?route.fulfill({status:503,body:'unavailable'}):route.continue());
-  await page.goto('/markets/pjm/grid');
+  await page.goto('/markets/pjm');
   const panel=page.locator('.eia-inventory'),country=page.locator('.geo-country').first();
   await expect(country).toBeVisible();const original=await country.elementHandle();
   const retry=panel.getByRole('button',{name:/Retry inventory|重试清单/});await expect(retry).toBeVisible();
@@ -60,9 +61,9 @@ test('failed inventory leaves the existing map usable and retry adds projects wi
 
 test('home, an American brief and unrelated maps do not download the large inventory',async({page})=>{
   const requests=[];page.on('request',r=>{if(new URL(r.url()).pathname===PATH)requests.push(r.url());});
-  for(const path of ['/','/markets/pjm/brief','/markets/germany/grid']){
+  for(const path of ['/','/markets/pjm/case','/markets/germany']){
     await page.goto(path);await page.waitForLoadState('networkidle');expect(requests).toEqual([]);
   }
-  const ready=page.waitForResponse(isInventory);await page.goto('/markets/pjm/grid');await ready;
+  const ready=page.waitForResponse(isInventory);await page.goto('/markets/pjm');await ready;
   await expect(page.locator('.eia-inventory')).toHaveAttribute('data-market','pjm');expect(requests).toHaveLength(1);
 });

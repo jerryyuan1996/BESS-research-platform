@@ -251,7 +251,7 @@ export function marketNav(markets, activeId){
  */
 export function tabNav(sectionTabs, activeSection, basePath){
   const active = tabOfSection(sectionTabs, activeSection);
-  return tabStrip(tabsFor(sectionTabs).map(tab => {
+  return tabStrip(tabsFor(sectionTabs).filter(tab => !['entry','revenue'].includes(tab.id)).map(tab => {
     /* The landing tab's address is the market's own, so a link to it and a
        link to the market are one link. */
     const href = basePath + (tab.id === LANDING_TAB ? '' : '/' + tab.id);

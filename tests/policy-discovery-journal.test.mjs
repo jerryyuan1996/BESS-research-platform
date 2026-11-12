@@ -97,7 +97,7 @@ test('empty, incomplete, duplicate or missing reports fail before collection eve
   assert.equal(calls,0);
   const initial={...report,records:report.records.map(r=>({...r,status:'pending_source_review'}))};
   assert.equal(validateDiscoveryState(initial,null,POLICY_SOURCES).priorJournal,null);
-  assert.equal(validateDiscoveryState(report,journal,POLICY_SOURCES).previous.length,4);
+  assert.equal(validateDiscoveryState(report,journal,POLICY_SOURCES).previous.length,POLICY_SOURCES.length);
 });
 
 test('malformed or out-of-scope restored metadata fails closed',()=>{

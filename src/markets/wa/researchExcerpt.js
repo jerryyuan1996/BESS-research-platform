@@ -1,3 +1,5 @@
+import './gridMapData.js';
+import { drawOverviewGrid } from '../_shared/overviewGrid.js';
 /* WA's research is hand-written. Embed an existing public section whole, not
    a second transcription of its cards. Only requested renderers are fetched.
    The portfolio renderer is deliberately absent: even its development-only
@@ -51,3 +53,5 @@ export async function researchExcerpt(route, picks){
   }
   return groups;
 }
+
+export function renderOverviewGrid(container) { drawOverviewGrid(container, 'wa'); }

@@ -477,7 +477,11 @@ const BUDGET = {
     // separately landed. Last-approved provenance measured 42.12 KiB;
     // canonical perspective audience/entry data measures approximately 42.4.
     // No engine or full review report is loaded on the home page.
-    'briefing-data': 43,
+    // 12 Nov manual RSS refresh: 15 new headlines replace 15 expired feed
+    // entries; the complete shared briefing measures 43.27 KiB. Allow 0.5 KiB
+    // for the longer current source titles/links, retaining every item and all
+    // existing entry, home-total and market isolation limits.
+    'briefing-data': 43.5,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,
@@ -585,7 +589,9 @@ const SHARED_OUT_OF_ENTRY = {
  * has to be something with exactly one home.
  */
 const MUST_NOT_BE_IN_ENTRY = {
-  wa: 'wa-grid-map',
+  // WA's public reader and dashboard now share a map-data chunk. Its filename
+  // occurs in Vite's lazy preload manifest, so probe real map content instead.
+  wa: 'SWIS orientation only. Boundary geometry',
   /* The NEM's probe moved from its grid-map id to a phrase from one of its
      sections when the sections were split out (docs/p1-sections-pilot.md): the
      map's id now appears in the dashboard chunk as a FILENAME in Vite's
