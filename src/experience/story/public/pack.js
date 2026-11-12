@@ -16,11 +16,21 @@ export function open(ctx){
   const initial=readPublicPlace(ctx.place);
   let chapter=chapters.some(([id])=>id===initial.chapter)?initial.chapter:'history', data=null, closed=false, stop=null, version=0;
   let locale=initial.locale||app.lang;
-  const previousOverflow=document.body.style.overflow, previousScroll=[window.scrollX,window.scrollY];
+  const origin=window.history.state?.publicReadingOrigin;
+  const savedOrigin=ctx.place&&origin?.market===ctx.id&&origin?.path===window.location.pathname&&
+    Array.isArray(origin.scroll)&&origin.scroll.length===2&&origin.scroll.every(n=>Number.isFinite(n)&&n>=0);
+  const previousOverflow=document.body.style.overflow, previousScroll=savedOrigin?origin.scroll:[window.scrollX,window.scrollY];
   const dialog=h('dialog',{class:'ix-dialog ix-story-dialog public-story-dialog','aria-labelledby':'public-story-title','data-market':ctx.id,'data-version':PUBLIC_VERSION});
   let body,nav,closeBtn,langBtn;
   const alive=()=>!closed;
-  const remember=(how='push')=>recordPlace(publicPlace(chapter,locale),how);
+  const remember=(how='push')=>{
+    recordPlace(publicPlace(chapter,locale),how);
+    // Keep the originating page position across chapter changes and a reload.
+    // A different market/path cannot inherit another reading's return position.
+    window.history.replaceState({...window.history.state,publicReadingOrigin:{
+      market:ctx.id,path:window.location.pathname,scroll:previousScroll,
+    }},'',window.location.href);
+  };
   function close({fromHistory=false,restore=true}={}){
     if(closed)return;closed=true;version++;stop?.();
     if(!fromHistory)recordPlace(null,'push');

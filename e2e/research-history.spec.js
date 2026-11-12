@@ -10,7 +10,12 @@ function coverage(){for(const id of historyOnly)test(id+' · existing history fo
     await page.evaluate(({locale,investor})=>{localStorage.setItem('hub_lang',locale);localStorage.setItem('hub_lens',investor);},{locale,investor});
     await page.goto('/markets/'+historySlugs[id]);
     const trigger=page.locator('.public-story-trigger');await expect(trigger).toBeVisible();
-    const bounds=await trigger.boundingBox();expect(bounds.y+bounds.height).toBeLessThanOrEqual(page.viewportSize().height);
+    const context=page.locator('.market-overview-context');
+    await expect(context).toHaveAttribute('aria-busy','false');
+    await expect(context.locator('.market-context-card')).toBeVisible();
+    const bounds=await trigger.boundingBox(),card=await context.boundingBox();
+    expect(bounds.y).toBeGreaterThanOrEqual(card.y+card.height);
+    expect(bounds.y-card.y-card.height).toBeLessThanOrEqual(21);
     await expect(page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true})).toHaveValue(investor);
     await expect(page.locator('#overview [data-date-kind=g1]')).toHaveCount(0);
     await trigger.click();await expectCompleteHistory(page,id,locale);
