@@ -33,12 +33,16 @@ import { CHAPTERS, MARKET_MAPS, UNASSIGNED, placementsOf, names } from '../../sr
  * one language, as it does in the browser. A regional market also asks which
  * area it is drawing.
  */
+const readings = new Map();
 async function apiFor(owner, lens, lang){
-  const api = { ...await marketApi(owner), L: (pair) => (Array.isArray(pair) ? pair[lang === 'zh' ? 1 : 0] : pair) };
+  if (!readings.has(owner)) readings.set(owner, {});
+  const reading = readings.get(owner);
+  Object.assign(reading, { lens, lang });
+  const api = { ...await marketApi(owner), L: (pair) => (Array.isArray(pair) ? pair[reading.lang === 'zh' ? 1 : 0] : pair) };
   if (!lens) return api;
   const data = await import(`../../src/markets/${owner}/data.js`);
   if (data.activeRegion) data.activeRegion.id = lens;
-  return { ...api, region: () => lens, isCompare: () => false, lensRegions: () => [lens], marketEntry: () => null };
+  return { ...api, region: () => reading.lens, isCompare: () => false, lensRegions: () => [reading.lens], marketEntry: () => null };
 }
 
 /**
@@ -50,6 +54,15 @@ export async function readResearch({ lang = 'en' } = {}){
   for (const owner of Object.keys(MARKET_MAPS)){
     const tabs = await import(`../../src/markets/${owner}/tabs.js`);
     const routed = new Set(tabs.TABS.map(([id]) => id));
+    /* Hand-written WA sections are indivisible public-tab units. Their
+       renderer adapter uses this same tab identity, never the private layer. */
+    if (owner === 'wa'){
+      for (const [section, title] of tabs.TABS){
+        out.push({ market: owner, lens: null, section, routed: true,
+          units: [{ key: '#tab-' + section, title, badges: [], visual: 2, blocks: [] }] });
+      }
+      continue;
+    }
     const lenses = (tabs.REGIONS || []).map(([id]) => id);
     for (const lens of (lenses.length ? lenses : [null])){
       const sections = await buildAllMarketSections(owner, await apiFor(owner, lens, lang));
@@ -85,7 +98,7 @@ function print(rows, all){
   for (const market of Object.keys(MARKET_MAPS)){
     const mine = cards.filter(row => row.market === market);
     const open = mine.filter(row => !row.placements.length);
-    out.push('', `## ${market}: ${mine.length} cards, ${mine.length - open.length} placed, ${open.length} awaiting a decision`);
+    out.push('', `## ${market}: ${mine.length} ${market === 'wa' ? 'whole tabs' : 'cards'}, ${mine.length - open.length} placed, ${open.length} awaiting a decision`);
     if (all){
       out.push('', '| Research tab | Card | Read under |', '| --- | --- | --- |');
       for (const row of mine.filter(r => r.placements.length)){

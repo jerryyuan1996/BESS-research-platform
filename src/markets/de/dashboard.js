@@ -31,6 +31,11 @@ export function researchSummary(container, route) {
   engine.researchSummary(container, route, markets);
 }
 
+/* Read the same cards as the research tabs, only when a chapter asks. */
+export function researchExcerpt(route, picks) {
+  return engine.researchExcerpt(route, markets, picks);
+}
+
 export const state = engine.state;
 
 export function dashboard(container, route){

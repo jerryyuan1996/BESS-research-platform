@@ -170,7 +170,8 @@ test('Japan: each area has its own sequence and shares the national award, in bo
   expect(fetched.some(url=>/public-sequence-nem-/.test(url))).toBe(false);
 });
 
-test('a market with no sequences keeps the three views and the switches; a failed sequence chunk costs only the steps',async({page})=>{
+test('a failed sequence chunk keeps the three views and the switches, and costs only the steps',async({page})=>{
+  await page.route(/\/assets\/public-sequence-gb-.*\.js/,r=>r.abort());
   let dialog=await openScene(page,'great-britain');
   await expect(dialog.locator('.k-seq')).toHaveCount(0);await expect(dialog.locator('.public-sequence-picker')).toBeHidden();
   await dialog.locator('.public-scene-modes [data-mode=mechanism]').click();await expect(dialog.locator('.k-rail')).toHaveAttribute('data-outcome','paid');

@@ -60,8 +60,10 @@ export const DEFAULT_MAP = {
   case:      'decision',
   story:     'history',
   capacity:  'revenue-drivers:award',
+  rcm:       'revenue-drivers:award',
   energy:    'revenue-drivers:merchant',
   services:  'revenue-drivers:ancillary',
+  fcess:     'revenue-drivers:ancillary',
   duration:  'revenue',
   portfolio: 'bankable',
   entry:     'execution',
@@ -72,7 +74,7 @@ export const DEFAULT_MAP = {
 
 /** The order sections are read in when a chapter draws from several. */
 export const SECTION_ORDER = ['home', 'story', 'capacity', 'energy', 'services', 'duration',
-  'portfolio', 'entry', 'grid', 'pipeline', 'data', 'case', 'benchmark'];
+  'portfolio', 'entry', 'grid', 'pipeline', 'data', 'case', 'benchmark', 'rcm', 'fcess'];
 
 const NONE = [];
 
@@ -171,8 +173,481 @@ const JP = {
   },
 };
 
+/* Remaining dashboards: placements refer to the existing public research only.
+   Unrouted comparisons stay on the decision list, not on the market page. */
+const GB = {
+  "benchmark": {
+    "Market design — the same asset earns differently in each market": [],
+    "Capacity economics compared — the single largest structural difference": [],
+    "Scale — the GB sponsor is not competing in the same market size": [],
+    "What actually constrains delivery in each market": [],
+    "System services in both markets — the same saturation story, four years apart": [],
+    "What transfers from Ireland to a GB decision — and what does not": []
+  },
+  "home": {
+    "Institutional Investor Walkthrough": [],
+    "Card A": ["revenue-drivers:award"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["revenue-drivers:ancillary"],
+    "Card D": ["revenue"],
+    "Card E": ["system"],
+    "Card F": ["bankable"],
+    "Revenue Driver Bridge": ["revenue"]
+  },
+  "story": {
+    "P0 Economics DNA — how GB system stress becomes BESS cash flow": ["system"],
+    "Official first-pass economics — VERIFIED, DERIVED and PROXY": ["revenue"],
+    "Capacity accreditation — nameplate is not paid capacity": ["revenue-drivers:award"],
+    "Operating vs committed BESS competition — coverage boundary first": ["downside"],
+    "Executable spread / capture-rate release gates": ["bankable"],
+    "One-minute orientation for a new institutional investor": ["system"],
+    "Official system evolution — FES 2025 Ten Year Forecast": ["system"],
+    "Before and after the battery build — what changed in the investable market": ["system"],
+    "Who owns GB storage — five strategies competing for the same MW": ["execution"],
+    "Exit channels — how capital actually recycles out of GB storage": ["bankable"],
+    "Near-term outlook — 2026 to 2029: execution decides returns": ["downside"],
+    "Long-term outlook — 2030 to 2035: policy demand meets delivery reality": ["downside"],
+    "What breaks this storyline — three monitored uncertainties": ["downside"],
+    "Bridge to the detailed dashboard": []
+  },
+  "grid": {
+    "Interactive GB grid — past structure, current pressure and future plan": ["system"],
+    "The network build behind the offers — named projects and their consenting position": ["system"]
+  },
+  "capacity": {
+    "De-rating factors": ["revenue-drivers:award", "mechanism"],
+    "Nameplate → paid capacity": ["revenue-drivers:award", "mechanism"],
+    "What can go wrong": ["downside", "revenue-drivers:award"]
+  },
+  "energy": {
+    "Buildout paths": ["downside"]
+  },
+  "services": {
+    "Auctioned service suite": ["revenue-drivers:ancillary", "mechanism"],
+    "Underwriting rule": ["bankable"]
+  },
+  "pipeline": {
+    "Contracted-revenue benchmarks": ["bankable"]
+  }
+};
+
+const DE = {
+  "benchmark": {
+    "One variable, isolated": [],
+    "And the mirror-image weakness": []
+  },
+  "home": {
+    "Position at a glance": ["bankable"],
+    "The four facts": ["system"],
+    "Where German BESS revenue comes from, and where it is going": ["revenue"]
+  },
+  "story": {
+    "What changes next, and when": ["downside"]
+  },
+  "grid": {
+    "Interactive Germany grid — past, current and planned": ["system"],
+    "The corridors behind the congestion — named projects and approval stage": ["system"]
+  },
+  "capacity": {
+    "The StromVKG": ["revenue-drivers:award", "mechanism"],
+    "Tolling": ["bankable", "revenue-drivers"],
+    "Momentanreserve": ["revenue-drivers:ancillary", "mechanism"]
+  },
+  "services": {
+    "Saturation, measured": ["revenue-drivers:ancillary", "downside"],
+    "The Great Britain precedent": ["downside"]
+  },
+  "energy": {
+    "Which revenue number": ["bankable"]
+  }
+};
+
+const IT = {
+  "benchmark": {
+    "One variable, isolated": [],
+    "And the mirror-image weakness": []
+  },
+  "home": {
+    "Position at a glance": ["bankable"],
+    "The four facts": ["system"],
+    "The four routes on one basis": ["revenue"]
+  },
+  "story": {
+    "Six bidding zones, and what each one offers a battery": ["system"]
+  },
+  "grid": {
+    "Interactive Italy grid — past, current and planned": ["system"],
+    "Named transmission relief": ["system"]
+  },
+  "capacity": {
+    "MACSE —": ["revenue-drivers:award", "mechanism"],
+    "What a MACSE winner gives up": ["bankable", "downside"],
+    "The capacity market": ["revenue-drivers:award", "mechanism"],
+    "Tolling": ["bankable", "revenue-drivers"]
+  },
+  "services": {
+    "The number this platform refuses to use": ["downside"],
+    "Where MSD prices are highest": ["revenue-drivers:ancillary", "system"]
+  }
+};
+
+const IE = {
+  "benchmark": {
+    "Market design — the same asset earns differently in each market": [],
+    "Capacity economics compared — the single largest structural difference": [],
+    "Scale and saturation — a ratio, not a level": [],
+    "Route to market — self-dispatch versus central scheduling": [],
+    "System services in both markets — the same saturation story, four years apart": [],
+    "What transfers from GB to an Irish decision — and what does not": []
+  },
+  "home": {
+    "Institutional Investor Walkthrough": [],
+    "Card A": ["revenue-drivers:award"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["revenue-drivers:ancillary"],
+    "Card D": ["revenue"],
+    "Card E": ["system"],
+    "Card F": ["execution"],
+    "Revenue Driver Bridge": ["revenue"]
+  },
+  "story": {
+    "P0 Economics DNA — how all-island scarcity becomes BESS cash flow": ["system"],
+    "Official first-pass economics — VERIFIED, DERIVED and PROXY": ["revenue"],
+    "Capacity accreditation — approved de-rated MW drives cash": ["revenue-drivers:award"],
+    "Operating vs committed BESS competition — auction evidence within its boundary": ["downside"],
+    "Executable spread / capture-rate release gates": ["bankable"],
+    "Official system evolution — GCS/AIRAA, SOEF and CSO": ["system"],
+    "Opportunity logic — attractiveness is separate from confidence": ["bankable"],
+    "One-minute orientation for a new institutional investor": ["system"],
+    "Demand growth — the reason the capacity price keeps clearing high": ["system"],
+    "Who owns Irish storage — five strategies competing for the same de-rated MW": ["execution"],
+    "Exit channels — how capital recycles out of Irish storage": ["bankable"],
+    "Near-term outlook — 2026 to 2029: two compressions, one support": ["downside"],
+    "Long-term outlook — 2030 to 2035: adequacy, ambition and augmentation": ["downside"],
+    "What breaks this storyline — three monitored uncertainties": ["downside"],
+    "Bridge to the detailed dashboard": []
+  },
+  "grid": {
+    "#geo-grid-map": ["system"],
+    "Constraint and dispatch-down — the system problem storage is paid to solve": ["system"],
+    "The network build behind the offers — named projects and their delivery step": ["system"]
+  },
+  "capacity": {
+    "Reliability Option": ["revenue-drivers:award", "mechanism", "downside"],
+    "Nameplate → paid capacity": ["revenue-drivers:award", "mechanism"]
+  },
+  "energy": {
+    "Captured spread": ["downside"]
+  },
+  "services": {
+    "FASS transition": ["revenue-drivers:ancillary", "downside"],
+    "Service suite": ["revenue-drivers:ancillary", "mechanism"],
+    "Underwriting rule": ["bankable"]
+  }
+};
+
+const RO = {
+  "benchmark": {
+    "Market design — the same asset earns differently in each market": [],
+    "Revenue certainty compared — what a capacity mechanism is worth": [],
+    "Scale and fundamentals — similar problem, different size": [],
+    "Where the constraint sits in each market": [],
+    "What transfers from Poland to a Romanian decision — and what does not": []
+  },
+  "home": {
+    "Institutional Investor Walkthrough": [],
+    "Card A": ["revenue-drivers:award"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["revenue-drivers:ancillary"],
+    "Card D": ["revenue"],
+    "Card E": ["system"],
+    "Card F": ["bankable"],
+    "Revenue Driver Bridge": ["revenue"]
+  },
+  "story": {
+    "One-minute orientation for a new institutional investor": ["system"],
+    "Official system evolution — named plan years, no invented bridge": ["system"],
+    "Public pipeline evidence — useful funnel, incomplete BESS queue": ["execution"],
+    "Romania opportunity logic — attractiveness is not confidence": ["bankable"],
+    "Economics DNA — what creates and captures Romanian BESS value": ["system"],
+    "Governed first pass — verified facts, derived signals and proxies": ["revenue"],
+    "Capacity and competition coverage": ["downside"],
+    "Who is building Romanian storage — four strategies, one bottleneck": ["execution"],
+    "Near-term outlook — 2026 to 2029: convert or lose the window": ["downside"],
+    "Long-term outlook — 2030 to 2035: coal exit and the second window": ["downside"],
+    "What breaks this storyline — three monitored uncertainties": ["downside"],
+    "Bridge to the detailed dashboard": []
+  },
+  "grid": {
+    "Interactive Romania grid — past, current and planned": ["system"],
+    "The network build behind the offers — named works in the adopted RET plan": ["system"]
+  },
+  "capacity": {
+    "The support stack": ["revenue-drivers:award", "mechanism"],
+    "Grant mechanics": ["revenue-drivers:award", "execution"],
+    "Adequacy context": ["system"]
+  },
+  "energy": {
+    "Captured spread": ["downside"]
+  },
+  "services": {
+    "Reserve products": ["revenue-drivers:ancillary", "mechanism"],
+    "aFRR capacity price trend": ["revenue-drivers:ancillary", "downside"],
+    "Evidence ladder": ["bankable"]
+  }
+};
+
+const PL = {
+  "benchmark": {
+    "Market design — the same asset earns differently in each market": [],
+    "Revenue certainty compared — what the capacity mechanism is worth": [],
+    "Scale and fundamentals — same problem, different size": [],
+    "Where value is created in each market": [],
+    "What transfers from Romania to a Polish decision — and what does not": []
+  },
+  "home": {
+    "Institutional Investor Walkthrough": [],
+    "Card A": ["revenue-drivers:award"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["revenue-drivers:ancillary"],
+    "Card D": ["revenue"],
+    "Card E": ["system"],
+    "Card F": ["execution"],
+    "Revenue Driver Bridge": ["revenue"]
+  },
+  "story": {
+    "One-minute orientation for a new institutional investor": ["system"],
+    "Official system evolution — adopted pathway and planning basis": ["system"],
+    "Storage evidence — connection snapshot, not a complete queue": ["sources"],
+    "Poland opportunity logic — attractiveness is not confidence": ["bankable"],
+    "Economics DNA — what creates and captures Polish BESS value": ["system"],
+    "Governed first pass — verified facts, derived signals and proxies": ["revenue"],
+    "Capacity and competition coverage": ["downside"],
+    "The price shape — coal exit meets solar growth": ["system"],
+    "Who is building Polish storage — four strategies, one bottleneck": ["execution"],
+    "Near-term outlook — 2026 to 2029: auction position decides returns": ["downside"],
+    "Long-term outlook — 2030 to 2035: obligation, replacement and the second window": ["downside"],
+    "What breaks this storyline — three monitored uncertainties": ["downside"],
+    "Bridge to the detailed dashboard": []
+  },
+  "grid": {
+    "Interactive Poland grid — past, current and planned": ["system"],
+    "The network build behind the refusals — named projects in the agreed PRSP": ["system"]
+  },
+  "capacity": {
+    "The obligation side": ["revenue-drivers:award", "mechanism", "downside"],
+    "Correction factors": ["revenue-drivers:award", "mechanism"]
+  },
+  "energy": {
+    "Captured spread": ["downside"]
+  },
+  "services": {
+    "Reserve products": ["revenue-drivers:ancillary", "mechanism"],
+    "aFRR capacity price trend": ["revenue-drivers:ancillary", "downside"],
+    "Evidence ladder": ["bankable"]
+  }
+};
+
+const PJM = {
+  "benchmark": {
+    "How the contracted line is produced, market by market": [],
+    "Where PJM sits on the two things it is worst at": []
+  },
+  "home": {
+    "Position at a glance": ["bankable"],
+    "The four facts": ["system"],
+    "What the operating fleet earns, and why this model publishes less": ["revenue"]
+  },
+  "story": {
+    "What changes next, and when": ["downside"]
+  },
+  "grid": {
+    "Interactive PJM grid — past, current and planned": ["system"]
+  },
+  "capacity": {
+    "The ELCC ladder": ["revenue-drivers:award", "mechanism"],
+    "The fourteen assumed years": ["revenue-drivers:award", "downside"]
+  },
+  "energy": {
+    "The node decides": ["revenue-drivers:merchant", "system"]
+  },
+  "services": {
+    "Why the observed number": ["revenue-drivers:ancillary", "downside"],
+    "Regulation does not pay": ["revenue-drivers:ancillary", "mechanism"]
+  }
+};
+
+const ERCOT = {
+  "benchmark": {
+    "The two bargains, side by side": [],
+    "What that means for an allocation": []
+  },
+  "home": {
+    "Position at a glance": ["bankable"],
+    "The four facts": ["system"],
+    "The collapse, and the fleet size that explains it": ["revenue"]
+  },
+  "story": {
+    "What changes next, and when": ["downside"]
+  },
+  "grid": {
+    "Interactive ERCOT grid — past, current and planned": ["system"]
+  },
+  "capacity": {
+    "A real market": ["bankable", "revenue-drivers"],
+    "Named tolled assets": ["bankable", "revenue-drivers"],
+    "Why there is no capacity market": ["revenue-drivers:award", "mechanism"]
+  },
+  "energy": {
+    "ORDC": ["revenue-drivers:merchant", "mechanism"],
+    "The disagreement": ["downside"]
+  },
+  "services": {
+    "Why the observed number": ["revenue-drivers:ancillary", "downside"],
+    "RTC+B": ["revenue-drivers:ancillary", "mechanism", "downside"]
+  }
+};
+
+const CAISO = {
+  "benchmark": {
+    "The three bargains": [],
+    "What the federal layer does not differentiate": []
+  },
+  "home": {
+    "Position at a glance": ["bankable"],
+    "Where the revenue actually comes from": ["revenue"],
+    "The four facts": ["system"]
+  },
+  "story": {
+    "What changes next, and when": ["downside"]
+  },
+  "grid": {
+    "Interactive CAISO grid — past, current and planned": ["system", "execution"]
+  },
+  "capacity": {
+    "The contracted line": ["revenue-drivers:award", "bankable"],
+    "Slice of Day": ["revenue-drivers:award", "mechanism"]
+  },
+  "energy": {
+    "The residual nobody explains": ["revenue-drivers:merchant", "downside"]
+  },
+  "services": {
+    "Where the ancillary seed": ["revenue-drivers:ancillary", "downside"]
+  }
+};
+
+const FI = {
+  "home": {
+    "#card": ["bankable"],
+    "Card A": ["revenue-drivers:ancillary"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["bankable"],
+    "Card D": ["execution"]
+  },
+  "story": {
+    "What the reserve boom did to reserve prices": ["downside"],
+    "Why adequacy stopped being the question": ["system"]
+  },
+  "grid": {
+    "Interactive Finland grid — the north–south cut and the restricted south": ["system"]
+  },
+  "capacity": {
+    "#card": ["revenue-drivers:award", "mechanism"]
+  },
+  "services": {
+    "What the system procures": ["revenue-drivers:ancillary", "mechanism", "downside"]
+  }
+};
+
+const CA_ON = {
+  "home": {
+    "#card": ["bankable"],
+    "Card A": ["revenue-drivers:award"],
+    "Card B": ["revenue-drivers:merchant"],
+    "Card C": ["bankable"],
+    "Card D": ["downside"]
+  },
+  "story": {
+    "What Market Renewal did to the spread": ["revenue-drivers:merchant"]
+  },
+  "grid": {
+    "Interactive Ontario storage map": ["execution"],
+    "The transmission system": ["execution"]
+  },
+  "capacity": {
+    "The terms": ["revenue-drivers:award", "bankable", "downside"]
+  },
+  "energy": {
+    "The trading line": ["revenue-drivers:merchant", "downside"]
+  }
+};
+
+const SA = {
+  "home": {
+    "#card": ["bankable"]
+  },
+  "grid": {
+    "Interactive Saudi storage map": ["execution"],
+    "The transmission system": ["execution"]
+  },
+  "capacity": {
+    "The terms": ["revenue-drivers:award", "bankable"],
+    "Group 1 awards": ["execution"]
+  },
+  "duration": {
+    "#card": ["execution"]
+  }
+};
+
+const ES = {
+  "home": {
+    "#card": ["bankable"],
+    "Card A": ["revenue-drivers:merchant"],
+    "Card B": ["downside"],
+    "Card C": ["revenue-drivers:award"],
+    "Card D": ["execution"]
+  },
+  "story": {
+    "Price level against battery value": ["revenue-drivers:merchant"]
+  },
+  "grid": {
+    "Interactive Spain storage map": ["execution"],
+    "The transmission system": ["execution"]
+  },
+  "energy": {
+    "The fleet path": ["revenue-drivers:merchant", "downside"]
+  },
+  "capacity": {
+    "What Order": ["revenue-drivers:award", "downside"]
+  }
+};
+
+const WA = {
+  "home": {
+    "#tab-home": []
+  },
+  "story": {
+    "#tab-story": ["system"]
+  },
+  "rcm": {
+    "#tab-rcm": ["revenue-drivers:award", "mechanism", "bankable"]
+  },
+  "fcess": {
+    "#tab-fcess": ["revenue-drivers:ancillary", "mechanism"]
+  },
+  "grid": {
+    "#tab-grid": ["system", "execution"]
+  },
+  "pipeline": {
+    "#tab-pipeline": ["execution", "downside"]
+  },
+  "portfolio": {
+    "#tab-portfolio": []
+  }
+};
+
 /** Card-level placements, by the dashboard that owns the research. */
-export const MARKET_MAPS = { nem: NEM, jp: JP };
+export const MARKET_MAPS = { nem: NEM, jp: JP, gb: GB, de: DE, it: IT, ie: IE, ro: RO, pl: PL, pjm: PJM, ercot: ERCOT, caiso: CAISO, fi: FI, ca_on: CA_ON, sa: SA, es: ES, wa: WA };
 
 /**
  * THE DECISION LIST: research with no clear home on the market page.
@@ -210,6 +685,48 @@ export const UNASSIGNED = [
   { market: 'jp', section: 'benchmark', card: 'One-page comparison matrix', routed: false,
     suggest: 'Market background · System tensions, or delete',
     reason: 'Tokyo, Kyushu and Hokkaido on one table, written and never given a tab, so no reader can reach it today. Publishing it is a new publication, not a relocation.' },
+  {"market": "gb", "section": "benchmark", "card": "Market design — the same asset earns differently in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "benchmark", "card": "Capacity economics compared — the single largest structural difference", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "benchmark", "card": "Scale — the GB sponsor is not competing in the same market size", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "benchmark", "card": "What actually constrains delivery in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "benchmark", "card": "System services in both markets — the same saturation story, four years apart", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "benchmark", "card": "What transfers from Ireland to a GB decision — and what does not", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "gb", "section": "home", "card": "Institutional Investor Walkthrough", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A navigation walkthrough between research tabs. The market page already supplies the chapter path and its own investment view; the original remains reachable."},
+  {"market": "gb", "section": "story", "card": "Bridge to the detailed dashboard", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A question map linking to the detailed research tabs. Chapter disclosures now provide those routes on the market page; the original links stay in their tab."},
+  {"market": "de", "section": "benchmark", "card": "One variable, isolated", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "de", "section": "benchmark", "card": "And the mirror-image weakness", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "it", "section": "benchmark", "card": "One variable, isolated", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "it", "section": "benchmark", "card": "And the mirror-image weakness", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "Market design — the same asset earns differently in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "Capacity economics compared — the single largest structural difference", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "Scale and saturation — a ratio, not a level", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "Route to market — self-dispatch versus central scheduling", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "System services in both markets — the same saturation story, four years apart", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "benchmark", "card": "What transfers from GB to an Irish decision — and what does not", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ie", "section": "home", "card": "Institutional Investor Walkthrough", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A navigation walkthrough between research tabs. The market page already supplies the chapter path and its own investment view; the original remains reachable."},
+  {"market": "ie", "section": "story", "card": "Bridge to the detailed dashboard", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A question map linking to the detailed research tabs. Chapter disclosures now provide those routes on the market page; the original links stay in their tab."},
+  {"market": "ro", "section": "benchmark", "card": "Market design — the same asset earns differently in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ro", "section": "benchmark", "card": "Revenue certainty compared — what a capacity mechanism is worth", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ro", "section": "benchmark", "card": "Scale and fundamentals — similar problem, different size", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ro", "section": "benchmark", "card": "Where the constraint sits in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ro", "section": "benchmark", "card": "What transfers from Poland to a Romanian decision — and what does not", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ro", "section": "home", "card": "Institutional Investor Walkthrough", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A navigation walkthrough between research tabs. The market page already supplies the chapter path and its own investment view; the original remains reachable."},
+  {"market": "ro", "section": "story", "card": "Bridge to the detailed dashboard", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A question map linking to the detailed research tabs. Chapter disclosures now provide those routes on the market page; the original links stay in their tab."},
+  {"market": "pl", "section": "benchmark", "card": "Market design — the same asset earns differently in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pl", "section": "benchmark", "card": "Revenue certainty compared — what the capacity mechanism is worth", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pl", "section": "benchmark", "card": "Scale and fundamentals — same problem, different size", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pl", "section": "benchmark", "card": "Where value is created in each market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pl", "section": "benchmark", "card": "What transfers from Romania to a Polish decision — and what does not", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pl", "section": "home", "card": "Institutional Investor Walkthrough", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A navigation walkthrough between research tabs. The market page already supplies the chapter path and its own investment view; the original remains reachable."},
+  {"market": "pl", "section": "story", "card": "Bridge to the detailed dashboard", "routed": true, "suggest": "Keep in the research tabs only", "reason": "A question map linking to the detailed research tabs. Chapter disclosures now provide those routes on the market page; the original links stay in their tab."},
+  {"market": "pjm", "section": "benchmark", "card": "How the contracted line is produced, market by market", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "pjm", "section": "benchmark", "card": "Where PJM sits on the two things it is worst at", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ercot", "section": "benchmark", "card": "The two bargains, side by side", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "ercot", "section": "benchmark", "card": "What that means for an allocation", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "caiso", "section": "benchmark", "card": "The three bargains", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "caiso", "section": "benchmark", "card": "What the federal layer does not differentiate", "routed": false, "suggest": "Keep unrouted until reviewed; consider the relevant market-background or financing chapter", "reason": "This comparison has no research tab today. Showing it in a chapter would be a new publication, not a relocation; the analyst must decide its destination or deletion."},
+  {"market": "wa", "section": "home", "card": "#tab-home", "routed": true, "suggest": "Keep the whole overview in the research tabs", "reason": "The hand-written overview combines navigation, signals and a house view already present on the market page. It is preserved rather than split into copied cards."},
+  {"market": "wa", "section": "portfolio", "card": "#tab-portfolio", "routed": true, "suggest": "Keep the public withheld notice in its research tab", "reason": "The project-level portfolio is confidential. The context adapter never imports its renderer; the public tab and its withheld notice remain unchanged."},
 ];
 
 /* ---- reading the map ------------------------------------------------------- */
@@ -234,7 +751,7 @@ export function placementsOf(owner, section, key){
  * The picks researchExcerpt() takes for one chapter of one market: the cards
  * named for it, plus the rest of each section whose default it is.
  *
- * @param owner    the dashboard that owns the research ('nem', 'jp')
+ * @param owner    the dashboard that owns the research (Japan uses 'jp')
  * @param chapter  a key of CHAPTERS
  * @param slot     for `revenue-drivers`, one of SLOTS; null for research across them
  */
@@ -242,6 +759,13 @@ export function picksFor(owner, chapter, slot = null){
   if (!MARKET_MAPS[owner]) return [];
   const target = slot ? chapter + ':' + slot : chapter;
   return SECTION_ORDER.flatMap(section => {
+    /* WA's hand-written names differ, and its unassigned overview/portfolio
+       tabs have no contextual renderer. Do not emit an empty rest-pick for
+       a whole tab excluded in full. The history-only dashboards have no case
+       or entry section. A pick must name an existing public research unit. */
+    if (owner === 'wa' ? ['home', 'portfolio', 'capacity', 'services', 'benchmark'].includes(section)
+      : ['rcm', 'fcess'].includes(section)) return [];
+    if (['ca_on', 'sa', 'es'].includes(owner) && ['case', 'entry'].includes(section)) return [];
     const mine = owned(owner, section);
     const cards = mine.filter(([, to]) => to.includes(target)).map(([phrase]) => phrase);
     const rest = DEFAULT_MAP[section] === target;

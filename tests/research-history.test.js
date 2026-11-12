@@ -91,7 +91,15 @@ test('full original source expressions preserve every period, title, paragraph, 
     }
     for(const event of c.nodes)assert.ok(hashes.has(event.hash),`${owner} axis ${event.axis} ${event.period} full y/t/p/i`);
     const h=await historyFor(owner);assert.equal(nodes(h).length,c.nodes.length,owner);
-    assert.match(await source(c.original),/researchHistory\(/,owner+' original research reads shared authority');
+    /* Japan's original single-file owner was mechanically split in Release 4.
+       The historical contract still names where it came from; the routed
+       story section must continue to read the same authoritative history. */
+    const researchPath = owner === 'jp' ? 'src/markets/jp/sections/story.js' : c.original;
+    assert.match(await source(researchPath),/researchHistory\(/,owner+' original research reads shared authority');
+    if (owner === 'jp'){
+      assert.match(await source(c.original), /sections\/registry\.js/);
+      assert.match(await source('src/markets/jp/sections/registry.js'), /story:.*import\('\.\/story\.js'\)/);
+    }
   }
 });
 

@@ -46,7 +46,15 @@ import './scene.css';
    Step data is content, one module per market, fetched with that market's
    first scene and kept. A market with no module has the three views and the
    switches, and no step-through. */
-const SEQUENCE_LOADERS={nem:()=>import('./sequences/nem.js'),jp:()=>import('./sequences/jp.js')};
+const SEQUENCE_LOADERS={
+  wa:()=>import('./sequences/wa.js'),nem:()=>import('./sequences/nem.js'),
+  gb:()=>import('./sequences/gb.js'),de:()=>import('./sequences/de.js'),
+  it:()=>import('./sequences/it.js'),ie:()=>import('./sequences/ie.js'),
+  ro:()=>import('./sequences/ro.js'),pl:()=>import('./sequences/pl.js'),
+  jp:()=>import('./sequences/jp.js'),pjm:()=>import('./sequences/pjm.js'),
+  ercot:()=>import('./sequences/ercot.js'),caiso:()=>import('./sequences/caiso.js'),
+  fi:()=>import('./sequences/fi.js'),
+};
 const sequenceCache=new Map();
 export const sequenceGroup=id=>id.startsWith('jp_')?'jp':id;
 /** The sequences for a market, or [] when it has none. Never rejects the scene: a failed fetch is no sequences. */
@@ -101,7 +109,7 @@ const flow=(from,to,z,reverse=false,count=3)=>SYMBOLS.flow(from[0],from[1],{to,z
 /** The drawing for one view of one scenario. */
 function diagram(data,view,state,selected,compact,sequence,live){
   const theme=data.summary.theme,frame=(compact?FRAMES.compact:FRAMES.wide),{W}=frame,{H,tx,ty,k,rail}=frame[view];
-  const id=uid('public-scene'),where=limitOf(theme),linked=where==='link',dark=state.time==='night';
+  const id=uid('public-scene'),where=limitOf(theme,data.marketId),linked=where==='link',dark=state.time==='night';
   const charging=state.flow==='charge',moving=state.flow!=='idle'&&state.breaker==='closed';
   const ctx={lights:[]};
   /* A world point in frame units: labels and marks are drawn there, unscaled, so they stay readable. */
@@ -141,10 +149,10 @@ function diagram(data,view,state,selected,compact,sequence,live){
       world.append(SYMBOLS.pylon(...X));
       const full=state.network==='constrained';
       world.append(wire(F,X,{cls:full?'public-constrained-line':'public-ac-line'}),line([[X[0],X[1],4.6],[14.2,-5.2,4.6]],full?'public-constrained-line':'public-ac-line'));
-      if(CONVERTER.has(theme))world.append(converterStation(11.6,-2.9));
+      if(CONVERTER.has(theme)||['gb','ie'].includes(data.marketId))world.append(converterStation(11.6,-2.9));
       if(full){marks.push(congestionMark(...P(16,-.5,4.4)));label([16,-.5,4.4],['Link at its limit','联络线已达上限'],{dx:14,dy:4});}
       else if(!dark)world.append(flow([16,1],[16,-2.2],4.6,false,2));
-      label([14.2,-5.2,4.6],theme==='tokyo'?['To the western system','通往西部系统']:theme==='regional'?['To the neighbouring area','通往相邻区域']:['To Honshu','通往本州'],{dx:-8,dy:-6,anchor:'end'});
+      label([14.2,-5.2,4.6],theme==='tokyo'?['To the western system','通往西部系统']:['kyushu','hokkaido'].includes(theme)?['To Honshu','通往本州']:['To the neighbouring area','通往相邻区域'],{dx:-8,dy:-6,anchor:'end'});
     }
     if(where==='boundary')world.append(SYMBOLS.noLink(18,-2.4,{length:5}),line([[14,-3.2,.1],[27,-3.2,.1]],'public-boundary'));
     /* who instructs: the operator, in front and to the left */
@@ -210,7 +218,7 @@ function diagram(data,view,state,selected,compact,sequence,live){
   const svg=s('svg',{viewBox:`0 0 ${W} ${H}`,class:'public-power-scene k-stage'+(compact?' is-compact':'')+(live?' is-live':''),'data-market':data.marketId,'data-theme':theme,'data-mode':view,'data-time':state.time,'data-frame':compact?'compact':'wide',
       role:'img','aria-labelledby':`${id}-title ${id}-desc`},
     s('title',{id:`${id}-title`},L(sequence?sequence.title:data.constraint)),
-    s('desc',{id:`${id}-desc`},readScenario(state,theme,view).map(([,text])=>L(text)).join(' ')),
+    s('desc',{id:`${id}-desc`},readScenario(state,theme,view,data.marketId).map(([,text])=>L(text)).join(' ')),
     s('rect',{class:'k-sky',width:W,height:tintH,rx:10}),
     view==='storage'?null:skyMarks(W-(compact?34:58),compact?30:44),
     world,
@@ -240,7 +248,7 @@ export function renderScene(data,initial='system',{sequences=[],start=null}={}){
   const theme=data.summary.theme;
   /* The sequence a chapter opens on is the first that calls that chapter home. */
   let sequence=sequences.find(q=>q.id===start)||sequences.find(q=>q.home.includes(initial))||sequences[0]||null;
-  let view=initial,state=baseScenario(theme),selected=null,player=null;
+  let view=initial,state=baseScenario(theme,data.marketId),selected=null,player=null;
   const narrow=typeof matchMedia==='function'?matchMedia('(max-width: 720px)'):null;
 
   const root=h('figure',{class:'public-scene','data-local-mechanism':data.marketId});
@@ -267,12 +275,12 @@ export function renderScene(data,initial='system',{sequences=[],start=null}={}){
       h('p',{class:'public-scene-disclosure'},L(['SCHEMATIC · NOT TO SCALE · NO SIMULATED DISPATCH','示意 · 不按比例 · 不模拟调度'])));
     modes.replaceChildren(...VIEWS.map(([key,label])=>h('button',{type:'button','data-mode':key,'aria-pressed':String(view===key),onclick:()=>{view=key;draw(true);modes.querySelector(`[data-mode=${key}]`)?.focus({preventScroll:true});}},L(label))));
     viewport.replaceChildren(diagram(data,view,state,selected,compact,sequence,live));
-    reading.replaceChildren(...readScenario(state,theme,view).map(([key,text])=>h('li',{'data-reading':key},L(text))));
+    reading.replaceChildren(...readScenario(state,theme,view,data.marketId).map(([key,text])=>h('li',{'data-reading':key},L(text))));
     const focused=document.activeElement&&switches.contains(document.activeElement)?[...switches.querySelectorAll('button')].indexOf(document.activeElement):-1;
     switches.replaceChildren(
       h('p',{class:'public-switch-note'},L(['Change the scenario. The drawing and the lines above follow; the investment case does not. A payment condition opens the payment chain.','改变情景：图示与上方说明随之变化；投资方案不受影响。更改付款条件会切换到收入因果视图。'])),
       choice(SWITCHES.time.label,SWITCHES.time.options,state.time,'data-time',key=>set({time:key,solar:key==='day'?(state.solar==='off'?'on':state.solar):'off'})),
-      limitOf(theme)==='boundary'?null:choice(SWITCHES.network.label,SWITCHES.network.options,state.network,'data-network',key=>set({network:key})),
+      limitOf(theme,data.marketId)==='boundary'?null:choice(SWITCHES.network.label,SWITCHES.network.options,state.network,'data-network',key=>set({network:key})),
       choice(SWITCHES.flow.label,SWITCHES.flow.options,state.flow,'data-flow',key=>set({flow:key,breaker:'closed'})),
       h('div',{class:'public-switch',role:'group','aria-label':L(['Payment conditions','付款条件'])},h('span',{class:'public-switch-label'},L(['Payment conditions','付款条件'])),
         ...CONDITIONS.map(([key,text],i)=>h('button',{type:'button','data-condition':key,'aria-pressed':String(state[key]),onclick:()=>{view='mechanism';set({[key]:!state[key]});}},`${i+1} · `,L(sequence?.gates?.[i]||text)))));
@@ -299,7 +307,7 @@ export function renderScene(data,initial='system',{sequences=[],start=null}={}){
     picker.hidden=sequences.length<2;
     if(!sequence){playerHost.replaceChildren(viewport);draw();return;}
     player=sequencePlayer({steps:sequence.steps,stage:viewport,
-      onStep:step=>{state={...baseScenario(theme),...(sequence.base||{}),...step.state};view=step.view;draw(true);},
+      onStep:step=>{state={...baseScenario(theme,data.marketId),...(sequence.base||{}),...step.state};view=step.view;draw(true);},
       caption:step=>sourceLine(data,step)});
     playerHost.replaceChildren(player.node);
     draw();

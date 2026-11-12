@@ -114,14 +114,7 @@ test('the market-background reading carries research under System tensions and M
   }
 });
 
-test('a market whose research is not placed reads as before, and a failed load offers a retry',async({page})=>{
-  await visit(page,'great-britain');
-  await expect(page.locator('.ix-research-context')).toHaveCount(0);
-  await page.locator('.public-story-trigger').click();
-  await page.locator('.public-story-nav button[data-chapter=system]').click();
-  await expect(page.locator('.public-power-scene')).toBeVisible();
-  await expect(page.locator('.public-story-dialog .ix-research-context')).toHaveCount(0);
-
+test('a failed research load offers a retry without replacing the chapter',async({page})=>{
   let fail=true;await page.route(/\/assets\/research-context-.*\.js/,r=>fail?r.abort():r.continue());
   await visit(page,'nem');
   const node=disclosure(page,'execution');
@@ -131,4 +124,125 @@ test('a market whose research is not placed reads as before, and a failed load o
   await expect(page.locator('#execution h2').first()).toBeVisible();
   fail=false;await node.getByRole('button',{name:'Retry'}).click();
   await expect(node.locator('.ix-research-card').first()).toBeVisible();
+});
+
+
+/* The full rollout is exercised through the built site in both languages and
+   both configured viewports. Open every available chapter, not just the first
+   dashboard, so an empty mapping or a missing adapter cannot hide behind a
+   working market. */
+const ROLLOUT = [
+  ['nem','nem'], ['jp','japan-tokyo'], ['jp','japan-kyushu'], ['jp','japan-hokkaido'],
+  ['wa','western-australia'], ['gb','great-britain'], ['de','germany'],
+  ['it','italy'], ['ie','ireland'], ['ro','romania'], ['pl','poland'],
+  ['pjm','pjm'], ['ercot','ercot'], ['caiso','caiso'], ['fi','finland'],
+  ['ca_on','ontario'], ['sa','saudi-arabia'], ['es','spain'],
+];
+for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
+  test(`${slug} research chapters reuse public research (${locale})`, async ({page}) => {
+    test.setTimeout(120000);
+    const errors=[]; page.on('pageerror', error => errors.push(error.message));
+    const fetched=[]; page.on('request', request => fetched.push(request.url()));
+    await visit(page,slug,locale);
+    expect(fetched.some(url => /\/assets\/research-context-/.test(url))).toBe(false);
+    const panels=page.locator('main .ix-research-context');
+    const expectedTargets=['revenue-drivers:award','revenue-drivers:merchant','revenue-drivers:ancillary',
+      ...(['jp','de','it','ercot'].includes(owner)?['revenue-drivers']:[]),
+      ...(owner==='sa'?['bankable','execution','sources']:['bankable','revenue','execution','downside','sources'])];
+    expect(await panels.evaluateAll(nodes=>nodes.map(node=>node.dataset.researchChapter+
+      (node.dataset.researchSlot?':'+node.dataset.researchSlot:'')).sort())).toEqual(expectedTargets.sort());
+    if(owner==='sa'){
+      /* Research may explain an unpriced market; it must not invent a return. */
+      await expect(page.locator('#revenue, #downside')).toHaveCount(0);
+      await expect(page.locator('#bankable > .ix-kpis')).toHaveCount(0);
+      await expect(page.locator('#bankable > p')).toContainText(locale==='zh'?'尚无完整回报模型':'does not yet have a complete return model');
+    }
+    const surfaced=new Set();
+    expect(await panels.evaluateAll(nodes => nodes.some(node => node.open))).toBe(false);
+    for (const panel of await panels.all()){
+      const mechanism=panel.locator('xpath=ancestor::details[contains(@class,"ix-mechanism")]');
+      if (await mechanism.count() && !await mechanism.evaluate(node => node.open))
+        await mechanism.locator(':scope > summary').click();
+      await panel.locator(':scope > summary').click();
+      const body=panel.locator('.ix-research-context-body');
+      await expect(body).toHaveAttribute('aria-busy','false');
+      await expect(body.locator('.ix-research-kind')).toContainText(locale==='zh'?'研究摘录':'Research excerpt');
+      const target=await panel.evaluate(node=>({chapter:node.dataset.researchChapter,slot:node.dataset.researchSlot||null}));
+      expect(await body.locator('.ix-research-group').evaluateAll(nodes=>nodes.map(node=>node.dataset.researchSection)))
+        .toEqual(picksFor(owner,target.chapter,target.slot).map(pick=>pick.section));
+      const cards=body.locator('.ix-research-card');
+      expect(await cards.count()).toBeGreaterThan(0);
+      expect(await cards.evaluateAll(nodes => nodes.filter(node => node.open).length)).toBe(1);
+      await expect(body.locator('.ix-research-card[open] .ix-research-card-body').first()).not.toBeEmpty();
+      if(owner==='sa') for(const card of await cards.all()){
+        /* All fourteen non-history units must be reachable even without a
+           priced model. The fifteenth is the existing history reading. */
+        surfaced.add(await card.evaluate(node=>node.closest('[data-research-section]').dataset.researchSection+'/'+node.dataset.researchCard));
+        await card.evaluate(node=>{node.open=true;});
+        await expect(card.locator('.ix-research-card-body')).not.toBeEmpty();
+      }
+      const links=body.locator('.ix-research-tab-link');
+      expect(await links.count()).toBeGreaterThan(0);
+      for (const href of await links.evaluateAll(nodes => nodes.map(node => node.getAttribute('href'))))
+        expect(href).toMatch(new RegExp('^/markets/'+slug+'/'));
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
+      await panel.locator(':scope > summary').click();
+    }
+    if(owner==='sa')expect(surfaced.size).toBe(14);
+    /* Reuse this page and its already fetched research for the two public
+       reading chapters. The separate NEM test above holds cold-load laziness;
+       this matrix checks all routes without another navigation per chapter. */
+    await page.locator('.public-story-trigger').click();
+    const dialog=page.locator('.public-story-dialog');
+    await expect(dialog).toBeVisible();
+    if (['ca_on','sa','es'].includes(owner)){
+      await expect(dialog.locator('.public-power-scene')).toHaveCount(0);
+      await expect(dialog.locator('.ix-research-context')).toHaveCount(0);
+      await expect(dialog.locator('.public-story-nav button[data-chapter=system], .public-story-nav button[data-chapter=mechanism]')).toHaveCount(0);
+    } else {
+      for (const chapter of ['system','mechanism']){
+        await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
+        const panel=disclosure(dialog,chapter);
+        await expect(panel).toHaveCount(1);
+        expect(await panel.evaluate(node=>node.open)).toBe(false);
+        await panel.locator(':scope > summary').click();
+        const body=panel.locator('.ix-research-context-body');
+        await expect(body).toHaveAttribute('aria-busy','false');
+        await expect(body.locator('.ix-research-kind')).toContainText(locale==='zh'?'研究摘录':'Research excerpt');
+        await expect(body.locator('.ix-research-card[open] .ix-research-card-body').first()).not.toBeEmpty();
+        expect(await body.locator('.ix-research-group').evaluateAll(nodes=>nodes.map(node=>node.dataset.researchSection)))
+          .toEqual(picksFor(owner,chapter).map(pick=>pick.section));
+        const links=body.locator('.ix-research-tab-link');
+        expect(await links.count()).toBeGreaterThan(0);
+        for (const href of await links.evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href'))))
+          expect(href).toMatch(new RegExp('^/markets/'+slug+'/'));
+        expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
+        expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
+        await panel.locator(':scope > summary').click();
+      }
+    }
+    if (owner==='wa'){
+      /* Neither page nor reading may reach the confidential portfolio adapter. */
+      expect(fetched.some(url => /portfolioSection|wa-portfolio/.test(url))).toBe(false);
+    }
+    expect(errors).toEqual([]);
+  });
+}
+
+
+for (const locale of ['en','zh']) test(`Japan fetches only the requested sections and keeps the regional lens (${locale})`, async ({page}) => {
+  for (const region of ['tokyo','kyushu','hokkaido']){
+    const fetched=[]; const record=request=>fetched.push(request.url()); page.on('request',record);
+    await visit(page,'japan-'+region,locale);
+    expect(fetched.filter(url=>/\/assets\/section-jp-/.test(url))).toEqual([]);
+    const panel=disclosure(page,'revenue');
+    await panel.locator(':scope > summary').click();
+    await expect(panel.locator('.ix-research-context-body')).toHaveAttribute('aria-busy','false');
+    const sections=fetched.map(url=>/section-jp-([a-z]+)-/.exec(url)?.[1]).filter(Boolean);
+    const expected=picksFor('jp','revenue').map(pick=>pick.section);
+    expect([...new Set(sections)].filter(id=>id!=='shared').sort()).toEqual([...expected].sort());
+    const bodyText=await panel.innerText();
+    expect(bodyText).toContain(locale==='zh'?{tokyo:'东京',kyushu:'九州',hokkaido:'北海道'}[region]:{tokyo:'Tokyo',kyushu:'Kyushu',hokkaido:'Hokkaido'}[region]);
+    page.off('request',record);
+  }
 });

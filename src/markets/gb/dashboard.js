@@ -38,6 +38,12 @@ export async function researchSummary(container, route) {
   engine.researchSummary(container, route, markets);
 }
 
+/* Read the same cards as the research tabs, only when a chapter asks. */
+export async function researchExcerpt(route, picks) {
+  await loadSections(engine.api, picks.map(pick => pick.section));
+  return engine.researchExcerpt(route, markets, picks);
+}
+
 export const state = engine.state;
 
 export function dashboard(container, route){

@@ -47,7 +47,7 @@ const REQUIRE_OUTPUT = process.env.REQUIRE_OUTPUT === '1';
 const kB = (bytes) => Math.round(bytes / 1024 * 100) / 100;
 
 /**
- * Budgets in gzipped kB, as Vite reports them (1 kB = 1000 bytes).
+ * Budgets in gzipped KiB (1 KiB = 1024 bytes), summed per emitted file.
  *
  * `entry` is the whole first-load cost: the application shell, the home cockpit,
  * and every market's manifest and comparison interface. It does NOT include any
@@ -86,7 +86,9 @@ const BUDGET = {
   // merging main (its comparison, source, congestion and decision-profile modules).
   // 2026-10-29: Saudi Arabia and Spain registered. Measured 156.63 at b56738e and
   // 167.98 with both, +11.35 for two markets (Ontario alone was +10.24).
-  entry: 170,
+  // R4 availability metadata adds 0.64 KiB to the complete entry graph.
+  // Measured 170.33 KiB; retain the content rather than optimise for a cap.
+  entry: 170.5,
 
   /* THE HOME PAGE'S FIRST VIEW: the entry chunk plus everything the verdict
      board loads — the board itself and the method layer (anchors, investor
@@ -189,7 +191,11 @@ const BUDGET = {
     // Owner approved 2026-11-07: CAISO +0.5 KiB (44 -> 44.5, +1.14%) for
     // the EIA inventory integration. All other market/shared caps are unchanged.
     sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44.5, ercot: 59, de: 64, pjm: 65, it: 75, ro: 34,
-    pl: 40, jp: 127, nem: 30, gb: 62, ie: 75, wa: 207,
+    // R4 Japan sections are now lazy: 86.24 KiB for the dashboard itself,
+    // down from 115.51. WA's public tab adapter factors its former monolith
+    // into reusable chunks; count its complete owner-only closure below.
+    // Measured 215.02 KiB, including gzip overhead across the split files.
+    pl: 40, jp: 92, nem: 30, gb: 62, ie: 75, wa: 216,
   },
 
   /* A market's sections, when it fetches them one at a time.
@@ -210,6 +216,10 @@ const BUDGET = {
      investment-case component and are not held to the floor. */
   sections: {
     nem: { total: 100, largest: 15, count: 13 },
+    // R4: 13 unchanged Japan sections, 42.73 KiB plus shared history;
+    // largest is home at 8.97 KiB. All eight regional/language readings
+    // match the pre-split source fingerprints, including compare mode.
+    jp:  { total: 48, largest: 10, count: 13 },
     /* P1-C, measured 2026-11-04 from the build output. Each cap sits a little
        above measured: GB 94.96 / 22.37, IE 82.41 / 20.17, PL 76.24 / 17.42,
        RO 74.26 / 16.51 (total / largest, KiB gzip). The four story sections
@@ -301,7 +311,10 @@ const BUDGET = {
        with the NEM and Japan placed (2026-11-11). The map grows by a few
        hundred bytes for each market placed, so raise it for that and for
        nothing else; the decision list is not shipped at all. */
-    'research-context': 6,
+    // R4 places all sixteen dashboards: measured 8.11 KiB, +3.79 from
+    // the NEM/Japan pilot; the decision list is still not shipped.
+    'research-context': 8.5,
+    'research-wa': 2,
     /* The explanatory scene of the market-background reading: the drawing, the
        three coordinated views, the step-through player, the four layers and
        the operator, payer and network symbols. Fetched when a reader opens a
@@ -315,6 +328,13 @@ const BUDGET = {
        market added in the next release gets its own line here. */
     'public-sequence-nem': 6,
     'public-sequence-jp': 6,
+    // R4: three market-specific sequences each, measured 3.05–3.88 KiB.
+    'public-sequence-wa': 4.25, 'public-sequence-gb': 4.25,
+    'public-sequence-de': 4.25, 'public-sequence-it': 4.25,
+    'public-sequence-ie': 4.25, 'public-sequence-ro': 4.25,
+    'public-sequence-pl': 4.25, 'public-sequence-pjm': 4.25,
+    'public-sequence-ercot': 4.25, 'public-sequence-caiso': 4.25,
+    'public-sequence-fi': 4.25,
     // Independently fetched pricing data: only the active investor is awaited.
     infraFund:17, strategic:17, foreignFirstTimer:17, developer:17,
     'delivery-wa': 8,
@@ -657,6 +677,19 @@ async function readChunks(){
    histories stay charged to their original story-section cap. Complete public
    and first-visit closures are also checked; no bytes or CSS are excluded. */
 function marketOwnedChunks(graph,id){
+  if(id==='wa'){
+    /* The hand-written WA dashboard still imports its public tabs statically,
+       while the new excerpt adapter imports them one at a time. Rollup now
+       emits their shared WA-only dependencies separately. They remain WA's
+       cost, not a cost every other market incurs. Derive ownership from the
+       COMPLETE static graph, never a filename allow-list: anything another
+       dashboard or the entry uses remains in the shared/entry accounting.
+       Delivery was already a separately capped feature before this release. */
+    const shared=closure(graph.entry,graph.byName);
+    for(const [other,chunk]of graph.markets)if(other!=='wa')closure(chunk,graph.byName,shared);
+    const delivery=new Set([...graph.features].filter(([name])=>name.startsWith('delivery-')).map(([,chunk])=>chunk));
+    return [...closure(graph.markets.get('wa'),graph.byName)].filter(chunk=>!shared.has(chunk)&&!delivery.has(chunk));
+  }
   return [...new Set([graph.markets.get(id),graph.researchData.get(id),
     id in BUDGET.sections?null:graph.researchHistory.get(id)].filter(Boolean))];
 }
@@ -928,6 +961,7 @@ const SECTION_PROBE = {
   ie:  { text: 'Ireland Market Evolution — from a wind-integration problem to a capacity-priced storage market', chunk: /^research-history-ie-/ },
   pl:  { text: 'Poland Market Evolution — from a coal capacity market to a storage capacity market', chunk: /^research-history-pl-/ },
   ro:  { text: 'Romania Market Evolution — from a coal-and-hydro system to a solar-driven arbitrage market', chunk: /^research-history-ro-/ },
+  jp:  { text: 'Regional divergence — three lanes', chunk: /^research-history-jp-/ },
 };
 
 for (const [id, budget] of Object.entries(BUDGET.sections)){
