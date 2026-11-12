@@ -17,8 +17,29 @@ import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor, publicReadingFor } from './story/registry.js';
+import { researchPlaced } from './researchPlaced.js';
 import './story/public/overview.css';
 
+
+/* One closed disclosure: the research behind a chapter. Nothing is fetched
+   until it is opened, and then ./researchContext.js fills it. Null for a
+   market whose research is not placed yet, so its chapters read as before. */
+function researchDisclosure(market, chapter, { slot = null, label = ['Research behind this section', '本节背后的研究'] } = {}) {
+  if (!researchPlaced(market)) return null;
+  const body = h('div', { class: 'ix-research-context-body' });
+  const node = h('details', { class: 'ix-details ix-research-context', 'data-research-chapter': chapter, ...(slot ? { 'data-research-slot': slot } : {}) },
+    h('summary', {}, L(label)), body);
+  let asked = false;
+  const fill = () => {
+    asked = true;
+    body.replaceChildren(h('p', { class: 'ix-caption' }, L(['Loading the research behind this section…', '正在载入本节背后的研究…'])));
+    import('./researchContext.js').then(module => module.mountResearchContext(body, market.manifest.id, { chapter, slot }))
+      .catch(() => { if (body.isConnected) body.replaceChildren(h('p', {}, L(['The research behind this section could not be loaded.', '本节背后的研究暂未载入。'])),
+        h('button', { class: 'ix-button ix-outline', type: 'button', onclick: fill }, L(['Retry', '重试']))); });
+  };
+  node.addEventListener('toggle', () => { if (node.open && !asked) fill(); });
+  return node;
+}
 
 /** Market details are loaded only on a market route. Shared UI conventions are passed unchanged. */
 export function createMarketRenderer(ui) {
@@ -91,7 +112,9 @@ function renderMarket(container, row, route) {
     try {
       const pack=await publicEntry.load();
       if(content.isConnected && !storyOpen()) pack.open({id:mf.id,name:marketName(row),trigger,place,openResearch,
-        openLegacy:()=>document.querySelector('.ix-full-research')?.click(),researchUrl:`${caseUrl(row)}/home`});
+        openLegacy:()=>document.querySelector('.ix-full-research')?.click(),researchUrl:`${caseUrl(row)}/home`,
+        /* System tensions and Market mechanism carry the research behind them. */
+        researchContext:chapter=>researchDisclosure(m,chapter,{label:['Research behind this chapter','本章背后的研究']})});
     } catch {
       if(trigger)trigger.dataset.loadFailed='true';
       const status=content.querySelector('.public-status');
@@ -124,7 +147,10 @@ function renderMarket(container, row, route) {
   const dropSpecial = () => { specialHost.remove(); content.querySelector('.ix-section-nav a[href="#opportunity-comparison"]')?.remove(); };
   const loadOpportunity = () => import('../opportunities/ui.js').then(module => {
     if (!opportunityHost.isConnected) return;
-    opportunityHost.replaceChildren(module.revenueMechanismSection(row));
+    opportunityHost.replaceChildren(module.revenueMechanismSection(row, researchPlaced(m) && {
+      under: (slot, label) => researchDisclosure(m, 'revenue-drivers', { slot, label }),
+      across: researchPlaced(m).across ? label => researchDisclosure(m, 'revenue-drivers', { label }) : null,
+    }));
     opportunityHost.setAttribute('aria-busy','false');
     const screen = module.specialOpportunityScreen(row, investor);
     const special = screen.valid.length ? module.opportunityComparison(row, investor, { only: screen.valid }) : null;
@@ -204,7 +230,8 @@ function bankableSection(data) {
     h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['RTB closing → COD', 'RTB交割→COD']), ' / ',row.investment?.rtbMonths,L([' months','个月'])), h('span', {}, L(['Operating life', '运营寿命']), ' / 20 ',L(['years','年']))),
     h('details', { class: 'ix-details ix-valuation-basis' }, h('summary', {}, L(['Valuation basis', '估值口径'])),
       h('p', {}, L(['The home card, global screen and conventional comparison column share this 20-year nominal after-tax RTB case, with the inflation and contract-indexation assumptions stated for each scenario; actual contract clauses require separate verification. The headline is the all-equity hold return. The levered return adds one project loan at COD: contracted cash covers 1.20–1.40x by contract type, merchant cash 2.00x, at least 60% is repaid by legal maturity and equity repays any balloon. The target test compares all-equity with the target, then levered with the target plus two points.','首页卡片、全球比较及测算表常规列共用20年、税后名义RTB投资模型，通胀与合同指数化采用各情景注明的比较假设，实际合同条款须另行核验。主回报为全股权长持回报；杠杆后回报在COD提取一笔项目贷款：合同现金流按合同类型1.20–1.40倍覆盖、市场现金流2.00倍，法定到期前至少偿还60%，尾款由股权偿还。目标检验先以全股权对比目标，再以杠杆后回报对比目标加2个百分点。'])),
-      h('p', {}, L([`The previous operating-model IRR was ${pct(base.irrHold)} over 15 years before project tax. Operating-asset valuation rates remain: fixed ${pct(base.valuationRates.secured)}, renewal ${pct(base.valuationRates.renewal)}, trading ${pct(base.valuationRates.merchant)}.`,`旧版15年税前运营模型IRR为${pct(base.irrHold)}。运营资产估值参考折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。`]))));
+      h('p', {}, L([`The previous operating-model IRR was ${pct(base.irrHold)} over 15 years before project tax. Operating-asset valuation rates remain: fixed ${pct(base.valuationRates.secured)}, renewal ${pct(base.valuationRates.renewal)}, trading ${pct(base.valuationRates.merchant)}.`,`旧版15年税前运营模型IRR为${pct(base.irrHold)}。运营资产估值参考折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。`]))),
+    researchDisclosure(row.market, 'bankable'));
 }
 
 function revenueSection(data) {
@@ -215,7 +242,8 @@ function revenueSection(data) {
       metric(['Gross revenue / MW / year', '首年总收入 / MW'], money(b.gross)), metric(['Fixed income share', '固定收入占比'], share(b.gross>0?b.fixed/b.gross:0)),
       metric(['After-tax operating cash / MW / year', '首年税后经营现金流 / MW'], money(b.net)), h('p', {}, L(['First complete operating year in the same investment model as the headline return. Trading includes ancillary services; operating costs include OEM service.','采用与主回报相同的投资模型、首个完整运营年度；交易收入含辅助服务，运营成本含设备服务费。']))),
       card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Revenue → operating cash flow', '收入 → 经营现金流'])), h('span', { class: 'ix-mono' }, 'USD k / MW · Y1')), chartFrame(revenueWaterfall(b)),
-        h('details', { class: 'ix-details' }, h('summary', {}, L(['See the exact breakdown', '查看精确拆解'])), h('table', { class: 'ix-table' }, h('tbody', {}, parts.map(([label, val]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, money(val))))))))));
+        h('details', { class: 'ix-details' }, h('summary', {}, L(['See the exact breakdown', '查看精确拆解'])), h('table', { class: 'ix-table' }, h('tbody', {}, parts.map(([label, val]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, money(val))))))))),
+    researchDisclosure(data.row.market, 'revenue'));
 }
 
 function executionSection(row) {
@@ -248,6 +276,8 @@ function executionSection(row) {
     });
     section.append(details);
   }
+  const research = researchDisclosure(row.market, 'execution');
+  if (research) section.append(research);
   return section;
 }
 
@@ -278,7 +308,8 @@ function downsideSection(data) {
       h('article', {}, eyebrow(['01 / REVENUE', '01 / 收入']), h('h3', {}, L(['Separate the mechanism from the contract.', '区分市场机制与已签合同。'])), h('p', {}, L(base.fixedRevenueEvidence?.basis || ['Project contract evidence remains to be collected.', '仍需收集项目合同证据。'])), h('span', { class: 'ix-risk-stat' }, L(['Project contract documents not verified','项目合同文件尚未核验']))),
       h('article', {}, eyebrow(['02 / DELIVERY', '02 / 交付']), h('h3', {}, L(['Protect the path to first revenue.', '守住首次收入的实现路径。'])), h('p', {}, L(profile?.currentUpdate || row.market.comparison.narrative.thesis))),
       h('article', {}, eyebrow(['03 / FUNDING', '03 / 资金']), h('h3', {}, L(['Fund the delivery milestones.', '按交付里程碑落实资金。'])),
-        h('p', {}, L(['Match equity funding to the construction, grid and revenue-qualification dates above. Keep a reserve for delayed works and the first operating period. Test project-specific financing in the Investment Lab.','按上方建设、并网与收入资格节点落实股权资金，为工程延期及初期运营预留现金。项目融资条件可在投资测算中另行核验。'])))));
+        h('p', {}, L(['Match equity funding to the construction, grid and revenue-qualification dates above. Keep a reserve for delayed works and the first operating period. Test project-specific financing in the Investment Lab.','按上方建设、并网与收入资格节点落实股权资金，为工程延期及初期运营预留现金。项目融资条件可在投资测算中另行核验。'])))),
+    researchDisclosure(row.market, 'downside'));
 }
 
 function sourcesSection(row) {
@@ -288,7 +319,8 @@ function sourcesSection(row) {
     h('div', { class: 'ix-source-meta' }, metric(['Market data vintage', '市场数据口径'], meta.dataDate), metric(['View last approved', '观点最近批准日期'], HOME_BRIEFING.lastApproved?.[row.id]?.slice(0,10) || '—'), metric(['Market model', '市场模型版本'], meta.modelVersion), metric(['Briefing built on', '简报生成日期'], snapshotDate)),
     h('details', { class: 'ix-details ix-source-list' }, h('summary', {}, L([`Open ${sources.length} source references`, `查看${sources.length}项来源`])),
       ...sources.map(([key, source]) => h('a', { href: source.url, target: '_blank', rel: 'noopener noreferrer' }, h('span', {}, L(source.file || source.title || key)), h('small', {}, source.date || ''), h('span', { 'aria-hidden': 'true' }, '↗')))),
-    h('div', { class: 'ix-actions' }, link(`${caseUrl(row)}/data`, ['Full market data & methodology ↗', '完整市场数据与方法 ↗'], 'ix-text-link'), row.investment?button(['Model this market ↗', '进入本市场测算 ↗'], () => openUnderwriting(row), 'ix-outline'):link(`${caseUrl(row)}/data`,['Evidence required before pricing ↗','查看定价前证据缺口 ↗'],'ix-text-link')));
+    h('div', { class: 'ix-actions' }, link(`${caseUrl(row)}/data`, ['Full market data & methodology ↗', '完整市场数据与方法 ↗'], 'ix-text-link'), row.investment?button(['Model this market ↗', '进入本市场测算 ↗'], () => openUnderwriting(row), 'ix-outline'):link(`${caseUrl(row)}/data`,['Evidence required before pricing ↗','查看定价前证据缺口 ↗'],'ix-text-link')),
+    researchDisclosure(row.market, 'sources'));
 }
 
 return renderMarket;

@@ -52,6 +52,7 @@ import { createLab } from './lab.js';
 import { createDesignFitBlock } from './designFitBlock.js';
 import { createBlocks } from './blocks.js';
 import { createExports } from './exports.js';
+import { researchUnits, pickUnits } from './researchUnits.js';
 
 /**
  * @param {object} cfg
@@ -157,6 +158,15 @@ export function createMarketEngine(cfg){
     get theme(){ return app.theme; },
   };
 
+  /* Cards drawn outside the dashboard, under a chapter of the market page
+     (researchExcerpt, below). A scorecard or a checklist calls render() when
+     the reader changes it. On the dashboard that redraws the page; on a market
+     page it would close the disclosure the reader is working in, so each
+     excerpt keeps how to repaint itself and render() repaints those while any
+     is on screen. The dashboard and the market page are different routes, so
+     the two cases never meet. */
+  const excerpts = new Set();
+
   function render(){
     if (pendingTab != null){
       const t = pendingTab;
@@ -166,6 +176,8 @@ export function createMarketEngine(cfg){
       navigate(basePath + '/' + t + q);   // route change triggers the re-render
       return;
     }
+    for (const excerpt of excerpts) if (!excerpt.el.isConnected) excerpts.delete(excerpt);
+    if (excerpts.size){ for (const excerpt of excerpts) excerpt.paint(); return; }
     requestRender();
   }
 
@@ -449,5 +461,77 @@ export function createMarketEngine(cfg){
       title:['One-minute market orientation','一分钟市场定位'],
       blocks:[...((orientation?.blocks) || []), ...historyBlocks] });
   }
-  return { state, dashboard, SECTIONS, api, researchSummary };
+
+  /* -------------------------------------------------------------------------
+     RESEARCH IN CONTEXT: the cards a chapter of the market page asks for.
+
+     Nothing is copied. A pick names a section and, by a phrase of its title,
+     the cards wanted from it (src/markets/_shared/researchUnits.js); what comes
+     back draws those same specifications with the same renderer and the same
+     enhancements the research tab uses, so a chart, a table and a source
+     drawer are the ones the tab shows. A section that is not loaded, or a
+     phrase that names no card, yields nothing rather than an error: the map is
+     held to the research by tests/research-map.test.js, not by the page.
+
+     The caller decides the presentation — which card is open, what heads the
+     group — so this returns closures instead of drawing into a container. A
+     market whose sections load on demand fetches the picked sections first
+     (see its dashboard.js).
+
+     @param route       { basePath, region } as for dashboard()
+     @param allMarkets  the registry
+     @param picks       [{ section, cards?: string[], rest?: boolean, except?: string[] }]
+                        as pickUnits() reads them, in the section's own order
+     @returns [{ section, label, head, lead(el), cards: [{ key, title, badges, visual, draw(el) }] }]
+     ------------------------------------------------------------------------- */
+  function researchExcerpt(route, allMarkets, picks){
+    const bind = () => {
+      registry = allMarkets;
+      basePath = route.basePath;
+      if (REGIONS) regionValue = REGION_IDS.includes(route.region) ? route.region : REGIONS[0][0];
+    };
+    bind();
+    for (const excerpt of excerpts) if (!excerpt.el.isConnected) excerpts.delete(excerpt);
+    const built = SECTIONS();
+    return (picks || []).flatMap(pick => {
+      const spec = built[pick.section];
+      if (!spec) return [];
+      const { lead, units } = researchUnits(spec);
+      const chosen = pickUnits(units, pick);
+      if (!chosen.length) return [];
+      return [{
+        section: pick.section,
+        label: TABS.find(([id]) => id === pick.section)?.[1] || null,
+        head: spec.head || null,
+        /* The section as its tab opens: warning, heading, caption, the text
+           before its first card, and its reviewed claim where it has one. */
+        lead: (el) => {
+          bind();
+          renderSection({ warn: spec.warn, head: spec.head, cap: spec.cap, blocks: lead })(el);
+          enhanceMarketPage(el, { marketId: MKT.id, tabId: pick.section });
+        },
+        cards: chosen.map(unit => ({
+          key: unit.key, title: unit.title, badges: unit.badges, visual: unit.visual,
+          /* `after(el)` runs on every paint, for a caller that dresses the card. */
+          draw: (el, after) => {
+            /* Re-read on every paint: sections re-evaluate per language, and an
+               interactive block repaints through render() above. */
+            const paint = () => {
+              bind();
+              const now = researchUnits(SECTIONS()[pick.section]).units.find(u => u.key === unit.key);
+              el.replaceChildren();
+              if (!now) return;
+              ctx.blocks.B(el, now.blocks.map((block, i) => (i ? block : { ...block, mt: false })));
+              enhanceMarketPage(el);
+              after?.(el);
+            };
+            excerpts.add({ el, paint });
+            paint();
+          },
+        })),
+      }];
+    });
+  }
+
+  return { state, dashboard, SECTIONS, api, researchSummary, researchExcerpt };
 }

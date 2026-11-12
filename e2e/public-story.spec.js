@@ -100,8 +100,8 @@ test('Japan region switching keeps the edition and chapter while changing local 
 
 test('the first screen fetches no complete narrative or SVG; subsequent chapters reuse the successful modules',async({page})=>{
   const fetched=[];page.on('request',r=>fetched.push(r.url()));
-  await page.goto('/markets/nem');await page.locator('.public-story-trigger').waitFor();expect(fetched.some(s=>/public-(?:content-|scene-|chapter-|pack-)|story-geometry-/.test(s))).toBe(false);
-  await page.locator('.public-story-trigger').click();await page.locator('.public-chapter').waitFor();expect(fetched.some(s=>/public-content-nem-/.test(s))).toBe(true);expect(fetched.some(s=>/public-scene-|story-geometry-/.test(s))).toBe(false);
+  await page.goto('/markets/nem');await page.locator('.public-story-trigger').waitFor();expect(fetched.some(s=>/public-(?:content-|scene-|sequence-|chapter-|pack-)|story-geometry-/.test(s))).toBe(false);
+  await page.locator('.public-story-trigger').click();await page.locator('.public-chapter').waitFor();expect(fetched.some(s=>/public-content-nem-/.test(s))).toBe(true);expect(fetched.some(s=>/public-scene-|public-sequence-|story-geometry-/.test(s))).toBe(false);
   await page.locator('.public-story-nav button[data-chapter=mechanism]').click();await page.locator('.public-power-scene').waitFor();
   await page.waitForLoadState('networkidle');const count=fetched.length;await page.locator('.public-story-nav button[data-chapter=storage]').click();await page.locator('.public-power-scene').waitFor();await page.waitForLoadState('networkidle');expect(fetched.length).toBe(count);
 });
@@ -124,21 +124,14 @@ test('source dates remain visible while internal approval events stay out of rea
 
 test.describe('touch panning',()=>{
   test.use({hasTouch:true});
-  test('phone and iPad scene scrolling leaves annotations reachable by touch',async({page},info)=>{
+  test('the phone and iPad scene fits its column and leaves annotations reachable by touch',async({page},info)=>{
     await page.setViewportSize(info.project.name==='mobile'?{width:390,height:844}:{width:820,height:1180});
     await page.goto('/markets/nem');await page.locator('.public-story-trigger').tap();
     await page.locator('.public-story-nav button[data-chapter=storage]').tap();
     const view=page.locator('.public-scene-viewport');await view.waitFor();await view.scrollIntoViewIfNeeded();
-    const box=await view.boundingBox();
-    if(info.project.name==='mobile'){
-      expect(await view.evaluate(el=>el.scrollWidth>el.clientWidth)).toBe(true);
-      const cdp=await page.context().newCDPSession(page),start=box.x+box.width-28,end=box.x+28,y=box.y+box.height/2;
-      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:start,y,id:0}]});
-      for(let i=1;i<=8;i++){await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:start+(end-start)*i/8,y,id:0}]});await page.evaluate(()=>new Promise(requestAnimationFrame));}
-      await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-      await expect.poll(()=>view.evaluate(el=>el.scrollLeft)).toBeGreaterThan(0);
-      await cdp.detach();
-    }
+    /* The drawing has a compact frame for a phone: it is read whole, never panned sideways. */
+    expect(await view.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+    await expect(page.locator('.public-power-scene')).toHaveAttribute('data-frame',info.project.name==='mobile'?'compact':'wide');
     await page.locator('[data-part=transformer]').tap();await expect(page.locator('.public-equipment.is-selected')).toHaveAttribute('data-component','transformer');await expect(page.locator('[data-part=transformer]')).toBeFocused();
     await page.locator('[data-flow=charge]').tap();await expect(page.locator('[data-flow=charge]')).toHaveAttribute('aria-pressed','true');
     await page.screenshot({path:info.outputPath('touch-annotation.png')});

@@ -279,8 +279,14 @@ const BUDGET = {
      Each change alone fits inside 171; together they do not. This is a measured
      raise with both contributors named, not a slack allowance — and it leaves
      1.48 kB of room, so the next change here still has to justify itself.
-     See docs/p1-sections-pilot.md. */
-  sharedTotal: 173,
+     See docs/p1-sections-pilot.md.
+
+     RAISED FROM 173 TO 174 (2026-11-11) for research in context: the engine
+     every market carries can now hand a chapter of the market page the cards
+     it asks for (researchExcerpt in _shared/engine.js, with researchUnits.js).
+     Measured 172.85 on main at 294f801 and 173.71 with it, +0.86. Bytes that
+     were added, for all sixteen dashboards at once; 0.29 of room is left. */
+  sharedTotal: 174,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -289,6 +295,26 @@ const BUDGET = {
     // 2026-10-28: direct strategy cards and overview summary loader add ~3 kB;
     // the paired model remains lazy and the total first-view budget is unchanged.
     'investor-experience': 26,
+    /* Research in context: the panel a chapter's disclosure opens and the map
+       of which research card is read under which chapter. Fetched when a
+       reader opens a disclosure, never with the market page. Measured 4.32
+       with the NEM and Japan placed (2026-11-11). The map grows by a few
+       hundred bytes for each market placed, so raise it for that and for
+       nothing else; the decision list is not shipped at all. */
+    'research-context': 6,
+    /* The explanatory scene of the market-background reading: the drawing, the
+       three coordinated views, the step-through player, the four layers and
+       the operator, payer and network symbols. Fetched when a reader opens a
+       chapter that draws a scene, never with the market page or the reading's
+       first screen (e2e/public-story.spec.js). Measured 13.37 on 2026-11-12,
+       the first time this chunk has had a cap of its own. */
+    'public-scene': 15,
+    /* A market's step-through sequences: bilingual step text and source ids,
+       fetched with that market's first scene. Measured 5.2 (NEM, four
+       sequences) and 5.45 (Japan, three areas and the national auction). A
+       market added in the next release gets its own line here. */
+    'public-sequence-nem': 6,
+    'public-sequence-jp': 6,
     // Independently fetched pricing data: only the active investor is awaited.
     infraFund:17, strategic:17, foreignFirstTimer:17, developer:17,
     'delivery-wa': 8,

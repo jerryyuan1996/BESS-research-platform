@@ -45,11 +45,17 @@ export function renderChapter(data,id,ctx){
     const draw=async()=>{
       const run=++attempt;
       holder.setAttribute('aria-busy','true');
-      try{const scene=await import('./scene.js');if(run!==attempt||!ctx.alive())return;holder.replaceChildren(scene.renderScene(data,id));}
+      /* The market's step-through sequences come with its scene; a market with
+         none, or a sequence chunk that fails, still gets the three views. */
+      try{const scene=await import('./scene.js');const sequences=await scene.loadSequences(data.marketId);if(run!==attempt||!ctx.alive())return;holder.replaceChildren(scene.renderScene(data,id,{sequences}));}
       catch{if(run===attempt&&ctx.alive())holder.replaceChildren(P(['Scene unavailable; the text and sources remain readable. Retry reloads this chapter.','场景暂不可用；正文与来源仍可阅读。重试将重新加载本章。']),h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>window.location.reload()},L(['Retry scene','重试场景'])));}
       finally{holder.setAttribute('aria-busy','false');}
     };draw();
   }
+  /* The research behind the chapter, where the market's research is placed
+     (src/experience/researchMap.js). The page supplies the closed disclosure;
+     this reading imports no research and fetches none until it is opened. */
+  if(['system','mechanism'].includes(id)){const behind=ctx.researchContext?.(id);if(behind)node.append(behind);}
   const all=Object.entries(data.sources||{}).filter(([,s])=>s.url);
   const sectionSourceIds=new Set([...(data.sourceIdsByChapter?.[id]||[]),...data.extracts[id==='history'?'history':id==='system'?'system':'mechanism'].flatMap(e=>e.sourceIds),...(data.regionalSourceIds||[])]);
   const selected=all.filter(([key])=>sectionSourceIds.has(key));

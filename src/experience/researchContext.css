@@ -1,0 +1,35 @@
+/* Research in context: what a chapter's "research behind this section" opens.
+   Fetched with src/experience/researchContext.js, so a market page that opens
+   no disclosure carries none of it. The closed disclosure itself is an
+   .ix-details and needs nothing from here. */
+.ix-research-context-body { --bg:#f5f3ed; --surface:#fffefa; --ink:#193c32; --ink2:#526153; --border:#dce1d6; --s1:#315f4c; --s2:#648674; min-width:0; }
+/* Two-class selectors throughout: a disclosure can sit inside a mechanism card,
+   whose own `p` and `h4` rules must not restyle the research. */
+.ix-research-context-body .ix-research-kind { display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; margin:0 0 20px; font-size:var(--fs-xs); line-height:1.6; color:var(--ix-body); }
+.ix-research-context-body .ix-research-kind>span { font-size:var(--fs-2xs); text-transform:uppercase; letter-spacing:.04em; color:#806039; }
+.ix-research-group { padding:22px 0 4px; border-top:1px solid var(--ix-line); }
+.ix-research-group:first-of-type { padding-top:0; border-top:0; }
+.ix-research-context-body .ix-research-group-title { margin:0 0 8px; font:var(--fw-normal) var(--fs-xl)/1.4 var(--ix-serif); color:var(--ix-ink); }
+.ix-research-lead .sect { margin:0; padding:0; border:0; }
+.ix-research-context-body .ix-research-lead .cap { margin:0; max-width:900px; font-size:var(--fs-sm); line-height:1.7; color:var(--ix-body); }
+.ix-research-lead .warnbox { margin:0 0 12px; font-size:var(--fs-xs); }
+.ix-research-lead .claim { margin:12px 0 0; }
+.ix-research-cards { margin:16px 0 12px; border-bottom:1px solid var(--ix-line); }
+.ix-research-card { border-top:1px solid var(--ix-line); }
+.ix-research-card>summary { display:flex; align-items:center; gap:16px; min-height:44px; padding:12px 0; cursor:pointer; list-style:none; font-size:var(--fs-sm); font-weight:var(--fw-medium); line-height:1.5; color:var(--ix-ink); }
+.ix-research-card>summary::-webkit-details-marker { display:none; }
+.ix-research-card>summary::after { content:'+'; margin-left:auto; flex-shrink:0; font-size:var(--fs-xl); font-weight:var(--fw-normal); line-height:1; color:var(--ix-muted); }
+.ix-research-card[open]>summary::after { content:'−'; }
+.ix-research-card>summary:focus-visible { outline:2px solid var(--ix-green); outline-offset:2px; }
+.ix-research-card-body { min-width:0; padding:2px 0 24px; }
+.ix-research-card-body>.card { margin:0!important; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; }
+.ix-research-card-body .card .card { margin-top:18px!important; padding:16px 0 0; border:0; border-top:1px solid var(--ix-line); border-radius:0; background:transparent; box-shadow:none; }
+.ix-research-card-badges { display:flex; flex-wrap:wrap; gap:6px 12px; margin:0 0 14px; font-size:var(--fs-2xs); }
+.ix-research-tab-link { margin:2px 0 16px; }
+@media(max-width:560px){
+  .ix-research-card>summary { gap:10px; font-size:var(--fs-xs); }
+  .ix-research-card-body .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media print{ .ix-research-context:not([open]) { display:none; } }
+.ix-research-context-body p.ix-caption { font-size:var(--fs-micro); line-height:1.75; margin:0; }
+.ix-research-context-body .card p { font-size:inherit; line-height:inherit; }

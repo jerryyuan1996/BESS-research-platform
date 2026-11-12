@@ -1,20 +1,90 @@
+/* The explanatory scene of the market-background reading: the figure, the
+   step-through player, the reader's switches and the drawing's materials.
+   Fetched with the scene, never with the page. Layer line styles are shared
+   with the legend, so a swatch is drawn with the class the drawing uses. */
+
+/* ---- the figure ----------------------------------------------------------- */
 .public-scene { margin:24px 0 0; border:1px solid #cdd7cc; border-radius:var(--r-lg); padding:16px; background:#f4f5ec; }
-.public-scene-modes { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:12px; }
 .public-scene button { min-height:44px; font:inherit; font-size:var(--fs-xs); color:inherit; background:#fafbf6; border:1px solid #bdcdbf; border-radius:var(--r-sm); padding:9px 12px; cursor:pointer; }
 .public-scene button[aria-pressed=true] { background:#244f3d; color:#fff; border-color:#244f3d; }
-.public-scene-viewport { overflow:auto; border-radius:var(--r-md); scrollbar-width:thin; }
-.public-power-scene { display:block; width:100%; min-width:640px; height:auto; font-family:inherit; }
-.public-scene-background { fill:#edf1e5; }.public-land { fill:#dce5d3; stroke:#c5d1be; stroke-width:1; }
+.public-scene button:disabled { opacity:.45; cursor:default; }
+.public-scene-head { margin:0 0 12px; }
+.public-chapter .public-scene-head p { margin:0; max-width:none; }
+.public-chapter p.public-scene-title { font:var(--fw-normal) var(--fs-2xl)/1.3 var(--ix-serif); color:#214e38; margin:2px 0 4px; }
+.public-chapter p.public-scene-disclosure { font-size:var(--fs-2xs); letter-spacing:.6px; color:#637463; }
+.public-sequence-picker,.public-scene-modes { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:10px; }
+.public-sequence-picker button { text-align:left; }
+.public-sequence-picker[hidden],.public-scene-stages[hidden],.public-scene-causes[hidden] { display:none; }
+.public-scene-viewport { border-radius:var(--r-md); overflow:hidden; }
+.public-power-scene { display:block; width:100%; height:auto; font-family:inherit; }
+
+/* ---- the step-through player ----------------------------------------------- */
+.k-seq-bar { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:12px 0 0; }
+.public-scene .k-seq-play { min-width:86px; background:#244f3d; color:#fff; border-color:#244f3d; }
+.k-seq-steps { display:flex; flex-wrap:wrap; gap:6px; list-style:none; margin:0 0 0 6px; padding:0; }
+.public-scene .k-seq-steps button { min-width:44px; padding:9px 0; border-radius:var(--r-pill); text-align:center; font-variant-numeric:tabular-nums; }
+.public-scene .k-seq-steps button.is-done { background:#dfe8d6; }
+.public-scene .k-seq-steps button[aria-current] { background:#244f3d; color:#fff; border-color:#244f3d; }
+.k-seq-count { margin-left:auto; font-size:var(--fs-2xs); color:#637463; }
+.k-seq-caption { margin:14px 0 0; padding:14px 18px; border-left:3px solid #244f3d; background:#fbfcf7; border-radius:0 var(--r-md) var(--r-md) 0; min-height:132px; }
+.public-chapter .k-seq-caption p { margin:0; max-width:none; }
+.public-chapter p.k-seq-asks { font-size:var(--fs-2xs); text-transform:uppercase; letter-spacing:.04em; color:#806039; }
+.k-seq-title { margin:4px 0 6px; font:var(--fw-normal) var(--fs-xl)/1.35 var(--ix-serif); color:#18382c; }
+.public-chapter p.k-seq-text { font-size:var(--fs-md); line-height:1.7; }
+.public-chapter p.k-seq-sources { margin-top:10px; font-size:var(--fs-2xs); line-height:1.6; color:#637463; }
+.k-seq-sources a { text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+
+/* ---- what the drawing shows now, and the switches --------------------------- */
+.public-scene-reading { list-style:none; margin:14px 0 0; padding:0; display:grid; gap:4px; font-size:var(--fs-sm); line-height:1.6; }
+.public-scene-reading li { padding-left:16px; position:relative; }
+.public-scene-reading li::before { content:''; position:absolute; left:2px; top:.62em; width:6px; height:6px; border-radius:50%; background:#6f8f7a; }
+.public-scene-reading li[data-reading=payment] { margin-top:4px; padding:8px 12px 8px 26px; background:#eef1e3; border:1px solid #c9d6bf; border-radius:var(--r-md); font-weight:var(--fw-medium); }
+.public-scene-reading li[data-reading=payment]::before { left:12px; background:#a37732; }
+.public-scene-stages { list-style:none; counter-reset:stage; display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 0; padding:0; font-size:var(--fs-2xs); }
+.public-scene-stages li { counter-increment:stage; padding:6px 10px; border:1px solid #cdd7cc; border-radius:var(--r-pill); background:#fafbf6; }
+.public-scene-stages li::before { content:counter(stage) ' · '; color:#806039; }
+.public-scene-stages li[aria-current] { background:#244f3d; border-color:#244f3d; color:#fff; }
+.public-scene-stages li[aria-current]::before { color:#e9d9b6; }
+.public-scene-causes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:14px 0 0; }
+.public-cause { padding:12px 14px; border:1px solid #bfcdb8; border-radius:var(--r-md); background:#f9fbf4; }
+.public-cause strong { display:block; font-size:var(--fs-sm); color:#32543d; }
+.public-chapter .public-cause p { margin:6px 0 0; font-size:var(--fs-sm); line-height:1.6; color:#47664b; }
+.public-scene-switches { margin:16px 0 0; padding:12px 14px; border:1px dashed #b9c7b6; border-radius:var(--r-md); display:grid; gap:8px; }
+.public-chapter p.public-switch-note { margin:0; max-width:none; font-size:var(--fs-2xs); color:#637463; }
+.public-switch { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.public-switch-label { min-width:118px; font-size:var(--fs-2xs); text-transform:uppercase; letter-spacing:.04em; color:#637463; }
+
+/* ---- the legend ------------------------------------------------------------ */
+.k-layers { list-style:none; display:flex; flex-wrap:wrap; gap:6px 18px; margin:14px 0 0; padding:0; font-size:var(--fs-2xs); color:#4d5f50; }
+.k-layers li { display:flex; align-items:center; gap:7px; }
+.k-legend-swatch { width:44px; height:18px; flex:none; }
+
+/* ---- parts ----------------------------------------------------------------- */
+.public-parts { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin-top:14px; }
+.public-parts button { text-align:left; }
+.public-chapter p.public-hotspot-description { font-size:var(--fs-sm); line-height:1.6; min-height:44px; margin:13px 0; }
+.public-scene figcaption { font-size:var(--fs-2xs); color:#697b65; line-height:1.5; }
+
+/* ---- the drawing: ground and existing equipment ------------------------------ */
+.public-land { fill:#dce5d3; stroke:#c5d1be; stroke-width:1; }
 .public-power-scene .k-box { stroke-opacity:.4; stroke-width:.65; }
 .public-pad { fill:#c3c9ba; stroke:#a6b1a3; stroke-width:.7; }
+.public-shadow { fill:#1d3b2c; fill-opacity:.11; }
 .public-station-base { --t:#a2ad9d;--l:#7c8a79;--r:#65745f; }
 .public-station-shell { --t:#f3f3e8;--l:#d8ddcd;--r:#becbb5; }
 .public-station-roof { --t:#f7f7ec;--l:#cfd7c4;--r:#b6c5aa; }
 .public-rack-frame { --t:#465d4f;--l:#293e32;--r:#354c3d; }
 .public-cell-module { --t:#cddfca;--l:#92ad8d;--r:#6e946b; }
+.public-cell-module.is-charged { --t:#bfe6a9;--l:#79b85c;--r:#5a9a43; }
+.public-cell-module.is-empty { --t:#e1e4da;--l:#b9c0b2;--r:#9fa89a; }
 .public-module-detail { fill:none;stroke:#deebd7;stroke-width:1; }
+.public-gauge { --t:#eef0e6;--l:#f6f7ef;--r:#d5dacb; }
+.public-gauge-fill { --t:#8fcf6e;--l:#6cba49;--r:#559c37; stroke:none; }
 .public-dc-bus,.public-dc-line { stroke:#b57c29;fill:none;stroke-width:2.8; }
 .public-safety-panel { --t:#d3aa78;--l:#a57144;--r:#875b35; }
+.public-fire-cabinet { --t:#d9705a;--l:#b34f3c;--r:#93402f; }
+.public-hvac { --t:#e9ebe2;--l:#cbd2c6;--r:#aab6aa; }
+.public-fan { fill:none; stroke:#6a7d72; stroke-width:1; }
 .public-pcs-cabinet { --t:#f0f0e7;--l:#d1d8d0;--r:#a8b9ae; }
 .public-control-screen { --t:#5e9fa1;--l:#204f5e;--r:#356b72; }
 .public-vent { stroke:#60766c;stroke-width:.85;fill:none; }
@@ -23,27 +93,105 @@
 .public-insulator { --t:#e0dbc8;--l:#b2a98e;--r:#918772; }
 .public-bus-frame { --t:#a9b5ac;--l:#7c8c84;--r:#657a70; }
 .public-hv-wire { stroke:#3e6854;fill:none;stroke-width:1.5; }
+.public-blade { stroke:#2d5a46;fill:none;stroke-width:2.6;stroke-linecap:round; }
+.public-disconnector.is-open .public-blade { stroke:#b5622d; }
 .public-ac-line,.public-hv-line { stroke:#447b91;fill:none;stroke-width:2.6;stroke-linejoin:round; }
 .public-constrained-line { stroke:#b87e32;fill:none;stroke-width:3;stroke-dasharray:5 3; }
 .public-cable-trench { stroke:#9aab95;fill:none;stroke-width:11; }
 .public-boundary { stroke:#b58c57;fill:none;stroke-width:2;stroke-dasharray:7 5; }
-.public-switch { stroke:#a26632;fill:none;stroke-width:2; }
 .public-poc-ring { fill:#eaf2cf;stroke:#305e44;stroke-width:2; }
-.public-scene-title { fill:#214e38;font-size:var(--fs-2xl);font-weight:var(--fw-medium); }
-.public-scene-disclosure { fill:#637463;font-size:var(--fs-xs);letter-spacing:.6px; }
+.public-lamp { stroke:#fffefa; stroke-width:1.2; }
+.public-lamp.is-ok { fill:#58b34a; } .public-lamp.is-limited { fill:#e0a02f; } .public-lamp.is-off { fill:#9aa39a; }
+
+/* ---- the drawing: operator, payer, network --------------------------------- */
+.public-control-hall { --t:#e8eadf;--l:#cfd6c6;--r:#b2bcab; }
+.public-control-glass { --t:#7fb3b8;--l:#3f7f8c;--r:#33707c; }
+.public-control-roof { --t:#f3f4ea;--l:#c6cdbb;--r:#aab4a2; }
+.public-mullion { stroke:#e8efe9; stroke-width:1; fill:none; }
+.public-mast { --t:#8d978d;--l:#6f7a70;--r:#5c665d; }
+.public-dish { fill:#e9ebe1; stroke:#6f7a70; stroke-width:1; }
+.public-dish-feed { fill:#6f7a70; }
+.public-hall-plinth { --t:#efe9d8;--l:#d9d0b8;--r:#c0b69c; }
+.public-hall-wall { --t:#e6dfca;--l:#cfc5a9;--r:#b5aa8c; }
+.public-hall-column { --t:#f7f3e6;--l:#ebe4cf;--r:#cfc6aa; }
+.public-hall-door { --t:#6b5a3c;--l:#4f4129;--r:#4f4129; }
+.public-hall-roof { --t:#c9b98f;--l:#a8976d;--r:#93835c; }
+.public-valve-hall { --t:#d6dee0;--l:#b3c1c6;--r:#94a6ad; }
+.public-converter-mark rect { fill:#fffefa; stroke:#3f6f84; stroke-width:1.2; }
+.public-converter-mark path { fill:none; stroke:#3f6f84; stroke-width:1.5; stroke-linecap:round; }
+.public-congestion circle,.public-curtailed-mark circle,.public-open-mark circle { fill:#fff4dc; stroke:#b5722a; stroke-width:1.6; }
+.public-congestion path { fill:#b5722a; }
+.public-curtailed-mark path,.public-open-mark path { fill:none; stroke:#b5722a; stroke-width:2.4; stroke-linecap:round; }
+.k-solarfarm.is-curtailed .k-panel { fill:#7f8ea3; stroke:#c9d2de; stroke-dasharray:3 2; }
+.k-solarfarm.is-dark .k-panel { fill:#27364a; stroke:#5b6d86; }
+.public-headroom-sold { fill:#447b91; }
+.public-headroom-held { fill:#fff4dc; stroke:#b5722a; stroke-width:1.4; stroke-dasharray:3 2; }
+
+/* ---- the layers ------------------------------------------------------------ */
+.k-signal-line { fill:none; stroke:#5b3f8f; stroke-width:1.7; stroke-dasharray:.1 5; stroke-linecap:round; }
+.k-signal-end { fill:#5b3f8f; }
+.k-contract-link { fill:none; stroke:#7a5a2a; stroke-width:1.6; stroke-dasharray:7 4; }
+.k-contract.is-unsigned .k-contract-link { stroke-opacity:.35; }
+.k-document-page { fill:#fffaf0; stroke:#7a5a2a; stroke-width:1.3; stroke-linejoin:round; }
+.k-document-fold,.k-document-lines { fill:none; stroke:#7a5a2a; stroke-width:1; }
+.k-document-seal { fill:#a3382d; }
+.k-document.is-unsigned .k-document-page { fill:none; stroke-dasharray:3 2; }
+.k-document.is-unsigned .k-document-lines { stroke-opacity:.4; }
+.k-rail-track { fill:#ece6d4; stroke:#cbbf9d; stroke-width:1; }
+.k-rail-way { fill:none; stroke:#cbbf9d; stroke-width:2; stroke-dasharray:2 5; stroke-linecap:round; }
+.k-rail-done { fill:none; stroke:#a37732; stroke-width:3; stroke-linecap:round; }
+.k-rail-start rect { fill:#3f7f66; stroke:#245644; stroke-width:1; } .k-rail-start path { stroke:#245644; stroke-width:2; fill:none; }
+.k-rail-end circle { fill:#fffaf0; stroke:#cbbf9d; stroke-width:2; stroke-dasharray:3 3; }
+.k-rail-end.is-paid circle { stroke:#a37732; stroke-dasharray:none; }
+.k-gate-post { stroke:#6b766f; stroke-width:3; stroke-linecap:round; fill:none; }
+.k-gate-bar { stroke-width:4; stroke-linecap:round; fill:none; }
+.k-gate.is-open .k-gate-bar { stroke:#3f8a52; } .k-gate.is-shut .k-gate-bar { stroke:#b5622d; }
+.k-gate-lamp { stroke:#fffefa; stroke-width:1.2; }
+.k-gate.is-open .k-gate-lamp { fill:#3f8a52; } .k-gate.is-shut .k-gate-lamp { fill:#b5622d; }
+.k-gate-mark { fill:none; stroke:#fffefa; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.k-gate-no { font-size:var(--fs-2xs); font-weight:var(--fw-bold); fill:#4d5f50; }
+.k-rail-label { font-size:var(--fs-xs); fill:#32543d; }
+.k-rail-label.is-shut { fill:#9c5b40; }
+.k-token-disc { fill:#fffaf0; stroke:#a37732; stroke-width:2.2; }
+.k-token.is-paid .k-token-disc,.k-token-paid { fill:#d9a441; stroke:#8a6426; }
+.k-token-mark { fill:none; stroke:#5d4418; stroke-width:1.5; stroke-linecap:round; }
 .public-part-marker circle { fill:#fff7df;stroke:#6f7e52;stroke-width:1.2; }
+.public-part-marker.is-selected circle { fill:#244f3d; stroke:#244f3d; }
 .public-part-marker text { fill:#244b32;font-size:var(--fs-sm);font-weight:var(--fw-bold); }
-.public-local-payment { fill:#2c5942;font-size:var(--fs-2xl);font-weight:var(--fw-medium); }
-.public-flow-label { fill:#617160;font-size:var(--fs-md); }
+.public-part-marker.is-selected text { fill:#fff; }
 .public-equipment.is-muted { opacity:.25; }.public-equipment.is-selected { filter:drop-shadow(0 0 4px #c58b2d66); }
-.public-causal-card { fill:#f9fbf4;stroke:#bfcdb8;stroke-width:1; }
-.public-causal-title { fill:#32543d;font-size:var(--fs-lg);font-weight:var(--fw-medium); }
-.public-causal-copy { fill:#47664b;font-size:var(--fs-body); }
-.public-causal-arrow { fill:none;stroke:#6e865a;stroke-width:2; }
-.public-response-trace { fill:none;stroke:#a47b37;stroke-width:2; }
-.public-flow-controls { display:flex;gap:7px; margin:12px 0; }
-.public-parts { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px; }
-.public-parts button { text-align:left; }
-.public-chapter p.public-hotspot-description { font-size:var(--fs-sm);line-height:1.6;min-height:44px;margin:13px 0; }
-.public-chapter p.public-scene-scroll-hint,.public-scene figcaption { font-size:var(--fs-2xs);color:#697b65;line-height:1.5; }
-@media(max-width:720px){.public-scene { padding:10px; }.public-scene button { font-size:var(--fs-2xs); padding:8px 10px; }.public-parts { grid-template-columns:repeat(2,minmax(0,1fr)); }}
+.public-power-scene .k-label { font-size:var(--fs-xs); }
+
+/* ---- motion ----------------------------------------------------------------
+   One-off, on the layer that changed: the token travels to where it stops, the
+   chevrons light in the direction power moves, an instruction arrives. Nothing
+   loops, and a redraw that changes no scenario (selecting a part) moves
+   nothing. */
+.public-power-scene.is-live .k-token-move { animation:k-travel 1.1s cubic-bezier(.3,.7,.2,1) both; }
+.public-power-scene.is-live .k-flow .k-chevron { animation:k-arrive .5s ease-out both; }
+.public-power-scene.is-live .k-flow .k-chevron:nth-child(2) { animation-delay:.16s; }
+.public-power-scene.is-live .k-flow .k-chevron:nth-child(3) { animation-delay:.32s; }
+.public-power-scene.is-live .k-signal { animation:k-arrive .7s ease-out .2s both; }
+.public-power-scene.is-live .k-gate-bar,.public-power-scene.is-live .k-contract { animation:k-arrive .5s ease-out both; }
+@keyframes k-travel { from { transform:translateX(var(--k-from,0)); } to { transform:none; } }
+@keyframes k-arrive { from { opacity:0; } to { opacity:1; } }
+@media (prefers-reduced-motion:reduce) { .public-power-scene * { animation:none !important; transition:none !important; } }
+
+@media(max-width:720px){
+  .public-scene { padding:10px; }
+  .public-scene button { font-size:var(--fs-2xs); padding:8px 10px; }
+  .public-chapter p.public-scene-title { font-size:var(--fs-xl); }
+  .public-parts { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .public-scene-causes { grid-template-columns:1fr; }
+  .k-seq-caption { padding:12px 14px; min-height:0; }
+  .k-seq-count { width:100%; margin-left:0; }
+  .k-seq-steps { margin-left:0; }
+  .public-switch-label { min-width:100%; }
+}
+
+/* The time of day, lighter than in an investor story. There the sky is a band
+   above a horizon; here it is the whole frame behind a drawing that is read by
+   its labels, lamps and marks, so dusk is a warm wash and the cutaway, a
+   close-up of equipment, stays lighter still at night. */
+.public-scene .public-power-scene[data-time=dusk] { --k-sky:#f8e6d0; --k-tint-op:.12; }
+.public-scene .public-power-scene[data-mode=storage][data-time=night] { --k-sky:#5b6b82; --k-tint-op:.34; }

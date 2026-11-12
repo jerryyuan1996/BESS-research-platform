@@ -48,6 +48,15 @@ export async function researchSummary(container, route) {
   engine.researchSummary(container, route, markets);
 }
 
+/* Research in context: the cards a chapter of the market page asks for, lifted
+   out of the research itself (see researchExcerpt in _shared/engine.js). Only
+   the sections picked are fetched; a chunk that fails rejects, and the caller
+   offers a retry. */
+export async function researchExcerpt(route, picks) {
+  await loadSections(engine.api, picks.map(pick => pick.section));
+  return engine.researchExcerpt(route, markets, picks);
+}
+
 export const state = engine.state;
 
 export function dashboard(container, route){

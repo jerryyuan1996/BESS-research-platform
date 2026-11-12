@@ -74,6 +74,15 @@ export const REVENUE_MECHANISMS = {
     sources:[['IESO LT2 procurement','https://www.ieso.ca/Sector-Participants/Resource-Acquisition-and-Contracts/Long-Term-RFP-and-Expedited-Process']],
   },
 };
+/* Research in context: the family of research a mechanism card is explained
+   by, as src/experience/researchMap.js names its slots. A long-term award and
+   a capacity payment are one family; a toll is a private contract and no
+   research section explains one. Kept here, beside the cards, so the page
+   knows it without fetching the map. */
+export const MECHANISM_RESEARCH = {
+  cis: 'award', ltda: 'award', capacity: 'award', lt2: 'award', macse: 'award',
+  merchant: 'merchant', ancillary: 'ancillary',
+};
 export function revenueMechanismsFor(market, route) {
   const id = market.manifest.id;
   if (route === 'toll') return ['toll','merchant','ancillary'];
