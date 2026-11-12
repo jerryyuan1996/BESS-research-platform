@@ -23,7 +23,12 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       }
       const profile=page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true});
       await expect(profile).toBeVisible();await expect(profile).toHaveValue(investor);
-      const bound=await trigger.boundingBox();expect(bound.y+bound.height).toBeLessThanOrEqual(page.viewportSize().height);
+      const context=page.locator('.market-overview-context');
+      await expect(context).toHaveAttribute('aria-busy','false');
+      await expect(context.locator('.market-context-card')).toBeVisible();
+      const bound=await trigger.boundingBox(),card=await context.boundingBox();
+      expect(bound.y).toBeGreaterThanOrEqual(card.y+card.height);
+      expect(bound.y-card.y-card.height).toBeLessThanOrEqual(21);
       const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
       await expect(overview.locator('[data-date-kind=g1]')).toHaveCount(0);
       await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(c.evidenceCheckedOn?1:0);
