@@ -34,11 +34,13 @@
 /** Text a section may open with before its first card. */
 const LEAD_TYPES = new Set(['p', 'sub', 'cap', 'note', 'warn', 'proto', 'chip', 'why', 'band-story', 'reco']);
 
-/** Blocks that are a picture of the data: what a chapter shows first. */
-const VISUAL_TYPES = new Set(['line', 'bar', 'wf', 'band', 'pipeChart', 'geo-grid-map', 'timeline', 'phases', 'flow']);
+/* What a chapter shows first is a picture. A chart, a map or a timeline is one
+   (2); a flow of boxes is a diagram of the argument and comes next (1); text,
+   tables and figures are not pictures (0). */
+const PICTURE = { line: 2, bar: 2, wf: 2, band: 2, pipeChart: 2, 'geo-grid-map': 2, timeline: 2, flow: 1, phases: 1 };
 
 const nested = (block) => [...(block.blocks || []), ...(block.cards || [])].filter(Boolean);
-const holdsVisual = (block) => VISUAL_TYPES.has(block.t) || nested(block).some(holdsVisual);
+const pictureIn = (block) => Math.max(PICTURE[block.t] || 0, ...nested(block).map(pictureIn));
 
 /** The English half of a title, or '' for a block that has none. */
 const english = (title) => (Array.isArray(title) ? String(title[0] ?? '') : typeof title === 'string' ? title : '');
@@ -47,7 +49,7 @@ const english = (title) => (Array.isArray(title) ? String(title[0] ?? '') : type
  * A section's lead and its units, in reading order.
  *
  * @param {{blocks?: Array}} spec  a section as buildSections() returns it
- * @returns {{lead: object[], units: Array<{key:string, title:(string[]|null), badges:string[], visual:boolean, blocks:object[]}>}}
+ * @returns {{lead: object[], units: Array<{key:string, title:(string[]|null), badges:string[], visual:number, blocks:object[]}>}}
  */
 export function researchUnits(spec){
   const lead = [];
@@ -56,7 +58,7 @@ export function researchUnits(spec){
     key: english(title) || '#' + block.t,
     title: Array.isArray(title) ? title : null,
     badges: (block.badges || []).filter(b => typeof b === 'string'),
-    visual: holdsVisual(block),
+    visual: pictureIn(block),
     blocks: [block],
   });
   for (const block of (spec?.blocks || [])){
@@ -68,7 +70,7 @@ export function researchUnits(spec){
     else if (units.length){
       const owner = units[units.length - 1];
       owner.blocks.push(block);
-      if (holdsVisual(block)) owner.visual = true;
+      owner.visual = Math.max(owner.visual, pictureIn(block));
     }
     else if (LEAD_TYPES.has(block.t)) lead.push(block);
     else add(block, null);

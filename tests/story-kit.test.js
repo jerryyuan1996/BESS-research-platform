@@ -162,12 +162,22 @@ test('the compact chart is narrower, for phones', () => {
   assert.equal(evening().getAttribute('viewBox').split(' ')[2], '720');
 });
 
-test('the kit stays under its 60 KiB budget and loads its stylesheet itself', () => {
+/* RAISED FROM 60 TO 74 KiB (2026-11-12) for the explanatory scenes: the kit
+   gained the step-through player (sequence.js), the four drawing layers and
+   their legend (layers.js) and the operator, payer and network symbols
+   (network.js), 22.4 KiB of source between them, and powerStation.js grew by
+   its opt-in detail. Measured 73,482 bytes, 71.8 KiB. None of the three new
+   files is exported from index.js, so no investor story loads them: only the
+   market-background scene does, and its shipped size is held by the
+   'public-scene' entry in tests/bundle-budget.test.js. */
+test('the kit stays under its 74 KiB budget and loads its stylesheet itself', () => {
   const dir = new URL('../src/experience/story/kit/', import.meta.url);
   const files = readdirSync(dir).map(f => statSync(new URL(f, dir)).size);
   const css = statSync(new URL('../src/styles/story.css', import.meta.url)).size;
   const total = files.reduce((a, b) => a + b, 0) + css;
-  assert.ok(total < 60 * 1024, `${total} bytes`);
+  assert.ok(total < 74 * 1024, `${total} bytes`);
+  const index = readFileSync(new URL('index.js', dir), 'utf8');
+  for (const file of ['sequence.js', 'layers.js', 'network.js']) assert.ok(!index.includes(file), `${file} must not ride with every investor story`);
   assert.match(readFileSync(new URL('index.js', dir), 'utf8'), /import '\.\.\/\.\.\/\.\.\/styles\/story\.css'/);
 });
 

@@ -12,7 +12,7 @@
      what the section argues     the research section's own heading, caption
                                  and reviewed claim, as its tab shows them
      the picture                 the first card that holds a chart, a map or a
-                                 timeline, open
+                                 timeline, open (else the first diagram or card)
      the detail                  every other card, closed, under its own title
      the source                  each card's own source drawer, and a link to
                                  the tab the cards come from
@@ -53,10 +53,16 @@ function withoutRepeatedTitle(body){
   else head.remove();
 }
 
+/* A section that is one component has no card title of its own. */
+const COMPONENT_TITLE = {
+  '#entry-ledger': ['Entry ledger — what is paid, when, and what is forfeited', '进入成本台账 — 何时支付、支付多少、何种情形被没收'],
+};
+
 function cardNode(card, open){
   const body = h('div', { class: 'ix-research-card-body' });
+  const title = card.title || COMPONENT_TITLE[card.key] || ['Research component', '研究组件'];
   const node = h('details', { class: 'ix-research-card', 'data-research-card': card.key },
-    h('summary', {}, h('span', { class: 'ix-research-card-title' }, card.title ? L(card.title) : L(['Open the research component', '展开研究组件']))),
+    h('summary', {}, h('span', { class: 'ix-research-card-title' }, L(title))),
     body);
   let drawn = false;
   const draw = () => { if (drawn) return; drawn = true; card.draw(body, withoutRepeatedTitle); };
@@ -105,8 +111,10 @@ export async function mountResearchContext(body, marketId, { chapter, slot = nul
         inside('/markets/' + market.manifest.slug + '/home', ['Full market research ↗', '完整市场研究 ↗'], 'ix-text-link'));
       return;
     }
-    /* The picture first: the earliest card that draws one opens with the disclosure. */
-    const first = groups.flatMap(group => group.cards).find(card => card.visual);
+    /* The picture first: the earliest chart, map or timeline opens with the
+       disclosure; failing that the earliest diagram; failing that the first card. */
+    const every = groups.flatMap(group => group.cards);
+    const first = every.find(card => card.visual === 2) || every.find(card => card.visual === 1) || every[0];
     const count = groups.reduce((sum, group) => sum + group.cards.length, 0);
     body.replaceChildren(
       h('p', { class: 'ix-research-kind' }, h('span', {}, L(['Research excerpt', '研究摘录'])),

@@ -3,13 +3,15 @@
    no disclosure carries none of it. The closed disclosure itself is an
    .ix-details and needs nothing from here. */
 .ix-research-context-body { --bg:#f5f3ed; --surface:#fffefa; --ink:#193c32; --ink2:#526153; --border:#dce1d6; --s1:#315f4c; --s2:#648674; min-width:0; }
-.ix-research-kind { display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; margin:0 0 20px; font-size:var(--fs-xs); line-height:1.6; color:var(--ix-body); }
-.ix-research-kind>span { font-size:var(--fs-2xs); text-transform:uppercase; letter-spacing:.04em; color:#806039; }
+/* Two-class selectors throughout: a disclosure can sit inside a mechanism card,
+   whose own `p` and `h4` rules must not restyle the research. */
+.ix-research-context-body .ix-research-kind { display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; margin:0 0 20px; font-size:var(--fs-xs); line-height:1.6; color:var(--ix-body); }
+.ix-research-context-body .ix-research-kind>span { font-size:var(--fs-2xs); text-transform:uppercase; letter-spacing:.04em; color:#806039; }
 .ix-research-group { padding:22px 0 4px; border-top:1px solid var(--ix-line); }
 .ix-research-group:first-of-type { padding-top:0; border-top:0; }
-.ix-research-group-title { margin:0 0 8px; font:var(--fw-normal) var(--fs-xl)/1.4 var(--ix-serif); color:var(--ix-ink); }
+.ix-research-context-body .ix-research-group-title { margin:0 0 8px; font:var(--fw-normal) var(--fs-xl)/1.4 var(--ix-serif); color:var(--ix-ink); }
 .ix-research-lead .sect { margin:0; padding:0; border:0; }
-.ix-research-lead .cap { margin:0; max-width:900px; font-size:var(--fs-sm); line-height:1.7; color:var(--ix-body); }
+.ix-research-context-body .ix-research-lead .cap { margin:0; max-width:900px; font-size:var(--fs-sm); line-height:1.7; color:var(--ix-body); }
 .ix-research-lead .warnbox { margin:0 0 12px; font-size:var(--fs-xs); }
 .ix-research-lead .claim { margin:12px 0 0; }
 .ix-research-cards { margin:16px 0 12px; border-bottom:1px solid var(--ix-line); }
@@ -29,3 +31,5 @@
   .ix-research-card-body .kpis { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media print{ .ix-research-context:not([open]) { display:none; } }
+.ix-research-context-body p.ix-caption { font-size:var(--fs-micro); line-height:1.75; margin:0; }
+.ix-research-context-body .card p { font-size:inherit; line-height:inherit; }

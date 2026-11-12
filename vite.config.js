@@ -67,6 +67,11 @@ export default defineConfig({
           if (/[\\/]policy[\\/]page\.js$/.test(id)) return 'assets/policy-page-[hash].js';
           if (/[\\/]policy[\\/]map\.js$/.test(id)) return 'assets/policy-map-[hash].js';
           if(/^research-(?:data|history|owner)-/.test(chunk.name))return 'assets/[name]-[hash].js';
+          /* A market's step-through sequences: content fetched with its first
+             scene. Every one is called after its market, so name the chunk for
+             what it holds and for the budget that reads it. */
+          const sequence = /[\\/]experience[\\/]story[\\/]public[\\/]sequences[\\/]([^\\/]+)\.js$/.exec(id);
+          if(sequence)return `assets/public-sequence-${sequence[1]}-[hash].js`;
           const publicReading = /[\\/]experience[\\/]story[\\/]public[\\/](content[\\/])?([^\\/]+)\.js$/.exec(id);
           if(publicReading)return `assets/public-${publicReading[1]?'content-':''}${publicReading[2]}-[hash].js`;
           const historyEntry=/[\\/]markets[\\/]([^\\/]+)[\\/]historyEntry\.js$/.exec(id);
@@ -77,6 +82,11 @@ export default defineConfig({
             if((chunk.moduleIds||[]).some(moduleId=>new RegExp('[\\\\/]experience[\\\\/]story[\\\\/]public[\\\\/]'+part+'\\.js$').test(moduleId)))return `assets/public-${part}-[hash].js`;
           }
           if (/[\\/]experience[\\/]pages\.js$/.test(id)) return 'assets/investor-experience-[hash].js';
+          /* Research in context: the panel a chapter's "research behind this
+             section" opens, with the map of which research card is read under
+             which chapter. Fetched when a reader opens a disclosure and by
+             nothing else, so it is named for the budget that holds it there. */
+          if (/[\\/]experience[\\/]researchContext\.js$/.test(id)) return 'assets/research-context-[hash].js';
           /* A market's story: its content, the story shell and the isometric
              kit, fetched when the reader opens the story (immersive-experience
              plan, WP-03). The shell takes the market page's helpers as

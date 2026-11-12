@@ -49,7 +49,8 @@ test('a section is split into cards, with what follows a card travelling with it
   assert.deepEqual(units.map(u => u.key), ['Alpha — first', 'Beta', 'Gamma']);
   assert.deepEqual(units[0].blocks.map(b => b.t), ['card', 'congestion'], 'the register trails its map card');
   assert.deepEqual(units[2].blocks.map(b => b.t), ['card', 'why']);
-  assert.deepEqual(units.map(u => u.visual), [true, false, false], 'a chart marks the card as a visual');
+  assert.deepEqual(units.map(u => u.visual), [2, 0, 0], 'a chart ranks the card as a picture');
+  assert.equal(researchUnits({ blocks: [{ t: 'card', title: ['F', 'F'], blocks: [{ t: 'kpis', items: [] }, { t: 'flow', items: [] }] }] }).units[0].visual, 1, 'a flow is a diagram, ranked below a chart');
   assert.deepEqual(units[0].badges, ['official']);
 
   /* A section that is one component has no card around it. */
