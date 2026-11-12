@@ -22,13 +22,10 @@ test('perspective controls reuse current lead and existing state, not separate s
  assert.doesNotMatch(s,/from .*archetypes|from .*method|IRR|\bscore\s*:/);
  const css=await source('src/experience/perspectives.css');assert.match(css,/repeat\(4/);assert.match(css,/repeat\(2/);assert.match(css,/focus-visible/);
 });
-test('each market gets lightweight themed background art and chapter entries',async()=>{
- const art=await source('src/experience/story/public/overviewArt.js');
- for(const c of Object.values(PUBLIC_READING_CATALOG))assert.match(art,new RegExp((c.theme||'history')+':'));
+test('each market keeps its public reading entrance and history-only boundary',async()=>{
  assert.equal(Object.keys(PUBLIC_READING_CATALOG).length,18);
- assert.doesNotMatch(art,/import |fetch\(|https:\/\//);
  const overview=await source('src/experience/story/public/overview.js');
- assert.match(overview,/open\(button,chapter\)/);assert.match(overview,/historyOnly/);assert.match(overview,/data-public-chapter/);
+ assert.match(overview,/open\(trigger\)/);assert.match(overview,/historyOnly/);
  assert.doesNotMatch(overview,/G-1|G-2|review pending|待确认|read at your pace/);
  const css=await source('src/experience/story/public/overview.css');assert.match(css,/prefers-reduced-motion/);
 });

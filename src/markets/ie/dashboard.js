@@ -1,3 +1,4 @@
+import { drawOverviewGrid } from '../_shared/overviewGrid.js';
 /* ---------------------------------------------------------------------------
    Ireland — SEM (all-island) — dashboard.
 
@@ -49,3 +50,7 @@ export function dashboard(container, route){
 }
 
 export default dashboard;
+
+export function renderOverviewGrid(container, route = {}) {
+  drawOverviewGrid(container, 'ie', route.region);
+}

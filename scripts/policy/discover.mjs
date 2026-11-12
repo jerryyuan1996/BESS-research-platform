@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { POLICY_SOURCES,INVENTORY_VERSION } from '../../policy/source-inventory.mjs';
 import { discoverPolicies } from '../../policy/discovery.mjs';
 import { discoveryCoverage,discoverySummary } from '../../policy/discovery-report.mjs';
-import { documentLinkObservations,mergeDiscoveryJournal,validateDiscoveryState } from '../../policy/discovery-journal.mjs';
+import { documentLinkObservations,mergeDiscoveryJournal,validateDiscoveryState,migrateDiscoveryInventory } from '../../policy/discovery-journal.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const output=path.join(root,'etl','out');
 for(const target of [path.join(root,'etl'),output,...['policy-discovery.json','policy-discovery.md','policy-discovery-journal.json'].map(name=>path.join(output,name))])try{if((await lstat(target)).isSymbolicLink())throw new Error('Report path is symbolic');}catch(e){if(e.code!=='ENOENT')throw e;}
@@ -15,6 +15,7 @@ try{priorReport=await readMetadata('policy-discovery.json');}catch(error){if(err
 try{storedJournal=await readMetadata('policy-discovery-journal.json');}catch(error){if(error.code!=='ENOENT')throw error;}
 // Only the exact pre-collector inactive report can seed an empty journal.
 // Lost history must not erase a prior access denial and silently enable retries.
+priorReport=migrateDiscoveryInventory(priorReport,storedJournal,POLICY_SOURCES);
 const {previous,priorJournal}=validateDiscoveryState(priorReport,storedJournal,POLICY_SOURCES);
 const observations=[];let overflow=0;
 const result=await discoverPolicies({sources:POLICY_SOURCES,previous,killSwitch:process.env.POLICY_DISCOVERY_DISABLED==='1',onDocument:payload=>{

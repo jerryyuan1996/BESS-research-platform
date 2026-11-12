@@ -17,9 +17,22 @@ export function validateDiscoveryMetadata(report,sources){
       ||!safeURL(r.lastKnownGood.url)||new URL(r.lastKnownGood.url).hostname!==source.host))throw new Error('invalid_discovery_metadata');
     if(r.stopReason && (!/^(?:http_|robots_http_)(?:401|403|429)$|^(?:robots_denied|invalid_robots_document|unreviewed_redirect|unreviewed_redirect_path)$/.test(r.stopReason)
       ||typeof r.stopScopeVersion!=='string'||!r.stopScopeVersion||!iso(r.stoppedAt)))throw new Error('invalid_discovery_metadata');
+    if(r.accessHistory && (!Array.isArray(r.accessHistory)||r.accessHistory.some(h=>!/^\w{1,60}$/.test(h.reason)||typeof h.scopeVersion!=='string'||!iso(h.stoppedAt)||!iso(h.reviewedAt))))throw new Error('invalid_discovery_metadata');
     seen.add(r.id);
   }
   return report;
+}
+
+/** Explicit inventory additions preserve every old source and its denials.
+ * A partial current report is never mistaken for a fresh inventory migration. */
+export function migrateDiscoveryInventory(report,journal,sources){
+  if(![2,3].includes(report?.inventoryVersion))return report;
+  const expected=['de-agnes','gb-connections','nem-iess','wa-wic','nem-iess-aemo','wa-wic-aemo','nem-iess-technical','wa-brcp-era'];
+  if(sources.map(s=>s.id).join(',')!==expected.join(','))throw new Error('unreviewed_inventory_migration');
+  const oldIds=expected.slice(0,report.inventoryVersion===2?4:6);
+  const additions=sources.filter(s=>!oldIds.includes(s.id));
+  validateDiscoveryState(report,journal,sources.filter(s=>oldIds.includes(s.id)));
+  return {...report,inventoryVersion:4,records:[...report.records,...additions.map(s=>({id:s.id,identity:`${s.jurisdiction}:${s.officialId}`,jurisdiction:s.jurisdiction,markets:[...s.markets],language:s.language,title:s.title,sourceURL:s.url,checkedAt:report.checkedAt,cycle:report.checkedAt.slice(0,10),status:'pending_source_review',lastSuccessfulAt:null,lastKnownGood:null}))]};
 }
 
 /** A journal alone cannot recover per-source denial state held in the report. */

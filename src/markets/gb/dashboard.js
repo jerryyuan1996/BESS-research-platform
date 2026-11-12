@@ -1,3 +1,4 @@
+import { drawOverviewGrid } from '../_shared/overviewGrid.js';
 /* ---------------------------------------------------------------------------
    Great Britain — dashboard.
 
@@ -51,3 +52,7 @@ export function dashboard(container, route){
 }
 
 export default dashboard;
+
+export function renderOverviewGrid(container, route = {}) {
+  drawOverviewGrid(container, 'gb', route.region);
+}

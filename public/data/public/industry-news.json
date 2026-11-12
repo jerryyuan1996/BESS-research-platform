@@ -13,10 +13,10 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-11T14:30:57.925Z",
+  "fetchedAt": "2026-11-12T11:22:57.233Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-11T14:25:09.000Z",
+    "to": "2026-11-12T11:10:48.000Z",
     "resolution": "event",
     "points": 43
   },
@@ -135,46 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-11-06T14:02:00.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/india-approves-viability-gap-funding-to-support-92gwh-of-bess-and-pumped-hydro-energy-storage-capacity/",
-      "source": "Energy-Storage.news",
-      "title": "India approves Viability Gap Funding to support 92GWh of BESS and pumped hydro energy storage capacity",
-      "url": "https://www.energy-storage.news/india-approves-viability-gap-funding-to-support-92gwh-of-bess-and-pumped-hydro-energy-storage-capacity/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "India’s Union government has approved the next IR145 billion phase of Viability Gap Funding (VGP) for energy storage capacity additions."
-    },
-    {
-      "t": "2026-11-06T14:04:07.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/norwegian-central-bank-buys-us300-million-stake-in-brookfields-soon-to-be-acquired-bess-developer-aypa-power/",
-      "source": "Energy-Storage.news",
-      "title": "Norwegian central bank buys US$300 million stake in Brookfield’s soon-to-be acquired BESS developer Aypa Power",
-      "url": "https://www.energy-storage.news/norwegian-central-bank-buys-us300-million-stake-in-brookfields-soon-to-be-acquired-bess-developer-aypa-power/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Norges Bank Investment Management (NBIM), the asset management unit of the central bank of Norway, has acquired a 10% interest in North American battery storage developer-operator Aypa Power."
-    },
-    {
-      "t": "2026-11-06T14:05:57.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-blue-wave-in-the-midterms-rte-disagreements-cybersecurity-incident-in-chile/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: Blue Wave in the midterms, RTE disagreements, cybersecurity incident in Chile",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-blue-wave-in-the-midterms-rte-disagreements-cybersecurity-incident-in-chile/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Welcome to our latest BESS Industry Buzz, this week featuring the US midterms, ultra-rapid BESS commissioning, how to calculate RTE and a cybersecurity incident in Chile."
-    },
-    {
-      "t": "2026-11-06T14:06:23.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ford-energy-partners-with-desri-to-deploy-us-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Ford Energy partners with DESRI to deploy US BESS",
-      "url": "https://www.energy-storage.news/ford-energy-partners-with-desri-to-deploy-us-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Renewables developer D. E. Shaw Renewable Investments (DESRI) and Ford Motor Company’s energy storage subsidiary, Ford Energy, will partner to deploy energy storage in the US."
-    },
-    {
       "t": "2026-11-09T09:19:59.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australias-nem-bess-stored-energy-hits-record-20-17gwh-up-203-in-a-year/",
       "source": "Energy-Storage.news",
@@ -193,16 +153,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Australian renewable energy generator and retailer Pacific Blue has referred an 855MWh BESS in Victoria to Australia's EPBC Act."
-    },
-    {
-      "t": "2026-11-09T10:00:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/spons/the-next-wave-of-energy-storage-capacity-is-already-on-the-grid/873140/",
-      "source": "Utility Dive",
-      "title": "The next wave of energy storage capacity is already on the grid",
-      "url": "https://www.utilitydive.com/spons/the-next-wave-of-energy-storage-capacity-is-already-on-the-grid/873140/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "One study found $98M in missed revenue across 30 batteries. Better software controls can help capture it."
     },
     {
       "t": "2026-11-09T11:01:17.000Z",
@@ -243,16 +193,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "BESS owner-operator NGEN has put its Šibenik project into commercial operation in Croatia, claiming it as the first standalone project to connect at the transmission-level."
-    },
-    {
-      "t": "2026-11-10T11:09:21.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/minnesota-puc-rate-case-affordability-naruc/874222/",
-      "source": "Utility Dive",
-      "title": "Utilities should consider ‘taking a breather’ from rate cases: Minnesota PUC vice chair",
-      "url": "https://www.utilitydive.com/news/minnesota-puc-rate-case-affordability-naruc/874222/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&ldquo;Filing rate cases right now is really painful,&rdquo; Joseph Sullivan told Utility Dive in an interview where he also discussed his concerns with overly complex data center cost allocation and an erosion of public trust in institutions."
     },
     {
       "t": "2026-11-10T12:11:44.000Z",
@@ -302,47 +242,17 @@
       "url": "https://www.utilitydive.com/news/are-data-centers-really-paying-aes-indianas-google-deal-highlights-a-thor/873040/",
       "category": "capital",
       "categoryLabel": "Capital & M&A",
-      "summary": "While local projects are fairly easy to trace back to a specific data center, regional system upgrades raise more complex questions about who benefits and cost allocation across jurisdictions, one expert told Utility Dive."
+      "summary": "While local grid infrastructure projects are fairly easy to trace back to a specific data center, regional system upgrades raise more complex questions about who benefits and cost allocation across jurisdictions, one expert told Utility Dive."
     },
     {
-      "t": "2026-11-11T07:07:02.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/uruguay-secures-land-for-350-mw-solar-project-linked-to-data-center-complex/",
-      "source": "pv magazine",
-      "title": "Uruguay secures land for 350 MW solar project linked to data center complex",
-      "url": "https://www.pv-magazine.com/2026/11/11/uruguay-secures-land-for-350-mw-solar-project-linked-to-data-center-complex/",
+      "t": "2026-11-10T17:03:44.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ge-vernova-to-spend-345m-expanding-transformer-manufacturing-capacity-in/874272/",
+      "source": "Utility Dive",
+      "title": "GE Vernova to spend $34.5M expanding Louisiana transformer manufacturing capacity",
+      "url": "https://www.utilitydive.com/news/ge-vernova-to-spend-345m-expanding-transformer-manufacturing-capacity-in/874272/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Spanish developer Solaria Energía y Medio Ambiente plans to build a 350 MW solar plant in Uruguay's Florida department as part of a $5.7 billion investment in solar generation and data center infrastructure. The project will include up to 500 MW of data center capacity across two additional departments. The post Uru…"
-    },
-    {
-      "t": "2026-11-11T07:19:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/colombias-144-mw-solar-complex-reaches-full-operation/",
-      "source": "pv magazine",
-      "title": "Colombia’s 144 MW solar complex reaches full operation",
-      "url": "https://www.pv-magazine.com/2026/11/11/colombias-144-mw-solar-complex-reaches-full-operation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Escobales solar complex in Colombia's Tolima department has entered full commercial operation. Developed by Celsia and Cubico Sustainable Investments, the project combines single-axis trackers and fixed-tilt mounting systems supplied by GameChange Energy. The post Colombia’s 144 MW solar complex reaches full ope…"
-    },
-    {
-      "t": "2026-11-11T08:14:10.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/chinese-scientists-build-54-80-cm%c2%b2-methylammonium-free-perovskite-solar-module-with-22-7-efficiency/",
-      "source": "pv magazine",
-      "title": "Chinese scientists build 54.80 cm² methylammonium-free perovskite solar module with 22.7% efficiency",
-      "url": "https://www.pv-magazine.com/2026/11/11/chinese-scientists-build-54-80-cm%c2%b2-methylammonium-free-perovskite-solar-module-with-22-7-efficiency/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Chinese researchers have developed a methylammonium-free perovskite solar cell technology using ambient-air slot-die coating and a dual-additive strategy, achieving a power conversion efficiency of 26.16%. The approach also improved operational stability, with unencapsulated devices retaining 97.76% of their initial…"
-    },
-    {
-      "t": "2026-11-11T08:37:37.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/huawei-unveils-20-kw-all-in-one-residential-energy-storage-system/",
-      "source": "pv magazine",
-      "title": "Huawei unveils 20 kW all-in-one residential energy storage system",
-      "url": "https://www.pv-magazine.com/2026/11/11/huawei-unveils-20-kw-all-in-one-residential-energy-storage-system/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Huawei has launched the Luterra S2, an all-in-one residential energy storage system combining hybrid inverters, LFP batteries and AI-based energy management. It offers inverter capacities from 3 kW to 20 kW, scalable storage up to 336 kWh and a claimed maximum efficiency of 99%. The post Huawei unveils 20 kW all-in-…"
+      "summary": "&ldquo;Electricity demand is growing, and transformers are part of the critical grid equipment essential to delivering the power our customers and modern economies depend on,&rdquo; said the head of the company&rsquo;s&nbsp;electrification segment."
     },
     {
       "t": "2026-11-11T08:53:04.000Z",
@@ -365,26 +275,6 @@
       "summary": "Envision Energy will supply its Gen 8 BESS platform for ju:niz Energy's 442MWh Smareg 13 project in Bavaria, Germany."
     },
     {
-      "t": "2026-11-11T09:36:03.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/over-90-of-chinas-solar-supply-chain-is-reporting-losses-says-iea/",
-      "source": "pv magazine",
-      "title": "Over 90% of China’s solar supply chain is reporting losses, says IEA",
-      "url": "https://www.pv-magazine.com/2026/11/11/over-90-of-chinas-solar-supply-chain-is-reporting-losses-says-iea/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "International Energy Agency says that despite consolidation and manufacturing growth in other regions, solar supply chains will remain highly concentrated in China through 2031, particularly for polysilicon and wafer production. The post Over 90% of China’s solar supply chain is reporting losses, says IEA appeared f…"
-    },
-    {
-      "t": "2026-11-11T10:05:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/singulus-signs-spacex-deal-for-heterojunction-solar-cell-line/",
-      "source": "pv magazine",
-      "title": "Singulus signs SpaceX deal for heterojunction solar cell line",
-      "url": "https://www.pv-magazine.com/2026/11/11/singulus-signs-spacex-deal-for-heterojunction-solar-cell-line/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "SpaceX is lining up heterojunction (HJT) solar cell manufacturing equipment from a German supplier to make cells for its satellites in Texas. The post Singulus signs SpaceX deal for heterojunction solar cell line appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-11T11:33:07.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/relyez-debuts-on-hkex-main-board-becoming-latest-chinese-energy-storage-player-to-list-in-hong-kong/",
       "source": "Energy-Storage.news",
@@ -393,16 +283,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "RelyEZ has listed on the Main Board of The Stock Exchange of Hong Kong Limited, becoming the latest Chinese energy storage system solution provider to list in Hong Kong."
-    },
-    {
-      "t": "2026-11-11T12:04:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/paris-leads-eu-capitals-for-rooftop-solar-generation-potential/",
-      "source": "pv magazine",
-      "title": "Paris leads EU capitals for rooftop solar generation potential",
-      "url": "https://www.pv-magazine.com/2026/11/11/paris-leads-eu-capitals-for-rooftop-solar-generation-potential/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Research from Greece on rooftop PV potential across the EU's 27 capital cities identifies Paris, Budapest and Warsaw as having the highest annual generation potential, while highlighting cloud cover as the largest source of solar energy losses. The post Paris leads EU capitals for rooftop solar generation potential…"
     },
     {
       "t": "2026-11-11T12:22:59.000Z",
@@ -415,24 +295,14 @@
       "summary": "What are semi-solid-state batteries, what potential do they hold for battery energy storage system (BESS) applications, and when are we likely to see them come to market?"
     },
     {
-      "t": "2026-11-11T13:19:18.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/the-ppa-market-has-a-flexibility-problem-hybrid-ppas-are-part-of-the-answer/",
-      "source": "pv magazine",
-      "title": "The PPA market has a flexibility problem, hybrid PPAs are part of the answer",
-      "url": "https://www.pv-magazine.com/2026/11/11/the-ppa-market-has-a-flexibility-problem-hybrid-ppas-are-part-of-the-answer/",
+      "t": "2026-11-11T12:47:25.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/california-orders-utilities-to-develop-joint-der-orchestration-framework/874355/",
+      "source": "Utility Dive",
+      "title": "California orders utilities to develop joint DER orchestration framework",
+      "url": "https://www.utilitydive.com/news/california-orders-utilities-to-develop-joint-der-orchestration-framework/874355/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "With hybrid PPAs such as solar-plus-BESS models commanding premiums, the case is obvious. But risk remains part of a complex problem for further growth in the market, writes Paolo Grossi. The post The PPA market has a flexibility problem, hybrid PPAs are part of the answer appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-11T13:29:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/11/casc-completes-maiden-flight-of-solar-powered-uav-in-china/",
-      "source": "pv magazine",
-      "title": "CASC completes maiden flight of solar-powered UAV in China",
-      "url": "https://www.pv-magazine.com/2026/11/11/casc-completes-maiden-flight-of-solar-powered-uav-in-china/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "China Aerospace Science and Technology Corp. (CASC) has completed the maiden flight of its Light Cavalry solar-powered unmanned aerial vehicle (UAV). The aircraft has an 8-meter wingspan and is designed to fly continuously for up to 30 hours, targeting applications including infrastructure inspection, environmental…"
+      "summary": "The October order also directed PG&amp;E, SCE and SDG&amp;E to &ldquo;more explicitly&rdquo; consider flexible demand, a move one regulator said could reduce interconnection delays."
     },
     {
       "t": "2026-11-11T14:21:46.000Z",
@@ -453,6 +323,136 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Excelsior Energy Capital-backed developer Lydian Energy has brought its 150MW/600MWh Faraday battery energy storage system (BESS) project in Utah County, Utah, US into commercial operation."
+    },
+    {
+      "t": "2026-11-11T16:07:19.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/no-home-left-behind-scaling-vpp-participation-while-maintaining-customer-c/873474/",
+      "source": "Utility Dive",
+      "title": "No home left behind: Scaling VPP participation while maintaining customer control",
+      "url": "https://www.utilitydive.com/news/no-home-left-behind-scaling-vpp-participation-while-maintaining-customer-c/873474/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Utilities that redesign demand response and virtual power plant programs around how customers actually behave will be the ones to boost participation and system flexibility, writes Uplight&rsquo;s Gisela Glandt."
+    },
+    {
+      "t": "2026-11-12T07:37:24.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/mexicos-distributed-solar-capacity-tops-5-65-gw/",
+      "source": "pv magazine",
+      "title": "Mexico’s distributed solar capacity tops 5.65 GW",
+      "url": "https://www.pv-magazine.com/2026/11/12/mexicos-distributed-solar-capacity-tops-5-65-gw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mexico's cumulative distributed generation capacity reached 5.68 GW at the end of June 2026, following the addition of 485.76 MW in the first half of the year. Solar accounted for nearly all new capacity, with 484.36 MW added during the period. The post Mexico’s distributed solar capacity tops 5.65 GW appeared first…"
+    },
+    {
+      "t": "2026-11-12T08:04:09.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/romania-allows-surplus-pv-electricity-credits-across-multiple-properties/",
+      "source": "pv magazine",
+      "title": "Romania allows surplus PV electricity credits across multiple properties",
+      "url": "https://www.pv-magazine.com/2026/11/12/romania-allows-surplus-pv-electricity-credits-across-multiple-properties/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Romania has approved new rules allowing solar prosumers to use surplus electricity credits to offset bills at multiple properties served by the same supplier. The changes could improve rooftop PV economics for households and businesses with multiple consumption locations. The post Romania allows surplus PV electrici…"
+    },
+    {
+      "t": "2026-11-12T08:51:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/must-be-ready-and-able-to-deliver-energyaustralia-pays-au750000-over-alleged-fcas-failures-at-four-bess/",
+      "source": "Energy-Storage.news",
+      "title": "‘Must be ready and able to deliver’: EnergyAustralia pays AU$750,000 over alleged FCAS failures at four BESS",
+      "url": "https://www.energy-storage.news/must-be-ready-and-able-to-deliver-energyaustralia-pays-au750000-over-alleged-fcas-failures-at-four-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "EnergyAustralia has paid AU$750,000 (US$519,300) in penalties after the Australian Energy Regulator (AER) alleged that four battery energy storage systems (BESS) it manages failed to deliver frequency services offered into the market."
+    },
+    {
+      "t": "2026-11-12T08:53:07.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/alinta-energys-200mwh-wagerup-bess-online-in-western-australia-after-significant-redesign/",
+      "source": "Energy-Storage.news",
+      "title": "Alinta Energy’s 200MWh Wagerup BESS online in Western Australia after ‘significant redesign’",
+      "url": "https://www.energy-storage.news/alinta-energys-200mwh-wagerup-bess-online-in-western-australia-after-significant-redesign/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Alinta Energy's 100MW/200MWh BESS at its Wagerup thermal power plant in Western Australia has been operating commercially since September."
+    },
+    {
+      "t": "2026-11-12T09:03:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/solar-storage-project-providing-round-the-clock-power-in-drc-congo/",
+      "source": "pv magazine",
+      "title": "Major solar-storage project provides round-the-clock power in DRC Congo",
+      "url": "https://www.pv-magazine.com/2026/11/12/solar-storage-project-providing-round-the-clock-power-in-drc-congo/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The facility, featuring a 233 MW solar array, provides a guaranteed 30 MW of baseload power around the clock to Africa’s largest copper mine. It displaced around 4 million liters of diesel in its first month of operation. The post Major solar-storage project provides round-the-clock power in DRC Congo appeared first…"
+    },
+    {
+      "t": "2026-11-12T09:15:39.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/researchers-demonstrate-that-lbic-phase-mapping-can-accurately-detect-interconnection-defects-in-solar-modules/",
+      "source": "pv magazine",
+      "title": "Researchers show LBIC phase mapping accurately detects solar module interconnection defect",
+      "url": "https://www.pv-magazine.com/2026/11/12/researchers-demonstrate-that-lbic-phase-mapping-can-accurately-detect-interconnection-defects-in-solar-modules/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Sweden have demonstrated that LBIC phase mapping can detect interconnection defects in solar modules by identifying local variations in electrical resistance and contact quality. The technique enables high-resolution analysis of electrical contacts before and after lamination, helping identify potenti…"
+    },
+    {
+      "t": "2026-11-12T09:54:46.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/what-six-months-of-dutch-market-data-tell-us-about-the-true-worth-of-renewables-bess-dispatch-optimisation/",
+      "source": "Energy-Storage.news",
+      "title": "What six months of Dutch market data tell us about the true worth of renewables & BESS dispatch optimisation",
+      "url": "https://www.energy-storage.news/what-six-months-of-dutch-market-data-tell-us-about-the-true-worth-of-renewables-bess-dispatch-optimisation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Analysis of optimiser performance in the Dutch electricity market highlights the need to separate claims and forecasting from realistic outcomes, writes Omer Bumin of trading infrastructure software company Powerlys."
+    },
+    {
+      "t": "2026-11-12T10:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/longi-launches-new-products-for-the-australian-market/",
+      "source": "pv magazine",
+      "title": "Longi launches new products for the Australian market",
+      "url": "https://www.pv-magazine.com/2026/11/12/longi-launches-new-products-for-the-australian-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "At All Energy Australia, LONGi unveiled new solar PV modules and showcased the company’s energy storage products. Brett Robinson, senior manager for LONGi Solar Australia, says the new X12 module is well-suited for the country’s compact roofs. Dennis She, VP at LONGi Group and CEO of LONGi Energy Storage, says the c…"
+    },
+    {
+      "t": "2026-11-12T10:11:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/financial-institutions-back-2-gw-of-solar-in-turkiye/",
+      "source": "pv magazine",
+      "title": "Financial institutions back 2 GW of solar in Türkiye",
+      "url": "https://www.pv-magazine.com/2026/11/12/financial-institutions-back-2-gw-of-solar-in-turkiye/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Acwa Power is set to build two 1 GW solar plants in Türkiye as part of an agreement that will see Saudi Arabian companies develop 5 GW of solar and wind in the country. The post Financial institutions back 2 GW of solar in Türkiye appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-12T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/japan-enters-final-months-of-new-ground-mounted-solar-certifications/",
+      "source": "pv magazine",
+      "title": "Japan enters final months of new ground-mounted solar certifications",
+      "url": "https://www.pv-magazine.com/2026/11/12/japan-enters-final-months-of-new-ground-mounted-solar-certifications/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Japan has published its last application deadlines for feed-in tariff (FIT) and feed-in premium (FIP) support before ground-mounted commercial solar closes to new projects. The post Japan enters final months of new ground-mounted solar certifications appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-12T10:58:28.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/flexgen-chosen-as-system-integrator-for-google-backed-us-solar-plus-storage-project-with-mn8-eos/",
+      "source": "Energy-Storage.news",
+      "title": "FlexGen chosen as system integrator for Google-backed US solar-plus-storage project with MN8, Eos",
+      "url": "https://www.energy-storage.news/flexgen-chosen-as-system-integrator-for-google-backed-us-solar-plus-storage-project-with-mn8-eos/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Software-focused energy storage system integrator FlexGen will serve as the integrator of MN8 Energy’s solar-plus-storage project in Kanawha, West Virginia, US, using solutions from Eos Energy Enterprises."
+    },
+    {
+      "t": "2026-11-12T11:10:48.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/kazakhstan-proposes-new-ppa-mechanism-to-reduce-offtake-risks-plans-storage-auctions/",
+      "source": "pv magazine",
+      "title": "Kazakhstan proposes new PPA mechanism to reduce offtake risks, plans storage auctions",
+      "url": "https://www.pv-magazine.com/2026/11/12/kazakhstan-proposes-new-ppa-mechanism-to-reduce-offtake-risks-plans-storage-auctions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Kazakhstan is proposing a new mechanism allowing renewable energy generators to sell electricity to the country's single buyer after at least 36 months under bilateral contracts. The measure aims to reduce offtake risks, improve revenue certainty and make projects more attractive to investors and lenders. The post K…"
     }
   ],
   "derived": {
@@ -461,9 +461,9 @@
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
-      "capital": 9,
-      "grid": 27,
+      "policy": 7,
+      "capital": 6,
+      "grid": 29,
       "technology": 1
     },
     "sourceStatus": [
@@ -483,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 8
       }
     ]
   },
@@ -498,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:c791e4a0b3a0c6995dc4e38a6e71baf5f42528f8340d5c3d2667c8f90c9790c4",
-  "envelopeChecksum": "sha256:2818818b15159282f47e681ff80b3c8d09d7998bdf7f858a665770901a810a28"
+  "contentChecksum": "sha256:d891cbde3b77e9e7e33e6725e16011333f4333787db5de7a1c8dada9b8435e27",
+  "envelopeChecksum": "sha256:228b45a51c317442803ed125e7a3e77d9c65d83d44c80fe1973907187a936c64"
 }

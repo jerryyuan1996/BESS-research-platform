@@ -25,6 +25,7 @@
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import { newsTextPair } from '../news/localization.js';
 import { app, requestRender, setLens, DEFAULT_LENS } from '../app/state.js';
 import { navigate } from '../app/router.js';
 import { homeState } from '../home/state.js';
@@ -148,7 +149,7 @@ function catalysts(marketId, view){
     changes.length ? h('div', { class: 'mb-sub' }, L(['Changed in the last 45 days', '最近45天的变化'])) : null,
     changes.length ? h('ul', { class: 'bf-list' }, changes.map(c => h('li', { class: 'bf-li' },
       h('span', { class: 'bf-date' }, L(dateText(c.at.slice(0, 10)))),
-      c.cls === CHANGE_CLASS.NEWS ? h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer' }, c.title) : L(c.text)))) : null,
+      c.cls === CHANGE_CLASS.NEWS ? h('a', { href: c.url, target: '_blank', rel: 'noopener noreferrer' }, L(newsTextPair(c))) : L(c.text)))) : null,
     h('div', { class: 'bf-more-links' }, h('a', { href: `/changes?market=${marketId}`, onclick: go(`/changes?market=${marketId}`) }, L(['Every change to this market ▸', '本市场的全部变更 ▸']))));
 }
 

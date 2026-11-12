@@ -12,6 +12,7 @@ import { money, pct } from '../experience/model.js';
 import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES, opportunitiesFor, opportunityById, RESEARCH_DATE } from './catalog.js';
 import { compareOpportunity, defaultOpportunityStage, beatsConventional } from './model.js';
 import { REVENUE_MECHANISMS, MECHANISM_RESEARCH, revenueMechanismsFor } from './revenue.js';
+import { marketResearchLink } from '../experience/marketResearchLink.js';
 
 const session = new Map();
 const external = (url, label) => h('a', { href:url, target:'_blank', rel:'noopener noreferrer' }, L(label), ' ↗');
@@ -43,6 +44,7 @@ export function revenueMechanismSection(row, research = null) {
     return research.under(slot, ['Research behind this mechanism','该机制背后的研究']);
   };
   const section = revenueMechanismCards(row, route, behind);
+  section.querySelector('.ix-section-heading').append(marketResearchLink(row.id, 'revenue'));
   if (research) section.append(...[
     ...Object.keys(RESEARCH_LABEL).filter(slot => !explained.has(slot)).map(slot => research.under(slot, RESEARCH_LABEL[slot])),
     research.across?.(['Research across the revenue mechanisms','跨收入机制的研究']),

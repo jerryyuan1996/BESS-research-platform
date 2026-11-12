@@ -1,15 +1,15 @@
 import { test,expect } from '@playwright/test';
 import { digest } from '../policy/integrity.mjs';
 import { policyUIFixture,servePolicy } from '../tests/helpers/policy-ui-fixture.mjs';
-test.beforeEach(async({page})=>{await page.addInitScript(()=>localStorage.setItem('hub_lang','en'));});
+test.beforeEach(async({page})=>{await page.addInitScript(()=>localStorage.setItem('hub_lang','en'));await page.route('**/data/public/industry-news.json',route=>route.fulfill({json:{series:[]}}));});
 test('policy routes are lazy, expose honest empty coverage and preserve market sections',async({page})=>{
   // Explicitly exercise the unpublished state even when a real historical
   // snapshot is installed. Published content has separate browser coverage.
   await page.route('**/data/public/policy/index.json',route=>route.fulfill({status:404,body:''}));
   const policyRequests=[];page.on('request',r=>{if(/policy-page|policy-map|\/data\/public\/policy\//.test(r.url()))policyRequests.push(r.url());});
   await page.goto('/');await expect(page.getByRole('heading',{name:'Capital priorities. Conditions first.'})).toBeVisible();expect(policyRequests).toEqual([]);
-  await page.goto('/policy');await expect(page.getByRole('heading',{name:'Global Policy Radar'})).toBeVisible();await expect(page.getByText('No verified policy snapshot has been published.',{exact:false})).toBeVisible();await expect(page.locator('.policy-event')).toHaveCount(0);
-  await page.goto('/markets/great-britain/policy');await expect(page.getByRole('heading',{name:'Great Britain · Policy'})).toBeVisible();
+  await page.goto('/policy');await expect(page.getByRole('heading',{name:'Global intelligence radar'})).toBeVisible();await expect(page.getByText('No verified policy snapshot has been published.',{exact:false})).toBeVisible();await expect(page.locator('.policy-event')).toHaveCount(0);
+  await page.goto('/markets/great-britain/policy');await expect(page.getByRole('heading',{name:'Great Britain · Intelligence radar'})).toBeVisible();
   await page.goto('/markets/great-britain/revenue');await expect(page.locator('.policy-page')).toHaveCount(0);await expect(page.locator('.dash-skeleton')).toHaveCount(0);
 });
 test('Radar filters, map and preview preserve context through dossier and Back',async({page},info)=>{

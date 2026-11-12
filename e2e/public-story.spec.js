@@ -17,6 +17,10 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await page.goto('/markets/'+slug);
       const overview=page.locator('#overview[data-public-market]'),trigger=page.locator('.public-story-trigger');
       await expect(trigger).toBeVisible();await expect(overview).toHaveAttribute('data-version',PUBLIC_VERSION);
+      {
+        await expect(overview.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
+        await expect(overview.locator('.geo-map-pane svg')).toBeVisible();
+      }
       const profile=page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true});
       await expect(profile).toBeVisible();await expect(profile).toHaveValue(investor);
       const bound=await trigger.boundingBox();expect(bound.y+bound.height).toBeLessThanOrEqual(page.viewportSize().height);

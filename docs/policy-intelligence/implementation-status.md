@@ -2,7 +2,113 @@
 
 The 7 November 2026 analyst source decision admits one fixed 23-document/47-binding historical facts-only release under proposal `a8c6d20fba8630e2e4c48b4bc4a134e550ee4c8a81fc821858c7d59bf937067f`. Separate independent content/date/projection review is complete. The approved static regression receipt covers 16 cases, 85 factual units and 170 bilingual expressions; model accuracy remains unmeasured. Exact release readiness is tracked in [release-readiness.md](release-readiness.md).
 
-This historical release leaves all 27 investment cases pending and changes no approved investment conclusion. Current-law completeness remains unestablished. Model calls, paid evaluation and automatic policy publication remain OFF. The 10 November checkpoint below separately enables two narrow factual metadata collectors; a source decision is not a rights waiver or permission to resume WA acquisition. The older entries below describe their dated preparation checkpoints and are retained as history.
+This historical release leaves all 27 investment cases pending and changes no approved investment conclusion. Current-law completeness remains unestablished. Model calls, paid evaluation and automatic policy publication remain OFF. The dated checkpoints below enable narrowly scoped factual metadata discovery; a source decision is not a rights waiver or permission to resume WA.gov.au acquisition. Older entries describe their dated preparation checkpoints and are retained as history.
+
+## Source recovery and Chinese reader completion, 12 November 2026
+
+The analyst explicitly requested completion of DE/NEM/WA source checks, permitted
+public official alternatives, and requested Chinese titles and subtitles. The
+local follow-up completed these source checks, with acquisition methods kept
+distinct from policy-claim verification:
+
+| Market | Result and scope | Access evidence |
+| --- | --- | --- |
+| DE | The original [AgNes register](https://www.bundesnetzagentur.de/1059162) is collected again. Three document-link observations were added. | 11:57 UTC; page SHA-256 `973b3fa3a7690208b8b6801a8ae195039f660670cba7cf9c183d2cf19909548a`. |
+| GB | The successful 11:21 UTC check is retained without another GET; the existing 17 links are unchanged. | Same-day success is retained, not counted as a second collection. |
+| NEM | [AEMO's independent technical documentation](https://tech-specs.docs.public.aemo.com.au/Content/TSP_EMMS_June2024/Integrating_Energy_Storage.htm) is directly accessible. The [IESS project timeline](https://www.aemo.com.au/initiatives/major-programs/nem-reform-program/nem-reform-program-initiatives/integrating-energy-storage-systems-project) was also checked through the web reader. | Technical page at 12:06 UTC: `edb80755f66630d0e16fb0df8aaa1d2ce71894679b37fb82a9273794f4b45bd7`. The main-site GET returned 403 and remains stopped. |
+| WA | [ERA's capacity benchmark procedure directory](https://www.erawa.com.au/markets/wholesale-electricity-market/information-rule-participants/wem-procedures/wem-procedure-brcp) is directly accessible. The [AEMO WIC implementation consultation](https://www.aemo.com.au/consultations/current-and-closed-consultations/aepc_2025_21) was checked through the web reader. | ERA page at 12:06 UTC: `968a9c02ba6529eaacb44a3a0049308ecabe45578b7e680304288ec1396491b3`. AEMO's GET returned 403 and remains stopped. |
+
+Germany's robots response is 36 bytes of valid plain rules, mislabeled
+`text/html;charset=utf-8`; its SHA-256 is
+`2eab7f8938d825df41c134d433916e7c8745143ce28c00396e406d7067e99fee`.
+The parser now accepts that MIME mismatch only for a complete recognizable
+plain rules document. HTML/challenge bodies and prose error responses still
+fail closed. The new source-review version allows one same-day retry; the
+previous denial is retained in `accessHistory`, including its time and scope.
+
+Inventory v4 retains the original four source identities and adds separately
+identified alternatives. The exact v2/v3 migrations validate the full former
+report and journal before adding sources; partial history cannot seed a reset.
+The two successful new official directories contributed 31 link observations.
+The journal now contains 51 links: 17 retained, plus 34 first observed on this
+date. The accepted alternative-source observations were merged without a
+second network GET, preserving prior successful checks and all access stops.
+There are successful checks for four markets, **not eight successful sources**:
+two original sources remain pending, and the two main-site AEMO attempts remain
+403. The operational report continues to say partial source coverage.
+
+The [AEMO copyright notice](https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions)
+was readable through the web reader; its direct GET was 403, not a raw-byte
+receipt. Its general permission covers AEMO-owned public material with accurate
+attribution and excludes confidential and other-owner material. The [ERA
+terms](https://www.erawa.com.au/disclaimer) were reviewed for this metadata-only
+directory check. ERA is a different publisher and capacity-price procedure
+scope; it is not a replacement legal authority for every WIC rule. Both new
+collectors are restricted to exact page URLs and topic link paths, with no
+attachment downloads, body retention or public policy-claim publication.
+Original AEMC/WA.gov.au restrictions are unchanged. No alternate-host request
+was made to bypass the protected AEMO main-site pages.
+
+The user-triggered web check corroborates the existing distinction between
+the AgNes draft and adoption, and between NEM implementation milestones. The
+WA implementation page identifies a final procedure report, with a proposed
+commencement entry; ERA has its own procedure and dates. These are review leads,
+not new independently validated legal claims. The historical snapshot and all
+investment/model values are unchanged. The reader's source disclosure displays
+the date, exact official links and direct-collection versus web-reading methods.
+
+All 43 current news titles and 42 non-empty summaries now have Chinese editorial
+translations, matched separately against their exact original strings and URL.
+Changed source text cannot inherit a stale translation. Chinese text is searchable;
+English text, source links, geographic tagging and original ETL checksums are
+preserved. The same accessor covers the radar, preview, news cards, opportunity
+watch and briefing links. All 23 distinct official policy-document titles have
+Chinese display labels; canonical instrument/event/story titles and subtitles
+already have bilingual content. Evidence snapshot bytes and hashes are unchanged.
+Future unmatched feed text falls back to its original rather than inventing a
+translation; this completion receipt covers the current snapshot only.
+
+Local validation: `npm test` passed 1,911 checks with no skips; the policy suite
+passed 226, the model baseline passed 84, and ETL snapshot verification passed.
+The final built output passed 44 budget/confidentiality checks with no skips.
+The final Chinese/shared-reader browser pass covered 14 desktop/mobile cases;
+the six historical-policy browser cases also passed in the preceding combined
+run. The last localization/source-recovery unit pass covered 12 cases. Current
+translation coverage is explicitly 43/43 titles and 42/42 non-empty summaries.
+The built preview remains local at port 4183; no commit, push or deployment was
+performed for this follow-up.
+
+## Unified intelligence reader and manual refresh, 12 November 2026
+
+The local reader now combines policy evidence and industry news at `/policy`.
+The former `/news` address opens its news filter. Both streams share market,
+jurisdiction and text filters, map coverage and previews; policy-only filters
+never relabel publisher headlines as verified policy. National news can have a
+country pin without acquiring an investment-market tag. NEM and WA remain
+separate, and Japan-wide headlines count once on the map. The existing
+opportunity watch, risks and calendar remain available in the same reader.
+Each stream loads independently so a missing policy snapshot does not suppress
+news, and a failed news request does not hide policy evidence. Historical
+policy verification dates remain unchanged.
+
+The initial local manual cycle ran on 12 November: all four configured RSS
+sources succeeded at 11:22 UTC; 43 items were retained, with 15 new items and
+15 older items leaving the bounded feed. The policy collector restored the
+latest trusted discovery artifact before running. GB checked successfully
+with no document change; its 17-link rolling journal added no observations.
+DE retained its `invalid_robots_document` stop from the previous cycle; NEM
+retained its prior access-denial stop; WA acquisition remains prohibited by
+the recorded source terms. Thus this is a completed attempt across the
+registered sources, with one of four policy pages checked, not a claim of
+complete current-policy coverage. No model call, policy snapshot publication,
+investment judgement or model figure was changed.
+
+The refreshed source headlines increased the shared briefing payload to
+43.27 KiB gzip. Its individual allowance is 43.5 KiB (previously 43); the
+entry, total-home and market-isolation limits remain unchanged. This keeps
+the complete source-derived briefing rather than discarding longer articles
+to fit a byte count. All work remains a local built preview pending the
+analyst's separate commit/release instruction.
 
 ## Factual discovery and ETL checkpoint, 10 November 2026
 

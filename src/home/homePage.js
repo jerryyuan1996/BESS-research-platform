@@ -49,7 +49,7 @@ function footerLinks(){
   const link = (href, label) => h('a', { href, onclick: (e) => { e.preventDefault(); navigate(href); window.scrollTo(0, 0); } }, L(label));
   return h('div', { class: 'footer' },
     link('/data', ['Data status', '数据状态']), ' · ',
-    link('/news', ['Headlines', '新闻']), ' · ',
+    link('/policy?type=news', ['Headlines', '新闻']), ' · ',
     link('/investment-lab', ['Investment Lab', '投资测算']), ' · ',
     link('/returns', ['Returns across markets', '跨市场回报对比']));
 }

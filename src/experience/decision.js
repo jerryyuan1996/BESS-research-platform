@@ -50,7 +50,7 @@ export function decisionReasons(row, compact = false) {
     gates.map(g => L(gateLabel(g))).join(' · ')));
   if (!compact && d.counterpoint) box.append(h('p', {}, h('strong', {}, L(['What limits conviction: ', '限制判断的因素：'])), L(d.counterpoint)));
   if (!compact && d.event) box.append(h('p', {}, h('strong', {}, L(['Next event: ', '下一事件：'])), L(d.event.label),
-    ' · ', d.event.expected || L(['Date unconfirmed','日期待定']), ' · ', link('/news', ['Review event ↗','查看事件 ↗'])));
+    ' · ', d.event.expected || L(['Date unconfirmed','日期待定']), ' · ', link('/policy#event-watch', ['Review event ↗','查看事件 ↗'])));
   if (!compact) box.append(h('small', {}, L(['View reviewed: ', '观点复核：']), d.asOf || '—',
     ' · ', L(['Review due: ', '下次复核：']), d.reviewBy || '—'));
   return box;
