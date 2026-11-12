@@ -56,6 +56,8 @@ test.describe('iPad touch matrix',()=>{
 
 test('keyboard, history, language, deep links and repeated opening preserve the reading place',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/markets/nem');
+  await expect(page.locator('.market-overview-context')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
   const trigger=page.locator('.public-story-trigger');await trigger.waitFor();await trigger.focus();
   const scroll=await page.evaluate(()=>scrollY);await page.keyboard.press('Enter');
   const dialog=page.locator('.public-story-dialog');await expect(dialog.getByRole('button',{name:'Close market background'})).toBeFocused();
