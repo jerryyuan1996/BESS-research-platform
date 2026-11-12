@@ -38,6 +38,7 @@
 import { readFile, writeFile, mkdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseAst } from 'rollup/parseAst';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -54,7 +55,7 @@ const FILE = path.join(ROOT, 'sections.js');
 const OUT = path.join(ROOT, 'sections');
 const DASHBOARD = path.join(ROOT, 'dashboard.js');
 const TABS = path.join(ROOT, 'tabs.js');
-const NAME = { gb:'Great Britain', ie:'Ireland', pl:'Poland', ro:'Romania' }[MARKET] || MARKET;
+const NAME = { gb:'Great Britain', ie:'Ireland', pl:'Poland', ro:'Romania', jp:'Japan' }[MARKET] || MARKET;
 
 /** A word-boundary test that works for one-letter helpers such as `O`. */
 const hasWord = (text, word) => new RegExp(`\\b${word.replace(/[$]/g, '\\$')}\\b`).test(text);
@@ -97,12 +98,24 @@ async function main(){
     blocks.get(id).push(text);
   }
 
-  const preludeText = lines.slice(destructureEnd + 1, firstAssign).join('\n');
-  /* COLUMN ZERO ONLY. Helpers declared inside SECTIONS() or inside another
-     helper are indented and belong to that function, not to the prelude;
-     returning them from createShared would be a reference to nothing. */
-  const preludeNames = [...preludeText.matchAll(/^(?:const|let|var|function)\s+([A-Za-z_$][\w$]*)/gm)]
-    .map(m => m[1]).filter(n => n !== 'SEC_B' && n !== 'SECTIONS');
+  let preludeText = lines.slice(destructureEnd + 1, firstAssign).join('\n');
+  /* Lexical scope, not indentation: Japan indents its outer helpers and puts
+     casePerRegion between sections. Move only declarations directly inside
+     buildSections; never capture a nested helper's local variable. */
+  const factory = parseAst(source).body.find(node =>
+    node.type === 'ExportNamedDeclaration' && node.declaration?.id?.name === 'buildSections').declaration;
+  const firstOffset = lines.slice(0, firstAssign).join('\n').length;
+  const declarations = factory.body.body.filter(node =>
+    ['VariableDeclaration', 'FunctionDeclaration'].includes(node.type));
+  const lateHelpers = declarations.filter(node => node.start > firstOffset);
+  for (const helper of lateHelpers){
+    const text = source.slice(helper.start, helper.end);
+    preludeText += '\n' + text;
+    for (const [id, parts] of blocks) blocks.set(id, parts.map(body => body.replace(text, '')));
+  }
+  const preludeNames = declarations.flatMap(node => node.type === 'VariableDeclaration'
+    ? node.declarations.filter(decl => decl.id.type === 'Identifier').map(decl => decl.id.name)
+    : [node.id.name]).filter(name => name !== 'SEC_B' && name !== 'SECTIONS');
 
   /* ---- the header's imports, kept only by the modules that name them ---- */
   const imports = [];

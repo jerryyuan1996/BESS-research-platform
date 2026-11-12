@@ -40,7 +40,7 @@ export default defineConfig({
           // The public history and original research share the SAME owner data.
           // Keep owner-only bytes identifiable; never fold other markets into
           // the common engine or move a full dashboard across this boundary.
-          const split=new Set(['nem','gb','ie','ro','pl']);
+          const split=new Set(['nem','gb','ie','ro','pl','jp']);
           const history=/[\\/]markets[\\/]([^\\/]+)[\\/](history|historyEntry)\.js$/.exec(id);
           if(history){
             // The public-only adapter must never hitch a ride on the original
@@ -87,6 +87,7 @@ export default defineConfig({
              which chapter. Fetched when a reader opens a disclosure and by
              nothing else, so it is named for the budget that holds it there. */
           if (/[\\/]experience[\\/]researchContext\.js$/.test(id)) return 'assets/research-context-[hash].js';
+          if (/[\\/]markets[\\/]wa[\\/]researchExcerpt\.js$/.test(id)) return 'assets/research-wa-[hash].js';
           /* A market's story: its content, the story shell and the isometric
              kit, fetched when the reader opens the story (immersive-experience
              plan, WP-03). The shell takes the market page's helpers as

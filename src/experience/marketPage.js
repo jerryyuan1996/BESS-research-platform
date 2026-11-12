@@ -25,7 +25,7 @@ import './story/public/overview.css';
    until it is opened, and then ./researchContext.js fills it. Null for a
    market whose research is not placed yet, so its chapters read as before. */
 function researchDisclosure(market, chapter, { slot = null, label = ['Research behind this section', '本节背后的研究'] } = {}) {
-  if (!researchPlaced(market)) return null;
+  if (!researchPlaced(market, chapter, slot)) return null;
   const body = h('div', { class: 'ix-research-context-body' });
   const node = h('details', { class: 'ix-details ix-research-context', 'data-research-chapter': chapter, ...(slot ? { 'data-research-slot': slot } : {}) },
     h('summary', {}, L(label)), body);
@@ -169,7 +169,8 @@ function renderMarket(container, row, route) {
   loadOpportunity();
   if (!data.unavailable) {
     content.append(bankableSection(data), revenueSection(data));
-  } else content.append(h('section', { id: 'bankable', class: 'ix-panel ix-section' }, h('h2', {}, L(['Investment case in research', '投资方案研究中'])), h('p', {}, L(['This market does not yet have a complete return model. Continue with the market research and execution plan.', '本市场尚无完整回报模型，可继续查看市场研究与执行计划。']))));
+  } else content.append(h('section', { id: 'bankable', class: 'ix-panel ix-section' }, h('h2', {}, L(['Investment case in research', '投资方案研究中'])), h('p', {}, L(['This market does not yet have a complete return model. Continue with the market research and execution plan.', '本市场尚无完整回报模型，可继续查看市场研究与执行计划。'])),
+    researchDisclosure(m, 'bankable')));
   const routes=Object.entries(HOME_BRIEFING.plays).filter(([key])=>key.startsWith(row.id+'/')).map(([,p])=>p);
   if(routes.length){
     const requested=new URLSearchParams(window.location.search).get('play');

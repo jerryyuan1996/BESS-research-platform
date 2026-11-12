@@ -75,7 +75,7 @@ test('a pick takes the cards named, the rest of the section when asked, in readi
 });
 
 test('the map is well formed', () => {
-  assert.deepEqual(mappedOwners(), ['nem', 'jp'], 'release 3 places the NEM and Japan');
+  assert.deepEqual([...mappedOwners()].sort(), ['wa', 'nem', 'jp', 'gb', 'de', 'it', 'ie', 'ro', 'pl', 'pjm', 'ercot', 'caiso', 'fi', 'ca_on', 'sa', 'es'].sort(), 'all sixteen dashboards are placed');
   for (const [section, target] of Object.entries(DEFAULT_MAP)) assert.ok(SECTION_ORDER.includes(section) && valid(target), section);
   for (const [owner, sections] of Object.entries(MARKET_MAPS)){
     for (const [section, cards] of Object.entries(sections)){
@@ -154,7 +154,8 @@ test('what the map calls already shown, the page shows', async () => {
     const { researchHistory } = await import(`../src/markets/${owner}/history.js`);
     const source = await readFile(new URL(`../src/markets/${owner}/history.js`, import.meta.url), 'utf8');
     const wired = rows.filter(r => r.market === owner && r.placements.includes('history'));
-    assert.ok(wired.length, owner + ' history');
+    if (owner !== 'wa') assert.ok(wired.length, owner + ' history');
+    else assert.equal(wired.length, 0, 'WA embeds its story tab whole; the history adapter remains independent');
     for (const row of wired){
       assert.equal(row.section, 'story', at(row));
       assert.ok(source.includes(row.key.replace(/'/g, "\\'")) || source.includes(row.key), at(row) + ' is in the history the reading draws');
@@ -162,7 +163,8 @@ test('what the map calls already shown, the page shows', async () => {
     assert.equal(typeof researchHistory, 'function');
     /* The decision panel is the investment case; nothing else claims it. */
     const decided = rows.filter(r => r.market === owner && r.placements.includes('decision'));
-    assert.deepEqual([...new Set(decided.map(r => r.section + '/' + r.key))], ['case/#investment-case']);
+    assert.deepEqual([...new Set(decided.map(r => r.section + '/' + r.key))],
+      ['ca_on', 'sa', 'es'].includes(owner) ? [] : owner === 'wa' ? ['case/#tab-case'] : ['case/#investment-case']);
   }
 });
 
@@ -190,11 +192,15 @@ test('no chapter opens on an empty disclosure, and no card is left out of its ch
           return section ? pickUnits(section.units, pick).map(unit => pick.section + '/' + unit.key) : [];
         });
         assert.deepEqual([...picked].sort(), [...(expected.get(target) || [])].sort(), `${id} ${target} (${lang})`);
-        if (targets.includes(target)) assert.ok(picked.length, `${id}: ${target} has research behind it`);
+        const absent = (['ca_on', 'sa', 'es'].includes(market) && ['system','mechanism'].includes(target))
+          || (market === 'sa' && ['revenue','downside'].includes(target));
+        if (targets.includes(target) && !absent)
+          assert.ok(picked.length, `${id}: ${target} has research behind it`);
+        if (absent) assert.equal(picked.length, 0, `${id}: ${target} remains outside its reading scope`);
       }
     }
   }
-  assert.deepEqual(picksFor('gb', 'revenue'), [], 'a market the map does not know has no picks');
+  assert.deepEqual(picksFor('unknown', 'revenue'), [], 'a market the map does not know has no picks');
 });
 
 test('the page fetches the map only when a disclosure opens, and never ships the decision list', async () => {
@@ -218,4 +224,53 @@ test('the page fetches the map only when a disclosure opens, and never ships the
   for (const owner of mappedOwners()){
     assert.equal(RESEARCH_IN_CONTEXT[owner].across, picksFor(owner, 'revenue-drivers').length > 0, owner + ': research across the mechanisms');
   }
+});
+
+
+test('availability matches cards, and the history-only reading stays history only', async () => {
+  const { RESEARCH_IN_CONTEXT, researchPlaced } = await import('../src/experience/researchPlaced.js');
+  for (const owner of mappedOwners()){
+    const market = {manifest: {id: owner}};
+    const entry = researchPlaced(market);
+    const actual = rows.filter(r => r.market === owner).flatMap(r => r.placements);
+    for (const chapter of Object.keys(CHAPTERS).filter(c => !CHAPTERS[c].wired)){
+      const intended = ['ca_on','sa','es'].includes(owner) && ['system','mechanism'].includes(chapter)
+        ? false : actual.some(t => t.split(':')[0] === chapter);
+      assert.equal(Boolean(researchPlaced(market, chapter)), intended, owner + ' ' + chapter);
+    }
+    assert.deepEqual([...entry.slots].sort(), [...new Set(actual.filter(t => t.startsWith('revenue-drivers:')).map(t => t.split(':')[1]))].sort());
+    assert.equal(researchPlaced(market, 'revenue-drivers', 'unknown'), null);
+  }
+  assert.equal(researchPlaced({manifest:{id:'unknown'}}), null);
+});
+
+test('WA context uses a strict public renderer list and never imports its portfolio', async () => {
+  const adapter = await readFile(new URL('../src/markets/wa/researchExcerpt.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(adapter, /import\s*(?:\([^)]*|[^;]*from\s*)['"][^'"]*(?:portfolio|local-data|local\/)/);
+  assert.doesNotMatch(adapter, /dashboard\.js/);
+  for (const row of rows.filter(r => r.market === 'wa' && r.placements.some(p => !CHAPTERS[p.split(':')[0]].wired))){
+    assert.match(adapter, new RegExp('\\b' + row.section + ': \\(\\) => import'));
+  }
+  for (const chapter of Object.keys(CHAPTERS).filter(c => !CHAPTERS[c].wired)){
+    for (const slot of [null, ...SLOTS]) for (const pick of picksFor('wa', chapter, slot)){
+      assert.ok(!['home', 'portfolio'].includes(pick.section), 'unassigned whole tabs must not become empty default picks');
+      assert.match(adapter, new RegExp('\\b' + pick.section + ': \\(\\) => import'));
+    }
+  }
+  const source = await readFile(new URL('../src/experience/researchContext.js', import.meta.url), 'utf8');
+  assert.match(source, /owner === 'wa' \? \(\) => import\('..\/markets\/wa\/researchExcerpt.js'\)/);
+});
+
+test('the unpriced Saudi case places every unit in an existing reading, not a missing model chapter', async () => {
+  const visible = new Set(['history', 'revenue-drivers:award', 'revenue-drivers:merchant',
+    'revenue-drivers:ancillary', 'bankable', 'execution', 'sources']);
+  const sa = rows.filter(row => row.market === 'sa');
+  assert.equal(sa.length, 15);
+  for(const row of sa) assert.ok(row.placements.some(target => visible.has(target)), at(row));
+  assert.deepEqual(placementsOf('sa', 'duration', '#card'), ['execution']);
+  const { researchPlaced } = await import('../src/experience/researchPlaced.js');
+  const market = { manifest: { id: 'sa' } };
+  for(const chapter of ['system', 'mechanism', 'revenue', 'downside'])
+    assert.equal(researchPlaced(market, chapter), null, chapter + ' is not a Saudi investment-model chapter');
+  assert.ok(researchPlaced(market, 'bankable'), 'existing research remains available beside the unpriced-case notice');
 });

@@ -58,9 +58,9 @@ const COMPONENT_TITLE = {
   '#entry-ledger': ['Entry ledger — what is paid, when, and what is forfeited', '进入成本台账 — 何时支付、支付多少、何种情形被没收'],
 };
 
-function cardNode(card, open){
+function cardNode(card, open, sectionLabel){
   const body = h('div', { class: 'ix-research-card-body' });
-  const title = card.title || COMPONENT_TITLE[card.key] || ['Research component', '研究组件'];
+  const title = card.title || COMPONENT_TITLE[card.key] || sectionLabel || ['Research component', '研究组件'];
   const node = h('details', { class: 'ix-research-card', 'data-research-card': card.key },
     h('summary', {}, h('span', { class: 'ix-research-card-title' }, L(title))),
     body);
@@ -71,7 +71,7 @@ function cardNode(card, open){
   return node;
 }
 
-function groupNode(group, market, openKey){
+function groupNode(group, market, openCard){
   const lead = h('div', { class: 'ix-research-lead' });
   group.lead(lead);
   /* One heading level below the chapter it sits in. */
@@ -81,7 +81,7 @@ function groupNode(group, market, openKey){
   const path = '/markets/' + market.manifest.slug + '/' + group.section;
   return h('section', { class: 'ix-research-group', 'data-research-section': group.section },
     heading, lead,
-    h('div', { class: 'ix-research-cards' }, group.cards.map(card => cardNode(card, card.key === openKey))),
+    h('div', { class: 'ix-research-cards' }, group.cards.map(card => cardNode(card, card === openCard, group.label))),
     group.label ? inside(path, [`Open “${group.label[0]}” in the full research ↗`, `在完整研究中打开“${group.label[1]}” ↗`], 'ix-text-link ix-research-tab-link') : null);
 }
 
@@ -100,10 +100,12 @@ export async function mountResearchContext(body, marketId, { chapter, slot = nul
   body.setAttribute('aria-busy', 'true');
   body.replaceChildren(h('p', { class: 'ix-caption' }, L(['Loading the research behind this section…', '正在载入本节背后的研究…'])));
   try {
-    const load = loaders['../markets/' + owner + '/dashboard.js'];
+    const load = owner === 'wa' ? () => import('../markets/wa/researchExcerpt.js') : loaders['../markets/' + owner + '/dashboard.js'];
     const module = picks.length && load ? await load() : null;
+    if (!body.isConnected) return;
     const groups = module?.researchExcerpt
-      ? await module.researchExcerpt({ basePath: '/markets/' + market.manifest.slug, region: market.manifest.region }, picks)
+      ? await module.researchExcerpt({ basePath: '/markets/' + market.manifest.slug, region: market.manifest.region }, picks,
+          { isCurrent: () => body.isConnected })
       : [];
     if (!body.isConnected) return;
     if (!groups.length){
@@ -118,9 +120,11 @@ export async function mountResearchContext(body, marketId, { chapter, slot = nul
     const count = groups.reduce((sum, group) => sum + group.cards.length, 0);
     body.replaceChildren(
       h('p', { class: 'ix-research-kind' }, h('span', {}, L(['Research excerpt', '研究摘录'])),
-        L([`${count} ${count === 1 ? 'card' : 'cards'} from the full market research, each with its own sources. Open any title to read it.`,
+        L(owner === 'wa'
+          ? [`${count} whole public research ${count === 1 ? 'tab' : 'tabs'}, with the original charts and sources. Open any title to read it.`, `取自完整公开研究的${count}个整页标签，保留原有图表与来源。打开任一标题即可阅读。`]
+          : [`${count} ${count === 1 ? 'card' : 'cards'} from the full market research, each with its own sources. Open any title to read it.`,
            `取自完整市场研究的${count}张研究卡，各自附来源。点击标题展开阅读。`])),
-      ...groups.map(group => groupNode(group, market, first?.key)),
+      ...groups.map(group => groupNode(group, market, first)),
       h('p', { class: 'ix-caption' }, L(['Extracted directly from the full market research · source vintage: ', '直接引用完整市场研究 · 原研究口径：']),
         market.manifest.dataDate || market.manifest.asOf));
   } catch {

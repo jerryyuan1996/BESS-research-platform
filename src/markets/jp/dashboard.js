@@ -17,7 +17,7 @@ import { MKT } from './mkt.js';
 import { TABS, REGIONS } from './tabs.js';
 import { SRC } from './sources.js';
 import { M, activeRegion } from './data.js';
-import { buildSections } from './sections.js';
+import { buildSections, loadSections } from './sections.js';
 import './gridMapData.js';   // side effect: registers this market's grid map
 import TOKYO_VIEW from '../../../view/markets/jp_tokyo.json' with { type: 'json' };
 import KYUSHU_VIEW from '../../../view/markets/jp_kyushu.json' with { type: 'json' };
@@ -33,9 +33,16 @@ registerCase('jp_hokkaido', { view: HOKKAIDO_VIEW, ledger: HOKKAIDO_ENTRY_LEDGER
 
 const engine = createMarketEngine({
   MKT, TABS, SRC, M, buildSections, regions: REGIONS,
+  prepareSections: (api, ids) => loadSections(api, ids),
 });
 
-export function researchSummary(container, route) {
+/* The house view and the one-minute orientation are sections now, so they
+   must be fetched before the summary reads them. A failure leaves the summary
+   short rather than breaking the dialog. */
+export async function researchSummary(container, route) {
+  await loadSections(engine.api, ['home', 'story']).catch(() => {});
+  if (!container.isConnected) return;
+  activeRegion.id = REGIONS.some(([id]) => id === route.region) ? route.region : 'tokyo';
   engine.researchSummary(container, route, markets);
 }
 
@@ -44,7 +51,11 @@ export function researchSummary(container, route) {
    market page always names one area, so each of Tokyo, Kyushu and Hokkaido
    shows its own regional cards; the default namespace is bound first, as
    dashboard() binds it, because the scorecard reads the area through it. */
-export function researchExcerpt(route, picks) {
+export async function researchExcerpt(route, picks, { isCurrent = () => true } = {}) {
+  await loadSections(engine.api, picks.map(pick => pick.section));
+  /* A removed chapter must not rebind the shared Japanese lens after a newer
+     page has rendered. Check before either regional state or engine binding. */
+  if (!isCurrent()) return [];
   activeRegion.id = REGIONS.some(([id]) => id === route.region) ? route.region : 'tokyo';
   return engine.researchExcerpt(route, markets, picks);
 }
@@ -60,7 +71,7 @@ export function dashboard(container, route){
   const r = route.region;
   activeRegion.id = (r && r !== 'compare') ? r : 'tokyo';
 
-  engine.dashboard(container, route, markets);
+  return engine.dashboard(container, route, markets);
 }
 
 export default dashboard;

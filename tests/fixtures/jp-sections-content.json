@@ -1,0 +1,440 @@
+{
+  "market": "jp",
+  "takenFrom": "src/markets/jp/sections.js at main 16093184fe11f6ce65edb188e62b22001e8801b3, before Release 4 mechanical split",
+  "sourceSha256": "75ecb8425e1d1ec764b1a2c0559f001107f76df175f0baf18cfee6226d112dd0",
+  "note": "Every section including the unrouted benchmark, English and Chinese, all three regions and compare. Public source, functions and ordering included. Captured before extraction; never regenerate to hide a content change.",
+  "readings": {
+    "en/tokyo": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6642,
+        "sha": "22e78667de6196f2"
+      },
+      "case": {
+        "bytes": 515,
+        "sha": "f6a6e9628b095d2c"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4226,
+        "sha": "8de6ca32ec52f701"
+      },
+      "energy": {
+        "bytes": 3511,
+        "sha": "b0c89e4c144246a9"
+      },
+      "entry": {
+        "bytes": 406,
+        "sha": "c544279e4a96e840"
+      },
+      "grid": {
+        "bytes": 243438,
+        "sha": "a4505e992b9b0ce7"
+      },
+      "home": {
+        "bytes": 19533,
+        "sha": "f3e97f21f071919b"
+      },
+      "pipeline": {
+        "bytes": 3155,
+        "sha": "3ddabe1ab4eb6e5a"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8703,
+        "sha": "a32e31ffc58277d0"
+      },
+      "story": {
+        "bytes": 5638,
+        "sha": "ca9110f5647a5d51"
+      }
+    },
+    "en/kyushu": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6642,
+        "sha": "22e78667de6196f2"
+      },
+      "case": {
+        "bytes": 517,
+        "sha": "e2eaec86485efa6c"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4233,
+        "sha": "95c1550b72f41bbb"
+      },
+      "energy": {
+        "bytes": 3518,
+        "sha": "5b45ae7a984f5271"
+      },
+      "entry": {
+        "bytes": 408,
+        "sha": "51a9a53bb7a761d5"
+      },
+      "grid": {
+        "bytes": 301984,
+        "sha": "0a03a6512d6ac632"
+      },
+      "home": {
+        "bytes": 19600,
+        "sha": "bfd3a5c422c81dda"
+      },
+      "pipeline": {
+        "bytes": 3157,
+        "sha": "e61fc7d06a3f4da1"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8704,
+        "sha": "e94a0150204a91ee"
+      },
+      "story": {
+        "bytes": 5640,
+        "sha": "9fde843dbfb6a305"
+      }
+    },
+    "en/hokkaido": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6642,
+        "sha": "22e78667de6196f2"
+      },
+      "case": {
+        "bytes": 522,
+        "sha": "3c54e8d6bb051038"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4248,
+        "sha": "1e814a45344afbee"
+      },
+      "energy": {
+        "bytes": 3527,
+        "sha": "82ec327ef800c8c4"
+      },
+      "entry": {
+        "bytes": 413,
+        "sha": "df5e46364aa40f81"
+      },
+      "grid": {
+        "bytes": 227811,
+        "sha": "c0595bf54148add4"
+      },
+      "home": {
+        "bytes": 19679,
+        "sha": "8dc3646a591861ad"
+      },
+      "pipeline": {
+        "bytes": 3222,
+        "sha": "c9e3e4ddee85df0d"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8706,
+        "sha": "5aa905c60d7a302e"
+      },
+      "story": {
+        "bytes": 5644,
+        "sha": "69275d55c18a7738"
+      }
+    },
+    "en/compare": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6642,
+        "sha": "22e78667de6196f2"
+      },
+      "case": {
+        "bytes": 698,
+        "sha": "1ddd54c82abddea5"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4935,
+        "sha": "5f4da79489ae17b0"
+      },
+      "energy": {
+        "bytes": 3670,
+        "sha": "36863a2f464d9b45"
+      },
+      "entry": {
+        "bytes": 583,
+        "sha": "ae351af497a7cad3"
+      },
+      "grid": {
+        "bytes": 745647,
+        "sha": "d3ea27d480731358"
+      },
+      "home": {
+        "bytes": 21150,
+        "sha": "e03ba1dc50728e37"
+      },
+      "pipeline": {
+        "bytes": 3452,
+        "sha": "9cde5af87696fc71"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8739,
+        "sha": "b7509b3ba479949b"
+      },
+      "story": {
+        "bytes": 5654,
+        "sha": "5a3172b383fa7af6"
+      }
+    },
+    "zh/tokyo": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6641,
+        "sha": "7e8527b196372576"
+      },
+      "case": {
+        "bytes": 515,
+        "sha": "f6a6e9628b095d2c"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4208,
+        "sha": "7511c719fceb6637"
+      },
+      "energy": {
+        "bytes": 3490,
+        "sha": "fa572c922978c031"
+      },
+      "entry": {
+        "bytes": 406,
+        "sha": "c544279e4a96e840"
+      },
+      "grid": {
+        "bytes": 243362,
+        "sha": "84ef0790d2d76415"
+      },
+      "home": {
+        "bytes": 18735,
+        "sha": "2dcec571a31b220f"
+      },
+      "pipeline": {
+        "bytes": 3118,
+        "sha": "69e647f653c67115"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8700,
+        "sha": "98ef06a9426b7010"
+      },
+      "story": {
+        "bytes": 5626,
+        "sha": "ff0c27d8ec7bcbde"
+      }
+    },
+    "zh/kyushu": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6641,
+        "sha": "7e8527b196372576"
+      },
+      "case": {
+        "bytes": 517,
+        "sha": "e2eaec86485efa6c"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4211,
+        "sha": "0dc9482313faaa16"
+      },
+      "energy": {
+        "bytes": 3492,
+        "sha": "624e68722b2992ed"
+      },
+      "entry": {
+        "bytes": 408,
+        "sha": "51a9a53bb7a761d5"
+      },
+      "grid": {
+        "bytes": 301868,
+        "sha": "230b50f8e8ea07fb"
+      },
+      "home": {
+        "bytes": 18771,
+        "sha": "1b51dc9b50590bba"
+      },
+      "pipeline": {
+        "bytes": 3119,
+        "sha": "611ec026242a3827"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8700,
+        "sha": "4e6ffafd6a175e69"
+      },
+      "story": {
+        "bytes": 5626,
+        "sha": "96dbccc0066fa33e"
+      }
+    },
+    "zh/hokkaido": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6641,
+        "sha": "7e8527b196372576"
+      },
+      "case": {
+        "bytes": 522,
+        "sha": "3c54e8d6bb051038"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4222,
+        "sha": "dd9af9289d558519"
+      },
+      "energy": {
+        "bytes": 3496,
+        "sha": "3e882f4a431b9381"
+      },
+      "entry": {
+        "bytes": 413,
+        "sha": "df5e46364aa40f81"
+      },
+      "grid": {
+        "bytes": 227667,
+        "sha": "4b1791fe5ae47cd8"
+      },
+      "home": {
+        "bytes": 18834,
+        "sha": "f816233f8f41af38"
+      },
+      "pipeline": {
+        "bytes": 3148,
+        "sha": "de2a0170b797c7fb"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8701,
+        "sha": "a1c7bb8056873663"
+      },
+      "story": {
+        "bytes": 5628,
+        "sha": "c7f467ded5941833"
+      }
+    },
+    "zh/compare": {
+      "benchmark": {
+        "bytes": 2507,
+        "sha": "1318b3e03cf3ec42"
+      },
+      "capacity": {
+        "bytes": 6641,
+        "sha": "7e8527b196372576"
+      },
+      "case": {
+        "bytes": 698,
+        "sha": "1ddd54c82abddea5"
+      },
+      "data": {
+        "bytes": 14655,
+        "sha": "1f9832ad049526f8"
+      },
+      "duration": {
+        "bytes": 4911,
+        "sha": "f05a0356e849e6b2"
+      },
+      "energy": {
+        "bytes": 3634,
+        "sha": "035f2ae2e822a0f9"
+      },
+      "entry": {
+        "bytes": 583,
+        "sha": "ae351af497a7cad3"
+      },
+      "grid": {
+        "bytes": 745353,
+        "sha": "e3b8ecc2423292c5"
+      },
+      "home": {
+        "bytes": 20128,
+        "sha": "9db784f732524d21"
+      },
+      "pipeline": {
+        "bytes": 3333,
+        "sha": "83c557354d90432b"
+      },
+      "portfolio": {
+        "bytes": 2757,
+        "sha": "b9ee9ca47a6d6d79"
+      },
+      "services": {
+        "bytes": 8727,
+        "sha": "9be028f76997859a"
+      },
+      "story": {
+        "bytes": 5654,
+        "sha": "5a3172b383fa7af6"
+      }
+    }
+  }
+}

@@ -18,9 +18,34 @@
    --------------------------------------------------------------------------- */
 import { app, requestRender } from '../../app/state.js';
 import { LS } from '../../utils/storage.js';
+import { navigate } from '../../app/router.js';
+
+/* A research control repaints its excerpts, not the market page around them.
+   Connected nodes alone are insufficient during navigation: the current URL
+   must still be their market page, never a full research-tab route. */
+const excerpts = new Map();
+let tab = 'home', pendingTab = null;
+function liveExcerpts(){
+  const path = typeof window === 'undefined' ? '' : window.location.pathname.replace(/\/$/, '');
+  for (const [el, entry] of excerpts) {
+    if (!el.isConnected || path !== entry.basePath) excerpts.delete(el);
+  }
+  return [...excerpts.values()];
+}
+
+export function registerResearchExcerpt(el, paint, basePath){
+  excerpts.set(el, { paint, basePath });
+  // The caller assembles cards off-DOM and connects them in the same turn.
+  // Prune after that assembly, not while its siblings are still being built.
+  queueMicrotask(liveExcerpts);
+}
 
 export const state = {
-  tab: 'home',
+  get tab(){ return tab; },
+  set tab(value){
+    tab = value;
+    pendingTab = liveExcerpts().length ? value : null;
+  },
 
   // Persisted with the prototype's key, so an existing visitor keeps their choice.
   codYear: LS.get('wa_cod') || '2028-29',
@@ -29,8 +54,18 @@ export const state = {
   get theme(){ return app.theme; },
 };
 
-/* Section code calls render() after mutating state, exactly as in the prototype.
-   It now re-renders the current route through the app shell. */
-export const render = requestRender;
+/* Existing dashboard controls retain their app-shell render. A story bridge
+   inside an excerpt instead opens the real, deep-linkable research tab. */
+export function render(){
+  const live = liveExcerpts();
+  const nextTab = pendingTab;
+  pendingTab = null;
+  if (live.length){
+    if (nextTab != null){ navigate(live[0].basePath + '/' + nextTab); return; }
+    for (const entry of live) entry.paint();
+    return;
+  }
+  requestRender();
+}
 
 export { LS };
