@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.ieso.ca/Terms-of-Use",
     "notice": "Copyright © 2004-2022 Independent Electricity System Operator, all rights reserved.\nThis information is subject to the Terms of Use set out in the IESO’s website (www.ieso.ca)"
   },
-  "fetchedAt": "2026-11-11T14:30:57.925Z",
+  "fetchedAt": "2026-11-12T15:24:40.108Z",
   "coverage": {
     "from": "2026-08-08T05:00:00.000Z",
-    "to": "2026-11-12T05:00:00.000Z",
+    "to": "2026-11-13T05:00:00.000Z",
     "resolution": "PT1H",
-    "points": 2232
+    "points": 2328
   },
   "units": {
     "price": "CAD/MWh"
@@ -39,25 +39,17 @@
   "arbitrage": null,
   "zonal": {
     "coverageAudit": {
-      "archiveReports": 93,
-      "archiveDeliveryDays": 93,
+      "archiveReports": 97,
+      "archiveDeliveryDays": 97,
       "archiveFirst": "2026-08-08",
-      "archiveLast": "2026-11-11",
+      "archiveLast": "2026-11-12",
       "availableDeliveryDays": 91,
-      "archivedAvailableDeliveryDays": 88,
-      "pendingReportFiles": [
-        "PUB_DAHourlyOntarioZonalPrice_20261104_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20261105_v1.xml",
-        "PUB_DAHourlyOntarioZonalPrice_20261106_v1.xml"
-      ],
-      "completeRollingDays": 93,
-      "expectedIntervalsBetweenObservedEndpoints": 2304,
-      "actualIntervals": 2232,
-      "missingDays": [
-        "2026-11-04",
-        "2026-11-05",
-        "2026-11-06"
-      ],
+      "archivedAvailableDeliveryDays": 91,
+      "pendingReportFiles": [],
+      "completeRollingDays": 97,
+      "expectedIntervalsBetweenObservedEndpoints": 2328,
+      "actualIntervals": 2328,
+      "missingDays": [],
       "windowDays": 365
     },
     "deliveryTimezone": "EST (UTC-05:00)",
@@ -944,6 +936,36 @@
         "meanPrice": 46.01749999999999
       },
       {
+        "date": "2026-11-04",
+        "hours": 24,
+        "min": 28.92,
+        "max": 78.26,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 40.504583333333336
+      },
+      {
+        "date": "2026-11-05",
+        "hours": 24,
+        "min": 24.63,
+        "max": 94.56,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 46.30125
+      },
+      {
+        "date": "2026-11-06",
+        "hours": 24,
+        "min": 34.3,
+        "max": 95.85,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 66.345
+      },
+      {
         "date": "2026-11-07",
         "hours": 24,
         "min": 25.17,
@@ -992,25 +1014,35 @@
           "DSO-RD": 24
         },
         "meanPrice": 78.43083333333334
+      },
+      {
+        "date": "2026-11-12",
+        "hours": 24,
+        "min": 40.45,
+        "max": 105.24,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 72.52041666666668
       }
     ],
     "latest": {
-      "date": "2026-11-11",
+      "date": "2026-11-12",
       "hours": 24,
-      "min": 51.44,
-      "max": 113.42,
+      "min": 40.45,
+      "max": 105.24,
       "flags": {
         "DSO-RD": 24
       },
-      "meanPrice": 78.43083333333334
+      "meanPrice": 72.52041666666668
     }
   },
   "sourceSnapshot": {
     "file": "ca-on-da-zonal.json",
-    "contentChecksum": "sha256:777bcd99245f634be64f141c19fefda4e7901d031e446d3eefa3c832a2681906",
-    "archiveChecksum": "sha256:702356139898d84e39b8a9aeb91d4bbbcb4e7f907555bfdefddc98795c510505",
-    "points": 2232
+    "contentChecksum": "sha256:998b73cbab658683973c3e21cbb9b90a21c1f478cf4f229037c0f14afe666e8b",
+    "archiveChecksum": "sha256:9ef5ceb613913bf2604463815f5d37560cea83893b1e72a2b76cbb173612f5dc",
+    "points": 2328
   },
-  "contentChecksum": "sha256:3238379fc44f383d86cc9ecd82a3aef6963ed8f25ac57f125a68fa6dba1bd915",
-  "summaryChecksum": "sha256:109d6b3bb058a1895a24b76fa7f549231d8582dd52f99333f900c1ec232da637"
+  "contentChecksum": "sha256:55301715de8f68c68f3f2a17723a3d50a73b355a8da1704b614475d1164a0dd6",
+  "summaryChecksum": "sha256:aaa0a3ea82a958b4697800e01cc5932912723cf4704e85201869b6ac59fbdc97"
 }
