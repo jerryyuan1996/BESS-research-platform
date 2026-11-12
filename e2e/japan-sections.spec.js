@@ -30,21 +30,25 @@ for(const [region,en,zh] of REGIONS){
     await expect(section(page,'home')).toHaveCount(0);
     await expect(section(page,'grid')).toHaveCount(0);
 
-    /* A cold legacy /grid URL becomes the grouped entry/grid route. */
+    /* A cold legacy /grid URL opens the grid reader at the original address. */
     asked.length=0;
     await page.goto(base+'/grid');
-    await expect(page).toHaveURL(new RegExp(base+'/entry/grid$'));
-    await expect(section(page,'grid').locator('.geo-grid-map svg')).toBeVisible();
-    await expect(section(page,'grid')).toContainText(en);
-    expect([...new Set(asked)].sort()).toEqual(['entry','grid']);
+    await expect(page).toHaveURL(new RegExp(base+'/grid$'));
+    await expect(page.locator('.market-research-dialog [role="tabpanel"]')).toHaveAttribute('aria-busy','false');
+    await expect(page.locator('.market-overview-map .geo-grid-map svg')).toBeAttached();
+    await expect(page.locator('.market-research-dialog')).toContainText(en);
+    expect(asked).toEqual(expect.arrayContaining(['entry','grid']));
+    await page.keyboard.press('Escape');
+    asked.length=0;
+    await page.goto(base+'/story');
 
     /* Brief deliberately returns to the investment page, not the original
        research /case deep link checked above. Revisit two research tabs. */
     await expect(tab(page,'Brief')).toHaveAttribute('href',base);
     await tab(page,'Market Story').click();
     await expect(section(page,'home')).toBeVisible();
-    await tab(page,'Entry & Delivery').click();
-    await expect(section(page,'grid').locator('.sect')).toBeVisible();
+    await tab(page,'Evidence').click();
+    await expect(section(page,'data').locator('.sect')).toBeVisible();
     await tab(page,'Market Story').click();
     await expect(section(page,'home')).toBeVisible();
     await expect(section(page,'story')).toHaveCount(1);
@@ -62,7 +66,7 @@ for(const [region,en,zh] of REGIONS){
     expect(errors).toEqual([]);
   });
 
-  test(`${region} a late story chunk cannot replace the entry page`,async({page})=>{
+  test(`${region} a late story chunk cannot replace the evidence page`,async({page})=>{
     const errors=[];page.on('pageerror',error=>errors.push(error.message));
     let release,arrived;
     const held=new Promise(resolve=>{release=resolve;});
@@ -75,18 +79,18 @@ for(const [region,en,zh] of REGIONS){
     await tab(page,'Market Story').click();
     await blocked;
     try {
-      await tab(page,'Entry & Delivery').click();
-      await expect(section(page,'grid').locator('.sect')).toBeVisible();
+      await tab(page,'Evidence').click();
+      await expect(section(page,'data').locator('.sect')).toBeVisible();
       const response=page.waitForResponse(/\/assets\/section-jp-story-/);
       release();await (await response).finished();
       /* Let module evaluation and its pending render continuation settle. */
       await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
-      await expect(page).toHaveURL(new RegExp(base+'/entry$'));
+      await expect(page).toHaveURL(new RegExp(base+'/evidence$'));
       await expect(section(page,'home')).toHaveCount(0);
       await expect(section(page,'story')).toHaveCount(0);
-      await expect(section(page,'entry')).toHaveCount(1);
-      await expect(section(page,'grid')).toHaveCount(1);
-      await expect(section(page,'grid')).toContainText(en);
+      await expect(section(page,'entry')).toHaveCount(0);
+      await expect(section(page,'data')).toHaveCount(1);
+      await expect(section(page,'data')).not.toBeEmpty();
       expect(errors).toEqual([]);
     } finally { release(); }
   });

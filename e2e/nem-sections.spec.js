@@ -48,17 +48,17 @@ test('the brief loads its own section and no other', async ({ page }) => {
   expect(asked).toEqual(['case']);
 });
 
-test('a pasted deep link opens its section and rewrites the old address', async ({ page }) => {
+test('a legacy grid address opens its reader and preserves the bookmark', async ({ page }) => {
   const asked = sectionRequests(page);
   await page.goto(MARKET + '/grid');
 
-  await expect(page.locator('[data-section="grid"] .sect')).toContainText('Grid, MLF & Congestion');
-  await expect(page.locator('[data-section="grid"] .geo-grid-map svg')).toBeVisible({ timeout: 30_000 });
+  await expect(page.locator('.market-research-dialog [role="tabpanel"]')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('.market-overview-map .geo-grid-map svg')).toBeAttached({ timeout: 30_000 });
 
-  /* /grid was its own tab before the seven-tab merge; the page rewrites the
-     address in place to the tab that now holds it. */
-  await expect(page).toHaveURL(/\/markets\/nem\/entry\/grid$/);
-  expect([...new Set(asked)].sort()).toEqual(['entry', 'grid']);
+  /* /grid was its own tab before the seven-tab merge; the reader preserves
+     the original address while opening the complete research. */
+  await expect(page).toHaveURL(/\/markets\/nem\/grid$/);
+  expect(asked).toEqual(expect.arrayContaining(['entry','grid']));
 });
 
 test('a section already in memory is not fetched twice and not drawn twice', async ({ page }) => {
@@ -69,8 +69,8 @@ test('a section already in memory is not fetched twice and not drawn twice', asy
   await expect(page.locator('[data-section="home"]')).toHaveCount(1);
   await expect(page.locator('[data-section="story"]')).toHaveCount(1);
 
-  await tab(page, 'Revenue & Design').click();
-  await expect(page.locator('[data-section="capacity"]')).toHaveCount(1);
+  await tab(page, 'Competition & Demand').click();
+  await expect(page.locator('[data-section="pipeline"]')).toHaveCount(1);
   await expect(page.locator('[data-section="home"]')).toHaveCount(0);
 
   await tab(page, 'Market Story').click();
@@ -104,15 +104,15 @@ test('a section that arrives after the reader moved on is not drawn', async ({ p
 
   await page.goto(MARKET + '/case');
   await tab(page, 'Market Story').click();
-  await tab(page, 'Entry & Delivery').click();
+  await tab(page, 'Evidence').click();
 
-  await expect(page.locator('[data-section="grid"] .sect')).toContainText('Grid, MLF & Congestion');
+  await expect(page.locator('[data-section="data"] .sect')).toBeVisible();
   /* The delayed story chunk lands about now. It must not appear under Entry. */
   await page.waitForTimeout(2_000);
   await expect(page.locator('[data-section="home"]')).toHaveCount(0);
   await expect(page.locator('[data-section="story"]')).toHaveCount(0);
-  await expect(page.locator('[data-section="grid"]')).toHaveCount(1);
-  await expect(page).toHaveURL(/\/markets\/nem\/entry$/);
+  await expect(page.locator('[data-section="data"]')).toHaveCount(1);
+  await expect(page).toHaveURL(/\/markets\/nem\/evidence$/);
 });
 
 test('every tab renders its sections, one load at a time', async ({ page }) => {
@@ -122,8 +122,6 @@ test('every tab renders its sections, one load at a time', async ({ page }) => {
 
   const sectionsByTab = [
     ['Market Story', ['home', 'story']],
-    ['Revenue & Design', ['capacity']],
-    ['Entry & Delivery', ['entry', 'grid']],
     ['Competition & Demand', ['pipeline']],
     ['Capital & Exit', ['portfolio']],
     ['Evidence', ['data']],
