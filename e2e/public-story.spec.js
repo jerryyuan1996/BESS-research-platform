@@ -59,7 +59,8 @@ test('keyboard, history, language, deep links and repeated opening preserve the 
   await expect(page.locator('.market-overview-context')).toHaveAttribute('aria-busy','false');
   await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
   const trigger=page.locator('.public-story-trigger');await trigger.waitFor();await trigger.focus();
-  const scroll=await page.evaluate(()=>scrollY);await page.keyboard.press('Enter');
+  await trigger.evaluate(node=>window.scrollTo({top:window.scrollY+node.getBoundingClientRect().top-120,behavior:'instant'}));
+  const scroll=await page.evaluate(()=>scrollY);expect(scroll).toBeGreaterThan(100);await page.keyboard.press('Enter');
   const dialog=page.locator('.public-story-dialog');await expect(dialog.getByRole('button',{name:'Close market background'})).toBeFocused();
   await dialog.locator('.public-story-nav button[data-chapter=system]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
   await dialog.locator('.public-story-nav button[data-chapter=storage]').click();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
@@ -67,7 +68,11 @@ test('keyboard, history, language, deep links and repeated opening preserve the 
   await page.goForward();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expect(dialog).toHaveAttribute('lang','zh');await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-storage');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
-  await page.keyboard.press('Escape');await expect(page.locator('.public-story-dialog')).toHaveCount(0);expect(await page.evaluate(()=>scrollY)).toBeCloseTo(scroll,0);await expect(page.locator('.public-story-trigger')).toBeFocused();
+  await page.keyboard.press('Escape');await expect(page.locator('.public-story-dialog')).toHaveCount(0);
+  // Native scroll anchoring and font rounding can shift the restored viewport
+  // by a few pixels. A lost return position still differs by hundreds of pixels.
+  await expect.poll(async()=>Math.abs(await page.evaluate(()=>scrollY)-scroll)).toBeLessThanOrEqual(8);
+  await expect(page.locator('.public-story-trigger')).toBeFocused();
   await page.goBack();await expect(page.locator('.public-story-dialog')).toBeVisible();
   await page.keyboard.press('Escape');await page.locator('.public-story-trigger').click();await expect(page.locator('.public-story-dialog')).toBeVisible();
 });
