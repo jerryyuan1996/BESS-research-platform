@@ -31,10 +31,9 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       expect(bound.y-card.y-card.height).toBeLessThanOrEqual(21);
       const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
       await expect(overview.locator('[data-date-kind=g1]')).toHaveCount(0);
-      await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(c.evidenceCheckedOn?1:0);
-      if(c.evidenceCheckedOn)await expect(overview.locator('[data-date-kind=source-check]')).toContainText(c.evidenceCheckedOn);
+      await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(0);
       const order=await overview.evaluate(el=>['decision','bankable','revenue'].every(id=>{const target=document.getElementById(id);return !target||Boolean(el.compareDocumentPosition(target)&Node.DOCUMENT_POSITION_FOLLOWING);}));expect(order).toBe(true);
-      const summary=await overview.innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
+      const summary=await overview.locator('.market-overview-story').innerText();if(expectedOverview)expect(summary).toBe(expectedOverview);else expectedOverview=summary;
       await trigger.click();const dialog=page.locator('.public-story-dialog');await expect(dialog).toBeVisible();await expect(dialog.locator('[data-chapter=history].public-chapter')).toBeVisible();
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
       await expectCompleteHistory(page,id,locale);
