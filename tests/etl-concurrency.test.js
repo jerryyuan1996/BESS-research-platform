@@ -73,16 +73,20 @@ test('a provider limit binds independently of the global limit', async () => {
   assert.equal(allPeak, 2, 'the provider cap, not the global cap, is the binding limit here');
 });
 
-test('a saturated provider does not block a different one', async () => {
+test('a saturated provider does not block a different one', { timeout: 5000 }, async () => {
   const order = [];
+  let releaseProvider;
+  const providerGate = new Promise(resolve => { releaseProvider = resolve; });
   const slow = provider => ({
     provider,
-    run: async () => { await sleep(60); order.push(provider); },
+    run: async () => { await providerGate; order.push(provider); },
   });
-  const quick = { provider: 'ecb', run: async () => { await sleep(5); order.push('ecb'); } };
+  const quick = { provider: 'ecb', run: async () => { order.push('ecb'); releaseProvider(); } };
 
   /* Three JEPX datasets with a provider cap of one: the naive scheduler would
-     hold a global slot open behind them and delay the ECB dataset by 180 ms. */
+     block ECB behind the gated provider and fail the test timeout. Explicitly
+     release the provider from ECB instead of relying on millisecond timer
+     ordering, which is not guaranteed when the event loop is delayed. */
   await runWithConcurrency([slow('jepx'), slow('jepx'), slow('jepx'), quick],
     { global: 4, providers: { jepx: 1 } });
 
