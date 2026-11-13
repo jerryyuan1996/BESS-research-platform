@@ -1,7 +1,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { money, pct, returnPct } from './model.js';
-import { referenceInvestment } from '../opportunities/investment.js';
+import { referenceInvestment,selectedSupplyOptions } from '../opportunities/investment.js';
 import { opportunitiesFor } from '../opportunities/catalog.js';
 import { sizeLeverage, leveredReturn } from '../acquisition/leverage.js';
 import { nominalAnnual, taxSchedule } from '../acquisition/cashflows.js';
@@ -10,7 +10,7 @@ import { labField } from '../comparison/ranges.js';
 const cash=y=>y.secured+y.renewal+y.merchant-y.opex-y.capex-y.tax;
 /** Single-factor tests share the headline case's date, price and hold policy. */
 export function analyseRisk(row,investor,overrides) {
-  const options=opportunitiesFor(row.id)[0]?.screeningByInvestor?.[investor] || {};
+  const options={...opportunitiesFor(row.id)[0]?.screeningByInvestor?.[investor],...selectedSupplyOptions(row)};
   const reference=referenceInvestment(row.market,investor,row.play,options)?.result;
   if(!reference)return null;
   const stressed=referenceInvestment(row.market,investor,row.play,{...options,economicOverrides:overrides})?.result;

@@ -1,6 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {historySlugs,historyInvestors,expectCompleteHistory} from './helpers/research-history.js';
 import {PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
+import {expectInvestorLayout,expectCountryOverview} from './helpers/investor-rollout.js';
 const historyOnly=['ca_on','sa','es'];
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,route=>route.abort());});
 function coverage(){for(const id of historyOnly)test(id+' · existing history for every investor and language',async({page})=>{
@@ -9,6 +10,7 @@ function coverage(){for(const id of historyOnly)test(id+' · existing history fo
   for(const locale of ['en','zh'])for(const investor of historyInvestors){
     await page.evaluate(({locale,investor})=>{localStorage.setItem('hub_lang',locale);localStorage.setItem('hub_lens',investor);},{locale,investor});
     await page.goto('/markets/'+historySlugs[id]);
+    await expectInvestorLayout(page,id,locale);
     const trigger=page.locator('.public-story-trigger');await expect(trigger).toBeVisible();
     const context=page.locator('.market-overview-context');
     await expect(context).toHaveAttribute('aria-busy','false');
@@ -19,11 +21,12 @@ function coverage(){for(const id of historyOnly)test(id+' · existing history fo
     await expect(page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true})).toHaveValue(investor);
     await expect(page.locator('#overview [data-date-kind=g1]')).toHaveCount(0);
     await trigger.click();await expectCompleteHistory(page,id,locale);
-    const dialog=page.locator('.public-story-dialog');await expect(dialog.locator('.public-story-nav button')).toHaveCount(2);
+    const dialog=page.locator('.public-story-dialog');await expect(dialog.locator('.public-story-nav button')).toHaveCount(3);
+    if(investor==='infraFund')await expectCountryOverview(page,id,locale,{restricted:true});
     await dialog.locator('[data-chapter=research]').click();await expect(dialog.locator('.public-history-provenance')).toBeVisible();
     await expect(dialog.locator('.public-chapter[data-chapter=research]')).toContainText(locale==='en'?'Market development history from the existing research.':'既有研究中的市场发展历程。');
     await expect(dialog.locator('.public-chapter-footer')).toContainText(locale==='en'?'Existing research history':'既有研究历程');
-    expect(await dialog.locator('.public-story-nav button').evaluateAll(buttons=>buttons.map(button=>button.dataset.chapter))).toEqual(['history','research']);
+    expect(await dialog.locator('.public-story-nav button').evaluateAll(buttons=>buttons.map(button=>button.dataset.chapter))).toEqual(['history','overview','research']);
     await expect(dialog.locator('.public-scene-host,.public-power-scene')).toHaveCount(0);
     await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
   }

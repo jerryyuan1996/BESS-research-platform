@@ -1,0 +1,19 @@
+.source-popup-trigger { display:inline-flex; align-items:center; gap:6px; padding:5px 9px; min-height:32px; border:1px solid #cbd6c9; border-radius:var(--r-sm); background:#f0f3e9; color:#365a45; font:inherit; font-size:var(--fs-xs); line-height:1.5; cursor:pointer; }
+.source-popup-trigger:hover { background:#e3ebda; border-color:#607f66; }
+.source-popup-trigger:focus-visible,.source-popup-close:focus-visible { outline:3px solid #b88930; outline-offset:3px; }
+.source-popup { width:min(580px,calc(100vw - 32px)); max-height:min(640px,calc(100dvh - 48px)); padding:0; border:1px solid #cbd6c9; border-radius:var(--r-lg); background:#fffefa; color:#193c32; box-shadow:0 18px 80px #132c293d; overflow:auto; }
+.source-popup::backdrop { background:#15332966; }
+.source-popup>header { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 20px; border-bottom:1px solid #dce1d6; background:#fffefa; }
+.source-popup>header h3 { font:var(--fw-medium) var(--fs-xl)/1.5 var(--font-sans,sans-serif); margin:0; }
+.source-popup-close { display:grid; place-items:center; width:36px; height:36px; border:1px solid #cbd6c9; border-radius:var(--r-sm); background:transparent; color:inherit; cursor:pointer; font-size:var(--fs-2xl); }
+.source-popup-body { padding:16px 20px 20px; font-size:var(--fs-sm); line-height:1.7; }
+.source-popup .source-grid { display:grid; grid-template-columns:100px minmax(0,1fr); gap:9px 14px; padding:16px 0; border-bottom:1px solid #dce1d6; font-size:var(--fs-sm); }
+.source-popup .source-grid:first-child { padding-top:0; }
+.source-popup .source-grid:last-child { border-bottom:0; padding-bottom:0; }
+.source-popup a { text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; color:inherit; }
+.source-popup p { font-size:var(--fs-sm); line-height:1.7; }
+.source-popup ul { padding-left:20px; }
+.source-popup li+li { margin-top:14px; }
+@media(max-width:560px) { .source-popup-trigger { min-height:40px; }
+.source-popup .source-grid { grid-template-columns:80px minmax(0,1fr); }
+.source-popup>header,.source-popup-body { padding:14px 16px; } }

@@ -11,6 +11,7 @@ import { link, sectionTitle, eyebrow, metric } from '../experience/chrome.js';
 import { money, pct } from '../experience/model.js';
 import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES, opportunitiesFor, opportunityById, RESEARCH_DATE } from './catalog.js';
 import { compareOpportunity, defaultOpportunityStage, beatsConventional } from './model.js';
+import {selectedSupplyOptions} from './investment.js';
 import { REVENUE_MECHANISMS, MECHANISM_RESEARCH, revenueMechanismsFor } from './revenue.js';
 import { marketResearchLink } from '../experience/marketResearchLink.js';
 
@@ -78,7 +79,7 @@ const isValid = beatsConventional;
 /** The valid special opportunities for this market and investor, and the
  * conventional case on its own for the delivery timeline when none is valid. */
 export function specialOpportunityScreen(row, investor) {
-  const screened = opportunitiesFor(row.id).map(o => ({ o, c: compareOpportunity(row.market, o, investor, row.play, {}) }));
+  const screened = opportunitiesFor(row.id).map(o => ({ o, c: compareOpportunity(row.market, o, investor, row.play, selectedSupplyOptions(row)) }));
   const priced = screened.find(x => !x.c.unavailable)?.c;
   return { valid: screened.filter(x => isValid(x.c)).map(x => x.o),
     conventional: priced ? { standard: priced.standard, stage: priced.stage } : null };
@@ -89,9 +90,9 @@ export function specialOpportunityScreen(row, investor) {
 export function opportunityComparison(row, investor, {compact=false,only=null}={}) {
   const available = opportunitiesFor(row.id).filter(o => !only || only.some(v => v.id === o.id));
   if (!available.length) return null;
-  const key=row.id+'/'+investor;
+  const key=[row.id,investor,row.play?.id||'base',row.investment?.usSupply||''].join('/');
   const requested = new URLSearchParams(window.location.search).get('opportunity');
-  if (!session.has(key)) session.set(key,{id:available.find(o=>o.id===requested)?.id||available[0].id,values:{}});
+  if (!session.has(key)) session.set(key,{id:available.find(o=>o.id===requested)?.id||available[0].id,values:selectedSupplyOptions(row)});
   const state=session.get(key);
   if (requested && available.some(o=>o.id===requested)) state.id=requested;
   const o = opportunityById(state.id);

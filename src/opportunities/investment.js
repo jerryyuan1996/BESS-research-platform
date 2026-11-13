@@ -7,6 +7,7 @@ import { baseStrategy } from '../comparison/strategies.js';
 
 export const INVESTMENT_LIFE = 20;
 export const INVESTMENT_STAGE = 'ready-to-build';
+export const selectedSupplyOptions = row => row.investment?.usSupply ? {usSupply:row.investment.usSupply} : {};
 export const investmentPV = (flows, rate) => flows.reduce((sum,c)=>sum+c.amount/(1+rate)**c.at,0);
 export const investmentRoutes = input => input.stage==='operating'?['hold']:['hold','sale'];
 export function pricingOptions(market, play){
@@ -59,17 +60,21 @@ export function fundingMetrics(reference) {
     maxPricePerMW:reference.ceiling?.status === 'priced' ? reference.ceiling.pricePerMW : null,
     npv:reference.npv, inflationRate:input.inflationRate, securedIndexation:input.securedIndexation };
 }
-export function investmentMetrics(reference){
+export function investmentMetrics(reference, { debtBreakdown = false } = {}){
   if(!reference)return null;
   const {input,annual}=reference,y=annual[0],gross=y.secured+y.renewal+y.merchant;
   const fx=input.fxToUSD;
   const holdIRR=reference.holdReturn?.annualReturn??null,lev=reference.levered;
   const leveredIRR=lev?.annualReturn??null;
   return {...fundingMetrics(reference),irr:reference.atPrice?.annualReturn??null,holdIRR,
+    ...(debtBreakdown ? {strategyId:input.strategyId,contract:reference.assumptions.terms,
+      inflationPath:input.inflationPath,capitalGrantPerMW:reference.assumptions.terms?.grantPerMW,
+      revenueSupport:input.revenueSupport,capitalSupportPerMW:reference.assumptions.capitalSupportPerMW} : {}),
     saleIRR:reference.saleReturn?.annualReturn??null,route:reference.atPrice?.route??null,
     leveredIRR,leverage:lev?{gearing:lev.gearing,loanPerMW:lev.loanPerMW,contractedDSCR:lev.contractedDSCR,
       merchantDSCR:lev.merchantDSCR,legalYears:lev.legalYears,notionalYears:lev.notionalYears,rate:lev.rate,
-      minCover:lev.minCover,balloonShare:lev.balloonShare,capBinds:lev.capBinds,fee:lev.fee,reserve:lev.reserve}:null,
+      minCover:lev.minCover,balloonShare:lev.balloonShare,capBinds:lev.capBinds,fee:lev.fee,reserve:lev.reserve,
+      ...(debtBreakdown ? { contributions:lev.contributions,capacityPerMW:lev.capacityPerMW,capShare:lev.capShare } : {})}:null,
     test:targetTest(holdIRR,leveredIRR,input.targetReturn),
     usSupply:reference.assumptions.usSupply??null,
     currency:input.currency,fxToUSD:fx,powerMW:input.powerMW,hours:input.durationHours,

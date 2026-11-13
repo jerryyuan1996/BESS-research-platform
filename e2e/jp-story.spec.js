@@ -19,6 +19,8 @@ for(const area of areas){
   const base='/markets/japan-'+area.region,preview=base+'?story=preview',story=composeStory('jp_'+area.region);
 
   test(`${area.region}: one lazy pack reads all fourteen shots, markers and price cases in both languages`,async({page},info)=>{
+    // Two complete language passes include every scene and multiple chart captures.
+    test.setTimeout(120000);
     const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(e.message));
     const packs=()=>requests.filter(u=>/\/story-jp-[^/]+\.js/.test(u));
     const locators=()=>requests.filter(u=>/\/storyEvidenceProvenance[^/]*\.js/.test(u));
@@ -109,6 +111,7 @@ for(const area of areas){
   });
 
   test(`${area.region}: all four section handoffs and the wrong-profile fallback stay on its own page`,async({page})=>{
+    test.setTimeout(120000);
     for(const anchor of ['bankable','revenue','execution','downside']){
       await page.goto(preview+'&view=story&chapter=investment&shot=jp-'+area.region+'-13');
       const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();

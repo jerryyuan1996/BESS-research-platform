@@ -7,19 +7,21 @@ test.beforeEach(async({page})=>{
   await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
 
-test('market brief discloses actual rates in English and Chinese',async({page},testInfo)=>{
+test('market brief discloses actual financing assumptions in English and Chinese',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/markets/western-australia');
-  await page.locator('.ix-valuation-basis > summary').click();
-  await expect(page.locator('.ix-valuation-basis')).toContainText('6.5%');
-  await expect(page.locator('.ix-valuation-basis')).toContainText('10.5%');
+  await expect(page.locator('#bankable .ic-debt-table')).toContainText('1.20×');
+  await expect(page.locator('#bankable .ic-debt-table')).toContainText('2.00×');
+  await expect(page.locator('#bankable')).toContainText('Year-one all-in interest');
+  await expect(page.locator('#bankable')).toContainText('7.9%');
   // WA all-equity hold IRR. Moved 2026-10-30 from 13.4% when AEMO's published
   // 2028-29 RCP replaced the surplus-adjusted estimate (src/markets/wa/comparison.js).
   await expect(page.locator('#bankable .ix-kpis')).toContainText('14.3%');
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
-  await page.locator('.ix-valuation-basis > summary').click();
-  await expect(page.locator('.ix-valuation-basis')).toContainText('锁定收入6.5%');
-  await expect(page.locator('.ix-valuation-basis')).toContainText('交易收入10.5%');
+  await expect(page.locator('#bankable')).toContainText('首年综合利率');
+  await expect(page.locator('#bankable')).toContainText('7.9%');
+  await expect(page.locator('#bankable .ic-debt-table')).toContainText('1.20×');
+  await expect(page.locator('#bankable .ic-debt-table')).toContainText('2.00×');
   await expect(page.locator('#downside')).toContainText('统一现金流口径');
   await page.screenshot({path:testInfo.outputPath('market-brief-zh.png'),timeout:15000});
   expect(errors).toEqual([]);

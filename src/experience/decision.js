@@ -45,9 +45,12 @@ export function basisNote(row) {
 export function decisionReasons(row, compact = false) {
   const d = row.decision || {}, box = h('div', { class:'ix-decision-reasons' });
   if (d.reason) box.append(h('p', {}, h('strong', {}, L(['Why this priority: ', '优先级依据：'])), L(d.reason)));
-  const gates = (row.market.comparison.refinement?.investmentGate || []).slice(0, compact ? 1 : 3);
+  const gates = (row.id === 'it' && row.play?.route === 'cap' ? [
+    ['Verify the earlier capacity award, credited MW, price and transfer rights', '核验早先容量合同、计入 MW、价格与转让权利'],
+    ['Check zonal grid access and trading assumptions', '核验分区并网条件与交易收入假设'],
+  ] : (row.market.comparison.refinement?.investmentGate || [])).slice(0, compact ? 1 : 3);
   if (gates.length) box.append(h('p', {}, h('strong', {}, L(['Before committing: ', '投入前必须核查：'])),
-    gates.map(g => L(gateLabel(g))).join(' · ')));
+    gates.map(g => L(Array.isArray(g) ? g : gateLabel(g))).join(' · ')));
   if (!compact && d.counterpoint) box.append(h('p', {}, h('strong', {}, L(['What limits conviction: ', '限制判断的因素：'])), L(d.counterpoint)));
   if (!compact && d.event) box.append(h('p', {}, h('strong', {}, L(['Next event: ', '下一事件：'])), L(d.event.label),
     ' · ', d.event.expected || L(['Date unconfirmed','日期待定']), ' · ', link('/policy#event-watch', ['Review event ↗','查看事件 ↗'])));
@@ -55,23 +58,25 @@ export function decisionReasons(row, compact = false) {
     ' · ', L(['Review due: ', '下次复核：']), d.reviewBy || '—'));
   return box;
 }
-export function decisionPanel(row) {
+export function decisionPanel(row, presentation = null) {
   const i = row.investment;
-  const panel = h('section', { class:'ix-panel ix-decision-panel', id:'decision' },
-    h('h2', {}, L(['The decision at this price and stage', '当前价格与阶段下的投资判断'])), basisNote(row));
-  if (i) panel.append(h('div', { class:'ix-decision-metrics' },
+  const pilot = Boolean(presentation);
+  const panel = h('section', { class:'ix-panel ix-decision-panel' + (pilot ? ' ic-decision-panel' : ''), id:'decision' },
+    h('h2', {}, L(['The decision at this price and stage', '当前价格与阶段下的投资判断'])), pilot ? presentation.identity(row) : basisNote(row));
+  if (i && pilot) panel.append(presentation.metrics(row, marginText(row)));
+  else if (i) panel.append(h('div', { class:'ix-decision-metrics' },
     metric(['Base all-equity IRR','基准全股权IRR'], returnPct(i.holdIRR), marginText(row)),
     metric(['Declared downside IRR','既定下行IRR'], returnPct(i.bearHoldIRR)),
     metric(['Peak pre-COD equity / project','投运前峰值股权资金／项目'], money(i.peakEquityPerMW * i.powerMW, i.currency)),
     metric(['Project-rights price ceiling / MW','项目权利对价上限／MW'],
       i.maxPricePerMW == null ? L(['No supported price','尚不支持出价']) : money(i.maxPricePerMW, i.currency))));
   else panel.append(h('p', { role:'status' }, L(availability(row))));
-  panel.append(decisionReasons(row));
-  if (row.id === 'es') panel.append(h('p', { class:'ix-basis-note' }, L([
+  if (!pilot) panel.append(decisionReasons(row));
+  if (!pilot && row.id === 'es') panel.append(h('p', { class:'ix-basis-note' }, L([
     'OMIE perfect-foresight day-ahead reference, adjusted for fleet growth using a transferred curve. Execution slippage is not calibrated. Capacity and balancing receipts are excluded; omissions do not establish a conservative floor.',
     '基于OMIE完全预见的日前参考值，采用迁移的机组增长曲线调整；尚未校准执行滑点。未计容量及平衡收入，这些排除项不代表当前回报就是保守下限。',
   ])));
-  if (row.id === 'fi') panel.append(h('p', { class:'ix-basis-note' }, L([
+  if (!pilot && row.id === 'fi') panel.append(h('p', { class:'ix-basis-note' }, L([
     'The screening action requires a floor of at least half of expected revenue. The current reference model has ' + share(i?.secured) + ' first-year fixed revenue: reprice the actual floor before a bid.',
     '筛选行动要求至少预期收入一半的保底；当前参考模型首年固定比例为' + share(i?.secured) + '。取得实际保底条款后必须重新定价。',
   ])));

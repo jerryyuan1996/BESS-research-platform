@@ -20,6 +20,8 @@ import { storyFor, publicReadingFor } from './story/registry.js';
 import { researchPlaced } from './researchPlaced.js';
 import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
+import { bankableInvestmentCase, investmentCaseIdentity, investmentDecisionMetrics } from './investmentCase.js';
+import './investmentCase.css';
 
 
 /* One closed disclosure: the research behind a chapter. Nothing is fetched
@@ -63,19 +65,34 @@ function renderMarket(container, row, route) {
   // Lightweight public reading precedes every investor-specific decision/card.
   const publicHost = publicEntry ? h('div',{class:'public-overview-loading','aria-busy':'true'},L(['Loading market background…','正在加载市场背景…'])) : null;
   if(publicHost) content.append(publicHost);
-  if (['pl','it'].includes(row.id)) {
+  if (row.play) {
     const choices = h('div');
     content.append(choices);
     const investor = lens();
-    storyReady = import('./playChoices.js').then(({ renderPlayChoices, storyRowsFor }) => {
+    storyReady = import('./playChoices.js').then(({ renderPlayChoices, storyRowsFor,investmentRowsFor }) => {
       storyRows = storyRowsFor(row, investor);
+      const options=investmentRowsFor(row,investor);
       if (choices.isConnected) {
-        if (storyRows.length > 1) choices.replaceWith(renderPlayChoices(storyRows, row, tag));
+        if (options.length > 1) {
+          choices.replaceWith(renderPlayChoices(options, row, tag, selected => {
+            if (selected.play.id === row.play.id && (!selected.supplyCase||selected.supplyCase===row.investment?.usSupply)) return;
+            const params = new URLSearchParams(window.location.search);
+            for (const key of ['view','chapter','shot']) params.delete(key);
+            params.set('play',selected.play.id);
+            if(selected.supplyCase)params.set('supply',selected.supplyCase);else params.delete('supply');
+            navigate(`${window.location.pathname}?${params}#investment-options`);
+          }));
+          if (window.location.hash === '#investment-options' || window.location.hash === '#route-options') {
+            const selected=content.querySelector('.ic-play-option[aria-pressed=true]');
+            selected?.focus({preventScroll:true});
+            content.querySelector('#investment-options')?.scrollIntoView({block:'start'});
+          }
+        }
         else choices.remove();
       }
     });
   }
-  content.append(decisionPanel(row));
+  content.append(decisionPanel(row, {identity:investmentCaseIdentity,metrics:investmentDecisionMetrics}));
   content.append(h('section', { id: publicEntry ? 'investment-overview' : 'overview', class: 'ix-section ix-overview' },
     sectionTitle(['THE INVESTMENT VIEW', '市场投资判断'], ['Understand what drives the case.', '先理解这项投资，为什么成立。']),
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
@@ -159,7 +176,7 @@ function renderMarket(container, row, route) {
       dropSpecial();
       if (screen.conventional) content.dispatchEvent(new CustomEvent('opportunitychange', { detail: screen.conventional }));
     }
-    if (window.location.hash === '#route-options') content.querySelector('#route-options')?.scrollIntoView();
+    if (window.location.hash === '#route-options') content.querySelector('#investment-options')?.scrollIntoView();
     if (window.location.hash === '#opportunity-comparison') specialHost.querySelector('#opportunity-comparison')?.scrollIntoView();
   }).catch(() => {
     if (!opportunityHost.isConnected) return;
@@ -177,19 +194,6 @@ function renderMarket(container, row, route) {
     content.append(bankableSection(data), revenueSection(data));
   } else content.append(h('section', { id: 'bankable', class: 'ix-panel ix-section' }, h('h2', {}, L(['Investment case in research', '投资方案研究中'])), h('p', {}, L(['This market does not yet have a complete return model. Continue with the market research and execution plan.', '本市场尚无完整回报模型，可继续查看市场研究与执行计划。'])),
     researchDisclosure(m, 'bankable')));
-  const routes=Object.entries(HOME_BRIEFING.plays).filter(([key])=>key.startsWith(row.id+'/')).map(([,p])=>p);
-  if(routes.length){
-    const requested=new URLSearchParams(window.location.search).get('play');
-    content.append(h('section',{id:'route-options',class:'ix-section'},
-      h('h2',{},L(['Current and alternative routes','当前方案与备选路线'])),
-      h('p',{class:'ix-basis-note'},L(['The headline remains the selected reference case. Alternative routes require separate pricing.',
-        '主回报仍对应上方当前参考方案；备选路线需要单独定价。'])),
-      h('div',{class:'ix-route-options'},routes.map(p=>h('article',{class:p.id===requested?'is-requested':'','data-play':p.id},
-        h('h3',{},L(p.label)),
-        h('small',{},L(p.id===row.play?.id?['Current reference','当前参考情景']:['Alternative research route','备选研究路径'])),
-        h('p',{},L(p.action?.text||['Review the route-specific evidence.','核查该路线的证据。'])),
-        link(caseUrl(row)+'/revenue',['Revenue mechanism research ↗','查看收入机制研究 ↗'],'ix-text-link'))))));
-  }
   const execution=executionSection(row);
   content.append(execution, specialHost);
   let timelineVersion=0;
@@ -207,51 +211,25 @@ function renderMarket(container, row, route) {
   container.append(content);
   mountMarketReadingNav(content, [
     ['overview', ['Market background','市场背景']],
+    ['investment-options', ['Investment options','投资方案']],
     ['decision', ['Investment decision','投资判断']],
     ['investment-overview', ['Investment logic','投资逻辑']],
     ['revenue-drivers', ['Revenue drivers','收入动因']],
     ...[['capacity','Support & adequacy','支持机制与充裕度'],['rcm','Support & adequacy','支持机制与充裕度'],['energy','Wholesale & intraday','批发与日内'],['services','Balancing & reserves','平衡与备用'],['fcess','Balancing & reserves','平衡与备用'],['duration','Storage duration','储能时长']].map(([id,en,zh])=>['revenue-'+id,[en,zh],true]),
     ['bankable', ['Bankable case','可融资方案']],
     ['revenue', ['Cash flow','现金流拆解']],
-    ['route-options', ['Investment routes','投资路径']],
     ['execution', ['Execution','执行步骤']],
     ['opportunity-comparison', ['Special opportunity','特殊机会']],
     ['downside', ['Downside','下行风险']],
     ['sources', ['Sources','来源与证据']],
   ]);
-  if (window.location.hash === '#route-options') requestAnimationFrame(()=>content.querySelector('#route-options')?.scrollIntoView());
   if (window.location.hash === '#opportunity-comparison') requestAnimationFrame(() => content.querySelector('#opportunity-comparison')?.scrollIntoView());
 }
 
-function leverageTable(inv) {
-  const l = inv?.leverage;
-  if (!l) return null;
-  const rows = [
-    [['Peak pre-COD equity / MW','投运前峰值股权资金／MW'],money(inv.peakEquityPerMW,inv.currency)],
-    [['Debt / MW at COD', 'COD时债务／MW'], money(l.loanPerMW, inv.currency)],
-    [['Net debt cash released at COD / MW','COD时可回收资金净额／MW'],money(l.loanPerMW-(l.fee||0)-(l.reserve||0),inv.currency)],
-    [['Debt ratio (of build and grid capex)', '债务比例（占建设及并网资本开支）'], share(l.gearing) + (l.capBinds ? L([' · cap binds', ' · 受上限约束']) : '')],
-    [['Contracted coverage', '合同现金流覆盖'], l.contractedDSCR ? l.contractedDSCR.toFixed(2) + 'x' : '—'],
-    [['Merchant coverage', '市场现金流覆盖'], l.merchantDSCR.toFixed(2) + 'x'],
-    [['Legal maturity / notional profile', '法定期限 / 名义摊还期'], `${l.legalYears} / ${l.notionalYears} ${L(['yrs', '年'])}`],
-    [['All-in rate, year one', '首年综合利率'], pct(l.rate)],
-    [['Lowest annual cover, before balloon', '最低年度覆盖（不含到期尾款）'], l.minCover ? l.minCover.toFixed(2) + 'x' : '—'],
-    [['Balloon repaid by equity', '股权偿还尾款'], share(l.balloonShare)],
-  ];
-  return h('details', { class: 'ix-details' }, h('summary', {}, L(['Debt behind the levered return', '杠杆回报所用债务'])),
-    h('table', { class: 'ix-table' }, h('tbody', {}, rows.map(([label, v]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, v))))));
-}
-
 function bankableSection(data) {
-  const { row, base, debt } = data;
-  return h('section', { id: 'bankable', class: 'ix-section' }, sectionTitle(['THE BANKABLE CASE', '可融资方案'], ['Turn the investment view into cash flow.', '把投资逻辑，落到现金流。'], ['Reference underwriting case · Same route and duration as the market screen.', '参考承销模型 · 与市场比较页采用相同收入路径与储能时长。']),
-    h('div', { class: 'ix-kpis' }, metric(HOLD_LABEL, returnPct(row.econ.hold), saleText(row)), metric(LEVERED_LABEL, returnPct(row.econ.levered), debtText(row.investment)), metric(['Investor target', '投资者目标回报'], pct(row.investment?.targetReturn), [`${testText(row.econ.test)[0]} · levered ${pct(row.econ.test?.leveredTarget)}`, `${testText(row.econ.test)[1]} · 杠杆后${pct(row.econ.test?.leveredTarget)}`]), metric(['Build and grid capex / MW', '建设及并网 Capex / MW'], money(row.investment?.capexPerMW,row.investment?.currency), usText(row.investment))),
-    basisNote(row),contractEvidence(row),leverageTable(row.investment),
-    h('div', { class: 'ix-case-summary' }, h('span', {}, L(['Revenue route', '收入路径']), ' / ', L(routeName(row))), h('span', {}, L(['RTB closing → COD', 'RTB交割→COD']), ' / ',row.investment?.rtbMonths,L([' months','个月'])), h('span', {}, L(['Operating life', '运营寿命']), ' / 20 ',L(['years','年']))),
-    h('details', { class: 'ix-details ix-valuation-basis' }, h('summary', {}, L(['Valuation basis', '估值口径'])),
-      h('p', {}, L(['The home card, global screen and conventional comparison column share this 20-year nominal after-tax RTB case, with the inflation and contract-indexation assumptions stated for each scenario; actual contract clauses require separate verification. The headline is the all-equity hold return. The levered return adds one project loan at COD: contracted cash covers 1.20–1.40x by contract type, merchant cash 2.00x, at least 60% is repaid by legal maturity and equity repays any balloon. The target test compares all-equity with the target, then levered with the target plus two points.','首页卡片、全球比较及测算表常规列共用20年、税后名义RTB投资模型，通胀与合同指数化采用各情景注明的比较假设，实际合同条款须另行核验。主回报为全股权长持回报；杠杆后回报在COD提取一笔项目贷款：合同现金流按合同类型1.20–1.40倍覆盖、市场现金流2.00倍，法定到期前至少偿还60%，尾款由股权偿还。目标检验先以全股权对比目标，再以杠杆后回报对比目标加2个百分点。'])),
-      h('p', {}, L([`The previous operating-model IRR was ${pct(base.irrHold)} over 15 years before project tax. Operating-asset valuation rates remain: fixed ${pct(base.valuationRates.secured)}, renewal ${pct(base.valuationRates.renewal)}, trading ${pct(base.valuationRates.merchant)}.`,`旧版15年税前运营模型IRR为${pct(base.irrHold)}。运营资产估值参考折现率：锁定收入${pct(base.valuationRates.secured)}；续约收入${pct(base.valuationRates.renewal)}；交易收入${pct(base.valuationRates.merchant)}。`]))),
-    researchDisclosure(row.market, 'bankable'));
+  return h('section', {id:'bankable',class:'ix-section'},
+    sectionTitle(['THE BANKABLE CASE','可融资方案'], ['Return, income and debt — together.','回报、收入与债务，一目了然。']),
+    bankableInvestmentCase(data.row), researchDisclosure(data.row.market,'bankable'));
 }
 
 function revenueSection(data) {

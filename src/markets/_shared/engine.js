@@ -529,7 +529,7 @@ export function createMarketEngine(cfg){
               el.replaceChildren();
               if (!now) return;
               ctx.blocks.B(el, now.blocks.map((block, i) => (i ? block : { ...block, mt: false })));
-              enhanceMarketPage(el);
+              enhanceMarketPage(el, { marketId:MKT.id });
               finishResearch(el);
               after?.(el);
             };

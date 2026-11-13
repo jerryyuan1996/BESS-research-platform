@@ -19,6 +19,8 @@ async function visit(page,slug,lang){
 
 for(const [id,slug] of Object.entries(ROUTES))for(const lang of ['en','zh']){
   test(`${id}: every explanation stays sourced, coordinated and readable (${lang})`,async({page},info)=>{
+    // Each case visits every translated animation step, including layout and payment gates.
+    test.setTimeout(120000);
     const errors=[],fetched=[];
     page.on('pageerror',e=>errors.push(e.message));
     page.on('request',r=>fetched.push(r.url()));

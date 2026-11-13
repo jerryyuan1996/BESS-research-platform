@@ -7,6 +7,7 @@ import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
 import { OPPORTUNITY_SUMMARY } from '../opportunities/summaryData.js';
 
 export const CALLS = {
+  reference: ['Reference alternative', '备选测算'],
   'enter-now': ['Advance', '优先推进'],
   'build-position': ['Build position', '提前布局'],
   opportunistic: ['Situational', '择机投入'],

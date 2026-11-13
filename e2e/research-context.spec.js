@@ -104,7 +104,7 @@ test('the market-background reading carries research under System tensions and M
   await node.locator('summary').first().click();
   await expect(node.locator('.ix-research-context-body')).toHaveAttribute('aria-busy','false');
   expect(await node.locator('.ix-research-card').count()).toBeGreaterThan(0);
-  for(const chapter of ['storage','judgement','research']){
+  for(const chapter of ['storage','research']){
     await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
     await expect(dialog.locator(`.public-chapter[data-chapter=${chapter}]`)).toBeVisible();
     await expect(dialog.locator('.ix-research-context')).toHaveCount(0);

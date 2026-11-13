@@ -1,7 +1,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { money, pct } from './model.js';
-import { referenceInvestment } from '../opportunities/investment.js';
+import { referenceInvestment,selectedSupplyOptions } from '../opportunities/investment.js';
 import { opportunitiesFor } from '../opportunities/catalog.js';
 import { PRICE_HISTORY, historicalPressure, stressConditions } from './downsideHistory.js';
 const snapshots=new Map();
@@ -30,7 +30,7 @@ function conditionText(c){
   return L(texts[c.kind]);
 }
 export function downsideNarrative(row,investor,overrides){
-  const options=opportunitiesFor(row.id)[0]?.screeningByInvestor?.[investor]||{},
+  const options={...opportunitiesFor(row.id)[0]?.screeningByInvestor?.[investor],...selectedSupplyOptions(row)},
     base=referenceInvestment(row.market,investor,row.play,options)?.result,
     stress=referenceInvestment(row.market,investor,row.play,{...options,economicOverrides:overrides})?.result,
     conditions=stressConditions(base,stress);

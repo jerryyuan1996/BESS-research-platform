@@ -21,8 +21,8 @@ test('Saudi has an evidence gap rather than a negative-return label or a strande
 });
 test('the new Spain case states its execution assumptions and retains a downside',async({page})=>{
   await page.goto('/markets/spain');
-  await expect(page.locator('#decision')).toContainText('perfect-foresight');
-  await expect(page.locator('#decision')).toContainText('Capacity and balancing receipts are excluded');
+  await expect(page.locator('#bankable')).toContainText('perfect-foresight');
+  await expect(page.locator('#bankable')).toContainText('capacity and balancing receipts excluded');
   await expect(page.locator('#downside .ix-downside-table')).not.toContainText('N/M');
 });
 test('a month-only event keeps its uncertainty in both languages',async({page})=>{
@@ -43,11 +43,12 @@ test('risk analysis keeps baseline debt and exposes the twenty-year contract tai
   await page.locator('#downside').screenshot({path:info.outputPath('risk-analysis.png')});
   expect(errors).toEqual([]);
 });
-test('route links highlight the affected play without silently changing the main investment case',async({page})=>{
+test('route links select the corresponding investment and financing case',async({page})=>{
   await page.goto('/markets/italy?play=it-ltda-6h#route-options');
-  await expect(page.locator('#route-options .is-requested')).toContainText('MACSE');
-  await expect(page.locator('#route-options')).toContainText('headline remains');
-  await expect(page.locator('#bankable')).toContainText('11.6%');
+  await expect(page.locator('#route-options')).toHaveCount(0);
+  await expect(page.locator('.ic-play-option[aria-pressed=true]')).toContainText('MACSE');
+  await expect(page.locator('#bankable')).toContainText('4.8%');
+  await expect(page.locator('#bankable [data-debt-stream=ltda]')).toBeVisible();
 });
 test('responsive decision cards, shared navigation and comparison margins remain usable',async({page},info)=>{
   await page.goto('/returns');
