@@ -48,7 +48,13 @@ test('NEM: thirteen shots, live counterpoint, execution and dated public history
     await expect(first.locator('[data-history-field=y]')).toHaveText('2017–2023');
     await expect(first.locator('[data-history-field=p]')).toContainText(index?'AEMC于2021年7月15日制定':'AEMC made the final rule');
     await expect(first.locator('[data-history-field=p]')).toContainText(index?'AEMO于2023年10月9日启动':'AEMO opened those markets on 9 October 2023');
-    await expect(publicDialog.locator('a[href$="/fast-frequency-response"]')).toBeAttached();
+    const sources=publicDialog.locator('.public-full-history .source-popup-trigger').first();
+    await sources.click();
+    const sourcePopup=publicDialog.locator('dialog.source-popup[open]');
+    await expect(sourcePopup.locator('a[href$="/fast-frequency-response"]')).toBeVisible();
+    await sourcePopup.locator('.source-popup-close').click();
+    await expect(sourcePopup).toHaveCount(0);
+    await expect(sources).toBeFocused();
     expect(await publicDialog.innerText()).not.toMatch(unresolved);await fits(publicDialog);
     await first.scrollIntoViewIfNeeded();await first.screenshot({path:info.outputPath('nem-fcas-history-'+lang+'.png')});
   }

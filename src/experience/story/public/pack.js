@@ -39,7 +39,9 @@ export function open(ctx){
     if(dialog.open)dialog.close();dialog.remove();
     document.body.style.overflow=previousOverflow;
     if(restore){
-      window.scrollTo(...previousScroll);
+      // Finish restoring before measuring the translated entrance; a smooth
+      // root scroll can otherwise move it away after the visibility correction.
+      window.scrollTo({left:previousScroll[0],top:previousScroll[1],behavior:'instant'});
       const trigger=ctx.trigger?.isConnected?ctx.trigger:document.querySelector('.public-story-trigger');
       trigger?.focus({preventScroll:true});
       const bounds=trigger?.getBoundingClientRect();
