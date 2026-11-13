@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-12T15:24:52.691Z",
+  "fetchedAt": "2026-11-13T14:42:25.232Z",
   "coverage": {
-    "from": "2025-11-12T16:00:00.000Z",
-    "to": "2026-11-12T22:00:00.000Z",
+    "from": "2025-11-13T15:00:00.000Z",
+    "to": "2026-11-13T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8767
+    "points": 8768
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-12",
-      "n": 8,
-      "mean": 8.26,
-      "min": 7.91,
-      "max": 8.97,
-      "spread": 8.26,
-      "charge": null,
-      "discharge": 8.26
-    },
-    {
       "d": "2025-11-13",
-      "n": 24,
-      "mean": 7.77,
+      "n": 9,
+      "mean": 7.55,
       "min": 7.1,
-      "max": 8.82,
-      "spread": 7.77,
+      "max": 7.91,
+      "spread": 7.55,
       "charge": null,
-      "discharge": 7.77
+      "discharge": 7.55
     },
     {
       "d": "2025-11-14",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-12",
-      "n": 23,
-      "mean": 8.35,
+      "n": 24,
+      "mean": 8.59,
       "min": 7.45,
-      "max": 12,
-      "spread": 8.35,
+      "max": 14.3,
+      "spread": 8.59,
       "charge": null,
-      "discharge": 8.35
+      "discharge": 8.59
+    },
+    {
+      "d": "2026-11-13",
+      "n": 23,
+      "mean": 8.24,
+      "min": 7,
+      "max": 11.91,
+      "spread": 8.24,
+      "charge": null,
+      "discharge": 8.24
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:28fd5c40409608ea4a3fb18a872e7209d378c2c4c7fb42dae20fff1fd1bff869",
-    "points": 8767
+    "contentChecksum": "sha256:ba150a742ff0909dcd2fae932f702c57e9221351d3ac934f67873bcc0b602a7e",
+    "points": 8768
   },
-  "summaryChecksum": "sha256:6557400874a476640a479d3b25f45f1f007e3d97564c8095cda47826affede2e"
+  "summaryChecksum": "sha256:93db8f4ccafe2b670fa6198498f70fc926f60a6ab2ff76d4ec30c7e491a59ccf"
 }
