@@ -43,12 +43,13 @@ export function sizeLeverage(input, buildBudget, terms, price = 0){
   const contractYears = Math.min(terms?.remainingContractYears || 0, LEVERAGE.maxLegalYears);
   const legal = Math.min(Math.max(LEVERAGE.miniPermYears, dscrC ? contractYears : 0), life - 2);
   if (!(legal > 0)) return null;
-  const service = [], contractedWeight = [];
+  const service = [], contractedService = [], merchantService = [], contractedWeight = [];
   for (let t = 0; t < life; t++){
     const y = pre[t], revenue = y.secured + y.renewal + y.merchant, cash = Math.max(0, cashOf(y));
     const share = revenue > 0 && dscrC && t < contractYears ? y.secured / revenue : 0;
     const c = dscrC ? cash * share / dscrC : 0, m = cash * (1 - share) / LEVERAGE.dscr.merchant;
     service.push(c + m); contractedWeight.push(c + m > 0 ? c / (c + m) : 0);
+    contractedService.push(c); merchantService.push(m);
   }
   const rate = t => base + LEVERAGE.margin.contracted * contractedWeight[t] + LEVERAGE.margin.merchant * (1 - contractedWeight[t]);
   let best = null;
@@ -74,7 +75,17 @@ export function sizeLeverage(input, buildBudget, terms, price = 0){
     payments.push(pay); balloons.push(balloon); interest.push(i);
   }
   const covered = pre.map((y, t) => payments[t] > 0 ? cashOf(y) / payments[t] : null).filter(Number.isFinite);
+  // Attribute the SAME loan to its revenue streams. Shared discount profile and
+  // pro-rata gearing cap preserve the approved total, timing and levered IRR.
+  const contribution = (kind, cash, dscr) => {
+    let capacity = 0, discount = 1;
+    for (let t = 0; t < best.notional; t++) { discount /= 1 + rate(t); capacity += cash[t] * discount; }
+    return { kind, dscr, capacityPerMW:capacity, loanPerMW:capacity * k, gearing:capacity * k / buildBudget };
+  };
+  const contributions = [contribution('contracted', contractedService, dscrC),
+    contribution('merchant', merchantService, LEVERAGE.dscr.merchant)].filter(c => c.loanPerMW > 0);
   return { loanPerMW:loan, gearing:loan / buildBudget, contractedDSCR:dscrC, merchantDSCR:LEVERAGE.dscr.merchant,
+    contributions, capacityPerMW:best.loan,
     legalYears:legal, notionalYears:best.notional, rate:rate(0), capShare, capBinds:k < 1,
     minCover:covered.length ? Math.min(...covered) : null, balloonShare:balloons[legal - 1] / loan,
     payments, balloons, interest, fee:loan * FEES.financing, reserve:(payments[0] ?? 0) * FEES.reserveMonths / 12 };

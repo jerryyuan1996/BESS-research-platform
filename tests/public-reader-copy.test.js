@@ -5,6 +5,7 @@ import {app} from '../src/app/state.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
 import {PUBLIC_READING_CATALOG} from '../src/experience/story/public/historyCatalog.js';
 import {renderChapter} from '../src/experience/story/public/chapter.js';
+import {publicChapters} from '../src/experience/story/public/chapters.js';
 import {createFormat} from '../src/markets/_shared/format.js';
 
 // Only internal editorial-status families are forbidden. Real policy publication,
@@ -32,7 +33,8 @@ test('all eighteen public readers retain research and evidence without internal 
       const approvalBefore=JSON.stringify(data.approvalRecords);
       for(const lang of ['en','zh']){
         app.lang=lang;
-        for(const chapter of data.summary.historyOnly?['history','research']:['history','system','mechanism','storage','judgement','research']){
+        // The statistics renderer is checked by its data tests and browser matrix.
+        for(const [chapter] of publicChapters(id,data.summary.historyOnly).filter(([id])=>id!=='overview')){
           const rendered=renderChapter(data,chapter,{researchUrl:'/markets/test/home',research(){},alive:()=>false});
           assert.doesNotMatch(rendered.textContent,internalStatus,id+'/'+lang+'/'+chapter);
           assert.ok(rendered.textContent.length>30);
@@ -46,7 +48,6 @@ test('all eighteen public readers retain research and evidence without internal 
             assert.doesNotMatch(provenance.textContent,/claim-|shot-/);
           }
           if(data.latestCheckedOn)assert.ok(rendered.textContent.includes(data.latestCheckedOn));
-          if(chapter==='judgement')assert.ok(rendered.textContent.includes(lang==='en'?'Fair evidence':'证据一般'));
         }
       }
       assert.equal(JSON.stringify(data.approvalRecords),approvalBefore,'rendering leaves approval evidence unchanged');

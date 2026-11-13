@@ -100,7 +100,14 @@ export async function renderExperience(container, route, market) {
       const module = await import('./marketPage.js');
       if(version!==renderVersion||window.location.pathname!==pathname||lens()!==investor)return;
       marketRenderer ??= module.createMarketRenderer({lens, button, name, tag, HOLD_LABEL, LEVERED_LABEL, testText, debtText, usText, saleText, routeName, card, main, chartFrame, inputLabel, metaBar, nextSection, openUnderwriting});
-      marketRenderer(container, rows.find(r => r.id === market.manifest.id), route);
+      let row = rows.find(r => r.id === market.manifest.id);
+      if (row) {
+        const {selectedInvestmentCase} = await import('./selectedInvestmentCase.js');
+        if(version!==renderVersion||window.location.pathname!==pathname||lens()!==investor)return;
+        const params=new URLSearchParams(window.location.search);
+        row = selectedInvestmentCase(row, investor, params.get('play'),params.get('supply'));
+      }
+      marketRenderer(container, row, route);
     } catch {
       container.append(button(['Reload market case','重新载入市场方案'],()=>window.location.reload()));
     }

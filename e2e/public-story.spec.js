@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {PUBLIC_CATALOG,PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
 import {expectCompleteHistory} from './helpers/research-history.js';
+import {expectInvestorLayout,expectCountryOverview} from './helpers/investor-rollout.js';
 const slugs={wa:'western-australia',nem:'nem',gb:'great-britain',de:'germany',it:'italy',ie:'ireland',ro:'romania',pl:'poland',jp_tokyo:'japan-tokyo',jp_kyushu:'japan-kyushu',jp_hokkaido:'japan-hokkaido',pjm:'pjm',ercot:'ercot',caiso:'caiso',fi:'finland'};
 const investors=['infraFund','strategic','foreignFirstTimer','developer'];
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});
@@ -15,6 +16,7 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
     for(const investor of investors){
       await page.evaluate(({investor,locale})=>{localStorage.setItem('hub_lens',investor);localStorage.setItem('hub_lang',locale);},{investor,locale});
       await page.goto('/markets/'+slug);
+      await expectInvestorLayout(page,id,locale);
       const overview=page.locator('#overview[data-public-market]'),trigger=page.locator('.public-story-trigger');
       await expect(trigger).toBeVisible();await expect(overview).toHaveAttribute('data-version',PUBLIC_VERSION);
       {
@@ -42,6 +44,7 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog).toHaveAttribute('lang',locale);
       await expectCompleteHistory(page,id,locale);
       await expect(dialog.locator('.public-source-check-note')).toHaveCount((await loadPublicContent(id)).latestCheckedOn?1:0);
+      if(investor==='infraFund')await expectCountryOverview(page,id,locale);
       await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
       const text=await dialog.locator('.public-chapter').innerText();if(expectedMechanism)expect(text).toBe(expectedMechanism);else expectedMechanism=text;
       await expect(dialog.locator('.public-power-scene')).toHaveAttribute('data-market',id);

@@ -139,7 +139,7 @@ for (const { id, slug } of MARKETS){
       await expect(page).toHaveURL(new RegExp(`/markets/${slug}/evidence$`));
     });
 
-    test('the SVG grid map and the source drawers still render', async ({ page }) => {
+    test('the SVG grid map and the compact source records still render', async ({ page }) => {
       await page.goto(MARKET + '/entry/grid');
       await expect(page.locator('.market-overview-map .geo-grid-map svg')).toBeAttached({ timeout: 30_000 });
 
@@ -150,11 +150,11 @@ for (const { id, slug } of MARKETS){
          set and prove nothing. */
       await page.keyboard.press('Escape');
       await page.goto(MARKET + '/story');
-      const drawer = page.locator('.source-drawer').first();
-      await expect(drawer).toBeVisible();
-      await expect(drawer).toHaveJSProperty('open', false);
-      await drawer.locator('summary').click();
-      await expect(drawer).toHaveJSProperty('open', true);
+      const source = page.locator('.source-popup-trigger').first();
+      await expect(source).toBeVisible();await source.click();
+      const popup=page.locator('.source-popup');await expect(popup).toBeVisible();
+      await expect(popup.locator('.source-grid a').first()).toHaveAttribute('href',/^https?:/);
+      await page.keyboard.press('Escape');await expect(popup).toHaveCount(0);await expect(source).toBeFocused();
 
       /* The evidence section's own source binding: a registry table, in both
          languages. `.first()` because the section holds several tables and a

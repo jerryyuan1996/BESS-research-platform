@@ -5,6 +5,7 @@ import { renderGeographicGridMap } from './geographicGridMap.js';
 import { sectionClaim } from './sectionClaim.js';
 import { claimFor } from '../markets/claimRegistry.js';
 import { byId } from '../markets/registry.js';
+import { compactSourceDrawers } from './sourcePopup.js';
 
 function drawersOwnedBy(cardNode){
   return [...cardNode.querySelectorAll('.source-drawer')]
@@ -224,6 +225,7 @@ export function enhanceMarketPage(root, { overviewMap = null, marketId = '', tab
   mergeTimelines(root);
   if (overviewMap) pairOverviewMap(root, overviewMap);
   consolidateSourceDrawers(root);
+  compactSourceDrawers(root);
   placeMetricFootnotes(root);
   placeSectionClaim(root, marketId, tabId);
 }

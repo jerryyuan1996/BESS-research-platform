@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { opportunities } from '../src/experience/model.js';
 import { contractedDSCR, targetTest } from '../src/acquisition/leverage.js';
 import { LEVERAGE, LEVERED_PREMIUM } from '../src/acquisition/parameters.js';
+import { selectedInvestmentCase } from '../src/experience/selectedInvestmentCase.js';
+import {investmentRowsFor} from '../src/experience/storyRows.js';
+import {revenueRoute} from '../src/experience/investmentCase.js';
 
 const rows = opportunities('infraFund');
 const row = id => rows.find(r => r.id === id).investment;
@@ -55,4 +58,77 @@ test('US rows carry both supply cases', () => {
     assert.ok(row(id).usAlternative.capexPerMW < row(id).capexPerMW);
   }
   assert.equal(row('de').usAlternative, undefined);
+});
+
+test('Italy selection reprices the complete play and attributes exactly the same loan by income', () => {
+  const initial=rows.find(r=>r.id==='it');
+  const cap=selectedInvestmentCase(initial,'infraFund','it-cap-4h');
+  const macse=selectedInvestmentCase(initial,'infraFund','it-ltda-6h');
+  assert.equal(cap.investment.holdIRR,initial.investment.holdIRR);
+  assert.equal(cap.investment.leveredIRR,initial.investment.leveredIRR);
+  assert.equal(cap.investment.leverage.loanPerMW,initial.investment.leverage.loanPerMW);
+  assert.equal(cap.investment.hours,4);assert.equal(macse.investment.hours,6);
+  assert.notEqual(macse.investment.holdIRR,cap.investment.holdIRR);
+  assert.notEqual(macse.investment.leverage.minCover,cap.investment.leverage.minCover);
+  assert.notEqual(macse.investment.capexPerMW,cap.investment.capexPerMW);
+  for(const selected of [cap,macse]) {
+    const l=selected.investment.leverage;
+    const sum=key=>l.contributions.reduce((n,c)=>n+c[key],0);
+    assert.ok(Math.abs(sum('loanPerMW')-l.loanPerMW)<1e-7);
+    assert.ok(Math.abs(sum('gearing')-l.gearing)<1e-12);
+    assert.ok(Math.abs(sum('capacityPerMW')-l.capacityPerMW)<1e-7);
+    assert.deepEqual(l.contributions.map(c=>[c.kind,c.dscr]),[['contracted',1.2],['merchant',2]]);
+    for(const c of l.contributions) assert.ok(Math.abs(c.loanPerMW/c.capacityPerMW-l.loanPerMW/l.capacityPerMW)<1e-12);
+    assert.equal(selected.econ.hold,selected.investment.holdIRR);
+    assert.equal(selected.econ.levered,selected.investment.leveredIRR);
+    assert.equal(selected.investment.bearHoldIRR==null,false);
+  }
+  assert.equal(cap.investment.leverage.capBinds,true);
+  assert.equal(macse.investment.leverage.capBinds,false);
+  assert.equal(selectedInvestmentCase(initial,'infraFund','invalid').play.id,initial.play.id);
+});
+
+test('every investor and market keeps its published primary case and each selectable reference has its own debt',()=>{
+  for(const investor of ['infraFund','strategic','foreignFirstTimer','developer'])for(const initial of opportunities(investor)){
+    const base=selectedInvestmentCase(initial,investor,null);
+    if(!initial.investment){assert.equal(base.investment,initial.investment);continue;}
+    for(const key of ['holdIRR','leveredIRR','capexPerMW','rtbMonths','hours','powerMW','secured'])assert.equal(base.investment[key],initial.investment[key],`${investor}/${initial.id}/${key}`);
+    assert.deepEqual(base.investment.usAlternative,initial.investment.usAlternative);
+    assert.deepEqual(base.investment.operatingPurchase,initial.investment.operatingPurchase);
+    assert.equal(selectedInvestmentCase(initial,investor,'another-market').investment.holdIRR,initial.investment.holdIRR);
+    for(const choice of investmentRowsFor(initial,investor)){
+      const selected=selectedInvestmentCase(initial,investor,choice.play?.id,choice.supplyCase),i=selected.investment,l=i.leverage;
+      assert.equal(i.hours,choice.play?.hours||initial.investment.hours);
+      assert.equal(selected.econ.hold,i.holdIRR);assert.equal(selected.econ.levered,i.leveredIRR);
+      assert.ok(Math.abs(l.contributions.reduce((n,c)=>n+c.loanPerMW,0)-l.loanPerMW)<1e-6);
+      assert.ok(Math.abs(l.contributions.reduce((n,c)=>n+c.gearing,0)-l.gearing)<1e-12);
+      assert.equal(l.contractedDSCR,contractedDSCR(i.contract.kind,i.contract.remainingContractYears));
+      assert.equal(l.merchantDSCR,2);
+      if(choice.referenceOnly)assert.equal(selected.call,'reference','no call borrowed from another lens');
+      if(choice.supplyCase)assert.equal(i.usSupply,choice.supplyCase);
+      assert.equal(i.currency,initial.investment.currency);
+      assert.equal(initial.econ.hold,initial.investment.holdIRR,'selection never mutates the briefing');
+    }
+  }
+});
+
+test('contract labels and support terms remain market-specific instead of following route codes alone',()=>{
+  const selected=(id,play,supply)=>selectedInvestmentCase(rows.find(r=>r.id===id),'infraFund',play,supply);
+  assert.match(revenueRoute(selected('nem'))[0],/CIS/);
+  assert.equal(selected('nem').investment.contract.kind,'collar');
+  assert.match(revenueRoute(selected('fi'))[0],/floor/);
+  assert.equal(selected('fi').investment.leverage.contractedDSCR,1.4);
+  for(const id of ['jp_tokyo','jp_kyushu','jp_hokkaido']){
+    const r=selected(id);assert.match(revenueRoute(r)[0],/LTDA/);assert.doesNotMatch(revenueRoute(r)[0],/MACSE/);
+    assert.equal(r.investment.hours,9);assert.ok(r.investment.inflationPath.length);
+  }
+  assert.match(revenueRoute(selected('caiso'))[0],/Adequacy/);
+  assert.equal(selected('pjm').investment.securedYears,1);
+  assert.equal(selected('de').investment.rtbMonths,36);
+  const grant=selected('pl','pl-grant-4h'),capacity=selected('pl','pl-cap-4h');
+  assert.ok(grant.investment.capitalGrantPerMW>0);assert.equal(capacity.investment.capitalGrantPerMW,0);
+  assert.equal(grant.investment.leverage.contractedDSCR,null);assert.equal(capacity.investment.leverage.contractedDSCR,1.2);
+  const us=selected('caiso',null,'chinese');
+  assert.notEqual(us.investment.capexPerMW,selected('caiso').investment.capexPerMW);
+  assert.notEqual(us.investment.leverage.gearing,selected('caiso').investment.leverage.gearing);
 });

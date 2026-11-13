@@ -68,6 +68,7 @@ test('public deep links locate chapter, locale and edition using the unchanged r
     assert.deepEqual(readPublicPlace(route.story),{chapter,locale,version:PUBLIC_VERSION});assert.equal(route.region,'kyushu');
   }
   assert.equal(readPublicPlace({chapter:'<script>',shot:'bad'}).chapter,'history');
+  assert.equal(readPublicPlace({chapter:'judgement',shot:'public-en-2026-11-06-3-judgement'}).chapter,'history');
   assert.equal(placeSearch('?view=story&chapter=history&shot=public-en-2026-11-06-1-history',null),'');
 });
 
