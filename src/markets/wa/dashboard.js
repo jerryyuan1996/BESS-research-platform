@@ -53,6 +53,7 @@ import { registerClaims } from '../claimRegistry.js';
 import VIEW from '../../../view/markets/wa.json' with { type: 'json' };
 import { ENTRY_LEDGER } from './entryLedger.js';
 import { registerCase } from '../caseRegistry.js';
+import { finishConciseResearch } from '../_shared/conciseResearch.js';
 
 /* Registered from the dashboard so the claim prose travels in this market's
    own lazy chunk rather than in the bundle every reader downloads. */
@@ -68,6 +69,7 @@ export function researchSummary(container) {
     h('p', {}, L(SEED.overall.rationale))));
   pairOverviewMap(container, gridMapForMarket('wa') || WA_GRID_MAP);
   renderStory(container, { summaryOnly:true });
+  finishConciseResearch(container);
 }
 
 /* Tab id → section renderer. The BRCP forecast and the RCM × Energy × FCESS
@@ -141,13 +143,14 @@ export function dashboard(container, { tabId, subId, basePath }){
          Stacked under the investment case it takes one. */
       if (id === 'home') sectionHead(el, ['Market at a glance', '市场概览']);
       SECTIONS[id](el);
+      finishConciseResearch(el);
     },
-    after: (id, el) => enhanceMarketPage(el, {
+    after: (id, el) => { enhanceMarketPage(el, {
       /* The map is paired with the overview, wherever the overview is drawn. */
       overviewMap: id === 'home' ? WA_GRID_MAP : null,
       marketId: manifest.id,
       tabId: id,
-    }),
+    }); finishConciseResearch(el); },
   });
   container.append(renderFooter([
     L(['Model version: ', '模型版本：']) + SEED.modelVersion + ' · ' + L(T.tz) + ' · ' +

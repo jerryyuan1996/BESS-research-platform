@@ -26,10 +26,14 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       const context=page.locator('.market-overview-context');
       await expect(context).toHaveAttribute('aria-busy','false');
       await expect(context.locator('.market-context-card')).toBeVisible();
+      const narrative=overview.locator('.public-core-storyline');
+      await expect(narrative).toHaveAttribute('aria-busy','false');
       const bound=await trigger.boundingBox(),card=await context.boundingBox();
       expect(bound.y).toBeGreaterThanOrEqual(card.y+card.height);
       expect(bound.y-card.y-card.height).toBeLessThanOrEqual(21);
-      const c=PUBLIC_CATALOG[id];await expect(overview).toContainText(c.history[locale==='en'?0:1]);await expect(overview).toContainText(c.logic[locale==='en'?0:1]);await expect(overview).toContainText(c.condition[locale==='en'?0:1]);
+      await expect(narrative).toHaveAttribute('data-storyline-market',id);
+      await expect(narrative.locator('h3')).not.toBeEmpty();
+      await expect(overview.locator('.public-history,.public-logic,.public-condition')).toHaveCount(0);
       await expect(overview.locator('[data-date-kind=g1]')).toHaveCount(0);
       await expect(overview.locator('[data-date-kind=source-check]')).toHaveCount(0);
       const order=await overview.evaluate(el=>['decision','bankable','revenue'].every(id=>{const target=document.getElementById(id);return !target||Boolean(el.compareDocumentPosition(target)&Node.DOCUMENT_POSITION_FOLLOWING);}));expect(order).toBe(true);
@@ -69,9 +73,9 @@ test('keyboard, history, language, deep links and repeated opening preserve the 
   await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expect(dialog).toHaveAttribute('lang','zh');await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-storage');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
   await page.keyboard.press('Escape');await expect(page.locator('.public-story-dialog')).toHaveCount(0);
-  // Translation and native anchoring can move the background by one text line.
-  // Starting away from zero still detects losing the page's return position.
-  await expect.poll(async()=>Math.abs(await page.evaluate(()=>scrollY)-scroll)).toBeLessThanOrEqual(32);
+  // Translation changes the narrative height; restore the visible entrance
+  // rather than an obsolete pixel offset or the top of the market page.
+  await expect.poll(()=>page.evaluate(()=>scrollY)).toBeGreaterThan(100);
   await expect(page.locator('.public-story-trigger')).toBeInViewport();
   await expect(page.locator('.public-story-trigger')).toBeFocused();
   await page.goBack();await expect(page.locator('.public-story-dialog')).toBeVisible();
@@ -90,8 +94,10 @@ test('content and scene failures expose readable fallback and working retry',asy
 
 test('a failed modal module retries from the intact public summary',async({page})=>{
   let fail=true;await page.route(/\/assets\/public-pack-.*\.js/,r=>fail?r.abort():r.continue());
-  await page.goto('/markets/nem');await page.locator('.public-story-trigger').click();
-  await expect(page.locator('.public-story-trigger')).toHaveAttribute('data-load-failed','true');await expect(page.locator('#overview')).toContainText(PUBLIC_CATALOG.nem.logic[0]);
+  await page.goto('/markets/nem');
+  const narrative=page.locator('.public-core-storyline');await expect(narrative).toHaveAttribute('aria-busy','false');
+  const summary=await narrative.textContent();await page.locator('.public-story-trigger').click();
+  await expect(page.locator('.public-story-trigger')).toHaveAttribute('data-load-failed','true');await expect(narrative).toHaveText(summary);
   fail=false;await page.locator('.public-story-trigger').click();await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','history');
 });
 

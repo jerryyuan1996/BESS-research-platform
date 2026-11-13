@@ -13,10 +13,8 @@ export function renderPublicOverview(id, { name, open }){
       h('p', { class:'ix-eyebrow' }, L(['MARKET BACKGROUND · SHARED RESEARCH', '市场背景 · 公共研究'])),
       h('h2', { id:'public-overview-title' }, L(c.historyOnly?['How this market developed.','这个市场如何发展至今。']:['Why storage matters here.', '储能为何在这里有价值。']))),
     h('div', { class:'public-overview-grid' },
-      h('div', { class:'public-overview-copy' },
-        h('p', { class:'public-history' }, L(c.history)),
-        h('p', { class:'public-logic' }, L(c.historyOnly?['Read the complete timeline, explanations and capital lenses from the existing market research.','阅读既有市场研究的完整时间线、解释与资本视角。']:c.logic)),
-        c.historyOnly?null:h('p', { class:'public-condition' }, h('strong',{},L(['Key condition · ', '成立条件 · '])), L(c.condition))),
+      h('div', { class:'public-overview-copy public-core-storyline', 'aria-busy':'true' },
+        h('p', { class:'ix-caption' }, L(['Loading the core storyline…','正在载入核心叙事…']))),
       h('aside', { class:'public-overview-reading' },
         trigger,
         h('p',{class:'public-status','role':'status'}))));
@@ -57,6 +55,17 @@ export function renderPublicOverview(id, { name, open }){
     };
     // Both readers use the same cached market payload, with independent retries.
     loadContext();
+    const copy = section.querySelector('.public-core-storyline');
+    const loadNarrative = async () => {
+      copy.setAttribute('aria-busy','true');
+      try {
+        const { mountCoreStoryline } = await import('../../marketCoreStoryline.js');
+        if (copy.isConnected) await mountCoreStoryline(copy, id);
+      } catch {
+        if (copy.isConnected) copy.replaceChildren(h('button', { type:'button', class:'ix-button ix-outline', onclick:loadNarrative }, L(['Retry core storyline','重试核心叙事'])));
+      } finally { copy.setAttribute('aria-busy','false'); }
+    };
+    loadNarrative();
   }
   return section;
 }

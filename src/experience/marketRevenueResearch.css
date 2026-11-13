@@ -1,0 +1,22 @@
+.market-revenue-chapter { scroll-margin-top:24px; }
+.market-revenue-chapter>summary { padding:6px 0; }
+.market-revenue-chapter>summary::-webkit-details-marker { display:none; }
+.market-revenue-chapter>summary:focus-visible { outline:2px solid var(--ix-green); outline-offset:6px; }
+.market-revenue-body { padding:28px 0 12px; }
+.market-revenue-body .why { background:#e9eee4; border-left-color:var(--ix-green); margin:16px 0 24px; padding:22px 26px; font-size:var(--fs-sm); line-height:1.85; }
+.market-revenue-body .why .sig { display:block; width:fit-content; max-width:100%; white-space:normal; margin:8px 0 12px; padding:0; border:0; border-radius:0; background:transparent; color:var(--ix-ink); font:var(--fw-bold) var(--fs-lg)/1.5 var(--font-sans); }
+.market-revenue-body .why .ix-eyebrow { font-size:var(--fs-2xs); letter-spacing:1px; color:var(--ix-green); margin:0; }
+.market-revenue-decision>.why { margin:0 0 26px; border-left-width:4px; padding:26px 30px; }
+.market-revenue-decision .why .sig { font-size:clamp(22px,2vw,28px); }
+.market-revenue-body .ix-research-lead { margin-bottom:28px; }
+.market-revenue-card { border-top:1px solid var(--ix-line); padding:24px 0 32px; }
+.market-revenue-card h3 { font-size:var(--fs-lg); line-height:1.6; margin:0 0 18px; }
+.market-revenue-body .tbl-wrap { max-width:100%; }
+.market-revenue-body table { font-size:var(--fs-xs); line-height:1.7; }
+.market-revenue-body>.ix-text-link { display:inline-block; margin-top:10px; }
+@media(max-width:560px) {
+  .market-revenue-chapter>summary { gap:14px; }
+  .market-revenue-body { padding-top:20px; }
+  .market-revenue-body .why { padding:18px; }
+  .market-revenue-decision .why .sig { font-size:var(--fs-xl); }
+}

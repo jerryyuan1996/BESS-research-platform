@@ -50,6 +50,10 @@
 .market-overview .public-overview-heading h2 { font-size:clamp(28px,2.5vw,36px); line-height:1.3; margin:12px 0 20px; text-wrap:balance; }
 .market-overview .public-logic { font-size:clamp(19px,1.55vw,24px); line-height:1.55; margin:12px 0; }
 .market-overview .public-condition { font-size:var(--fs-xs); line-height:1.75; color:var(--ix-body); margin-bottom:0; }
+.market-overview .public-core-storyline { border-left:3px solid var(--ix-green); padding-left:20px; }
+.market-overview .public-core-storyline .ix-eyebrow { font-size:var(--fs-2xs); color:var(--ix-green); margin:0 0 10px; }
+.market-overview .public-core-storyline h3 { font-size:clamp(20px,1.6vw,24px); line-height:1.6; margin:0 0 16px; text-wrap:balance; }
+.market-overview .public-core-storyline>p:not(.ix-eyebrow) { font-size:var(--fs-sm); line-height:1.85; margin:12px 0 0; color:var(--ix-body); }
 .market-overview .public-overview-reading { margin-top:20px; padding:0; border:0; display:block; }
 .market-overview .public-scope { margin-bottom:12px; }
 .market-overview .public-story-trigger { padding:14px 20px; }
