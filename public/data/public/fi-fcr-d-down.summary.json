@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-12T15:24:57.773Z",
+  "fetchedAt": "2026-11-13T14:42:29.098Z",
   "coverage": {
-    "from": "2025-11-12T16:00:00.000Z",
-    "to": "2026-11-12T22:00:00.000Z",
+    "from": "2025-11-13T15:00:00.000Z",
+    "to": "2026-11-13T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8767
+    "points": 8768
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-12",
-      "n": 8,
-      "mean": 4.7,
-      "min": 3.5,
-      "max": 7,
-      "spread": 4.7,
-      "charge": null,
-      "discharge": 4.7
-    },
-    {
       "d": "2025-11-13",
-      "n": 24,
-      "mean": 4.55,
+      "n": 9,
+      "mean": 4.22,
       "min": 3.34,
-      "max": 7,
-      "spread": 4.55,
+      "max": 5,
+      "spread": 4.22,
       "charge": null,
-      "discharge": 4.55
+      "discharge": 4.22
     },
     {
       "d": "2025-11-14",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-12",
-      "n": 23,
-      "mean": 3.45,
+      "n": 24,
+      "mean": 3.49,
       "min": 1.58,
       "max": 6,
-      "spread": 3.45,
+      "spread": 3.49,
       "charge": null,
-      "discharge": 3.45
+      "discharge": 3.49
+    },
+    {
+      "d": "2026-11-13",
+      "n": 23,
+      "mean": 3.24,
+      "min": 1.68,
+      "max": 6,
+      "spread": 3.24,
+      "charge": null,
+      "discharge": 3.24
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-down.json",
-    "contentChecksum": "sha256:f4e92c11b827ac3dcdf6b1fb84709eb30055afeb34f9de7c79cbeabeedb2dae5",
-    "points": 8767
+    "contentChecksum": "sha256:918e5d68c32f5a68b14cb25b18716ec5ceb95ce4e69ff33db7550dba31e73691",
+    "points": 8768
   },
-  "summaryChecksum": "sha256:0fc1e2595c0d7771eab4c4495b204021d53dc80db617b89b8022b1f15e46a611"
+  "summaryChecksum": "sha256:d1e6196c963faf671ff23b1abbc1455ee82522c912be93adb87c8126cc8d0daf"
 }

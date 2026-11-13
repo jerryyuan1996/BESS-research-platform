@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-12T15:24:40.108Z",
+  "fetchedAt": "2026-11-13T14:42:13.993Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-12T14:33:57.000Z",
+    "to": "2026-11-13T13:11:19.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -135,36 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-11-09T11:01:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bloombergnef-us-midterm-results-likely-a-net-positive-for-bess-despite-data-centre-headwinds/",
-      "source": "Energy-Storage.news",
-      "title": "BloombergNEF: US midterm results likely a ‘net positive’ for BESS despite data centre headwinds",
-      "url": "https://www.energy-storage.news/bloombergnef-us-midterm-results-likely-a-net-positive-for-bess-despite-data-centre-headwinds/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Derrick Flakoll, senior policy associate for North America at BloombergNEF, has offered a more measured take on how the Democrats' midterm victories could affect the battery energy storage system (BESS) sector."
-    },
-    {
-      "t": "2026-11-10T09:13:08.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/1-2gwh-bess-in-south-australia-and-acenergys-little-river-project-referred-to-australias-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "1.2GWh BESS in South Australia and ACEnergy’s Little River project referred to Australia’s EPBC Act",
-      "url": "https://www.energy-storage.news/1-2gwh-bess-in-south-australia-and-acenergys-little-river-project-referred-to-australias-epbc-act/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Two Australian BESS projects in South Australia and Victoria have been submitted to the federal government under the EPBC Act."
-    },
-    {
-      "t": "2026-11-10T10:08:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/video-improving-bess-thermal-and-dielectric-performance-with-psa-tape/",
-      "source": "Energy-Storage.news",
-      "title": "VIDEO: Improving BESS thermal and dielectric performance with PSA tape",
-      "url": "https://www.energy-storage.news/video-improving-bess-thermal-and-dielectric-performance-with-psa-tape/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news proudly presents our sponsored webinar with Argent International, 'New Ways to Improve BESS Thermal and Dielectric Performance.'"
-    },
-    {
       "t": "2026-11-10T10:43:06.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/ngen-croatia-first-standalone-transmission-connected-bess-online-60mw-120mwh-capacity/",
       "source": "Energy-Storage.news",
@@ -213,16 +183,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The energy storage industry is abuzz with discussion of passing BAAJA following Democrats’ taking of the House and Senate in the 2026 US midterm elections."
-    },
-    {
-      "t": "2026-11-10T15:35:36.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/are-data-centers-really-paying-aes-indianas-google-deal-highlights-a-thor/873040/",
-      "source": "Utility Dive",
-      "title": "Are data centers really paying their share? AES Indiana’s Google deal highlights a thorny question",
-      "url": "https://www.utilitydive.com/news/are-data-centers-really-paying-aes-indianas-google-deal-highlights-a-thor/873040/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "While local grid infrastructure projects are fairly easy to trace back to a specific data center, regional system upgrades raise more complex questions about who benefits and cost allocation across jurisdictions, one expert told Utility Dive."
     },
     {
       "t": "2026-11-10T17:03:44.000Z",
@@ -345,26 +305,6 @@
       "summary": "Analysis of optimiser performance in the Dutch electricity market highlights the need to separate claims and forecasting from realistic outcomes, writes Omer Bumin of trading infrastructure software company Powerlys."
     },
     {
-      "t": "2026-11-12T10:11:47.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/financial-institutions-back-2-gw-of-solar-in-turkiye/",
-      "source": "pv magazine",
-      "title": "Financial institutions back 2 GW of solar in Türkiye",
-      "url": "https://www.pv-magazine.com/2026/11/12/financial-institutions-back-2-gw-of-solar-in-turkiye/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Acwa Power is set to build two 1 GW solar plants in Türkiye as part of an agreement that will see Saudi Arabian companies develop 5 GW of solar and wind in the country. The post Financial institutions back 2 GW of solar in Türkiye appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-12T10:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/japan-enters-final-months-of-new-ground-mounted-solar-certifications/",
-      "source": "pv magazine",
-      "title": "Japan enters final months of new ground-mounted solar certifications",
-      "url": "https://www.pv-magazine.com/2026/11/12/japan-enters-final-months-of-new-ground-mounted-solar-certifications/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Japan has published its last application deadlines for feed-in tariff (FIT) and feed-in premium (FIP) support before ground-mounted commercial solar closes to new projects. The post Japan enters final months of new ground-mounted solar certifications appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-12T10:58:28.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/flexgen-chosen-as-system-integrator-for-google-backed-us-solar-plus-storage-project-with-mn8-eos/",
       "source": "Energy-Storage.news",
@@ -373,26 +313,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Software-focused energy storage system integrator FlexGen will serve as the integrator of MN8 Energy’s solar-plus-storage project in Kanawha, West Virginia, US, using solutions from Eos Energy Enterprises."
-    },
-    {
-      "t": "2026-11-12T11:10:48.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/kazakhstan-proposes-new-ppa-mechanism-to-reduce-offtake-risks-plans-storage-auctions/",
-      "source": "pv magazine",
-      "title": "Kazakhstan proposes new PPA mechanism to reduce offtake risks, plans storage auctions",
-      "url": "https://www.pv-magazine.com/2026/11/12/kazakhstan-proposes-new-ppa-mechanism-to-reduce-offtake-risks-plans-storage-auctions/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Kazakhstan is proposing a new mechanism allowing renewable energy generators to sell electricity to the country's single buyer after at least 36 months under bilateral contracts. The measure aims to reduce offtake risks, improve revenue certainty and make projects more attractive to investors and lenders. The post K…"
-    },
-    {
-      "t": "2026-11-12T11:30:53.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/dutch-parliament-backs-legal-framework-for-balcony-pv/",
-      "source": "pv magazine",
-      "title": "Dutch Parliament backs legal framework for balcony PV",
-      "url": "https://www.pv-magazine.com/2026/11/12/dutch-parliament-backs-legal-framework-for-balcony-pv/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Politicians in the Netherlands have supported calls for a framework covering the connection of balcony solar systems to be drafted before the spring of next year. The post Dutch Parliament backs legal framework for balcony PV appeared first on pv magazine Global ."
     },
     {
       "t": "2026-11-12T11:59:58.000Z",
@@ -405,44 +325,14 @@
       "summary": "Stadtwerke Gaggenau, a municipal utility in Germany, has hired a general contractor to build a 4-hour BESS project using the zinc-bromide technology from US firm Eos Energy Enterprises."
     },
     {
-      "t": "2026-11-12T12:18:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/chasing-the-sun-feasible-co2-supply-as-a-gateway-to-low-cost-e-fuel-production/",
-      "source": "pv magazine",
-      "title": "Chasing the sun: Feasible CO₂ supply as a gateway to low-cost e-fuel production",
-      "url": "https://www.pv-magazine.com/2026/11/12/chasing-the-sun-feasible-co2-supply-as-a-gateway-to-low-cost-e-fuel-production/",
+      "t": "2026-11-12T13:22:25.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-could-lower-your-electricity-bill-but-will-utilities-let-them/873144/",
+      "source": "Utility Dive",
+      "title": "Data centers could lower your electricity bill. Will utilities let them?",
+      "url": "https://www.utilitydive.com/news/data-centers-could-lower-your-electricity-bill-but-will-utilities-let-them/873144/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Scalable synthetic e-fuels require low-cost renewable electricity and sustainable carbon, but best solar sites and major carbon sources are rarely neighbors. To overcome this geographic mismatch, new modeling shows that shipping CO₂ to sunny regions lowers fuel costs more effectively than transmitting power. Transpo…"
-    },
-    {
-      "t": "2026-11-12T12:47:52.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/sweden-plans-new-inverter-and-battery-database/",
-      "source": "pv magazine",
-      "title": "Sweden plans new inverter and battery database",
-      "url": "https://www.pv-magazine.com/2026/11/12/sweden-plans-new-inverter-and-battery-database/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Sweden plans to launch a voluntary database for solar inverters, battery storage systems and bidirectional EV charging equipment in 2027, replacing its existing pre-assessment system for new listings. The database will provide standardized technical documentation to support grid connection assessments by network ope…"
-    },
-    {
-      "t": "2026-11-12T14:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/octopus-aims-to-mobilize-600-million-for-asian-renewables/",
-      "source": "pv magazine",
-      "title": "Octopus aims to mobilize $600 million for Asian renewables",
-      "url": "https://www.pv-magazine.com/2026/11/12/octopus-aims-to-mobilize-600-million-for-asian-renewables/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Octopus Energy has launched an Asia fund whose first investment backs a Manila developer targeting 450 MW of solar and 350 MWh of battery storage by 2030. The post Octopus aims to mobilize $600 million for Asian renewables appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-12T14:30:44.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/12/spanish-ipp-deploys-automated-solar-installation-platform-at-457-mw-texas-project/",
-      "source": "pv magazine",
-      "title": "Spanish IPP deploys automated solar installation platform at 457 MW Texas project",
-      "url": "https://www.pv-magazine.com/2026/11/12/spanish-ipp-deploys-automated-solar-installation-platform-at-457-mw-texas-project/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Matrix Renewables is using Terabase Energy's Terafab V2 automated construction platform at its 457 MW Tormes Solar project in Navarro County, Texas. The system combines robotic module assembly, automated quality inspection, autonomous transport vehicles and digital construction management tools. The post Spanish IPP…"
+      "summary": "When sales increase more than costs, rates should decline. But some utilities are using lower historical sales data with updated cost assumptions to try and &ldquo;lock in&rdquo; higher rates,&nbsp;writes&nbsp;Edward Burgess of Current Energy Group."
     },
     {
       "t": "2026-11-12T14:33:57.000Z",
@@ -453,18 +343,148 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "As data centre demand surges, utilities and developers are turning to distributed energy resources (DERs) to ease grid strain."
+    },
+    {
+      "t": "2026-11-12T16:05:13.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/coned-says-resource-adequacy-environmental-compliance-drive-planning/874511/",
+      "source": "Utility Dive",
+      "title": "ConEd joins utilities seeking to loosen New York restrictions on owning generation",
+      "url": "https://www.utilitydive.com/news/coned-says-resource-adequacy-environmental-compliance-drive-planning/874511/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The company says reforms would boost renewables and help it achieve resource adequacy and environmental compliance targets. It has also asked regulators to expand distribution and transmission-connected storage options."
+    },
+    {
+      "t": "2026-11-12T18:25:33.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/as-coal-burn-declines-rising-power-demand-will-be-primarily-met-by-renewab/874315/",
+      "source": "Utility Dive",
+      "title": "As coal burn declines, rising power demand will be primarily met by renewables: EIA",
+      "url": "https://www.utilitydive.com/news/as-coal-burn-declines-rising-power-demand-will-be-primarily-met-by-renewab/874315/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The electric power sector could install more than 26 GW of battery storage next year, helping support a renewable resource base expected to supply almost a quarter of 2027 consumption, EIA said."
+    },
+    {
+      "t": "2026-11-13T08:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/osaka-gas-buys-japanese-residential-solar-and-battery-installer/",
+      "source": "pv magazine",
+      "title": "Osaka Gas buys Japanese residential solar and battery installer",
+      "url": "https://www.pv-magazine.com/2026/11/13/osaka-gas-buys-japanese-residential-solar-and-battery-installer/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Osaka Gas has agreed to buy a regional installer in what it called the first step in using acquisitions to grow its home energy business. The post Osaka Gas buys Japanese residential solar and battery installer appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-13T08:50:06.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/turkiye-china-sign-15-billion-renewables-investment-plan/",
+      "source": "pv magazine",
+      "title": "Türkiye, China sign $15 billion renewables investment plan",
+      "url": "https://www.pv-magazine.com/2026/11/13/turkiye-china-sign-15-billion-renewables-investment-plan/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The deal, signed as COP31 continues, plans to cover 7 GW of solar and wind power plants, energy storage systems and 4 GW of electricity transmission infrastructure. The post Türkiye, China sign $15 billion renewables investment plan appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-13T09:04:41.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/chinas-highways-could-generate-182-twh-of-solar-annually/",
+      "source": "pv magazine",
+      "title": "China’s highways could generate 182 TWh of solar annually",
+      "url": "https://www.pv-magazine.com/2026/11/13/chinas-highways-could-generate-182-twh-of-solar-annually/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers at China’s Tongji University have developed a framework to assess highway PV potential based on solar irradiance, terrain and road networks. They estimate that China’s highways could generate enough solar power to cover 1.85% of national electricity consumption. The post China’s highways could generate 1…"
+    },
+    {
+      "t": "2026-11-13T09:10:33.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/lacour-energy-refers-4000mwh-wind-plus-storage-site-to-australias-epbc-act/",
+      "source": "Energy-Storage.news",
+      "title": "Lacour Energy refers 4,000MWh wind-plus-storage site to Australia’s EPBC Act",
+      "url": "https://www.energy-storage.news/lacour-energy-refers-4000mwh-wind-plus-storage-site-to-australias-epbc-act/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "West Arthur Energy, a project company owned by Western Australian developer Lacour Energy, has referred a wind generation site with a 4,000MWh battery energy storage system (BESS) to Australia's EPBC Act."
+    },
+    {
+      "t": "2026-11-13T09:59:23.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/norway-enters-carbon-credit-agreement-with-indonesia/",
+      "source": "pv magazine",
+      "title": "Norway enters carbon credit agreement with Indonesia",
+      "url": "https://www.pv-magazine.com/2026/11/13/norway-enters-carbon-credit-agreement-with-indonesia/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The Norwegian government says the deal, covering 12 million tonnes of emission reductions, will help to accelerate the development of renewable energy sources in Indonesia. The post Norway enters carbon credit agreement with Indonesia appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-13T10:01:42.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-catl-sodium-ion-specs-bess-availability-and-the-price-of-speed-to-power/",
+      "source": "Energy-Storage.news",
+      "title": "BESS Industry Buzz: CATL sodium-ion specs, BESS availability and the price of speed-to-power",
+      "url": "https://www.energy-storage.news/bess-industry-buzz-catl-sodium-ion-specs-bess-availability-and-the-price-of-speed-to-power/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Another edition of our BESS Industry Buzz, this week looking at new details on CATL's sodium-ion technology, BESS availability, BAAJA trade-offs and the price of speed to power."
+    },
+    {
+      "t": "2026-11-13T10:37:49.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/sodium-ion-batteries-close-gap-with-lithium-ion-as-utility-scale-storage-opportunities-grow/",
+      "source": "pv magazine",
+      "title": "Sodium-ion batteries close gap with lithium-ion as utility-scale storage opportunities grow",
+      "url": "https://www.pv-magazine.com/2026/11/13/sodium-ion-batteries-close-gap-with-lithium-ion-as-utility-scale-storage-opportunities-grow/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Sodium-ion batteries are approaching lithium-ion performance in key areas, with commercial cells reaching energy densities of 175 Wh/kg and offering strong low-temperature performance. Silvia Bodoardo, professor at the Polytechnic University of Turin, told pv magazine that utility-scale energy storage represents the…"
+    },
+    {
+      "t": "2026-11-13T11:11:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/dark-clouds-gather-over-germanys-solar-sector/",
+      "source": "pv magazine",
+      "title": "Dark clouds gather over Germany’s solar sector",
+      "url": "https://www.pv-magazine.com/2026/11/13/dark-clouds-gather-over-germanys-solar-sector/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar module prices are stagnating, while battery energy storage system prices are expected to rise for the first time. Germany’s solar market could face significant challenges if policymakers fail to push through reforms to Germany's Renewable Energy Sources Act (EEG) in time, according to Martin Schachinger of pvX…"
+    },
+    {
+      "t": "2026-11-13T11:30:21.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/malaysia-extends-residential-solar-rebates-for-approved-applicants/",
+      "source": "pv magazine",
+      "title": "Malaysia extends residential solar rebates for approved applicants",
+      "url": "https://www.pv-magazine.com/2026/11/13/malaysia-extends-residential-solar-rebates-for-approved-applicants/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Malaysia's residential solar rebate scheme has MYS 90 million ($22.1 million) remaining. Approved applicants will now be given until March 2027 to complete their PV installations and claim rebates. The post Malaysia extends residential solar rebates for approved applicants appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-13T12:24:56.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/toll-makes-way-for-floor-offtake-contracting-beginning-to-standardise-in-uk-bess-market/",
+      "source": "Energy-Storage.news",
+      "title": "Toll makes way for floor, offtake contracting beginning to standardise in UK BESS market",
+      "url": "https://www.energy-storage.news/toll-makes-way-for-floor-offtake-contracting-beginning-to-standardise-in-uk-bess-market/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Floors are increasingly the offtake structure of choice in the UK market, and the contracting for them is beginning to standardise, industry experts said."
+    },
+    {
+      "t": "2026-11-13T13:11:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/chinese-pv-industry-brief-energy-china-shortlists-23-module-suppliers-for-15-gw-tender/",
+      "source": "pv magazine",
+      "title": "Chinese PV Industry Brief: Energy China shortlists 23 module suppliers for 15 GW tender",
+      "url": "https://www.pv-magazine.com/2026/11/13/chinese-pv-industry-brief-energy-china-shortlists-23-module-suppliers-for-15-gw-tender/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "In other news, JinkoSolar has secured certification under new Chinese PV standards and Trina Solar is expanding into AI data center energy solutions, Drinda has canceled its Oman factory project, while GCL SI has secured a module supply contract, and polysilicon oversupply continues to weigh on prices. The post Chin…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
+      "policy": 6,
       "capital": 6,
-      "grid": 29,
-      "technology": 1
+      "grid": 30,
+      "technology": 3
     },
     "sourceStatus": [
       {
@@ -483,7 +503,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 6
       },
       {
         "source": "pv magazine",
@@ -498,6 +518,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:64a282e58d3056953b4ba60b6932e3d19da885863a667090653ebbeb4bfe125d",
-  "envelopeChecksum": "sha256:30b741f6c1ce55c39e909c136ce733a874217c8dba5425405ac444aba776a098"
+  "contentChecksum": "sha256:8ceb965f3c4a1a8cdb714e7fbfebda44a8fa2ac0ab6a4d156d9d166e1f3fcffe",
+  "envelopeChecksum": "sha256:f8797c4e99f0af215b076ac70d00ee72bedf747e6e446fca55ff57f80ec581ca"
 }
