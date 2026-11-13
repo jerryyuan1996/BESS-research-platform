@@ -40,10 +40,11 @@ test('overview reuses the full research and explains the mechanism without the d
   await page.getByRole('button',{name:'Close research details',exact:true}).click();
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
   await page.locator('.ix-story-dialog').getByRole('button',{name:'Close the story',exact:true}).click();
-  await expect(page.locator('#revenue-drivers')).toContainText('MACSE');
   await expect(page.getByText('Cash generation & debt payments',{exact:true})).toHaveCount(0);
   await page.locator('#revenue-drivers details > summary').first().click();
   await expect(page.locator('#revenue-drivers details').first()).toHaveAttribute('open','');
+  await expect(page.locator('#revenue-capacity .market-revenue-body')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('#revenue-capacity')).toContainText('MACSE');
   expect(errors).toEqual([]);
   await page.screenshot({path:'test-results/overview-'+test.info().project.name+'-en.png',fullPage:true});
 });

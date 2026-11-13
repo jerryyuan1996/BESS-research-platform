@@ -2,6 +2,7 @@
    Cut by line range from the single-file sections.js; the body below is verbatim.
    See docs/p1-sections-rollout.md and scripts/split-market-sections.mjs. */
 import { createShared } from './shared.js';
+import { CORE_STORYLINE_TEXT } from '../coreStoryline.js';
 
 /** @param {object} api  supplied by src/markets/_shared/engine.js */
 export function create(api){
@@ -19,8 +20,7 @@ SEC_B.home = function (){
     { t:'card', mt:false, title:['Institutional Investor Walkthrough — six questions, one decision path','机构投资人导览 — 六个问题，一条决策路径'],
       badges:['official'], live:false, blocks:[
       { t:'band-story', b:['Core storyline','核心叙事'],
-        text:['Romania is an energy-only market with no capacity mechanism, so storage earns from wholesale spreads and balancing services and is capitalised — not remunerated — by state aid. Solar build-out has created a deep midday trough and a steep evening ramp, which is a genuine arbitrage opportunity. But the binding constraints are administrative: an ATR and executed connection agreement, balancing prequalification, and a formal grant award rather than a scheme budget. Value is created by clearing those gates, not by forecasting prices.',
-              '罗马尼亚是没有容量机制的单一电能量市场，因此储能收入来自批发价差与平衡服务，而国家援助提供的是资本化支持而非收入报酬。光伏扩张形成了深度午间低谷与陡峭晚间爬坡，构成真实的套利机会。但关键约束是行政性的：ATR与已签并网合同、平衡市场预认证、以及正式补贴授予（而非计划预算）。价值来自跨越这些门槛，而非来自预测价格。'] },
+        text: CORE_STORYLINE_TEXT },
       { t:'p', text:['Target COD window: ' + M.overall.codWindow, '目标投运窗口：' + M.overall.codWindow] },
       { t:'walk', items:[
         ['01', ['Overview','总览'], ['What is the house view today?','当前总体判断是什么？'], 'home'],

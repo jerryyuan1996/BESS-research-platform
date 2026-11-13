@@ -8,7 +8,7 @@ import { RCM_HISTORY } from '../data/rcmHistory.js';
 import { WEM_MARKET } from '../data/wemMarket.js';
 import { NEM_SC } from '../data/nemScorecard.js';
 import { KEMERTON, ESOO_BAL, hasProjectData } from '../data/kemerton.js';
-import { dniScore, kemDurationCase } from '../lib/scores.js';
+import { kemDurationCase } from '../lib/scores.js';
 
 // ---------------- exports ----------------
 function download(name, text, mime){
@@ -43,7 +43,6 @@ function exportCsv(){
     ['NEM pipeline (context only, not WA)', NEM_SC.pipelineGW, 'GW', 'official (NEM namespace)', 'CONTEXT_ONLY', 'AEMO NEM Connection Scorecard Jun 2026'],
     ['NEM battery share of pipeline (context only, not WA)', NEM_SC.pipelineMix[0].pct, '%', 'official (NEM namespace)', 'CONTEXT_ONLY', 'AEMO NEM Connection Scorecard Jun 2026'],
     ['NEM full output achieved FY2026 (context only, not WA)', NEM_SC.fyOutput.fullGW, 'GW', 'official (NEM namespace)', 'CONTEXT_ONLY', 'AEMO NEM Connection Scorecard Jun 2026'],
-    ['Duration-Need Index', dniScore(), '0-100', 'calculated (illustrative inputs)', 'SEED_JSON_V1', 'dashboard'],
     ['ERA reference capex intensity', KEMERTON.capex.eraBenchmarkPerKWh, 'A$/kWh', 'official final', 'SEED_JSON_V1', 'ERA BRCP final determination'],
   ];
 
@@ -76,7 +75,7 @@ function exportJson(){
     },
     calculated: {
       expectedCC: SEED.expectedCC, supplyRatioPct: +(SEED.supplyRatio * 100).toFixed(2),
-      upperDeadbandHeadroomMW: SEED.upperDeadbandHeadroom, durationNeedIndex: dniScore(),
+      upperDeadbandHeadroomMW: SEED.upperDeadbandHeadroom,
     },
     esooBalance2829: ESOO_BAL,
     rcmEvolution: { benchmarkTechnology: RCM_HISTORY.benchTech, esrPath: RCM_HISTORY.esr },

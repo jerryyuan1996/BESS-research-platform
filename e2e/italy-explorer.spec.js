@@ -97,22 +97,19 @@ test('revenue reader exposes all four original sections and opens the evidence l
   const errors = []; page.on('pageerror', error => errors.push(error.message));
   await visit(page);
   await capture(page.locator('#revenue-drivers'), 'revenue-entrance', testInfo);
-  await page.locator('[data-market-research="revenue"]').click();
-  const dialog = page.locator('.market-research-dialog');
-  await expect(dialog.locator('[role="tabpanel"]')).toHaveAttribute('aria-busy', 'false');
-  await expect(dialog.getByRole('tab')).toHaveCount(4);
-  await capture(dialog, 'revenue', testInfo);
-  for (const title of [/MACSE与容量市场/, /批发与日内市场/, /辅助服务与平衡市场/, /储能时长/]) {
-    await dialog.getByRole('tab', { name: title }).click();
-    await expect(dialog.locator('.ix-research-card').first()).toHaveAttribute('open', '');
-    for (const card of await dialog.locator('.ix-research-card').all()) {
-      if (!(await card.evaluate(node => node.open))) await card.locator(':scope > summary').click();
-      await expect(card.locator('.ix-research-card-body')).not.toBeEmpty();
-    }
-    expect(await dialog.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
+  const chapters = page.locator('#revenue-drivers > details');
+  await expect(chapters).toHaveCount(4);
+  for (const chapter of await chapters.all()) {
+    await chapter.locator(':scope > summary').click();
+    const body = chapter.locator('.market-revenue-body');
+    await expect(body).toHaveAttribute('aria-busy','false');
+    await expect(body.locator('.market-revenue-decision .why')).toBeVisible();
+    expect(await body.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
+    await chapter.locator(':scope > summary').click();
   }
-  await dialog.locator('.market-reader-source-link a').click();
-  await expect(dialog).toHaveCount(0);
+  await chapters.first().locator(':scope > summary').click();
+  await chapters.first().locator('.market-revenue-body > .ix-text-link').click();
+  await expect(page.locator('.market-research-dialog')).toHaveCount(0);
   await expect(page).toHaveURL(/\/markets\/italy\/evidence/);
   expect(errors).toEqual([]);
 });

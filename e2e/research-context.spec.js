@@ -61,19 +61,21 @@ test('every chapter of the NEM page carries its research, closed, and opening on
 test('revenue research has one shared reader instead of repeated mechanism disclosures',async({page})=>{
   await visit(page,'nem');
   await expect(page.locator('#revenue-drivers .ix-research-context')).toHaveCount(0);
-  await page.locator('[data-market-research=revenue]').click();
-  const reader=page.locator('.market-research-dialog');
-  await expect(reader.getByRole('tab')).toHaveCount(4);
-  await page.keyboard.press('Escape');
+  const chapters=page.locator('#revenue-drivers > details');
+  await expect(chapters).toHaveCount(4);
+  await chapters.first().locator(':scope > summary').click();
+  await expect(chapters.first().locator('.market-revenue-body')).toHaveAttribute('aria-busy','false');
+  await expect(chapters.first().locator('.market-revenue-decision .why')).toBeVisible();
   /* Nothing in an opened panel reaches past the page. */
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
 });
 
 test('Japan shows each area its own research, in Chinese as in English',async({page})=>{
   await visit(page,'japan-kyushu','zh');
-  /* Revenue research now has one market-bound reader entrance. */
+  /* Revenue chapters and contextual readers keep this allocation market. */
   await expect(disclosure(page,'revenue-drivers')).toHaveCount(0);
-  await expect(page.locator('[data-market-research=revenue]')).toHaveAttribute('data-market','jp_kyushu');
+  await expect(page.locator('#revenue-drivers > details')).toHaveCount(4);
+  await expect(page.locator('.public-core-storyline')).toHaveAttribute('data-storyline-market','jp_kyushu');
   const downside=disclosure(page,'downside');
   await expect(downside.locator('summary').first()).toHaveText('本节背后的研究');
   await downside.locator('summary').first().click();
@@ -226,12 +228,13 @@ for (const locale of ['en','zh']) test(`Japan fetches only the requested section
   for (const region of ['tokyo','kyushu','hokkaido']){
     const fetched=[]; const record=request=>fetched.push(request.url()); page.on('request',record);
     await visit(page,'japan-'+region,locale);
-    expect(fetched.filter(url=>/\/assets\/section-jp-/.test(url))).toEqual([]);
+    await expect(page.locator('.public-core-storyline')).toHaveAttribute('aria-busy','false');
+    expect(fetched.map(url=>/section-jp-([a-z]+)-/.exec(url)?.[1]).filter(Boolean).every(id=>['home','shared'].includes(id))).toBe(true);
     const panel=disclosure(page,'revenue');
     await panel.locator(':scope > summary').click();
     await expect(panel.locator('.ix-research-context-body')).toHaveAttribute('aria-busy','false');
     const sections=fetched.map(url=>/section-jp-([a-z]+)-/.exec(url)?.[1]).filter(Boolean);
-    const expected=picksFor('jp','revenue').map(pick=>pick.section);
+    const expected=[...new Set(['home',...picksFor('jp','revenue').map(pick=>pick.section)])];
     expect([...new Set(sections)].filter(id=>id!=='shared').sort()).toEqual([...expected].sort());
     const bodyText=await panel.innerText();
     expect(bodyText).toContain(locale==='zh'?{tokyo:'东京',kyushu:'九州',hokkaido:'北海道'}[region]:{tokyo:'Tokyo',kyushu:'Kyushu',hokkaido:'Hokkaido'}[region]);

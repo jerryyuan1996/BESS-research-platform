@@ -12,11 +12,14 @@ import { ENTRY_LEDGER } from './entryLedger.js';
 import { registerCase } from '../caseRegistry.js';
 import { CLAIMS } from './claims.js';
 import { registerClaims } from '../claimRegistry.js';
+import { finishConciseResearch } from '../_shared/conciseResearch.js';
+import { CORE_STORYLINE_TEXT } from './coreStoryline.js';
 
 registerCase('wa', { view: VIEW, ledger: ENTRY_LEDGER });
 registerClaims('wa', CLAIMS);
 
 const PUBLIC_SECTIONS = {
+  home: () => import('./sections/home.js').then(m => m.renderHome),
   story: () => import('./sections/story.js').then(m => m.renderStory),
   rcm: () => import('./sections/rcm.js').then(m => m.renderRcm),
   energy: () => import('./sections/energy.js').then(m => m.renderEnergy),
@@ -38,12 +41,13 @@ export async function researchExcerpt(route, picks){
     if (!named && pick.cards && (!pick.rest || pick.except?.includes(key))) continue;
     const render = await load();
     const label = TABS.find(([id]) => id === section)[1];
-    groups.push({ section, label, lead(){}, cards: [{ key, title: label, visual: 2,
+    groups.push({ section, label, storyline:section === 'home' ? CORE_STORYLINE_TEXT : null, lead(){}, cards: [{ key, title: label, visual: 2,
       draw(body, after){
         const paint = () => {
           body.replaceChildren();
           render(body);
           enhanceMarketPage(body, { marketId: 'wa', tabId: section });
+          finishConciseResearch(body);
           after?.(body);
         };
         registerResearchExcerpt(body, paint, route.basePath);

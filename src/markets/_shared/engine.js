@@ -53,6 +53,7 @@ import { createDesignFitBlock } from './designFitBlock.js';
 import { createBlocks } from './blocks.js';
 import { createExports } from './exports.js';
 import { researchUnits, pickUnits } from './researchUnits.js';
+import { conciseResearchSections, finishConciseResearch } from './conciseResearch.js';
 
 /**
  * @param {object} cfg
@@ -64,6 +65,7 @@ import { researchUnits, pickUnits } from './researchUnits.js';
  * @param {(api:object, ids:string[])=>Promise<void>} [cfg.prepareSections]
  *        load the sections a route is about to draw, before anything is drawn
  * @param {object} [cfg.textOverrides]  market-specific additions to the shared T
+ * @param {(root:HTMLElement)=>void} [cfg.finishResearch] reader presentation after a paint
  */
 /** The heading the overview takes when it is stacked under the investment case. */
 const OVERVIEW_HEAD = ['Market at a glance', '市场概览'];
@@ -104,6 +106,7 @@ function renderSectionFailure(main, err){
 
 export function createMarketEngine(cfg){
   const { MKT, TABS, SRC, buildSections, textOverrides, regions, prepareSections } = cfg;
+  const finishResearch = root => { finishConciseResearch(root); cfg.finishResearch?.(root); };
 
   /* The sponsor's buying position is applied HERE rather than in each market's
      data.js, for the same reason the registry applies it rather than each
@@ -185,7 +188,7 @@ export function createMarketEngine(cfg){
   const fmt = createFormat(MKT);
   const compute = createCompute({ M, state });
 
-  const ctx = { MKT, TABS, SRC, M, T, state, render, LS, fmt, compute };
+  const ctx = { MKT, TABS, SRC, M, T, state, render, LS, fmt, compute, finishResearch };
   ctx.lab = createLab(ctx);
   ctx.designFit = createDesignFitBlock(ctx);
   ctx.exports = createExports(ctx);
@@ -231,7 +234,7 @@ export function createMarketEngine(cfg){
     : null;
 
   // Markets supply SECTIONS() as a function so every string re-evaluates per language.
-  const SECTIONS = buildSections(api);
+  const SECTIONS = conciseResearchSections(buildSections)(api);
 
   /** Verbatim from the prototype's renderSection(). */
   function renderSection(spec){
@@ -239,6 +242,7 @@ export function createMarketEngine(cfg){
       if (spec.warn) main.append(h('div', { class: 'warnbox' }, '⚠ ' + L(spec.warn)));
       if (spec.head) sectionHead(main, spec.head, spec.cap);
       ctx.blocks.B(main, spec.blocks);
+      finishResearch(main);
     };
   }
 
@@ -404,13 +408,13 @@ export function createMarketEngine(cfg){
            needs one, or it has no wrapper for a claim to attach to. */
         renderSection(id === 'home' && !spec.head ? { ...spec, head: OVERVIEW_HEAD } : spec)(el);
       },
-      after: (id, el) => enhanceMarketPage(el, {
+      after: (id, el) => { enhanceMarketPage(el, {
         /* The map is paired with the overview, wherever the overview is drawn. */
         overviewMap: id === 'home'
           ? gridMapForMarket(MKT.id, route.market?.manifest.region || (regionValue === 'compare' ? null : regionValue))
           : null,
         marketId: MKT.id, tabId: id,
-      }),
+      }); finishResearch(el); },
     });
     container.append(footerLine());
   }
@@ -420,7 +424,7 @@ export function createMarketEngine(cfg){
   /* The two blocks the market's front page lifts out of this research: the
      house view and the one-minute orientation. The full research leaves them
      out, so a reader who goes deeper does not read them twice. */
-  const flatten = blocks => (blocks || []).flatMap(b => [b, ...flatten(b.blocks), ...flatten(b.cards)]);
+  const flatten = blocks => (blocks || []).filter(Boolean).flatMap(b => [b, ...flatten(b.blocks), ...flatten(b.cards)]);
   function summaryPicks(sections) {
     const home = flatten(sections.home?.blocks);
     const ic = home.find(b => b.t === 'ic') || null;
@@ -460,6 +464,7 @@ export function createMarketEngine(cfg){
     if (orientation || historyBlocks.length) ctx.blocks.B(container, { ...(orientation || { t:'card', blocks:[] }), mt:false,
       title:['One-minute market orientation','一分钟市场定位'],
       blocks:[...((orientation?.blocks) || []), ...historyBlocks] });
+    finishResearch(container);
   }
 
   /* -------------------------------------------------------------------------
@@ -503,6 +508,8 @@ export function createMarketEngine(cfg){
         section: pick.section,
         label: TABS.find(([id]) => id === pick.section)?.[1] || null,
         head: spec.head || null,
+        storyline: pick.section === 'home' ? flatten(spec.blocks).find(b => b?.t === 'band-story')?.text || M.overall?.rationale : null,
+        regionalView: pick.section === 'home' && REGIONS ? M.overall?.rationale : null,
         /* The section as its tab opens: warning, heading, caption, the text
            before its first card, and its reviewed claim where it has one. */
         lead: (el) => {
@@ -523,6 +530,7 @@ export function createMarketEngine(cfg){
               if (!now) return;
               ctx.blocks.B(el, now.blocks.map((block, i) => (i ? block : { ...block, mt: false })));
               enhanceMarketPage(el);
+              finishResearch(el);
               after?.(el);
             };
             excerpts.add({ el, paint });

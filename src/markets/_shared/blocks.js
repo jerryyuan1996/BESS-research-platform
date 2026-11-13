@@ -82,7 +82,7 @@ function B(parent, b){
     case 'warn':   parent.append(h('div', { class: 'warnbox' }, L(b.text))); break;
     case 'proto':  parent.append(h('div', { class: 'proto' }, L(b.text))); break;
     case 'band-story': parent.append(h('div', { class: 'story-band' }, h('b', {}, L(b.b)), h('p', {}, L(b.text)))); break;
-    case 'p':      parent.append(h('div', { style: 'font-size:var(--fs-xs);color:var(--ink2);margin:8px 0;' }, L(b.text))); break;
+    case 'p':      parent.append(h('div', { class:'research-paragraph', style: 'font-size:var(--fs-xs);color:var(--ink2);margin:8px 0;' }, L(b.text))); break;
     case 'cap':    parent.append(h('div', { class: 'cap' }, L(b.text))); break;
     case 'sub':    parent.append(h('div', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin:8px 0 4px;' }, L(b.text))); break;
     case 'chip':   parent.append(h('div', { style: 'margin:8px 0;' }, chip(b.cls, L(b.text)))); break;
@@ -208,8 +208,8 @@ function B(parent, b){
        registry by market id, so a section names its market and nothing else.
        Fetched on demand: only four markets have these tabs, and the method
        layer behind them must not ride in the chunk every market shares. */
-    case 'investment-case': mountInvestmentCase(parent, b.marketId, 'case'); break;
-    case 'entry-ledger': mountInvestmentCase(parent, b.marketId, 'entry'); break;
+    case 'investment-case': mountInvestmentCase(parent, b.marketId, 'case', ctx.finishResearch); break;
+    case 'entry-ledger': mountInvestmentCase(parent, b.marketId, 'entry', ctx.finishResearch); break;
     /* The pipeline table and the map read one set of canonical project records,
        so a market cannot publish two different fleets. */
     case 'project-pipeline': renderProjectPipeline(parent, b); break;

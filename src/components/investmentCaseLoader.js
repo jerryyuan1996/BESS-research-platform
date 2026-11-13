@@ -13,18 +13,20 @@
    --------------------------------------------------------------------------- */
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
+import { finishConciseResearch } from '../markets/_shared/conciseResearch.js';
 
 /**
  * @param parent    where the section's cards go
  * @param marketId  the market whose view and ledger to render
  * @param which     'case' or 'entry'
+ * @param after     optional reader presentation, applied before the cards appear
  */
-export function mountInvestmentCase(parent, marketId, which){
+export function mountInvestmentCase(parent, marketId, which, after){
   const holder = h('div', { class: 'cap' }, L(['Loading…', '加载中…']));
   parent.append(holder);
   import('./investmentCase.js').then(m => {
     const cards = which === 'entry' ? m.entryPanel(marketId) : m.briefPanel(marketId);
-    cards.forEach((el, i) => { if (i) el.style.marginTop = '14px'; });
+    cards.forEach((el, i) => { if (i) el.style.marginTop = '14px'; finishConciseResearch(el); after?.(el); });
     holder.replaceWith(...cards);
   }).catch(() => {
     holder.textContent = L(['This section could not be loaded.', '本节未能加载。']);

@@ -18,6 +18,7 @@ import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor, publicReadingFor } from './story/registry.js';
 import { researchPlaced } from './researchPlaced.js';
+import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
 
 
@@ -50,6 +51,7 @@ function renderMarket(container, row, route) {
   const publicEntry = publicReadingFor(mf.id);
   let storyRows = [row], storyReady = Promise.resolve();
   const content = main();
+  content.classList.add('ix-market-page');
   if(publicEntry) content.classList.add('public-market');
   content.append(h('nav', { class: 'ix-breadcrumb', 'aria-label': L(['Breadcrumb', '面包屑导航']) }, link('/', ['Investment brief', '投资简报']), ' / ', link('/returns', ['Global markets', '全球市场']), ' / ', h('span', {}, name(row))));
   content.append(metaBar('03', ['MARKET INTELLIGENCE', '市场详情']));
@@ -74,9 +76,6 @@ function renderMarket(container, row, route) {
     });
   }
   content.append(decisionPanel(row));
-  const anchors = [['decision',['Decision','投资判断']],['overview', ['Overview', '市场概览']], ['revenue-drivers', ['Revenue drivers', '收入动因']], ['bankable', ['Bankable case', '可融资方案']], ['revenue', ['Revenue', '收益拆解']], ['execution', ['Execution', '执行步骤']], ['opportunity-comparison', ['Special opportunity', '特殊机会']], ['downside', ['Downside', '下行风险']], ['sources', ['Sources', '来源']]];
-  if(publicEntry) anchors.unshift(...anchors.splice(anchors.findIndex(([id])=>id==='overview'),1));
-  content.append(h('nav', { class: 'ix-section-nav', 'aria-label': L(['Market sections', '市场详情章节']) }, anchors.map(([id, label]) => link(`#${id}`, label))));
   content.append(h('section', { id: publicEntry ? 'investment-overview' : 'overview', class: 'ix-section ix-overview' },
     sectionTitle(['THE INVESTMENT VIEW', '市场投资判断'], ['Understand what drives the case.', '先理解这项投资，为什么成立。']),
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
@@ -144,11 +143,15 @@ function renderMarket(container, row, route) {
   const specialHost = h('div');
   content.append(opportunityHost);
   const investor = lens();
-  const dropSpecial = () => { specialHost.remove(); content.querySelector('.ix-section-nav a[href="#opportunity-comparison"]')?.remove(); };
-  const loadOpportunity = () => import('../opportunities/ui.js').then(module => {
+  const dropSpecial = () => specialHost.remove();
+  const initialRevenue = route?.research?.kind === 'revenue' ? route.research.section || m.tabs.find(([id])=>['capacity','rcm'].includes(id))?.[0] : null;
+  const loadOpportunity = () => import('../opportunities/ui.js').then(async module => {
     if (!opportunityHost.isConnected) return;
-    opportunityHost.replaceChildren(module.revenueMechanismSection(row));
+    const revenue = (await import('./marketRevenueResearch.js')).revenueResearchSection(row, initialRevenue);
+    if (!opportunityHost.isConnected) return;
+    opportunityHost.replaceChildren(revenue);
     opportunityHost.setAttribute('aria-busy','false');
+    if (initialRevenue) revenue.querySelector('[open]')?.scrollIntoView();
     const screen = module.specialOpportunityScreen(row, investor);
     const special = screen.valid.length ? module.opportunityComparison(row, investor, { only: screen.valid }) : null;
     if (special) specialHost.replaceChildren(special);
@@ -164,7 +167,7 @@ function renderMarket(container, row, route) {
     opportunityHost.setAttribute('aria-busy','false');
   });
   loadOpportunity();
-  if (route?.research) {
+  if (route?.research && route.research.kind !== 'revenue') {
     const {kind, section} = route.research;
     import('./marketResearchDialog.js').then(({openMarketResearch}) => {
       if (content.isConnected) openMarketResearch(mf.id, kind, content.querySelector('[data-market-research="'+kind+'"]'), section);
@@ -199,10 +202,23 @@ function renderMarket(container, row, route) {
   if (!data.unavailable) content.append(downsideSection(data));
   const overview=content.querySelector('#overview');
   if(!publicEntry)for(const id of ['bankable','revenue']){const node=content.querySelector('#'+id);if(node)content.insertBefore(node,overview);}
-  if(data.unavailable) for(const id of ['revenue','downside'])content.querySelector('.ix-section-nav a[href="#'+id+'"]')?.remove();
   content.append(sourcesSection(row));
   content.append(nextSection(['Keep the opportunity in context.', '让投资判断，始终保有全球视角。'], ['Return to the matrix and compare this case with your next market.', '返回全球矩阵，将当前方案与下一个市场放在一起比较。'], compareUrl([row.id]), ['Back to global comparison ↗', '返回全球比较 ↗']));
   container.append(content);
+  mountMarketReadingNav(content, [
+    ['overview', ['Market background','市场背景']],
+    ['decision', ['Investment decision','投资判断']],
+    ['investment-overview', ['Investment logic','投资逻辑']],
+    ['revenue-drivers', ['Revenue drivers','收入动因']],
+    ...[['capacity','Support & adequacy','支持机制与充裕度'],['rcm','Support & adequacy','支持机制与充裕度'],['energy','Wholesale & intraday','批发与日内'],['services','Balancing & reserves','平衡与备用'],['fcess','Balancing & reserves','平衡与备用'],['duration','Storage duration','储能时长']].map(([id,en,zh])=>['revenue-'+id,[en,zh],true]),
+    ['bankable', ['Bankable case','可融资方案']],
+    ['revenue', ['Cash flow','现金流拆解']],
+    ['route-options', ['Investment routes','投资路径']],
+    ['execution', ['Execution','执行步骤']],
+    ['opportunity-comparison', ['Special opportunity','特殊机会']],
+    ['downside', ['Downside','下行风险']],
+    ['sources', ['Sources','来源与证据']],
+  ]);
   if (window.location.hash === '#route-options') requestAnimationFrame(()=>content.querySelector('#route-options')?.scrollIntoView());
   if (window.location.hash === '#opportunity-comparison') requestAnimationFrame(() => content.querySelector('#opportunity-comparison')?.scrollIntoView());
 }

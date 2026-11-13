@@ -36,7 +36,15 @@ export function open(ctx){
     if(!fromHistory)recordPlace(null,'push');
     if(dialog.open)dialog.close();dialog.remove();
     document.body.style.overflow=previousOverflow;
-    if(restore){window.scrollTo(...previousScroll);const trigger=ctx.trigger?.isConnected?ctx.trigger:document.querySelector('.public-story-trigger');trigger?.focus({preventScroll:true});}
+    if(restore){
+      window.scrollTo(...previousScroll);
+      const trigger=ctx.trigger?.isConnected?ctx.trigger:document.querySelector('.public-story-trigger');
+      trigger?.focus({preventScroll:true});
+      const bounds=trigger?.getBoundingClientRect();
+      // A translated core narrative can move the entrance beyond the saved
+      // pixel position. Keep the reader at the same visible reading entrance.
+      if(bounds&&(bounds.top<88||bounds.bottom>window.innerHeight))trigger.scrollIntoView({block:'center',behavior:'instant'});
+    }
   }
   const research=()=>{const trigger=dialog.querySelector('.public-research-button');ctx.openResearch?.(trigger);};
   const legacy=()=>{close({restore:false});ctx.openLegacy?.();};

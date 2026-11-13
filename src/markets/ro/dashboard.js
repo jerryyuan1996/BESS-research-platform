@@ -25,7 +25,8 @@ import { registerCase } from '../caseRegistry.js';
 registerCase('ro', { view: VIEW, ledger: ENTRY_LEDGER });
 
 const engine = createMarketEngine({
-  MKT, TABS, SRC, M, buildSections,
+  MKT, TABS, SRC, M,
+  buildSections,
   prepareSections: (api, ids) => loadSections(api, ids),
 });
 
