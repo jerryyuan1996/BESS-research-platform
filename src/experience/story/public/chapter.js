@@ -26,6 +26,8 @@ export function renderChapter(data,id,ctx){
   const excerpts=section=>data.extracts[section].map(e=>h('blockquote',{class:'public-reference'},badge(TEXT.excerpt),h('h4',{},L(e.question)),P(e.text),
     h('details',{},h('summary',{},L(['Excerpt provenance','原文追溯'])),h('ul',{},(e.sourceIds||[]).map(key=>data.sources[key]).filter(source=>source?.url).map(source=>h('li',{},h('a',{href:sourceHref(source.url),target:'_blank',rel:'noopener noreferrer'},source.title)))))));
   if(id==='history')node.append(renderResearchHistory(data.historyResearch,ctx.researchUrl));
+  if(id==='research'&&data.logicSources)node.append(h('section',{class:'public-logic-sources'},h('h4',{},L(['Evidence for the value and revenue explanations','价值与收入叙事的依据'])),
+    h('ul',{},Object.values(data.logicSources).map(source=>h('li',{},h('a',{href:source.url,target:'_blank',rel:'noopener noreferrer'},source.title),P(['Checked '+source.checkedOn,'核对日期 '+source.checkedOn]))))));
   if(data.summary.historyOnly){
     if(id==='research')node.append(renderHistoryProvenance(data.historyResearch,ctx.researchUrl),
       P(['Market development history from the existing research.','既有研究中的市场发展历程。']),

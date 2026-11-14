@@ -1,5 +1,6 @@
 /* Public reading shell. Reuses the native dialog, story navigation styles and
-   whitelisted history-place API. No investor row or model enters this module. */
+   whitelisted history-place API. Investment figures enter through page-owned
+   render callbacks, keeping their selected-case and reference-case scopes. */
 import {h} from '../../../utils/dom.js';
 import {L} from '../../../app/i18n.js';
 import {app,setLang,requestRender} from '../../../app/state.js';
@@ -8,7 +9,7 @@ import {CHAPTERS,loadPublicContent,publicPlace,readPublicPlace} from './content.
 import {PUBLIC_VERSION} from './catalog.js';
 import {PUBLIC_READING_CATALOG} from './historyCatalog.js';
 import './public.css';
-import {publicChapters} from './chapters.js';
+import {publicChapters,resolvePublicChapter} from './chapters.js';
 import {compactSourceDrawers} from '../../../components/sourcePopup.js';
 
 export function open(ctx){
@@ -16,6 +17,7 @@ export function open(ctx){
   if(!summary)return null;
   const chapters=publicChapters(ctx.id,summary.historyOnly);
   const initial=readPublicPlace(ctx.place);
+  initial.chapter=resolvePublicChapter(ctx.id,initial.chapter);
   let chapter=chapters.some(([id])=>id===initial.chapter)?initial.chapter:'history', data=null, closed=false, stop=null, version=0;
   let locale=initial.locale||app.lang;
   const origin=window.history.state?.publicReadingOrigin;
@@ -50,8 +52,7 @@ export function open(ctx){
       if(bounds&&(bounds.top<88||bounds.bottom>window.innerHeight))trigger.scrollIntoView({block:'center',behavior:'instant'});
     }
   }
-  const research=()=>{const trigger=dialog.querySelector('.public-research-button');ctx.openResearch?.(trigger);};
-  const legacy=()=>{close({restore:false});ctx.openLegacy?.();};
+  const research=()=>show('research');
   function readingPlace(){
     const viewport=body.getBoundingClientRect(),top=viewport.top;
     // Save a readable field, not event padding. A translated paragraph can be
@@ -63,6 +64,7 @@ export function open(ctx){
     const bounds=field?.getBoundingClientRect(),offset=bounds?.top-top;
     return {node:field?.closest('[data-history-node]').dataset.historyNode,field:field?.dataset.historyField,offset,
       progress:offset<0?Math.min(1,-offset/bounds.height):0,scroll:body.scrollTop,
+      materialOpen:body.querySelector('.unified-material')?.open,
       details:[...body.querySelectorAll('details')].flatMap((el,i)=>el.open?[i]:[])};
   }
   function build(){
@@ -78,7 +80,7 @@ export function open(ctx){
     }},Object.entries(regions).map(([id,label])=>h('option',{value:id,...(id===ctx.id?{selected:''}:{})},L(label)))):null;
     const head=h('header',{class:'public-story-head'},
       h('div',{},h('p',{class:'ix-eyebrow'},L(['PUBLIC MARKET READING','公共市场叙事'])),h('h2',{id:'public-story-title'},L(ctx.name)),
-        h('p',{class:'public-story-meta'},L(summary.historyOnly?['All investors · Market history & system overview','所有投资人 · 市场历史与系统概览']:['All investors · Market background & investment logic','所有投资人 · 市场背景与投资逻辑']),' · ',PUBLIC_VERSION)),
+        h('p',{class:'public-story-meta'},L(['All investors · Market background & investment logic','所有投资人 · 市场背景与投资逻辑']),' · ',PUBLIC_VERSION)),
       h('div',{class:'public-story-tools'},...(regionSelect?[regionSelect]:[]),langBtn,
         h('button',{type:'button',class:'ix-button ix-outline public-research-button',onclick:research},L(['Full research ↗','完整研究 ↗'])),closeBtn));
     nav=h('nav',{class:'public-story-nav','aria-label':L(['Public story chapters','公共叙事章节'])},chapters.map(([id,title],i)=>h('button',{type:'button','data-chapter':id,onclick:()=>show(id)},String(i+1).padStart(2,'0'),' · ',L(title))));
@@ -86,6 +88,7 @@ export function open(ctx){
     dialog.replaceChildren(head,nav,body);
   }
   async function show(id,{history=true,focus=true,reading=null}={}){
+    id=resolvePublicChapter(ctx.id,id);
     chapter=chapters.some(c=>c[0]===id)?id:'history';
     const run=++version;
     nav.querySelectorAll('button').forEach(b=>{if(b.dataset.chapter===chapter)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
@@ -93,11 +96,16 @@ export function open(ctx){
     body.replaceChildren(h('p',{class:'public-loading'},L(['Loading this chapter…','正在加载本章…'])));
     body.setAttribute('aria-busy','true');
     try{
-      const [content,renderer,researchHistory]=await Promise.all([data||loadPublicContent(ctx.id),chapter==='overview'?import('./marketOverview.js'):import('./chapter.js'),
-        chapter==='history'||summary.historyOnly&&chapter==='research'?import('./history.js').then(module=>module.loadResearchHistory(ctx.id)):null]);
+      const [content,renderer,researchHistory,logicSources,integration]=await Promise.all([data||loadPublicContent(ctx.id),chapter==='overview'?import('./marketOverview.js'):chapter==='investment'?import('./integration.js'):['system','mechanism'].includes(chapter)?(ctx.id==='it'?import('./italyLogic.js'):import('./marketLogic.js')):import('./chapter.js'),
+        chapter==='history'||summary.historyOnly&&chapter==='research'?import('./history.js').then(module=>module.loadResearchHistory(ctx.id)):null,
+        chapter==='research'?import('./logicSources.js').then(m=>m.LOGIC_SOURCES[ctx.id]):null,import('./integration.js')]);
       if(closed||run!==version)return;
       data=content;
-      const node=renderer.renderChapter({...data,marketName:ctx.name,historyResearch:researchHistory},chapter,{alive:()=>alive()&&run===version,research,researchUrl:ctx.researchUrl,legacy:ctx.id==='ercot'?null:legacy,researchContext:ctx.researchContext});
+      const invest=(anchor='investment-overview')=>{close({restore:false});const target=document.getElementById(anchor);target?.scrollIntoView({block:'start',behavior:'instant'});target?.querySelector('h2')?.focus({preventScroll:true});};
+      const node=renderer.renderChapter({...data,marketName:ctx.name,historyResearch:researchHistory,logicSources},chapter,{alive:()=>alive()&&run===version,research:()=>navigate(ctx.researchUrl),researchUrl:ctx.researchUrl,
+        investment:()=>{close({restore:false});const target=document.querySelector('#investment-overview');target?.scrollIntoView({block:'start',behavior:'instant'});target?.querySelector('h2')?.focus({preventScroll:true});}});
+      const restoreMaterial=integration.integrateChapter(node,chapter,{alive:()=>alive()&&run===version,hasMaterials:ctx.hasMaterials,currentCase:ctx.currentCase,researchSummary:ctx.researchSummary,researchUrl:ctx.researchUrl,
+        materials:()=>ctx.loadMaterials({onInvest:invest,onChapter:show})});
       compactSourceDrawers(node);
       const versionNote=initial.version&&initial.version!==PUBLIC_VERSION?h('p',{role:'status',class:'public-version-note'},L(['This link names an older edition. Showing the current edition: ','链接指向其他版本。当前显示最新版本：']),PUBLIC_VERSION):null;
       body.replaceChildren(...(versionNote?[versionNote]:[]),node,
@@ -105,6 +113,8 @@ export function open(ctx){
           chapter!=='research'?h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>show(chapters[chapters.findIndex(c=>c[0]===chapter)+1][0])},L(['Next chapter →','下一章 →'])):h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>close()},L(['Return to overview','返回市场概况']))));
       body.scrollTop=0;
       if(reading){
+        if(reading.materialOpen)await restoreMaterial?.();
+        if(closed||run!==version)return;
         const details=body.querySelectorAll('details');reading.details.forEach(i=>{if(details[i])details[i].open=true;});
         const anchor=[...body.querySelectorAll('[data-history-node]')].find(el=>el.dataset.historyNode===reading.node);
         const field=anchor?.querySelector(`[data-history-field="${reading.field}"]`),bounds=field?.getBoundingClientRect();

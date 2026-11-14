@@ -50,16 +50,17 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
 test('research opens in a closeable modal and returns focus and scroll to the judgment',async({page},info)=>{
   await page.addInitScript(()=>localStorage.setItem('hub_lens','developer'));
   await page.goto('/markets/italy');
-  const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();
+  const trigger=page.locator('.public-story-trigger');await trigger.scrollIntoViewIfNeeded();
   const y=await page.evaluate(()=>scrollY);
   await trigger.click();
-  const dialog=page.locator('.ix-research-dialog');
+  const dialog=page.locator('.public-story-dialog');
   await expect(dialog).toBeVisible();
+  await dialog.locator('.public-research-button').click();
   await expect(dialog.locator('.ix-research-summary')).toHaveAttribute('aria-busy','false');
   await dialog.screenshot({path:info.outputPath('research-dialog.png')});
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
   expect(Math.abs(await page.evaluate(()=>scrollY)-y)).toBeLessThan(3);
-  await trigger.click();await page.getByRole('button',{name:'Close research details',exact:true}).click();
+  await trigger.click();await page.getByRole('button',{name:'Close market background',exact:true}).click();
   await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
 });

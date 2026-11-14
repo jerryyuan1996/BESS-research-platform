@@ -9,20 +9,7 @@ import {countryForMarket,countryIndicators} from './overviewModel.js';
 const n = value => new Intl.NumberFormat('en-GB',{maximumFractionDigits:1}).format(value);
 const percent = (value,total) => n(value / total * 100) + '%';
 const finite = Number.isFinite;
-const GEN = {
-  coal:{label:['Coal','煤炭'],color:'#5c6261'},gas:{label:['Natural gas','天然气'],color:'#b17a58'},
-  nuclear:{label:['Nuclear','核电'],color:'#8e7eaa'},hydro:{label:['Hydro','水电'],color:'#6298b0'},
-  wind:{label:['Wind','风电'],color:'#7da58a'},solar:{label:['Solar','太阳能'],color:'#d1ae57'},
-  otherRenewables:{label:['Other renewables','其他可再生'],color:'#b8c899'},
-  combustibles:{label:['Combined fuels incl. biomass','燃料合计（含生物质）'],color:'#986b5b'},
-  other:{label:['Other generation','其他发电'],color:'#c2c3ba'},
-};
-const USE = {
-  industry:{label:['Industry','工业'],color:'#406954'},households:{label:['Households','居民'],color:'#bca56f'},
-  services:{label:['Services & public sector','服务及公共部门'],color:'#79a0ab'},
-  transport:{label:['Transport','交通'],color:'#a497b4'},agriculture:{label:['Agriculture & fishing','农林渔业'],color:'#abc18e'},
-  directUse:{label:['Direct use, unallocated','直接自用（未分行业）'],color:'#ac8972'},other:{label:['Other users','其他用户'],color:'#c4c6ba'},
-};
+import {GEN,USE} from './electricityPalette.js';
 const positiveEntries = mix => Object.entries(mix).filter(([,value])=>finite(value)&&value>0);
 const text = (value,cls='')=>h('p',{class:cls},L(value));
 function sourcesList(sources){
@@ -117,25 +104,6 @@ function geography(it){
       '分别为全国用电量、全国风光发电量的占比。这里的行政大区不等于电力竞价分区。'],'po-method-note'));
 }
 
-function mechanisms(it){
-  const cards=[
-    {number:percent(it.netImports,it.demand),label:['Demand met by net imports','需求由净进口满足'],title:['Adequacy → capacity market','保供需求 → 容量市场'],
-      body:['Imports and flexible domestic supply make adequacy a system question. Capacity payments reward availability in tight hours; they do not buy every MWh of trading output.',
-        '进口与国内灵活电源共同支撑保供。容量付费购买紧张时段的可用能力，不等于买下项目全部交易电量。'],url:'https://www.terna.it/en/electric-system/capacity-market'},
-    {number:percent(it.generationMix.wind+it.generationMix.solar,it.generation),label:['Generation from wind + solar','发电来自风光'],title:['Time shifting → MACSE','时段错配 → MACSE'],
-      body:['Wind and solar output varies by hour. MACSE procures storage energy and time-shifting availability; a contract-backed storage design has different dispatch rights from the capacity route.',
-        '风光出力随时段变化。MACSE 采购储能电量与时移可用性，其调度权利安排与容量市场路径不同。'],url:'https://www.terna.it/en/media/press-releases/detail/completed-first-macse-auction'},
-    {number:percent(it.generationMix.gas,it.generation),label:['Generation from natural gas','发电来自天然气'],title:['Fuel exposure → price sensitivity','燃料敞口 → 价格敏感性'],
-      body:['Gas remains a large part of the mix. Storage moves electricity between hours; returns depend on the spread, efficiency and local network access, not the annual gas share alone.',
-        '天然气仍占较大发电份额。储能把电量在时段间搬移；回报取决于价差、效率和当地电网接入，不能只看全年天然气占比。'],url:'https://www.terna.it/en/electric-system/efficient-territorial-planning/national-electricity-transmission-grid-development-plan'},
-  ];
-  return h('section',{class:'po-mechanisms'},h('div',{class:'po-section-head'},h('div',{},h('span',{class:'po-eyebrow'},L(['INTERPRETATION · FROM SYSTEM NEED TO PAYMENT','机制解读 · 从系统需求到付费方式'])),h('h4',{},L(['Why these mechanisms exist','为什么会形成这些机制'])))),
-    h('div',{class:'po-mechanism-grid'},cards.map(c=>h('article',{},h('strong',{},c.number),h('span',{},L(c.label)),h('h5',{},L(c.title)),text(c.body),
-      h('a',{href:c.url,target:'_blank',rel:'noopener noreferrer'},L(['Official mechanism / planning source ↗','官方机制／规划来源 ↗']))))),
-    text(['Fair · interpretation of official annual statistics. Zonal hourly prices, congestion and executed contract terms would change a project-level conclusion.',
-      '证据：一般 · 基于官方年度统计的机制解读。分区小时价格、拥塞情况和已签合同条款会改变项目层面的判断。'],'po-method-note'));
-}
-
 function italyChapter(){
   const it=DATA.italy;
   return h('article',{class:'public-chapter power-overview','data-chapter':'overview','data-country':'it'},
@@ -152,7 +120,7 @@ function italyChapter(){
       h('section',{class:'po-mix-card'},h('h4',{},L(['Who uses the electricity','谁在用电'])),stacked(it.demandMix,it.consumption,USE,['Italy electricity use','意大利用电']),valueList(it.demandMix,it.consumption,USE),
         text(['Purchased and self-generated use, excluding network losses. Services include transport. Italy’s cross-country row below uses Eurostat final use, a different definition from this Terna consumption total.',
           '含购电与自发自用，剔除网损；服务业项含交通用电。下方跨国图表中的意大利采用 Eurostat 终端用电口径，与此处 Terna 消费统计不同。'],'po-method-note'))),
-    geography(it),mechanisms(it),comparison(countryForMarket('it'),'it'));
+    geography(it),comparison(countryForMarket('it'),'it'));
 }
 
 export function renderChapter(data={marketId:'it'}) {

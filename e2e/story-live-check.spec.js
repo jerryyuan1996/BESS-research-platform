@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 /* Decision-console display corrections on the built public site. Both projects
    exercise actual 1440px desktop and 390px phone layouts, in EN and ZH. */
 import { test, expect } from '@playwright/test';
@@ -17,7 +18,7 @@ test('NEM: thirteen shots, live counterpoint, execution and dated public history
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   const counterpoint=opportunities('infraFund').find(r=>r.id==='nem').decision.counterpoint;
   await page.goto('/markets/nem');
-  const trigger=page.locator('.ix-full-research');await trigger.click();
+  const trigger=page.locator('.public-story-trigger');await openLegacyStory(page);
   const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
   for(const [index,lang]of ['en','zh'].entries()){
     if(index)await dialog.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
@@ -64,7 +65,7 @@ test('NEM: thirteen shots, live counterpoint, execution and dated public history
 for(const region of ['tokyo','kyushu','hokkaido'])test(`Japan ${region}: all fourteen shots fit desktop and phone in both languages`,async({page},info)=>{
   test.setTimeout(120000);
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('/markets/japan-'+region);await page.locator('.ix-full-research').click();
+  await page.goto('/markets/japan-'+region);await openLegacyStory(page);
   const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
   for(const [index,lang]of ['en','zh'].entries()){
     if(index)await dialog.getByRole('button',{name:'Switch to Chinese',exact:true}).click();

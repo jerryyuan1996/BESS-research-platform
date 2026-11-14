@@ -17,6 +17,7 @@ import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor, publicReadingFor } from './story/registry.js';
+import { PUBLIC_VERSION } from './story/public/catalog.js';
 import { researchPlaced } from './researchPlaced.js';
 import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
@@ -98,29 +99,27 @@ function renderMarket(container, row, route) {
     h('div', { class: 'ix-overview-body' }, h('div', {}, h('p', { class: 'ix-thesis' }, L(currentThesis(row))),
       link(`${caseUrl(row)}/home`, ['Explore the full market research ↗', '阅读完整市场研究 ↗'], 'ix-text-link')),
       h('aside', { class: 'ix-next-action' }, eyebrow(['NEXT INVESTMENT ACTION', '下一项投资行动']), h('p', {}, L(row.play?.action?.text || m.comparison.refinement?.currentUpdate || m.comparison.narrative.thesis))))));
-  /* A market with a story opens it here, with the full research one click
-     deeper inside it (src/experience/story/registry.js); every other market
-     opens the research dialog as before. */
+  // One visible reader entrance. Original story links remain compatible;
+  // their complete material is also embedded in the unified reader below.
   const openResearch=trigger=>import('./researchDialog.js').then(module=>{if(trigger.isConnected)module.openResearchDialog(m,name(row),trigger);});
   /* A link or Back to ?view=story opens the story at its place (WP-04);
      place is null when the reader pressed the button. */
   const storyOpen=()=>Boolean(document.querySelector('.ix-story-dialog'));
   const openFrom=(place)=>{
-    research.disabled=true;
+    const trigger=content.querySelector('.public-story-trigger');
+    if(!trigger)return;trigger.disabled=true;
     const story=storyFor(mf.id);
     (story
-      ? storyReady.then(()=>story.load()).then(pack=>{if(research.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,lens:lens(),result:data,name:marketName(row),trigger:research,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(research);})
-      : openResearch(research))
-      .catch(()=>{research.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
-      .finally(()=>{research.disabled=false;});
+      ? storyReady.then(()=>story.load()).then(pack=>{if(trigger.isConnected&&!storyOpen()&&!pack.open({row,rows:storyRows,lens:lens(),result:data,name:marketName(row),trigger,openResearch,place,ui:{CALLS,returnPct,marginText,metric,playTitle}}))return openResearch(trigger);})
+      : openResearch(trigger))
+      .catch(()=>{trigger.textContent=L(['Could not load; click to retry','暂未载入，点击重试']);})
+      .finally(()=>{trigger.disabled=false;});
   };
-  const research=button(['Grid, history and full research context ↗','电网、历史与完整研究背景 ↗'],()=>openFrom(null),'ix-outline ix-full-research');
-  content.querySelector(publicEntry ? '#investment-overview' : '#overview').append(research);
   const openPublicFrom = async (place=null, trigger=content.querySelector('.public-story-trigger')) => {
     if(!publicEntry || storyOpen())return;
     if(trigger?.dataset.loadFailed){
       const params=new URLSearchParams(window.location.search);
-      const edition=trigger.closest('[data-version]')?.dataset.version||'2026-11-06.3';
+      const edition=trigger.closest('[data-version]')?.dataset.version||PUBLIC_VERSION;
       params.set('view','story');params.set('chapter','history');params.set('shot',`public-${app.lang}-${edition.replace('.','-')}-history`);
       window.history.replaceState({},'',`${window.location.pathname}?${params}${window.location.hash}`);window.location.reload();return;
     }
@@ -128,9 +127,21 @@ function renderMarket(container, row, route) {
     try {
       const pack=await publicEntry.load();
       if(content.isConnected && !storyOpen()) pack.open({id:mf.id,name:marketName(row),trigger,place,openResearch,
-        openLegacy:()=>document.querySelector('.ix-full-research')?.click(),researchUrl:`${caseUrl(row)}/home`,
-        /* System tensions and Market mechanism carry the research behind them. */
-        researchContext:chapter=>researchDisclosure(m,chapter,{label:['Research behind this chapter','本章背后的研究']})});
+        researchUrl:`${caseUrl(row)}/home`,hasMaterials:Boolean(storyFor(mf.id)),
+        currentCase:()=>h('section',{class:'unified-current-case'},eyebrow(['YOUR SELECTED INVESTMENT CASE','您选定的投资方案']),tag(row),investmentCaseIdentity(row),
+          row.investment&&row.econ.priced!==false?investmentDecisionMetrics(row,marginText(row)):h('p',{},L(['Return remains unpriced until the commercial terms are verified.','商业条款核验前，回报保持未定价。'])),
+          h('p',{},L(currentThesis(row))),h('p',{},L(row.play?.action?.text||m.comparison.narrative.thesis))),
+        researchSummary:()=>{
+          const host=h('div',{class:'unified-research-summary'});
+          import('./researchSummary.js').then(module=>{if(host.isConnected)host.append(module.marketResearchSummary(m));});return host;
+        },
+        loadMaterials:async callbacks=>{
+          const entry=storyFor(mf.id);if(!entry)return null;
+          const [,pack,{storyRowsFor}]=await Promise.all([loadInvestmentSummary('infraFund'),entry.load(),import('./storyRows.js')]);
+          const reference=opportunities('infraFund').find(r=>r.id===mf.id);
+          return pack.open({embed:true,row:reference,rows:storyRowsFor(reference,'infraFund'),lens:'infraFund',result:caseFor(reference),name:marketName(reference),
+            ui:{CALLS,returnPct,marginText,metric,playTitle},...callbacks});
+        }});
     } catch {
       if(trigger)trigger.dataset.loadFailed='true';
       const status=content.querySelector('.public-status');
@@ -141,18 +152,20 @@ function renderMarket(container, row, route) {
     const loadOverview=()=>publicEntry.loadOverview().then(module=>{
       if(!publicHost.isConnected)return;
       publicHost.replaceWith(module.renderPublicOverview(mf.id,{name:marketName(row),open:(trigger,chapter)=>openPublicFrom(chapter?{chapter}:null,trigger),researchUrl:`${caseUrl(row)}/home`}));
-      if(route?.story?.shot?.startsWith('public-')&&!storyOpen())openPublicFrom(route.story);
+      if(route?.story&&!storyOpen()){
+        if(route.story.shot?.startsWith('public-'))openPublicFrom(route.story);
+        else if(storyFor(mf.id))openFrom(route.story);
+      }
       if(window.location.hash==='#overview')content.querySelector('#overview')?.scrollIntoView();
     }).catch(()=>{if(publicHost.isConnected)publicHost.replaceChildren(button(['Retry market background','重试市场背景'],loadOverview,'ix-outline'),link(`${caseUrl(row)}/home`,['Full research ↗','完整研究 ↗'],'ix-text-link'));});
     loadOverview();
   }
   stopStoryPlace?.();
   stopStoryPlace=onStoryPlace((r,{samePage})=>queueMicrotask(()=>{
-    if(!samePage||!r.story||!research.isConnected||storyOpen())return;
+    if(!samePage||!r.story||!content.isConnected||storyOpen())return;
     if(r.story.shot?.startsWith('public-')&&publicEntry)openPublicFrom(r.story);
     else if(storyFor(mf.id))openFrom(r.story);
   }));
-  if(route?.story&&!route.story.shot?.startsWith('public-')&&storyFor(mf.id)&&!storyOpen())openFrom(route.story);
   /* Revenue drivers sit under the overview. The special-opportunity comparison
      appears only where one is valid, and then at the foot of the case, just
      above the downside. Otherwise the timeline shows the conventional play alone. */

@@ -9,7 +9,8 @@ const source=path=>readFile(new URL('../'+path,import.meta.url),'utf8');
 test('home perspective entry stages and audience are projected from canonical archetypes',()=>{
  assert.deepEqual(Object.keys(HOME_BRIEFING.investorPerspectives).sort(),Object.keys(LENSES).sort());
  for(const id of Object.keys(LENSES)){
-  assert.deepEqual(HOME_BRIEFING.investorPerspectives[id],{who:ARCHETYPES[id].who,entersAt:ARCHETYPES[id].entersAt});
+  const a=ARCHETYPES[id];
+  assert.deepEqual(HOME_BRIEFING.investorPerspectives[id],{who:a.who,entersAt:a.entersAt,chequeUSD:a.chequeUSD,returnReads:a.returnReads,limits:a.limits.map(({metric,max,routes})=>({metric,max,routes}))});
   assert.ok(featuredOpportunity(opportunities(id),id)?.id);
  }
  assert.ok(!HOME_BRIEFING.investorPerspectives.developer.entersAt.includes('operating'));

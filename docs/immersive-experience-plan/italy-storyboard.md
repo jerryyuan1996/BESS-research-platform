@@ -4,6 +4,14 @@ Pack: BESS-IX-2026-10-30; Italy script researched 31 October 2026; shot layout v
 Status: G-1 signed off 1 November 2026 and reconciled to the approved model/function changes. This is a G-1 script; G-2 construction, dataset and rights gates remain explicit. Merge only after dependency and exact-head checks pass.
 Navigation: [Master plan](README.md) | [Narrative card](market-narratives.md#3-eighteen-market-candidate-story-cards) | [Evidence specification](evidence-and-content-specification.md) | [Source register](source-register.md) (SRC-IT-01 to 04, CL-IT-01 to 03) | [Finland format](finland-storyboard.md)
 
+## Public reading — approved rollout, 14 November 2026
+
+The analyst approved the Italy preview, authorised market-specific rollout and publication after checks, then asked to merge all material behind the separate grid/history/research entrance into the public reading across all markets. The master plan records the final unified scope. Italy retains the approved physical and payment diagrams; a new investment chapter closes the causal chain. All original shots, charts, controls and bound figures below are embedded by subject, while the second visible entrance is removed. Original saved links remain compatible.
+
+The physical sequence follows local surplus, charging and later delivery, with an export-constraint switch. The cash sequence separates capacity, MACSE and merchant routes, dispatch rights, delivery obligations and retained income. The drawings calculate no price, dispatch or return. Existing source drawers remain; duplicate mechanism cards have been removed from the country overview. Old public `storage` links resolve to the physical chapter across all markets.
+
+The global comparison switches between IRR and country context, using the existing electricity and battery datasets, excluding Saudi Arabia and the Middle East filter on that page. National contexts are deduplicated; observations retain their dates, units and geographic scope. Investor cards project canonical capital ranges and applicable development limits. No valuation inputs, weights, forecasts or published numerical assumptions change.
+
 ## 0. Read first: the research meets the call's own trigger
 
 The original infrastructure-fund trigger is now closed: the delivery-2028 rule was decided. The analyst approved a narrower legacy-award screen on 1 November 2026. The following primary evidence explains why new storage needs a separate zonal case:

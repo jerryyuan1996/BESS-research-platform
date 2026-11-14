@@ -1,12 +1,13 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 import {test,expect} from '@playwright/test';
 import {story} from '../src/markets/caiso/story.js';
 const MARKET='/markets/caiso',PREVIEW=MARKET+'?story=preview';
-async function open(page,url=MARKET){await page.goto(url);const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();await trigger.click();const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};}
+async function open(page,url=MARKET){await page.goto(url);const trigger=page.locator('.public-story-trigger');await trigger.scrollIntoViewIfNeeded();await openLegacyStory(page);const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};}
 
 test('CAISO opens ordinarily after G-2 and loads no story code before the research button opens it',async({page})=>{
  const loaded=[];page.on('request',r=>{if(/story-caiso-/.test(r.url()))loaded.push(r.url());});
- await page.goto(MARKET);await expect(page.locator('.ix-full-research')).toBeVisible();expect(loaded).toEqual([]);
- await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();expect(loaded.length).toBeGreaterThan(0);
+ await page.goto(MARKET);await expect(page.locator('.public-story-trigger')).toBeVisible();expect(loaded).toEqual([]);
+ await openLegacyStory(page);await expect(page.locator('.ix-story-dialog')).toBeVisible();expect(loaded.length).toBeGreaterThan(0);
 });
 
 test('CAISO shows all fourteen shots and fixed markers in both languages with the approved fallbacks',async({page},info)=>{
@@ -44,7 +45,7 @@ test('CAISO restores shared story URLs and hands off through the existing invest
 });
 
 test('CAISO keeps research for another lens',async({page})=>{
- await page.addInitScript(()=>localStorage.setItem('hub_lens','developer'));await page.goto(PREVIEW);await page.locator('.ix-full-research').click();await expect(page.getByRole('dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+ await page.addInitScript(()=>localStorage.setItem('hub_lens','developer'));await page.goto(PREVIEW);await openLegacyStory(page);await expect(page.getByRole('dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
 
 test('CAISO fits four widths in both languages',async({page})=>{

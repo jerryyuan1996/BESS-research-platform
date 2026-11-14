@@ -69,3 +69,18 @@ export function storyWithAvailableValues(story,values){
  };
  return {...story,opening:adapt(story.opening),chapters:story.chapters.map(c=>({...c,shots:c.shots.map(adapt)})),missingBindings:[...missing]};
 }
+
+/** Retain verified explanations in the unified reader when a term or a future
+    date is withheld. The underlying bindings and the original edition stay intact. */
+export function storyForUnifiedReader(story,values){
+ const available=storyWithAvailableValues(story,values),copies={};
+ if(!values.mACSETerm)copies['it-03']=[
+  'The capacity market pays for availability at tight moments. Moving midday energy into the evening creates a different need. A 2021 decree called for centrally procured storage; ARERA set the criteria and the ministry approved Terna’s rules. The first MACSE auction on {mACSEAuction1Date} awarded storage contracts in {mACSEAreas}; none went to the north. Verify the awarded term, availability requirements and dispatch rights in the contract documents.',
+  '容量市场为紧张时段的可用性付费；把午间电量挪到傍晚，则提出另一类需求。2021年的法令要求集中采购储能，ARERA制定标准，主管部门批准Terna的规则。{mACSEAuction1Date}的首轮MACSE拍卖在{mACSEAreas}授予储能合同，北部没有获配。合同期限、可用性要求与调度权须按中标文件逐项核验。',
+ ];
+ if(!values.cMDY2028AuctionDate||!values.mACSEAuction2Date)copies['it-11']=[
+  'Four things can weaken this route: the applicable zonal capacity-credit factor; trading revenue below the case assumption; more batteries competing for spreads and auctions; and permission or construction delays that miss delivery. Verify the next capacity and MACSE auction dates against the official notices before committing to a timetable. Next: {nextAction}',
+  '四类因素会削弱这条路线：项目适用的分区容量计入系数；交易收入低于方案假设；更多电池争夺价差与拍卖；许可或建设延误导致无法按期交付。排定投资时间表前，应依据官方公告核验下一轮容量与MACSE拍卖日期。下一步：{nextAction}',
+ ];
+ return {...available,chapters:available.chapters.map(c=>({...c,shots:c.shots.map(shot=>copies[shot.id]?{...shot,copy:copies[shot.id]}:shot)}))};
+}

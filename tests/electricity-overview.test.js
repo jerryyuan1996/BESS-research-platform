@@ -43,16 +43,16 @@ test('supply, storage and consumption use their actual denominators',()=>{
   assert.ok(ca.generation.mix.combustibles>0);assert.equal(ca.generation.mix.gas,undefined,'unverified fuel split is absent, not zero');
 });
 
-test('all markets have their own sourced country overview after history, without adding restricted narrative chapters',()=>{
+test('all markets have their own sourced country overview after history, with the unified value-to-investment chapters',()=>{
   for(const id of marketIds()){
-    assert.deepEqual(publicChapters(id).map(c=>c[0]),['history','overview','system','mechanism','storage','research']);
+    assert.deepEqual(publicChapters(id).map(c=>c[0]),['history','overview','system','mechanism','investment','research']);
     const c=countryForMarket(id);assert.ok(c.markets.includes(id));
     const indicators=countryIndicators(id);assert.equal(indicators.length,4);
     indicators.forEach(v=>{assert.ok(Number.isFinite(v.value));assert.equal(v.label.length,2);assert.equal(v.basis.length,2);});
     close(indicators.find(v=>v.key==='demand').value,c.demand.total);
     assert.ok(!indicators.find(v=>v.key==='demand').label.some(t=>/system demand|系统总需求/i.test(t)));
   }
-  for(const id of ['sa','es','ca_on'])assert.deepEqual(publicChapters(id,true).map(c=>c[0]),['history','overview','research']);
+  for(const id of ['sa','es','ca_on'])assert.deepEqual(publicChapters(id,true).map(c=>c[0]),['history','overview','system','mechanism','investment','research']);
   assert.equal(countryForMarket('pjm'),countryForMarket('caiso'));
   assert.equal(countryForMarket('jp_tokyo'),countryForMarket('jp_kyushu'));
   assert.equal(countryForMarket('wa'),countryForMarket('nem'));

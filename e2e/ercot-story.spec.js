@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 import { test, expect } from '@playwright/test';
 import { story } from '../src/markets/ercot/story.js';
 import { opportunities, returnPct } from '../src/experience/model.js';
@@ -7,8 +8,8 @@ const row = opportunities('infraFund').find(r => r.id === 'ercot');
 
 async function open(page, url = MARKET) {
   await page.goto(url);
-  const trigger = page.locator('.ix-full-research');
-  await trigger.scrollIntoViewIfNeeded(); await trigger.click();
+  const trigger = page.locator('.public-story-trigger');
+  await trigger.scrollIntoViewIfNeeded(); await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog'); await expect(dialog).toBeVisible();
   return { trigger, dialog };
 }
@@ -17,8 +18,8 @@ test('ERCOT is released and loads story bytes only after the research button ope
   const loaded = []; page.on('request', r => { if (/story-ercot-/.test(r.url())) loaded.push(r.url()); });
   await page.goto(MARKET);
   expect(loaded).toEqual([]);
-  const trigger = page.locator('.ix-full-research');
-  await trigger.scrollIntoViewIfNeeded(); await trigger.click();
+  const trigger = page.locator('.public-story-trigger');
+  await trigger.scrollIntoViewIfNeeded(); await openLegacyStory(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   expect(loaded.length).toBeGreaterThan(0);
@@ -157,7 +158,7 @@ for (const action of ['language', 'close']) test(`ERCOT ignores pending source c
   release();
   await page.evaluate(async url => { await import(url); }, requested);
   expect(await old.evaluate(el => el.querySelector('.ercot-provenance'))).toBe(null);
-  if (action === 'close') await trigger.click();
+  if (action === 'close') await openLegacyStory(page);
   const fresh = page.locator('.ix-story-dialog [data-shot=ercot-01] .ix-story-sources');
   await fresh.locator('summary').click();
   await expect(fresh.locator('.ercot-provenance')).toContainText(action === 'language' ? '逐值出处与计算' : 'Value locators and arithmetic');
@@ -167,7 +168,7 @@ for (const action of ['language', 'close']) test(`ERCOT ignores pending source c
 
 test('ERCOT falls back to research for another lens', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('hub_lens', 'strategic'));
-  await page.goto(PREVIEW); await page.locator('.ix-full-research').click();
+  await page.goto(PREVIEW); await openLegacyStory(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });

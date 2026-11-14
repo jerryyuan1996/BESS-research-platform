@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 import { test, expect } from '@playwright/test';
 import { story } from '../src/markets/nem/story.js';
 const MARKET = '/markets/nem', PREVIEW = MARKET + '?story=preview';
@@ -5,8 +6,8 @@ const q = id => [story.opening, ...story.chapters.flatMap(c => c.shots)].find(s 
 
 async function open(page, url = PREVIEW) {
   await page.goto(url);
-  const trigger = page.locator('.ix-full-research');
-  await trigger.scrollIntoViewIfNeeded(); await trigger.click();
+  const trigger = page.locator('.public-story-trigger');
+  await trigger.scrollIntoViewIfNeeded(); await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog'); await expect(dialog).toBeVisible();
   return { trigger, dialog };
 }
@@ -14,9 +15,9 @@ async function open(page, url = PREVIEW) {
 test('NEM opens publicly after G-2 and fetches no story bytes before the research button is pressed', async ({ page }) => {
   const loaded = []; page.on('request', r => { if (/story-nem-|storyEvidenceProvenance-/.test(r.url())) loaded.push(r.url()); });
   await page.goto('/'); await page.goto(MARKET);
-  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.public-story-trigger')).toBeVisible();
   expect(loaded).toEqual([]);
-  await page.locator('.ix-full-research').click();
+  await openLegacyStory(page);
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   expect(loaded.some(u => /story-nem-/.test(u))).toBe(true);
 });
@@ -99,7 +100,7 @@ test('NEM loads per-value locators only when a source disclosure opens', async (
 
 test('NEM falls back to research for another lens', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('hub_lens', 'strategic'));
-  await page.goto(PREVIEW); await page.locator('.ix-full-research').click();
+  await page.goto(PREVIEW); await openLegacyStory(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });

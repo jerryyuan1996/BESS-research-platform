@@ -34,7 +34,7 @@ test('all eighteen public readers retain research and evidence without internal 
       for(const lang of ['en','zh']){
         app.lang=lang;
         // The statistics renderer is checked by its data tests and browser matrix.
-        for(const [chapter] of publicChapters(id,data.summary.historyOnly).filter(([id])=>id!=='overview')){
+        for(const [chapter] of publicChapters(id,data.summary.historyOnly).filter(([id])=>['history','research'].includes(id))){
           const rendered=renderChapter(data,chapter,{researchUrl:'/markets/test/home',research(){},alive:()=>false});
           assert.doesNotMatch(rendered.textContent,internalStatus,id+'/'+lang+'/'+chapter);
           assert.ok(rendered.textContent.length>30);
