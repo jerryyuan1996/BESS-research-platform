@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 import {test,expect} from '@playwright/test';
 import {story} from '../src/markets/gb/story.js';
 import {opportunities} from '../src/experience/model.js';
@@ -8,14 +9,14 @@ test.beforeEach(async({page})=>{
   await page.route(/^https:\/\//,route=>new URL(route.request().url()).origin===process.env.PLATFORM_TEST_BASE_URL?route.continue():route.abort());
 });
 async function open(page,url=PREVIEW){
-  await page.goto(url);const trigger=page.locator('.ix-full-research');await trigger.scrollIntoViewIfNeeded();await trigger.click();
+  await page.goto(url);const trigger=page.locator('.public-story-trigger');await trigger.scrollIntoViewIfNeeded();await openLegacyStory(page);
   const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();return {trigger,dialog};
 }
 
 test('GB reads all thirteen approved shots in both languages with the operating-price basis',async({page},info)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(PREVIEW);
-  const trigger=page.locator('.ix-full-research');await trigger.click();const dialog=page.locator('.ix-story-dialog');
+  const trigger=page.locator('.public-story-trigger');await openLegacyStory(page);const dialog=page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();await expect(dialog.locator('article.ix-shot')).toHaveCount(13);await expect(dialog.locator('.ix-marker')).toHaveCount(13);
   await expect(dialog.locator('.k-scene')).toHaveCount(12);await expect(dialog.locator('.gb-opening-thumb')).toHaveCount(1);
   await expect(dialog.locator('.ix-story-play-title')).toContainText(story.reviewedAgainst.hours+'h');
@@ -72,8 +73,8 @@ test('GB stays lazy until its existing market research button opens the story',a
   const requests=[];page.on('request',r=>requests.push(r.url()));
   const storyRequests=()=>requests.filter(u=>/\/story-gb-|\/gb-(dynamic|eac)-response\.summary\.json/.test(u));
   await page.goto('/');await expect(page.locator('main')).toBeVisible();expect(storyRequests()).toEqual([]);
-  await page.goto(GB);const trigger=page.locator('.ix-full-research');await expect(trigger).toBeVisible();expect(storyRequests()).toEqual([]);
-  await trigger.click();await expect(page.locator('.ix-story-dialog')).toBeVisible();await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+  await page.goto(GB);const trigger=page.locator('.public-story-trigger');await expect(trigger).toBeVisible();expect(storyRequests()).toEqual([]);
+  await openLegacyStory(page);await expect(page.locator('.ix-story-dialog')).toBeVisible();await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
   await expect(page.locator('[data-chart=Chart-GB-FILL]')).toHaveAttribute('data-mode','observed',{timeout:30000});
   expect(storyRequests().some(u=>u.includes('/story-gb-'))).toBeTruthy();expect(storyRequests().filter(u=>u.includes('.summary.json')).length).toBe(2);
 });
@@ -88,11 +89,11 @@ test('GB shared URLs restore chapter and shot through refresh, Back and language
 
 test('GB research access and all four handoffs use the existing market sections',async({page})=>{
   let {dialog}=await open(page);await dialog.getByRole('button',{name:'Full research ↗',exact:true}).click();await expect(page.locator('.ix-research-dialog')).toBeVisible();
-  await page.keyboard.press('Escape');await page.keyboard.press('Escape');await expect(page.locator('.ix-full-research')).toBeFocused();
+  await page.keyboard.press('Escape');await page.keyboard.press('Escape');await expect(page.locator('.public-story-trigger')).toBeFocused();
   for(const anchor of ['bankable','revenue','execution','downside']){
     ({dialog}=await open(page));await dialog.locator('.ix-story-exits a[href="#'+anchor+'"]').click();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
   }
-  await page.goto(PREVIEW);await page.getByRole('combobox',{name:'Investor profile',exact:true}).selectOption('developer');await page.locator('.ix-full-research').click();
+  await page.goto(PREVIEW);await page.getByRole('combobox',{name:'Investor profile',exact:true}).selectOption('developer');await openLegacyStory(page);
   await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
 

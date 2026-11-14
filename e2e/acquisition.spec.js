@@ -50,7 +50,7 @@ test('investors filter, sort and compare consistent market cases in both languag
   await page.getByRole('searchbox',{name:'搜索市场',exact:true}).fill('no-such-market');
   await expect(page.getByRole('button',{name:'重置筛选',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'重置筛选',exact:true}).click();
-  await expect(page.locator('.ix-results tbody tr')).toHaveCount(18);
+  await expect(page.locator('.ix-results tbody tr')).toHaveCount(17);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
 });
 

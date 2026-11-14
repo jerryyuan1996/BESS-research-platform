@@ -36,7 +36,7 @@ export async function expectInvestorLayout(page,id,locale){
 export async function expectCountryOverview(page,id,locale,{restricted=false}={}){
   const dialog=page.locator('.public-story-dialog'),country=countryForMarket(id);
   expect(await dialog.locator('.public-story-nav button').evaluateAll(nodes=>nodes.map(n=>n.dataset.chapter))).toEqual(
-    restricted?['history','overview','research']:['history','overview','system','mechanism','storage','research']);
+    ['history','overview','system','mechanism','investment','research']);
   await dialog.locator('.public-story-nav [data-chapter=overview]').click();
   const overview=dialog.locator('.power-overview');await expect(overview).toHaveAttribute('data-country',country.id);
   await expect(overview.locator('.po-kpis')).toContainText(number(id==='it'?DATA.italy.demand:country.demand.total));

@@ -6,14 +6,14 @@ import {L} from '../../app/i18n.js';
 import {openStory} from '../../experience/story/shell.js';
 import {renderPlayChoices} from '../../experience/playChoices.js';
 import {story} from './story.js';
-import {storyValues,storyWithAvailableValues,reviewedRowsMatch} from './storyBindings.js';
+import {storyValues,storyWithAvailableValues,storyForUnifiedReader,reviewedRowsMatch} from './storyBindings.js';
 import {scenes,italyMap} from './story/scenes.js';
 
 export function open(ctx){
   if((ctx.rows||[]).length!==2)return null;
   if(!reviewedRowsMatch(story,ctx.row,ctx.rows||[ctx.row],ctx.lens))return null;
   const values=storyValues(ctx.row,ctx.ui);
-  const dialog=openStory({...ctx,story:storyWithAvailableValues(story,values),values,scenes});
+  const dialog=openStory({...ctx,story:ctx.embed?storyForUnifiedReader(story,values):storyWithAvailableValues(story,values),values,scenes});
   if(!dialog)return null;
   const enhance=()=>{
     const opening=dialog.querySelector('[data-shot="it-00"] .ix-shot-text');

@@ -13,7 +13,7 @@ import { kpi } from '../../../components/metricCard.js';
 import { sectionHead } from '../../../components/sectionHeader.js';
 import { sourceDrawer } from '../../../components/sourceDrawer.js';
 import { lineChart } from '../../../charts/index.js';
-import { state, render } from '../state.js';
+import { navigate } from '../../../app/router.js';
 import { NF1, fmtN, fmtA } from '../ui.js';
 import { SRC } from '../sources.js';
 import { SEED } from '../data/seed.js';
@@ -212,7 +212,7 @@ function renderStory(main, { summaryOnly = false } = {}){
     ['Grid Connection', '并网与电网约束', 'Can nameplate MW become registered, deliverable and revenue-producing MW?', 'grid'],
     ['Portfolio', '组合与基金视图', 'Which screened opportunity clears every gate at asset level?', 'portfolio'],
   ];
-  bridge.append(h('div', { class:'walk' }, map.map(x => h('button', { class:'walk-step', onclick:()=>{state.tab=x[3];render();window.scrollTo(0,0);} },
+  bridge.append(h('div', { class:'walk' }, map.map(x => h('button', { class:'walk-step', onclick:()=>{navigate('/markets/western-australia/'+x[3]);window.scrollTo(0,0);} },
     h('span', { class:'n' }, L([x[0],x[1]])), h('b', {}, L([x[2], ({'容量机制':'容量年度是短缺、均衡还是过剩，合理RCP是多少？','现货套利':'扣除充电成本、损耗、衰减及收益蚕食后还剩多少？','辅助服务':'系统服务收入处于稀缺、饱和还是已合约化状态？','储能时长':'什么时长可认证、具经济性且可扩展？','项目管线':'哪些竞争项目真实且可能按期投运？','并网与电网约束':'铭牌MW能否转化为已注册、可交付及产生收入的MW？','投资测算':'项目能否承受综合下行情景及融资约束？','组合与基金视图':'所筛选机会中哪一个在资产层面通过全部门槛？'})[x[1]]]))))));
   bridge.append(h('div', { class:'cap', style:'margin-top:10px;' }, L(['Official history / outlook sources: Energy Policy WA, ERA (BRCP determinations and WEM Procedures), AEMO WEM ESOO and Quarterly Energy Dynamics. Market-structure, transaction and holder observations are compiled from public project and transaction disclosures and are badged as public-source, not official.',
     '官方历史及展望来源：西澳能源政策部门、ERA（BRCP决定及WEM程序）、AEMO WEM ESOO及季度能源动态。市场结构、交易及持有方信息汇编自公开项目与交易披露，标注为公开来源而非官方数据。'])));

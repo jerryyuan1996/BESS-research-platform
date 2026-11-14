@@ -231,5 +231,8 @@ export function homeProjection(briefing){
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};
   for (const item of queue.filter(q => q.kind === 'disagreement')) disagreements[item.archetype] = (disagreements[item.archetype] || 0) + 1;
-  return { ...rest, lastApproved: Object.fromEntries(reviewStatus.map(r => [r.market, r.lastApprovedChange])), investorPerspectives: Object.fromEntries(Object.entries(ARCHETYPES).map(([id,a]) => [id,{who:a.who,entersAt:a.entersAt}])), ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
+  return { ...rest, lastApproved: Object.fromEntries(reviewStatus.map(r => [r.market, r.lastApprovedChange])), investorPerspectives: Object.fromEntries(Object.entries(ARCHETYPES).map(([id,a]) => [id,{
+    who:a.who, entersAt:a.entersAt, chequeUSD:a.chequeUSD, returnReads:a.returnReads,
+    limits:a.limits.map(({metric,max,routes})=>({metric,max,routes})),
+  }])), ...compactReferences(rest.acquisitions), queueSummary: { total: queue.length, byKind, disagreements } };
 }

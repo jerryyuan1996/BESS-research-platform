@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 /* Japan G-2 release: built output and public routes for all three allocation
    pages, in both configured desktop/mobile projects. */
 import {test,expect} from '@playwright/test';
@@ -25,8 +26,8 @@ for(const area of areas){
     const packs=()=>requests.filter(u=>/\/story-jp-[^/]+\.js/.test(u));
     const locators=()=>requests.filter(u=>/\/storyEvidenceProvenance[^/]*\.js/.test(u));
     await page.goto('/');await expect(page.locator('main')).toBeVisible();expect(packs()).toEqual([]);
-    await page.goto(preview);await expect(page.locator('.ix-full-research')).toBeVisible();expect(packs()).toEqual([]);
-    const trigger=page.locator('.ix-full-research');await trigger.click();const dialog=page.locator('.ix-story-dialog');
+    await page.goto(preview);await expect(page.locator('.public-story-trigger')).toBeVisible();expect(packs()).toEqual([]);
+    const trigger=page.locator('.public-story-trigger');await openLegacyStory(page);const dialog=page.locator('.ix-story-dialog');
     await expect(dialog).toBeVisible();await expect(dialog.getByRole('button',{name:'Close the story',exact:true})).toBeFocused();
     await expect(dialog.locator('article.ix-shot')).toHaveCount(14);await expect(dialog.locator('.ix-marker')).toHaveCount(14);
     await expect(dialog.locator('.jp-scene')).toHaveCount(13);await expect(dialog.locator('.jp-opening')).toHaveCount(1);
@@ -119,14 +120,14 @@ for(const area of areas){
       await expect(dialog).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();expect(new URL(page.url()).pathname).toBe(base);
     }
     await page.goto(preview);await page.getByRole('combobox',{name:'Investor profile',exact:true}).selectOption('developer');
-    await page.locator('.ix-full-research').click();await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
+    await openLegacyStory(page);await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   });
 
   test(`${area.region}: normal entry opens the released story lazily and reduced-motion outage teaching is static`,async({page})=>{
     const requests=[],errors=[];page.on('request',r=>requests.push(r.url()));page.on('pageerror',e=>errors.push(e.message));
     const packs=()=>requests.filter(u=>/\/story-jp-[^/]+\.js/.test(u));
-    await page.goto(base);const trigger=page.locator('.ix-full-research');await expect(trigger).toBeVisible();expect(packs()).toEqual([]);
-    await trigger.click();const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
+    await page.goto(base);const trigger=page.locator('.public-story-trigger');await expect(trigger).toBeVisible();expect(packs()).toEqual([]);
+    await openLegacyStory(page);const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
     await expect(dialog.locator('article.ix-shot')).toHaveCount(14);await expect(dialog.locator('.ix-marker')).toHaveCount(14);
     await expect(page.locator('.ix-research-dialog')).toBeHidden();expect(new Set(packs()).size).toBe(1);
     expect(requests.filter(u=>/\/storyEvidenceProvenance[^/]*\.js/.test(u))).toEqual([]);

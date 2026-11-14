@@ -1,5 +1,5 @@
-/* History-only entries reuse existing research; no new investment thesis or
-   original Story approval is asserted for these three markets. */
+/* This flag preserves original history provenance and the absence of a legacy
+   investor Story. The 14 Nov public value/revenue reading covers all 18 markets. */
 import {PUBLIC_CATALOG,PUBLIC_VERSION} from './catalog.js';
 const only=(history)=>({version:PUBLIC_VERSION,historyOnly:true,status:'existing-research-history',history});
 export const HISTORY_ONLY_CATALOG={

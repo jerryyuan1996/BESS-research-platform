@@ -52,10 +52,10 @@ test('route links select the corresponding investment and financing case',async(
 });
 test('responsive decision cards, shared navigation and comparison margins remain usable',async({page},info)=>{
   await page.goto('/returns');
-  await expect(page.locator('.ix-opportunity-set tbody tr')).toHaveCount(18);
+  await expect(page.locator('.ix-opportunity-set tbody tr')).toHaveCount(17);
   await expect(page.locator('.ix-matrix-svg')).toContainText('All-equity IRR (%)');
   await expect(page.locator('.ix-matrix-svg')).not.toContainText('minus target');
-  await expect(page.locator('.ix-unpriced-markets')).toContainText('evidence gap');
+  await expect(page.locator('[data-market-row=sa]')).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);
   await page.screenshot({path:info.outputPath('comparison-margin.png'),fullPage:true});
   await page.goto('/data');

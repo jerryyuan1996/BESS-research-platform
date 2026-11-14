@@ -87,28 +87,15 @@ test('Japan shows each area its own research, in Chinese as in English',async({p
   expect(await body.innerText()).toMatch(/[一-鿿]/);
 });
 
-test('the market-background reading carries research under System tensions and Market mechanism',async({page})=>{
-  const fetched=[];page.on('request',r=>fetched.push(r.url()));
-  await visit(page,'nem');
-  await page.locator('.public-story-trigger').click();
-  const dialog=page.locator('.public-story-dialog');
+test('the unified reading places sources beside explanations without repeating research excerpts',async({page})=>{
+ await visit(page,'nem');await page.locator('.public-story-trigger').click();const dialog=page.locator('.public-story-dialog');
+ for(const chapter of ['system','mechanism']){
+  await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
+  await expect(dialog.locator('.market-logic')).toBeVisible();
   await expect(dialog.locator('.ix-research-context')).toHaveCount(0);
-  for(const chapter of ['system','mechanism']){
-    await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
-    const node=disclosure(dialog,chapter);
-    await expect(node.locator('summary').first()).toHaveText('Research behind this chapter');
-    expect(await node.evaluate(n=>n.open)).toBe(false);
-  }
-  expect(fetched.filter(url=>/\/assets\/research-context-/.test(url))).toEqual([]);
-  const node=disclosure(dialog,'mechanism');
-  await node.locator('summary').first().click();
-  await expect(node.locator('.ix-research-context-body')).toHaveAttribute('aria-busy','false');
-  expect(await node.locator('.ix-research-card').count()).toBeGreaterThan(0);
-  for(const chapter of ['storage','research']){
-    await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
-    await expect(dialog.locator(`.public-chapter[data-chapter=${chapter}]`)).toBeVisible();
-    await expect(dialog.locator('.ix-research-context')).toHaveCount(0);
-  }
+  await dialog.locator('.il-next-read .source-popup-trigger').click();await expect(page.locator('.source-popup a').first()).toBeVisible();await page.keyboard.press('Escape');
+ }
+ await dialog.locator('.public-research-button').click();await expect(dialog.locator('.ix-research-summary')).toHaveAttribute('aria-busy','false');
 });
 
 test('a failed research load offers a retry without replacing the chapter',async({page})=>{
@@ -189,31 +176,12 @@ for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
     await page.locator('.public-story-trigger').click();
     const dialog=page.locator('.public-story-dialog');
     await expect(dialog).toBeVisible();
-    if (['ca_on','sa','es'].includes(owner)){
-      await expect(dialog.locator('.public-power-scene')).toHaveCount(0);
+    for(const chapter of ['system','mechanism']){
+      await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
+      await expect(dialog.locator('.market-logic')).toBeVisible();
       await expect(dialog.locator('.ix-research-context')).toHaveCount(0);
-      await expect(dialog.locator('.public-story-nav button[data-chapter=system], .public-story-nav button[data-chapter=mechanism]')).toHaveCount(0);
-    } else {
-      for (const chapter of ['system','mechanism']){
-        await dialog.locator(`.public-story-nav button[data-chapter=${chapter}]`).click();
-        const panel=disclosure(dialog,chapter);
-        await expect(panel).toHaveCount(1);
-        expect(await panel.evaluate(node=>node.open)).toBe(false);
-        await panel.locator(':scope > summary').click();
-        const body=panel.locator('.ix-research-context-body');
-        await expect(body).toHaveAttribute('aria-busy','false');
-        await expect(body.locator('.ix-research-kind')).toContainText(locale==='zh'?'研究摘录':'Research excerpt');
-        await expect(body.locator('.ix-research-card[open] .ix-research-card-body').first()).not.toBeEmpty();
-        expect(await body.locator('.ix-research-group').evaluateAll(nodes=>nodes.map(node=>node.dataset.researchSection)))
-          .toEqual(picksFor(owner,chapter).map(pick=>pick.section));
-        const links=body.locator('.ix-research-tab-link');
-        expect(await links.count()).toBeGreaterThan(0);
-        for (const href of await links.evaluateAll(nodes=>nodes.map(node=>node.getAttribute('href'))))
-          expect(href).toMatch(new RegExp('^/markets/'+slug+'/'));
-        expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
-        expect(await page.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1)).toBe(true);
-        await panel.locator(':scope > summary').click();
-      }
+      await expect(dialog.locator('.il-next-read .source-popup-trigger')).toBeVisible();
+      expect(await dialog.evaluate(node=>node.scrollWidth<=node.clientWidth+1)).toBe(true);
     }
     if (owner==='wa'){
       /* Neither page nor reading may reach the confidential portfolio adapter. */

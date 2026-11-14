@@ -66,15 +66,16 @@ test('WA reader controls stay in sync with connected research and survive eviden
   await expect(tab(context(page,'bankable'),'rcm').getByRole('button',{name:'Nominal A$',exact:true})).toHaveClass(/active/);
 });
 
-test('WA story bridge in the reading opens the actual tab and Back restores the market', async({page}) => {
+test('WA unified reading reaches the research bridge and Back restores its chapter', async({page}) => {
   await visit(page);
   await page.locator('.public-story-trigger').click();
   const dialog = page.locator('.public-story-dialog');
-  await dialog.locator('.public-story-nav button[data-chapter="system"]').click();
-  const research = context(dialog, 'system');
-  await open(research);
-  const story = tab(research, 'story');
-  await story.locator('.walk-step').filter({hasText: 'Storage Duration'}).click();
+  await dialog.locator('.public-story-nav button[data-chapter="research"]').click();
+  await expect(dialog.locator('.ix-research-summary')).toHaveAttribute('aria-busy', 'false');
+  await dialog.getByRole('button', {name: 'Open full research', exact: true}).click();
+  await expect(page).toHaveURL(/\/markets\/western-australia\/(?:home|story)$/);
+  await expect(dialog).toHaveCount(0);
+  await page.locator('.walk-step').filter({hasText: 'Storage Duration'}).click();
   await expect(page).toHaveURL(/\/markets\/western-australia\/duration$/);
   await expect(page.locator('.public-story-dialog')).toHaveCount(0);
   await expect(page.locator('#revenue-duration')).toHaveAttribute('open','');
@@ -82,6 +83,10 @@ test('WA story bridge in the reading opens the actual tab and Back restores the 
   await expect(page.locator('#revenue-duration select.inp')).toHaveCount(0);
   await expect(page.locator('#revenue-duration')).toContainText('ESR Duration Requirement trajectory');
   await page.goBack();
+  await expect(page).toHaveURL(/\/markets\/western-australia\/story$/);
+  await expect(page.locator('.walk-step').filter({hasText: 'Storage Duration'})).toBeVisible();
+  await page.goBack();
   await expect(page).toHaveURL(/\/markets\/western-australia(?:\?|$)/);
   await expect(page.locator('.public-story-dialog')).toBeVisible();
+  await expect(page.locator('.public-story-nav [data-chapter="research"]')).toHaveAttribute('aria-current', 'step');
 });

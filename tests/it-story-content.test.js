@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {story} from '../src/markets/it/story.js';
-import {storyValues,storyWithAvailableValues,reviewedRowsMatch,IT_ZONES,IT_HISTORY,historyValues} from '../src/markets/it/storyBindings.js';
+import {storyValues,storyWithAvailableValues,storyForUnifiedReader,reviewedRowsMatch,IT_ZONES,IT_HISTORY,historyValues} from '../src/markets/it/storyBindings.js';
 import {validateStory,CHAPTERS,isStale,fillPair} from '../src/experience/story/contract.js';
 import {opportunities,CALLS,returnPct} from '../src/experience/model.js';
 import {HOME_BRIEFING} from '../src/briefing/homeData.js';
@@ -70,4 +70,18 @@ test('either fork or the selected lens changing requires editorial review',()=>{
  }
  assert.equal(reviewedRowsMatch(story,row,rows.slice(0,1),'infraFund'),false);
  assert.equal(/^\s*import\s/m.test(readFileSync(new URL('../src/markets/it/story.js',import.meta.url),'utf8')),false);
+});
+
+test('the unified reader keeps known history and downside while leaving unverified terms unresolved',()=>{
+ const before=JSON.stringify(story),unified=storyForUnifiedReader(story,values);
+ assert.deepEqual(validateStory(unified),{ok:true,complete:true,problems:[]});
+ const bound=Object.fromEntries([unified.opening,...unified.chapters.flatMap(c=>c.shots)].map(s=>[s.id,fillPair(s.copy,values)]));
+ for(const [id,copy] of Object.entries(bound))for(const text of copy)assert.doesNotMatch(text,/Value unavailable|数值暂缺|undefined|NaN|\{[A-Za-z]/,id);
+ assert.ok(bound['it-03'][0].includes(values.mACSEAuction1Date[0]));
+ assert.ok(bound['it-03'][1].includes(values.mACSEAreas[1]));
+ assert.match(bound['it-03'][0],/Verify the awarded term/);
+ assert.ok(bound['it-11'][0].includes(values.nextAction[0]));
+ assert.match(bound['it-11'][1],/官方公告核验/);
+ assert.equal(values.mACSETerm,null);assert.equal(values.cMDY2028AuctionDate,null);
+ assert.equal(JSON.stringify(story),before);
 });

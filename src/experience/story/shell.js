@@ -1,8 +1,8 @@
 /* ---------------------------------------------------------------------------
    The market-story shell (immersive-experience plan, WP-03).
 
-   Opens from the market page's "Grid, history and full research context"
-   button as a full-height dialog: the play card first, then six chapters of
+   Supplies bound material to the unified market reader. Saved original links
+   still open a full-height dialog: the play card first, then six chapters of
    shots in ordinary scrolling order. Each shot shows its question, a
    conclusion-first answer, one evidence marker with what would change it,
    its investment meaning, its sources and its visual. The full research
@@ -122,6 +122,7 @@ export function openStory(ctx){
   };
 
   const goToSection = (anchor) => {
+    if(ctx.embed){ctx.onInvest?.(anchor);return;}
     close();
     const target = document.getElementById(anchor);
     if (!target) return;
@@ -167,7 +168,7 @@ export function openStory(ctx){
   const shotNode = (shot) => {
     const headingId = `ix-shot-${shot.id}`;
     const opening = shot.id === story.opening.id;
-    return h('article', { class: `ix-shot${opening ? ' ix-shot-opening' : ''}`, id: `story-${shot.id}`, 'data-shot': shot.id, 'aria-labelledby': headingId },
+    return h('article', { class: `ix-shot${opening ? ' ix-shot-opening' : ''}`, id: `story-${shot.id}`, 'data-shot': shot.id, 'data-original-chapter':shot.chapter, 'aria-labelledby': headingId },
       h('div', { class: 'ix-shot-text' },
         h('h4', { id: headingId, tabindex: '-1' }, pairOf(shot.question, values)),
         opening ? (ctx.rows || [row]).map(playCard) : null,
@@ -175,12 +176,16 @@ export function openStory(ctx){
         shot.meaning ? h('p', { class: 'ix-shot-meaning' }, h('strong', {}, L(T.meaning)), ' ', pairOf(shot.meaning, values)) : null,
         marker(shot),
         opening ? h('div', { class: 'ix-actions' },
-          h('button', { type: 'button', class: 'ix-button', onclick: () => goTo(shots[1].id, true) }, L(story.opening.controls[0])),
+          h('button', { type: 'button', class: 'ix-button', onclick: () => ctx.embed?ctx.onChapter?.('system'):goTo(shots[1].id, true) }, L(ctx.embed?['Review the value chain','回看价值链']:story.opening.controls[0])),
           h('a', { href: '#bankable', class: 'ix-button ix-outline', onclick: (ev) => { ev.preventDefault(); goToSection('bankable'); } }, L(story.opening.controls[1]))) : null,
         extras(shot),
         sourcesOf(shot)),
       opening ? null : visual(shot));
   };
+
+  // The unified reader uses these same bound words, charts, controls and sources
+  // in their corresponding chapter. No second dialog or history observer opens.
+  if(ctx.embed)return h('div',{class:'unified-story-material','data-material-market':story.marketId},shots.map(shotNode));
 
   /* ---- navigation ------------------------------------------------------ */
   let body, nav, prevBtn, nextBtn;
@@ -306,7 +311,7 @@ export function openStory(ctx){
     dialog.remove();
     document.body.style.overflow = previousOverflow;
     // the page may have re-rendered behind the story (language switch)
-    const back = trigger?.isConnected ? trigger : document.querySelector('.ix-full-research');
+    const back = trigger?.isConnected ? trigger : document.querySelector('.public-story-trigger');
     back?.focus({ preventScroll: true });
   }
   dialog.addEventListener('close', () => close());

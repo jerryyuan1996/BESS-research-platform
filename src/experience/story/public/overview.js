@@ -6,7 +6,7 @@ import { marketResearchLink } from '../../marketResearchLink.js';
 export function renderPublicOverview(id, { name, open }){
   const c = PUBLIC_READING_CATALOG[id];
   if (!c) return null;
-  const trigger = h('button', { type:'button', class:'ix-button public-story-trigger', onclick:()=>open(trigger) }, L(c.historyOnly?['Market development history','市场发展历程']:['Market background & investment logic', '市场背景与投资逻辑']), ' ↗');
+  const trigger = h('button', { type:'button', class:'ix-button public-story-trigger', onclick:()=>open(trigger) }, L(['Market background & investment logic', '市场背景与投资逻辑']), ' ↗');
   const context = h('div', { class:'market-overview-context', 'aria-busy':'true' });
   const section = h('section', { id:'overview', class:'public-overview', 'data-public-market':id, 'data-version':c.version, 'data-status':c.status, 'aria-labelledby':'public-overview-title' },
     h('div', { class:'public-overview-heading' },

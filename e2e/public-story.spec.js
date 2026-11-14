@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {PUBLIC_CATALOG,PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
+import {SYSTEMS} from '../src/experience/story/public/marketLogicContent.js';
 import {loadPublicContent} from '../src/experience/story/public/content.js';
 import {expectCompleteHistory} from './helpers/research-history.js';
 import {expectInvestorLayout,expectCountryOverview} from './helpers/investor-rollout.js';
@@ -45,10 +46,10 @@ function coverage(){for(const [id,slug] of Object.entries(slugs))test(id+' · sh
       await expectCompleteHistory(page,id,locale);
       await expect(dialog.locator('.public-source-check-note')).toHaveCount((await loadPublicContent(id)).latestCheckedOn?1:0);
       if(investor==='infraFund')await expectCountryOverview(page,id,locale);
-      await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
+      await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.market-logic')).toBeVisible();
       const text=await dialog.locator('.public-chapter').innerText();if(expectedMechanism)expect(text).toBe(expectedMechanism);else expectedMechanism=text;
-      await expect(dialog.locator('.public-power-scene')).toHaveAttribute('data-market',id);
-      await dialog.locator('[data-part=connection]').click();await expect(dialog.locator('.public-equipment.is-selected')).toHaveAttribute('data-component','connection');
+      await expect(dialog.locator('.market-logic')).toHaveAttribute('data-market',id);
+      await dialog.locator('[data-logic-step="2"]').click();await expect(dialog.locator('.il-takeaway')).not.toBeEmpty();
       await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
     }
   }
@@ -69,12 +70,12 @@ test('keyboard, history, language, deep links and repeated opening preserve the 
   await trigger.evaluate(node=>window.scrollTo({top:window.scrollY+node.getBoundingClientRect().top-120,behavior:'instant'}));
   const scroll=await page.evaluate(()=>scrollY);expect(scroll).toBeGreaterThan(100);await page.keyboard.press('Enter');
   const dialog=page.locator('.public-story-dialog');await expect(dialog.getByRole('button',{name:'Close market background'})).toBeFocused();
-  await dialog.locator('.public-story-nav button[data-chapter=system]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
-  await dialog.locator('.public-story-nav button[data-chapter=storage]').click();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
+  await dialog.locator('.public-story-nav button[data-chapter=system]').click();await expect(dialog.locator('.market-logic')).toBeVisible();
+  await dialog.locator('.public-story-nav button[data-chapter=mechanism]').click();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','mechanism');
   await page.goBack();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','system');
-  await page.goForward();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
-  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expect(dialog).toHaveAttribute('lang','zh');await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
-  const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-storage');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','storage');
+  await page.goForward();await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','mechanism');
+  await dialog.getByRole('button',{name:'Switch to Chinese'}).click();await expect(dialog).toHaveAttribute('lang','zh');await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','mechanism');
+  const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-mechanism');await page.reload();await expect(page.locator('.public-story-dialog')).toHaveAttribute('lang','zh');await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','mechanism');
   await page.keyboard.press('Escape');await expect(page.locator('.public-story-dialog')).toHaveCount(0);
   // Translation changes the narrative height; restore the visible entrance
   // rather than an obsolete pixel offset or the top of the market page.
@@ -90,9 +91,9 @@ test('content and scene failures expose readable fallback and working retry',asy
   await page.goto('/markets/nem');await page.locator('.public-story-trigger').click();
   const dialog=page.locator('.public-story-dialog');await expect(dialog.getByRole('button',{name:'Retry chapter'})).toBeVisible();await expect(dialog).toContainText(PUBLIC_CATALOG.nem.history[0]);
   failContent=false;await dialog.getByRole('button',{name:'Retry chapter'}).click();await expect(page.locator('.public-chapter')).toHaveAttribute('data-chapter','history');
-  let failScene=true;await page.route(/\/assets\/public-scene-.*\.js/,r=>failScene?r.abort():r.continue());
-  await page.locator('.public-story-nav button[data-chapter=system]').click();await expect(page.getByRole('button',{name:'Retry scene'})).toBeVisible();
-  failScene=false;await page.getByRole('button',{name:'Retry scene'}).click();await expect(page.locator('.public-power-scene')).toBeVisible();
+  let failScene=true;await page.route(/\/assets\/public-marketLogic-.*\.js/,r=>failScene?r.abort():r.continue());
+  await page.locator('.public-story-nav button[data-chapter=system]').click();await expect(page.getByRole('button',{name:'Retry chapter'})).toBeVisible();
+  failScene=false;await page.getByRole('button',{name:'Retry chapter'}).click();await expect(page.locator('.market-logic')).toBeVisible();
 });
 
 test('a failed modal module retries from the intact public summary',async({page})=>{
@@ -109,8 +110,8 @@ test('Japan region switching keeps the edition and chapter while changing local 
   await page.locator('.public-story-nav button[data-chapter=system]').click();
   for(const id of ['jp_kyushu','jp_hokkaido','jp_tokyo']){
     await page.locator('.public-story-tools select').selectOption(id);
-    const dialog=page.locator('.public-story-dialog');await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','system');await expect(dialog.locator('.public-power-scene')).toHaveAttribute('data-market',id);
-    await expect(dialog).toContainText(PUBLIC_CATALOG[id].logic[0]);
+    const dialog=page.locator('.public-story-dialog');await expect(dialog).toHaveAttribute('data-market',id);await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','system');await expect(dialog.locator('.market-logic')).toHaveAttribute('data-market',id);
+    await expect(dialog).toContainText(SYSTEMS[id].steps[0].body[0]);
     await dialog.locator('.public-story-nav button[data-chapter=research]').click();
     const data=await loadPublicContent(id);
     for(const group of data.sourceGroups){
@@ -127,8 +128,8 @@ test('the first screen fetches no complete narrative or SVG; subsequent chapters
   const fetched=[];page.on('request',r=>fetched.push(r.url()));
   await page.goto('/markets/nem');await page.locator('.public-story-trigger').waitFor();expect(fetched.some(s=>/public-(?:content-|scene-|sequence-|chapter-|pack-)|story-geometry-/.test(s))).toBe(false);
   await page.locator('.public-story-trigger').click();await page.locator('.public-chapter').waitFor();expect(fetched.some(s=>/public-content-nem-/.test(s))).toBe(true);expect(fetched.some(s=>/public-scene-|public-sequence-|story-geometry-/.test(s))).toBe(false);
-  await page.locator('.public-story-nav button[data-chapter=mechanism]').click();await page.locator('.public-power-scene').waitFor();
-  await page.waitForLoadState('networkidle');const count=fetched.length;await page.locator('.public-story-nav button[data-chapter=storage]').click();await page.locator('.public-power-scene').waitFor();await page.waitForLoadState('networkidle');expect(fetched.length).toBe(count);
+  await page.locator('.public-story-nav button[data-chapter=mechanism]').click();await page.locator('.market-logic').waitFor();
+  await page.waitForLoadState('networkidle');const count=fetched.length;await page.locator('.public-story-nav button[data-chapter=system]').click();await page.locator('.market-logic').waitFor();await page.waitForLoadState('networkidle');expect(fetched.length).toBe(count);
 });
 
 test('source dates remain visible while internal approval events stay out of reader-facing content',async({page})=>{
@@ -152,13 +153,11 @@ test.describe('touch panning',()=>{
   test('the phone and iPad scene fits its column and leaves annotations reachable by touch',async({page},info)=>{
     await page.setViewportSize(info.project.name==='mobile'?{width:390,height:844}:{width:820,height:1180});
     await page.goto('/markets/nem');await page.locator('.public-story-trigger').tap();
-    await page.locator('.public-story-nav button[data-chapter=storage]').tap();
-    const view=page.locator('.public-scene-viewport');await view.waitFor();await view.scrollIntoViewIfNeeded();
-    /* The drawing has a compact frame for a phone: it is read whole, never panned sideways. */
-    expect(await view.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
-    await expect(page.locator('.public-power-scene')).toHaveAttribute('data-frame',info.project.name==='mobile'?'compact':'wide');
-    await page.locator('[data-part=transformer]').tap();await expect(page.locator('.public-equipment.is-selected')).toHaveAttribute('data-component','transformer');await expect(page.locator('[data-part=transformer]')).toBeFocused();
-    await page.locator('[data-flow=charge]').tap();await expect(page.locator('[data-flow=charge]')).toHaveAttribute('aria-pressed','true');
+    await page.locator('.public-story-nav button[data-chapter=mechanism]').tap();
+    const view=page.locator('.il-illustration');await view.waitFor();await view.scrollIntoViewIfNeeded();
+    expect(await view.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+    await page.locator('[data-logic-step="2"]').tap();await page.locator('.il-condition').tap();
+    await expect(page.locator('.il-condition')).toHaveAttribute('aria-pressed','true');
     await page.screenshot({path:info.outputPath('touch-annotation.png')});
   });
 });

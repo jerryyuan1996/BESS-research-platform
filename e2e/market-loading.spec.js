@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('home defers the market detail renderer until a market is opened', async ({page}) => {
   const detail=[];
-  page.on('request',request=>{if(request.url().includes('/marketPage-'))detail.push(request.url());});
+  page.on('request',request=>{if(/^\/assets\/marketPage-[^/]*\.js$/.test(new URL(request.url()).pathname))detail.push(request.url());});
   await page.goto('/');
   await expect(page.locator('h1')).toBeVisible();
   expect(detail).toHaveLength(0);

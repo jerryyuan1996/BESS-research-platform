@@ -52,6 +52,7 @@ export function open(ctx) {
     attachEvidence(dialog);
   };
   decorate();
+  if(ctx.embed)return dialog;
   /* A language switch rebuilds the dialog's contents in place. */
   const rebuilt = new MutationObserver(decorate);
   rebuilt.observe(dialog, { childList: true });

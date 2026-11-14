@@ -11,7 +11,7 @@ import {scenes,gridThumbnail} from './story/scenes.js';
 import {attachEvidence} from './story/evidence.js';
 
 export function open(ctx){
-  if(isStale(story,ctx.row)||!storyMatches(story,ctx.row,app.lens||'infraFund'))return null;
+  if(isStale(story,ctx.row)||!storyMatches(story,ctx.row,ctx.lens||app.lens||'infraFund'))return null;
   const values=storyValues(ctx.row,ctx.ui);
   const dialog=openStory({...ctx,story:storyWithAvailableValues(story,values),values,scenes});
   if(!dialog)return null;

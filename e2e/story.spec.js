@@ -1,3 +1,4 @@
+import {openLegacyStory} from './helpers/legacy-story.js';
 /* The market story (immersive-experience plan, WP-03 to WP-07 and WP-10), on
    the built site. Released at G-2, so it needs no preview flag. */
 import { test, expect } from '@playwright/test';
@@ -9,9 +10,9 @@ test.beforeEach(async ({ page }) => {
 
 const open = async (page) => {
   await page.goto('/markets/western-australia');
-  const trigger = page.locator('.ix-full-research');
+  const trigger = page.locator('.public-story-trigger');
   await trigger.scrollIntoViewIfNeeded();
-  await trigger.click();
+  await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   return { trigger, dialog };
@@ -131,11 +132,11 @@ test('the address follows the reader, and Back and Forward retrace the path', as
   await expect(dialog.locator('#ix-shot-wa-10')).toBeFocused();
 
   // Back steps to the previous shot without re-rendering the page behind
-  await page.evaluate(() => { document.querySelector('.ix-full-research').dataset.kept = 'yes'; });
+  await page.evaluate(() => { document.querySelector('.public-story-trigger').dataset.kept = 'yes'; });
   await page.goBack();
   await expect(page).toHaveURL(/chapter=origins&shot=wa-01$/);
   await expect(dialog.locator('#ix-shot-wa-01')).toBeFocused();
-  await expect(page.locator('.ix-full-research')).toHaveAttribute('data-kept', 'yes');
+  await expect(page.locator('.public-story-trigger')).toHaveAttribute('data-kept', 'yes');
 
   await page.goForward();
   await expect(page).toHaveURL(/chapter=payment&shot=wa-10$/);
@@ -148,7 +149,7 @@ test('the address follows the reader, and Back and Forward retrace the path', as
   await page.goBack();
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await expect(page.locator('#ix-shot-wa-10')).toBeFocused();
-  await expect(page.locator('.ix-full-research')).toHaveAttribute('data-kept', 'yes');
+  await expect(page.locator('.public-story-trigger')).toHaveAttribute('data-kept', 'yes');
 
   // Back past the opening closes the story again
   for (let i = 0; i < 3; i++) await page.goBack();
@@ -211,7 +212,7 @@ test('an investor switch behind a closed story leaves it closed, and Back reopen
   const investor = page.getByRole('combobox', { name: 'Investor profile' });
   const other = await investor.evaluate(s => [...s.options].map(o => o.value).find(v => v !== s.value));
   await investor.selectOption(other);
-  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.public-story-trigger')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   await expect(page).toHaveURL(`${WA}`);
 
@@ -223,9 +224,12 @@ test('an investor switch behind a closed story leaves it closed, and Back reopen
 
 test('a market without a story ignores a story link', async ({ page }) => {
   await page.goto('/markets/ontario?view=story&chapter=tensions&shot=wa-06');
-  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.public-story-trigger')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
+  await page.locator('.public-story-trigger').click();
+  await expect(page.locator('.public-story-dialog')).toBeVisible();
+  await expect(page.locator('.public-story-nav button')).toHaveCount(6);
 });
 
 test('the story hands the reader to the investment case', async ({ page }) => {
@@ -246,7 +250,7 @@ test('every exit in the last chapter reaches its market-page section', async ({ 
 
 test('the WA button opens the story for every reader, with the research one click deeper', async ({ page }) => {
   await page.goto('/markets/western-australia');
-  await page.locator('.ix-full-research').click();
+  await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   await expect(page.locator('.ix-research-dialog')).toHaveCount(0);
@@ -259,9 +263,9 @@ const DE = '/markets/germany';
 const openGermany = async page => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(DE);
-  const trigger = page.locator('.ix-full-research');
+  const trigger = page.locator('.public-story-trigger');
   await trigger.scrollIntoViewIfNeeded();
-  await trigger.click();
+  await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   return { trigger, dialog };
@@ -368,9 +372,9 @@ test('Germany loads its story lazily and keeps the research button as the entry'
   await page.goto('/');
   expect(chunks).toEqual([]);
   await page.goto(DE);
-  await expect(page.locator('.ix-full-research')).toBeVisible();
+  await expect(page.locator('.public-story-trigger')).toBeVisible();
   expect(chunks).toEqual([]);
-  await page.locator('.ix-full-research').click();
+  await openLegacyStory(page);
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   expect(chunks.length).toBe(1);
 });
@@ -388,8 +392,8 @@ test('German full research remains one click deeper and returns focus', async ({
 const FI='/markets/finland';
 const openFinland=async page=>{
   await page.goto(FI);
-  const trigger=page.locator('.ix-full-research');
-  await trigger.click();
+  const trigger=page.locator('.public-story-trigger');
+  await openLegacyStory(page);
   const dialog=page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   return {trigger,dialog};
@@ -529,8 +533,8 @@ test('Finland evidence and investment exits reach the existing market sections',
 test('Finland story code loads only after its existing market-page button',async({page})=>{
   const chunks=[];page.on('request',r=>{if(/story-fi-.*\.js/.test(r.url()))chunks.push(r.url());});
   await page.goto('/');expect(chunks).toEqual([]);
-  await page.goto(FI);await expect(page.locator('.ix-full-research')).toBeVisible();expect(chunks).toEqual([]);
-  await page.locator('.ix-full-research').click();await expect(page.locator('.ix-story-dialog')).toBeVisible();
+  await page.goto(FI);await expect(page.locator('.public-story-trigger')).toBeVisible();expect(chunks).toEqual([]);
+  await openLegacyStory(page);await expect(page.locator('.ix-story-dialog')).toBeVisible();
   expect(chunks.length).toBe(1);
 });
 
@@ -558,17 +562,17 @@ test('Finland historical explanations retain the approved four fields and transl
    another investor's lens still returns to research. */
 test('Ireland opens publicly, shows no withheld figure, and follows the lens', async ({ page }) => {
   await page.goto('/markets/ireland');
-  const trigger = page.locator('.ix-full-research');
+  const trigger = page.locator('.public-story-trigger');
   await trigger.scrollIntoViewIfNeeded();
-  await trigger.click();
+  await openLegacyStory(page);
   await expect(page.locator('.ix-story-dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(trigger).toBeFocused();
 
   await page.goto('/markets/ireland?story=preview');
-  const preview = page.locator('.ix-full-research');
+  const preview = page.locator('.public-story-trigger');
   await preview.scrollIntoViewIfNeeded();
-  await preview.click();
+  await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('article.ix-shot')).toHaveCount(13);
@@ -583,7 +587,7 @@ test('Ireland opens publicly, shows no withheld figure, and follows the lens', a
 
   await page.addInitScript(() => localStorage.setItem('hub_lens', 'strategic'));
   await page.goto('/markets/ireland?story=preview');
-  await page.locator('.ix-full-research').click();
+  await openLegacyStory(page);
   await expect(page.locator('.ix-research-dialog')).toBeVisible();
   await expect(page.locator('.ix-story-dialog')).toHaveCount(0);
 });
@@ -595,9 +599,9 @@ test('Ireland opens publicly, shows no withheld figure, and follows the lens', a
 test('Poland opens publicly, keeps two calls apart, and draws the auction records', async ({ page }, info) => {
   const errors = []; page.on('pageerror', e => errors.push(e.message));
   await page.goto('/markets/poland');
-  const trigger = page.locator('.ix-full-research');
+  const trigger = page.locator('.public-story-trigger');
   await trigger.scrollIntoViewIfNeeded();
-  await trigger.click();
+  await openLegacyStory(page);
   const dialog = page.locator('.ix-story-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('article.ix-shot')).toHaveCount(13);

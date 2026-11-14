@@ -172,6 +172,8 @@ body.ix-experience {
 .ix-revenue-bar span:first-child { background:#527f60; }.ix-revenue-bar span:last-child { background:#d6d6c4; }
 /* Matrix: return-basis switch above the legend; the size key is a hollow ring. */
 .ix-matrix-controls { display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+.ix-matrix-view-switch{margin-bottom:24px;display:inline-flex}.ix-matrix-view-switch button{min-width:150px;min-height:44px}
+@media(max-width:720px){.ix-matrix-view-switch{display:flex;width:100%}.ix-matrix-view-switch button{min-width:0;flex:1}}
 .ix-basis-switch button { padding:6px 14px; }
 .ix-legend .size::before { width:11px; height:11px; background:transparent; border:1.5px solid #7a8a8b; box-sizing:border-box; vertical-align:-1px; }
 /* The opportunity set fits the page width: no sideways scroll. */
@@ -348,7 +350,6 @@ body.ix-experience {
 .ix-selected-summary>.ix-button { width:auto; white-space:nowrap; margin:0; }
 .ix-selected-evidence { width:100%; margin:16px 0 0; }
 .ix-selected-evidence .ix-project-facts { grid-template-columns:repeat(3,minmax(0,1fr)); }
-.ix-full-research { margin-top:24px; }
 .ix-research-dialog { width:min(1240px,calc(100% - 40px)); padding:0; max-height:90dvh; overflow:auto; }
 .ix-research-heading { position:sticky; top:0; z-index:2; display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding:24px 28px; background:#f5f3ed; border-bottom:1px solid #dce1d6; }
 .ix-research-heading h2 { margin:0; font-size:var(--fs-2xl); }

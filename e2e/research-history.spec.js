@@ -21,12 +21,12 @@ function coverage(){for(const id of historyOnly)test(id+' · existing history fo
     await expect(page.getByRole('combobox',{name:locale==='en'?'Investor profile':'投资者类型',exact:true})).toHaveValue(investor);
     await expect(page.locator('#overview [data-date-kind=g1]')).toHaveCount(0);
     await trigger.click();await expectCompleteHistory(page,id,locale);
-    const dialog=page.locator('.public-story-dialog');await expect(dialog.locator('.public-story-nav button')).toHaveCount(3);
+    const dialog=page.locator('.public-story-dialog');await expect(dialog.locator('.public-story-nav button')).toHaveCount(6);
     if(investor==='infraFund')await expectCountryOverview(page,id,locale,{restricted:true});
     await dialog.locator('[data-chapter=research]').click();await expect(dialog.locator('.public-history-provenance')).toBeVisible();
     await expect(dialog.locator('.public-chapter[data-chapter=research]')).toContainText(locale==='en'?'Market development history from the existing research.':'既有研究中的市场发展历程。');
     await expect(dialog.locator('.public-chapter-footer')).toContainText(locale==='en'?'Existing research history':'既有研究历程');
-    expect(await dialog.locator('.public-story-nav button').evaluateAll(buttons=>buttons.map(button=>button.dataset.chapter))).toEqual(['history','overview','research']);
+    expect(await dialog.locator('.public-story-nav button').evaluateAll(buttons=>buttons.map(button=>button.dataset.chapter))).toEqual(['history','overview','system','mechanism','investment','research']);
     await expect(dialog.locator('.public-scene-host,.public-power-scene')).toHaveCount(0);
     await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
   }
@@ -87,7 +87,7 @@ for(const id of ['gb','wa'])test(id+' · long history preserves reading place, s
   const source=dialog.locator('.public-history-provenance');await source.locator('summary').scrollIntoViewIfNeeded();await source.locator('summary').focus();await page.keyboard.press('Enter');await expect(source).toHaveAttribute('open','');
   await expect(source.locator('a').last()).toBeVisible();
   const deep=page.url();expect(deep).toContain('public-zh-'+PUBLIC_VERSION.replace('.','-')+'-history');
-  await dialog.locator('.public-story-nav button[data-chapter=system]').click();await expect(dialog.locator('.public-power-scene')).toBeVisible();
+  await dialog.locator('.public-story-nav button[data-chapter=system]').click();await expect(dialog.locator('.market-logic')).toBeVisible();
   await page.goBack();await expectCompleteHistory(page,id,'zh');
   await page.keyboard.press('Escape');await expect(dialog).toHaveCount(0);await expect(trigger).toBeFocused();
   await page.goto(deep);await expectCompleteHistory(page,id,'zh');await page.keyboard.press('Escape');

@@ -1,0 +1,86 @@
+import {test,expect} from '@playwright/test';
+import {mkdir} from 'node:fs/promises';
+import {PUBLIC_VERSION} from '../src/experience/story/public/catalog.js';
+const dir='.tmp/italy-logic-pilot';
+test.beforeEach(async({page})=>{
+ await page.route(/^https:\/\//,r=>r.abort());
+ await page.addInitScript(()=>{localStorage.setItem('hub_lang','zh');localStorage.removeItem('hub_lens');});
+ await mkdir(dir,{recursive:true});
+});
+test('quantified perspectives retain selection, show route-applicable limits and respond on mobile',async({page},info)=>{
+ await page.goto('/');const panel=page.locator('.ix-perspectives');
+ await expect(panel.locator('.ix-perspective-capital')).toHaveCount(4);
+ await expect(panel.locator('article').filter({has:page.locator('[data-perspective=infraFund]')})).toContainText('$30m – $300m');
+ const developer=panel.locator('article').filter({has:page.locator('[data-perspective=developer]')});
+ if(info.project.name==='mobile')await developer.locator('summary').click();
+ await expect(developer).toContainText('48个月');await expect(developer).toContainText('≤ $3m');
+ await panel.screenshot({path:`${dir}/${info.project.name}-perspectives.png`});
+ await panel.locator('[data-perspective=developer]').click();await expect(panel).toHaveClass(/is-compact/);
+ await panel.locator('.ix-perspective-compare').click();await expect(panel).toHaveClass(/is-full/);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});
+test('one matrix switches views with correct country scopes, units, filtering and sources',async({page},info)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/returns?region=mea');
+ await expect(page.locator('[data-region=mea]')).toHaveCount(0);await expect(page.locator('[data-market-row=sa]')).toHaveCount(0);
+ await page.locator('[data-matrix-view=overview]').click();const atlas=page.locator('.market-atlas');
+ await expect(atlas.locator('[data-atlas-country]')).toHaveCount(12);await expect(page.locator('.ix-matrix-svg')).toHaveCount(0);
+ await expect(atlas.locator('[data-battery-id=us]')).toContainText('52');await expect(atlas.locator('[data-battery-id=us-model]')).toHaveCount(0);
+ await atlas.locator('[data-atlas-country=it] .source-popup-trigger').click();await expect(page.locator('.source-popup')).toContainText('Eurostat');await page.keyboard.press('Escape');
+ await atlas.screenshot({path:`${dir}/${info.project.name}-atlas.png`});
+ await atlas.getByRole('button',{name:'GWh',exact:true}).click();await expect(atlas).toHaveAttribute('data-unit','gwh');
+ await expect(atlas.locator('[data-atlas-country=it] .atlas-storage')).toContainText('暂无核验值');
+ await expect(atlas.locator('[data-battery-id=us-energy]')).toContainText('73.9');
+ await page.locator('[data-region=apac]').click();await expect(atlas.locator('[data-atlas-country]')).toHaveCount(2);
+ await page.locator('[data-matrix-view=irr]').click();await expect(atlas).toHaveCount(0);await expect(page.locator('.ix-matrix-svg')).toBeVisible();await expect(page.locator('.ix-basis-switch')).toBeVisible();
+ await page.locator('[data-matrix-view=overview]').click();await expect(atlas).toHaveAttribute('data-unit','gwh');
+ await page.reload();await expect(atlas.locator('[data-atlas-country]')).toHaveCount(2);
+ await page.locator('input[type=search]').fill('xyz');await expect(page.locator('.ix-empty')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);expect(errors).toEqual([]);
+});
+test('Italy logic follows physical constraints, revenue rights, reduced motion and old links',async({page},info)=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.goto(`/markets/italy?view=story&chapter=storage&shot=public-zh-${PUBLIC_VERSION.replace('.','-')}-storage`);
+ const dialog=page.locator('.public-story-dialog'),logic=dialog.locator('.italy-logic');
+ await expect(logic).toHaveAttribute('data-chapter','system');await expect(dialog.locator('.public-story-nav button')).toHaveCount(6);
+ await expect(dialog.locator('.public-story-nav [data-chapter=storage]')).toHaveCount(0);
+ await logic.locator('[data-logic-step="1"]').click();await expect(logic.locator('.il-illustration')).toHaveAttribute('data-flow','charging');
+ await logic.locator('[data-logic-step="2"]').click();await expect(logic.locator('.il-illustration')).toHaveAttribute('data-flow','discharging');
+ await logic.locator('.il-condition').click();await expect(logic.locator('.il-illustration')).toHaveAttribute('data-flow','constrained');
+ await expect(logic.locator('.il-alert')).toContainText('并网条件限制交付');
+ expect(await logic.locator('.il-flow').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).animationName==='none'))).toBe(true);
+ await logic.locator('.il-storyboard').scrollIntoViewIfNeeded();await page.screenshot({path:`${dir}/${info.project.name}-physical.png`});
+ await dialog.locator('.public-story-nav [data-chapter=mechanism]').click();
+ for(const route of ['capacity','macse','merchant']){await logic.locator(`[data-revenue-route=${route}]`).click();await logic.locator('[data-logic-step="2"]').click();await expect(logic).toHaveAttribute('data-route',route);await expect(logic.locator('.il-takeaway')).not.toBeEmpty();}
+ await logic.locator('[data-revenue-route=macse]').click();await logic.locator('[data-logic-step="2"]').click();await expect(logic).toContainText('不能再简单叠加全部市场化套利收益');
+ await expect(logic).not.toContainText('null');
+ await logic.locator('.il-storyboard').scrollIntoViewIfNeeded();await page.screenshot({path:`${dir}/${info.project.name}-revenue.png`});
+ await logic.locator('.il-condition').click();await expect(logic.locator('.il-alert')).toContainText('扣减与罚款');
+ await logic.locator('.source-popup-trigger').click();await expect(page.locator('.source-popup')).toBeVisible();await page.keyboard.press('Escape');await expect(dialog).toBeVisible();
+ await dialog.getByRole('button',{name:'切换到英文'}).click();await expect(dialog).toHaveAttribute('lang','en');await expect(logic).toContainText('Choose the revenue route');
+ await logic.getByRole('button',{name:'Return to the investment case →'}).click();await expect(dialog).toHaveCount(0);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);expect(errors).toEqual([]);
+});
+test('English country matrix and playback controls keep the selected reading usable',async({page})=>{
+ await page.goto('/returns?matrix=overview');await expect(page.locator('.market-atlas')).toBeVisible();
+ await page.locator('.ix-language').click();
+ const atlas=page.locator('.market-atlas');await expect(atlas).toContainText('12 COUNTRIES / 17 MARKETS');
+ await atlas.locator('[data-atlas-country=ca] .atlas-country-select').click();await expect(atlas.locator('.atlas-insight')).toContainText('Canada');
+ await atlas.locator('[data-atlas-country=ca] .source-popup-trigger').click();await expect(page.locator('.source-popup')).toContainText('Statistics Canada');await page.keyboard.press('Escape');
+ await page.goto(`/markets/italy?view=story&chapter=system&shot=public-en-${PUBLIC_VERSION.replace('.','-')}-system`);
+ const logic=page.locator('.italy-logic');await logic.locator('.il-play').click();
+ await expect(logic).toHaveAttribute('data-step','1',{timeout:6000});await logic.locator('.il-play').click();await expect(logic).toHaveClass(/is-paused/);
+ await expect(logic.locator('.il-play')).toHaveText('Replay the sequence');
+ await expect.poll(()=>logic.locator('.il-flow').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).animationPlayState==='paused'))).toBe(true);
+ await page.waitForTimeout(3000);await expect(logic).toHaveAttribute('data-step','1');
+ const dialog=page.locator('.public-story-dialog');expect(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+});
+test('small phones can switch matrices without widening the page',async({page})=>{
+ await page.setViewportSize({width:320,height:800});await page.goto('/returns');
+ await expect(page.locator('.ix-matrix-view-switch')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+ await page.locator('[data-matrix-view=overview]').click();await expect(page.locator('.market-atlas')).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+ await page.locator('[data-matrix-view=irr]').click();await expect(page.locator('.ix-matrix-svg')).toBeVisible();
+});

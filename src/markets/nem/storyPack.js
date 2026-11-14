@@ -22,7 +22,7 @@ function compareLink(dialog) {
 }
 
 export function open(ctx) {
-  if (isStale(story, ctx.row) || !storyMatches(story, ctx.row, app.lens || 'infraFund')) return null;
+  if (isStale(story, ctx.row) || !storyMatches(story, ctx.row, ctx.lens || app.lens || 'infraFund')) return null;
   const values = storyValues(ctx.row, ctx.ui);
   const dialog = openStory({ ...ctx, story: storyWithAvailableValues(story, values), values, scenes });
   if (!dialog) return null;
@@ -33,6 +33,7 @@ export function open(ctx) {
     compareLink(dialog);
   };
   decorate();
+  if(ctx.embed)return dialog;
   dialog.addEventListener('click', decorate);
   /* A language switch rebuilds the dialog's contents in place. */
   const rebuilt = new MutationObserver(decorate);
