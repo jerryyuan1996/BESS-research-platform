@@ -17,7 +17,6 @@ import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor, publicReadingFor } from './story/registry.js';
-import { PUBLIC_VERSION } from './story/public/catalog.js';
 import { researchPlaced } from './researchPlaced.js';
 import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
@@ -119,7 +118,8 @@ function renderMarket(container, row, route) {
     if(!publicEntry || storyOpen())return;
     if(trigger?.dataset.loadFailed){
       const params=new URLSearchParams(window.location.search);
-      const edition=trigger.closest('[data-version]')?.dataset.version||PUBLIC_VERSION;
+      const edition=trigger.closest('[data-version]')?.dataset.version;
+      if(!edition){window.location.reload();return;}
       params.set('view','story');params.set('chapter','history');params.set('shot',`public-${app.lang}-${edition.replace('.','-')}-history`);
       window.history.replaceState({},'',`${window.location.pathname}?${params}${window.location.hash}`);window.location.reload();return;
     }
