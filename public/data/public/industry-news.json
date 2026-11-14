@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-13T14:42:13.993Z",
+  "fetchedAt": "2026-11-14T13:38:59.656Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-13T13:11:19.000Z",
+    "to": "2026-11-14T10:55:00.000Z",
     "resolution": "event",
-    "points": 45
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -185,16 +185,6 @@
       "summary": "The energy storage industry is abuzz with discussion of passing BAAJA following Democrats’ taking of the House and Senate in the 2026 US midterm elections."
     },
     {
-      "t": "2026-11-10T17:03:44.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/ge-vernova-to-spend-345m-expanding-transformer-manufacturing-capacity-in/874272/",
-      "source": "Utility Dive",
-      "title": "GE Vernova to spend $34.5M expanding Louisiana transformer manufacturing capacity",
-      "url": "https://www.utilitydive.com/news/ge-vernova-to-spend-345m-expanding-transformer-manufacturing-capacity-in/874272/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "&ldquo;Electricity demand is growing, and transformers are part of the critical grid equipment essential to delivering the power our customers and modern economies depend on,&rdquo; said the head of the company&rsquo;s&nbsp;electrification segment."
-    },
-    {
       "t": "2026-11-11T08:53:04.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/800mwh-bess-enters-nsw-assessment-as-recurrents-600mwh-sundown-project-clears-australias-epbc-act/",
       "source": "Energy-Storage.news",
@@ -345,6 +335,16 @@
       "summary": "As data centre demand surges, utilities and developers are turning to distributed energy resources (DERs) to ease grid strain."
     },
     {
+      "t": "2026-11-12T15:48:08.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/around-400-onshore-wind-projects-await-dod-action-official-says-in-court/874521/",
+      "source": "Utility Dive",
+      "title": "Around 400 onshore wind projects await DOD action, official tells court",
+      "url": "https://www.utilitydive.com/news/around-400-onshore-wind-projects-await-dod-action-official-says-in-court/874521/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Assistant Secretary of Defense&nbsp;Dale Marks told a federal court that the Pentagon doesn&rsquo;t have enough staff to review permits. A coalition suing DOD says the process ground &ldquo;to a halt&rdquo; after Marks was confirmed."
+    },
+    {
       "t": "2026-11-12T16:05:13.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/coned-says-resource-adequacy-environmental-compliance-drive-planning/874511/",
       "source": "Utility Dive",
@@ -362,37 +362,7 @@
       "url": "https://www.utilitydive.com/news/as-coal-burn-declines-rising-power-demand-will-be-primarily-met-by-renewab/874315/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The electric power sector could install more than 26 GW of battery storage next year, helping support a renewable resource base expected to supply almost a quarter of 2027 consumption, EIA said."
-    },
-    {
-      "t": "2026-11-13T08:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/osaka-gas-buys-japanese-residential-solar-and-battery-installer/",
-      "source": "pv magazine",
-      "title": "Osaka Gas buys Japanese residential solar and battery installer",
-      "url": "https://www.pv-magazine.com/2026/11/13/osaka-gas-buys-japanese-residential-solar-and-battery-installer/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Osaka Gas has agreed to buy a regional installer in what it called the first step in using acquisitions to grow its home energy business. The post Osaka Gas buys Japanese residential solar and battery installer appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-13T08:50:06.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/turkiye-china-sign-15-billion-renewables-investment-plan/",
-      "source": "pv magazine",
-      "title": "Türkiye, China sign $15 billion renewables investment plan",
-      "url": "https://www.pv-magazine.com/2026/11/13/turkiye-china-sign-15-billion-renewables-investment-plan/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The deal, signed as COP31 continues, plans to cover 7 GW of solar and wind power plants, energy storage systems and 4 GW of electricity transmission infrastructure. The post Türkiye, China sign $15 billion renewables investment plan appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-13T09:04:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/chinas-highways-could-generate-182-twh-of-solar-annually/",
-      "source": "pv magazine",
-      "title": "China’s highways could generate 182 TWh of solar annually",
-      "url": "https://www.pv-magazine.com/2026/11/13/chinas-highways-could-generate-182-twh-of-solar-annually/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers at China’s Tongji University have developed a framework to assess highway PV potential based on solar irradiance, terrain and road networks. They estimate that China’s highways could generate enough solar power to cover 1.85% of national electricity consumption. The post China’s highways could generate 1…"
+      "summary": "The electric power sector could install more than 26 GW of battery storage next year, helping support a renewable resource base that is expected to supply almost a quarter of 2027 consumption, EIA said."
     },
     {
       "t": "2026-11-13T09:10:33.000Z",
@@ -405,16 +375,6 @@
       "summary": "West Arthur Energy, a project company owned by Western Australian developer Lacour Energy, has referred a wind generation site with a 4,000MWh battery energy storage system (BESS) to Australia's EPBC Act."
     },
     {
-      "t": "2026-11-13T09:59:23.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/norway-enters-carbon-credit-agreement-with-indonesia/",
-      "source": "pv magazine",
-      "title": "Norway enters carbon credit agreement with Indonesia",
-      "url": "https://www.pv-magazine.com/2026/11/13/norway-enters-carbon-credit-agreement-with-indonesia/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "The Norwegian government says the deal, covering 12 million tonnes of emission reductions, will help to accelerate the development of renewable energy sources in Indonesia. The post Norway enters carbon credit agreement with Indonesia appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-13T10:01:42.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-catl-sodium-ion-specs-bess-availability-and-the-price-of-speed-to-power/",
       "source": "Energy-Storage.news",
@@ -423,36 +383,6 @@
       "category": "technology",
       "categoryLabel": "Technology",
       "summary": "Another edition of our BESS Industry Buzz, this week looking at new details on CATL's sodium-ion technology, BESS availability, BAAJA trade-offs and the price of speed to power."
-    },
-    {
-      "t": "2026-11-13T10:37:49.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/sodium-ion-batteries-close-gap-with-lithium-ion-as-utility-scale-storage-opportunities-grow/",
-      "source": "pv magazine",
-      "title": "Sodium-ion batteries close gap with lithium-ion as utility-scale storage opportunities grow",
-      "url": "https://www.pv-magazine.com/2026/11/13/sodium-ion-batteries-close-gap-with-lithium-ion-as-utility-scale-storage-opportunities-grow/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Sodium-ion batteries are approaching lithium-ion performance in key areas, with commercial cells reaching energy densities of 175 Wh/kg and offering strong low-temperature performance. Silvia Bodoardo, professor at the Polytechnic University of Turin, told pv magazine that utility-scale energy storage represents the…"
-    },
-    {
-      "t": "2026-11-13T11:11:08.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/dark-clouds-gather-over-germanys-solar-sector/",
-      "source": "pv magazine",
-      "title": "Dark clouds gather over Germany’s solar sector",
-      "url": "https://www.pv-magazine.com/2026/11/13/dark-clouds-gather-over-germanys-solar-sector/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Solar module prices are stagnating, while battery energy storage system prices are expected to rise for the first time. Germany’s solar market could face significant challenges if policymakers fail to push through reforms to Germany's Renewable Energy Sources Act (EEG) in time, according to Martin Schachinger of pvX…"
-    },
-    {
-      "t": "2026-11-13T11:30:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/malaysia-extends-residential-solar-rebates-for-approved-applicants/",
-      "source": "pv magazine",
-      "title": "Malaysia extends residential solar rebates for approved applicants",
-      "url": "https://www.pv-magazine.com/2026/11/13/malaysia-extends-residential-solar-rebates-for-approved-applicants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Malaysia's residential solar rebate scheme has MYS 90 million ($22.1 million) remaining. Approved applicants will now be given until March 2027 to complete their PV installations and claim rebates. The post Malaysia extends residential solar rebates for approved applicants appeared first on pv magazine Global ."
     },
     {
       "t": "2026-11-13T12:24:56.000Z",
@@ -465,25 +395,85 @@
       "summary": "Floors are increasingly the offtake structure of choice in the UK market, and the contracting for them is beginning to standardise, industry experts said."
     },
     {
-      "t": "2026-11-13T13:11:19.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/chinese-pv-industry-brief-energy-china-shortlists-23-module-suppliers-for-15-gw-tender/",
+      "t": "2026-11-13T15:41:22.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/shinsung-eg-unveils-650-w-bifacial-topcon-solar-modules-with-23-25-efficiency/",
       "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: Energy China shortlists 23 module suppliers for 15 GW tender",
-      "url": "https://www.pv-magazine.com/2026/11/13/chinese-pv-industry-brief-energy-china-shortlists-23-module-suppliers-for-15-gw-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "In other news, JinkoSolar has secured certification under new Chinese PV standards and Trina Solar is expanding into AI data center energy solutions, Drinda has canceled its Oman factory project, while GCL SI has secured a module supply contract, and polysilicon oversupply continues to weigh on prices. The post Chin…"
+      "title": "Shinsung E&G unveils 650 W bifacial TOPCon solar modules with 23.25% efficiency",
+      "url": "https://www.pv-magazine.com/2026/11/13/shinsung-eg-unveils-650-w-bifacial-topcon-solar-modules-with-23-25-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean solar manufacturer Shinsung E&G has introduced new n-type TOPCon solar modules for ground-mounted, floating PV and agrivoltaic applications. The bifacial panels feature power outputs ranging from 640 W to 650 W and maximum conversion efficiencies of 23.25%. The post Shinsung E&G unveils 650 W bifacial T…"
+    },
+    {
+      "t": "2026-11-14T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/yanhe-technology-launches-three-perovskite-solar-module-technologies-into-orbit/",
+      "source": "pv magazine",
+      "title": "Yanhe Technology launches three perovskite solar module technologies into orbit",
+      "url": "https://www.pv-magazine.com/2026/11/14/yanhe-technology-launches-three-perovskite-solar-module-technologies-into-orbit/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Beijing-based Yanhe Technology has launched three perovskite-based photovoltaic modules into low Earth orbit to assess their performance under space conditions. The mission will test perovskite-silicon tandem, perovskite-CIGS tandem, and flexible single-junction perovskite technologies. The post Yanhe Technology lau…"
+    },
+    {
+      "t": "2026-11-14T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/transparent-bamboo-boosts-energy-performance-of-solar-pv-skylights/",
+      "source": "pv magazine",
+      "title": "Transparent bamboo boosts energy performance of solar PV skylights",
+      "url": "https://www.pv-magazine.com/2026/11/14/transparent-bamboo-boosts-energy-performance-of-solar-pv-skylights/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers tested 21 glazing configurations using transparent wood and PV modules with different transparency levels. Bamboo-based systems achieved the lowest heat gain and cooling operating costs. The post Transparent bamboo boosts energy performance of solar PV skylights appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-14T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/masdar-completes-950-million-solar-and-battery-storage-project-in-california/",
+      "source": "pv magazine",
+      "title": "Masdar completes $950 million solar and battery storage project in California",
+      "url": "https://www.pv-magazine.com/2026/11/14/masdar-completes-950-million-solar-and-battery-storage-project-in-california/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Abu Dhabi clean energy developer and its joint venture partner Terra-Gen have brought the Lockhart complex online, adding 365 MW of solar generation and 173.7 MW of energy storage to the California grid. The post Masdar completes $950 million solar and battery storage project in California appeared first on pv m…"
+    },
+    {
+      "t": "2026-11-14T10:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/the-times-i-regret-are-the-ones-when-i-didnt-value-myself-enough-to-speak-up/",
+      "source": "pv magazine",
+      "title": "‘The times I regret are the ones when I didn’t value myself enough to speak up’",
+      "url": "https://www.pv-magazine.com/2026/11/14/the-times-i-regret-are-the-ones-when-i-didnt-value-myself-enough-to-speak-up/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week Women in Solar+ Europe gives voice to Tracey Elliott, Director of UK-based Eden Sustainable Power. She says increasing female representation through role models, mentorship, and inclusive workplaces is essential, alongside empowering women to bring their unique perspectives into leadership. The post ‘The t…"
+    },
+    {
+      "t": "2026-11-14T10:50:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/great-lakes-irradiance-surges-as-wet-weather-weighs-on-southwest-solar-resource/",
+      "source": "pv magazine",
+      "title": "Great Lakes irradiance surges as wet weather weighs on Southwest solar resource",
+      "url": "https://www.pv-magazine.com/2026/11/14/great-lakes-irradiance-surges-as-wet-weather-weighs-on-southwest-solar-resource/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "In a new weekly update for pv magazine, Solcast , a DNV company, reports that North American solar irradiance was 0.8% above average in October 2026, with the Northeast and Great Lakes recording a 14% surplus and record highs in Buffalo and Cleveland. Meanwhile, heavy rainfall and persistent cloud cover pushed irrad…"
+    },
+    {
+      "t": "2026-11-14T10:55:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/first-attempt-to-address-screen-printing-induced-degradation-in-copper-plated-heterojunction-solar-cells/",
+      "source": "pv magazine",
+      "title": "First attempt to address screen printing-induced degradation in copper-plated heterojunction solar cells",
+      "url": "https://www.pv-magazine.com/2026/11/14/first-attempt-to-address-screen-printing-induced-degradation-in-copper-plated-heterojunction-solar-cells/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in China have investigated a previously overlooked degradation mechanism in copper-plated heterojunction solar cells caused by screen-printed photoresist. They found that progressive wear of the screen mesh can damage the cells' passivation layers and reduce efficiency. An optimized emulsion buffer layer…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 45,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 6,
-      "capital": 6,
-      "grid": 30,
+      "policy": 4,
+      "capital": 5,
+      "grid": 32,
       "technology": 3
     },
     "sourceStatus": [
@@ -509,7 +499,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -518,6 +508,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:8ceb965f3c4a1a8cdb714e7fbfebda44a8fa2ac0ab6a4d156d9d166e1f3fcffe",
-  "envelopeChecksum": "sha256:f8797c4e99f0af215b076ac70d00ee72bedf747e6e446fca55ff57f80ec581ca"
+  "contentChecksum": "sha256:91df746af0e3c8a2134e1bc277ca4ce01bb1e993657364620785e2567f604d90",
+  "envelopeChecksum": "sha256:08523afa701ff4bde2bd4e7446f92a6aeec70ccbbf4749e42f6d2740bfc89143"
 }

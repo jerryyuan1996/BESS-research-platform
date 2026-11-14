@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-13T14:42:25.232Z",
+  "fetchedAt": "2026-11-14T13:39:13.283Z",
   "coverage": {
-    "from": "2025-11-13T15:00:00.000Z",
-    "to": "2026-11-13T22:00:00.000Z",
+    "from": "2025-11-14T14:00:00.000Z",
+    "to": "2026-11-14T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8768
+    "points": 8769
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-13",
-      "n": 9,
-      "mean": 7.55,
-      "min": 7.1,
-      "max": 7.91,
-      "spread": 7.55,
-      "charge": null,
-      "discharge": 7.55
-    },
-    {
       "d": "2025-11-14",
-      "n": 24,
-      "mean": 7.06,
+      "n": 10,
+      "mean": 6.95,
       "min": 6.7,
-      "max": 7.49,
-      "spread": 7.06,
+      "max": 7.1,
+      "spread": 6.95,
       "charge": null,
-      "discharge": 7.06
+      "discharge": 6.95
     },
     {
       "d": "2025-11-15",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-13",
-      "n": 23,
-      "mean": 8.24,
-      "min": 7,
+      "n": 24,
+      "mean": 8.09,
+      "min": 4.75,
       "max": 11.91,
-      "spread": 8.24,
+      "spread": 8.09,
       "charge": null,
-      "discharge": 8.24
+      "discharge": 8.09
+    },
+    {
+      "d": "2026-11-14",
+      "n": 23,
+      "mean": 4.98,
+      "min": 4.6,
+      "max": 5.53,
+      "spread": 4.98,
+      "charge": null,
+      "discharge": 4.98
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:ba150a742ff0909dcd2fae932f702c57e9221351d3ac934f67873bcc0b602a7e",
-    "points": 8768
+    "contentChecksum": "sha256:2457da7f4574d0c50d89b27439cb33da85077156d09fc01908f74b2fa149c7cc",
+    "points": 8769
   },
-  "summaryChecksum": "sha256:93db8f4ccafe2b670fa6198498f70fc926f60a6ab2ff76d4ec30c7e491a59ccf"
+  "summaryChecksum": "sha256:9289bbf871fe3482354452a9e770fd48c9a98263ef1b3b98c121192cce234064"
 }

@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-13T14:42:13.993Z",
+  "fetchedAt": "2026-11-14T13:38:59.656Z",
   "coverage": {
-    "from": "2026-09-28T23:00:00.000Z",
-    "to": "2026-11-12T23:30:00.000Z",
+    "from": "2026-09-24T23:00:00.000Z",
+    "to": "2026-11-13T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 2162
+    "points": 2402
   },
   "units": {
     "price": "GBP/MWh"
@@ -45,6 +45,38 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-09-25",
+      "n": 48,
+      "expected": 48,
+      "mean": 150.9389,
+      "min": 4.49433834136341,
+      "max": 222.08
+    },
+    {
+      "d": "2026-09-26",
+      "n": 48,
+      "expected": 48,
+      "mean": 129.1796,
+      "min": -28.1,
+      "max": 200.4
+    },
+    {
+      "d": "2026-09-27",
+      "n": 48,
+      "expected": 48,
+      "mean": 96.6983,
+      "min": -14.26999999999999,
+      "max": 206.45
+    },
+    {
+      "d": "2026-09-28",
+      "n": 48,
+      "expected": 48,
+      "mean": 160.0709,
+      "min": 43.03,
+      "max": 350.22
+    },
     {
       "d": "2026-09-29",
       "n": 48,
@@ -401,16 +433,24 @@
       "d": "2026-11-12",
       "n": 48,
       "expected": 48,
-      "mean": 188.9078,
+      "mean": 188.9679,
       "min": 49.15999999999999,
       "max": 242.5
+    },
+    {
+      "d": "2026-11-13",
+      "n": 48,
+      "expected": 48,
+      "mean": 214.77,
+      "min": 150,
+      "max": 270.0111667119123
     }
   ],
   "sourceSnapshot": {
     "file": "gb-imbalance-buy.json",
-    "contentChecksum": "sha256:c84dfbdb9c42cfad9ad2cbac7e4fa81e6248906370655a3311b0c8585b00add8",
-    "points": 2162
+    "contentChecksum": "sha256:7421e8237401c37f860a63f5106757cc66b92b226bb1fe0cc269ef7ef19eea0b",
+    "points": 2402
   },
-  "contentChecksum": "sha256:98b8b49297d230f21b3935b5988297ad85ea46d3868db541f0b7642eeadd2c61",
-  "summaryChecksum": "sha256:344cab06997daf73d96bfde104975da424eb87ca1a23673d952807e9786ab54d"
+  "contentChecksum": "sha256:98e4d9214eb59ba0b92ddb39ccadfaaaad58d5e1d36471b79bf91c2175de704c",
+  "summaryChecksum": "sha256:c40ff9cc130d223f671b88e3f5646c6cf031f78ddafe6f51197c779f53225b2f"
 }
