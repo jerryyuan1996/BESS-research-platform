@@ -12,13 +12,12 @@ test('the matrix fills its panel above the compact market card and uses raw IRR'
   await page.locator('.ix-matrix-panel').screenshot({path:info.outputPath('matrix-irr.png')});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);
 });
-test('downside gives effective conditions and a sourced historical frequency just before sources',async({page})=>{
+test('downside gives compound adverse conditions without probability wording just before sources',async({page})=>{
   await page.goto('/markets/western-australia');
   await expect(page.locator('.ix-downside-explanation')).toHaveAttribute('aria-busy','false');
   await expect(page.locator('.ix-downside-conditions')).toContainText('15 to 60 months');
-  await expect(page.locator('.ix-history-pressure')).toHaveAttribute('data-history-status','ready');
-  await expect(page.locator('.ix-history-pressure')).toContainText('not realised battery revenue');
-  await expect(page.locator('.ix-history-pressure a')).toHaveAttribute('href','https://data.wa.aemo.com.au/');
+  await expect(page.locator('#downside')).toContainText('all factors at once');
+  await expect(page.locator('#downside')).not.toContainText(/probab|概率/i);
   expect(await page.locator('#downside').evaluate(e=>e.nextElementSibling.id)).toBe('sources');
 });
 test('the plan switch changes both timeline and monthly lifecycle cash and survives language changes',async({page},info)=>{
@@ -35,6 +34,7 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
   await expect(later).toHaveAttribute('data-plan','alternative');
   expect(await page.locator('.ix-plan-heading').innerText()).not.toBe(conventional);
   const slider=page.locator('.ix-execution-cash input[type="range"]');
+  await page.locator('.ix-construction-cash>summary').click();
   await slider.focus();await slider.press('End');
   const last=await slider.getAttribute('max');
   await expect(page.locator('.ix-execution-cash .ix-cash-readout')).toContainText('T+'+last);
@@ -50,6 +50,9 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
 test('research opens in a closeable modal and returns focus and scroll to the judgment',async({page},info)=>{
   await page.addInitScript(()=>localStorage.setItem('hub_lens','developer'));
   await page.goto('/markets/italy');
+  await expect(page.locator('.market-overview-context')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
+  await expect(page.locator('.public-core-storyline')).toHaveAttribute('aria-busy','false');
   const trigger=page.locator('.public-story-trigger');await trigger.scrollIntoViewIfNeeded();
   const y=await page.evaluate(()=>scrollY);
   await trigger.click();

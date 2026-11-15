@@ -74,7 +74,8 @@ export function sizeLeverage(input, buildBudget, terms, price = 0){
     if (balloon) balance = 0;
     payments.push(pay); balloons.push(balloon); interest.push(i);
   }
-  const covered = pre.map((y, t) => payments[t] > 0 ? cashOf(y) / payments[t] : null).filter(Number.isFinite);
+  const coverByYear = pre.map((y, t) => ({ year:t + 1, dscr:payments[t] > 0 ? cashOf(y) / payments[t] : null }));
+  const covered = coverByYear.map(y => y.dscr).filter(Number.isFinite);
   // Attribute the SAME loan to its revenue streams. Shared discount profile and
   // pro-rata gearing cap preserve the approved total, timing and levered IRR.
   const contribution = (kind, cash, dscr) => {
@@ -85,7 +86,7 @@ export function sizeLeverage(input, buildBudget, terms, price = 0){
   const contributions = [contribution('contracted', contractedService, dscrC),
     contribution('merchant', merchantService, LEVERAGE.dscr.merchant)].filter(c => c.loanPerMW > 0);
   return { loanPerMW:loan, gearing:loan / buildBudget, contractedDSCR:dscrC, merchantDSCR:LEVERAGE.dscr.merchant,
-    contributions, capacityPerMW:best.loan,
+    contributions, capacityPerMW:best.loan, coverByYear,
     legalYears:legal, notionalYears:best.notional, rate:rate(0), capShare, capBinds:k < 1,
     minCover:covered.length ? Math.min(...covered) : null, balloonShare:balloons[legal - 1] / loan,
     payments, balloons, interest, fee:loan * FEES.financing, reserve:(payments[0] ?? 0) * FEES.reserveMonths / 12 };

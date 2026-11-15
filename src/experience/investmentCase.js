@@ -3,6 +3,7 @@ import { L } from '../app/i18n.js';
 import { metric } from './chrome.js';
 import { money, pct, returnPct, share, multiple } from './model.js';
 import {operatingPrice} from './projectFacts.js';
+import { debtCoverChart, incomeEvidenceChart } from './riskCharts.js';
 
 const finite = Number.isFinite;
 const number = value => Number(value.toFixed(1));
@@ -96,7 +97,7 @@ export function bankableInvestmentCase(row) {
   const income = [
     [['Revenue route','收入模式'], revenueRoute(row)],
     [['Model contract term','模型合同期限'], i.securedYears>0 ? [`${i.securedYears} years`,`${i.securedYears} 年`] : null],
-    [['Contracted income / MW · year one, after model indexation','首年合同收入／MW · 含模型指数化'], localMoney(b?.fixed)],
+    [['Modelled fixed income / MW · year one, after model indexation','首年模型固定收入／MW · 含模型指数化'], localMoney(b?.fixed)],
     [['Trading & ancillary / MW · year one','首年交易及辅助服务／MW'], localMoney(b?.trading)],
     [['Uncontracted renewals / MW · year one','首年未锁定续约收入／MW'],b?.renewal>0?localMoney(b.renewal):null],
     [['Contract indexation assumption','合同指数化假设'], i.secured>0?contractIndexation:null],
@@ -130,12 +131,13 @@ export function bankableInvestmentCase(row) {
       finite(l?.gearing) ? metric(['Debt ratio','债务比例'], pct(l.gearing), ['Of build & grid budget','占建设及并网预算']) : null,
       finite(l?.minCover) ? metric(['Minimum annual DSCR','最低年度 DSCR'], multiple(l.minCover), ['Cash available ÷ debt service; before balloon','可用现金流 ÷ 还本付息；不含到期尾款']) : null),
     debtBreakdown(row),
+    debtCoverChart(i), incomeEvidenceChart(i),
     h('div', { class:'ic-bankable-grid' },
       h('section', { class:'ic-assumption-card' }, h('h3', {}, L(['How the project earns','项目靠什么赚钱'])),
         finite(i.secured) ? h('div', { class:'ic-income-mix' },
-          h('div', { class:'ic-income-track', role:'img', 'aria-label':L([`Contracted ${share(i.secured)}; market ${share(1-i.secured)}`,`合同 ${share(i.secured)}；市场 ${share(1-i.secured)}`]) },
+          h('div', { class:'ic-income-track', role:'img', 'aria-label':L([`Modelled fixed ${share(i.secured)}; market ${share(1-i.secured)}`,`模型固定 ${share(i.secured)}；市场 ${share(1-i.secured)}`]) },
             h('span', { style:`width:${Math.max(0,Math.min(100,i.secured*100))}%` })),
-          h('div', { class:'ic-income-labels' }, h('span', {}, L(['Contracted','合同']), ' ', share(i.secured)), h('span', {}, L(['Market','市场']), ' ', share(1-i.secured)))) : null,
+          h('div', { class:'ic-income-labels' }, h('span', {}, L(['Modelled fixed','模型固定']), ' ', share(i.secured)), h('span', {}, L(['Market','市场']), ' ', share(1-i.secured)))) : null,
         facts(income)),
       debt.length ? h('section', { class:'ic-assumption-card' }, h('h3', {}, L(['How the debt is sized','贷款如何测算'])), facts(debt)) : null),
     h('p', { class:'ic-case-footnote' }, L(['Reference underwriting assumptions · actual contract terms determine financing. The thresholds size the loan; minimum annual DSCR is the resulting cash-flow coverage.',

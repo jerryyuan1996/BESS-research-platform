@@ -523,8 +523,9 @@ test('Finland fits four widths in English and Chinese with keyboard controls',as
 
 test('Finland evidence and investment exits reach the existing market sections',async({page})=>{
   const exits=[['fi-08','Open duration evidence','bankable'],['fi-11','Contract evidence','bankable'],['fi-12','Bankable case','bankable'],['fi-12','Revenue','revenue'],['fi-12','Execution','execution'],['fi-12','Downside','downside']];
+  await page.goto(FI);
   for(const [shot,label,anchor]of exits){
-    const {dialog}=await openFinland(page);
+    await openLegacyStory(page);const dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
     await dialog.locator('[data-shot='+shot+'] .ix-story-exits').getByRole('link',{name:label,exact:true}).click();
     await expect(dialog).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
   }
