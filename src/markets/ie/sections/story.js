@@ -39,7 +39,7 @@ SEC_B.story = function (){
     researchHistory(api).cards[0],
 
     { t:'card', title:['Demand growth — the reason the capacity price keeps clearing high','需求增长 — 容量价格持续高位出清的原因'], badges:['official','forecast'], blocks:[
-      { t:'bar', cfg:{ xs: M.demandYears, mode:'stack', bw: 44, yfmt: v => fmt1(v) + ' TWh', h: 260,
+      { t:'bar', cfg:{ dataset: M, xs: M.demandYears, mode:'stack', bw: 44, yfmt: v => fmt1(v) + ' TWh', h: 260,
         series:[
           { name:['Data centres','数据中心'], color:'var(--s6)', vals: M.demandDC },
           { name:['All other demand','其他需求'], color:'var(--s1)', vals: M.demandOther },

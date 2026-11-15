@@ -171,6 +171,7 @@ function blkLabOutputs(parent){
       h('div', { class: 'cmp-v' }, fmtIRR(dn.unlevIRR)),
       h('div', { class: 'cmp-s' }, L(['unlevered · min DSCR ', '无杠杆 · 最低DSCR ']) + fmtX(dn.minDSCR)))));
   waterfall(parent, {
+    dataset: M,
     yfmt: v => fmtCk(v), h: 260,
     steps: [
       { l: ['Capacity revenue', '容量收入'], v: r.capRev / inp.mw, t: 'start' },
@@ -207,6 +208,7 @@ function blkLabDuration(parent){
       h('th', { class: 'num' }, 'NPV'), h('th', { class: 'num' }, L(['NPV per added hour', '每新增小时NPV'])))),
     h('tbody', {}, tbl))));
   lineChart(parent, {
+    dataset: M,
     xs: M.durConfigs.map(x => x + 'h'), yfmt: v => fmtCM(v), h: 220,
     series: [{ name: ['NPV by duration', '按时长的NPV'], color: 'var(--s1)', vals: rows.map(x => x.r.npv) }],
   });

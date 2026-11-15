@@ -33,14 +33,14 @@ export function create(api){
 
       { t:'g2', cards:[
         { title:['Fleet growth and revenue collapse, side by side','装机增长与收入崩塌的并列对照'], badges:['official','tp'], blocks:[
-          { t:'bar', cfg:{ xs: M.idxLabels, bw: 40, rotX: true, yfmt: v => kMW(v), labels: true, h: 250,
+          { t:'bar', cfg:{ dataset: M, xs: M.idxLabels, bw: 40, rotX: true, yfmt: v => kMW(v), labels: true, h: 250,
             series:[{ name:['BESS revenue index (A$k/MW/yr)','储能收入指数（A$千/MW/年）'], color:'var(--s1)', vals: M.idxSeriesK }] } },
           { t:'why', text:['The index rose ' + fmtPct((O.idx2024K / O.idx2023K - 1) * 100, 0) + '% into 2024 and has fallen every period since, to ' + kMW(O.idxOctMarK) + '/MW/yr over October 2025 to March 2026 — the weakest such window since the index launched in July 2022. The four bars are a complete argument on their own: nothing about the technology, the sites or the operators changed. The fleet doubled.',
             '该指数在2024年上升' + fmtPct((O.idx2024K / O.idx2023K - 1) * 100, 0) + '%，此后每个区间均下降，至2025年10月—2026年3月的' + kMW(O.idxOctMarK) + '/MW/年 — 为该指数2022年7月推出以来最弱的同期区间。这四根柱子本身即构成完整论证：技术、场址与运营方均未改变，改变的是装机翻倍。'],
             sig:['Nothing changed except the number of competitors','除竞争者数量外一切未变'] },
         ] },
         { title:['Monthly path through 2026','2026年月度轨迹'], badges:['tp','illus'], blocks:[
-          { t:'line', cfg:{ xs: M.monLabels, yfmt: v => kMW(v), h: 250, ymin: 0,
+          { t:'line', cfg:{ dataset: M, xs: M.monLabels, yfmt: v => kMW(v), h: 250, ymin: 0,
             series:[{ name:['BESS revenue index (A$k/MW/yr)','储能收入指数（A$千/MW/年）'], color:'var(--s6)', vals: M.monSeriesK }] } },
           { t:'note', text:['January, February, May and June are published points. March was reported as a record low at the time and April is an interpolation between its sourced neighbours; both are illustrative and should not be quoted.',
             '1月、2月、5月与6月为已公布数据点。3月在当时被报告为历史新低，4月为其两侧已知数据点之间的插值；两者均属示例值，不应引用。'] },

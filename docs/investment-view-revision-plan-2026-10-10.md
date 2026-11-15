@@ -1,3 +1,4 @@
+> Status: Implementation-status plan superseded by [investment-view-closeout-2026-10-12.md](investment-view-closeout-2026-10-12.md) (2026-10-12); the historical text below is retained.
 # Investment view revision plan — 2026-10-10
 
 **Status: signed off by Jerry on 2026-10-10. Phases 0 to 5 are built and merged as of 2026-10-12.**

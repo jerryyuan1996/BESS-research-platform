@@ -1,3 +1,4 @@
+> Status: Matrix and cash-flow interaction details superseded by [修改建议.md](修改建议.md) (2026-10-30); the historical text below is retained.
 # Global BESS 三页设计与交互说明
 
 完成日期：2026-10-26。设计对象：投资简报、全球市场比较、市场详情。提供中英双语，沿用平台16个市场及4类投资者视角。

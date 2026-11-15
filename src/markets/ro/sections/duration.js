@@ -23,7 +23,7 @@ SEC_B.duration = function (){
         [{b:['Am I eligible for anything?','是否具备政策资格？']}, ['State-aid scheme MWh minimums','国家援助计划的MWh下限'],
          ['Yes — the grant is the only structural reason to add MWh, which makes duration a policy decision rather than a trading one','是 — 补贴是增配MWh的唯一结构性理由，这使时长成为政策决策而非交易决策']],
       ] },
-      { t:'wf', cfg:{ yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
       { t:'why', text:['The fourth hour nets about ' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/yr — positive, but only because grant eligibility contributes ' + fmtC(6) + 'k of it. Strip the grant and the fourth hour is roughly break-even, which is the honest reading: in an energy-only market the market itself does not pay for duration. Build 2h and buy the option to add the third and fourth hours later, when either the price shape or the scheme rules make them worth committing.',
         '第4小时净值约' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/年 — 为正，但其中' + fmtC(6) + 'k来自补贴资格。剔除补贴后第4小时大致盈亏平衡，这才是诚实的解读：在单一电能量市场中，市场本身并不为时长付费。应建设2小时并买入日后增配第三、第四小时的选择权，待价格形态或计划规则足以支撑时再行投入。'],
         sig:['Without the grant, the fourth hour is flat','剔除补贴后第4小时大致持平'] },

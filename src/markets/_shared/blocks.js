@@ -320,6 +320,7 @@ function blkPipeChart(parent, b){
   if (Array.isArray(b.series) && b.series.length){
     const years = [...new Set(projectsIn().map(p => p.cod))].sort();
     barChart(parent, {
+      dataset: M,
       xs: years.map(String), mode: 'group', yfmt: v => fmtN(v) + ' ' + b.unit, h: 250,
       series: b.series.map(s => ({
         name: s.name, color: s.color,
@@ -331,6 +332,7 @@ function blkPipeChart(parent, b){
   }
   const d = pipelineByYear(b.unit, b.region);
   barChart(parent, {
+      dataset: M,
     xs: d.years.map(String), mode: 'group', yfmt: v => fmtN(v) + ' ' + b.unit, h: 250,
     series: [
       { name: ['Announced (raw)', '公告口径（未加权）'], color: 'var(--s3)', vals: d.raw },

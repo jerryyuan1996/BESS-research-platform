@@ -23,7 +23,7 @@ SEC_B.energy = function (){
         { l:['Executable net margin','可执行净价差'], v:fmtC(60) + '<small>/MWh</small>', d:[fmtPct((1 - 60 / 88) * 100, 0) + ' of the published spread is not capturable','公布价差中' + fmtPct((1 - 60 / 88) * 100, 0) + '无法捕获'], cls:'down', b:['calc'] },
         { l:['Negative-price hours (2025, seed)','负电价小时数（2025，种子）'], v:'~' + fmtN(O.negHours) + '<small> h</small>', d:['the charging opportunity','充电机会'], b:['illus'] },
       ] },
-      { t:'line', cfg:{ xs: M.pxLabels, yfmt: v => fmtC(v), h: 240, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.pxLabels, yfmt: v => fmtC(v), h: 240, ymin: 0,
         series:[
           { name:['Day-ahead average','日前均价'], color:'var(--s1)', vals: M.damSeries },
           { name:['Average daily spread','日均价差'], color:'var(--s3)', vals: M.spreadSeries },
@@ -35,14 +35,14 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Published → executable margin bridge (€/MWh discharged)','公布至可执行价差桥（€/MWh放电）'], badges:['calc','illus'], live:true, blocks:[
-      { t:'wf', cfg:{ yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
       { t:'why', text:['About ' + fmtPct((1 - 60 / 88) * 100, 0) + '% of the published spread is lost before it reaches the P&L. The deductions are ordinary — liquidity, efficiency, availability, charges and fees — rather than structural, because Poland is a self-dispatch market with no binding system-penetration limit standing between the price signal and the trade. The 15-minute settlement introduced in the balancing reform slightly improves the intraday re-trade uplift, which is the one line that moves in the sponsor’s favour.',
         '公布价差中约' + fmtPct((1 - 60 / 88) * 100, 0) + '%在进入损益表前即已损失。扣减项属常规性 — 流动性、效率、可用率、网络费用与其他费用 — 而非结构性，因为波兰是自调度市场，价格信号与实际交易之间不存在硬性的系统渗透率上限。平衡市场改革引入的15分钟结算略微提升了日内再交易增益，这是唯一对发起人有利的一项。'],
         sig:['Ordinary haircuts, one favourable line','折减属常规，仅一项有利'] },
     ] },
 
     { t:'card', title:['Captured spread by COD year — the contracted cohort arrives','按投运年度的捕获价差 — 已签约批次到场'], badges:['forecast','illus'], live:true, blocks:[
-      { t:'band', cfg:{ xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
+      { t:'band', cfg:{ dataset: M, xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
         low: Object.values(M.codCases).map(c => c.low),
         base: Object.values(M.codCases).map(c => c.central),
         high: Object.values(M.codCases).map(c => c.high) } },

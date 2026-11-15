@@ -69,7 +69,7 @@ SEC_B.duration = function (){
     ] },
 
     { t:'card', title:['Event-duration evidence — how long does the system actually need?','事件时长证据 — 系统实际需要多久？'], badges:['calc','illus'], live:true, blocks:[
-      { t:'bar', cfg:{ xs:['P50','P90','P99'], mode:'group', bw: 30, yfmt: v => fmt1(v) + ' h', labels: true, h: 240,
+      { t:'bar', cfg:{ dataset: M, xs:['P50','P90','P99'], mode:'group', bw: 30, yfmt: v => fmt1(v) + ' h', labels: true, h: 240,
         series:[
           { name:['High-price event length','高价事件时长'], color:'var(--s1)', vals:[M.events.highPrice.p50, M.events.highPrice.p90, M.events.highPrice.p99] },
           { name:['Wind-drought length','低风事件时长'], color:'var(--s6)', vals:[M.events.windDrought.p50, M.events.windDrought.p90, M.events.windDrought.p99] },
@@ -82,7 +82,7 @@ SEC_B.duration = function (){
     ] },
 
     { t:'card', title:['Fleet versus pipeline duration — where the market is heading','存量与管线时长对比 — 市场走向'], badges:['calc','illus'], live:true, blocks:[
-      { t:'line', cfg:{ xs: M.buildYears, yfmt: v => fmt1(v) + ' h', ymin: 0, h: 220,
+      { t:'line', cfg:{ dataset: M, xs: M.buildYears, yfmt: v => fmt1(v) + ' h', ymin: 0, h: 220,
         series:[{ name:['Fleet weighted-average duration','存量加权平均时长'], color:'var(--s1)', vals: M.avgDurByYear }],
         refs:[{ y: 4, label:['4h — de-rating inflection','4小时 — 折减系数拐点'], color:'var(--s3)' }] } },
       { t:'why', text:['The fleet drifts from ' + fmt1(M.avgDurByYear[0]) + ' h to ' + fmt1(M.avgDurByYear[M.avgDurByYear.length - 1]) + ' h over eight years — it never reaches the 4h de-rating inflection on this path. That is the structural read: GB is building a long tail of short assets that will compete hard for the same narrowing spreads and receive a shrinking share of capacity revenue. A 4h build is not following the market; it is deliberately leaving it.',

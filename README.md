@@ -1,517 +1,83 @@
 # BESS Research Platform
 
-Cross-market battery-storage investment research. A global cockpit that normalizes fourteen markets
-into one currency and one model, plus a detailed dashboard per market.
+A personal, non-commercial battery-storage investment research site. The public site is a static Vite application using native JavaScript ES modules, SVG/D3 geography, English and Simplified Chinese.
 
-Refactored from a single 1.65 MB HTML prototype into a modular Vite site. The prototype itself was
-removed from the repository and its history on 10 August 2026 — it carried confidential WA project
-material inline — so verification now rests on the extracted fixture rather than the original. See
-[`legacy/README.md`](legacy/README.md).
+Implementation baseline: `06ec0cc530473ff98347ed8853644d1fc5381fb4`, checked 15 November 2026. There are **18 allocation markets and 16 research dashboard owners**; Japan's three regional exposures share one dashboard.
 
----
+## Routes and experience
 
-## Running locally
+One experience shell supplies navigation, language controls, header, footer and resource-page framing.
 
-```bash
-npm install
-npm run dev
-```
+| Address | Current behavior |
+| --- | --- |
+| `/` | Investment brief and priorities for the selected investor |
+| `/returns` | Global opportunity matrix and comparison table |
+| `/markets/:slug` | Investment case, narrative, revenue, execution, downside and research |
+| `/markets/:slug/:tab[/:section]` | Research routes; grid/entry and revenue-related links open the corresponding research dialog |
+| `/investment-lab` | Current investment calculator and a disclosure containing the older operating-model lab |
+| `/policy`, `/policy/compare`, `/policy/dossiers/:id`, `/policy/stories/:id` | Policy and industry intelligence and its evidence |
+| `/news` | Compatibility address rewritten to the intelligence radar's news filter |
+| `/data` | Dataset status and provenance |
+| `/changes`, `/scout`, `/desk` | Published decision history, scouting and analyst review resources |
+| `/projects/:slug[/:tab]` | Local dossier route; production contains no dossiers and shows not found |
 
-## Production build
+The parser is [src/app/router.js](src/app/router.js); [src/app/app.js](src/app/app.js) owns rendering and compatibility routing. [src/experience/](src/experience/) supplies the public investment experience. Research uses the market modules and shared block renderer.
 
-```bash
+## Two models
+
+- **Comparison/design engine:** [src/comparison/engine.js](src/comparison/engine.js) builds a 15-operating-year, per-MW USD operating case. It feeds route/duration screens, research calculations, the older lab and inputs adapted into acquisition underwriting.
+- **Headline investment model:** [src/opportunities/investment.js](src/opportunities/investment.js) coordinates [src/acquisition/](src/acquisition/): RTB closing, construction timing, 20 operating years, nominal cash flows, project tax, purchase-price valuation and a separate levered equity case. Its summaries feed home priorities, the global matrix, market investment figures and conventional/special opportunity comparisons. The headline is the all-equity hold return; sale, lower-of-hold-and-sale and levered returns are separate fields.
+
+The return-grade basis is under a pending sign-off plan.
+
+See [comparison methodology](docs/comparison-methodology.md). Presentation and documentation do not authorize changes to financial assumptions.
+
+## Data and decisions
+
+[src/governance/datasets.js](src/governance/datasets.js) declares datasets and publication rights. [etl/run.mjs](etl/run.mjs) fetches and validates public observations, then writes permitted snapshots and summaries under `public/data/public/` with provenance and checksums. Browser loaders consume these snapshots.
+
+The view store holds public analyst judgements and append-only history. `etl/lib/viewWriter.mjs` is the controlled writer; live changes are analyst-only. Rules report crossings. Agent/scout analysis requires explicit dispatch and remains report-only. Build plugins read public records and emit page-specific projections.
+
+Public refresh and deterministic policy discovery run daily at **06:17 UTC**; existing weekly briefing and monthly digest schedules remain. Policy model calls/publication are outside the ordinary refresh. See [governance](docs/governance.md), [live data](docs/live-data.md) and [data policy](docs/data-policy.md).
+
+## Run and check
+
+Use Node **22.12 or newer**, as specified in `package.json`.
+
+```sh
+npm ci
+npx playwright install chromium
 npm run build
-npm run preview
+npm run preview -- --host 127.0.0.1 --port 4475 --strictPort
 ```
 
-## Tests
+Show people the built preview. `npm run dev` is local authoring only: its plugin can expose confidential local material.
 
-```bash
+```sh
 npm test
+npm run test:current
+npm run build
+npm run test:budget
+npm run test:e2e
 ```
 
-242 assertions.
+For the separately started preview, set the browser-test URL in PowerShell:
 
-**On the model:** registry integrity, unique market ids, allocation-market vs detail-dashboard
-counts, required and freshness metadata, source-register shape, tab-id validity, comparison-input
-validation, auction-renewal stream separation, IRR/NPV, all 45 legacy market × strategy × exit-year
-baseline cases, and a separate snapshot of what the site publishes today.
-
-**44 on governance and the data pipeline:** that the ETL cannot write outside `public/data/`, that no
-ETL module imports a write API directly, that `propose.mjs` refuses to run on `main`, that the
-workflow has no auto-merge path, that every comparison field is classified and an unclassified one
-fails closed, that scoring and thesis are not even proposable, that checksums catch a hand-edited
-snapshot, that validation catches an upstream unit change, that the spread uses the mean of the best
-*n* hours rather than the daily peak, that efficiency is charged on the charge leg, and that a
-missing anchor proposes nothing.
-
-```bash
-npm run test:structural
+```powershell
+$env:PLATFORM_TEST_BASE_URL = 'http://127.0.0.1:4475'
+npm run test:e2e
 ```
 
-Registry, governance and finance only — 76 assertions, no legacy baseline. This is what the proposal
-workflow runs, because an assumption change is *meant* to move the pinned numbers. See
-[`docs/governance.md`](docs/governance.md#the-legacy-baseline-and-why-a-proposal-is-allowed-to-break-it).
+Stop that preview afterwards. Without this variable, Playwright starts its own built preview on port 4175. Run `npm run etl:verify` after data/dataset changes. `npm run test:baseline` **rewrites** the historical fixture; it is not a check or a way to fix failing tests.
 
-The baseline fixture is generated by executing the legacy prototype's own normalization layer in Node,
-so the test proves the modular engine reproduces the original numbers rather than merely being
-self-consistent:
+The scoped Node suites cover models, governance, snapshot integrity, source boundaries, confidentiality and presentation contracts. Playwright covers built-site routes and interactions. [Bundle budgets](tests/bundle-budget.test.js) measure gzip sizes and dependency/ownership boundaries. Confidentiality checks require the analyst-held marker and fingerprint files described in [AGENTS.md](AGENTS.md); a skipped scan is not a pass.
 
-```bash
-npm run test:baseline    # regenerate tests/fixtures/legacy-baseline.json
-```
+## Build and release
 
-**Two files, failing for opposite reasons.** Since the July 2026 assumption revision,
-`tests/baseline.test.js` runs against the prototype's own inputs, frozen in
-`tests/fixtures/legacy-inputs.mjs` — it proves the *engine* still reproduces the prototype, and a
-failure there is a regression. `tests/current-model.test.js` pins the assumptions the site publishes
-now, and a failure there is a prompt to check a number against its source. Fusing them would have
-forced a choice between deleting the migration's correctness proof and living with a permanently red
-test. See [`docs/external-view.md`](docs/external-view.md).
+[vite.config.js](vite.config.js) installs the local-data, view-changes, scout, view-board and briefing plugins. Production keeps confidential stubs, disables source maps and splits research, stories, policy and investor data into lazy chunks.
 
----
+Work on a branch; preserve other work; commit/push only when requested. Ready PRs run fast checks and smoke. Main runs the full browser suite before deployment; PRs run it when labelled `full-check`. Draft PRs do not run those checks. The Actions budget is 2,000 minutes per month.
 
-## Architecture
+GitHub Actions builds and scans the exact output, then deploys to Vercel with `--prebuilt`. `vercel.json` disables Git-triggered deployment. Follow [AGENTS.md](AGENTS.md), [publishing](docs/publishing.md) and [CI performance](docs/ci-performance.md).
 
-```
-App
- ├─ Home / Global Cockpit
- ├─ Shared UI + Charts
- ├─ Comparison Engine
- └─ Market Registry
-       ├─ WA    hand-written sections
-       ├─ NEM   ┐
-       ├─ GB    │
-       ├─ DE    │
-       ├─ IT    │
-       ├─ IE    ├─ shared declarative block engine
-       ├─ RO    │
-       ├─ PL    │
-       ├─ PJM   │
-       ├─ ERCOT │
-       ├─ CAISO ┘
-       └─ JP×3     three exposures, one dashboard
-
- every market exposes the same contract:
-   { manifest, comparison, sources, tabs, dashboard }
-```
-
-Each market also declares a **congestion register** (`src/markets/*/congestion.js`): every constraint
-that binds it, what a battery is actually paid for relieving it, and the named reinforcement that
-ends it with a commissioning year. That register drives three things at once — a constraint layer on
-the market's map, a table on its Grid Connection tab, and one cross-market comparison card on the
-Returns page — because congestion is the only revenue on this platform with a published expiry date.
-No per-MW congestion revenue is modelled anywhere; nothing public supports one (gate G14).
-
-The home page opens on a **briefing** (guided-experience plan, [`docs/guided-experience-plan.md`](docs/guided-experience-plan.md)):
-for the investor chosen — the infrastructure fund unless another is — the call across the platform,
-what changed since the reader's last visit, the catalysts of the next ninety days, the shortlist of
-plays ordered by call and then by value per MW, what to build in each market, and the next actions.
-It is one computation (`src/briefing/`) shared with `/desk` and the weekly digest. The verdict board
-that opened the page before — every investor's verdicts, the return-against-entry map, the full
-calendar — is folded underneath it. The cross-market returns view is at `/returns`, unchanged.
-
-Below the board is the **scouting tier**: nine markets with no dashboard, each with a card at
-`/scout`. A card is a first screen from public pages — a few sourced facts, a grade on each of
-twelve dimensions a page can be quoted for, a verdict for each investor — and no return. Scout
-markets are not registered: they never enter the comparison engine, the league table or the
-frontier. The list of them is `src/governance/scout.js`.
-
-Returns modelling lives once, on the Returns page. The **Investment Lab** lets a reader select any
-market, retype every normalized assumption inside a band that market declares — each band stating
-which of its endpoints is an observation and which is not — and choose whether to lever the case.
-It has no model of its own: it re-runs the comparison engine with the overrides applied, so resetting
-every input reproduces the league table above it exactly. Project debt is the levered half of the
-same section. Neither is a market tab; a market joins the Lab by declaring `comparison.ranges`.
-
-```
-src/
-├── main.js                  entry: styles in cascade order, then boot
-├── app/                     app.js router.js state.js i18n.js theme.js
-├── styles/                  tokens global layout components charts market cockpit
-├── components/              card badge chip metricCard table tooltip decisionLogic
-│                            sectionHeader sourceDrawer header navigation footer marketCard
-├── charts/                  lineChart barChart waterfallChart bandChart scatterChart axes chartUtils
-├── utils/                   dom formatting finance storage validation
-├── home/                    homePage (shell) · verdictHome boardModel verdictBoard returnEntryMap
-│                            triggerCalendar changesPanel verdictGlyph (the board, fetched on demand)
-│                            returnsPage marketGrid marketComparison normalizationView allocationMatrix
-│                            congestionView findings refinementOverview marketGlobe (/returns, on demand)
-│                            investmentLab state
-├── scout/                   scoutPage scoutModel (/scout, on demand) · boardRows (the home rows)
-│                            sources (the pages the agent may read) · scoutIndex scoutCards (stubs)
-├── comparison/              engine assumptions strategies metrics ranges scenario vintage
-├── markets/
-│   ├── registry.js          ← the canonical list of markets
-│   ├── schema.js            the market-module contract
-│   ├── marketPage.js        shared market page shell
-│   ├── _template/           documented empty market module
-│   ├── _shared/             declarative block engine (every market except WA)
-│   ├── gridMapRegistry.js   grid maps, joined to their congestion registers
-│   ├── congestionRegistry.js one congestion register per allocation market
-│   └── wa/ nem/ gb/ de/ it/ ie/ ro/ pl/ pjm/ ercot/ caiso/ jp-*/
-└── local/                   stub interface for confidential data (later phase)
-```
-
-### Routes
-
-```
-/                        home: the briefing, with the verdict board folded beneath it
-/desk                    the analyst's queue: calls that reality has moved past
-/returns                 the cross-market returns view
-/changes                 every change to the view, by market and author
-/scout                   scouting cards for markets with no dashboard
-/data                    data status — every feed, its freshness, and automation's limits
-/markets/:slug           market dashboard, default tab
-/markets/:slug/:tab      market dashboard, deep-linked tab
-```
-
-Live slugs: `western-australia`, `nem`, `great-britain`, `germany`, `italy`, `ireland`, `romania`,
-`poland`, `japan-tokyo`, `japan-kyushu`, `japan-hokkaido`, `pjm`, `ercot`, `caiso`.
-
-History-API routing. Direct visits and refreshes work in dev via Vite's SPA fallback and in production
-via the `rewrites` rule in [`vercel.json`](vercel.json).
-
-**The registry is the only place the app learns a market exists.** Every market card, nav item, route,
-league-table column, chart series, engine row and market count is derived from it. There is no
-`if (market === 'wa')` anywhere in the codebase.
-
-Full detail: [`docs/architecture.md`](docs/architecture.md).
-
----
-
-## Adding another market
-
-```bash
-cp -r src/markets/_template src/markets/jp
-```
-
-Fill in `manifest.js` and `comparison.js`, then add two lines to `src/markets/registry.js`. The
-market immediately appears in the market grid, the navigation, the league table, the revenue-anatomy
-chart, the `$1M` engine, the certainty frontier and the waterfall selector — with no other edits. Declare
-`comparison.ranges` alongside its economics and it also joins the home-page Investment Lab, where a
-reader can retype every assumption inside an evidenced band and price a capital structure. The
-dashboard can follow later; until it exists the route renders a pending-migration page and everything
-else still works.
-
-When you do build the dashboard, prefer the shared block engine: describe each tab as a list of
-blocks and you inherit every interactive widget — scorecards, the duration sweep, the pipeline
-table — already consistent with the other nine. Do not give it a project-debt or
-investment-lab tab: both live once, on the home page, so that one model serves every market.
-
-Step-by-step: [`docs/adding-a-market.md`](docs/adding-a-market.md).
-
----
-
-## Markets
-
-**15 allocation markets · 13 detail dashboards.** Those are different counts on purpose — Tokyo,
-Kyushu and Hokkaido are three exposures sharing one Japan research dashboard.
-
-Every dashboard has the same seven tabs: Investment Case, Market Story, Revenue & Design, Entry &
-Delivery, Competition & Demand, Capital & Exit, Evidence. Every market carries grades and a verdict
-for each of four investors in `view/markets/<id>.json`.
-
-| Market | Route | Lineage |
-|---|---|---|
-| Western Australia — WEM | `/markets/western-australia` | hand-written sections |
-| Australia — NEM | `/markets/nem` | shared block engine |
-| Great Britain | `/markets/great-britain` | shared block engine |
-| Germany | `/markets/germany` | shared block engine |
-| Italy | `/markets/italy` | shared block engine |
-| Ireland — SEM | `/markets/ireland` | shared block engine |
-| Romania | `/markets/romania` | shared block engine |
-| Poland | `/markets/poland` | shared block engine |
-| Finland | `/markets/finland` | shared block engine; return withheld |
-| United States — PJM | `/markets/pjm` | shared block engine |
-| United States — ERCOT | `/markets/ercot` | shared block engine |
-| United States — CAISO | `/markets/caiso` | shared block engine |
-| Japan — Tokyo Area | `/markets/japan-tokyo` | shared block engine, Tokyo lens |
-| Japan — Kyushu Area | `/markets/japan-kyushu` | shared block engine, Kyushu lens |
-| Japan — Hokkaido Area | `/markets/japan-hokkaido` | shared block engine, Hokkaido lens |
-
-### Japan — three exposures, one rulebook
-
-Japan gives a battery more monetization channels than any other market here: JEPX day-ahead and
-intraday, five EPRX balancing products, the OCCTO Capacity Market and the long-term decarbonization
-auction. That national optionality is identical everywhere, so it cannot differentiate a project.
-What differentiates is regional — area-price capture, curtailment and charging value, balancing
-saturation, grid deliverability, interconnector headroom.
-
-The DY2029 capacity area prices sit within 0.9% of each other (¥14,972 / ¥15,111 / ¥15,112 per kW),
-which is precisely why the three regions are separate allocation points rather than one Japan entry:
-the difference has to be earned elsewhere, and that is measurable.
-
-**Two engine changes were needed.** A Japanese Capacity Market main-auction payment covers one
-delivery year and must be re-won afterwards, so the comparison engine gained a third revenue class:
-
-```
-secured        executed award covering the modelled year   → priced at 7.5%
-auctionRenewal assumed future clearings, not won           → priced at 11.5%
-merchant       JEPX + incremental balancing                → priced at 11.5%
-```
-
-and the league table's first row became **secured share** rather than contracted share, with
-**secured tenor** beside it. WA is 77% secured for 10 years; a Japanese capacity-auction case is
-~40% secured for 1. Those are different assets and the old wording hid that.
-
-**Since July 2026 the base route is the long-term decarbonization auction, not the annual capacity
-auction.** LTDA Round 3 abolished the 3-6 hour bracket and set a hard six-hour minimum, so the
-previous four-hour reference could not bid into the route Japanese projects are actually financed
-on. The award is a 20-year OCCTO agreement — it never rolls off inside the 15-year window — but it
-returns roughly 90% of other-market net profit, so it is very nearly an *alternative* to the merchant
-stack rather than an addition to it. The annual capacity auction remains selectable as a route.
-See [`docs/external-view.md`](docs/external-view.md) §3.
-
-> **Read the ordering, not the IRRs.** Japan's structural facts are anchored to OCCTO and TSO
-> sources; its economics are illustrative seed. Eight inputs — capex, merchant margin, incremental
-> balancing value, the expected-capacity factor and the renewal curve among them — are listed with
-> their replacement requirements in [`docs/japan-etl-gates.md`](docs/japan-etl-gates.md).
-
-### The two lineages
-
-The prototype contained two generations of code, which the cockpit hid. WA is hand-written: one
-render function per tab. GB, IE, RO and PL were **generated from a common engine** — the same
-**1,039 lines appear byte-identically in all four payloads**.
-
-So those four were migrated by extracting that engine *once* into `src/markets/_shared/` and giving
-each market its data. They ship **no rendering code at all**:
-
-```
-markets/gb/
-├── mkt.js        locale, currency, timezone, COD years, seed tag
-├── tabs.js       tab list
-├── sources.js    source register
-├── data.js       the market dataset
-├── sections.js   one declarative block spec per tab
-└── dashboard.js  ~20 lines of wiring
-```
-
-A tab is described, not drawn:
-
-```javascript
-{ t:'card', title:['Revenue stack','收入结构'], badges:['calc'], blocks:[
-  { t:'kpis', items:[ … ] },
-  { t:'bar', cfg:{ … } },
-  { t:'why', text:[ … ], sig:[ … ] },
-]}
-```
-
-Both lineages expose the identical five-key contract, so the shell neither knows nor cares which one
-answers. Details: [`src/markets/_shared/README.md`](src/markets/_shared/README.md) and
-[`docs/migration-notes.md`](docs/migration-notes.md) §11.
-
----
-
-## Deployment
-
-A static site hosted on Vercel. **GitHub Actions builds and publishes it; Vercel does not
-build anything.** Git-triggered builds are refused by `git.deploymentEnabled: false` in
-`vercel.json` — the integration was found enabled and producing unscanned Preview builds on
-2026-08-17, so this is now asserted in the repository rather than assumed of the dashboard. See
-[`docs/publishing.md`](docs/publishing.md).
-
-| Setting | Value |
-|---|---|
-| Built by | `.github/workflows/ci.yml`, job `deploy` |
-| Build command | `npx vercel build --prod` (in Actions, on the `.nvmrc` version) |
-| Published directory | `.vercel/output` — the Build Output API directory |
-| Deploy command | `npx vercel deploy --prebuilt --prod` |
-| Vercel project | `bess-research-platform` |
-| Required secrets | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` |
-
-The ordering is the point. The suite runs and the snapshots are verified; then
-the deploy job builds `.vercel/output`, scans **that directory** for
-confidential content, and uploads it with `--prebuilt`. No rebuild happens
-between the scan and the upload, so what shipped is what was scanned.
-
-`--prebuilt` is load-bearing. Without it Vercel rebuilds from source on its own
-infrastructure, producing bytes no scan in this repository has ever seen.
-
-Note that the scan target is `.vercel/output`, not `dist/`. `vercel build` runs
-the Vite build and then copies and adds to its result, so the two are not the
-same bytes; scanning one and shipping the other would put a transformation
-between the check and the thing checked. Pull requests still scan `dist/` —
-`vercel build` needs a token a fork does not have — but nothing is published
-from a pull request.
-
-A Vercel Git integration undoes all of this: it builds on push without waiting for
-Actions, and the ETL bot pushes to `main` every day. It was enabled — on
-2026-08-17 a pull request drew two platform-built Preview deployments, the first
-published before CI had started and while it was failing. `vercel.json` now sets
-`git.deploymentEnabled: false`. See [`docs/publishing.md`](docs/publishing.md) for
-the dashboard disconnect, which is the second control and still worth having.
-
-`vercel.json` carries the SPA rewrite (`/(.*)` → `/index.html`) that History-API routing needs, so
-`/markets/wa` resolves on a direct visit or a refresh. Vercel checks the filesystem before applying
-rewrites, so real assets and data files are still served as themselves.
-
-No Workers, no functions, no build-time environment variables, no build secrets.
-
-### Publishing it
-
-**Step-by-step, written for a first deployment: [`docs/publishing.md`](docs/publishing.md).**
-
-The short version:
-
-1. Push to GitHub. **Keep the repository private.** The confidential WA material was purged from
-   the working tree and from all history on 10 August 2026, so this is no longer a containment
-   measure — but the purge only rewrote *this* repository. Any clone or fork taken before that date
-   still has the original objects. The published site is public either way.
-2. Create the Vercel project (or `vercel link` an existing one), named `bess-research-platform`.
-   Do *not* connect it to Git.
-3. Add the repository secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`, so CI can
-   publish. The two IDs are in `.vercel/repo.json` after linking; that file is git-ignored and stays
-   that way.
-4. GitHub → Settings → Actions → General → **Read and write permissions**, and allow Actions to
-   create pull requests. The data refresh commits, and drift proposals open PRs.
-5. *(Optional, for the four ENTSO-E markets)* add a repository secret `ENTSOE_TOKEN`. Register at
-   [transparency.entsoe.eu](https://transparency.entsoe.eu/) and email their service desk to have API
-   access enabled — it is not automatic on signup.
-
-After that the site maintains itself: the scheduled refresh commits to `main`, CI re-runs every gate
-against the new data, and the deploy job publishes only if they all pass.
-
-Without the token the site still deploys and works — the four ENTSO-E feeds show as unconfigured on
-`/data` and every other market updates normally.
-
-### Bundle size — one known follow-up
-
-With all five dashboards migrated the bundle is **912 kB (452 kB gzipped)**, down from the
-prototype's 1.65 MB but loaded eagerly: opening the home page downloads all five market dashboards.
-
-Every dashboard is statically imported through `registry.js`, so Rollup cannot split them. The fix is
-route-level lazy loading — a dynamic `import()` in `markets/marketPage.js`, which would cut the
-initial payload to roughly the home page alone and make each market a separate chunk.
-
-It is not done here because it changes the module contract: `dashboard` becomes async, and the
-registry needs a loader indirection rather than a direct import. That is a design decision worth
-making deliberately, and it matters more as markets are added — fourteen is fine, twenty is not.
-
----
-
-## Live data, and what automation may not touch
-
-Public market data is fetched on a schedule, validated, and published automatically. Derived metrics
-recompute from it. **Judgement publishes automatically after validation; methodology never does.**
-
-```
-observed public data          →  publishes automatically after validation
-deterministic derived metrics →  publishes automatically after validation
-model outputs                 →  recompute automatically, on APPROVED assumptions
-grades · verdicts · thesis    →  a rule the analyst wrote in advance may change one when it
-                                 fires, through a validation gate. On a core market an agent
-                                 runs dry: it reports what it would change and writes nothing.
-scout cards                   →  written by the agent from pages the analyst listed, every
-                                 record with a quotation verified against the fetched page.
-                                 Dry until the analyst makes the agent live on cards — and on
-                                 cards only.
-analyst assumptions           →  automation may PROPOSE. It may never apply.
-weights · anchors · limits ·  →  automation may not change one and may not even propose it
-score bands · discount rates
-```
-
-A grade or a verdict on a market dashboard was set by the analyst, or changed by one of his rules.
-A scout card is written by the agent and spot-checked by the analyst, which `/scout` says once, at
-the top. Nothing on any page marks an individual change: **`/changes`** shows every change with who
-made it, when, what it held before and after, the reason and the evidence. Until 2026-10-11 the
-rule here was "no judgement is automated"; `docs/governance.md` records what replaced it and why.
-
-Material drift between a source and an approved assumption opens an evidence-backed pull request
-showing its downstream IRR and MOIC impact. **It never auto-merges.** Non-material drift goes to a
-drift report and nothing else.
-
-This is enforced, not merely documented:
-
-- Automation can physically write to two places, each through its own writer and validator:
-  `public/data/public/`, and five kinds of file in the view store, `view/`. Anything else throws.
-  Neither writer can reach `src/`, where weights, anchors, limits and discount rates live — and
-  where the list of scout markets and the pages the agent may read live too.
-- The agent has one writing method, and it writes scout cards. An id that is not in the scout
-  roster is refused there, the roster and the registry share no id, and no line on a core market in
-  the changelog may be the agent's — each asserted by a test.
-- A scout card holds no return: no field for one, neither Return dimension, and no text that names
-  an IRR, a multiple or a payback.
-- No module under `etl/` or `agent/` may even import a filesystem write API except the two writers —
-  asserted by a test.
-- A machine change needs evidence, cannot touch a pinned record, a held view or a practitioner
-  grade, and a run that would make more than three writes none. One command reverts any change.
-- The one program that edits an analyst file, `etl/propose.mjs`, refuses to run on `main`.
-- An unclassified field fails **closed**, at the most restrictive authority class.
-- A test greps the workflow for every auto-merge mechanism and fails if one appears.
-
-Nine feeds: ECB (FX), ENTSO-E (GB, IE, RO, PL), AEMO (WA), JEPX (Tokyo, Kyushu, Hokkaido). Every
-feed, its freshness and its licence are public at **`/data`**. The three markets added in the
-2026-08 round — NEM, Germany and Italy — carry **no automated feed yet** and are marked SEED in their
-manifests; their numbers move only when an analyst moves them.
-
-```bash
-npm run etl
-```
-
-Full detail: [`docs/governance.md`](docs/governance.md) and [`docs/live-data.md`](docs/live-data.md).
-
----
-
-## This is a public website
-
-There is no login, no backend, no database and no authentication — by design, not omission.
-
-> Hiding a value in JavaScript or the UI does not make it private. Anything included in the frontend
-> production bundle is public.
-
-`local-data/` is git-ignored and reserved for confidential data; its interface is a later phase.
-Two files currently in `src/` carry content the prototype marked confidential — they are identified
-explicitly in [`docs/data-policy.md`](docs/data-policy.md), which you should read before deploying.
-
----
-
-## What the refactor changed, and what the July 2026 revision changed
-
-**The refactor changed nothing.** Financial assumptions, market scores, IRRs, MOICs, capex, revenue
-assumptions, FX, duration assumptions, exit assumptions, wording, source labels, quality badges and
-investment conclusions came across byte-identical to the prototype. Formulas were moved, not
-modified. `tests/baseline.test.js` still proves this, against inputs frozen in
-`tests/fixtures/legacy-inputs.mjs`.
-
-**The 2026-07-30 assumption revision changed a great deal**, deliberately and with the evidence
-recorded. Poland's capacity line fell 63% on a de-rating cut, GB moved to four hours, Japan to six
-and onto the long-term award, Ireland gained a DS3→FASS decay curve, WA moved to seven hours against
-a six-hour product, and Romania roughly doubled. Every change, its source and its authority class is
-in [`docs/external-view.md`](docs/external-view.md) §6a; what the site publishes now is pinned by
-`tests/current-model.test.js`.
-
-Methodology was **not** touched: the 15-year window, the exit yields and the unlevered basis are
-unchanged. One consequence of that is worth knowing before comparing our IRRs with anyone else's —
-see `docs/external-view.md` §5.5.
-
-Probable bugs found during the migration are documented in
-[`docs/migration-notes.md`](docs/migration-notes.md) §8 rather than fixed, since fixing them would
-change output.
-
----
-
-## Documentation
-
-| | |
-|---|---|
-| [`docs/publishing.md`](docs/publishing.md) | first-time deployment walkthrough — GitHub, Vercel, secrets, troubleshooting |
-| [`docs/external-view.md`](docs/external-view.md) | what the market says, where we differ, and why — read before changing an assumption |
-| [`docs/governance.md`](docs/governance.md) | who may change what, and how it is enforced — read before changing the pipeline |
-| [`docs/live-data.md`](docs/live-data.md) | the pipeline: sources, connectors, scheduling, operations |
-| [`docs/architecture.md`](docs/architecture.md) | structure, layering rules, module contract, multi-region markets |
-| [`docs/adding-a-market.md`](docs/adding-a-market.md) | the workflow, and legacy-dashboard migration |
-| [`docs/comparison-methodology.md`](docs/comparison-methodology.md) | the normalized model, formula by formula, both risk classes |
-| [`docs/japan-etl-gates.md`](docs/japan-etl-gates.md) | what is anchored vs seed in Japan — read before quoting a Japanese figure |
-| [`docs/data-policy.md`](docs/data-policy.md) | public vs confidential — read before deploying |
-| [`docs/migration-notes.md`](docs/migration-notes.md) | what the prototype was, what changed, bugs found |
-
----
-
-## Stack
-
-Vite · vanilla JavaScript · ES modules · HTML · CSS. One dev dependency. No runtime dependencies, no
-framework, no TypeScript, no backend.
-
-The data pipeline adds none. It is plain Node — `fetch`, `node:zlib` for AEMO's per-day zips, and a
-40-line zip reader rather than a package for forty lines of work.
+[Architecture](docs/architecture.md) describes module ownership and loading. [Adding a market](docs/adding-a-market.md) documents registration.

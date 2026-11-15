@@ -1,3 +1,4 @@
+import { formatNumber, formatDate } from '../../../utils/locale.js';
 /* Calendar-time composition from the shared SVG and axis primitives.
    The shared dayChart is fixed to 48 intraday bins; these records span years. */
 import {L} from '../../../app/i18n.js';
@@ -14,7 +15,7 @@ export function segments(points,gap=3_600_000){
   if(run.length)out.push(run);
   return out;
 }
-const num=v=>v.toLocaleString('en-US',{maximumFractionDigits:2});
+const num=v=>formatNumber(v, {maximumFractionDigits:2});
 export function timeChart({title,desc,yTitle,traces=[],band,point,selected,domain,ticks,compact=false,crossing=false,annual=false}){
   const W=compact?400:720,H=compact?260:310,left=compact?55:64,right=16,top=18,bottom=48;
   const all=traces.flatMap(t=>t.points||[]).filter(p=>Number.isFinite(p.v)&&Number.isFinite(Date.parse(p.t)));
@@ -28,7 +29,7 @@ export function timeChart({title,desc,yTitle,traces=[],band,point,selected,domai
   const y=v=>top+(hi-v)/(hi-lo||1)*(H-top-bottom);
   const id=uid('fi-time'),did=uid('fi-time-desc');
   const xTicks=ticks||Array.from({length:compact?3:5},(_,i)=>new Date(from+(to-from)*i/(compact?2:4)).toISOString());
-  const labelDate=t=>new Intl.DateTimeFormat(L(['en-GB','zh-CN']),{...(annual?{}:{month:'short'}),year:'numeric',timeZone:'UTC'}).format(new Date(t));
+  const labelDate=t=>formatDate(new Date(t), {...(annual?{}:{month:'short'}),year:'numeric',timeZone:'UTC'});
   const svg=s('svg',{class:'k-chart',viewBox:'0 0 '+W+' '+H,role:'img','aria-labelledby':id+' '+did,'data-calendar-chart':'true'},
     s('title',{id},L(title)),s('desc',{id:did},L(desc||title)),
     ys.map(v=>s('g',{class:'k-tick'},s('line',{class:'k-grid',x1:left,x2:W-right,y1:n2(y(v)),y2:n2(y(v))}),s('text',{x:left-7,y:n2(y(v)+4),'text-anchor':'end'},num(v)))),

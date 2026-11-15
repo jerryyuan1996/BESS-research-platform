@@ -28,7 +28,7 @@ SEC_B.duration = function (){
          ['Settled by certification. Capacity counts only as MWh ÷ 4, so a certified obligation can be delivered for four hours by construction; a 2h asset is paid less, not exposed more.',
           '由认证规则解决。容量仅按MWh÷4计入，因此经认证的义务按设计即可连续交付四小时；2小时资产是少获付费，而非承担更大敞口。']],
       ] },
-      { t:'wf', cfg:{ yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
       { t:'why', text:['The fourth hour nets about ' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/yr on the arithmetic. The correction factor now adds only a few thousand for hours three and four, because the factor is 13.39% at every duration and a battery below four hours simply certifies less. The certification rule also removes the old argument for four hours: an obligation sized at MWh ÷ 4 cannot run out of energy when tested. In Poland the case for the fourth hour now rests on the merchant line and on balancing, not on the capacity contract.',
         '按算术计算，第4小时净值约' + fmtC(M.marginalHour[M.marginalHour.length - 1].v) + 'k/MW/年。折减系数对第三、第四小时的贡献已仅为数千欧元，因为各时长的系数均为13.39%，不足四小时的电池只是获认证的容量更少。认证规则也消除了支持四小时的旧论据：按MWh÷4确定的义务在受检验时不会耗尽能量。在波兰，第四小时的理由如今取决于市场化收入与平衡市场，而非容量合同。'],
         sig:['The capacity contract no longer pays for the fourth hour','容量合同已不再为第四小时付费'] },

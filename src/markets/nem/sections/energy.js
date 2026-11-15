@@ -20,7 +20,7 @@ export function create(api){
           { l:['Oct 2025 – Mar 2026','2025年10月–2026年3月'], v:kMW(O.idxOctMarK) + '<small>/MW/yr</small>', d:[O.idxOctMarChangePct + '% year on year','同比' + O.idxOctMarChangePct + '%'], cls:'down', b:['tp'] },
           { l:['NEM-wide charge/discharge spread, Q2 2026','全NEM充放电价差，2026年第二季度'], v:fmtC(O.q2SpreadAud) + '<small>/MWh</small>', d:[O.q2SpreadFallPct + '% year on year as the fleet passed ' + fmtN(O.installedMW) + ' MW','随装机突破' + fmtN(O.installedMW) + 'MW同比下跌' + O.q2SpreadFallPct + '%'], cls:'down', b:['official'] },
         ] },
-        { t:'bar', cfg:{ xs: M.idxLabels, bw: 40, rotX: true, yfmt: v => kMW(v), labels: true, h: 240,
+        { t:'bar', cfg:{ dataset: M, xs: M.idxLabels, bw: 40, rotX: true, yfmt: v => kMW(v), labels: true, h: 240,
           series:[{ name:['BESS revenue index (A$k/MW/yr)','储能收入指数（A$千/MW/年）'], color:'var(--s1)', vals: M.idxSeriesK }] } },
         { t:'note', text:['The index is a NEM-wide fleet average across a fleet whose average duration was ' + fmt1(O.fleetHours) + ' hours in June 2026 (' + fmtN(O.fleetMWh) + ' MWh over ' + fmtN(O.fleetMW) + ' MW). Scaling it to a four-hour archetype requires stripping the FCAS share and applying the measured four-hour capture penalty; that derivation lives in src/markets/nem/comparison.js and is not repeated here.',
           '该指数为全NEM机组平均值，而该机组2026年6月的平均时长为' + fmt1(O.fleetHours) + '小时（' + fmtN(O.fleetMW) + 'MW对应' + fmtN(O.fleetMWh) + 'MWh）。将其折算至四小时原型需剔除FCAS份额并应用实测的四小时捕获折减；该推导见src/markets/nem/comparison.js，此处不再重复。'] },
@@ -31,7 +31,7 @@ export function create(api){
       ] },
 
       { t:'card', title:['Regional divergence — the national average describes no region','区域分化 — 全国平均值不描述任何一个区域'], badges:['tp','official'], live:true, blocks:[
-        { t:'bar', cfg:{ xs: M.regions.filter(r => r.revChangePct != null).map(r => r.id), bw: 40, rotX: false, yfmt: v => fmtPct(v, 0), labels: true, h: 250,
+        { t:'bar', cfg:{ dataset: M, xs: M.regions.filter(r => r.revChangePct != null).map(r => r.id), bw: 40, rotX: false, yfmt: v => fmtPct(v, 0), labels: true, h: 250,
           series:[{ name:['Battery revenue change, Oct 25 – Mar 26','储能收入变化，2025年10月–2026年3月'], color:'var(--s6)',
             vals: M.regions.filter(r => r.revChangePct != null).map(r => r.revChangePct) }] } },
         { t:'table', head:[['Region','区域'],['Installed MWh','装机MWh'],['Revenue change','收入变化'],['Reading','解读']], num:[1,2], rows:[
@@ -66,7 +66,7 @@ export function create(api){
       ] },
 
       { t:'card', title:['Published → executable margin bridge (A$/MWh discharged)','公布至可执行价差桥（A$/MWh放电）'], badges:['calc','illus'], live:true, blocks:[
-        { t:'wf', cfg:{ yfmt: v => fmtC(v), h: 300, steps: M.spreadBridge } },
+        { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v), h: 300, steps: M.spreadBridge } },
         { t:'note', text:['The optimiser fee is deliberately not a step in this bridge. The model applies it once, as the ' + M.lab.optFee + '% lab input, and deducting it here as well is the most common way this waterfall is misread. No Australian optimiser fee is disclosed in any case — the ' + M.lab.optFee + '% is the midpoint of a reported generic 3–10% revenue-share band.',
           '优化商费用刻意未列为本桥的步骤。模型仅在一处应用它 — 即' + M.lab.optFee + '%的测算输入项；在此处再扣一次是误读本瀑布图最常见的方式。况且澳大利亚从未披露过任何优化商费率 — ' + M.lab.optFee + '%取自公开的通用收益分成区间3–10%的中值。'] },
         { t:'why', text:['About ' + fmtPct((1 - M.spreadBridge[M.spreadBridge.length - 1].v / M.spreadBridge[0].v) * 100, 0) + '% of the modelled spread is lost before it reaches the P&L, and the composition is what distinguishes the NEM. Round-trip efficiency and availability are ordinary. Five-minute dispatch execution is not — this is a market that settles at five-minute resolution, so a forecast error that would be absorbed in a day-ahead market is realised here. And the loss-factor line is permanent rather than episodic: it applies to every megawatt-hour for the life of the asset.',
@@ -75,7 +75,7 @@ export function create(api){
       ] },
 
       { t:'card', title:['Captured spread by COD year — the competition discount','按投运年度的捕获价差 — 竞争折扣'], badges:['forecast','illus'], live:true, blocks:[
-        { t:'band', cfg:{ xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 270,
+        { t:'band', cfg:{ dataset: M, xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 270,
           low: Object.values(M.codCases).map(c => c.low),
           base: Object.values(M.codCases).map(c => c.central),
           high: Object.values(M.codCases).map(c => c.high) } },

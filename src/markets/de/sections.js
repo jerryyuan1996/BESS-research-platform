@@ -82,7 +82,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'card', title:['Where German BESS revenue comes from, and where it is going','德国储能收入来源及其走向'], badges:['calc'], blocks:[
-      { t:'bar', cfg:{ xs:M.ancShareLabels, bw:56, yfmt:v => v + '%', labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.ancShareLabels, bw:56, yfmt:v => v + '%', labels:true, h:230,
         series:[{ name:['Ancillary share of revenue','辅助服务收入占比'], color:'var(--s9)', vals:M.ancShareSeries }] } },
       { t:'cap', text:['Ancillary services were 67% of a typical two-hour battery\'s income in 2025 on an independent read, 55% in 2026 on Modo\'s, and are forecast at roughly 5% by 2030 as wholesale arbitrage takes over.',
                        '据独立机构测算，2025年辅助服务占典型两小时储能收入的67%，据Modo测算2026年为55%，预计到2030年随批发套利接管将降至约5%。'] },
@@ -204,7 +204,7 @@ SEC_B.energy = function (){
         '德国是欧洲储能流动性最强的电力市场。这种流动性既是收入规模较大的原因，也是其不稳定的根源。'],
   blocks: [
     { t:'card', mt:false, title:['Realised revenue — one optimiser\'s two-hour book','实际收入 — 某优化商的两小时资产组合'], badges:['official'], blocks:[
-      { t:'bar', cfg:{ xs:M.realLabels, bw:56, yfmt:v => kMW(Math.round(v/1000)), labels:true, h:250,
+      { t:'bar', cfg:{ dataset: M, xs:M.realLabels, bw:56, yfmt:v => kMW(Math.round(v/1000)), labels:true, h:250,
         series:[{ name:['Annualised revenue per MW','每MW年化收入'], color:'var(--s9)', vals:M.realSeries }] } },
       { t:'cap', text:['Annualised from monthly performance, 2h basis. Daily cycles fell alongside: ' + M.realCycles.join(' → ') + '.',
                        '由月度业绩年化，2小时口径。日循环次数同步下降：' + M.realCycles.join(' → ') + '。'] },
@@ -214,12 +214,12 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Which revenue number a fifteen-year model should use','十五年模型应采用哪一个收入数值'], badges:['calc'], blocks:[
-      { t:'bar', cfg:{ xs:M.revBasisLabels, bw:48, yfmt:v => kMW(v), labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.revBasisLabels, bw:48, yfmt:v => kMW(v), labels:true, h:230,
         series:[{ name:['EUR thousands per MW per year','每MW每年（千欧元）'], color:'var(--s10)', vals:M.revBasisSeriesK }] } },
       { t:'note', b:['The platform seeds the levelised figure. ','本平台采用平准化数值作为种子。'],
         text:['Seeding the near-term number would underwrite a 2026 peak for fifteen years. The source\'s own forecast has revenues roughly halving by 2030, and its April 2026 update cut lifetime revenues 16% across the curve with the largest reductions from 2028.',
               '若采用近期数值作为种子，等于以2026年的峰值承销十五年。来源方自身的预测显示收入到2030年将大致腰斩，其2026年4月的更新更将全生命周期收入下调16%，其中2028年起降幅最大。'] },
-      { t:'wf', cfg:{ steps:M.spreadBridge, yfmt:v => kMW(v), h:260 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.spreadBridge, yfmt:v => kMW(v), h:260 } },
       { t:'why', text:['The bridge shows why a four-hour asset is modelled at more than twice a two-hour day-ahead spread and still less than double the two-hour total: energy doubles, but capture per megawatt-hour falls, and the ancillary leg does not scale with duration at all. That last point is the one most often missed. Frequency products are paid on power, so a four-hour battery earns the same ancillary revenue as a two-hour one on the same inverter — which means the ancillary collapse hits a four-hour case proportionally less, and is part of why four hours beats two on returns despite costing a third more.',
         '该桥图说明了为何四小时资产的建模收入高于两小时日前价差的两倍，却仍不足两小时总收入的两倍：能量翻倍，但每兆瓦时的捕获率下降，而辅助服务部分完全不随时长扩展。最后一点最常被忽视。调频类产品按功率计费，因此在同一逆变器上，四小时储能与两小时储能获得的辅助服务收入相同 — 这意味着辅助服务收入的崩塌对四小时方案的相对冲击更小，也是四小时在造价高出三分之一的情况下回报仍优于两小时的原因之一。'],
         sig:['Ancillary is paid on power, not energy','辅助服务按功率计费，而非按电量'] },
@@ -291,7 +291,7 @@ SEC_B.duration = function (){
       { t:'scorecard', id:'durFactors', bands:'durBands' },
     ] },
     { t:'card', title:['Marginal value of the third and fourth hour','第三、四小时的边际价值'], badges:['calc','illus'], blocks:[
-      { t:'wf', cfg:{ steps:M.marginalHour, yfmt:v => kMW(v), h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.marginalHour, yfmt:v => kMW(v), h:250 } },
       { t:'cap', text:['Incremental value of moving from two hours to four, per MW per year. Ancillary is unchanged because frequency products are paid on power.',
                        '由两小时提升至四小时的增量价值，单位为每MW每年。辅助服务收入不变，因为调频类产品按功率计费。'] },
     ] },

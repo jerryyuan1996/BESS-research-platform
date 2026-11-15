@@ -136,7 +136,7 @@ export function buildSections(api){
   SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
     researchHistory(api).cards[0],
     { t: 'card', title: ['What the reserve boom did to reserve prices', '备用收入高峰对备用价格的影响'], badges: ['tp'], blocks: [
-      { t: 'bar', cfg: { xs: M.fcrnPrice.map(p => p.y), bw: 40, labels: true, h: 230, yfmt: v => '€' + fmtN(v),
+      { t: 'bar', cfg: { dataset: M, xs: M.fcrnPrice.map(p => p.y), bw: 40, labels: true, h: 230, yfmt: v => '€' + fmtN(v),
         series: [{ name: ['FCR-N reservation price, €/MW,h', 'FCR-N预留价（€/MW,h）'], color: 'var(--s3)', vals: M.fcrnPrice.map(p => p.v) }] } },
       { t: 'cap', text: ['FCR-N reservation price: 2023, 2024 and June 2025 averages from Clean Horizon; the 2026 annual auction cleared at zero (Fingrid).',
                          'FCR-N预留价：2023、2024年及2025年6月均值来自Clean Horizon；2026年度拍卖以零出清（Fingrid）。'] },

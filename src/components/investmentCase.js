@@ -1,3 +1,4 @@
+import { formatNumber } from '../utils/locale.js';
 /* ---------------------------------------------------------------------------
    The Investment Case and Entry sections.
 
@@ -88,7 +89,7 @@ const usd = (value) => {
 const atLeast = (total) => total.lowerBound ? [`at least ${usd(total.usd)}`, `至少 ${usd(total.usd)}`] : [usd(total.usd), usd(total.usd)];
 
 const local = (amount) => {
-  const n = (v) => v.toLocaleString('en-US');
+  const n = (v) => formatNumber(v);
   if (amount.perMW !== undefined) return [`${amount.currency} ${n(amount.perMW)} per MW`, `每MW ${amount.currency} ${n(amount.perMW)}`];
   if (amount.perKW !== undefined) return [`${amount.currency} ${n(amount.perKW)} per kW`, `每kW ${amount.currency} ${n(amount.perKW)}`];
   return [`${amount.currency} ${n(amount.fixed)}`, `${amount.currency} ${n(amount.fixed)}`];

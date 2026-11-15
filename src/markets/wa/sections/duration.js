@@ -86,7 +86,7 @@ function durationBody(main, g){
   const c1 = card(['ESR Duration Requirement trajectory', 'ESR时长要求轨迹'], [badge('official'), statusBadge(true)]);
   const codIdx = SEED.esrYears.indexOf(state.codYear);
   const fit = waDesign(), dText = waDesignText(), esr = esrAtYear('2028-29');
-  lineChart(c1, {
+  lineChart(c1, { dataset: SEED,
     xs: SEED.esrYears, yfmt: v => v + 'h', ymin: 0,
     series: [{ name: ['ESR requirement', 'ESR时长要求'], color: 'var(--s1)', vals: SEED.esrPath, step: true }],
     ann: codIdx >= 0 ? [{ si: 0, i: codIdx, text: L(['your COD', '你的投运年度']) }] : [], h: 220,
@@ -146,7 +146,7 @@ function durationBody(main, g){
   g.append(c3);
 
   const c4 = card(['Marginal value of the 8th hour (7h → 8h), A$k/MW/yr', '第8小时的边际价值（7h→8h），A$k/MW/年'], [badge('illus'), statusBadge(true)]);
-  waterfall(c4, { steps: SEED.marginalHour.map(s => ({ l: s.l, v: s.v, t: s.t })), yfmt: v => (v < 0 ? '−' : '') + 'A$' + Math.abs(v) + 'k', zeroBase: true, h: 270 });
+  waterfall(c4, { dataset: SEED, steps: SEED.marginalHour.map(s => ({ l: s.l, v: s.v, t: s.t })), yfmt: v => (v < 0 ? '−' : '') + 'A$' + Math.abs(v) + 'k', zeroBase: true, h: 270 });
   c4.append(h('div', { class: 'cap' }, L(['Under lender-downside assumptions the 10th hour turns NPV-negative in this seed case — reprice added MWh (spec §5.2 mandatory trigger). Compare designs on incremental NPV of the final added hour, never headline IRR alone.',
     '在贷款人下行情景下，本种子案例中第10小时的增量NPV转负 — 应对新增MWh重新定价（规范§5.2强制触发条件）。方案比较须基于最后新增小时的增量NPV，而非仅项目IRR。'])));
   c4.append(why(['The 8th hour is worth about +A$4k/MW/yr net, and most of the gross value (A$18k) is RCM duration compliance rather than arbitrage (A$9k) — so the incremental hour is bought from the capacity mechanism, not from the market. Two implications. The margin is thin enough that a change in either the annualised capex charge or the duration rule flips the sign, which is why this must be re-run per design rather than assumed. And because the value is compliance-driven, the hour is worth far more just below the requirement threshold than just above it — the economics are a step function, not a smooth curve.',

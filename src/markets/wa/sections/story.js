@@ -84,7 +84,7 @@ function renderStory(main, { summaryOnly = false } = {}){
     h('thead', {}, h('tr', {}, h('th', {}, L(['Reserve Capacity Cycle','容量周期'])), h('th', { class:'num' }, L(['Trading intervals','交易时段'])), h('th', { class:'num' }, L(['Hours','小时'])), h('th', {}, L(['Effect','影响'])))),
     h('tbody', {}, RCM_HISTORY.esr.map(r => h('tr', {},
       h('td', {}, h('b', {}, L(r.cyc))), h('td', { class:'num' }, r.ti), h('td', { class:'num' }, h('b', {}, r.h + 'h')), h('td', {}, L(r.note))))))));
-  lineChart(rhE, { xs: SEED.esrYears, yfmt: v => v + 'h', ymin: 0,
+  lineChart(rhE, { dataset: SEED, xs: SEED.esrYears, yfmt: v => v + 'h', ymin: 0,
     series: [{ name: ['ESR duration requirement', 'ESR时长要求'], color: 'var(--s1)', vals: SEED.esrPath, step: true }], h: 175 });
   rhE.append(why(fullHistory.cards[0].blocks[3].cards[1].blocks[2].text,
     fullHistory.cards[0].blocks[3].cards[1].blocks[2].sig));

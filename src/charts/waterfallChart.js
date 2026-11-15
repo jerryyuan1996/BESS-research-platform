@@ -1,11 +1,11 @@
-/* Waterfall chart, verbatim from the prototype (lines 548-586).
+/* Waterfall chart, with shared accessibility and exact-value fallback.
    steps: [{l:[en,zh], v, t:'start'|'d'|'total'}]. Deltas are green when positive and
    red when negative; start/total bars use the primary series colour. */
+import { finishChart, pointTooltip } from './accessibility.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
-import { tipShow, tipHide } from '../components/tooltip.js';
-import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtils.js';
+import { S, niceTicks, roundTopRect } from './chartUtils.js';
 import { axisText } from './axes.js';
 // Waterfall: steps [{l:[en,zh], v, t:'start'|'d'|'total'}]
 function waterfall(parent, cfg){
@@ -32,8 +32,7 @@ function waterfall(parent, cfg){
     const yTop = Y(Math.max(b.from, b.to)), yBot = Y(Math.max(Math.min(b.from, b.to), lo));
     const color = b.t === 'd' ? (b.v >= 0 ? 'var(--s2)' : 'var(--s6)') : 'var(--s1)';
     const bar = S('path', { d: roundTopRect(x0, yTop, bw, Math.max(2, yBot - yTop), 4), fill: color });
-    bar.addEventListener('mousemove', ev => tipShow(`<b>${L(b.l)}</b><div class="tr"><span></span><b>${(b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v)}</b></div>`, ev));
-    bar.addEventListener('mouseleave', tipHide);
+    pointTooltip(bar, `<b>${L(b.l)}</b><div class="tr"><span></span><b>${(b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v)}</b></div>`);
     svg.append(bar);
     svg.append(axisText(x0 + bw / 2, yTop - 5, (b.t === 'd' && b.v > 0 ? '+' : '') + (cfg.yfmt || fmtN)(b.v), 'middle', 'var(--fs-micro)'));
     if (i < n - 1)
@@ -43,7 +42,7 @@ function waterfall(parent, cfg){
   svg.append(S('line', { x1: padL, x2: W - padR, y1: Y(Math.max(0, lo)), y2: Y(Math.max(0, lo)), stroke: 'var(--baseline)', 'stroke-width': 1 }));
   const wrap = h('div', { class: 'chart' });
   wrap.append(svg);
-  parent.append(wrap);
+  finishChart(parent, wrap, svg, cfg, 'waterfall');
   return wrap;
 }
 

@@ -17,7 +17,7 @@ SEC_B.energy = function (){
         '爱尔兰的日前价差较宽，因为小系统上的风电波动会造成大幅价格摆动。但集中调度、非同步渗透率上限与网络约束均横亘在价格信号与实际交易之间，因此可执行价差约为公布价差的一半。'],
   blocks: [
     { t:'card', mt:false, title:['Day-ahead spread — level and trend','日前价差 — 水平与趋势'], badges:['tp'], live:true, blocks:[
-      { t:'line', cfg:{ xs: M.spreadLabels, yfmt: v => fmtC(v), h: 230, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.spreadLabels, yfmt: v => fmtC(v), h: 230, ymin: 0,
         series:[{ name:['Average daily day-ahead spread (€/MWh)','日均日前价差（€/MWh）'], color:'var(--s1)', vals: M.spreadSeries }],
         refs:[{ y: 59, label:['executable net spread','可执行净价差'], color:'var(--s6)' }] } },
       { t:'why', text:['The published series sits around ' + fmtC(O.daSpread) + '/MWh and the executable line sits at ' + fmtC(59) + ' — the gap is not noise, it is the structural cost of operating inside a centrally scheduled, constrained system. Any Irish model that starts from the published spread and applies only an efficiency haircut will be roughly ' + fmt1(O.daSpread / 59) + '× too optimistic on the merchant line.',
@@ -26,14 +26,14 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Published → executable spread bridge (€/MWh discharged)','公布至可执行价差桥（€/MWh放电）'], badges:['calc','illus'], live:true, blocks:[
-      { t:'wf', cfg:{ yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
       { t:'why', text:['The largest single deduction is dispatch, SNSP and constraint access at €14/MWh — larger than round-trip efficiency and larger than the optimiser fee. This is the distinctively Irish haircut: in a centrally scheduled market with a binding non-synchronous limit, the battery is not always permitted to make the trade the price implies. It is also the deduction that interconnection will reduce, which is one of the few places where Celtic and Greenlink help rather than hurt storage revenue.',
         '最大的单项扣减是调度、SNSP与网络约束准入，达€14/MWh — 高于往返效率损失，也高于优化商费用。这是爱尔兰特有的折减：在集中调度且非同步渗透率存在硬性上限的市场中，电池并不总被允许执行价格所隐含的交易。这也是互联建设将会减少的扣减项，是Celtic与Greenlink对储能收入有助而非有害的少数环节之一。'],
         sig:['Access, not efficiency, is the big loss','最大损失来自准入而非效率'] },
     ] },
 
     { t:'card', title:['SDP-02 — what proper scheduling integration changed','SDP-02 — 正式调度整合带来的变化'], badges:['official','illus'], live:true, blocks:[
-      { t:'bar', cfg:{ xs:[L(['Traded volume index','交易量指数']), L(['Cycles per day','日循环次数']), L(['Round-trip utilisation %','往返利用率%'])],
+      { t:'bar', cfg:{ dataset: M, xs:[L(['Traded volume index','交易量指数']), L(['Cycles per day','日循环次数']), L(['Round-trip utilisation %','往返利用率%'])],
         mode:'group', bw: 30, yfmt: v => fmt1(v), labels: true, h: 240,
         series:[
           { name:['Before SDP-02','SDP-02之前'], color:'var(--muted)', vals:[M.sdp.before.vol, M.sdp.before.cycles, M.sdp.before.rtt] },
@@ -45,7 +45,7 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Captured spread by COD year — saturation and coupling','按投运年度的捕获价差 — 饱和与耦合'], badges:['forecast','illus'], live:true, blocks:[
-      { t:'band', cfg:{ xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
+      { t:'band', cfg:{ dataset: M, xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
         low: Object.values(M.codCases).map(c => c.low),
         base: Object.values(M.codCases).map(c => c.central),
         high: Object.values(M.codCases).map(c => c.high),
@@ -54,7 +54,7 @@ SEC_B.energy = function (){
         { h:['Captured spread at COD ' + cod,'投运年' + cod + '的捕获价差'], v:fmtC(cc.central) + '/MWh', s:['low ' + fmtC(cc.low) + ' · high ' + fmtC(cc.high) + ' — the case spread is the real risk','低' + fmtC(cc.low) + ' · 高' + fmtC(cc.high) + ' — 情景间差距才是真实风险'] },
         { h:['Buildout dilution factor','投产稀释系数'], v:fmtPct(dilutionAt(+cod) * 100, 0), s:['relative to a 2028 reference COD','相对于2028年基准投运年'] },
       ] },
-      { t:'line', cfg:{ xs: M.fanYears, yfmt: v => fmtN(v), h: 230,
+      { t:'line', cfg:{ dataset: M, xs: M.fanYears, yfmt: v => fmtN(v), h: 230,
         series:[
           { name:['Merchant revenue index — low buildout','市场化收入指数 — 低投产'], color:'var(--s2)', vals: M.fanLow },
           { name:['Merchant revenue index — central','市场化收入指数 — 中性'], color:'var(--s1)', vals: M.fanCentral },

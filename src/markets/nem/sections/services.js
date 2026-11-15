@@ -19,7 +19,7 @@ export function create(api){
           { l:['FCAS revenue, Q2 2026','FCAS收入，2026年第二季度'], v:fmtCM(O.fcasQ2Am * 1e6), d:['of ' + fmtCM(O.battRevQ2Am * 1e6) + ' total net battery revenue','在' + fmtCM(O.battRevQ2Am * 1e6) + '储能净收入总额之中'], b:['official'] },
           { l:['Modelled FCAS in the lab seed','测算种子中的FCAS'], v:fmtCk(M.lab.servicesKW * 1000) + '<small>/MW/yr</small>', d:['≈' + fmtPct(O.fcasShareOctMarPct, 0) + ' of the CY2025 index, and flat across duration','约为2025日历年指数的' + fmtPct(O.fcasShareOctMarPct, 0) + '，且不随时长变化'], b:['calc'] },
         ] },
-        { t:'bar', cfg:{ xs: M.fcasShareLabels, bw: 44, rotX: false, yfmt: v => fmt1(v) + '%', labels: true, h: 220,
+        { t:'bar', cfg:{ dataset: M, xs: M.fcasShareLabels, bw: 44, rotX: false, yfmt: v => fmt1(v) + '%', labels: true, h: 220,
           series:[{ name:['FCAS share of battery revenue','FCAS占储能收入比重'], color:'var(--s3)', vals: M.fcasShareSeries }] } },
         { t:'why', text:['FCAS fell ' + O.fcasQ2FallPct + '% in a single quarter to ' + fmtCM(O.fcasQ2Am * 1e6) + ', or ' + O.fcasQ2SharePct + '% of NEM battery revenue. The mechanism is simple and irreversible: FCAS requirements are set by system need and do not grow with the fleet, so every megawatt of new battery divides the same pot. A market that was ' + fmtPct(100 - O.fcasShareOctMarPct, 0) + ' merchant six months ago is more so now. Model FCAS flat at best and never as a growth line.',
           'FCAS单季度下跌' + O.fcasQ2FallPct + '%至' + fmtCM(O.fcasQ2Am * 1e6) + '，占NEM储能收入的' + O.fcasQ2SharePct + '%。机制简单且不可逆：FCAS需求由系统需要确定，不随装机增长，因此每新增一兆瓦电池都是在分割同一块蛋糕。六个月前市场化占比已达' + fmtPct(100 - O.fcasShareOctMarPct, 0) + '的市场，如今占比更高。FCAS最多按持平建模，绝不可作为增长项。'],

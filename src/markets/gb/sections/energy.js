@@ -22,7 +22,7 @@ SEC_B.energy = function (){
         { l:['4h realised','4小时实际'], v:fmtCk(M.bmRevenueByDur[4]) + '<small>/MW/yr</small>', d:['+' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + ' vs 2h','较2小时+' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0)], b:['tp'] },
         { l:['8h realised','8小时实际'], v:fmtCk(M.bmRevenueByDur[8]) + '<small>/MW/yr</small>', d:['+' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + ' vs 4h','较4小时+' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0)], b:['tp'] },
       ] },
-      { t:'line', cfg:{ xs:['1h','2h','4h','6h','8h'], yfmt: v => fmtCk(v), ymin: 0, h: 230,
+      { t:'line', cfg:{ dataset: M, xs:['1h','2h','4h','6h','8h'], yfmt: v => fmtCk(v), ymin: 0, h: 230,
         series:[{ name:['Realised revenue by duration','按时长的实际收入'], color:'var(--s1)', vals:[M.bmRevenueByDur[1], M.bmRevenueByDur[2], M.bmRevenueByDur[4], M.bmRevenueByDur[6], M.bmRevenueByDur[8]] }] } },
       { t:'why', text:['Merchant revenue is strongly concave in duration. Doubling from 2h to 4h costs roughly double the energy capex but adds only ' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + ' of merchant revenue; 4h to 8h adds ' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '. On merchant grounds alone GB storage should be short. The reason to build longer is entirely on the capacity and resilience side — which is why the duration decision must be made on combined incremental NPV and never on the trading case alone.',
         '市场化收入对时长呈显著凹性。由2小时增至4小时，能量段造价约翻倍，但市场化收入仅增加' + fmtPct((M.bmRevenueByDur[4] / M.bmRevenueByDur[2] - 1) * 100, 0) + '；由4小时增至8小时仅增加' + fmtPct((M.bmRevenueByDur[8] / M.bmRevenueByDur[4] - 1) * 100, 0) + '。仅从市场化角度看，英国储能应当做短。做长的理由完全来自容量与韧性一侧 — 因此时长决策必须基于合并的增量NPV，绝不可仅凭交易逻辑。'],
@@ -31,7 +31,7 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Revenue composition — where the money is actually earned','收入构成 — 收益的实际来源'], badges:['tp'], live:true, blocks:[
-      { t:'bar', cfg:{ xs: M.revShare.map(s => L(s.n)), bw: 56, rotX: true, yfmt: v => v + '%', labels: true, h: 240,
+      { t:'bar', cfg:{ dataset: M, xs: M.revShare.map(s => L(s.n)), bw: 56, rotX: true, yfmt: v => v + '%', labels: true, h: 240,
         series:[{ name:['Share of merchant revenue','占市场化收入比重'], color:'var(--s1)', vals: M.revShare.map(s => s.pct) }] } },
       { t:'why', text:['The Balancing Mechanism is now the largest single component at 39%, ahead of day-ahead at 38%. That matters because BM revenue is not a price you can hedge — it is a dispatch outcome you have to earn, instruction by instruction, against a ' + fmtPct(M.skipRate * 100, 0) + ' skip rate. A GB battery is therefore only partly a trading asset; roughly two-fifths of its income depends on being visible, flexible and correctly parameterised inside the system operator’s despatch stack.',
         '平衡机制目前是最大的单一收入项，占39%，高于日前市场的38%。其意义在于：平衡机制收入不是可对冲的价格，而是须逐条指令去争取的调度结果，且面对' + fmtPct(M.skipRate * 100, 0) + '的跳过率。因此英国电池只是部分意义上的交易资产；约五分之二的收入取决于其在系统运营方调度体系中是否可见、灵活且参数设置正确。'],
@@ -39,20 +39,20 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Theoretical → realised bridge (2h asset, £/MWh of spread value)','理论至实际桥（2小时资产，价差价值£/MWh）'], badges:['calc','illus'], live:true, blocks:[
-      { t:'wf', cfg:{ yfmt: v => '£' + fmtN(v), h: 280, steps: M.spreadBridge } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => '£' + fmtN(v), h: 280, steps: M.spreadBridge } },
       { t:'why', text:['Roughly ' + fmtPct((1 - 65 / 112) * 100, 0) + ' of theoretical spread value never reaches the P&L, and the three largest deductions — forecast error, skip rate and network charges — are not efficiency losses that better equipment fixes. Two are execution and one is policy. This is why a GB base case built from a perfect-foresight backtest is not conservative but simply wrong, and why the optimiser contract deserves more diligence than the battery supply agreement.',
         '理论价差价值中约' + fmtPct((1 - 65 / 112) * 100, 0) + '从未进入损益表，且三项最大扣减 — 预测误差、跳过率与网络费用 — 均非更好的设备所能解决的效率损失。其中两项属执行，一项属政策。这正是为何以完全预见回测构建的英国基准情景不是审慎而是根本错误，也是为何优化商合同比电池供货协议更值得尽调。'],
         sig:['Backtests are not base cases','回测不等于基准情景'] },
     ] },
 
     { t:'card', title:['Buildout paths and spread compression to your COD year','投产路径与至投运年度的价差压缩'], badges:['forecast','illus'], live:true, blocks:[
-      { t:'line', cfg:{ xs: M.buildYears, yfmt: v => fmt1(v) + ' GW', ymin: 0, h: 250,
+      { t:'line', cfg:{ dataset: M, xs: M.buildYears, yfmt: v => fmt1(v) + ' GW', ymin: 0, h: 250,
         series:[
           { name:['Low buildout (revenue upside)','低投产（收益上行）'], color:'var(--s2)', vals: M.buildLow },
           { name:['Central buildout','中性投产'], color:'var(--s1)', vals: M.buildCentral },
           { name:['High buildout (revenue downside)','高投产（收益下行）'], color:'var(--s6)', vals: M.buildHigh },
         ] } },
-      { t:'line', cfg:{ xs: M.buildYears, yfmt: v => fmtPct(v * 100, 0), h: 230,
+      { t:'line', cfg:{ dataset: M, xs: M.buildYears, yfmt: v => fmtPct(v * 100, 0), h: 230,
         series:[
           { name:['2h revenue index — low buildout','2小时收入指数 — 低投产'], color:'var(--s2)', vals: M.compression2h.LOW },
           { name:['2h revenue index — central','2小时收入指数 — 中性'], color:'var(--s1)', vals: M.compression2h.CENTRAL },

@@ -91,7 +91,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'card', title:['The collapse, and the fleet size that explains it','收入下滑及其背后的装机规模'], badges:['tp'], blocks:[
-      { t:'bar', cfg:{ xs:M.idxLabels, bw:56, yfmt:v => '$' + v + 'k', labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.idxLabels, bw:56, yfmt:v => '$' + v + 'k', labels:true, h:230,
         series:[
           { name:['Modo ME BESS ERCOT Index, $k/MW/yr','Modo ME BESS ERCOT指数，$k/MW/年'], color:'var(--s13)', vals:M.idxSeries },
           { name:['Independent estimate, $k/MW/yr','独立机构测算，$k/MW/年'], color:'var(--s12)', vals:M.idxAltSeries },
@@ -201,7 +201,7 @@ SEC_B.energy = function (){
         '在没有容量市场且辅助服务趋于饱和的情况下，电能量价格就是这个市场的全部。它同时也是两个可信来源判断相差近两倍的那个数字。'],
   blocks: [
     { t:'card', mt:false, title:['Index to executable two-hour arbitrage','由指数折算至可执行的两小时套利收入'], badges:['tp','calc'], blocks:[
-      { t:'wf', cfg:{ steps:M.spreadBridge, yfmt:v => kMW(v), h:270 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.spreadBridge, yfmt:v => kMW(v), h:270 } },
       { t:'cap', text:['The ancillary leg is stripped out first because it is power-based and is modelled separately on the services tab. The duration step scales from the ' + O.fleetHours + '-hour fleet the index measures to the two-hour archetype. The optimiser fee is deliberately NOT a step — the model applies it once, as lab.optFee, and deducting it twice is the most common way this bridge is misread.',
                        '首先剔除辅助服务部分，因其属功率型收入并在服务页单独建模。时长步骤将该指数所测量的' + O.fleetHours + '小时机组折算至两小时原型。优化商费用刻意不作为步骤列出 — 模型仅在lab.optFee处应用一次，重复扣除是误读该桥形图最常见的方式。'] },
       { t:'warn', text:['The duration step is a stated assumption, not an observation. The index is published as a single fleet average and no breakdown by duration band was located, so there is no way to see what a two-hour ERCOT asset specifically earned. Every ERCOT revenue figure on this dashboard depends on the (2 / ' + O.fleetHours + ') × ' + O.captureDuration + ' scalar, which is why it is stated rather than buried.',
@@ -246,10 +246,10 @@ SEC_B.services = function (){
         'ERCOT在这一下行过程中比本平台任何市场都走得更远，因而最清晰地呈现了辅助服务饱和后的最终状态。'],
   blocks: [
     { t:'card', mt:false, title:['Why the observed number is not the forecast','为何已观测数值不能作为预测值'], badges:['calc'], blocks:[
-      { t:'wf', cfg:{ steps:M.asBridge, yfmt:v => kMW(v), h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.asBridge, yfmt:v => kMW(v), h:250 } },
       { t:'cap', text:['Three steps from what the fleet earns to what a new entrant should underwrite. The construction is identical to the one PJM uses for Regulation: a quantity set by system need, divided by a fleet that grows regardless of it.',
                        '从机组实际收入到新进入者应据以承销的水平，共三个步骤。该推算方式与PJM用于调频收入的构造完全相同：由系统需求确定的采购量，除以不受其影响而持续增长的机组规模。'] },
-      { t:'bar', cfg:{ xs:M.asShareLabels, bw:64, yfmt:v => v + '%', labels:true, h:210,
+      { t:'bar', cfg:{ dataset: M, xs:M.asShareLabels, bw:64, yfmt:v => v + '%', labels:true, h:210,
         series:[{ name:['Ancillary share of ERCOT battery revenue','辅助服务占ERCOT储能收入比重'], color:'var(--s13)', vals:M.asShareSeries }] } },
       { t:'cap', text:['Ancillary revenue itself has fallen about ' + O.asFallSince2023Pct + '% since 2023, so the share falling from ' + O.asShare2023Pct + '% to ' + O.asShare2025Pct + '% understates it — the denominator fell too.',
                        '辅助服务收入本身自2023年以来已下跌约' + O.asFallSince2023Pct + '%，因此占比由' + O.asShare2023Pct + '%降至' + O.asShare2025Pct + '%仍低估了实际降幅 — 因为分母同样在下降。'] },
@@ -314,7 +314,7 @@ SEC_B.duration = function (){
       { t:'scorecard', id:'durFactors', bands:'durBands' },
     ] },
     { t:'card', title:['Marginal value of the third and fourth hour','第三、四小时的边际价值'], badges:['calc','illus'], blocks:[
-      { t:'wf', cfg:{ steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
       { t:'cap', text:['Incremental value of moving from two hours to four, per MW per year, in $ thousands, ON THE MERCHANT BASIS. Ancillary is zero because it is paid on power and, after RTC+B, requires thirty minutes to one hour. Incremental capex is 2,000 kWh/MW at the $' + O.energyPerKWh + '/kWh energy-scaling component plus EPC, annualised over twenty years at 8%.',
                        '由两小时提升至四小时的增量价值，单位为每MW每年千美元，按市场化口径计算。辅助服务为零，因其按功率计费，且在RTC+B之后仅要求三十分钟至一小时。增量资本开支为每MW 2,000kWh，按每kWh $' + O.energyPerKWh + '的能量型成本分项加EPC计算，按二十年8%折现年化。'] },
       { t:'warn', text:['This waterfall answers the MERCHANT question and the ERCOT four-hour case does not live there — it lives in the toll, and no two-hour-versus-four-hour toll pair has ever been published. The broader US toll band of $' + O.tollUs4hLo + '–' + O.tollUs4hHi + '/kW-month is quoted for four-hour systems and would imply a large uplift over the two-hour value of ' + perKW(O.tollTb2Aug25) + ', but the two figures come from different series and cannot be differenced. The four-hour case in ERCOT is therefore unquantifiable on public data rather than negative.',

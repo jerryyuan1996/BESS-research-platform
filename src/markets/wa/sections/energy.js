@@ -47,7 +47,7 @@ function renderEnergy(main){
   g.append(cME);
 
   const c1 = card(['Optimised gross revenue by duration (A$k/MW/yr)', '按时长优化的毛收入（A$k/MW/年）'], [badge('illus'), statusBadge(true)]);
-  lineChart(c1, {
+  lineChart(c1, { dataset: SEED,
     xs: SEED.quarters, yfmt: v => 'A$' + fmtN(v) + 'k',
     series: [
       { name: ['2h', '2小时'], color: 'var(--s1)', vals: SEED.tbSeries['2h'], dash: true },
@@ -65,12 +65,12 @@ function renderEnergy(main){
   g.append(c1);
 
   const c2 = card(['Cannibalisation: spread vs fleet MWh (aligned panels)', '收益侵蚀：价差与装机MWh（对齐面板）'], [badge('official'), badge('illus'), statusBadge(true)]);
-  lineChart(c2, {
+  lineChart(c2, { dataset: SEED,
     xs: SEED.quarters, yfmt: v => 'A$' + fmtN(v),
     series: [{ name: ['Price spread A$/MWh', '价差 A$/MWh'], color: 'var(--s1)', vals: SEED.spreadSeries, dash: true }],
     ann: [{ si: 0, i: 0, text: 'A$51 (official)' }, { si: 0, i: 4, text: 'A$13 (official)' }], h: 190,
   });
-  barChart(c2, {
+  barChart(c2, { dataset: SEED,
     xs: SEED.quarters, yfmt: v => fmtN(v),
     series: [{ name: ['Fleet MWh', '装机MWh'], color: 'var(--s2)', vals: SEED.fleetMWhSeries }], h: 170, labels: true,
   });
@@ -81,7 +81,7 @@ function renderEnergy(main){
   g.append(c2);
 
   const c3 = card(['High-price event duration distribution', '高电价事件时长分布'], [badge('illus'), statusBadge(true)]);
-  barChart(c3, {
+  barChart(c3, { dataset: SEED,
     xs: SEED.eventDurBuckets, yfmt: fmtN, labels: true,
     series: [{ name: ['Events (TTM)', '事件数（滚动12个月）'], color: 'var(--s1)', vals: SEED.eventDurCounts }], h: 230,
   });

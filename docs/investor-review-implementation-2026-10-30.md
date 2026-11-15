@@ -1,3 +1,4 @@
+> Status: Earlier matrix-axis and downside-placement design superseded by [修改建议.md](修改建议.md) (2026-10-30); the historical text below is retained.
 # Investor review implementation — 30 October 2026
 
 Current follow-up: [user-confirmed layout and cash-flow changes](修改建议.md) supersedes the earlier margin-axis and early-downside placement described below. The matrix now plots actual IRR; monthly cash charts and plan switching use the original hold cash flows; research details open in a native modal. The historical-frequency display is explicitly a single price-proxy observation, not a joint downside probability. The validation counts below describe PR #69; follow-up checks are recorded in its own PR.

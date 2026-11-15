@@ -67,7 +67,7 @@ SEC_B.benchmark = function (){
         { l:['Ireland / GB multiple','爱尔兰对英国倍数'], v:fmt1(mult) + '<small>×</small>', d:['on identical 2-hour nameplate MW','在同样的2小时铭牌MW上'], b:['calc'] },
         { l:['Agreement length','协议年限'], v:O.crmAgreementYears + ' / ' + P.cmAgreementYears + '<small> yr</small>', d:['Ireland / GB new-build','爱尔兰/英国新建'], b:['official'] },
       ] },
-      { t:'bar', cfg:{ xs:['1h','2h','4h','6h','8h'], mode:'group', bw: 22, yfmt: v => fmtCk(v), h: 250,
+      { t:'bar', cfg:{ dataset: M, xs:['1h','2h','4h','6h','8h'], mode:'group', bw: 22, yfmt: v => fmtCk(v), h: 250,
         series:[
           { name:['Ireland capacity revenue per nameplate MW','爱尔兰每铭牌MW容量收入'], color:'var(--s1)',
             vals:[1,2,4,6,8].map(hh => O.crmPrice * interp(M.deratingCurve, hh) * 1000) },
@@ -96,7 +96,7 @@ SEC_B.benchmark = function (){
           { l:['Ireland fleet duration','爱尔兰在运时长'], v:'0.5–2<small> h</small>', d:['built for DS3 tariffs','为DS3费率而建'], b:['illus'] },
           { l:['GB fleet duration','英国在运时长'], v:fmt1(P.fleetAvgHours) + '<small> h</small>', d:['built for frequency response','为调频响应而建'], b:['peer'] },
         ] },
-        { t:'bar', cfg:{ xs:[L(['IE operating','爱尔兰在运']), L(['IE pipeline','爱尔兰管线']), L(['GB operating','英国在运']), L(['GB 2030 central','英国2030中性'])],
+        { t:'bar', cfg:{ dataset: P, xs:[L(['IE operating','爱尔兰在运']), L(['IE pipeline','爱尔兰管线']), L(['GB operating','英国在运']), L(['GB 2030 central','英国2030中性'])],
           bw: 46, rotX: true, yfmt: v => fmt1(v) + ' GW', labels: true, h: 250,
           series:[{ name:['GW','GW'], color:'var(--s1)', vals:[O.fleetMW / 1000, O.pipelineMW / 1000, P.fleetGW, P.buildCentral2030GW] }] } },
         { t:'why', text:['Ireland’s pipeline is ' + fmt1(O.pipelineMW / O.fleetMW) + '× its operating fleet against GB’s ' + fmt1(P.buildCentral2030GW / P.fleetGW) + '× to 2030, so relative saturation pressure is materially higher in Ireland even though absolute volumes are six to ten times smaller. But the Irish pipeline is filtered by connection capacity rather than by capital, so the ratio overstates realistic competition. The transferable point is that saturation is a ratio and a gate-weighted one — comparing raw GW across the two markets gives exactly the wrong answer about which is more competitive.',

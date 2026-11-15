@@ -22,7 +22,7 @@ SEC_B.capacity = function (){
         { l:['BESS capacity contracted (seed)','已签约储能容量（种子）'], v:fmt1(O.cmAwardedBessGW) + '<small> GW</small>', d:['the competitive cohort that will connect before 2030','将于2030年前并网的竞争批次'], b:['verify'] },
         { l:['Capacity revenue per nameplate MW (4h)','每铭牌MW容量收入（4小时）'], v:fmtCk(perNameplate(4)) + '<small>/MW/yr</small>', d:['2h: ' + fmtCk(perNameplate(2)) + ' · 6h: ' + fmtCk(perNameplate(6)),'2小时：' + fmtCk(perNameplate(2)) + ' · 6小时：' + fmtCk(perNameplate(6))], b:['calc'] },
       ] },
-      { t:'line', cfg:{ xs: M.cmYears, yfmt: v => fmtN(v), h: 240, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.cmYears, yfmt: v => fmtN(v), h: 240, ymin: 0,
         series:[{ name:['Clearing price (PLN/kW/yr, seed)','出清价（PLN/kW/年，种子）'], color:'var(--s1)', vals: M.cmPriceSeries }] } },
       { t:'proto', text:['These are seed values. Replace the clearing price, contract length and contracted volume with the published results for the specific delivery year before any transaction use — the entire contracted revenue line depends on them.',
         '此为种子数值。任何交易用途前，须以对应交付年度的官方公布结果替换出清价、合同期限与签约容量 — 整条合同化收入线均取决于这些数值。'] },
@@ -39,7 +39,7 @@ SEC_B.capacity = function (){
           return [{ b: [hh + 'h', hh + '小时'] }, fmtPct(M.deratingCurve[hh] * 100, 0), fmtCk(perNameplate(hh)),
             prev == null ? '—' : '+' + fmtCk(perNameplate(hh) - perNameplate(prev))];
         }) },
-      { t:'bar', cfg:{ xs: M.derateHours.map(x => x + 'h'), bw: 40, yfmt: v => fmtCk(v), h: 250,
+      { t:'bar', cfg:{ dataset: M, xs: M.derateHours.map(x => x + 'h'), bw: 40, yfmt: v => fmtCk(v), h: 250,
         series:[{ name:['Capacity revenue per nameplate MW','每铭牌MW容量收入'], color:'var(--s1)', vals: M.derateHours.map(hh => perNameplate(hh)) }] } },
       { t:'why', text:['The uplift column is the duration decision. Moving 2h → 4h adds ' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/yr; 4h → 6h adds ' + fmtCk(perNameplate(6) - perNameplate(4)) + ' and 6h → 8h ' + fmtCk(perNameplate(8) - perNameplate(6)) + ', because the factor is flat above four hours. The mechanism pays for hours up to four and none after, so the capacity line argues firmly against building past four but, at 13.39%, only weakly for reaching it. Note the asymmetry of risk: the factor can be revised downward between vintages, while the ' + O.cmAgreementYears + '-year obligation attached to an existing contract cannot be revised at all.',
         '增益列即是时长决策。由2小时增至4小时可增加' + fmtCk(perNameplate(4) - perNameplate(2)) + '/MW/年；由4小时增至6小时增加' + fmtCk(perNameplate(6) - perNameplate(4)) + '，由6小时增至8小时增加' + fmtCk(perNameplate(8) - perNameplate(6)) + '，因为折减系数在四小时以上持平。该机制为四小时以内的小时数付费，其后不再付费；因此容量收入线明确反对建设超过四小时，但在13.39%的系数下，对达到四小时的支持力度很弱。须注意风险的不对称性：系数可在不同年份之间被下调，而既有合同所附带的' + O.cmAgreementYears + '年义务则完全无法修订。'],
@@ -48,7 +48,7 @@ SEC_B.capacity = function (){
     ] },
 
     { t:'card', title:['Nameplate → paid capacity bridge (100 MW / 4h example)','铭牌至获付容量桥（100MW/4小时示例）'], badges:['calc','illus'], live:true, blocks:[
-      { t:'wf', cfg:{ yfmt: v => fmtN(v) + ' MW', h: 270, zeroBase: true, steps: [
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtN(v) + ' MW', h: 270, zeroBase: true, steps: [
         { l:['Nameplate MW','铭牌MW'], v: 100, t:'start' },
         { l:['− connection capacity limit','− 并网容量限制'], v: -2, t:'d' },
         { l:['− usable AC fraction & auxiliaries','− 可用交流侧比例与站用电'], v: -6, t:'d' },

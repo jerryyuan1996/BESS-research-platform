@@ -1,11 +1,12 @@
-/* Fan / band chart, verbatim from the prototype (lines 588-644).
+/* Fan / band chart, with shared accessibility and exact-value fallback.
    low/base/high envelopes over categorical xs, with optional confidence zones and an
    'official' marker ring. Used by the WA ten-year BRCP forecast. */
+import { finishChart, pointTooltip } from './accessibility.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
 import { tipShow, tipHide } from '../components/tooltip.js';
-import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtils.js';
+import { S, niceTicks } from './chartUtils.js';
 import { axisText } from './axes.js';
 // Fan chart: low/base/high bands over categorical xs, with confidence-zone shading
 function bandChart(parent, cfg){
@@ -50,19 +51,32 @@ function bandChart(parent, cfg){
   const cross = S('line', { y1: padT, y2: padT + plotH, stroke: 'var(--baseline)', 'stroke-width': 1, visibility: 'hidden' });
   svg.append(cross);
   const ov = S('rect', { x: padL, y: padT, width: plotW, height: plotH, fill: 'transparent' });
+  const tooltip = i => `<b>${xs[i]}</b>` + [
+    [L(['High', '高']), cfg.high[i]], [L(['Base', '基准']), cfg.base[i]], [L(['Low', '低']), cfg.low[i]],
+  ].map(([name, value]) => `<div class="tr"><span>${name}</span><b>${yf(value)}</b></div>`).join('');
   ov.addEventListener('mousemove', ev => {
     const r = svg.getBoundingClientRect(), sx = W / r.width, mx = (ev.clientX - r.left) * sx;
     let bi = 0, bd = 1e9; for (let i = 0; i < n; i++){ const dd = Math.abs(X(i) - mx); if (dd < bd){ bd = dd; bi = i; } }
     cross.setAttribute('x1', X(bi)); cross.setAttribute('x2', X(bi)); cross.setAttribute('visibility', 'visible');
-    let html = `<b>${xs[bi]}</b>`;
-    html += `<div class="tr"><span>${L(['High', '高'])}</span><b>${yf(cfg.high[bi])}</b></div>`;
-    html += `<div class="tr"><span>${L(['Base', '基准'])}</span><b>${yf(cfg.base[bi])}</b></div>`;
-    html += `<div class="tr"><span>${L(['Low', '低'])}</span><b>${yf(cfg.low[bi])}</b></div>`;
+    const html = tooltip(bi);
     tipShow(html, ev);
   });
   ov.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); tipHide(); });
   svg.append(ov);
-  const wrap = h('div', { class: 'chart' }); wrap.append(svg); parent.append(wrap); return wrap;
+  xs.forEach((_, i) => {
+    const point = S('circle', { cx: X(i), cy: Y(cfg.base[i]), r: 6, fill: 'transparent', 'pointer-events': 'none' });
+    pointTooltip(point, tooltip(i), {
+      show: () => { cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i)); cross.setAttribute('visibility', 'visible'); },
+      hide: () => cross.setAttribute('visibility', 'hidden'),
+    });
+    svg.append(point);
+  });
+  if (cfg.official){
+    const point = S('circle', { cx: X(cfg.official.i), cy: Y(cfg.official.y), r: 7, fill: 'transparent' });
+    pointTooltip(point, `<b>${xs[cfg.official.i]}</b><div class="tr"><span>${L(['Official', '官方'])}</span><b>${yf(cfg.official.y)}</b></div>`);
+    svg.append(point);
+  }
+  const wrap = h('div', { class: 'chart' }); wrap.append(svg); finishChart(parent, wrap, svg, cfg, 'band'); return wrap;
 }
 
 export { bandChart };

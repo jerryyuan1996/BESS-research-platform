@@ -1,3 +1,4 @@
+> Status: Implementation-status plan superseded by [investment-view-closeout-2026-10-12.md](investment-view-closeout-2026-10-12.md) (2026-10-12); the historical text below is retained.
 # Investability phase 5 — "the rest" — plan for sign-off
 
 Drafted 2026-10-11 against `origin/main` at `798d03a`. **Nothing here is built.** This is the

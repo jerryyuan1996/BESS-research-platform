@@ -1,3 +1,4 @@
+import { formatNumber } from '../../../utils/locale.js';
 /* ---------------------------------------------------------------------------
    Chart-RO-FLEET: one signature chart, two panels, one calendar axis.
 
@@ -30,7 +31,7 @@ const GREEN = 'var(--ix-green,#224e40)';
 const MUTED = 'var(--ix-muted,#68766c)';
 const RISK = 'var(--ix-risk,#9c5b40)';
 
-const mw = (v) => Math.round(v).toLocaleString('en-US');
+const mw = (v) => formatNumber(Math.round(v));
 const idx = (v) => Number(v.toFixed(1)).toString();
 
 /**

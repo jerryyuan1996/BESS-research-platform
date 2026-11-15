@@ -1,12 +1,12 @@
-/* Scatter chart, verbatim from the prototype (lines 839-872).
+/* Scatter chart, with shared accessibility and exact-value fallback.
    Home-cockpit only in the prototype; now a shared primitive available to any market.
    Points carry pre-rendered tooltip HTML. Labels flip inward near the right edge and
    coordinates are clamped to the plot box. */
+import { finishChart, pointTooltip } from './accessibility.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
-import { tipShow, tipHide } from '../components/tooltip.js';
-import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtils.js';
+import { S, niceTicks } from './chartUtils.js';
 import { axisText } from './axes.js';
 // ---------------- scatter (hub-only chart) ----------------
 function scatterChart(parent, cfg){
@@ -101,8 +101,7 @@ function scatterChart(parent, cfg){
         'stroke-width': 2.4, 'stroke-dasharray':'3 2' })
       : p.hollow ? S('circle', { cx, cy, r: 6, fill: 'var(--surface)', stroke: p.color, 'stroke-width': 2.4 })
         : S('circle', { cx, cy, r: 7, fill: p.color, stroke: 'var(--surface)', 'stroke-width': 2 });
-    c.addEventListener('mousemove', ev => tipShow(p.tip, ev));
-    c.addEventListener('mouseleave', tipHide);
+    pointTooltip(c, p.tip || p.short || '');
     svg.append(c);
     // Only labelled points get text; with several routes per market, labelling
     // all of them would produce a chart of overlapping strings.
@@ -144,8 +143,7 @@ function scatterChart(parent, cfg){
     const tip = heading + (compact
       ? '<div class="tip-stack">' + points.map(p => '<div>' + p.short + '</div>').join('') + '</div>'
       : points.map(p => p.tip).join('<hr class="tip-rule">'));
-    node.addEventListener('mousemove', ev => tipShow(tip, ev));
-    node.addEventListener('mouseleave', tipHide);
+    pointTooltip(node, tip);
     svg.append(node);
 
     const count = axisText(cx, cy + 3.5, String(points.length), 'middle', 'var(--fs-micro)');
@@ -163,7 +161,7 @@ function scatterChart(parent, cfg){
     }
   }
 
-  const wrap = h('div', { class: 'chart' }); wrap.append(svg); parent.append(wrap);
+  const wrap = h('div', { class: 'chart' }); wrap.append(svg); finishChart(parent, wrap, svg, cfg, 'scatter');
 }
 
 export { scatterChart };

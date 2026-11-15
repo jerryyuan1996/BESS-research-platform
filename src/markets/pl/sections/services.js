@@ -21,7 +21,7 @@ SEC_B.services = function (){
           { b: [p.id + ' — ' + p.n[0], p.id + ' — ' + p.n[1]] }, p.dir, fmtN(p.reqMW), fmtC(p.capEurMWh),
           i === 2 ? { chip:'warn', text:['Moderate — deep volume, low price','中等 — 量大价低'] } : { chip:'good', text:['High — power, not energy','高 — 需功率而非能量'] },
         ]) },
-      { t:'bar', cfg:{ xs: M.balProducts.map(p => p.id), mode:'group', bw: 26, yfmt: v => fmtN(v), h: 240,
+      { t:'bar', cfg:{ dataset: M, xs: M.balProducts.map(p => p.id), mode:'group', bw: 26, yfmt: v => fmtN(v), h: 240,
         series:[
           { name:['Requirement (MW)','需求(MW)'], color:'var(--s1)', vals: M.balProducts.map(p => p.reqMW) },
           { name:['Capacity price (€/MW/h)','容量价格(€/MW/h)'], color:'var(--s3)', vals: M.balProducts.map(p => p.capEurMWh) },
@@ -33,7 +33,7 @@ SEC_B.services = function (){
     ] },
 
     { t:'card', title:['aFRR capacity price trend — the saturation signal','aFRR容量价格趋势 — 饱和信号'], badges:['illus'], live:true, blocks:[
-      { t:'line', cfg:{ xs: M.pxLabels, yfmt: v => fmtC(v), h: 220, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.pxLabels, yfmt: v => fmtC(v), h: 220, ymin: 0,
         series:[{ name:['aFRR capacity price (€/MW/h, seed)','aFRR容量价格（€/MW/h，种子）'], color:'var(--s6)', vals: M.afrrCapSeries }] } },
       { t:'why', text:['The aFRR capacity price is down ' + fmtPct(Math.abs(M.afrrCapSeries[5] / M.afrrCapSeries[0] - 1) * 100, 0) + '% over six quarters as more capable capacity certifies — the same pattern observed in GB, Ireland and Romania, arriving in Poland with ' + fmt1(O.cmAwardedBessGW) + ' GW of contracted storage still to connect. Model this line flat at best and exclude it from debt sizing; the capacity contract is what lenders will size against, and that is a structural advantage rather than a limitation.',
         '随着更多有能力的容量通过认证，aFRR容量价格在六个季度内下降' + fmtPct(Math.abs(M.afrrCapSeries[5] / M.afrrCapSeries[0] - 1) * 100, 0) + '% — 与英国、爱尔兰及罗马尼亚观察到的模式相同，而波兰尚有' + fmt1(O.cmAwardedBessGW) + 'GW已签约储能待并网。该收入线最多按持平建模并排除于债务规模测算之外；贷款人据以安排规模的是容量合同，而这是结构性优势而非限制。'],

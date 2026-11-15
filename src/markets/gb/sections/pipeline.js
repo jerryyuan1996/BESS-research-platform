@@ -36,7 +36,7 @@ SEC_B.pipeline = function (){
     ] },
     { t:'g2', cards:[
       { title:['Effective-year capacity — raw versus analyst-weighted','按生效年份容量 — 原始与分析加权'], badges:['official','calc'], blocks:[
-        { t:'bar', cfg:{ xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
+        { t:'bar', cfg:{ dataset:P, xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
           series:[
             { name:['TEC raw nameplate MW','TEC原始铭牌MW'], color:'var(--s3)', vals:P.rawMW },
             { name:['Analyst-weighted MW','分析师加权MW'], color:'var(--s1)', vals:P.analystWeightedMW },
@@ -44,7 +44,7 @@ SEC_B.pipeline = function (){
         { t:'note', text:['“MW Effective From” is the contract field in the TEC Register. It is not independently verified COD and may be stale for individual projects.','“MW Effective From”是TEC登记册中的合同字段，并非经独立核实的投运日期，个别项目可能已过期。'] },
       ] },
       { title:['Gate composition — evidence quality changes sharply after 2029','Gate构成 — 2029年后证据质量显著变化'], badges:['official','calc'], blocks:[
-        { t:'bar', cfg:{ xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
+        { t:'bar', cfg:{ dataset:P, xs:P.years.map(String), mode:'group', yfmt:v => fmt1(v / 1000) + ' GW', h:260,
           series:[
             { name:['Gate 2','Gate 2'], color:'var(--s2)', vals:P.gate2MW },
             { name:['Gate 1','Gate 1'], color:'var(--s6)', vals:P.gate1MW },

@@ -22,7 +22,7 @@ SEC_B.capacity = function (){
         { l:['Five-year price trajectory','五年价格轨迹'], v:fmtC(M.crmPriceSeries[0]) + ' → ' + fmtC(O.crmPrice), d:['+' + fmtPct((O.crmPrice / M.crmPriceSeries[0] - 1) * 100, 0) + ' across five delivery years','五个交付年度内上升' + fmtPct((O.crmPrice / M.crmPriceSeries[0] - 1) * 100, 0)], b:['calc'] },
         { l:['New-capacity agreement length','新建容量协议年限'], v:O.crmAgreementYears + '<small> yr</small>', d:['verify the unit class before modelling','建模前须核验机组类别'], b:['verify'] },
       ] },
-      { t:'line', cfg:{ xs: M.crmYears, yfmt: v => fmtC(v), h: 240, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.crmYears, yfmt: v => fmtC(v), h: 240, ymin: 0,
         series:[{ name:['T-4 clearing price (€/kW de-rated/yr)','T-4出清价（€/kW折减/年）'], color:'var(--s1)', vals: M.crmPriceSeries }],
         ann:[{ si: 0, i: 4, text: fmtC(O.crmPrice) }] } },
       { t:'why', text:['The price has risen in every delivery year in this series, which is the opposite of the GB pattern and reflects a structurally tight island system rather than a bidding cycle. Two underwriting rules follow: do not extrapolate the trend upward, because a single large entry cohort can reverse it; and do underwrite the mechanism as the primary revenue line, because at ' + fmtC(O.crmPrice) + '/kW de-rated/yr no other line in the Irish stack is comparable in size or certainty.',
@@ -38,7 +38,7 @@ SEC_B.capacity = function (){
           return [{ b: [hh + 'h', hh + '小时'] }, fmtPct(M.deratingCurve[hh] * 100, 0), fmtCk(perNameplate(hh)),
             prev == null ? '—' : '+' + fmtCk(perNameplate(hh) - perNameplate(prev))];
         }) },
-      { t:'bar', cfg:{ xs: M.derateHours.map(x => x + 'h'), bw: 34, yfmt: v => fmtCk(v), labels: false, h: 250,
+      { t:'bar', cfg:{ dataset: M, xs: M.derateHours.map(x => x + 'h'), bw: 34, yfmt: v => fmtCk(v), labels: false, h: 250,
         series:[{ name:['Capacity revenue per nameplate MW','每铭牌MW容量收入'], color:'var(--s1)', vals: M.derateHours.map(hh => perNameplate(hh)) }] } },
       { t:'note', b:['Vintage discipline: ','版本纪律：'],
         text:['These are indicative seed values pending replacement with the published de-rating table for the exact auction the project will enter. A factor from the wrong vintage misstates the single largest revenue line in the Irish stack.',

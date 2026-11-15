@@ -1,3 +1,4 @@
+> Status: The proposed design section is superseded by [guided-experience-plan.md](guided-experience-plan.md) (2026-10-16); the remaining historical rulings are retained.
 # Duration and route fit, by market — plan for sign-off
 
 Drafted 2026-10-15 against `main` at `1e1ca69`. **Nothing here is built.** You asked three things:
