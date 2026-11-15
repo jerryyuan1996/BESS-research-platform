@@ -21,11 +21,12 @@ test('Situational qualifier uses all-equity target, then a supported positive pr
   assert.equal(meetsTarget(example(.05),'levered'),true,'matrix toggle uses its own target');
   assert.equal(returnPosition(example(.05)),'below','debt cannot clear the all-equity qualifier');
 });
-test('fund Situational groups match the approved Package 1 plan',()=>{
+test('fund Situational groups reflect the approved Polish grant Watch',()=>{
   const groups=key=>opportunities('infraFund').filter(r=>situationalQualifier(r)===key).map(r=>r.id).sort();
   assert.deepEqual(groups('clears'),['fi','wa']);
   assert.deepEqual(groups('price'),['caiso','gb','jp_hokkaido','jp_kyushu','jp_tokyo','nem','ro']);
-  assert.deepEqual(groups('below'),['de','ercot','pl']);
+  assert.deepEqual(groups('below'),['de','ercot']);
+  assert.equal(opportunities('infraFund').find(r=>r.id==='pl').call,'wait');
 });
 test('debt flags dilution explicitly, including a negative levered return',()=>{
   assert.equal(debtEffect({holdIRR:.1,leveredIRR:.09}),'dilutes');

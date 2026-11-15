@@ -188,84 +188,93 @@
   "verdicts": {
     "strategic": {
       "archetype": "strategic",
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "where": null,
+      "where": [
+        "Eligible RBP project with an executable delivery plan",
+        "具可执行交付计划的合资格RBP项目"
+      ],
       "because": [
-        {
-          "dimension": "demandGrowth",
-          "text": [
-            "Load growth is strong and the last capacity auction cleared short of the reliability requirement.",
-            "负荷增长强劲，最近一轮容量拍卖的出清量低于可靠性要求。"
-          ]
-        },
-        {
-          "dimension": "gridScarcity",
-          "text": [
-            "The interconnection queue is far larger than what has been awarded agreements.",
-            "并网排队规模远大于已获并网协议的规模。"
-          ]
-        },
         {
           "dimension": "assetReturn",
           "text": [
-            "On the model the reference project falls short of this investor's target.",
-            "按模型测算，参考项目达不到该类投资者的目标回报。"
+            "Below target; the annual-auction cap is already priced.",
+            "低于目标；年度拍卖上限已计入。"
+          ]
+        },
+        {
+          "dimension": "policyStability",
+          "text": [
+            "Fair evidence: RBP offers a long-term storage path; verify rules and target eligibility.",
+            "证据一般：RBP提供长期储能路径；须核实规则及目标资格。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Verify site/interconnection rights, costs, delivery and net synergy alongside payments.",
+            "结合支付条款核实场地和并网权利、成本、交付及净协同。"
           ]
         }
       ],
       "despite": [
-        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
-        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+        "Unpriced synergy or demand growth does not establish project value.",
+        "未定价的协同或需求增长不能确立项目价值。"
       ],
       "changesIf": [
-        "pjm-capacity-auction-2029-30"
+        "pjm-rbp-participation-review",
+        "pjm-backstop-filing-suspension-ends",
+        "pjm-rbp-proposed-results"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "lockedUntil": null
     },
     "infraFund": {
       "archetype": "infraFund",
       "call": "wait",
       "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "Eligible RBP project with financeable terms",
+        "具可融资条款的合资格RBP项目"
+      ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "On the model the reference project falls short of the fund's target.",
-            "按模型测算，参考项目达不到基金目标回报。"
-          ]
-        },
-        {
-          "dimension": "revenueCertainty",
-          "text": [
-            "Capacity revenue is secured one delivery year at a time.",
-            "容量收入每次只能锁定一个交付年度。"
+            "Below target; the annual-auction cap is already priced.",
+            "低于目标；年度拍卖上限已计入。"
           ]
         },
         {
           "dimension": "policyStability",
           "text": [
-            "The capacity market's design beyond the current price collar is not settled.",
-            "现行价格区间机制之后的容量市场设计尚未确定。"
+            "Fair evidence: RBP offers a long-term storage path; verify rules and target eligibility.",
+            "证据一般：RBP提供长期储能路径；须核实规则及目标资格。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Verify rights, payments, credit, performance, lender terms and exit transfer.",
+            "核实权利、支付、信用、履约、融资条款及退出转让。"
           ]
         }
       ],
       "despite": [
-        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
-        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+        "Revalue verified long-term terms; no RBP award is assumed.",
+        "按经核实的长期条款重估；未假定RBP中标。"
       ],
       "changesIf": [
-        "pjm-capacity-auction-2029-30",
+        "pjm-rbp-participation-review",
         "pjm-backstop-filing-suspension-ends",
+        "pjm-rbp-proposed-results",
         "pjm-elcc-2030-31-rating"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "lockedUntil": null,
       "play": "pjm-cap-4h"
     },
@@ -273,34 +282,45 @@
       "archetype": "foreignFirstTimer",
       "call": "wait",
       "route": "ready-to-build",
-      "where": null,
+      "where": [
+        "Low-priority eligible partnership, co-investment or acquisition",
+        "低优先级的合资格合作、共同投资或收购"
+      ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "On the model the reference project falls short of this investor's target.",
-            "按模型测算，参考项目达不到该类投资者的目标回报。"
+            "Below target; the annual-auction cap is already priced.",
+            "低于目标；年度拍卖上限已计入。"
           ]
         },
         {
-          "dimension": "revenueCertainty",
+          "dimension": "policyStability",
           "text": [
-            "Capacity revenue is secured one delivery year at a time.",
-            "容量收入每次只能锁定一个交付年度。"
+            "Fair evidence: RBP offers a long-term storage path; verify rules and target eligibility.",
+            "证据一般：RBP提供长期储能路径；须核实规则及目标资格。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Identify a target/partner; verify eligibility transfer, entry price, governance and execution.",
+            "明确目标或伙伴；核实资格转让、进入价格、治理及执行。"
           ]
         }
       ],
       "despite": [
-        "Scarce deliverable rights in a system short of capacity can be worth more than the reference case shows.",
-        "在容量短缺的系统中，稀缺的可交付并网权的价值可能高于参考情景所示。"
+        "No concrete access path: stop investigation and propose scoped Pass.",
+        "无具体进入路径：停止调查并提交该范围的放弃建议。"
       ],
       "changesIf": [
-        "pjm-capacity-auction-2029-30",
-        "pjm-backstop-filing-suspension-ends"
+        "pjm-rbp-participation-review",
+        "pjm-backstop-filing-suspension-ends",
+        "pjm-rbp-proposed-results"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "lockedUntil": null
     },
     "developer": {
@@ -350,16 +370,24 @@
       "kind": "event",
       "market": "pjm",
       "label": [
-        "FERC suspension of the Reliability Backstop filing ends",
-        "FERC对可靠性兜底采购申请的中止期届满"
+        "Requested RBP effective date; verify final order",
+        "RBP申请生效日：核实最终裁定"
       ],
       "expected": "2027-02-28",
       "watches": [
         "policyStability"
       ],
       "direction": "either",
-      "source": "decision-profile",
-      "effect": null
+      "source": {
+        "publisher": "PJM",
+        "url": "https://www.pjm.com/pjmfiles/directory/etariff/FercDockets/9977/20261109%20er27-454-000.pdf",
+        "access": "opened"
+      },
+      "effect": null,
+      "note": [
+        "The 9 November filing requests this date for most amendments; no target award or price is confirmed.",
+        "11月9日申请要求多数修订于此日生效；尚未确认目标中标或价格。"
+      ]
     },
     {
       "id": "pjm-capacity-auction-2029-30",
@@ -401,6 +429,52 @@
         "PJM在每次基础剩余容量拍卖前公布初步ELCC分类评级。2029/30交付年评级已于2026年8月6–7日公布；2030/31交付年评级计划于2027年1月11日公布。"
       ],
       "effect": null
+    },
+    {
+      "id": "pjm-rbp-participation-review",
+      "kind": "event",
+      "market": "pjm",
+      "label": [
+        "Analyst checkpoint: verify an actionable RBP participation path",
+        "分析师复核：核实可执行的RBP参与路径"
+      ],
+      "expected": "2027-03-31",
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "note": [
+        "Internal review, not an award deadline. Verify rules, target eligibility and executable participation. An established path requires analyst-approved continuation to May results; otherwise propose scoped Pass.",
+        "内部复核，并非中标截止日。核实规则、目标资格及可执行参与路径。路径成立后须由分析师批准继续跟进5月结果，否则提交该范围的放弃建议。"
+      ],
+      "effect": null
+    },
+    {
+      "id": "pjm-rbp-proposed-results",
+      "kind": "event",
+      "market": "pjm",
+      "label": [
+        "Proposed RBP results; confirm final schedule",
+        "拟议RBP结果：核实最终时间表"
+      ],
+      "expected": "2027-05-10",
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "PJM",
+        "url": "https://insidelines.pjm.com/pjm-files-amended-reliability-backstop-proposal/",
+        "access": "opened"
+      },
+      "note": [
+        "This is not a confirmed target award date. Watch does not extend automatically: an eligible project path and analyst approval are required at the March review.",
+        "此非已确认的目标中标日。观察不自动延长：3月复核须明确合资格项目路径，并获分析师批准。"
+      ],
+      "effect": null
     }
   ],
   "plays": {
@@ -414,18 +488,18 @@
       "hours": 4,
       "stage": "ready-to-build",
       "why": [
-        "Four hours is the best capacity design as accreditation erodes; on capacity revenue secured one year at a time, the reference project falls short of the fund's target.",
-        "随着认证系数下降，四小时仍是最佳容量设计；依靠逐年锁定的容量收入，参考项目达不到基金目标回报。"
+        "Four-hour reference: annual capacity payments fall short of the fund target.",
+        "四小时参考情景：逐年容量付款未达到基金回报目标。"
       ],
       "action": {
         "text": [
-          "Read the 2029/30 capacity auction in December 2026 for its price, and the 2030/31 four-hour rating due 11 January 2027; re-price nothing before both.",
-          "关注2026年12月2029/30交付年容量拍卖的价格，以及2027年1月11日公布的2030/31交付年四小时认证系数；两者公布之前不重新定价。"
+          "Fund, strategic and new-entrant Watch: verify rules and an actionable RBP participation path by 31 March; then seek approval to follow proposed May results, otherwise propose scoped Pass.",
+          "基金、战略投资者及新进入者观察：3月31日前核实规则及可执行的RBP参与路径，成立后申请继续跟进拟议5月结果，否则提交该范围的放弃建议。"
         ],
-        "due": "2026-12-31"
+        "due": "2027-03-31"
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "lockedUntil": null
     }
   }
