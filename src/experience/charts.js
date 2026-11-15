@@ -1,6 +1,8 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
-import { marketName, pct, returnPct, share, finite } from './model.js';
+import { marketName, pct, returnPct, share, finite, money } from './model.js';
+import { cumulativeEquityCash } from '../opportunities/monthlyCash.js';
+import { chartFigure, chartTable, linePlot, seriesInspector, exactMoney } from './riskChart.js';
 import { meetsTarget, situationalQualifier, QUALIFIER_LABEL } from './traceability.js';
 
 function s(tag, attrs = {}, ...children) {
@@ -84,29 +86,24 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
   return svg;
 }
 
-export function cashFlowChart(data) {
-  const { base, bear, debt } = data;
-  const payments = base.eb.map((_, i) => (debt?.service[i] || 0) + (debt?.maturityRepayment[i] || 0));
-  const all = [...base.eb, ...bear.eb, ...payments].map(v => v / 1000);
-  const max = Math.max(...all, 1) * 1.14, min = Math.min(...all, 0) * 1.15;
-  const y = v => 250 - (v / 1000 - min) / (max - min) * 210;
-  const zero = y(0);
-  const svg = s('svg', { viewBox: '0 0 800 310', role: 'img', class: 'ix-cash-chart', 'aria-label': L(['Annual base and downside operating cash flow against base debt payments, including maturity repayment. USD thousands per MW.', '年度基准和下行情景经营现金流对比基准债务支付，含到期本金。千美元每MW。']) });
-  for (let i = 0; i <= 4; i++) {
-    const tick = min + (max - min) * i / 4;
-    svg.append(s('line', { x1: 55, y1: y(tick * 1000), x2: 780, y2: y(tick * 1000), class: 'ix-grid-line' }), text(46, y(tick * 1000) + 4, fmt(tick), { 'text-anchor': 'end' }));
-  }
-  svg.append(text(55, 20, L(['USD k / MW / year', '千美元 / MW / 年']), { class: 'ix-chart-axis' }));
-  base.eb.forEach((value, i) => {
-    const cx = 65 + i * 47.3;
-    for (const [v, dx, color] of [[value, 0, '#224e40'], [bear.eb[i], 16, '#b2c8bc']]) {
-      svg.append(s('rect', { x: cx + dx, y: Math.min(zero, y(v)), width: 13, height: Math.max(1, Math.abs(zero - y(v))), fill: color }, s('title', {}, `Y${i + 1}: USD ${fmt(v)}/MW`)));
-    }
-    svg.append(text(cx + 14, 276, `${i + 1}`, { 'text-anchor': 'middle' }));
-  });
-  svg.append(s('polyline', { points: payments.map((v, i) => `${80 + i * 47.3},${y(v)}`).join(' '), fill: 'none', stroke: '#b87643', 'stroke-width': 2.5, 'stroke-dasharray': '6 4' }),
-    text(410, 304, L(['Operating year', '运营年度']), { 'text-anchor': 'middle' }));
-  return svg;
+export function cashFlowChart(t) {
+  const data=cumulativeEquityCash(t.rawCash,t.powerMW),title=['Cumulative equity cash over the project life','全生命周期累计股权现金流'];
+  const desc=['Whole project, nominal after-tax cash on the all-equity hold basis. Steps use the model payment dates. Payback is the first non-negative balance after investment, without discounting.',
+    '全项目税后名义现金，采用全股权长持口径。阶梯取自模型支付日期；回本为投入后累计余额首次非负，未折现。'];
+  const box=chartFigure('cumulative-equity',title,desc),year=at=>Number(at.toFixed(2))+L([' years from closing',' 年（自交割起）']);
+  const points=data.series.map(p=>({...p,value:p.cumulative}));
+  box.setAttribute('data-total',data.series.at(-1)?.cumulative??0);
+  const marks=[{...data.peak,value:data.peak.cumulative,label:L(['Peak cash at risk','峰值在险资金'])},
+    ...(data.payback?[{...data.payback,value:data.payback.cumulative,label:L(['Payback','回本'])}]:[])];
+  box.append(h('dl',{class:'ix-risk-metrics'},
+    h('div',{},h('dt',{},L(['Peak cash at risk','峰值在险资金'])),h('dd',{},money(data.peakCashAtRisk,t.currency)),h('small',{},year(data.peak.at))),
+    h('div',{},h('dt',{},L(['Payback','回本'])),h('dd',{},data.payback?year(data.payback.at):L(['Not reached within the model life','模型期内未回本'])))),
+    linePlot(title,desc,points,v=>money(v,t.currency).replace(t.currency+' ',''),{step:true,marks}),
+    h('p',{class:'ix-caption'},t.currency+' · '+L(['Whole project · years from closing','全项目 · 自交割起的年数'])),
+    seriesInspector(points,['Inspect a cash date','选择现金流日期'],p=>year(p.at)+' · '+money(p.cumulative,t.currency)),
+    chartTable(title,[['Years from closing','交割起年数'],['Net cash','净现金'],['Cumulative equity cash','累计股权现金']],
+      data.series.map(p=>[Number(p.at.toFixed(4)),exactMoney(p.net,t.currency),exactMoney(p.cumulative,t.currency)])));
+  return box;
 }
 
 export function revenueWaterfall(bridge, currency = 'USD') {

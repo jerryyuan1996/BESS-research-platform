@@ -91,7 +91,9 @@ test('GB research access and all four handoffs use the existing market sections'
   let {dialog}=await open(page);await dialog.getByRole('button',{name:'Full research ↗',exact:true}).click();await expect(page.locator('.ix-research-dialog')).toBeVisible();
   await page.keyboard.press('Escape');await page.keyboard.press('Escape');await expect(page.locator('.public-story-trigger')).toBeFocused();
   for(const anchor of ['bankable','revenue','execution','downside']){
-    ({dialog}=await open(page));await dialog.locator('.ix-story-exits a[href="#'+anchor+'"]').click();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
+    // Reopen on the current market page, as a reader does between section handoffs.
+    await openLegacyStory(page);dialog=page.locator('.ix-story-dialog');await expect(dialog).toBeVisible();
+    await dialog.locator('.ix-story-exits a[href="#'+anchor+'"]').click();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);await expect(page.locator('#'+anchor)).toBeFocused();
   }
   await page.goto(PREVIEW);await page.getByRole('combobox',{name:'Investor profile',exact:true}).selectOption('developer');await openLegacyStory(page);
   await expect(page.locator('.ix-research-dialog')).toBeVisible();await expect(page.locator('.ix-story-dialog')).toHaveCount(0);

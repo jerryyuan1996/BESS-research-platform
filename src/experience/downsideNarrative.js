@@ -3,14 +3,7 @@ import { L } from '../app/i18n.js';
 import { money, pct } from './model.js';
 import { referenceInvestment,selectedSupplyOptions } from '../opportunities/investment.js';
 import { opportunitiesFor } from '../opportunities/catalog.js';
-import { PRICE_HISTORY, historicalPressure, stressConditions } from './downsideHistory.js';
-const snapshots=new Map();
-function history(id){
-  if(!snapshots.has(id))snapshots.set(id,fetch('/data/public/'+id+'.summary.json').then(r=>{
-    if(!r.ok)throw Error('History unavailable');return r.json();
-  }).then(s=>{if(s.datasetId!==id)throw Error('History mismatch');return s;}).catch(e=>{snapshots.delete(id);throw e;}));
-  return snapshots.get(id);
-}
+import { stressConditions } from './downsideHistory.js';
 function conditionText(c){
   const a=money(c.base,c.currency),b=money(c.stress,c.currency);
   const texts={
@@ -40,27 +33,5 @@ export function downsideNarrative(row,investor,overrides){
     h('ul',{class:'ix-downside-conditions'},conditions.map(c=>h('li',{},conditionText(c)))),
     h('p',{class:'ix-caption'},L(['Revenue and operating-cost figures here are model input amounts before inflation; the headline returns remain nominal and after tax. Full stress inputs appear below.',
       '这里的收入与运营成本为模型通胀前输入；上方回报仍为税后名义口径。完整压力输入可在下方展开查看。'])));
-  const probability=h('div',{class:'ix-history-pressure','data-history-status':'loading'},h('h3',{},L(['How often has similar pressure appeared?','历史上类似压力出现过多少次？'])));
-  const unavailable=()=>probability.replaceChildren(h('h3',{},L(['Historical probability: not yet estimable','历史概率：暂不能可靠估计'])),
-    h('p',{},L(['This market has no sufficient comparable price sample for this threshold on the site. The combined downside also needs joint evidence on costs, delivery and contracting. No numerical probability has been assigned.',
-      '本站暂无足够的可比价格样本来统计这一压力幅度。整个组合下行还需要造价、工期与签约的联合历史记录，目前没有可据以给出的数值概率。'])));
-  const trading=conditions.find(c=>c.kind==='trading'),id=PRICE_HISTORY[row.id];
-  if(!id||!trading){unavailable();probability.dataset.historyStatus='unavailable';}
-  else history(id).then(summary=>{
-    if(!host.isConnected)return;
-    const result=historicalPressure(summary,1-trading.stress/trading.base);
-    if(!result){unavailable();probability.dataset.historyStatus='unavailable';return;}
-    probability.dataset.historyStatus='ready';
-    probability.replaceChildren(h('h3',{},L(['Historical price-pressure frequency','历史类似价格压力频率'])),
-      h('p',{class:'ix-history-stat'},h('strong',{},result.count+' / '+result.total+' · '+pct(result.frequency)),
-        L([' comparable month-to-month observations',' 次可比月度环比'])),
-      h('p',{},L(['From '+result.from+' to '+result.to+', monthly average daily price spreads fell at least '+pct(result.threshold)+
-        ' in '+result.count+' of '+result.total+' consecutive-month comparisons. The threshold uses the model’s first-year trading/services decline; the spread is a price proxy, not realised battery revenue.',
-        result.from+'至'+result.to+'，月均日价差环比下降至少'+pct(result.threshold)+'，在'+result.total+'次连续月份比较中出现'+result.count+'次。阈值取自本模型首年交易相关收入降幅；价差仅是价格压力代理，并非电池实际收益。'])),
-      h('p',{class:'ix-caption'},L(['Only completed calendar months with at least 90% valid days count. Spread duration: '+result.durationHours+'h. The short sample, changing market rules and dependence between months prevent treating this frequency as a future probability. It does not estimate the chance of construction delays, cost overruns or the entire combined downside.',
-        '仅统计有效日数达到90%的完整自然月；价差代理时长'+result.durationHours+'小时。样本较短，市场规则会变化、月份之间也可能相关，因此该频率不能直接当作未来概率，更不能代表延期、超支及整个组合下行的概率。'])),
-      h('a',{href:result.source.url,target:'_blank',rel:'noopener noreferrer',class:'ix-text-link'},result.source.name+' ↗'),
-      h('small',{},L(['Snapshot ','数据快照 ']),result.fetchedAt.slice(0,10)));
-  }).catch(()=>{if(host.isConnected){unavailable();probability.dataset.historyStatus='unavailable';}});
-  host.append(probability);return host;
+  return host;
 }

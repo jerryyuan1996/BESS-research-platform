@@ -168,7 +168,7 @@ export function referenceInputs(market,stage,overrides={}){
     defaults.scalableTaxCreditBasisReduction=u.eligibleTaxCreditBasisPerMW==null?grossCredit*.5:0;
     const complete={...defaults,...u,sources:[...sourceIds.map(id=>({label:REFERENCE_SOURCES[id].label[0],url:REFERENCE_SOURCES[id].url})),...(u.sources||[])]};
     const input=acquisitionInput(market,stage,complete);
-    return {input,key:c.id,assumptions:{
+    return {input,key:c.id,fixedRevenueEvidence:r.fixedRevenueEvidence,economicInputToCash:r.fxRate/fx,assumptions:{
       taxRate:complete.cashTaxRate,turnoverTaxRate:complete.turnoverTaxRate,age:complete.operatingAgeYears,
       revenueFactor:complete.unsecuredRevenueFactor,opexFactor:complete.operatingCostFactor,
       codYears:Math.min(...input.scenarios.filter(s=>s.operates).map(s=>s.codYears)),

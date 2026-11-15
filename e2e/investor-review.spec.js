@@ -37,12 +37,63 @@ test('a month-only event keeps its uncertainty in both languages',async({page})=
 test('risk analysis keeps baseline debt and exposes the twenty-year contract tail',async({page},info)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/markets/germany');
-  await page.locator('.ix-risk-analysis-host>summary').click();
+  await expect(page.locator('.ix-risk-analysis-host')).toHaveAttribute('open','');
   await expect(page.locator('.ix-life-year')).toHaveCount(20);
   await expect(page.locator('.ix-risk-analysis')).toContainText('No debt is resized');
   await page.locator('#downside').screenshot({path:info.outputPath('risk-analysis.png')});
   expect(errors).toEqual([]);
 });
+
+for(const [slug,currency,hasFixed] of [['italy','EUR',true],['finland','EUR',true],['romania','RON',false],['great-britain','GBP',true]]) {
+  test(slug+' readable risk reconciles charts, keyboard values and bilingual mobile layout',async({page},info)=>{
+    test.setTimeout(180000);
+    const errors=[];page.on('pageerror',e=>errors.push(e.message));
+    if(info.project.name==='mobile')await page.setViewportSize({width:375,height:844});
+    await page.addInitScript(()=>{localStorage.setItem('hub_lang','en');localStorage.setItem('hub_lens','infraFund');});
+    await page.goto('/markets/'+slug);
+    for(const lang of ['en','zh']) {
+      await expect(page.locator('[data-risk-chart]')).toHaveCount(4,{timeout:45000});
+      await expect(page.locator('.ix-risk-analysis-host')).toHaveAttribute('open','');
+      await expect(page.locator('.ix-tornado-factor').first()).toBeVisible();
+      const factors=await page.locator('.ix-tornado-factor').evaluateAll(rows=>rows.map(r=>({effect:Number(r.dataset.effect),evidence:r.dataset.evidence})));
+      expect(factors.length).toBeGreaterThan(0);
+      expect(factors.every((f,i)=>i===0||factors[i-1].effect>=f.effect)).toBe(true);
+      expect(factors.every(f=>['sourced','assumed'].includes(f.evidence))).toBe(true);
+      const order=await page.locator('#downside').evaluate(el=>!!(el.querySelector('.ix-tornado').compareDocumentPosition(el.querySelector('.ix-downside-table'))&Node.DOCUMENT_POSITION_FOLLOWING));
+      expect(order).toBe(true);
+      await expect(page.locator('#downside')).not.toContainText(/probab|概率/i);
+      for(const chart of await page.locator('[data-risk-chart]').all()) {
+        await expect(chart).not.toContainText(/\bnull\b|undefined|NaN/);
+        for(const svg of await chart.locator('svg').all()) {
+          await expect(svg).toHaveAttribute('role','img');
+          expect(await svg.evaluate(el=>['aria-labelledby','aria-describedby'].every(a=>{
+            const node=document.getElementById(el.getAttribute(a));return !!node?.textContent.trim()&&el.contains(node);
+          }))).toBe(true);
+        }
+        const summary=chart.locator('.ix-risk-table summary').first();
+        await summary.focus();await page.keyboard.press('Enter');
+        await expect(chart.locator('details table').first()).toBeVisible();
+        await summary.press('Enter');
+      }
+      for(const kind of ['dscr','cumulative-equity']) {
+        const chart=page.locator('[data-risk-chart='+kind+']'),slider=chart.locator('input[type=range]');
+        await slider.focus();await slider.press('End');await expect(slider).toBeFocused();
+        await expect(chart.locator('.ix-risk-readout').last()).not.toContainText(/undefined|NaN/);
+        expect(await slider.getAttribute('aria-valuetext')).toBeTruthy();
+      }
+      await expect(page.locator('.ix-cumulative-equity')).toContainText(currency);
+      await expect(page.locator('.ix-income-evidence')).toContainText(currency);
+      await expect(page.locator('.ix-income-evidence [data-evidence-class]')).toHaveCount(hasFixed?1:0);
+      await expect(page.locator('.ix-construction-cash')).not.toHaveAttribute('open','');
+      const lead=await page.locator('#execution').evaluate(el=>!!(el.querySelector('.ix-cumulative-equity').compareDocumentPosition(el.querySelector('.ix-execution-layout'))&Node.DOCUMENT_POSITION_FOLLOWING));
+      expect(lead).toBe(true);
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
+      for(const kind of ['dscr','cumulative-equity','income-evidence','tornado'])await page.locator('[data-risk-chart='+kind+']').screenshot({path:info.outputPath(slug+'-'+lang+'-'+kind+'.png')});
+      if(lang==='en')await page.locator('.ix-language').click();
+    }
+    expect(errors).toEqual([]);
+  });
+}
 test('route links select the corresponding investment and financing case',async({page})=>{
   await page.goto('/markets/italy?play=it-ltda-6h#route-options');
   await expect(page.locator('#route-options')).toHaveCount(0);

@@ -3,6 +3,7 @@ import { L } from '../app/i18n.js';
 import { money } from '../experience/model.js';
 import { deliveryTimeline, T_ZERO } from './delivery.js';
 import { monthlyCashChart } from './monthlyCashUI.js';
+import { cashFlowChart } from '../experience/charts.js';
 const time=months=>'T+'+Number(months.toFixed(1))+L(['m','月']);
 const selectedPlans=new Map();
 export function executionTimelines(comparison,row,investor){
@@ -37,9 +38,11 @@ export function executionTimelines(comparison,row,investor){
       ...[switches].filter(Boolean),h('div',{class:'ix-plan-heading'},h('h3',{},L(path.label)),
         h('p',{class:'ix-caption'},L(['COD ','投运 ']),time(t.codMonths),' · ',L(['Revenue eligibility ','收入资格 ']),time(t.qualifiedMonths),
           ' · ',L([path.reference.input.annual.length+'-year all-equity hold',path.reference.input.annual.length+'年全股权长持']))),
+      cashFlowChart(t),
       h('div',{class:'ix-execution-layout','data-plan':path.id},
         h('article',{class:'ix-delivery-column is-single'},h('ol',{class:'ix-milestones'},t.milestones.map(item))),
-        h('aside',{class:'ix-execution-cash'},monthlyCashChart(t,{plan:path.id}))),
+        h('aside',{class:'ix-execution-cash'},h('details',{class:'ix-details ix-construction-cash'},
+          h('summary',{},L(['Monthly construction and operating cash detail','建设及运营期逐月现金明细'])),monthlyCashChart(t,{plan:path.id})))),
       ...[later].filter(Boolean),h('p',{class:'ix-caption'},L(t.targetBasis)));
     if(focus)wrapper.querySelector('.ix-plan-switch [data-plan="'+selected+'"]')?.focus({preventScroll:true});
   }

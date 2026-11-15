@@ -22,6 +22,7 @@ import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
 import { bankableInvestmentCase, investmentCaseIdentity, investmentDecisionMetrics } from './investmentCase.js';
 import './investmentCase.css';
+import './riskCharts.css';
 import { localRevenueBridge } from './traceability.js';
 
 
@@ -301,22 +302,24 @@ function downsideSection(data) {
     [['Year-one after-tax cash / MW', '首年税后经营现金流 / MW'], money(localRevenueBridge(row.investment)?.net,row.investment?.currency), money(row.investment?.bearNetUSD / row.investment?.fxToUSD,row.investment?.currency)],
   ];
   const profile = row.market.comparison.refinement;
-  const explanation=h('div',{class:'ix-downside-explanation','aria-busy':'true'},h('p',{},L(['Loading the downside conditions and historical reference…','正在载入下行条件与历史参考…'])));
+  const explanation=h('div',{class:'ix-downside-explanation','aria-busy':'true'},h('p',{},L(['Loading the compound adverse conditions…','正在载入组合不利条件…'])));
   import('./downsideNarrative.js').then(module=>{if(explanation.isConnected)explanation.replaceChildren(module.downsideNarrative(row,lens(),data.overrides));})
     .catch(()=>{explanation.replaceChildren(h('p',{},L(['Conditions could not be loaded; the exact stress inputs remain below.','下行解释暂未载入，仍可查看下方准确的压力输入。'])));})
     .finally(()=>explanation.setAttribute('aria-busy','false'));
-  const analysis=h('details',{class:'ix-details ix-risk-analysis-host'},h('summary',{},L(['Sensitivity, fixed-debt stress and contract expiry','敏感性、固定贷款压力与合同到期'])));
+  const analysis=h('details',{class:'ix-details ix-risk-analysis-host',open:''},h('summary',{},L(['Ranked sensitivities, fixed-debt stress and contract expiry','敏感性排序、固定贷款压力与合同到期'])));
   let loading=false;
-  analysis.addEventListener('toggle',async()=>{if(!analysis.open||loading)return;loading=true;try{const module=await import('./riskAnalysis.js');analysis.append(module.riskAnalysis(row,lens(),data.overrides));}catch{loading=false;analysis.append(h('p',{},L(['Analysis unavailable; close and reopen to retry.','分析暂未载入，可关闭后重新展开。'])));}});
+  const loadAnalysis=async()=>{if(loading)return;loading=true;try{const module=await import('./riskAnalysis.js');analysis.append(module.riskAnalysis(row,lens(),data.overrides));}catch{loading=false;analysis.append(h('p',{},L(['Analysis unavailable; close and reopen to retry.','分析暂未载入，可关闭后重新展开。'])));}};
+  analysis.addEventListener('toggle',()=>{if(analysis.open)loadAnalysis();});
+  loadAnalysis();
   return h('section', { id: 'downside', class: 'ix-section' }, sectionTitle(['DOWNSIDE RISK', '下行风险'], ['Know what can weaken the case.', '看清风险，才能守住回报。']),
-    card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Base case vs. declared downside', '基准与既定下行情景'])), h('span', { class: 'ix-mono' }, L(['ONE CASH-FLOW BASIS', '统一现金流口径']))),
+    analysis,
+    card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Compound adverse case · all factors at once', '组合不利情景 · 所有因素同时施压'])), h('span', { class: 'ix-mono' }, L(['ONE CASH-FLOW BASIS', '统一现金流口径']))),
       h('div', { class: 'ix-table-scroll' }, h('table', { class: 'ix-table ix-downside-table' }, h('thead', {}, h('tr', {}, ...[['Metric', '指标'], ['Base', '基准'], ['Downside', '下行']].map(x => h('th', { scope: 'col' }, L(x))))),
         h('tbody', {}, riskRows.map(([label, a, b]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number', 'data-label':L(['Base','基准']) }, a), h('td', { class: 'ix-table-number ix-risk-value', 'data-label':L(['Downside','下行']) }, b)))))),
       h('p', { class: 'ix-caption' }, L(['The downside applies the declared adverse inputs to the same RTB closing date, operating life, tax and ownership convention as the base investment case.','下行将既定不利输入应用于与基准相同的RTB交割起点、运营寿命、税费及持有方式。'])),
       explanation,
       h('details', { class: 'ix-details' }, h('summary', {}, L(['Inspect the downside inputs', '查看下行情景输入'])),
         h('div', { class: 'ix-input-grid' }, Object.entries(data.overrides).map(([key, value]) => inputLabel(key, value, row.market.manifest.currency))))),
-    analysis,
     h('div', { class: 'ix-risk-grid' },
       h('article', {}, eyebrow(['01 / REVENUE', '01 / 收入']), h('h3', {}, L(['Separate the mechanism from the contract.', '区分市场机制与已签合同。'])), h('p', {}, L(base.fixedRevenueEvidence?.basis || ['Project contract evidence remains to be collected.', '仍需收集项目合同证据。'])), h('span', { class: 'ix-risk-stat' }, L(['Project contract documents not verified','项目合同文件尚未核验']))),
       h('article', {}, eyebrow(['02 / DELIVERY', '02 / 交付']), h('h3', {}, L(['Protect the path to first revenue.', '守住首次收入的实现路径。'])), h('p', {}, L(profile?.currentUpdate || row.market.comparison.narrative.thesis))),

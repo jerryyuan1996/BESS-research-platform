@@ -169,13 +169,20 @@ test('all eighteen markets expose clean bilingual reader copy and same-market re
   for(const locale of ['en','zh']){
     await page.goto('/');
     await page.evaluate(locale=>localStorage.setItem('hub_lang',locale),locale);
+    let firstMarket=true;
     for(const [id,slug] of Object.entries(allSlugs)){
-      await page.goto('/markets/'+slug);
+      const href='/markets/'+slug;
+      // Apply the stored language on first load, then follow the app's internal routes.
+      if(firstMarket){await page.goto(href);firstMarket=false;}
+      else await page.evaluate(href=>{const link=document.createElement('a');link.href=href;document.body.append(link);link.click();link.remove();},href);
       const overview=page.locator('#overview');
+      await expect(overview).toHaveAttribute('data-public-market',id);
       await expect(page.locator('.public-story-trigger')).toBeVisible();
       expect(await overview.innerText(),id+'/'+locale+' overview').not.toMatch(internal);
       await page.locator('.public-story-trigger').click();
       const dialog=page.locator('.public-story-dialog');
+      await expect(dialog).toHaveAttribute('data-market',id);
+      await expect(dialog).toHaveAttribute('lang',locale);
       await expect(dialog.locator('.public-chapter')).toHaveAttribute('data-chapter','history');
       for(const chapter of ['history','research']){
         await dialog.locator('.public-story-nav button[data-chapter='+chapter+']').click();

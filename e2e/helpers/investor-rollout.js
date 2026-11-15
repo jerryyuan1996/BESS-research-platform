@@ -15,7 +15,8 @@ export async function expectInvestorLayout(page,id,locale){
     await expect(page.locator('#bankable .ic-bankable-case')).toHaveCount(0);
   }else{
     const bankable=page.locator('#bankable .ic-bankable-case');await expect(bankable).toBeVisible();
-    await expect(bankable.locator('details')).toHaveCount(0);
+    await expect(bankable.locator('details:not(.ix-risk-table)')).toHaveCount(0);
+    await expect(bankable.locator('details.ix-risk-table')).toHaveCount(2);
     await expect(bankable.locator('.ic-debt-table')).toBeVisible();
     await expect(bankable.locator('.ic-bankable-kpis .ix-metric')).toHaveCount(4);
     await expect(bankable).not.toContainText(/NaN|undefined|Unknown|未知/);
