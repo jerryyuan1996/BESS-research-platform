@@ -62,7 +62,7 @@ test('Investment Lab saves the displayed scenario, pricing hurdle and project ev
   expect(record.result.capitalFlows.length).toBeGreaterThan(0);
   expect(record.result.secY.length).toBe(15);
   expect(record.debt.maturityPolicy).toBe('equity-repayment');
-  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await expect(page.getByRole('button',{name:'保存投资情景',exact:true})).toBeVisible();
   await page.screenshot({path:testInfo.outputPath('investment-lab-zh.png')});
   expect(errors).toEqual([]);

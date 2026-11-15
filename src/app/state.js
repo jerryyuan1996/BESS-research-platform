@@ -49,7 +49,7 @@ export function setRenderer(fn){ renderer = fn; }
    language and theme toggles re-render and let the browser keep scrollY, tab
    switches follow with scrollTo(0, 0), and the exit-year / waterfall selectors
    capture and restore scrollY explicitly. Each call site keeps its own behaviour. */
-export function requestRender(){ renderer(); }
+export function requestRender(options){ renderer(options); }
 
 export function setLang(lang){
   app.lang = lang === 'zh' ? 'zh' : 'en';

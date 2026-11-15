@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { PJM_STORY_EVIDENCE as E } from '../src/markets/pjm/data/storyEvidence.js';
+import { PJM_STORY_EVIDENCE as E } from './helpers/pjm-story-evidence.js';
 
 test('PJM manual evidence preserves BRA vintages and every indicative annual shape', () => {
   assert.equal(Object.keys(E.years).length, 18);

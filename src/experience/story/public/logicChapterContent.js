@@ -1,4 +1,4 @@
-// Italy-only editorial pilot. Schematic states explain existing research; no
+// Shared explanation defaults. Schematic states explain existing research; no
 // dispatch, price, contract award or investor result is inferred from a drawing.
 export const SYSTEM_STEPS=[
  {label:['01 · The mismatch','01 · 时段错配'],title:['Electricity can be abundant at the wrong hour.','电量充足的时刻，不一定是最需要电的时刻。'],

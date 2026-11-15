@@ -1,3 +1,4 @@
+import { resourcePage } from '../experience/chrome.js';
 /* ---------------------------------------------------------------------------
    /desk — the analyst's queue.
 
@@ -12,9 +13,6 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
-import { renderHeader } from '../components/header.js';
-import { marketNav } from '../components/navigation.js';
-import { markets } from '../markets/registry.js';
 import { BRIEFING } from '../briefing/briefingData.js';
 import { QUEUE_ORDER } from '../briefing/queue.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
@@ -42,14 +40,11 @@ const reviewStateLabel = status => REVIEW_LABELS[status] || [status, status];
 
 export function renderDeskPage(app){
   const b = BRIEFING;
-  app.append(renderHeader({
-    title: ['The analyst desk', '分析台'],
+  const main = resourcePage(app, {
+    page: 'desk', className: 'desk',
     sub: ['The calls that reality has moved past, and the record to change for each. The briefing is for the investor; this is for keeping it true.',
       '现实已越过的结论，以及每一项需要修改的记录。简报面向投资者，分析台用于保持简报的真实性。'],
-  }));
-  app.append(marketNav(markets, 'desk'));
-  const main = h('main', { class: 'desk' });
-  app.append(main);
+  });
 
   main.append(h('div', { class: 'cap bf-asof' }, L([`${b.queue.length} items. Built ${b.builtAt.slice(0, 10)}.`, `${b.queue.length}项。生成于${b.builtAt.slice(0, 10)}。`])));
   if (!b.queue.length) main.append(h('div', { class: 'card' }, L(['Nothing is waiting. Every call is current.', '没有待办。所有结论均为最新。'])));

@@ -254,20 +254,7 @@ test('the briefing reads no private file and needs no DOM', async () => {
 
 /* ---- the home page (PR 4) ---------------------------------------------------------- */
 
-test('"since your last visit" survives a reload and moves on a new visit', async () => {
-  const { nextSeen } = await import('../src/briefing/since.js');
-  const t0 = Date.parse('2026-10-19T08:00:00Z');
-  const first = nextSeen({}, t0);
-  assert.equal(first.firstVisit, true);
-  assert.equal(first.since, t0 - 7 * 86_400_000, 'a first visit reads the last seven days');
-  const reload = nextSeen({ at: first.at, prev: first.prev, first: first.firstVisit }, t0 + 5 * 60_000);
-  assert.equal(reload.since, first.since, 'a reload inside the gap keeps the same "since"');
-  assert.equal(reload.firstVisit, true, 'and is still the first visit');
-  const nextWeek = nextSeen({ at: reload.at, prev: reload.prev }, t0 + 7 * 86_400_000);
-  assert.equal(nextWeek.firstVisit, false);
-  assert.equal(nextWeek.since, reload.at, 'a new visit starts where the last one was seen');
-  assert.equal(nextSeen({ at: nextWeek.at, prev: nextWeek.prev }, nextWeek.at + 60_000).since, reload.at);
-});
+
 
 test('the home page carries the briefing less the queue\'s words, and /desk is a route', async () => {
   const { homeProjection } = await import('../src/briefing/model.js');

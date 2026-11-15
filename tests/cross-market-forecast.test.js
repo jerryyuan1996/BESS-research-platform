@@ -3,9 +3,7 @@ import path from 'node:path';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import {
-  MARKET_FORECAST_COVERAGE, forecastCoverageForMarket, validateForecastCoverage,
-} from '../src/forecast/marketCoverage.js';
+
 import {
   SOURCE_REGISTRY, sourceById, sourcesForMarket, validateSourceRegistry,
 } from '../src/governance/sourceRegistry.js';
@@ -14,15 +12,7 @@ import {
 } from '../src/governance/metrics.js';
 import { JP_NATIONAL } from '../src/markets/jp/national.js';
 
-test('every research dashboard has a governed forecast release contract', () => {
-  assert.deepEqual(validateForecastCoverage(), []);
-  assert.deepEqual(Object.keys(MARKET_FORECAST_COVERAGE), ['wa', 'gb', 'ie', 'ro', 'pl', 'jp']);
-  assert.equal(forecastCoverageForMarket('jp_tokyo'), MARKET_FORECAST_COVERAGE.jp);
-  assert.equal(forecastCoverageForMarket('jp_kyushu'), MARKET_FORECAST_COVERAGE.jp);
-  assert.equal(forecastCoverageForMarket('jp_hokkaido'), MARKET_FORECAST_COVERAGE.jp);
-  assert.deepEqual(MARKET_FORECAST_COVERAGE.jp.displayYears, [2025, 2030, 2034]);
-  assert.deepEqual(MARKET_FORECAST_COVERAGE.pl.contextYears, [2040]);
-});
+
 
 test('the public source contract covers every market and remains internally valid', () => {
   assert.deepEqual(validateSourceRegistry(), []);

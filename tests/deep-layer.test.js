@@ -129,18 +129,3 @@ test('no card is authored only to be removed at runtime', () => {
     for (const re of hidden) assert.doesNotMatch(code(f.text), re, `${f.rel}`);
   }
 });
-
-test('/returns names what it leaves out and puts every market on the globe', () => {
-  const globe = file('src/home/marketGlobe.js');
-  const onGlobe = new Set([...globe.matchAll(/\{ id:'([a-z_]+)'/g)].map(m => m[1]));
-  const missing = markets.map(m => m.manifest.id).filter(id => !onGlobe.has(id));
-  assert.deepEqual(missing, [], 'every registered market is on the globe');
-
-  const matrix = code(file('src/home/allocationMatrix.js'));
-  assert.doesNotMatch(matrix, /only in GB/, 'the toll precedent is listed from capabilities');
-  assert.match(matrix, /not priced/, 'a withheld market is named, not dropped');
-
-  const returns = code(file('src/home/returnsPage.js'));
-  assert.doesNotMatch(returns, /'20\d\d-\d\d-\d\d'/, 'the review date comes from the manifests, never typed');
-  assert.doesNotMatch(returns, /screening only/i);
-});

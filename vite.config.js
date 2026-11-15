@@ -116,16 +116,8 @@ export default defineConfig({
              is a chunk of its own. Every one is called entryLedger.js. */
           const ledger = /[\\/]markets[\\/]([^\\/]+)[\\/]entryLedger\.js$/.exec(id);
           if (ledger) return `assets/ledger-${ledger[1]}-[hash].js`;
-          /* The home page's verdict board, and the Returns page that took over
-             the old home content. Each is fetched by its own route. */
-          if (/[\\/]home[\\/]verdictHome\.js$/.test(id)) return 'assets/verdict-board-[hash].js';
-          /* The briefing that opens the home page (guided-experience plan, PR 4),
-             with the home projection of the briefing, and the analyst desk with
-             the whole of it. Each is fetched by its own route; the board above is
-             now fetched from the briefing's fold. */
-          if (/[\\/]home[\\/]briefingHome\.js$/.test(id)) return 'assets/briefing-home-[hash].js';
+          // The analyst desk is fetched only by its own route.
           if (/[\\/]desk[\\/]deskPage\.js$/.test(id)) return 'assets/desk-[hash].js';
-          if (/[\\/]home[\\/]returnsPage\.js$/.test(id)) return 'assets/returns-[hash].js';
           /* The changelog page, with every changelog line. Fetched by /changes
              and by nothing else. */
           if (/[\\/]changes[\\/]changesPage\.js$/.test(id)) return 'assets/changes-[hash].js';

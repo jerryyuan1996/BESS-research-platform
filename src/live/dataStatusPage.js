@@ -1,3 +1,4 @@
+import { resourcePage } from '../experience/chrome.js';
 /* ---------------------------------------------------------------------------
    /data — the data-status page.
 
@@ -16,12 +17,10 @@
    a year, several will — this is the page that says which one, and since when,
    without anyone reading a CI log.
    --------------------------------------------------------------------------- */
-import { siteHeader } from '../experience/chrome.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { spacedCard } from '../components/card.js';
 import { sectionHead } from '../components/sectionHeader.js';
-import { marketNav } from '../components/navigation.js';
 import { markets } from '../markets/registry.js';
 import { DATASETS, snapshotPath } from '../governance/datasets.js';
 import { AUTHORITY } from '../governance/authority.js';
@@ -136,7 +135,7 @@ function renderFeeds(main){
     });
   }
 
-  c.append(table);
+  c.append(h('div', { class: 'ix-table-scroll', tabindex: 0, role: 'region', 'aria-label': L(['Feed table', '数据源表格']) }, table));
   c.append(h('div', { class: 'cap' }, L([
     'Each feed publishes two files: a summary this page and the dashboards read, and the full observed series kept as an audit artefact. Both carry a checksum over their contents.',
     '每个数据源发布两个文件：本页与各看板读取的摘要，以及作为审计凭证保留的完整实测序列。两者均带有内容校验和。',
@@ -157,7 +156,7 @@ function renderDerived(main){
   ])));
 
   const body = h('tbody', {});
-  c.append(h('table', { class: 'ds-table' },
+  const table = h('table', { class: 'ds-table' },
     h('thead', {}, h('tr', {},
       h('th', {}, L(['Market', '市场'])),
       h('th', { class: 'num' }, L(['Mean price', '均价'])),
@@ -165,7 +164,8 @@ function renderDerived(main){
       h('th', { class: 'num' }, L(['Negative hours', '负电价占比'])),
       h('th', { class: 'num' }, L(['Trading days', '交易日'])),
       h('th', { class: 'num' }, L(['Arbitrage index /MW/yr', '套利指数 /MW/年'])))),
-    body));
+    body);
+  c.append(h('div', { class: 'ix-table-scroll', tabindex: 0, role: 'region', 'aria-label': L(['Derived data table', '衍生数据表格']) }, table));
 
   for (const d of DATASETS.filter(x => x.marketId)){
     const market = markets.find(m => m.manifest.id === d.marketId);
@@ -204,18 +204,11 @@ function renderDerived(main){
 /* ---- entry ---------------------------------------------------------------- */
 
 export function renderDataStatus(app){
-  app.append(siteHeader('resources'));
-  app.append(h('div', { class: 'hdr' }, h('div', {},
-    h('h1', {}, L(['Data status', '数据状态'])),
-    h('div', { class: 'sub' }, L([
-      'What is fetched automatically, how fresh it is, and what automation is permitted to change',
-      '自动获取的内容、其时效，以及自动化的可修改范围',
-    ])))));
-
-  app.append(marketNav(markets, 'home'));
-
-  const main = h('div', { class: 'wrap' });
-  app.append(main);
+  const main = resourcePage(app, {
+    page: 'data',
+    sub: ['What is fetched automatically, how fresh it is, and what automation is permitted to change',
+      '自动获取的内容、其时效，以及自动化的可修改范围'],
+  });
 
   sectionHead(main,['Investment conventions','投资比较口径'],['Read these before comparing a return','比较回报前先看这些假设']);
   main.append(h('div',{class:'card'},h('p',{},L(['RTB closing, 20 operating years, nominal after project tax. Project-rights price defaults to zero; construction and fees remain payable. Levered returns draw debt at COD after equity funds construction.',

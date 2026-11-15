@@ -42,7 +42,7 @@ test('Italy logic follows physical constraints, revenue rights, reduced motion a
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.goto(`/markets/italy?view=story&chapter=storage&shot=public-zh-${PUBLIC_VERSION.replace('.','-')}-storage`);
- const dialog=page.locator('.public-story-dialog'),logic=dialog.locator('.italy-logic');
+ const dialog=page.locator('.public-story-dialog'),logic=dialog.locator('.market-logic');
  await expect(logic).toHaveAttribute('data-chapter','system');await expect(dialog.locator('.public-story-nav button')).toHaveCount(6);
  await expect(dialog.locator('.public-story-nav [data-chapter=storage]')).toHaveCount(0);
  await logic.locator('[data-logic-step="1"]').click();await expect(logic.locator('.il-illustration')).toHaveAttribute('data-flow','charging');
@@ -69,7 +69,7 @@ test('English country matrix and playback controls keep the selected reading usa
  await atlas.locator('[data-atlas-country=ca] .atlas-country-select').click();await expect(atlas.locator('.atlas-insight')).toContainText('Canada');
  await atlas.locator('[data-atlas-country=ca] .source-popup-trigger').click();await expect(page.locator('.source-popup')).toContainText('Statistics Canada');await page.keyboard.press('Escape');
  await page.goto(`/markets/italy?view=story&chapter=system&shot=public-en-${PUBLIC_VERSION.replace('.','-')}-system`);
- const logic=page.locator('.italy-logic');await logic.locator('.il-play').click();
+ const logic=page.locator('.market-logic');await logic.locator('.il-play').click();
  await expect(logic).toHaveAttribute('data-step','1',{timeout:6000});await logic.locator('.il-play').click();await expect(logic).toHaveClass(/is-paused/);
  await expect(logic.locator('.il-play')).toHaveText('Replay the sequence');
  await expect.poll(()=>logic.locator('.il-flow').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).animationPlayState==='paused'))).toBe(true);

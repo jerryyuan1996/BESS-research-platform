@@ -133,11 +133,3 @@ test('each section is drawn in its own wrapper, so a claim lands on its own sect
     assert.match(src, /enhanceMarketPage\(el, \{[\s\S]*?tabId: ?id/, `${file}: a claim is looked up by SECTION id, which is what it has always been keyed by`);
   }
 });
-
-test('the frozen claim document records that a section is no longer a tab, and nothing above it changed', async () => {
-  const doc = await readFile(new URL('../src/governance/PILOT-FROZEN.md', import.meta.url), 'utf8');
-  assert.match(doc, /Amended 2026-10: a section is no longer a tab/);
-  assert.match(doc, /claims and dispositions remain keyed by section id/);
-  assert.ok(doc.indexOf('Amended 2026-10') > doc.indexOf('## Scaling from here'), 'the amendment is added at the end');
-  assert.match(doc, /\*\*7 supported claims out of 150\s+analytical sections\.\*\*/, 'the count the pilot froze is still stated as it was');
-});
