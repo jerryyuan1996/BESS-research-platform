@@ -8,110 +8,171 @@ import { OPPORTUNITY_SUMMARY } from '../opportunities/summaryData.js';
 import { passLast, canPromote } from './traceability.js';
 
 export const CALLS = {
-  reference: ['Reference alternative', '备选测算'],
-  'enter-now': ['Advance', '优先推进'],
-  'build-position': ['Build position', '提前布局'],
-  opportunistic: ['Situational', '择机投入'],
-  wait: ['Watch', '保持观察'],
-  avoid: ['Pass', '暂缓投入'],
-  'not-accessible': ['Not accessible', '暂不开放'],
-  research: ['Research', '继续研究'],
+	reference: ['Reference alternative', '备选测算'],
+	'enter-now': ['Advance', '优先推进'],
+	'build-position': ['Build position', '提前布局'],
+	opportunistic: ['Situational', '择机投入'],
+	wait: ['Watch', '保持观察'],
+	avoid: ['Pass', '暂缓投入'],
+	'not-accessible': ['Not accessible', '暂不开放'],
+	research: ['Research', '继续研究'],
 };
 export const REGIONS = {
-  europe: ['Europe', '欧洲'], mea: ['Middle East', '中东'], apac: ['Asia Pacific', '亚太'], americas: ['North America', '北美'],
+	europe: ['Europe', '欧洲'],
+	mea: ['Middle East', '中东'],
+	apac: ['Asia Pacific', '亚太'],
+	americas: ['North America', '北美'],
 };
 export const LENSES = {
-  infraFund: ['Infrastructure fund', '基础设施基金'],
-  strategic: ['Strategic investor', '战略投资者'],
-  foreignFirstTimer: ['New market entrant', '首次进入者'],
-  developer: ['Developer', '开发商'],
+	infraFund: ['Infrastructure fund', '基础设施基金'],
+	strategic: ['Strategic investor', '战略投资者'],
+	foreignFirstTimer: ['New market entrant', '首次进入者'],
+	developer: ['Developer', '开发商'],
 };
 export const snapshotDate = HOME_BRIEFING.on;
 export function regionFor(market) {
-  const currency = market.manifest.currency;
-  return ['USD', 'CAD'].includes(currency) ? 'americas' : ['AUD', 'JPY'].includes(currency) ? 'apac'
-    : currency === 'SAR' ? 'mea' : 'europe';
+	const currency = market.manifest.currency;
+	return ['USD', 'CAD'].includes(currency)
+		? 'americas'
+		: ['AUD', 'JPY'].includes(currency)
+			? 'apac'
+			: currency === 'SAR'
+				? 'mea'
+				: 'europe';
 }
 
 export function opportunities(lens = 'infraFund') {
-  const chosen = HOME_BRIEFING.lenses[lens] || HOME_BRIEFING.lenses.infraFund;
-  const seen = new Set();
-  const rows = chosen.rows.filter(row => !seen.has(row.market) && seen.add(row.market)).map(row => {
-    const market = byId(row.market);
-    const play = HOME_BRIEFING.plays[`${row.market}/${row.play}`];
-    return { ...row, market, play, econ: play?.econ || {}, region: regionFor(market) };
-  });
-  for (const market of markets) {
-    if (seen.has(market.manifest.id)) continue;
-    const result = runBaseCase(market, 5);
-    rows.push({ market, play: null, call: 'research', fit: null, region: regionFor(market),
-      econ: { priced: !result.na, hold: result.irrHold, exit: result.irrExit,
-        secured: result.securedShare, securedYears: result.securedYears, moic: result.moic } });
-  }
-  return rows.map((row, index) => {
-    const id=row.market.manifest.id,investment=OPPORTUNITY_SUMMARY[lens]?.markets[id];
-    return {...row,rank:index+1,id,investor:lens,investment,decision:OPPORTUNITY_SUMMARY[lens]?.decisions?.[id],legacyEcon:row.econ,
-      // Headline: the all-equity hold return. The lower-of-hold-and-sale and the
-      // levered equity return sit beside it (analyst, 29 Oct 2026).
-      econ:{...row.econ,hold:investment?.holdIRR??null,lowerOf:investment?.irr??null,
-        levered:investment?.leveredIRR??null,test:investment?.test??null,
-        secured:investment?.secured??row.econ.secured}};
-  }).sort(passLast);
+	const chosen = HOME_BRIEFING.lenses[lens] || HOME_BRIEFING.lenses.infraFund;
+	const seen = new Set();
+	const rows = chosen.rows
+		.filter((row) => !seen.has(row.market) && seen.add(row.market))
+		.map((row) => {
+			const market = byId(row.market);
+			const play = HOME_BRIEFING.plays[`${row.market}/${row.play}`];
+			return { ...row, market, play, econ: play?.econ || {}, region: regionFor(market) };
+		});
+	for (const market of markets) {
+		if (seen.has(market.manifest.id)) continue;
+		const result = runBaseCase(market, 5);
+		rows.push({
+			market,
+			play: null,
+			call: 'research',
+			fit: null,
+			region: regionFor(market),
+			econ: {
+				priced: !result.na,
+				hold: result.irrHold,
+				exit: result.irrExit,
+				secured: result.securedShare,
+				securedYears: result.securedYears,
+				moic: result.moic,
+			},
+		});
+	}
+	return rows
+		.map((row, index) => {
+			const id = row.market.manifest.id,
+				investment = OPPORTUNITY_SUMMARY[lens]?.markets[id];
+			return {
+				...row,
+				rank: index + 1,
+				id,
+				investor: lens,
+				investment,
+				decision: OPPORTUNITY_SUMMARY[lens]?.decisions?.[id],
+				legacyEcon: row.econ,
+				// Headline: the all-equity hold return. The lower-of-hold-and-sale and the
+				// levered equity return sit beside it (analyst, 29 Oct 2026).
+				econ: {
+					...row.econ,
+					hold: investment?.holdIRR ?? null,
+					lowerOf: investment?.irr ?? null,
+					levered: investment?.leveredIRR ?? null,
+					test: investment?.test ?? null,
+					secured: investment?.secured ?? row.econ.secured,
+				},
+			};
+		})
+		.sort(passLast);
 }
 
-export function featuredOpportunity(rows, lens){
-  const eligible=rows.filter(canPromote);
-  return (lens==='foreignFirstTimer'?eligible.find(r=>r.id==='fi'):null)||
-    eligible.find(r=>r.econ.priced&&r.play)||eligible[0];
+export function featuredOpportunity(rows, lens) {
+	const eligible = rows.filter(canPromote);
+	return (
+		(lens === 'foreignFirstTimer' ? eligible.find((r) => r.id === 'fi') : null) ||
+		eligible.find((r) => r.econ.priced && r.play) ||
+		eligible[0]
+	);
 }
 
 export function caseFor(row) {
-  let market = row.market;
-  if (Number.isFinite(row.play?.grantPct)) {
-    market = { ...market, comparison: { ...market.comparison,
-      economics: { ...market.comparison.economics, grantPct: row.play.grantPct } } };
-  }
-  const variant = row.play ? marketAt(market, row.play.route, row.play.hours) : market;
-  if (variant.na || row.econ.priced === false) return { row, unavailable: true };
-  const base = row.play ? runCase(variant, row.play.route, 5, row.econ.runOptions || {}) : runBaseCase(variant, 5);
-  if (base.na) return { row, unavailable: true };
-  const scenarios = runScenarioSet(variant, base.strategyId, 5, row.econ.runOptions || {});
-  const debt = sizeProjectDebt(base, { riskClass: riskClassFor(variant, base.strategyId) });
-  const bridge = revenueBridge(base);
-  // Keep the original base debt schedule in downside comparisons. Re-sizing debt
-  // in a downside would silently remove the very funding risk being inspected.
-  const cover = result => {
-    const ratios = base.eb.map((_, i) => {
-      const payment = (debt?.service[i] || 0) + (debt?.maturityRepayment[i] || 0);
-      return payment > 0 ? (result.eb[i] || 0) / payment : null;
-    }).filter(Number.isFinite);
-    return ratios.length ? Math.min(...ratios) : null;
-  };
-  return { row, variant, base, bear: scenarios.bear.result, debt, bridge, investment:row.investment,
-    coverBase: cover(base), coverBear: cover(scenarios.bear.result), overrides: scenarios.bear.overrides };
+	let market = row.market;
+	if (Number.isFinite(row.play?.grantPct)) {
+		market = {
+			...market,
+			comparison: { ...market.comparison, economics: { ...market.comparison.economics, grantPct: row.play.grantPct } },
+		};
+	}
+	const variant = row.play ? marketAt(market, row.play.route, row.play.hours) : market;
+	if (variant.na || row.econ.priced === false) return { row, unavailable: true };
+	const base = row.play ? runCase(variant, row.play.route, 5, row.econ.runOptions || {}) : runBaseCase(variant, 5);
+	if (base.na) return { row, unavailable: true };
+	const scenarios = runScenarioSet(variant, base.strategyId, 5, row.econ.runOptions || {});
+	const debt = sizeProjectDebt(base, { riskClass: riskClassFor(variant, base.strategyId) });
+	const bridge = revenueBridge(base);
+	// Keep the original base debt schedule in downside comparisons. Re-sizing debt
+	// in a downside would silently remove the very funding risk being inspected.
+	const cover = (result) => {
+		const ratios = base.eb
+			.map((_, i) => {
+				const payment = (debt?.service[i] || 0) + (debt?.maturityRepayment[i] || 0);
+				return payment > 0 ? (result.eb[i] || 0) / payment : null;
+			})
+			.filter(Number.isFinite);
+		return ratios.length ? Math.min(...ratios) : null;
+	};
+	return {
+		row,
+		variant,
+		base,
+		bear: scenarios.bear.result,
+		debt,
+		bridge,
+		investment: row.investment,
+		coverBase: cover(base),
+		coverBear: cover(scenarios.bear.result),
+		overrides: scenarios.bear.overrides,
+	};
 }
 
 export function revenueBridge(result) {
-  const fixed = result.secY?.[0] ?? result.capY?.[0] ?? 0;
-  const renewal = result.aucY?.[0] ?? 0;
-  const trading = result.mchY?.[0] ?? 0;
-  // svcY is the OEM service COST, not ancillary-services revenue. Trading already
-  // includes ancillary services; the engine does not expose a separate net split.
-  const service = result.svcY?.[0] ?? 0;
-  const operating = fixed + renewal + trading - service - result.eb[0];
-  return { fixed, renewal, trading, service, operating, net: result.eb[0], gross: fixed + renewal + trading };
+	const fixed = result.secY?.[0] ?? result.capY?.[0] ?? 0;
+	const renewal = result.aucY?.[0] ?? 0;
+	const trading = result.mchY?.[0] ?? 0;
+	// svcY is the OEM service COST, not ancillary-services revenue. Trading already
+	// includes ancillary services; the engine does not expose a separate net split.
+	const service = result.svcY?.[0] ?? 0;
+	const operating = fixed + renewal + trading - service - result.eb[0];
+	return { fixed, renewal, trading, service, operating, net: result.eb[0], gross: fixed + renewal + trading };
 }
 
-export function marketName(row) { return HOME_BRIEFING.markets[row.id]?.name || row.market.manifest.name; }
-export function caseUrl(row) { return `/markets/${row.market.manifest.slug}`; }
-export function compareUrl(ids = []) { return `/returns${ids.length ? `?compare=${ids.join(',')}` : ''}`; }
+export function marketName(row) {
+	return HOME_BRIEFING.markets[row.id]?.name || row.market.manifest.name;
+}
+export function caseUrl(row) {
+	return `/markets/${row.market.manifest.slug}`;
+}
+export function compareUrl(ids = []) {
+	return `/returns${ids.length ? `?compare=${ids.join(',')}` : ''}`;
+}
 export const finite = Number.isFinite;
-export const pct = value => finite(value) ? `${(value * 100).toFixed(1)}%` : '—';
-export const returnPct = value => finite(value) ? pct(value) : 'N/M';
-export const share = value => finite(value) ? `${Math.round(value * 100)}%` : '—';
-export const multiple = value => finite(value) ? `${value.toFixed(2)}×` : '—';
+export const pct = (value) => (finite(value) ? `${(value * 100).toFixed(1)}%` : '—');
+export const returnPct = (value) => (finite(value) ? pct(value) : 'N/M');
+export const share = (value) => (finite(value) ? `${Math.round(value * 100)}%` : '—');
+export const multiple = (value) => (finite(value) ? `${value.toFixed(2)}×` : '—');
 export function money(value, currency = 'USD') {
-  if (!finite(value)) return '—';
-  const abs = Math.abs(value);
-  return `${currency} ${abs >= 1e6 ? (value / 1e6).toFixed(2) + 'm' : (value / 1e3).toFixed(1) + 'k'}`;
+	if (!finite(value)) return '—';
+	const abs = Math.abs(value);
+	return `${currency} ${abs >= 1e6 ? (value / 1e6).toFixed(2) + 'm' : (value / 1e3).toFixed(1) + 'k'}`;
 }

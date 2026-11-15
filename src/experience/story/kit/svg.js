@@ -8,17 +8,17 @@
    --------------------------------------------------------------------------- */
 export const SVGNS = 'http://www.w3.org/2000/svg';
 
-export function s(tag, attrs = {}, ...children){
-  const node = document.createElementNS(SVGNS, tag);
-  for (const [key, value] of Object.entries(attrs)){
-    if (value === undefined || value === null || value === false) continue;
-    node.setAttribute(key, String(value));
-  }
-  for (const child of children.flat(Infinity)){
-    if (child === undefined || child === null || child === false) continue;
-    node.append(child.nodeType ? child : document.createTextNode(String(child)));
-  }
-  return node;
+export function s(tag, attrs = {}, ...children) {
+	const node = document.createElementNS(SVGNS, tag);
+	for (const [key, value] of Object.entries(attrs)) {
+		if (value === undefined || value === null || value === false) continue;
+		node.setAttribute(key, String(value));
+	}
+	for (const child of children.flat(Infinity)) {
+		if (child === undefined || child === null || child === false) continue;
+		node.append(child.nodeType ? child : document.createTextNode(String(child)));
+	}
+	return node;
 }
 
 /** A number trimmed for an SVG attribute: two decimals at most. */
