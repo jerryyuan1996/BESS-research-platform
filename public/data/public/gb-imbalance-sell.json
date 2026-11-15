@@ -14,17 +14,1745 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-14T13:38:59.656Z",
+  "fetchedAt": "2026-11-15T14:03:34.620Z",
   "coverage": {
-    "from": "2026-09-24T23:00:00.000Z",
-    "to": "2026-11-13T23:30:00.000Z",
+    "from": "2026-09-20T23:00:00.000Z",
+    "to": "2026-11-14T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 2402
+    "points": 2642
   },
   "units": {
     "price": "GBP/MWh"
   },
   "series": [
+    {
+      "t": "2026-09-20T23:00:00.000Z",
+      "v": 125.1,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 1,
+      "publishedAt": "2026-09-21T23:44:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-20T23:30:00.000Z",
+      "v": 125.1,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 2,
+      "publishedAt": "2026-09-22T00:18:02.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T00:00:00.000Z",
+      "v": 125.10999999999999,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 3,
+      "publishedAt": "2026-09-22T00:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T00:30:00.000Z",
+      "v": 125.1,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 4,
+      "publishedAt": "2026-09-22T01:15:06.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T01:00:00.000Z",
+      "v": 122.34,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 5,
+      "publishedAt": "2026-09-22T01:44:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T01:30:00.000Z",
+      "v": 125.10999999999999,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 6,
+      "publishedAt": "2026-09-22T02:16:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T02:00:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 7,
+      "publishedAt": "2026-09-22T02:44:52.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T02:30:00.000Z",
+      "v": 141.32,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 8,
+      "publishedAt": "2026-09-22T03:14:43.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T03:00:00.000Z",
+      "v": 114.43191603067228,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 9,
+      "publishedAt": "2026-09-22T03:44:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T03:30:00.000Z",
+      "v": 130,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 10,
+      "publishedAt": "2026-09-22T04:14:45.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T04:00:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 11,
+      "publishedAt": "2026-09-22T04:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T04:30:00.000Z",
+      "v": 125.29999999999998,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 12,
+      "publishedAt": "2026-09-22T05:14:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T05:00:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 13,
+      "publishedAt": "2026-09-22T05:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T05:30:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 14,
+      "publishedAt": "2026-09-22T06:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T06:00:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 15,
+      "publishedAt": "2026-09-22T06:44:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T06:30:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 16,
+      "publishedAt": "2026-09-22T07:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T07:00:00.000Z",
+      "v": 158.94,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 17,
+      "publishedAt": "2026-09-22T07:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T07:30:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 18,
+      "publishedAt": "2026-09-22T08:14:36.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T08:00:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 19,
+      "publishedAt": "2026-09-22T08:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T08:30:00.000Z",
+      "v": 238,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 20,
+      "publishedAt": "2026-09-22T09:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T09:00:00.000Z",
+      "v": 145,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 21,
+      "publishedAt": "2026-09-22T09:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T09:30:00.000Z",
+      "v": 189,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 22,
+      "publishedAt": "2026-09-22T10:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T10:00:00.000Z",
+      "v": 132.06,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 23,
+      "publishedAt": "2026-09-22T10:44:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T10:30:00.000Z",
+      "v": 126,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 24,
+      "publishedAt": "2026-09-22T11:14:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T11:00:00.000Z",
+      "v": 181,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 25,
+      "publishedAt": "2026-09-22T11:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T11:30:00.000Z",
+      "v": 189,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 26,
+      "publishedAt": "2026-09-22T12:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T12:00:00.000Z",
+      "v": 239,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 27,
+      "publishedAt": "2026-09-22T12:44:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T12:30:00.000Z",
+      "v": 189,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 28,
+      "publishedAt": "2026-09-22T13:14:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T13:00:00.000Z",
+      "v": 126,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 29,
+      "publishedAt": "2026-09-22T13:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T13:30:00.000Z",
+      "v": 137.46,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 30,
+      "publishedAt": "2026-09-22T14:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T14:00:00.000Z",
+      "v": 126,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 31,
+      "publishedAt": "2026-09-22T14:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T14:30:00.000Z",
+      "v": 125.4,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 32,
+      "publishedAt": "2026-09-22T15:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T15:00:00.000Z",
+      "v": 119,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 33,
+      "publishedAt": "2026-09-22T15:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T15:30:00.000Z",
+      "v": 126,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 34,
+      "publishedAt": "2026-09-22T16:14:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T16:00:00.000Z",
+      "v": 139.6,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 35,
+      "publishedAt": "2026-09-22T16:44:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T16:30:00.000Z",
+      "v": 135.55888891136019,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 36,
+      "publishedAt": "2026-09-22T17:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T17:00:00.000Z",
+      "v": 176.75,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 37,
+      "publishedAt": "2026-09-22T17:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T17:30:00.000Z",
+      "v": 235,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 38,
+      "publishedAt": "2026-09-22T18:14:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T18:00:00.000Z",
+      "v": 155.72,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 39,
+      "publishedAt": "2026-09-22T18:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T18:30:00.000Z",
+      "v": 154.8,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 40,
+      "publishedAt": "2026-09-22T19:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T19:00:00.000Z",
+      "v": 155.83,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 41,
+      "publishedAt": "2026-09-22T19:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T19:30:00.000Z",
+      "v": 127.45,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 42,
+      "publishedAt": "2026-09-22T20:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T20:00:00.000Z",
+      "v": 182.5,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 43,
+      "publishedAt": "2026-09-22T20:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T20:30:00.000Z",
+      "v": 162.85,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 44,
+      "publishedAt": "2026-09-22T21:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T21:00:00.000Z",
+      "v": 187.5,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 45,
+      "publishedAt": "2026-09-22T21:44:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T21:30:00.000Z",
+      "v": 126.5,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 46,
+      "publishedAt": "2026-09-22T22:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T22:00:00.000Z",
+      "v": 139.3,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 47,
+      "publishedAt": "2026-09-22T22:44:36.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-21T22:30:00.000Z",
+      "v": 176.961226433552,
+      "settlementDate": "2026-09-21",
+      "settlementPeriod": 48,
+      "publishedAt": "2026-09-22T23:14:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T23:00:00.000Z",
+      "v": 169.87,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 1,
+      "publishedAt": "2026-09-22T23:44:38.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-21T23:30:00.000Z",
+      "v": 139.68,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 2,
+      "publishedAt": "2026-09-23T00:14:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T00:00:00.000Z",
+      "v": 158.67,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 3,
+      "publishedAt": "2026-09-23T00:44:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T00:30:00.000Z",
+      "v": 123.32999999999998,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 4,
+      "publishedAt": "2026-09-23T01:14:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T01:00:00.000Z",
+      "v": 126.5,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 5,
+      "publishedAt": "2026-09-23T01:44:42.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T01:30:00.000Z",
+      "v": 165.25,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 6,
+      "publishedAt": "2026-09-23T02:15:54.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T02:00:00.000Z",
+      "v": 126.2,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 7,
+      "publishedAt": "2026-09-23T02:45:04.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T02:30:00.000Z",
+      "v": 126.29438744760238,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 8,
+      "publishedAt": "2026-09-23T03:14:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T03:00:00.000Z",
+      "v": 157.67,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 9,
+      "publishedAt": "2026-09-23T03:44:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T03:30:00.000Z",
+      "v": 184.20851041290138,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 10,
+      "publishedAt": "2026-09-23T04:14:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T04:00:00.000Z",
+      "v": 190,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 11,
+      "publishedAt": "2026-09-23T04:44:58.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T04:30:00.000Z",
+      "v": 152.57,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 12,
+      "publishedAt": "2026-09-23T05:14:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T05:00:00.000Z",
+      "v": 138,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 13,
+      "publishedAt": "2026-09-23T05:44:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T05:30:00.000Z",
+      "v": 140.94,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 14,
+      "publishedAt": "2026-09-23T06:14:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T06:00:00.000Z",
+      "v": 141.67682118661966,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 15,
+      "publishedAt": "2026-09-23T06:44:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T06:30:00.000Z",
+      "v": 138,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 16,
+      "publishedAt": "2026-09-23T07:14:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T07:00:00.000Z",
+      "v": 150.92,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 17,
+      "publishedAt": "2026-09-23T07:44:39.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T07:30:00.000Z",
+      "v": 150.12,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 18,
+      "publishedAt": "2026-09-23T08:15:00.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T08:00:00.000Z",
+      "v": 133.27,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 19,
+      "publishedAt": "2026-09-23T08:44:39.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T08:30:00.000Z",
+      "v": 127.12,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 20,
+      "publishedAt": "2026-09-23T09:16:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T09:00:00.000Z",
+      "v": 127.12,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 21,
+      "publishedAt": "2026-09-23T09:44:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T09:30:00.000Z",
+      "v": 127.12,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 22,
+      "publishedAt": "2026-09-23T10:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T10:00:00.000Z",
+      "v": 105.5,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 23,
+      "publishedAt": "2026-09-23T10:44:40.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T10:30:00.000Z",
+      "v": 105.5,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 24,
+      "publishedAt": "2026-09-23T11:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T11:00:00.000Z",
+      "v": 103.04550078624578,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 25,
+      "publishedAt": "2026-09-23T11:44:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T11:30:00.000Z",
+      "v": 105,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 26,
+      "publishedAt": "2026-09-23T12:14:19.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T12:00:00.000Z",
+      "v": 109,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 27,
+      "publishedAt": "2026-09-23T12:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T12:30:00.000Z",
+      "v": 109,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 28,
+      "publishedAt": "2026-09-23T13:14:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T13:00:00.000Z",
+      "v": 109,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 29,
+      "publishedAt": "2026-09-23T13:44:39.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T13:30:00.000Z",
+      "v": 111.2,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 30,
+      "publishedAt": "2026-09-23T14:14:56.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T14:00:00.000Z",
+      "v": 111,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 31,
+      "publishedAt": "2026-09-23T14:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T14:30:00.000Z",
+      "v": 111,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 32,
+      "publishedAt": "2026-09-23T15:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T15:00:00.000Z",
+      "v": 293,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 33,
+      "publishedAt": "2026-09-23T15:44:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T15:30:00.000Z",
+      "v": 293,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 34,
+      "publishedAt": "2026-09-23T16:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T16:00:00.000Z",
+      "v": 146.48,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 35,
+      "publishedAt": "2026-09-23T16:45:14.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T16:30:00.000Z",
+      "v": 155.44,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 36,
+      "publishedAt": "2026-09-23T17:15:08.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T17:00:00.000Z",
+      "v": 210,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 37,
+      "publishedAt": "2026-09-23T17:45:08.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T17:30:00.000Z",
+      "v": 190,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 38,
+      "publishedAt": "2026-09-23T18:14:52.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T18:00:00.000Z",
+      "v": 270.0953390166667,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 39,
+      "publishedAt": "2026-09-23T18:45:12.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T18:30:00.000Z",
+      "v": 240,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 40,
+      "publishedAt": "2026-09-23T19:15:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T19:00:00.000Z",
+      "v": 153.53,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 41,
+      "publishedAt": "2026-09-23T19:44:39.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T19:30:00.000Z",
+      "v": 165.8,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 42,
+      "publishedAt": "2026-09-23T20:14:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T20:00:00.000Z",
+      "v": 594,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 43,
+      "publishedAt": "2026-09-23T20:45:19.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T20:30:00.000Z",
+      "v": 127.35,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 44,
+      "publishedAt": "2026-09-23T21:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T21:00:00.000Z",
+      "v": 126.5,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 45,
+      "publishedAt": "2026-09-23T21:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T21:30:00.000Z",
+      "v": 126.5,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 46,
+      "publishedAt": "2026-09-23T22:14:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-22T22:00:00.000Z",
+      "v": 222.85,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 47,
+      "publishedAt": "2026-09-23T22:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T22:30:00.000Z",
+      "v": 182,
+      "settlementDate": "2026-09-22",
+      "settlementPeriod": 48,
+      "publishedAt": "2026-09-23T23:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T23:00:00.000Z",
+      "v": 179.45,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 1,
+      "publishedAt": "2026-09-23T23:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-22T23:30:00.000Z",
+      "v": 179.45,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 2,
+      "publishedAt": "2026-09-24T00:14:19.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T00:00:00.000Z",
+      "v": 178.45,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 3,
+      "publishedAt": "2026-09-24T00:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T00:30:00.000Z",
+      "v": 126.5,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 4,
+      "publishedAt": "2026-09-24T01:14:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T01:00:00.000Z",
+      "v": 124.00500478145175,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 5,
+      "publishedAt": "2026-09-24T01:44:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T01:30:00.000Z",
+      "v": 122.43,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 6,
+      "publishedAt": "2026-09-24T02:17:07.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T02:00:00.000Z",
+      "v": 178.95,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 7,
+      "publishedAt": "2026-09-24T02:45:01.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T02:30:00.000Z",
+      "v": 142.11,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 8,
+      "publishedAt": "2026-09-24T03:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T03:00:00.000Z",
+      "v": 126.6,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 9,
+      "publishedAt": "2026-09-24T03:44:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T03:30:00.000Z",
+      "v": 117.01,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 10,
+      "publishedAt": "2026-09-24T04:14:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T04:00:00.000Z",
+      "v": 117.02,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 11,
+      "publishedAt": "2026-09-24T04:44:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T04:30:00.000Z",
+      "v": 117.01,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 12,
+      "publishedAt": "2026-09-24T05:14:38.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T05:00:00.000Z",
+      "v": 118.1,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 13,
+      "publishedAt": "2026-09-24T05:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T05:30:00.000Z",
+      "v": 206,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 14,
+      "publishedAt": "2026-09-24T06:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T06:00:00.000Z",
+      "v": 194.8,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 15,
+      "publishedAt": "2026-09-24T06:44:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T06:30:00.000Z",
+      "v": 196.44,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 16,
+      "publishedAt": "2026-09-24T07:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T07:00:00.000Z",
+      "v": 117.02,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 17,
+      "publishedAt": "2026-09-24T07:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T07:30:00.000Z",
+      "v": 105.54,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 18,
+      "publishedAt": "2026-09-24T08:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T08:00:00.000Z",
+      "v": 105.53,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 19,
+      "publishedAt": "2026-09-24T08:44:51.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T08:30:00.000Z",
+      "v": 96.93,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 20,
+      "publishedAt": "2026-09-24T09:14:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T09:00:00.000Z",
+      "v": 90.16,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 21,
+      "publishedAt": "2026-09-24T09:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T09:30:00.000Z",
+      "v": 90,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 22,
+      "publishedAt": "2026-09-24T10:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T10:00:00.000Z",
+      "v": 179.9,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 23,
+      "publishedAt": "2026-09-24T10:44:45.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T10:30:00.000Z",
+      "v": 166.47,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 24,
+      "publishedAt": "2026-09-24T11:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T11:00:00.000Z",
+      "v": 166.47,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 25,
+      "publishedAt": "2026-09-24T11:44:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T11:30:00.000Z",
+      "v": 179.9,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 26,
+      "publishedAt": "2026-09-24T12:14:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T12:00:00.000Z",
+      "v": 179.9,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 27,
+      "publishedAt": "2026-09-24T12:44:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T12:30:00.000Z",
+      "v": 179.9,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 28,
+      "publishedAt": "2026-09-24T13:14:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T13:00:00.000Z",
+      "v": 182.5,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 29,
+      "publishedAt": "2026-09-24T13:44:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T13:30:00.000Z",
+      "v": 179.9,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 30,
+      "publishedAt": "2026-09-24T14:14:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T14:00:00.000Z",
+      "v": 95,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 31,
+      "publishedAt": "2026-09-24T14:44:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T14:30:00.000Z",
+      "v": 88,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 32,
+      "publishedAt": "2026-09-24T15:15:17.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T15:00:00.000Z",
+      "v": 110,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 33,
+      "publishedAt": "2026-09-24T15:44:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T15:30:00.000Z",
+      "v": 118.5,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 34,
+      "publishedAt": "2026-09-24T16:14:42.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T16:00:00.000Z",
+      "v": 196.53,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 35,
+      "publishedAt": "2026-09-24T16:44:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T16:30:00.000Z",
+      "v": 147.73,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 36,
+      "publishedAt": "2026-09-24T17:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T17:00:00.000Z",
+      "v": 190,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 37,
+      "publishedAt": "2026-09-24T17:44:38.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T17:30:00.000Z",
+      "v": 221.91,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 38,
+      "publishedAt": "2026-09-24T18:14:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T18:00:00.000Z",
+      "v": 149.01789801218706,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 39,
+      "publishedAt": "2026-09-24T18:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T18:30:00.000Z",
+      "v": 120,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 40,
+      "publishedAt": "2026-09-24T19:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T19:00:00.000Z",
+      "v": 121,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 41,
+      "publishedAt": "2026-09-24T19:44:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T19:30:00.000Z",
+      "v": 131.93,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 42,
+      "publishedAt": "2026-09-24T20:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T20:00:00.000Z",
+      "v": 131.93,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 43,
+      "publishedAt": "2026-09-24T20:44:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T20:30:00.000Z",
+      "v": 121,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 44,
+      "publishedAt": "2026-09-24T21:14:48.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T21:00:00.000Z",
+      "v": 195,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 45,
+      "publishedAt": "2026-09-24T21:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-23T21:30:00.000Z",
+      "v": 120.85,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 46,
+      "publishedAt": "2026-09-24T22:14:51.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T22:00:00.000Z",
+      "v": 120.65,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 47,
+      "publishedAt": "2026-09-24T22:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T22:30:00.000Z",
+      "v": 120.65,
+      "settlementDate": "2026-09-23",
+      "settlementPeriod": 48,
+      "publishedAt": "2026-09-24T23:14:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T23:00:00.000Z",
+      "v": 120.65,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 1,
+      "publishedAt": "2026-09-24T23:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-23T23:30:00.000Z",
+      "v": 120.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 2,
+      "publishedAt": "2026-09-25T00:14:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T00:00:00.000Z",
+      "v": 120.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 3,
+      "publishedAt": "2026-09-25T00:44:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T00:30:00.000Z",
+      "v": 121.15,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 4,
+      "publishedAt": "2026-09-25T01:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T01:00:00.000Z",
+      "v": 142.02,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 5,
+      "publishedAt": "2026-09-25T01:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T01:30:00.000Z",
+      "v": 121.15,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 6,
+      "publishedAt": "2026-09-25T02:15:18.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T02:00:00.000Z",
+      "v": 121.15,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 7,
+      "publishedAt": "2026-09-25T02:44:31.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T02:30:00.000Z",
+      "v": 121.15,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 8,
+      "publishedAt": "2026-09-25T03:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T03:00:00.000Z",
+      "v": 143.37,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 9,
+      "publishedAt": "2026-09-25T03:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T03:30:00.000Z",
+      "v": 146.35,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 10,
+      "publishedAt": "2026-09-25T04:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T04:00:00.000Z",
+      "v": 125.55329185122758,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 11,
+      "publishedAt": "2026-09-25T04:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T04:30:00.000Z",
+      "v": 209,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 12,
+      "publishedAt": "2026-09-25T05:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T05:00:00.000Z",
+      "v": 209,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 13,
+      "publishedAt": "2026-09-25T05:44:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T05:30:00.000Z",
+      "v": 165.42,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 14,
+      "publishedAt": "2026-09-25T06:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T06:00:00.000Z",
+      "v": 202,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 15,
+      "publishedAt": "2026-09-25T06:44:50.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T06:30:00.000Z",
+      "v": 202,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 16,
+      "publishedAt": "2026-09-25T07:14:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T07:00:00.000Z",
+      "v": 196.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 17,
+      "publishedAt": "2026-09-25T07:44:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T07:30:00.000Z",
+      "v": 196.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 18,
+      "publishedAt": "2026-09-25T08:14:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T08:00:00.000Z",
+      "v": 196.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 19,
+      "publishedAt": "2026-09-25T08:44:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T08:30:00.000Z",
+      "v": 196.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 20,
+      "publishedAt": "2026-09-25T09:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T09:00:00.000Z",
+      "v": 199.9,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 21,
+      "publishedAt": "2026-09-25T09:44:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T09:30:00.000Z",
+      "v": 196,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 22,
+      "publishedAt": "2026-09-25T10:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T10:00:00.000Z",
+      "v": 120,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 23,
+      "publishedAt": "2026-09-25T10:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T10:30:00.000Z",
+      "v": 114.01,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 24,
+      "publishedAt": "2026-09-25T11:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T11:00:00.000Z",
+      "v": 121.00680728333333,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 25,
+      "publishedAt": "2026-09-25T11:44:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T11:30:00.000Z",
+      "v": 179,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 26,
+      "publishedAt": "2026-09-25T12:14:18.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T12:00:00.000Z",
+      "v": 114,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 27,
+      "publishedAt": "2026-09-25T12:44:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T12:30:00.000Z",
+      "v": 192,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 28,
+      "publishedAt": "2026-09-25T13:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T13:00:00.000Z",
+      "v": 106.86952003468103,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 29,
+      "publishedAt": "2026-09-25T13:44:49.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T13:30:00.000Z",
+      "v": 142.06,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 30,
+      "publishedAt": "2026-09-25T14:14:53.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T14:00:00.000Z",
+      "v": 196,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 31,
+      "publishedAt": "2026-09-25T14:44:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T14:30:00.000Z",
+      "v": 169.49,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 32,
+      "publishedAt": "2026-09-25T15:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T15:00:00.000Z",
+      "v": 185.6704,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 33,
+      "publishedAt": "2026-09-25T15:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T15:30:00.000Z",
+      "v": 187.84,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 34,
+      "publishedAt": "2026-09-25T16:14:38.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T16:00:00.000Z",
+      "v": 220,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 35,
+      "publishedAt": "2026-09-25T16:44:37.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T16:30:00.000Z",
+      "v": 220,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 36,
+      "publishedAt": "2026-09-25T17:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T17:00:00.000Z",
+      "v": 198,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 37,
+      "publishedAt": "2026-09-25T17:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T17:30:00.000Z",
+      "v": 169.7018801044801,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 38,
+      "publishedAt": "2026-09-25T18:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T18:00:00.000Z",
+      "v": 198,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 39,
+      "publishedAt": "2026-09-25T18:44:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T18:30:00.000Z",
+      "v": 202,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 40,
+      "publishedAt": "2026-09-25T19:14:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T19:00:00.000Z",
+      "v": 201.48694543547046,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 41,
+      "publishedAt": "2026-09-25T19:44:41.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T19:30:00.000Z",
+      "v": 202,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 42,
+      "publishedAt": "2026-09-25T20:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T20:00:00.000Z",
+      "v": 197.6,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 43,
+      "publishedAt": "2026-09-25T20:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T20:30:00.000Z",
+      "v": 130,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 44,
+      "publishedAt": "2026-09-25T21:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T21:00:00.000Z",
+      "v": 132.2434596783487,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 45,
+      "publishedAt": "2026-09-25T21:44:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-09-24T21:30:00.000Z",
+      "v": 179.51,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 46,
+      "publishedAt": "2026-09-25T22:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T22:00:00.000Z",
+      "v": 182,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 47,
+      "publishedAt": "2026-09-25T22:44:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-09-24T22:30:00.000Z",
+      "v": 182,
+      "settlementDate": "2026-09-24",
+      "settlementPeriod": 48,
+      "publishedAt": "2026-09-25T23:14:44.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
     {
       "t": "2026-09-24T23:00:00.000Z",
       "v": 182,
@@ -21450,7 +23178,7 @@
       "v": 184.86948667074415,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 27,
-      "publishedAt": "2026-11-13T13:50:08.000Z",
+      "publishedAt": "2026-11-14T13:44:25.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21459,7 +23187,7 @@
       "v": 225,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 28,
-      "publishedAt": "2026-11-13T14:18:34.000Z",
+      "publishedAt": "2026-11-14T14:14:24.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21468,7 +23196,7 @@
       "v": 225,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 29,
-      "publishedAt": "2026-11-13T14:48:31.000Z",
+      "publishedAt": "2026-11-14T14:44:27.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21477,7 +23205,7 @@
       "v": 206.63,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 30,
-      "publishedAt": "2026-11-13T15:18:32.000Z",
+      "publishedAt": "2026-11-14T15:14:24.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21486,7 +23214,7 @@
       "v": 176.57,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 31,
-      "publishedAt": "2026-11-13T15:48:32.000Z",
+      "publishedAt": "2026-11-14T15:44:26.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21495,7 +23223,7 @@
       "v": 208.57,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 32,
-      "publishedAt": "2026-11-13T16:18:37.000Z",
+      "publishedAt": "2026-11-14T16:14:23.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21504,7 +23232,7 @@
       "v": 175,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 33,
-      "publishedAt": "2026-11-13T16:48:32.000Z",
+      "publishedAt": "2026-11-14T16:44:28.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21513,7 +23241,7 @@
       "v": 208.98,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 34,
-      "publishedAt": "2026-11-13T17:18:37.000Z",
+      "publishedAt": "2026-11-14T17:14:27.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21522,7 +23250,7 @@
       "v": 267.65,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 35,
-      "publishedAt": "2026-11-13T17:48:34.000Z",
+      "publishedAt": "2026-11-14T17:44:25.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21531,7 +23259,7 @@
       "v": 210,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 36,
-      "publishedAt": "2026-11-13T18:19:34.000Z",
+      "publishedAt": "2026-11-14T18:14:26.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21540,7 +23268,7 @@
       "v": 190.77744790291902,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 37,
-      "publishedAt": "2026-11-13T18:48:38.000Z",
+      "publishedAt": "2026-11-14T18:44:24.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21549,7 +23277,7 @@
       "v": 188.55,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 38,
-      "publishedAt": "2026-11-13T19:18:43.000Z",
+      "publishedAt": "2026-11-14T19:14:27.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21558,7 +23286,7 @@
       "v": 270.0111667119123,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 39,
-      "publishedAt": "2026-11-13T19:48:38.000Z",
+      "publishedAt": "2026-11-14T19:44:25.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21567,7 +23295,7 @@
       "v": 228.04,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 40,
-      "publishedAt": "2026-11-13T20:18:40.000Z",
+      "publishedAt": "2026-11-14T20:14:29.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21576,7 +23304,7 @@
       "v": 252,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 41,
-      "publishedAt": "2026-11-13T20:48:40.000Z",
+      "publishedAt": "2026-11-14T20:44:32.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21585,7 +23313,7 @@
       "v": 247.78,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 42,
-      "publishedAt": "2026-11-13T21:18:37.000Z",
+      "publishedAt": "2026-11-14T21:14:30.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21594,7 +23322,7 @@
       "v": 198.6,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 43,
-      "publishedAt": "2026-11-13T21:48:46.000Z",
+      "publishedAt": "2026-11-14T21:44:27.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21603,7 +23331,7 @@
       "v": 219,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 44,
-      "publishedAt": "2026-11-13T22:18:46.000Z",
+      "publishedAt": "2026-11-14T22:14:50.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
     },
@@ -21612,7 +23340,7 @@
       "v": 190.56,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 45,
-      "publishedAt": "2026-11-13T22:48:51.000Z",
+      "publishedAt": "2026-11-14T22:44:28.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21621,7 +23349,7 @@
       "v": 190.44,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 46,
-      "publishedAt": "2026-11-13T23:18:36.000Z",
+      "publishedAt": "2026-11-14T23:14:29.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21630,7 +23358,7 @@
       "v": 150,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 47,
-      "publishedAt": "2026-11-13T23:48:35.000Z",
+      "publishedAt": "2026-11-14T23:44:28.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "N"
     },
@@ -21639,9 +23367,441 @@
       "v": 219.13136245743036,
       "settlementDate": "2026-11-13",
       "settlementPeriod": 48,
-      "publishedAt": "2026-11-14T00:18:35.000Z",
+      "publishedAt": "2026-11-15T00:14:32.000Z",
       "bsadDefaulted": false,
       "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T00:00:00.000Z",
+      "v": 165.17641224615406,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 1,
+      "publishedAt": "2026-11-15T00:44:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T00:30:00.000Z",
+      "v": 197.8,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 2,
+      "publishedAt": "2026-11-15T01:14:27.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T01:00:00.000Z",
+      "v": 163.53340702599843,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 3,
+      "publishedAt": "2026-11-15T01:44:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T01:30:00.000Z",
+      "v": 189.06,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 4,
+      "publishedAt": "2026-11-15T02:15:03.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T02:00:00.000Z",
+      "v": 134.24187463345106,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 5,
+      "publishedAt": "2026-11-15T02:44:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T02:30:00.000Z",
+      "v": 204.14,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 6,
+      "publishedAt": "2026-11-15T03:14:25.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T03:00:00.000Z",
+      "v": 159.68886683726626,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 7,
+      "publishedAt": "2026-11-15T03:44:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T03:30:00.000Z",
+      "v": 157.13407885101086,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 8,
+      "publishedAt": "2026-11-15T04:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T04:00:00.000Z",
+      "v": 176.24,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 9,
+      "publishedAt": "2026-11-15T04:44:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T04:30:00.000Z",
+      "v": 169.5,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 10,
+      "publishedAt": "2026-11-15T05:14:26.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T05:00:00.000Z",
+      "v": 174.77,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 11,
+      "publishedAt": "2026-11-15T05:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T05:30:00.000Z",
+      "v": 179,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 12,
+      "publishedAt": "2026-11-15T06:14:23.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T06:00:00.000Z",
+      "v": 192.62,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 13,
+      "publishedAt": "2026-11-15T06:44:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T06:30:00.000Z",
+      "v": 192,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 14,
+      "publishedAt": "2026-11-15T07:14:19.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T07:00:00.000Z",
+      "v": 213.57,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 15,
+      "publishedAt": "2026-11-15T07:44:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T07:30:00.000Z",
+      "v": 192.49013333333335,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 16,
+      "publishedAt": "2026-11-15T08:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T08:00:00.000Z",
+      "v": 219.9,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 17,
+      "publishedAt": "2026-11-15T08:44:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T08:30:00.000Z",
+      "v": 223.9,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 18,
+      "publishedAt": "2026-11-15T09:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T09:00:00.000Z",
+      "v": 230.85,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 19,
+      "publishedAt": "2026-11-15T09:44:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T09:30:00.000Z",
+      "v": 223.5,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 20,
+      "publishedAt": "2026-11-15T10:14:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T10:00:00.000Z",
+      "v": 222.9,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 21,
+      "publishedAt": "2026-11-15T10:44:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T10:30:00.000Z",
+      "v": 160.6,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 22,
+      "publishedAt": "2026-11-15T11:14:22.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T11:00:00.000Z",
+      "v": 146.6,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 23,
+      "publishedAt": "2026-11-15T11:44:19.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T11:30:00.000Z",
+      "v": 161,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 24,
+      "publishedAt": "2026-11-15T12:15:14.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T12:00:00.000Z",
+      "v": 150,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 25,
+      "publishedAt": "2026-11-15T12:44:24.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T12:30:00.000Z",
+      "v": 217,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 26,
+      "publishedAt": "2026-11-15T13:14:20.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T13:00:00.000Z",
+      "v": 217,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 27,
+      "publishedAt": "2026-11-15T13:44:21.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T13:30:00.000Z",
+      "v": 217,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 28,
+      "publishedAt": "2026-11-14T14:18:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T14:00:00.000Z",
+      "v": 198,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 29,
+      "publishedAt": "2026-11-14T14:48:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T14:30:00.000Z",
+      "v": 80.28,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 30,
+      "publishedAt": "2026-11-14T15:18:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T15:00:00.000Z",
+      "v": 149.25,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 31,
+      "publishedAt": "2026-11-14T15:48:42.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T15:30:00.000Z",
+      "v": 150,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 32,
+      "publishedAt": "2026-11-14T16:18:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T16:00:00.000Z",
+      "v": 183,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 33,
+      "publishedAt": "2026-11-14T16:48:40.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T16:30:00.000Z",
+      "v": 219.99013333333335,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 34,
+      "publishedAt": "2026-11-14T17:18:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T17:00:00.000Z",
+      "v": 142.89,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 35,
+      "publishedAt": "2026-11-14T17:48:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T17:30:00.000Z",
+      "v": 147.05,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 36,
+      "publishedAt": "2026-11-14T18:18:39.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T18:00:00.000Z",
+      "v": 133,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 37,
+      "publishedAt": "2026-11-14T18:48:58.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T18:30:00.000Z",
+      "v": 176.77,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 38,
+      "publishedAt": "2026-11-14T19:18:34.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T19:00:00.000Z",
+      "v": 204.46,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 39,
+      "publishedAt": "2026-11-14T19:48:32.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T19:30:00.000Z",
+      "v": 204.46,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 40,
+      "publishedAt": "2026-11-14T20:18:29.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T20:00:00.000Z",
+      "v": 199.44,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 41,
+      "publishedAt": "2026-11-14T20:48:40.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T20:30:00.000Z",
+      "v": 211.48,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 42,
+      "publishedAt": "2026-11-14T21:18:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "P"
+    },
+    {
+      "t": "2026-11-14T21:00:00.000Z",
+      "v": 174.98,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 43,
+      "publishedAt": "2026-11-14T21:48:33.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T21:30:00.000Z",
+      "v": 172.75,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 44,
+      "publishedAt": "2026-11-14T22:19:01.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T22:00:00.000Z",
+      "v": 173.38,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 45,
+      "publishedAt": "2026-11-14T22:49:30.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T22:30:00.000Z",
+      "v": 163.95,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 46,
+      "publishedAt": "2026-11-14T23:19:28.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T23:00:00.000Z",
+      "v": 146.78,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 47,
+      "publishedAt": "2026-11-14T23:48:36.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
+    },
+    {
+      "t": "2026-11-14T23:30:00.000Z",
+      "v": 149.43,
+      "settlementDate": "2026-11-14",
+      "settlementPeriod": 48,
+      "publishedAt": "2026-11-15T00:19:35.000Z",
+      "bsadDefaulted": false,
+      "priceDerivationCode": "N"
     }
   ],
   "derived": null,
@@ -21653,6 +23813,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 72,
-  "contentChecksum": "sha256:49db0be6f9eb391d912b063389c78c98f9746f8915c97a7ba48a662b09feee5f",
-  "envelopeChecksum": "sha256:24fff84491a38f68f0d1ab1d38bf27eaa099d658a4be576ea50fc364cc864d41"
+  "contentChecksum": "sha256:5095304de29e4328e5a3a491ed553646ceda9c0829b12b168585f6d32ab16d67",
+  "envelopeChecksum": "sha256:0182e6b8c702ace43be232ad31118eb8b7481c799c6366f33e3a98f24a3abc0d"
 }
