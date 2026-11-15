@@ -52,10 +52,32 @@ function compose(dialog, rows){
   if (markers.length === 2) opening.querySelector('.ix-story-marker')?.remove();
 }
 
+/* The unified reader needs a readable status when the approved Watch has
+   retired the earlier investment explanation. These notices contain no old
+   story content or figures; the legacy story still returns to research. */
+function reviewMaterial(ctx){
+  return h('div', { class: 'unified-story-material', 'data-material-market': 'pl' },
+    ['opening', 'origins', 'choices', 'tensions', 'payment'].map(chapter =>
+      h('article', { class: 'ix-shot ix-shot-opening', 'data-shot': `pl-review-${chapter}`, 'data-original-chapter': chapter, 'data-review-required': 'true' },
+        h('h4', {}, L(['Detailed reference awaiting review', '详细参考内容待复核'])),
+        h('div', { class: 'ix-shot-copy' },
+          h('p', {}, L(['The earlier infrastructure-fund grant explanation needs review. Read the selected investment case or current market research.', '旧版基础设施基金补助方案的解释待复核。请查阅当前所选投资方案或完整市场研究。'])),
+          h('button', { type: 'button', class: 'ix-button ix-outline', onclick: () => ctx.onChapter('research') },
+            L(['Read current research', '阅读当前完整研究']))))));
+}
+
 /** Open the Poland story for a market-page row. See openStory() for ctx. */
 export function open(ctx){
-  const checked = reviewed({ row: ctx.row, lens: ctx.lens || app.lens || 'infraFund', ui: ctx.ui });
-  if (!checked) return null;
+  const lens = ctx.lens || app.lens || 'infraFund';
+  const checked = reviewed({ row: ctx.row, lens, ui: ctx.ui });
+  if (!checked) {
+    if (ctx.embed && ctx.row?.id === 'pl' && lens === story.reviewedAgainst.lens
+        && ctx.row.call === 'wait' && ctx.row.play?.id === story.playRef
+        && ctx.row.play.hours === story.reviewedAgainst.hours && typeof ctx.onChapter === 'function') {
+      return reviewMaterial(ctx);
+    }
+    return null;
+  }
   const { values, route } = checked;
   /* The drawer's sources are composed here: the record envelope is the single
      place a title, link, locator and check date are stored. */

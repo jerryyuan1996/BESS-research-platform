@@ -51,7 +51,17 @@ let cached = null;
 const briefing = async () => (cached ??= briefingFromDisk({ now: NOW, overlay: await draftOverlay() }));
 
 const isPair = (v) => Array.isArray(v) && v.length === 2 && v.every(s => typeof s === 'string' && s.trim().length > 0);
-const hedges = (text) => HEDGE_WORDS.filter(w => new RegExp(`\\b${w}\\b`, 'i').test(text));
+// Generated dates use day-month-year; May in that format is a month, not a hedge.
+const hedges = (text) => {
+  const prose = text.replace(/\b(?:0?[1-9]|[12]\d|3[01]) May \d{4}\b/g, 'calendar date');
+  return HEDGE_WORDS.filter(w => new RegExp(`\\b${w}\\b`, 'i').test(prose));
+};
+
+test('the prose check distinguishes the month May from a modal hedge', () => {
+  assert.deepEqual(hedges('Proposed results publication (10 May 2027).'), []);
+  assert.deepEqual(hedges('Results may arrive on 10 May 2027.'), ['may']);
+  assert.deepEqual(hedges('May qualify after review.'), ['may']);
+});
 
 /* ---- the order ---------------------------------------------------------------- */
 
