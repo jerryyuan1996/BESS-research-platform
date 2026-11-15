@@ -1,27 +1,117 @@
-.ix-decision-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px 18px; margin:18px 0; padding:16px 0; border-block:1px solid var(--ix-line); color:var(--ix-ink); text-align:left; white-space:normal; }
-.ix-decision-strip .ix-strip-item { min-width:0; }
-.ix-decision-strip dt { margin:0 0 5px; font-size:var(--fs-micro); color:var(--ix-muted); font-weight:var(--fw-medium); }
-.ix-decision-strip dd { margin:0; font-size:var(--fs-2xs); line-height:1.5; }
-.ix-decision-strip small { display:block; margin-top:4px; font-size:var(--fs-micro); line-height:1.5; color:inherit; }
-.ix-decision-strip .ix-target-build-up { font-variant-numeric:tabular-nums; }
-.ix-target-build-up>span { display:inline; }
-.ix-target-build-up .ix-target-basis { display:block; color:var(--ix-muted); }
-.ix-decision-strip .ix-tag { display:inline-flex; flex-wrap:wrap; gap:0; white-space:normal; line-height:1.5; }
-.ix-debt-effect.dilutes,.ix-evidence-marker.thin { color:#9a442b; }
-.ix-evidence-marker.fair { color:#785f2b; }
-.ix-evidence-marker.strong { color:#2b6250; }
-.ix-tag.opportunistic.ix-qualified-clears { color:#265543; background:#e3eddf; }
-.ix-tag.opportunistic.ix-qualified-price { color:#735a20; background:#f5ecd2; }
-.ix-tag.opportunistic.ix-qualified-below { color:#8c4630; background:#f4e4dd; }
-.ix-featured .ix-decision-strip,.ix-pick .ix-decision-strip { grid-template-columns:1fr; }
-.ix-featured .ix-decision-strip { color:#f3f4e9; border-color:#7d9384; }
-.ix-featured .ix-decision-strip dt,.ix-featured .ix-target-basis { color:#d0decf; }
-.ix-featured .ix-debt-effect,.ix-featured .ix-evidence-marker { color:#f0d39d; }
-.ix-opportunity-set .ix-decision-strip { grid-template-columns:1fr; min-width:265px; margin:0; padding:0; border:0; gap:10px; }
-.ix-opportunity-set .ix-decision-strip small { white-space:normal; }
-.ix-opportunity-set tr.is-pass,.ip-opportunity.is-pass { background:#f0efeb; color:#646961; }
-.ix-opportunity-set tr.is-pass .ix-tag,.ip-opportunity.is-pass .ip-decision { background:#e4e4df; color:#62665e; }
-@media(max-width:720px) {
-  .ix-decision-strip { grid-template-columns:1fr; gap:12px; }
-  .ix-opportunity-set .ix-decision-strip { min-width:0; }
+.ix-decision-strip {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px 18px;
+	margin: 18px 0;
+	padding: 16px 0;
+	border-block: 1px solid var(--ix-line);
+	color: var(--ix-ink);
+	text-align: left;
+	white-space: normal;
+}
+.ix-decision-strip .ix-strip-item {
+	min-width: 0;
+}
+.ix-decision-strip dt {
+	margin: 0 0 5px;
+	font-size: var(--fs-micro);
+	color: var(--ix-muted);
+	font-weight: var(--fw-medium);
+}
+.ix-decision-strip dd {
+	margin: 0;
+	font-size: var(--fs-2xs);
+	line-height: 1.5;
+}
+.ix-decision-strip small {
+	display: block;
+	margin-top: 4px;
+	font-size: var(--fs-micro);
+	line-height: 1.5;
+	color: inherit;
+}
+.ix-decision-strip .ix-target-build-up {
+	font-variant-numeric: tabular-nums;
+}
+.ix-target-build-up > span {
+	display: inline;
+}
+.ix-target-build-up .ix-target-basis {
+	display: block;
+	color: var(--ix-muted);
+}
+.ix-decision-strip .ix-tag {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0;
+	white-space: normal;
+	line-height: 1.5;
+}
+.ix-debt-effect.dilutes,
+.ix-evidence-marker.thin {
+	color: #9a442b;
+}
+.ix-evidence-marker.fair {
+	color: #785f2b;
+}
+.ix-evidence-marker.strong {
+	color: #2b6250;
+}
+.ix-tag.opportunistic.ix-qualified-clears {
+	color: #265543;
+	background: #e3eddf;
+}
+.ix-tag.opportunistic.ix-qualified-price {
+	color: #735a20;
+	background: #f5ecd2;
+}
+.ix-tag.opportunistic.ix-qualified-below {
+	color: #8c4630;
+	background: #f4e4dd;
+}
+.ix-featured .ix-decision-strip,
+.ix-pick .ix-decision-strip {
+	grid-template-columns: 1fr;
+}
+.ix-featured .ix-decision-strip {
+	color: #f3f4e9;
+	border-color: #7d9384;
+}
+.ix-featured .ix-decision-strip dt,
+.ix-featured .ix-target-basis {
+	color: #d0decf;
+}
+.ix-featured .ix-debt-effect,
+.ix-featured .ix-evidence-marker {
+	color: #f0d39d;
+}
+.ix-opportunity-set .ix-decision-strip {
+	grid-template-columns: 1fr;
+	min-width: 265px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	gap: 10px;
+}
+.ix-opportunity-set .ix-decision-strip small {
+	white-space: normal;
+}
+.ix-opportunity-set tr.is-pass,
+.ip-opportunity.is-pass {
+	background: #f0efeb;
+	color: #646961;
+}
+.ix-opportunity-set tr.is-pass .ix-tag,
+.ip-opportunity.is-pass .ip-decision {
+	background: #e4e4df;
+	color: #62665e;
+}
+@media (max-width: 720px) {
+	.ix-decision-strip {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+	.ix-opportunity-set .ix-decision-strip {
+		min-width: 0;
+	}
 }

@@ -1,0 +1,23 @@
+**
+!src/
+!src/experience/
+!src/experience/**/
+!src/experience/**/*.js
+!src/experience/**/*.css
+
+# Preserve built CSS bytes: Vite retains formatting whitespace in custom properties and var() fallbacks.
+src/experience/marketAtlas.css
+src/experience/marketReadingNav.css
+src/experience/marketResearchDialog.css
+src/experience/perspectives.css
+src/experience/researchContext.css
+src/experience/story/public/marketOverview.css
+src/experience/story/public/public.css
+src/experience/story/public/overview.css
+src/experience/story/public/scene.css
+src/experience/story/public/logicChapter.css
+
+# Existing unit tests assert exact compact source spelling; preserve it without editing the tests.
+src/experience/perspectives.js
+src/experience/story/public/scene.js
+src/experience/researchContext.js

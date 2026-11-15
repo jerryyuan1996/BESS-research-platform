@@ -13,7 +13,7 @@
 export { storyPlaceSearch as placeSearch, recordStoryPlace as recordPlace } from '../../app/router.js';
 
 /** Every shot in reading order, the opening first. */
-export const shotsOf = (story) => [story.opening, ...story.chapters.flatMap(c => c.shots)];
+export const shotsOf = (story) => [story.opening, ...story.chapters.flatMap((c) => c.shots)];
 
 /** The chapter id a shot sits in ('opening' for the opening). */
 export const chapterOf = (shot) => (shot.chapter === 'opening' ? 'opening' : shot.chapter);
@@ -23,19 +23,19 @@ export const chapterOf = (shot) => (shot.chapter === 'opening' ? 'opening' : sho
  * unknown shot falls back to its chapter's first shot; anything else opens
  * at the start.
  */
-export function resolvePlace(story, place){
-  const shots = shotsOf(story);
-  const byShot = shots.find(s => s.id === place?.shot);
-  if (byShot) return byShot.id;
-  if (place?.chapter === 'opening') return story.opening.id;
-  const chapter = story.chapters.find(c => c.id === place?.chapter);
-  return chapter?.shots[0]?.id || story.opening.id;
+export function resolvePlace(story, place) {
+	const shots = shotsOf(story);
+	const byShot = shots.find((s) => s.id === place?.shot);
+	if (byShot) return byShot.id;
+	if (place?.chapter === 'opening') return story.opening.id;
+	const chapter = story.chapters.find((c) => c.id === place?.chapter);
+	return chapter?.shots[0]?.id || story.opening.id;
 }
 
 /** The place of a shot id in a story. */
-export function placeOf(story, id){
-  const shot = shotsOf(story).find(s => s.id === id);
-  return shot ? { chapter: chapterOf(shot), shot: shot.id } : null;
+export function placeOf(story, id) {
+	const shot = shotsOf(story).find((s) => s.id === id);
+	return shot ? { chapter: chapterOf(shot), shot: shot.id } : null;
 }
 
 /** fn(route, { samePage }) when Back or Forward moves; returns a stop function. */

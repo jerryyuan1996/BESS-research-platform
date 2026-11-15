@@ -27,12 +27,20 @@ export const STAGES = ['availability', 'accreditation', 'award', 'obligation', '
 
 const waiting = { flow: 'idle', signal: null, soc: 0.8 };
 const SHAPE = {
-  availability:  { asks: 'response', view: 'storage',   state: { ...waiting, qualified: false, awarded: false, delivers: true } },
-  accreditation: { asks: 'value',    view: 'mechanism', state: { ...waiting, qualified: true,  awarded: false, delivers: true } },
-  award:         { asks: 'payer',    view: 'mechanism', state: { ...waiting, qualified: true,  awarded: true,  delivers: false } },
-  obligation:    { asks: 'payer',    view: 'storage',   state: { ...waiting, qualified: true,  awarded: true,  delivers: false } },
-  performance:   { asks: 'limit',    view: 'storage',   state: { flow: 'discharge', signal: 'dispatch', soc: 0.5, qualified: true, awarded: true, delivers: true } },
-  settlement:    { asks: 'limit',    view: 'mechanism', state: { flow: 'discharge', signal: null, soc: 0.4, qualified: true, awarded: true, delivers: true } },
+	availability: { asks: 'response', view: 'storage', state: { ...waiting, qualified: false, awarded: false, delivers: true } },
+	accreditation: { asks: 'value', view: 'mechanism', state: { ...waiting, qualified: true, awarded: false, delivers: true } },
+	award: { asks: 'payer', view: 'mechanism', state: { ...waiting, qualified: true, awarded: true, delivers: false } },
+	obligation: { asks: 'payer', view: 'storage', state: { ...waiting, qualified: true, awarded: true, delivers: false } },
+	performance: {
+		asks: 'limit',
+		view: 'storage',
+		state: { flow: 'discharge', signal: 'dispatch', soc: 0.5, qualified: true, awarded: true, delivers: true },
+	},
+	settlement: {
+		asks: 'limit',
+		view: 'mechanism',
+		state: { flow: 'discharge', signal: null, soc: 0.4, qualified: true, awarded: true, delivers: true },
+	},
 };
 
 /**
@@ -46,13 +54,22 @@ const SHAPE = {
  * @param {object} [spec.base]    scenario facts that hold through the sequence
  * @param {object} spec.stages    for each of STAGES: { name, title, text, sources }
  */
-export function contracted({ id, home, title, gates, base = {}, stages }){
-  return {
-    id, home, title, gates, base, family: 'contracted',
-    stages: STAGES.map(key => stages[key].name),
-    steps: STAGES.map((key, stage) => ({
-      id: key, stage, ...SHAPE[key],
-      title: stages[key].title, text: stages[key].text, sources: stages[key].sources,
-    })),
-  };
+export function contracted({ id, home, title, gates, base = {}, stages }) {
+	return {
+		id,
+		home,
+		title,
+		gates,
+		base,
+		family: 'contracted',
+		stages: STAGES.map((key) => stages[key].name),
+		steps: STAGES.map((key, stage) => ({
+			id: key,
+			stage,
+			...SHAPE[key],
+			title: stages[key].title,
+			text: stages[key].text,
+			sources: stages[key].sources,
+		})),
+	};
 }
