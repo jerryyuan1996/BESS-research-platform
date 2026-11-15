@@ -28,7 +28,7 @@ export function selectedInvestmentCase(row, investor, requested, supply = null) 
   }
   const primary = selected.play?.id === row.play?.id && (!selected.supplyCase||selected.supplyCase===(row.investment?.usSupply||'non-feoc'));
   const investment = {...(primary?row.investment:{}),...cache.get(key)}, legacyEcon = selected.play?.econ || row.legacyEcon || row.econ;
-  return {...selected, region:row.region, investment, legacyEcon,
+  return {...selected, investor, region:row.region, decision:row.decision, investment, legacyEcon,
     econ:{...legacyEcon,hold:investment.holdIRR,lowerOf:investment.irr,levered:investment.leveredIRR,
       test:investment.test,secured:investment.secured}};
 }

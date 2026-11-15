@@ -22,6 +22,7 @@ import { mountMarketReadingNav } from './marketReadingNav.js';
 import './story/public/overview.css';
 import { bankableInvestmentCase, investmentCaseIdentity, investmentDecisionMetrics } from './investmentCase.js';
 import './investmentCase.css';
+import { localRevenueBridge } from './traceability.js';
 
 
 /* One closed disclosure: the research behind a chapter. Nothing is fetched
@@ -246,14 +247,15 @@ function bankableSection(data) {
 }
 
 function revenueSection(data) {
-  const b = data.investment?.bridge || data.bridge;
+  const currency = data.investment?.currency || data.row.market.manifest.currency;
+  const b = localRevenueBridge(data.investment) || data.bridge;
   const parts = [[['Fixed revenue', '固定收入'], b.fixed], [['Auction renewal', '拍卖续约'], b.renewal], [['Trading & ancillary services', '交易及辅助服务'], b.trading], [['Operating / lifecycle costs incl. OEM service', '运营及生命周期成本（含设备服务）'], -b.operating], [['Project tax','项目税费'],-(b.tax||0)], [['After-tax operating cash', '税后经营现金流'], b.net]];
   return h('section', { id: 'revenue', class: 'ix-section' }, sectionTitle(['REVENUE BREAKDOWN', '收益拆解'], ['Every return has a source.', '每一分收益，都有清晰来源。']),
     h('div', { class: 'ix-revenue-layout' }, h('aside', { class: 'ix-assumptions' }, eyebrow(['THE CASE IN NUMBERS', '核心经济参数']),
-      metric(['Gross revenue / MW / year', '首年总收入 / MW'], money(b.gross)), metric(['Fixed income share', '固定收入占比'], share(b.gross>0?b.fixed/b.gross:0)),
-      metric(['After-tax operating cash / MW / year', '首年税后经营现金流 / MW'], money(b.net)), h('p', {}, L(['First complete operating year in the same investment model as the headline return. Trading includes ancillary services; operating costs include OEM service.','采用与主回报相同的投资模型、首个完整运营年度；交易收入含辅助服务，运营成本含设备服务费。']))),
-      card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Revenue → operating cash flow', '收入 → 经营现金流'])), h('span', { class: 'ix-mono' }, 'USD k / MW · Y1')), chartFrame(revenueWaterfall(b)),
-        h('details', { class: 'ix-details' }, h('summary', {}, L(['See the exact breakdown', '查看精确拆解'])), h('table', { class: 'ix-table' }, h('tbody', {}, parts.map(([label, val]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, money(val))))))))),
+      metric(['Gross revenue / MW / year', '首年总收入 / MW'], money(b.gross,currency)), metric(['Fixed income share', '固定收入占比'], share(b.gross>0?b.fixed/b.gross:0)),
+      metric(['After-tax operating cash / MW / year', '首年税后经营现金流 / MW'], money(b.net,currency)), h('p', {}, L(['Basis: first complete operating year, nominal; fixed income includes model contract indexation from closing. Trading includes ancillary services; operating costs include OEM service.','口径：投运后首个完整运营年度的名义值；固定收入包含交割起的模型合同指数化。交易收入含辅助服务，运营成本含设备服务费。']))),
+      card(h('div', { class: 'ix-panel-heading' }, h('h3', {}, L(['Revenue → operating cash flow', '收入 → 经营现金流'])), h('span', { class: 'ix-mono' }, currency + ' k / MW · Y1')), chartFrame(revenueWaterfall(b,currency)),
+        h('details', { class: 'ix-details' }, h('summary', {}, L(['See the exact breakdown', '查看精确拆解'])), h('table', { class: 'ix-table' }, h('tbody', {}, parts.map(([label, val]) => h('tr', {}, h('th', { scope: 'row' }, L(label)), h('td', { class: 'ix-table-number' }, money(val,currency))))))))),
     researchDisclosure(data.row.market, 'revenue'));
 }
 
@@ -296,7 +298,7 @@ function downsideSection(data) {
   const { row, base, bear, debt } = data;
   const riskRows = [
     [HOLD_LABEL, returnPct(row.econ.hold), returnPct(row.investment?.bearHoldIRR)],
-    [['Year-one after-tax cash / MW', '首年税后经营现金流 / MW'], money(row.investment?.bridge.net), money(row.investment?.bearNetUSD)],
+    [['Year-one after-tax cash / MW', '首年税后经营现金流 / MW'], money(localRevenueBridge(row.investment)?.net,row.investment?.currency), money(row.investment?.bearNetUSD / row.investment?.fxToUSD,row.investment?.currency)],
   ];
   const profile = row.market.comparison.refinement;
   const explanation=h('div',{class:'ix-downside-explanation','aria-busy':'true'},h('p',{},L(['Loading the downside conditions and historical reference…','正在载入下行条件与历史参考…'])));

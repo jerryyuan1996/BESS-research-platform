@@ -4,6 +4,7 @@ import { link, sectionTitle, eyebrow, metric } from '../experience/chrome.js';
 import { money, pct } from '../experience/model.js';
 import { OPPORTUNITY_SUMMARY } from './summaryData.js';
 import { countryAttrs, projectFacts } from '../experience/projectFacts.js';
+import { canPromote } from '../experience/traceability.js';
 export function specialRecommendations(rows, investor) {
   const projection=OPPORTUNITY_SUMMARY[investor];
   const section=h('section',{class:'ix-section',id:'special-opportunities'},
@@ -13,6 +14,7 @@ export function specialRecommendations(rows, investor) {
      in the same market reach this list (opportunities/summary.js). */
   for(const o of projection.picks){
     const row=rows.find(r=>r.id===o.market),c=o.economics,reuse=o.kind==='reuse',de=o.id==='de-existing-node';
+    if (!row || !canPromote(row)) continue;
     const title=de?['Germany: buy a usable grid position','德国：收购可用并网点']:
       [row.market.manifest.name[0]+': '+o.label[0],row.market.manifest.name[1]+'：'+o.label[1]];
     const strategy=de?

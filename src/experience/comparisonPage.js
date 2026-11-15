@@ -6,6 +6,8 @@ import {opportunityMatrix,revenueBar,MATRIX_BASIS} from './charts.js';
 import {countryAttrs,projectFacts,operatingPrice} from './projectFacts.js';
 import {basisNote,decisionReasons,contractEvidence,marginText,availability} from './decision.js';
 import {gateLabel} from './labels.js';
+import {decisionStrip} from './decisionStrip.js';
+import {passLast} from './traceability.js';
 
 // The comparison table and atlas are needed only on /returns, not on arrival.
 export function createComparisonRenderer(ui){
@@ -48,7 +50,7 @@ function renderComparison(container, rows) {
   const tray = h('div', { class: 'ix-compare-tray', 'aria-live': 'polite' });
   const visibleRows = () => rows.filter(r => (state.region === 'all' || r.region === state.region) &&
     `${marketName(r).join(' ')} ${r.id} ${r.market.manifest.name.join(' ')}`.toLowerCase().includes(state.query.toLowerCase().trim()))
-    .sort((a, b) => state.sort === 'return' ? (b.econ.hold ?? -99) - (a.econ.hold ?? -99) : state.sort === 'income' ? (b.econ.secured ?? -1) - (a.econ.secured ?? -1) : a.rank - b.rank);
+    .sort((a, b) => passLast(a,b) || (state.sort === 'return' ? (b.econ.hold ?? -99) - (a.econ.hold ?? -99) : state.sort === 'income' ? (b.econ.secured ?? -1) - (a.econ.secured ?? -1) : a.rank - b.rank));
 
   function drawTray() {
     tray.replaceChildren(); tray.hidden = !state.compare.size;
@@ -77,9 +79,14 @@ function renderComparison(container, rows) {
       state.view==='irr'?h('div', { class: 'ix-matrix-controls' },
         h('div', { class: 'ix-segments ix-basis-switch', role: 'group', 'aria-label': L(['Return basis', '回报口径']) },
           [['hold', ['All-equity', '全股权']], ['levered', ['Levered', '杠杆后']]].map(([id, label]) => h('button', { type: 'button', 'aria-pressed': String(state.basis === id),
-            onclick: () => { if (state.basis === id) return; state.basis = id; saveFilters(); draw(); } }, L(label)))),
-        h('div', { class: 'ix-legend' }, h('span', { class: 'advance' }, L(['Advance / position', '推进 / 布局'])), h('span', { class: 'situational' }, L(['Situational', '择机'])), h('span', { class: 'watch' }, L(['Watch / research', '观察 / 研究'])),
-          h('span', { class: 'size' }, L(['Dot area = project total capex (USD)', '圆点面积 = 项目总资本开支（美元）'])))):null));
+            onclick: () => { if (state.basis === id) return; state.basis = id; saveFilters(); draw(); matrixPanel.querySelector('.ix-basis-switch [aria-pressed=true]')?.focus(); } }, L(label)))),
+        h('div', { class: 'ix-legend' }, h('span', { class: 'advance' }, L(['Advance / position', '推进 / 布局'])),
+          h('span', { class:'clears' }, L(['Situational · clears target','择机 · 达到目标'])),
+          h('span', { class:'price' }, L(['Situational · at a price','择机 · 须按价格买入'])),
+          h('span', { class:'below' }, L(['Situational · below target','择机 · 低于目标'])),
+          h('span', { class: 'watch' }, L(['Watch / research / Pass', '观察 / 研究 / 暂缓'])),
+          h('span', { class:'meets' }, L(['Filled · meets selected return target','实心 · 达到所选回报目标'])),
+          h('span', { class:'misses' }, L(['Hollow · below selected return target','空心 · 低于所选回报目标'])))):null));
     if (!filtered.length) matrixPanel.append(h('div', { class: 'ix-empty', role: 'status' }, h('h3', {}, L(['No markets match your search.', '没有匹配的市场。'])), button(['Reset filters', '重置筛选'], () => { state.query = ''; state.region = 'all'; search.value = ''; for (const b of regions.children) b.setAttribute('aria-pressed', String(b.dataset.region === 'all')); saveFilters(); draw(); })));
     else if(state.view==='overview') {
       const host=h('div',{'aria-busy':'true',class:'ix-atlas-host'},L(['Loading the country matrix…','正在载入国家对比矩阵…']));
@@ -113,8 +120,8 @@ function renderComparison(container, rows) {
           selectRow(row);
         }},name(row),' · N/M'))));
       matrixPanel.append(h('p', { class: 'ix-caption' }, L([
-        'Same RTB closing date · 20 operating years · nominal after project tax. The vertical axis shows actual modelled IRR; apply your own return target. Fixed share is modelled first-year fixed revenue, not proof of bankability. Dot area shows typical project build/grid capex in USD, not market size. Contract and inflation assumptions appear in each case.',
-        '统一RTB交割起点 · 20年运营 · 税后名义。纵轴展示模型IRR，可自行对照回报目标。固定收入占比为模型首年口径，不代表项目已可融资。圆面积表示典型项目建设及并网资本开支（美元），不代表市场规模；合同与通胀假设见各市场详情。',
+        'Same RTB closing date · nominal after project tax. Filled dots meet this investor’s target on the selected return basis; hollow dots fall below it. Situational colours describe the all-equity case and its stated acquisition price. Fixed share is modelled first-year revenue. The decision strip shows each target and its build-up; contract and operating-life assumptions appear in each case.',
+        '统一RTB交割起点 · 税后名义。实心圆表示所选回报口径达到该投资者目标，空心圆表示未达到。择机颜色说明全股权情景及已列明的收购价格。固定占比采用模型首年收入；投资判断条列出各项目目标及组成，合同与运营期限假设见各市场详情。',
       ])));
 
     }
@@ -126,12 +133,12 @@ function renderComparison(container, rows) {
       h('thead', {}, h('tr', {}, headers.map(label => h('th', { scope: 'col' }, L(label))))),
       h('tbody', {}, filtered.map(row => {
         const checkbox = h('input', { type: 'checkbox', 'aria-label': L([`Compare ${name(row)}`, `比较${name(row)}`]), onchange: () => toggleCompare(row, checkbox) }); checkbox.checked = state.compare.has(row.id);
-        return h('tr', { 'data-market-row':row.id }, h('td', {}, checkbox), h('th', { scope: 'row' }, link(caseUrl(row), name(row)), h('small', {}, L(routeName(row)))),
+        return h('tr', { 'data-market-row':row.id, class:row.call==='avoid'?'is-pass':'' }, h('td', {}, checkbox), h('th', { scope: 'row' }, link(caseUrl(row), name(row)), h('small', {}, L(routeName(row)))),
           h('td', { class: 'ix-table-number', 'data-label':L(HOLD_LABEL) }, returnPct(row.econ.hold), h('small', { class: 'ix-operating-note' }, L(saleText(row))), usText(row.investment) ? h('small', { class: 'ix-operating-note' }, L(usText(row.investment))) : null, operatingPrice(row.investment) ? h('small', { class: 'ix-operating-note' }, L(['New build. ', '新建情景。']), L(operatingPrice(row.investment))) : null),
           h('td', { class: 'ix-table-number', 'data-label':L(LEVERED_LABEL) }, returnPct(row.econ.levered), h('small', { class: 'ix-operating-note', title: L(debtText(row.investment)) }, L(debtShort(row.investment)))),
           h('td', { 'data-label':L(['Target test','目标检验']) }, h('span', { class: `ix-target-test ${row.econ.test?.basis || 'neither'}` }, L(testText(row.econ.test))), row.econ.test ? h('small', { class: 'ix-operating-note' }, L([`Targets ${pct(row.econ.test.target)} / ${pct(row.econ.test.leveredTarget)}`, `目标 ${pct(row.econ.test.target)} / ${pct(row.econ.test.leveredTarget)}`])) : null, h('small',{class:'ix-operating-note'},L(marginText(row))),h('small',{class:'ix-operating-note'},L(marginText(row,'levered')))),
           h('td', { 'data-label':L(['Modelled fixed revenue','模型固定收入']) }, h('span', { class: 'ix-table-number' }, share(row.econ.secured)), revenueBar(row)),
-          h('td', { 'data-label':L(['Investment call','投资建议']) }, tag(row),h('small',{class:'ix-operating-note'},row.investment?L(gateLabel(row.market.comparison.refinement?.investmentGate?.[0]||'')):L(availability(row)))));
+          h('td', { 'data-label':L(['Investment call','投资建议']) }, decisionStrip(row)));
       })));
     results.append(h('div', { class: 'ix-table-scroll', tabindex: 0, 'aria-label': L(['Scrollable market comparison table', '可横向滚动的市场对比表']) }, table));
     drawTray();

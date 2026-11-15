@@ -19,7 +19,7 @@ export function investorOpportunities(markets,lenses,plays){
         playRecord:{id:market.manifest.id+'-reference',route,hours:market.comparison.archetype.durationHours,stage},researchAssumed:true});
     }
     for(const record of records){
-      if(['avoid','not-accessible'].includes(record.call))continue;
+      if(record.call==='not-accessible')continue;
       const market=markets.find(m=>m.manifest.id===record.market);
       if(!market)continue;
       const play=plays[`${record.market}/${record.play}`]||record.playRecord;
@@ -40,7 +40,7 @@ export function investorOpportunities(markets,lenses,plays){
       if(result.status!=='reference')continue;
       const selected=displayedCase(result),base=result.referenceCases.find(c=>c.key==='base');
       const watch=record.call==='wait'||play.econ?.eligible===false;
-      const decision=watch?'watch':base.status==='priced'&&['enter-now','build-position'].includes(record.call)&&!record.researchAssumed?'priority':'conditional';
+      const decision=record.call==='avoid'?'pass':watch?'watch':base.status==='priced'&&['enter-now','build-position'].includes(record.call)&&!record.researchAssumed?'priority':'conditional';
       rows.push({...result,market:record.market,hours:play.hours,playId:play.id,play:spec,runOptions,
         playLabel:play.label||null,where:record.where||null,coInvest,call:record.call,decision,
         researchAssumed:!!record.researchAssumed,priceUSDPerMW:selected.pricePerMW*result.fxToUSD,
@@ -48,7 +48,7 @@ export function investorOpportunities(markets,lenses,plays){
     }
     // A large price ceiling or high hurdle alone does not make an investment
     // attractive. Executable economics comes before the existing analyst order.
-    const rank=r=>r.decision==='watch'?4:displayedCase(r).status!=='priced'?3:r.decision==='priority'?0:
+    const rank=r=>r.decision==='pass'?5:r.decision==='watch'?4:displayedCase(r).status!=='priced'?3:r.decision==='priority'?0:
       r.referenceCases.find(c=>c.key==='base')?.status==='priced'?1:2;
     rows.sort((a,b)=>rank(a)-rank(b)||a.recommendedOrder-b.recommendedOrder||a.market.localeCompare(b.market));
     out[investor]=rows;

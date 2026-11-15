@@ -185,6 +185,7 @@ export function lensRows(entries, archetype, on){
         where: call.where ?? null,
         fit: round(fit, 1),
         evidence: evidenceOf(econ, becauseBases),
+        changesIf: call.changesIf || [],
         next: nextTrigger(view, call.changesIf || [], on),
         reviewBy: call.reviewBy ?? null,
       };

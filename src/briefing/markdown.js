@@ -64,7 +64,7 @@ function renderLang(b, lens, days, siteUrl, lang){
   }
   lines.push('');
 
-  const acquisitions=b.acquisitions?.[lens]||[];
+  const acquisitions=(b.acquisitions?.[lens]||[]).filter(r=>r.call!=='avoid');
   if(acquisitions.length){
       lines.push(L('## Acquisition reference by market','## 各市场收购参照'),'',
       `| ${L('Market / stage','市场／阶段')} | ${L('Price ceiling, USD/MW','收购上限，美元／MW')} | ${L('Target annual return','目标年化收益率')} |`,
