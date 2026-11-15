@@ -118,7 +118,7 @@ export function buildSections(api){
   SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
     researchHistory(api).cards[0],
     { t: 'card', title: ['What Market Renewal did to the spread', '电力市场改革对价差的影响'], badges: ['official', 'calc'], blocks: [
-      { t: 'bar', cfg: { xs: ['HOEP 2023', 'HOEP 2024', 'Day-ahead 2026*'], bw: 46, labels: true, h: 230, yfmt: v => 'C$' + fmtN(v),
+      { t: 'bar', cfg: { dataset: M, xs: ['HOEP 2023', 'HOEP 2024', 'Day-ahead 2026*'], bw: 46, labels: true, h: 230, yfmt: v => 'C$' + fmtN(v),
         series: [{ name: ['Eight-hour spread, C$/MW-yr', '八小时价差（加元/MW/年）'], color: 'var(--s6)', vals: [T.hoep2023Annual, T.hoep2024Annual, T.tb8Annual] }] } },
       { t: 'cap', text: ['Daily sum of the eight highest hourly prices less the eight lowest, summed over the year. *2026 is 90 days annualised with the 2023–24 seasonal ratio, ' + T.seasonalRatio + '.',
                          '每日八个最高小时电价之和减八个最低之和，按年加总。*2026年为90天数据，以2023–24年季节比率' + T.seasonalRatio + '年化。'] },

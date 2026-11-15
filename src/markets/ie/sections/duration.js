@@ -28,7 +28,7 @@ SEC_B.duration = function (){
          ['Potentially — but the concept is at consultation stage and an award is required before any floor is capitalised',
           '可能符合 — 但该概念仍处征询阶段，任何保底资本化前须取得授标']],
       ] },
-      { t:'wf', cfg:{ yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v) + 'k', h: 280, steps: M.marginalHour } },
       { t:'why', text:['The capacity de-rating uplift alone is €30k/MW/yr against roughly €42k of annualised incremental capex, and only the combination of capacity, arbitrage and curtailment capture makes the fourth hour positive. That is a thin margin, and it is entirely dependent on two things a sponsor does not control: the de-rating table at the auction entered, and the cell price at procurement. Build 4h where the capacity award is the base case; build 2h with a documented augmentation path where it is not.',
         '仅容量折减增益即为€30k/MW/年，而年化增量资本开支约为€42k；只有容量、套利与弃电捕获三者合计，第4小时才转为正值。这一margin相当薄，且完全取决于发起人无法控制的两项因素：参与拍卖时的折减系数表，以及采购时的电芯价格。若容量中标为基准情景则建设4小时；若非如此，则建设2小时并保留有据可查的增容路径。'],
         sig:['Thin margin, two uncontrollable inputs','margin微薄，两项不可控输入'] },
@@ -42,7 +42,7 @@ SEC_B.duration = function (){
     ] },
 
     { t:'card', title:['Event-duration evidence — how long does the system actually need?','事件时长证据 — 系统实际需要多久？'], badges:['illus'], live:true, blocks:[
-      { t:'bar', cfg:{ xs:['P50','P90','P99'], mode:'group', bw: 26, yfmt: v => fmt1(v) + ' h', labels: true, h: 250,
+      { t:'bar', cfg:{ dataset: M, xs:['P50','P90','P99'], mode:'group', bw: 26, yfmt: v => fmt1(v) + ' h', labels: true, h: 250,
         series: M.eventDist.map((e, i) => ({ name: e.n, color: ['var(--s1)','var(--s3)','var(--s6)'][i], vals:[e.p50, e.p90, e.p99] })) } },
       { t:'note', text:['Three different phenomena with three different design implications. High-price events (P90 ' + fmt1(M.eventDist[0].p90) + ' h) set the arbitrage and Reliability Option requirement. Negative-price events (P90 ' + fmt1(M.eventDist[1].p90) + ' h) set the charging opportunity. Dispatch-down events (P90 ' + fmt1(M.eventDist[2].p90) + ' h) set the co-location case, because that is energy the renewable asset loses entirely without storage.',
         '三种不同现象，对应三种不同的设计含义。高价事件（P90 ' + fmt1(M.eventDist[0].p90) + '小时）决定套利与可靠性期权需求。负电价事件（P90 ' + fmt1(M.eventDist[1].p90) + '小时）决定充电机会。限发事件（P90 ' + fmt1(M.eventDist[2].p90) + '小时）决定共址逻辑，因为若无储能，新能源资产将完全损失该部分电量。'] },

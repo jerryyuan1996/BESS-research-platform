@@ -1,3 +1,4 @@
+> Status: Retirement proposal superseded by the recorded implementation by [investment-view-closeout-2026-10-12.md](investment-view-closeout-2026-10-12.md) (2026-10-12); the historical text below is retained.
 # Retiring the status chip and the composite — plan for sign-off
 
 Drafted 2026-10-12 against `origin/main` at `b9e0aea`. **Nothing here is built.** This is the last

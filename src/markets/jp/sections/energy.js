@@ -25,7 +25,7 @@ export function create(api){
       { t: 'card', mt: false, title: ['Area price shape and optimised spread', '区域价格形态与优化价差'],
         badges: ['calc', 'illus'], live: true, src: SRC.jepx,
         srcUse: ['30-minute Area Price by area', '各区域30分钟区域价格'], blocks: [
-        { t: 'bar', cfg: {
+        { t: 'bar', cfg: { dataset: M,
           xs: rs.map(id => L(R(id).short)),
           mode: 'group', h: 260, yfmt: v => fmt1(v) + ' ¥/kWh',
           series: [
@@ -49,7 +49,7 @@ export function create(api){
 
       { t: 'card', title: ['Curtailment overlap with the charging window', '弃电与充电窗口的重叠'],
         badges: ['official'], live: false, blocks: [
-        { t: 'bar', cfg: {
+        { t: 'bar', cfg: { dataset: M,
           xs: rs.map(id => L(R(id).short)),
           mode: 'group', h: 240, labels: true, yfmt: v => fmtN(v) + ' d',
           series: [{ name: ['Verified curtailment days', '已核验弃电天数'], color: 'var(--s3)', vals: rs.map(id => R(id).curtailment.totalDays) }] } },

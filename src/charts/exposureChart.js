@@ -12,19 +12,22 @@
    A lower-bound stretch is dashed. Markers are numbered and the page's table
    carries what each one is, because how a security is lost is a sentence and
    a sentence does not fit beside a point. */
+import { finishChart, exposureInspectors } from './accessibility.js';
 import { h } from '../utils/dom.js';
+import { formatNumber } from '../utils/locale.js';
 import { L } from '../app/i18n.js';
 import { S, niceTicks, legendRow } from './chartUtils.js';
 import { axisText } from './axes.js';
 import { markers } from '../entry/exposureCurve.js';
 
-const kUSD = (v) => v >= 1000 ? Math.round(v / 1000) + 'k' : String(Math.round(v));
+const kUSD = (v) => v >= 1000 ? formatNumber(Math.round(v / 1000), { useGrouping: false }) + 'k' : formatNumber(Math.round(v), { useGrouping: false });
 
 /**
  * @param parent  where the chart goes
  * @param cfg     { curves: [{ curve, name, color }], narrow }
  */
 function exposureChart(parent, cfg){
+  cfg = { xlabel: ['Months from site control', '自取得场址起的月数'], ylabel: ['USD per MW', '美元/MW'], ...cfg };
   const narrow = !!cfg.narrow;
   const W = narrow ? 380 : 760, H = narrow ? 280 : 320;
   const padL = narrow ? 40 : 52, padR = 14, padT = 30, padB = 40;
@@ -75,18 +78,19 @@ function exposureChart(parent, cfg){
   for (const other of others) draw(other, false);
   draw(own, true);
 
+  exposureInspectors(svg, cfg, X, Y);
   for (const m of markers(own.curve)){
     const cx = X(m.month.central), cy = Y(m.after);
-    svg.append(S('circle', { cx, cy, r: 8, fill: own.color, stroke: 'var(--surface)', 'stroke-width': 1.5 }));
+    svg.append(S('circle', { cx, cy, r: 8, 'pointer-events': 'none', fill: own.color, stroke: 'var(--surface)', 'stroke-width': 1.5 }));
     const t = axisText(cx, cy + 3.5, String(m.n));
-    t.setAttribute('fill', 'var(--surface)'); t.style.fontWeight = '700';
+    t.setAttribute('pointer-events', 'none'); t.setAttribute('fill', 'var(--surface)'); t.style.fontWeight = '700';
     svg.append(t);
   }
 
   const wrap = h('div', { class: 'chart' }); wrap.append(svg);
   const legend = legendRow(cfg.curves.map(c => ({ name: c.name, color: c.color })));
   if (legend) wrap.append(legend);
-  parent.append(wrap); return wrap;
+  finishChart(parent, wrap, svg, cfg, 'exposure'); return wrap;
 }
 
 export { exposureChart };

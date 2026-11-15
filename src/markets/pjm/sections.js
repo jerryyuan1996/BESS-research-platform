@@ -92,7 +92,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'card', title:['What the operating fleet earns, and why this model publishes less','在运机组的实际收入，以及本模型为何发布更低数值'], badges:['tp'], blocks:[
-      { t:'bar', cfg:{ xs:M.obsLabels, bw:56, yfmt:v => '$' + v, labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.obsLabels, bw:56, yfmt:v => '$' + v, labels:true, h:230,
         series:[{ name:['Observed fleet revenue, $/kW-month','已观测机组收入，$/kW-月'], color:'var(--s14)', vals:M.obsSeries }] } },
       { t:'cap', text:['Modo\'s PJM battery benchmark. ' + perKW(O.idxPerKWMonthToSep25) + ' through September 2025; ' + perKW(O.postRedesignAvgPerKWMonth) + ' on average after the October 2025 Regulation redesign; ' + perKW(O.peakPerKWMonthFeb26) + ' at the February 2026 peak, when Regulation prices averaged $' + O.regPriceFeb26 + '/MWh, over five times the year before.',
                        'Modo的PJM储能基准数据。截至2025年9月为' + perKW(O.idxPerKWMonthToSep25) + '；2025年10月调频市场重构后平均为' + perKW(O.postRedesignAvgPerKWMonth) + '；2026年2月峰值达' + perKW(O.peakPerKWMonthFeb26) + '，当月调频价格均值为每MWh $' + O.regPriceFeb26 + '，为上年同期五倍以上。'] },
@@ -182,7 +182,7 @@ SEC_B.capacity = function (){
     ] },
 
     { t:'card', title:['The fourteen assumed years — price up, accreditation down','十四个假设年度 — 价格上行，核证系数下行'], badges:['calc','illus'], blocks:[
-      { t:'line', cfg:{ xs:M.renewalYears, h:260, yfmt:v => String(v),
+      { t:'line', cfg:{ dataset: M, xs:M.renewalYears, h:260, yfmt:v => String(v),
         series:[
           { name:['Assumed clearing price, $/MW-day','假设出清价格，$/MW-日'], color:'var(--s14)', vals:M.renewalPrice },
           { name:['Assumed 4-hr ELCC, %','假设四小时ELCC，%'], color:'var(--s13)', vals:M.renewalElcc },
@@ -223,7 +223,7 @@ SEC_B.energy = function (){
         { l:['Executable arbitrage','可执行套利收入'], v:kMW(50336) + '<small>/MW/yr</small>',
           d:['before the optimiser fee','扣除优化商费用前'], b:['calc'] },
       ] },
-      { t:'wf', cfg:{ steps:M.spreadBridge, yfmt:v => kMW(v), h:260 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.spreadBridge, yfmt:v => kMW(v), h:260 } },
       { t:'cap', text:['The optimiser fee is deliberately not a step here. The model applies it once, as lab.optFee, and deducting it twice is the most common way this bridge is misread.',
                        '此处刻意不将优化商费用列为一个步骤。模型仅在lab.optFee处应用一次，重复扣除是误读该桥形图最常见的方式。'] },
       { t:'why', text:['The direction of travel is the interesting part. PJM\'s TB4 spread rose ' + O.tb4ChangePct + '% in a single year, at a time when the equivalent series in the NEM, Germany and ERCOT were all falling. The reason is on the market-story tab: PJM is short, its load forecast keeps rising on data-centre interconnection, and the storage that would compress the spread is stuck in a ' + O.queueStorageGW + ' GW queue rather than operating. This is the one merchant leg on this dashboard where the queue being slow is good news.',
@@ -255,7 +255,7 @@ SEC_B.services = function (){
         '调频为功率型服务，受不增长的系统需求所限，且当前价格由一个规模小于该需求的机组群体决定。'],
   blocks: [
     { t:'card', mt:false, title:['Why the observed number is not the forecast','为何已观测数值不能作为预测值'], badges:['calc'], blocks:[
-      { t:'wf', cfg:{ steps:M.regBridge, yfmt:v => kMW(v), h:280 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.regBridge, yfmt:v => kMW(v), h:280 } },
       { t:'cap', text:['Four steps from what the fleet earns to what a new entrant should underwrite. Every input is published: the requirement, the pre-spike clearing price, the operating fleet and the 2030 projection.',
                        '从机组实际收入到新进入者应据以承销的水平，共四个步骤。每一项输入均已公开：系统需求、价格飙升前的出清价格、在运机组规模及2030年预测。'] },
       { t:'kpis', items:[
@@ -281,7 +281,7 @@ SEC_B.services = function (){
     ] },
 
     { t:'card', title:['What the fleet actually earns, decomposed','机组实际收入的构成拆解'], badges:['tp','illus'], blocks:[
-      { t:'bar', cfg:{ xs:M.stackLabels, bw:56, yfmt:v => '$' + v, labels:true, h:220,
+      { t:'bar', cfg:{ dataset: M, xs:M.stackLabels, bw:56, yfmt:v => '$' + v, labels:true, h:220,
         series:[{ name:['April 2026 fleet stack, $/kW-month','2026年4月机组收入结构，$/kW-月'], color:'var(--s14)', vals:M.stackSeries }] } },
       { t:'cap', text:['The one published decomposition of a PJM battery\'s revenue. Note the capacity bar: ' + perKW(O.stackApr26Cap) + ' annualises to about ' + kMW(60000) + '/MW/yr against this model\'s ' + kMW(69989) + ' derivation from the BRA — an independent cross-check that lands within 15%.',
                        'PJM储能收入唯一的公开拆解数据。请注意容量一栏：' + perKW(O.stackApr26Cap) + '年化后约为每MW每年' + kMW(60000) + '，而本模型依据基准剩余容量拍卖推导的结果为' + kMW(69989) + ' — 这是一项独立交叉验证，误差在15%以内。'] },
@@ -327,7 +327,7 @@ SEC_B.duration = function (){
       { t:'scorecard', id:'durFactors', bands:'durBands' },
     ] },
     { t:'card', title:['Marginal value of the fifth and sixth hour','第五、六小时的边际价值'], badges:['calc','illus'], blocks:[
-      { t:'wf', cfg:{ steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
       { t:'cap', text:['Incremental value of moving from four hours to six, per MW per year, in $ thousands. Regulation is zero because it is paid on power. Incremental capex is 2,000 kWh/MW at the $187.04/kWh energy-scaling component plus EPC, annualised over twenty years at 8%.',
                        '由四小时提升至六小时的增量价值，单位为每MW每年千美元。调频为零，因其按功率计费。增量资本开支为每MW 2,000kWh，按每kWh $187.04的能量型成本分项加EPC计算，按二十年8%折现年化。'] },
       { t:'warn', text:['This waterfall depends on `durSpreadFactor` beyond four hours, and no PJM TB6/TB8/TB10 series was located. Unlike the ELCC ladder above — where every point is a PJM primary source — the 82% six-hour capture rate is an illustrative curve shape. A reader who believes six-hour capture is higher should move it before accepting the negative result.',

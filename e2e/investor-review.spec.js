@@ -190,6 +190,7 @@ test('built decision strip and local-currency bridge work bilingually at 375px',
         await expect(page.locator('#revenue')).toContainText('EUR');
         await expect(page.locator('#revenue')).not.toContainText('USD');
         await expect(page.locator('#downside .ix-downside-table')).not.toContainText('USD');
+        await expect(page.locator('.public-overview')).toBeVisible();
         const order=await page.locator('#decision').evaluate(n=>Boolean(n.compareDocumentPosition(document.querySelector('.public-overview'))&Node.DOCUMENT_POSITION_PRECEDING));
         expect(order).toBe(true);
         await strip.scrollIntoViewIfNeeded();

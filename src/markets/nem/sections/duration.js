@@ -24,7 +24,7 @@ export function create(api){
           [{b:['How much merchant revenue?','市场化收入多少？']}, ['Deeper cycles across a solar-driven price shape','在光伏驱动的价格形态中进行更深循环'],
            ['Positive and close to linear — a four-hour unit captured ' + O.capturedByFourHourPct + '% of the A$/MWh of adjacent two-hour units, which is unusually little decay.','为正且接近线性 — 四小时机组捕获了相邻两小时机组A$/MWh的' + O.capturedByFourHourPct + '%，衰减异常之小。']],
         ] },
-        { t:'wf', cfg:{ yfmt: v => fmtC(v) + 'k', h: 300, steps: M.marginalHour } },
+        { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v) + 'k', h: 300, steps: M.marginalHour } },
         { t:'why', text:['The fourth hour nets about ' + kMW(M.marginalHour[M.marginalHour.length - 1].v) + '/MW/yr on this dashboard\'s own seed, and it does so with no help at all from a capacity payment or from FCAS. The whole result comes from one measurement: because a four-hour unit captures ' + O.capturedByFourHourPct + '% of a two-hour unit\'s A$/MWh, doubling the energy nearly doubles the revenue. This is the opposite of the Romanian finding, and the reason is the depth of the solar trough rather than anything about the assets.',
           '按本看板自身的种子假设，第四小时净值约' + kMW(M.marginalHour[M.marginalHour.length - 1].v) + '/MW/年，且完全没有借助容量付费或FCAS。这一结果全部来自一项实测：由于四小时机组捕获两小时机组A$/MWh的' + O.capturedByFourHourPct + '%，能量翻倍几乎使收入翻倍。这与罗马尼亚的结论相反，其原因在于光伏低谷的深度，而非资产本身的差异。'],
           sig:['Doubling the energy nearly doubles the revenue','能量翻倍几乎使收入翻倍'] },

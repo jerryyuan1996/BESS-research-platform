@@ -35,11 +35,11 @@ function renderFcess(main){
 
   const g = h('div', { class: 'grid g2' });
   const c1 = card(['Battery FCESS revenue vs enablement share (aligned panels)', '电池FCESS收入与成交份额（对齐面板）'], [badge('official'), badge('illus'), statusBadge(true)]);
-  barChart(c1, {
+  barChart(c1, { dataset: SEED,
     xs: SEED.quarters, yfmt: v => 'A$' + NF1.format(v) + 'M',
     series: [{ name: ['Battery FCESS revenue', '电池FCESS收入'], color: 'var(--s1)', vals: SEED.fcessBattRevSeries }], h: 185, labels: true,
   });
-  lineChart(c1, {
+  lineChart(c1, { dataset: SEED,
     xs: SEED.quarters, yfmt: v => fmtN(v) + '%',
     series: [{ name: ['Battery enablement share %', '电池成交份额%'], color: 'var(--s2)', vals: SEED.fcessShareSeries, dash: true }], h: 165,
   });

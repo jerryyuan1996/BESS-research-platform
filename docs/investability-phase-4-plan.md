@@ -1,3 +1,4 @@
+> Status: Prospective live-scout authority superseded by [governance.md](governance.md) (2026-11-11); the historical text below is retained.
 # Investability Phase 4 — the scouting tier: the plan, for sign-off
 
 **Status: approved by Jerry on 2026-10-11, all nine recommendations in §0 accepted, and built, with

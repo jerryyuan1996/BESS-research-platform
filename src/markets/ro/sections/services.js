@@ -22,7 +22,7 @@ SEC_B.services = function (){
           [{ b:['aFRR — ' + M.balProducts[1].n[0], 'aFRR — ' + M.balProducts[1].n[1]] }, M.balProducts[1].dir, fmtN(M.balProducts[1].reqMW), fmtC(M.balProducts[1].capEurMWh), { chip:'good', text:['High — the main battery product','高 — 电池的主力产品'] }],
           [{ b:['mFRR — ' + M.balProducts[2].n[0], 'mFRR — ' + M.balProducts[2].n[1]] }, M.balProducts[2].dir, fmtN(M.balProducts[2].reqMW), fmtC(M.balProducts[2].capEurMWh), { chip:'warn', text:['Moderate — deep volume, low price','中等 — 量大价低'] }],
         ] },
-      { t:'bar', cfg:{ xs: M.balProducts.map(p => p.id), mode:'group', bw: 26, yfmt: v => fmtN(v), h: 240,
+      { t:'bar', cfg:{ dataset: M, xs: M.balProducts.map(p => p.id), mode:'group', bw: 26, yfmt: v => fmtN(v), h: 240,
         series:[
           { name:['Requirement (MW)','需求(MW)'], color:'var(--s1)', vals: M.balProducts.map(p => p.reqMW) },
           { name:['Capacity price (€/MW/h)','容量价格(€/MW/h)'], color:'var(--s3)', vals: M.balProducts.map(p => p.capEurMWh) },
@@ -34,7 +34,7 @@ SEC_B.services = function (){
     ] },
 
     { t:'card', title:['aFRR capacity price trend — the saturation signal','aFRR容量价格趋势 — 饱和信号'], badges:['illus'], live:true, blocks:[
-      { t:'line', cfg:{ xs: M.qLabels, yfmt: v => fmtC(v), h: 220, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.qLabels, yfmt: v => fmtC(v), h: 220, ymin: 0,
         series:[{ name:['aFRR-up capacity price (€/MW/h)','aFRR上调容量价格（€/MW/h）'], color:'var(--s6)', vals: M.afrrCapSeries }] } },
       { t:'kpis', items:[
         { l:['aFRR-up capacity price change','aFRR上调容量价格变化'], v:fmtPct((M.afrrCapSeries[5] / M.afrrCapSeries[0] - 1) * 100, 0), d:['over six quarters','六个季度内'], cls:'down', b:['illus'] },

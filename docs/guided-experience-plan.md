@@ -1,3 +1,4 @@
+> Status: Page-layout design superseded by [three-page-design.md](three-page-design.md) (2026-10-26); the historical text below is retained.
 # Guided investor experience — plan
 
 Drafted and approved by the analyst on 2026-10-16, against `origin/main` after the duration-fit PRs

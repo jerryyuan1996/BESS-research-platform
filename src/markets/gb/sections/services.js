@@ -24,7 +24,7 @@ SEC_B.services = function (){
           fmt1(s.qualMW / s.reqMW) + '×', '£' + fmt1(s.price),
           s.share + '%', s.yoy == null ? '—' : s.yoy + '%',
         ]) },
-      { t:'bar', cfg:{ xs: M.services.map(s => s.code), mode:'group', bw: 20, yfmt: v => fmtN(v) + ' MW', h: 250,
+      { t:'bar', cfg:{ dataset: M, xs: M.services.map(s => s.code), mode:'group', bw: 20, yfmt: v => fmtN(v) + ' MW', h: 250,
         series:[
           { name:['Requirement','需求'], color:'var(--s1)', vals: M.services.map(s => s.reqMW) },
           { name:['Qualified supply','合格供给'], color:'var(--s6)', vals: M.services.map(s => s.qualMW) },
@@ -36,7 +36,7 @@ SEC_B.services = function (){
     ] },
 
     { t:'card', title:['Price trajectory by product family','各产品族价格轨迹'], badges:['official','calc'], live:true, blocks:[
-      { t:'bar', cfg:{ xs: M.services.map(s => s.code), bw: 46, yfmt: v => v + '%', labels: true, h: 230,
+      { t:'bar', cfg:{ dataset: M, xs: M.services.map(s => s.code), bw: 46, yfmt: v => v + '%', labels: true, h: 230,
         series:[{ name:['Unit revenue change, year on year','单位收入同比变化'], color:'var(--s6)', vals: M.services.map(s => s.yoy == null ? 0 : s.yoy) }] } },
       { t:'cmp', items:[
         { h:['Dynamic family (DC / DM / DR)','动态类（DC/DM/DR）'], v:'−25% to −30%', s:['Power-based, instantaneous response; battery share 97–99%; deepest over-supply','功率型瞬时响应；电池份额97–99%；供给过剩最严重'] },

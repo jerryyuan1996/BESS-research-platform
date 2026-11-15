@@ -1,3 +1,4 @@
+import { formatNumber } from '../../../utils/locale.js';
 /* ---------------------------------------------------------------------------
    Chart-PL-AUCTIONS: one signature chart, two aligned panels, one delivery-year
    axis.
@@ -31,7 +32,7 @@ const RISK = 'var(--ix-risk,#9c5b40)';
 const INK = 'var(--ix-ink,#193c32)';
 
 const pln = (v) => Number(v).toFixed(2);
-const mwText = (v) => Math.round(v).toLocaleString('en-US');
+const mwText = (v) => formatNumber(Math.round(v));
 
 /**
  * spec: { rows, boundary, labels, compact }

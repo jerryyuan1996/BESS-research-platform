@@ -1,3 +1,4 @@
+import { formatNumber } from '../../../utils/locale.js';
 /* ---------------------------------------------------------------------------
    The story's day chart: one 24-hour profile in 30-minute intervals, the
    pattern each market's signature chart reuses (WP-06).
@@ -39,7 +40,7 @@ export function intervalIndex(hhmm){
   return h * 2 + (m >= 30 ? 1 : 0);
 }
 
-const fmtMW = (v) => Math.round(v).toLocaleString('en-US');
+const fmtMW = (v) => formatNumber(Math.round(v));
 
 /* A legend line: swatch then words, one entry per line so long labels and
    Chinese never collide. */

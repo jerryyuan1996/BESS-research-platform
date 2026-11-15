@@ -90,8 +90,11 @@ export async function buildAllNemSections(api = nemApi()){
 export function digests(sections){
   const out = {};
   for (const id of Object.keys(sections).sort()){
-    const text = JSON.stringify(sections[id], (_key, value) =>
-      typeof value === 'function' ? 'fn:' + value.toString().replace(/\s+/g, ' ') : value);
+    const text = JSON.stringify(sections[id], function(key, value){
+      // Provenance is chart metadata; retain the frozen digest of plotted inputs.
+      if (key === 'dataset' && (this.xs || this.steps)) return undefined;
+      return typeof value === 'function' ? 'fn:' + value.toString().replace(/\s+/g, ' ') : value;
+    });
     out[id] = { bytes: text.length, sha: sha256(text) };
   }
   return out;

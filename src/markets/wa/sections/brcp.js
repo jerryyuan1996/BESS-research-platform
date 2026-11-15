@@ -43,7 +43,7 @@ function renderBrcp(main){
   c1.append(h('div', { style: 'display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 4px;' },
     h('button', { class: 'btn' + (!real ? ' active' : ''), onclick: () => { state.brcpReal = false; render(); } }, L(['Nominal A$', '名义A$'])),
     h('button', { class: 'btn' + (real ? ' active' : ''), onclick: () => { state.brcpReal = true; render(); } }, L(['Real (2028 A$)', '实际（2028年A$）']))));
-  bandChart(c1, { xs: BRCP.years, yfmt: yf, low: disp(lowA), base: disp(baseA), high: disp(highA),
+  bandChart(c1, { dataset: BRCP, xs: BRCP.years, yfmt: yf, low: disp(lowA), base: disp(baseA), high: disp(highA),
     official: { i: 0, y: BRCP.officialBrcp }, zones: BRCP.zones, h: 300 });
   c1.append(h('div', { class: 'legend' },
     h('span', { class: 'li' }, h('span', { class: 'lg-line', style: 'border-top-color:var(--s1)' }), L(['Base', '基准'])),
@@ -77,7 +77,7 @@ function renderBrcp(main){
   const stackRows = [[['Modules', '电池模块'], BRCP.stack.modules], [['PCS', 'PCS'], BRCP.stack.pcs], [['BOP', '其他设备'], BRCP.stack.bop],
     [['Construction', '建设'], BRCP.stack.construction], [['Land', '土地'], BRCP.stack.land], [['Connection', '并网'], BRCP.stack.connection],
     [['Indirect', '间接'], BRCP.stack.indirect], [['Cap. WACC', '资本化WACC'], BRCP.stack.financing]];
-  barChart(c3, { xs: stackRows.map(r => L(r[0])), yfmt: v => 'A$' + fmtN(v) + 'm', rotX: true,
+  barChart(c3, { dataset: BRCP, xs: stackRows.map(r => L(r[0])), yfmt: v => 'A$' + fmtN(v) + 'm', rotX: true,
     series: [{ name: ['Capital cost', '资本成本'], color: 'var(--s1)', vals: stackRows.map(r => r[1]) }], h: 250 });
   c3.append(h('div', { class: 'cap' }, L(['Total capital A$625.64m + fixed O&M A$11.40m/yr, annualised over 15 years at 10.85% WACC ÷ 200 MW = A$488,445/MW/yr — reproducing the official A$488,500 within rounding. Battery modules (35%) are the largest single component and the main lever for learning-driven cost decline.',
     '资本合计A$625.64m + 固定运维A$11.40m/年，按15年、10.85% WACC年化 ÷ 200 MW = A$488,445/MW/年 — 在取整误差内复现官方A$488,500。电池模块（35%）为最大单项，也是学习驱动降本的主要杠杆。'])));
@@ -101,7 +101,7 @@ function renderBrcp(main){
   c4.append(h('div', { style: 'margin:6px 0;' }, h('label', { style: 'font-size:var(--fs-2xs);color:var(--muted);margin-right:6px;' }, L(['Year transition', '年度过渡'])),
     (() => { const sel = h('select', { class: 'inp', style: 'width:auto;display:inline-block;', onchange: e => { state.brcpWfTo = +e.target.value; render(); } },
       BRCP.years.slice(1).map((cy, idx) => { const o = h('option', { value: idx + 1 }, BRCP.years[idx] + ' → ' + cy); if (idx + 1 === ti) o.selected = true; return o; })); return sel; })()));
-  waterfall(c4, { steps: wfSteps, yfmt: v => (v < 0 ? '−' : '') + 'A$' + fmtN(Math.abs(v)) + 'k', floor: Math.min(yA.brcp, yB.brcp) / 1000 - 35, h: 280 });
+  waterfall(c4, { dataset: BRCP, steps: wfSteps, yfmt: v => (v < 0 ? '−' : '') + 'A$' + fmtN(Math.abs(v)) + 'k', floor: Math.min(yA.brcp, yB.brcp) / 1000 - 35, h: 280 });
   c4.append(h('div', { class: 'cap' }, L(['Additive cost-component attribution. Duration step-ups flow through modules, BOP, construction and O&M; the WACC bucket combines the financing-component change and the annualisation (CRF) change.',
     '按成本分项的可加归因。时长阶跃通过模块、其他设备、建设及运维体现；WACC项合并了融资分项变化与年化系数(CRF)变化。'])));
   c4.append(why(['Step through the year transitions and the pattern is consistent: duration step-ups push BRCP up in discrete jumps, module learning pushes it down smoothly. That asymmetry is the actionable insight — the upward moves are policy events with announcement dates you can monitor (benchmark technology reviews, ESR determinations), while the downward drift is continuous. So a fixed-price election is most valuable immediately after a duration step-up and least valuable just before one.',

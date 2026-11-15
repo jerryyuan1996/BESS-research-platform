@@ -90,7 +90,7 @@ export function create(api){
           { l: ['− fees and penalties', '− 费用与罚则'], v: '−', n: ['Market and performance', '市场与履约'] },
           { l: ['= incremental balancing value', '= 调整力增量价值'], v: '=', n: ['The only figure fed to the global engine', '唯一计入全球引擎的数值'] },
         ] },
-        { t: 'bar', cfg: {
+        { t: 'bar', cfg: { dataset: M,
           xs: rs.map(id => L(R(id).short)),
           mode: 'group', h: 240, yfmt: v => '¥' + fmt1(v / 1e6) + 'M',
           series: [{ name: ['Incremental balancing value (¥/MW/yr)', '调整力增量价值（¥/MW/年）'], color: 'var(--s5)',

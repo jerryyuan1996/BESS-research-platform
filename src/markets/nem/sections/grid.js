@@ -68,7 +68,7 @@ export function create(api){
           { l:['Storage in the 2050 path','2050年路径中的储能'], v:O.ispStorage2050GW + '<small> GW</small>', d:[O.ispShortMedGW + ' GW shallow and medium duration plus ' + O.ispLongGW + ' GW of deep storage','浅层与中时长' + O.ispShortMedGW + 'GW，另有深度储能' + O.ispLongGW + 'GW'], b:['official'] },
           { l:['NEM consumption, now → 2050','NEM用电量，当前→2050'], v:fmtN(O.ispConsumptionNowTWh) + ' → ' + fmtN(O.ispConsumption2050TWh) + '<small> TWh</small>', d:['capacity roughly triples, ' + O.ispCapacityNowGW + ' GW to ' + O.ispCapacity2050GW + ' GW','装机容量约增至三倍，由' + O.ispCapacityNowGW + 'GW增至' + O.ispCapacity2050GW + 'GW'], b:['official'] },
         ] },
-        { t:'bar', cfg:{
+        { t:'bar', cfg:{ dataset: M,
           xs: M.ispClasses.filter(k => ['committed','anticipated','actionable','future'].includes(k.id)).map(k => L(k.n)),
           bw: 58, yfmt: v => fmtN(v) + ' km', labels: true,
           series: [{ name: ['Step Change route km by ISP status class','按ISP状态分类的阶跃变革情景线路公里数'], color: 'var(--s6)',

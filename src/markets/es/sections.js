@@ -114,7 +114,7 @@ export function buildSections(api){
   SEC_B.story = () => ({ head: researchHistory(api).head, blocks: [
     researchHistory(api).cards[0],
     { t: 'card', title: ['Price level against battery value', '电价水平与储能价值'], badges: ['official', 'calc'], blocks: [
-      { t: 'bar', cfg: { xs: T.years.map(r => r.y), bw: 46, labels: true, h: 230, yfmt: v => '€' + fmtN(v) + 'k',
+      { t: 'bar', cfg: { dataset: T, xs: T.years.map(r => r.y), bw: 46, labels: true, h: 230, yfmt: v => '€' + fmtN(v) + 'k',
         series: [{ name: ['4 h day-ahead value, €k/MW-yr', '4小时日前价值（千欧元/MW/年）'], color: 'var(--s9)', vals: T.years.map(r => r.v4) }] } },
       { t: 'cap', text: ['One cycle a day, charge before discharge, 88% round trip, best schedule found exactly, on OMIE\'s hourly Spanish prices.',
                          '每日一次循环、先充后放、往返效率88%、精确求解最优调度，基于OMIE西班牙小时电价。'] },

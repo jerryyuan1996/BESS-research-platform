@@ -1,10 +1,10 @@
-/* Bar chart, verbatim from the prototype (lines 476-546).
+/* Bar chart, with shared accessibility and exact-value fallback.
    mode 'group' | 'stack'. Negative-aware domain: bars grow up from the zero baseline
    for positives and down for negatives (roundBotRect). */
+import { finishChart, pointTooltip } from './accessibility.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
-import { tipShow, tipHide } from '../components/tooltip.js';
 import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtils.js';
 import { axisText } from './axes.js';
 // Bar chart: mode 'group' | 'stack'; series [{name, color, vals[]}]
@@ -35,8 +35,7 @@ function barChart(parent, cfg){
     svg.append(cfg.rotX ? axisText(cx, H - padB + 14, x, 'end', 'var(--fs-micro)', -30) : axisText(cx, H - 10, x));
   });
   const addBarTip = (r, name, val, cat) => {
-    r.addEventListener('mousemove', ev => tipShow(`<b>${cat}</b><div class="tr"><span>${name}</span><b>${(cfg.yfmt || fmtN)(val)}</b></div>`, ev));
-    r.addEventListener('mouseleave', tipHide);
+    pointTooltip(r, `<b>${cat}</b><div class="tr"><span>${name}</span><b>${(cfg.yfmt || fmtN)(val)}</b></div>`);
   };
   xs.forEach((x, i) => {
     if (mode === 'stack'){
@@ -75,7 +74,7 @@ function barChart(parent, cfg){
   const wrap = h('div', { class: 'chart' });
   wrap.append(svg);
   const lg = legendRow(cfg.series.map(s => ({ ...s, type: 'bar' }))); if (lg) wrap.append(lg);
-  parent.append(wrap);
+  finishChart(parent, wrap, svg, cfg, 'bar');
   return wrap;
 }
 

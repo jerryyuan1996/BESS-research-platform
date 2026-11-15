@@ -45,7 +45,7 @@ SEC_B.story = function (){
       ] },
       { t:'g2', cards:[
         { title:['Variable renewables and storage capacity','可变可再生能源与储能容量'], badges:['official','forecast'], blocks:[
-          { t:'line', cfg:{ xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
+          { t:'line', cfg:{ dataset: S, xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
             series:[
               { name:['Wind','风电'], color:'var(--s2)', vals:S.capacity.windGW.values },
               { name:['Solar PV','光伏'], color:'var(--s3)', vals:S.capacity.solarGW.values },
@@ -54,7 +54,7 @@ SEC_B.story = function (){
             ] } },
         ] },
         { title:['Peak demand, firm capacity and interconnection','峰值需求、稳固容量与互联'], badges:['official','forecast'], blocks:[
-          { t:'line', cfg:{ xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
+          { t:'line', cfg:{ dataset: S, xs:S.years.map(String), yfmt:v => fmt1(v) + ' GW', ymin:0, h:230,
             series:[
               { name:['Peak customer demand','客户峰值需求'], color:'var(--ink)', vals:S.demand.peakGW.values },
               { name:['Gas','燃气'], color:'var(--s6)', vals:S.capacity.gasGW.values },

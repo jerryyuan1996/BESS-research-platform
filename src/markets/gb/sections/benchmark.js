@@ -69,7 +69,7 @@ SEC_B.benchmark = function (){
         { l:['Ireland / GB multiple','爱尔兰对英国倍数'], v:fmt1(mult) + '<small>×</small>', d:['on identical 2-hour nameplate MW','在同样的2小时铭牌MW上'], b:['calc'] },
         { l:['Agreement length','协议年限'], v:O.cmAgreementYears + ' / ' + P.crmAgreementYears + '<small> yr</small>', d:['GB / Ireland new-build','英国/爱尔兰新建'], b:['official'] },
       ] },
-      { t:'bar', cfg:{ xs:['1h','2h','4h','6h','8h'], mode:'group', bw: 22, yfmt: v => fmtCk(v), h: 250,
+      { t:'bar', cfg:{ dataset: M, xs:['1h','2h','4h','6h','8h'], mode:'group', bw: 22, yfmt: v => fmtCk(v), h: 250,
         series:[
           { name:['GB capacity revenue per nameplate MW','英国每铭牌MW容量收入'], color:'var(--s1)',
             vals:[1,2,4,6,8].map(hh => gbCapGbpKW * interp(M.deratingCurve, hh) * 1000) },
@@ -97,7 +97,7 @@ SEC_B.benchmark = function (){
           { l:['GB pipeline to 2032 (central)','英国管线至2032（中性）'], v:fmt1(M.buildCentral[7]) + '<small> GW</small>', d:['high case ' + fmt1(M.buildHigh[7]) + ' GW','高情景' + fmt1(M.buildHigh[7]) + 'GW'], b:['forecast'] },
           { l:['Ireland pipeline','爱尔兰管线'], v:fmt1(P.pipelineMW / 1000) + '<small> GW</small>', d:[fmt1(P.pipelineMWh / 1000) + ' GWh across ' + P.pipelineProjects + ' projects','共' + P.pipelineProjects + '个项目，' + fmt1(P.pipelineMWh / 1000) + 'GWh'], b:['peer'] },
         ] },
-        { t:'bar', cfg:{ xs:[L(['GB operating','英国在运']), L(['IE operating','爱尔兰在运']), L(['GB 2032 central','英国2032中性']), L(['IE pipeline','爱尔兰管线'])],
+        { t:'bar', cfg:{ dataset: M, xs:[L(['GB operating','英国在运']), L(['IE operating','爱尔兰在运']), L(['GB 2032 central','英国2032中性']), L(['IE pipeline','爱尔兰管线'])],
           bw: 46, rotX: true, yfmt: v => fmt1(v) + ' GW', labels: true, h: 250,
           series:[{ name:['GW','GW'], color:'var(--s1)', vals:[O.fleetGW, P.fleetMW / 1000, M.buildCentral[7], P.pipelineMW / 1000] }] } },
         { t:'why', text:['Ireland’s ' + fmt1(P.pipelineMW / 1000) + ' GW pipeline sits on a ' + fmt1(P.fleetMW / 1000) + ' GW operating base — a ' + fmt1(P.pipelineMW / P.fleetMW) + '× multiple, against GB’s ' + fmt1(M.buildCentral[7] / O.fleetGW) + '× to 2032. Relative saturation pressure is therefore materially higher in Ireland even though absolute volumes are far smaller. The transferable point is that saturation is a ratio, not a level: a GB sponsor comparing "GW being built" across the two markets will draw exactly the wrong conclusion about which is more competitive.',

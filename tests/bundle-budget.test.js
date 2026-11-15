@@ -195,12 +195,15 @@ const BUDGET = {
     // Removing the legacy globe moves California, Texas and Japan outlines
     // from shared code into their respective owners. Transfer 2.5, 2.5 and
     // 29 KiB from sharedTotal; no complete first-visit allowance grows.
-    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 47, ercot: 61.5, de: 64, pjm: 65, it: 75, ro: 34,
+    // 2026-11-15: dataset provenance on existing charts; measured 61.51 KiB.
+    ercot: 61.6,
+    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 47, de: 64, pjm: 65, it: 75, ro: 34,
     // R4 Japan sections are now lazy: 86.24 KiB for the dashboard itself,
     // down from 115.51. WA's public tab adapter factors its former monolith
     // into reusable chunks; count its complete owner-only closure below.
     // Measured 215.02 KiB, including gzip overhead across the split files.
-    pl: 40, jp: 121, nem: 30, gb: 62, ie: 75, wa: 216,
+    // 2026-11-15: explicit chart dataset vintages; owner graph is 216.10 KiB.
+    pl: 40, jp: 121, nem: 30, gb: 62, ie: 75, wa: 216.2,
   },
 
   /* A market's sections, when it fetches them one at a time.

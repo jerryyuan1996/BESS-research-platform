@@ -11,7 +11,8 @@ function tipShow(html, ev){
   let x = ev.clientX + pad, y = ev.clientY + pad;
   if (x + w > innerWidth - 8) x = ev.clientX - w - pad;
   if (y + hh > innerHeight - 8) y = ev.clientY - hh - pad;
-  t.style.left = x + 'px'; t.style.top = y + 'px';
+  t.style.left = Math.max(8, Math.min(x, innerWidth - w - 8)) + 'px';
+  t.style.top = Math.max(8, Math.min(y, innerHeight - hh - 8)) + 'px';
 }
 function tipHide(){ tip().style.display = 'none'; }
 

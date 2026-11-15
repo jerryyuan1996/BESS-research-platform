@@ -25,3 +25,11 @@
 #tip .tip-rule{border:0; border-top:1px solid var(--baseline); margin:6px 0;}
 /* The count inside a stacked scatter marker. */
 .scatter-stack-count{font-weight:var(--fw-bold); fill:var(--ink);}
+.chart-point:focus{outline:2px solid var(--ink);outline-offset:3px;}
+.chart-table{margin-top:10px;font-size:var(--fs-xs);}
+.chart-table summary{cursor:pointer;color:var(--ink2);padding:6px 0;}
+.chart-table .tbl-wrap{max-width:100%;overflow-x:auto;}
+.chart-table caption{text-align:left;padding:8px 0;color:var(--ink2);}
+.chart-table th,.chart-table td{font-variant-numeric:tabular-nums;}
+.chart-vintage{font-size:var(--fs-micro);color:var(--muted);margin:6px 0;}
+@media(max-width:560px){#tip:has(.tip-stack){max-width:calc(100vw - 16px);}#tip .tip-stack div{white-space:normal;}}

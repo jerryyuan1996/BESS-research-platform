@@ -1,23 +1,12 @@
-/* ---------------------------------------------------------------------------
-   Number and currency formatting.
+/* Shared number and currency formatting. English conventions are preserved;
+   formatters resolve the page language on every call, including after a toggle. */
+import { pageNumberFormat } from './locale.js';
 
-   The prototype declared these separately in every program, with one real
-   divergence: the cockpit used the 'en-US' locale and WA used 'en-AU'. For
-   grouped integers and 1-/2-decimal values those two locales emit identical
-   strings (comma group separator, period decimal separator), so the divergence
-   is invisible in output — but it is preserved rather than unified, because
-   silently changing a locale is exactly the kind of quiet behaviour change the
-   brief rules out. `numberFormats(locale)` lets a market keep its own.
-
-   The exports at the bottom are the cockpit's set ('en-US'). Charts fall back to
-   `fmtN` when a caller passes no `yfmt`.
-   --------------------------------------------------------------------------- */
-
-/** Builds a locale-bound formatter set. Markets call this with their own locale. */
+/** Markets retain their English convention; every formatter follows page language. */
 export function numberFormats(locale){
-  const NF0 = new Intl.NumberFormat(locale);
-  const NF1 = new Intl.NumberFormat(locale, { maximumFractionDigits: 1, minimumFractionDigits: 1 });
-  const NF2 = new Intl.NumberFormat(locale, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+  const NF0 = pageNumberFormat(locale);
+  const NF1 = pageNumberFormat(locale, { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+  const NF2 = pageNumberFormat(locale, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   const fmtN = (x) => NF0.format(Math.round(x));
   return {
     NF0, NF1, NF2,
@@ -54,8 +43,7 @@ export const fmtX   = (v) => (v == null ? '—' : NF2.format(v) + '×');
    is unaffected in both cases and is what a reader should look at instead. */
 export const IRR_NO_SOLUTION = ['N/M — no positive IRR solution', 'N/M — 无正IRR解'];
 
-/* `localise` is passed in rather than imported: this module is a pure formatter
-   and importing app/i18n.js here would invert the dependency the whole utils
-   layer depends on. Every call site already has L in scope. */
+/* Keep the caller-supplied localiser for the missing-return label; numeric
+   formatting above follows the page language through the shared helper. */
 export const fmtIRRor = (v, absent, localise) =>
   (v != null ? fmtIRR(v) : (absent ? localise(IRR_NO_SOLUTION) : '—'));

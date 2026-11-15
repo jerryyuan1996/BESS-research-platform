@@ -1,3 +1,4 @@
+> Status: Award-pricing proposal superseded by [japan-ltda-repricing-plan.md](japan-ltda-repricing-plan.md) (2026-10-16); the historical text below is retained.
 # Japan: pricing the build that holds the award floor — plan for sign-off
 
 Drafted 2026-10-16 as PR 8 of the guided-experience plan (`docs/guided-experience-plan.md`), and

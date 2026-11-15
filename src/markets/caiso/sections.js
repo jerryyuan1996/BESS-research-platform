@@ -61,7 +61,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'card', title:['Where the revenue actually comes from','收入的真实来源'], badges:['tp'], blocks:[
-      { t:'bar', cfg:{ xs:M.stackLabels, bw:72, yfmt:v => '$' + v, labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.stackLabels, bw:72, yfmt:v => '$' + v, labels:true, h:230,
         series:[{ name:['$/kW-month','$/kW-月'], color:'var(--s12)', vals:M.stackSeries }] } },
       { t:'cap', text:['Resource Adequacy against merchant, on the same axis. This is the chart that separates CAISO from both its US neighbours: in PJM the capacity payment is large but lasts one delivery year, in ERCOT there is none at all, and here it is most of the income and runs for the length of a negotiated contract.',
                        '容量充裕度与市场化收入置于同一坐标轴对比。正是本图将CAISO与其两个美国邻近市场区分开来：在PJM，容量收入虽高但仅持续一个实需年度；在ERCOT完全没有容量收入；而在此处，它构成收入的主体，并按协商合约的期限持续。'] },
@@ -150,7 +150,7 @@ SEC_B.capacity = function (){
           d:['between ' + O.raAbove100Period + '; excluded from the band as unrepresentative',
              '发生于' + O.raAbove100Period + '；因不具代表性而排除于区间之外'], b:['tp'] },
       ] },
-      { t:'bar', cfg:{ xs:M.raLabels, bw:56, yfmt:v => '$' + v, labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.raLabels, bw:56, yfmt:v => '$' + v, labels:true, h:230,
         series:[{ name:['RA price, $/kW-month','容量充裕度价格，$/kW-月'], color:'var(--s12)', vals:M.raSeries }] } },
       { t:'cap', text:['The dispersion is the finding. A benchmark of ' + perKW(O.raPerKWMonth) + ' sits inside a reported range that runs from ' + perKW(O.raRangeLo) + ' to ' + perKW(O.raRangeHi) + ', with top earners at ' + perKW(O.raTopEarner) + ' — a threefold spread between the ordinary ends and more than sevenfold to the top.',
                        '离散度本身即是结论。' + perKW(O.raPerKWMonth) + '的基准值处于' + perKW(O.raRangeLo) + '至' + perKW(O.raRangeHi) + '的已报告区间之内，而高者达' + perKW(O.raTopEarner) + ' — 常规两端相差三倍，至最高值相差逾七倍。'] },
@@ -192,7 +192,7 @@ SEC_B.energy = function (){
         '加州创造了发达世界最深的午间低谷。它是政策的产物而非天气的产物，因此不会消失。'],
   blocks: [
     { t:'card', mt:false, title:['The merchant benchmark, month by month','市场化收入基准，逐月数据'], badges:['tp'], blocks:[
-      { t:'bar', cfg:{ xs:M.merchLabels, bw:56, yfmt:v => '$' + v, labels:true, h:220,
+      { t:'bar', cfg:{ dataset: M, xs:M.merchLabels, bw:56, yfmt:v => '$' + v, labels:true, h:220,
         series:[{ name:['Merchant revenue, $/kW-month','市场化收入，$/kW-月'], color:'var(--s12)', vals:M.merchSeries }] } },
       { t:'cap', text:['Energy arbitrage and ancillary services combined — the benchmark is published as one figure and no decomposition was located. December 2025 was a record low; June 2026 at ' + perKW(O.merchJun26) + ' was ' + O.merchJun26YoYPct + '% below the same month a year earlier.',
                        '电能量套利与辅助服务合计 — 该基准以单一数值公布，未找到相应拆解。2025年12月创历史新低；2026年6月为' + perKW(O.merchJun26) + '，较上年同月低' + O.merchJun26YoYPct + '%。'] },
@@ -272,7 +272,7 @@ SEC_B.duration = function (){
       { t:'scorecard', id:'durFactors', bands:'durBands' },
     ] },
     { t:'card', title:['Marginal value of the fifth and sixth hour','第五、六小时的边际价值'], badges:['calc','illus'], blocks:[
-      { t:'wf', cfg:{ steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.marginalHour, yfmt:v => fmtC(v) + 'k', h:250 } },
       { t:'cap', text:['Incremental value of moving from four hours to six, per MW per year, in $ thousands. The Resource Adequacy line is ZERO — not small, zero — because net qualifying capacity is tested on four hours and pays nothing beyond it. In PJM the same step is worth nine ELCC points.',
                        '由四小时提升至六小时的增量价值，单位为每MW每年千美元。容量充裕度一项为零 — 不是较小，而是零 — 因为净合格容量按四小时测定，超出部分不予支付。在PJM，同样的一步价值九个ELCC百分点。'] },
       { t:'why', text:['This is the largest negative marginal hour on the platform, at about ' + kMW(40000) + '/MW/yr, and it is the most confidently negative because the zero on the RA line is a published rule rather than an estimate. Everywhere else the duration question turns on a spread forecast or an accreditation projection. Here it turns on a CPUC test that is written down.',

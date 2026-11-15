@@ -23,7 +23,7 @@ SEC_B.energy = function (){
         { l:['DAM weighted-average Jun 2026','2026年6月日前加权均价'], v:fmtRON(O.damJun2026Wap), d:['≈ ' + fmtC(eur(O.damJun2026Wap)) + '/MWh','≈ ' + fmtC(eur(O.damJun2026Wap)) + '/MWh'], b:['official'] },
         { l:['DAM share of consumption','日前市场占消费比重'], v:O.dam2025SharePct + '<small>%</small>', d:[fmt1(O.dam2025TWh) + ' TWh traded in 2025','2025年成交' + fmt1(O.dam2025TWh) + 'TWh'], b:['official'] },
       ] },
-      { t:'line', cfg:{ xs: M.pxLabels, yfmt: v => fmtN(v), h: 240, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.pxLabels, yfmt: v => fmtN(v), h: 240, ymin: 0,
         series:[
           { name:['DAM (RON/MWh)','日前市场（RON/MWh）'], color:'var(--s1)', vals: M.damSeries },
           { name:['IDM (RON/MWh)','日内市场（RON/MWh）'], color:'var(--s3)', vals: M.idmSeries, dash: true },
@@ -37,14 +37,14 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Published → executable margin bridge (€/MWh discharged)','公布至可执行价差桥（€/MWh放电）'], badges:['calc','illus'], live:true, blocks:[
-      { t:'wf', cfg:{ yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
+      { t:'wf', cfg:{ dataset: M, yfmt: v => fmtC(v), h: 290, steps: M.spreadBridge } },
       { t:'why', text:['About ' + fmtPct((1 - 62 / 85) * 100, 0) + '% of the published spread is lost before it reaches the P&L, which is a smaller haircut than Ireland’s and a similar one to GB’s. The Romanian deductions are ordinary — liquidity, efficiency, availability, fees — rather than structural, because there is no central scheduling and no binding system-penetration limit standing between the price signal and the trade. That is the compensating advantage of an energy-only design: what you see is closer to what you can execute.',
         '公布价差中约' + fmtPct((1 - 62 / 85) * 100, 0) + '%在进入损益表前即已损失，折减幅度小于爱尔兰，与英国接近。罗马尼亚的扣减项属常规性 — 流动性、效率、可用率、费用 — 而非结构性，因为价格信号与实际交易之间既无集中调度，也无硬性的系统渗透率上限。这正是单一电能量设计的补偿性优势：所见更接近所能执行。'],
         sig:['Ordinary haircuts, not structural ones','折减属常规而非结构性'] },
     ] },
 
     { t:'card', title:['Captured spread by COD year — the competition discount','按投运年度的捕获价差 — 竞争折扣'], badges:['forecast','illus'], live:true, blocks:[
-      { t:'band', cfg:{ xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
+      { t:'band', cfg:{ dataset: M, xs: Object.keys(M.codCases), yfmt: v => fmtC(v), h: 260,
         low: Object.values(M.codCases).map(c => c.low),
         base: Object.values(M.codCases).map(c => c.central),
         high: Object.values(M.codCases).map(c => c.high) } },

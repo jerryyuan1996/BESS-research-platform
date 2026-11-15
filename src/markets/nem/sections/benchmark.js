@@ -61,7 +61,7 @@ export function create(api){
           { l:['NEM — merchant revenue per nameplate MW','NEM — 每铭牌MW市场化收入'], v:'≈' + fmtCk(nemMerchPerMW) + '<small>/MW/yr</small>', d:['gross at ' + inp.hours + 'h, before optimiser fee, loss factors and opex','' + inp.hours + '小时口径毛值，未扣除优化商费用、损耗系数与运维'], b:['calc'] },
           { l:['WEM contracted share of the stack','WEM收入结构中的合同化占比'], v:'≈' + fmtPct(waContractedShare * 100, 0), d:['capacity as a share of capacity + merchant + services (peer namespace)','容量收入占“容量+市场化+服务”的比重（同业命名空间）'], b:['peer'] },
         ] },
-        { t:'bar', cfg:{ xs:[L(['NEM — contracted','NEM — 合同化']), L(['NEM — merchant','NEM — 市场化']), L(['WEM — capacity','WEM — 容量']), L(['WEM — merchant','WEM — 市场化'])],
+        { t:'bar', cfg:{ dataset: P, xs:[L(['NEM — contracted','NEM — 合同化']), L(['NEM — merchant','NEM — 市场化']), L(['WEM — capacity','WEM — 容量']), L(['WEM — merchant','WEM — 市场化'])],
           bw: 44, rotX: true, yfmt: v => fmtCk(v), labels: false, h: 270,
           series:[{ name:['A$/MW/yr','A$/MW/年'], color:'var(--s1)', vals:[0, nemMerchPerMW, P.rcmPricePerMW, P.merchGross] }] } },
         { t:'cmp', items:[

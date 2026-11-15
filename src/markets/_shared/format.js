@@ -8,12 +8,11 @@
    sign. Both are preserved; see docs/migration-notes.md.
    --------------------------------------------------------------------------- */
 
+import { numberFormats } from '../../utils/formatting.js';
+
 /** @param {{locale:string, cur:string}} MKT */
-export function createFormat(MKT){const NF0 = new Intl.NumberFormat(MKT.locale);
-const NF1 = new Intl.NumberFormat(MKT.locale, { maximumFractionDigits: 1, minimumFractionDigits: 1 });
-const NF2 = new Intl.NumberFormat(MKT.locale, { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-const fmtN  = (x) => NF0.format(Math.round(x));
-const fmt1  = (x) => NF1.format(x);
+export function createFormat(MKT){
+const { NF0, NF1, NF2, fmtN, fmt1 } = numberFormats(MKT.locale);
 const fmtC  = (x) => MKT.cur + fmtN(x);
 const fmtCk = (x) => MKT.cur + fmtN(x / 1000) + 'k';
 const fmtCM = (x) => MKT.cur + NF1.format(x / 1e6) + 'M';

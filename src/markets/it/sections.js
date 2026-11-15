@@ -89,7 +89,7 @@ SEC_B.home = function (){
     ] },
 
     { t:'card', title:['The four routes on one basis','四条路径的统一口径比较'], badges:['calc'], blocks:[
-      { t:'bar', cfg:{ xs:M.revBasisLabels, bw:48, yfmt:v => kMW(v), labels:true, h:240,
+      { t:'bar', cfg:{ dataset: M, xs:M.revBasisLabels, bw:48, yfmt:v => kMW(v), labels:true, h:240,
         series:[{ name:['EUR thousands per MW per year, 4h basis','每MW每年（千欧元），4小时口径'], color:'var(--s10)', vals:M.revBasisSeriesK }] } },
       { t:'cap', text:['All four converted to the same four-hour, per-megawatt basis. The MACSE bar is the same asset\'s contracted alternative, not a different product. The Timera bar is an observed peak, not a forecast.',
                        '四者均换算至相同的四小时、每兆瓦口径。MACSE柱代表同一资产的合同化替代方案，而非另一种产品。Timera柱为观测到的峰值，而非预测值。'] },
@@ -247,7 +247,7 @@ SEC_B.energy = function (){
     ] },
 
     { t:'card', title:['Published spread to executable margin','由公开价差到可执行价差'], badges:['calc'], blocks:[
-      { t:'wf', cfg:{ steps:M.spreadBridge, yfmt:v => '€' + fmtN(v), h:260 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.spreadBridge, yfmt:v => '€' + fmtN(v), h:260 } },
       { t:'cap', text:['€ per discharged MWh, four-hour basis. MSD is settled separately and is NOT in this line — it enters the model at ' + fmtC(O.msdSeed) + '/MW/yr. The optimiser fee is applied once in the model, as lab.optFee, and is deliberately not a step here.',
                        '单位为每放电MWh欧元，四小时口径。辅助服务市场单独结算，不含于本项 — 其在模型中按每MW每年' + fmtC(O.msdSeed) + '计入。优化商费用在模型中仅计一次，即lab.optFee，故此处刻意不设为一步。'] },
       { t:'note', b:['Two steps are conventions. ','其中两步为惯例值。'],
@@ -275,7 +275,7 @@ SEC_B.services = function (){
         '意大利辅助服务市场规模确实很大。其唯一公布的总额为单月年化数据，约为远期预测的五倍，本平台不予采用。'],
   blocks: [
     { t:'card', mt:false, title:['MSD share of BESS revenue, by zone','辅助服务收入占储能收入比例，按区域'], badges:['calc'], blocks:[
-      { t:'bar', cfg:{ xs:M.ancShareLabels, bw:56, yfmt:v => v + '%', labels:true, h:230,
+      { t:'bar', cfg:{ dataset: M, xs:M.ancShareLabels, bw:56, yfmt:v => v + '%', labels:true, h:230,
         series:[{ name:['MSD share of revenue','辅助服务收入占比'], color:'var(--s9)', vals:M.ancShareSeries }] } },
       { t:'cap', text:['Balancing at about ' + O.msdSouthSharePct + '% of southern mainland BESS revenue and about ' + O.msdSardSharePct + '% in Sardinia, against near zero in the North. Italy is the one market on this platform where the ancillary question is locational rather than chronological.',
                        '平衡服务约占南部大陆储能收入' + O.msdSouthSharePct + '%、撒丁岛约' + O.msdSardSharePct + '%，北部接近零。意大利是本平台唯一一个辅助服务问题属区位性而非时间性的市场。'] },
@@ -346,7 +346,7 @@ SEC_B.duration = function (){
       { t:'scorecard', id:'durFactors', bands:'durBands' },
     ] },
     { t:'card', title:['Marginal value of hours five to eight, on the MACSE route','MACSE路径下第五至第八小时的边际价值'], badges:['calc','illus'], blocks:[
-      { t:'wf', cfg:{ steps:M.marginalHour, yfmt:v => kMW(v), h:250 } },
+      { t:'wf', cfg:{ dataset: M, steps:M.marginalHour, yfmt:v => kMW(v), h:250 } },
       { t:'cap', text:['Per MW per year, four hours to eight. The step is 4→8 rather than 2→4 because those are the two durations Terna publishes a de-rating factor for, and because MACSE\'s per-MWh price makes the long end the interesting one.',
                        '单位为每MW每年，由四小时至八小时。选择4→8而非2→4，是因为Terna仅就这两个时长公布折减系数，且MACSE按每MWh计价使得长时长端更具分析价值。'] },
       { t:'warn', text:['The result is NEGATIVE and that is the finding, not a modelling error. On the only Italian capex evidence available — a flat €' + O.capexKWhMid + '/kWh band with no power-block and energy-block split — the fifth-to-eighth hours do not pay. Yet MACSE awarded ' + O.macseHoursAvg + ' hours on average. Either the winners hold a cost decomposition the published band does not expose, or they are pricing the fifteen-year TSO contract above the marginal cost of the energy. This dashboard cannot tell which, and does not pick.',

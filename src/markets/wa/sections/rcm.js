@@ -33,7 +33,7 @@ function renderRcm(main){
   const g = h('div', { class: 'grid g2' });
 
   const c1 = card(['BRCP vs published RCP by Capacity Year', '各容量年度BRCP与已公布RCP'], [badge('official'), badge('illus'), statusBadge(true)]);
-  lineChart(c1, {
+  lineChart(c1, { dataset: SEED,
     xs: SEED.capYears, yfmt: fmtAk,
     series: [
       { name: ['BRCP', '基准容量价格BRCP'], color: 'var(--s1)', vals: SEED.brcpSeries, dash: true },
@@ -49,7 +49,7 @@ function renderRcm(main){
 
   const bal = SEED.capBalance;
   const c2 = card(['2028-29 capacity balance vs Peak RCR', '2028-29容量平衡与峰值RCR'], [badge('calc'), badge('illus'), statusBadge(true)]);
-  barChart(c2, {
+  barChart(c2, { dataset: SEED,
     xs: ['2028-29'], mode: 'stack', bw: 56, yfmt: v => fmtN(v),
     series: [
       { name: ['Existing', '现有容量'], color: 'var(--s1)', vals: [bal.existing] },
@@ -71,7 +71,7 @@ function renderRcm(main){
 
   const ratios = []; for (let r = 0.90; r <= 1.1501; r += 0.025) ratios.push(+r.toFixed(3));
   const c3 = card(['RCP rule curve vs capacity supply ratio (stylised)', 'RCP规则曲线与容量供给比（简化）'], [badge('illus'), statusBadge(true)]);
-  lineChart(c3, {
+  lineChart(c3, { dataset: SEED,
     xs: ratios.map(r => fmtPct(r * 100, 0)), yfmt: fmtAk,
     series: [{ name: ['Shadow RCP', '影子RCP'], color: 'var(--s1)', vals: ratios.map(r => shadowRcpFactor(r) * SEED.brcp2829), dash: true }],
     ann: [{ si: 0, i: ratios.findIndex(r => r >= 1.05), text: L(['current ≈105.5%', '当前≈105.5%']) }],
@@ -84,7 +84,7 @@ function renderRcm(main){
   g.append(c3);
 
   const c4 = card(['Demand decomposition — RCR growth drivers', '需求分解 — RCR增长驱动'], [badge('illus'), statusBadge(true)]);
-  waterfall(c4, { steps: SEED.demandWaterfall.map(s => ({ l: s.l, v: s.v, t: s.t === 'd' ? 'd' : s.t })), yfmt: fmtN, floor: 5900, zeroBase: false, h: 280 });
+  waterfall(c4, { dataset: SEED, steps: SEED.demandWaterfall.map(s => ({ l: s.l, v: s.v, t: s.t === 'd' ? 'd' : s.t })), yfmt: fmtN, floor: 5900, zeroBase: false, h: 280 });
   c4.append(h('div', { class: 'cap' }, L(['Bottom-up decomposition is calculated / indicative and is shown beside — never blended into — the official AEMO series (spec §6.5.1).',
     '自下而上分解为计算/示意口径，与官方AEMO序列并列展示、绝不混合（规范§6.5.1）。'])));
   c4.append(why(['Demand growth, not storage scarcity, is what eventually reopens the capacity market — so the composition of that growth is the forward signal to track. Committed industrial load and confirmed data centres are the only bars a lender will accept; the probability-weighted speculative bars are the reason the near-term case cannot be built on RCR growth. Watch this decomposition each ESOO: a large load converting from speculative to committed moves the whole capacity balance and is the single cheapest early indicator of a tightening cycle.',

@@ -40,12 +40,12 @@ SEC_B.story = function (){
     researchHistory(api).cards[0],
 
     { t:'card', title:['The price shape — coal exit meets solar growth','价格形态 — 煤电退出遭遇光伏增长'], badges:['illus'], blocks:[
-      { t:'line', cfg:{ xs: M.pxLabels, yfmt: v => fmtC(v), h: 230, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.pxLabels, yfmt: v => fmtC(v), h: 230, ymin: 0,
         series:[
           { name:['Day-ahead average (€/MWh)','日前均价（€/MWh）'], color:'var(--s1)', vals: M.damSeries },
           { name:['Average daily spread (€/MWh)','日均价差（€/MWh）'], color:'var(--s3)', vals: M.spreadSeries },
         ] } },
-      { t:'bar', cfg:{ xs: M.negHoursYears, bw: 46, yfmt: v => fmtN(v) + ' h', labels: true, h: 230,
+      { t:'bar', cfg:{ dataset: M, xs: M.negHoursYears, bw: 46, yfmt: v => fmtN(v) + ' h', labels: true, h: 230,
         series:[{ name:['Negative-price hours','负电价小时数'], color:'var(--s6)', vals: M.negHoursSeriesY }] } },
       { t:'why', text:['Negative-price hours have gone from roughly ' + fmtN(M.negHoursSeriesY[0]) + ' to ' + fmtN(M.negHoursSeriesY[2]) + ' in two years and are still rising. For a storage investor that is the charging opportunity growing faster than the discharging opportunity, which widens the spread now. It is also the clearest signal that the merchant case is time-limited: the same solar that creates the trough will eventually be joined by the ' + fmt1(O.cmAwardedBessGW) + ' GW of contracted storage that fills it.',
         '负电价小时数在两年内由约' + fmtN(M.negHoursSeriesY[0]) + '增至' + fmtN(M.negHoursSeriesY[2]) + '，且仍在上升。对储能投资人而言，这意味着充电机会的增长快于放电机会，当下扩大了价差。它同时也是最清晰的信号，表明市场化逻辑具有时限性：创造低谷的同一批光伏，最终将与填补该低谷的' + fmt1(O.cmAwardedBessGW) + 'GW已签约储能同时存在。'],

@@ -230,7 +230,7 @@ function gridBody(main){
     kpi(L(['Western Power time','Western Power耗时']), WP_QUEUE.wpMonths + '<small> mo</small>', { text: L(['Enquiry → Planning','问询→规划']) }, [badge('official')]),
     kpi(L(['Customer-led delay','客户方延迟']), WP_QUEUE.custMonths + '<small> mo</small>', null, [badge('official')]),
     kpi(L(['Total to Access Offer','至接入报价合计']), WP_QUEUE.totalMonths + '<small> mo</small>', { text: '≈ ' + NF1.format(WP_QUEUE.totalMonths/12) + L([' yrs',' 年']) }, [badge('official')])));
-  barChart(cq1, { xs: WP_QUEUE.aoDuration.map(s=>L(s.l)), mode:'stack', bw: 46, yfmt: v => NF1.format(v),
+  barChart(cq1, { dataset: WP_QUEUE, xs: WP_QUEUE.aoDuration.map(s=>L(s.l)), mode:'stack', bw: 46, yfmt: v => NF1.format(v),
     series: [
       { name: ['Western Power time', 'WP耗时'], color: 'var(--s8)', vals: WP_QUEUE.aoDuration.map(s=>s.wp) },
       { name: ['Customer-led delay', '客户方延迟'], color: 'var(--muted)', vals: WP_QUEUE.aoDuration.map(s=>s.cust) },
@@ -246,7 +246,7 @@ function gridBody(main){
     kpi(L(['BESS projects in queue','队列中BESS项目']), fmtN(WP_QUEUE.bessTotal.n), { text: fmtN(WP_QUEUE.bessTotal.dsoc) + ' MW DSOC' }, [badge('official')]),
     kpi(L(['+ Generator & BESS','+ 发电与BESS组合']), fmtN(WP_QUEUE.genBessTotal.n), { text: fmtN(WP_QUEUE.genBessTotal.dsoc) + ' MW DSOC' }, [badge('official')]),
     kpi(L(['Total connection queue','并网队列总计']), fmtN(WP_QUEUE.queueTotal.n), { text: fmtN(WP_QUEUE.queueTotal.dsoc) + ' MW DSOC' }, [badge('official')])));
-  barChart(cq2, { xs: WP_QUEUE.bessByStage.map(s=>L(s.l)), rotX:true, yfmt: fmtN, labels:true,
+  barChart(cq2, { dataset: WP_QUEUE, xs: WP_QUEUE.bessByStage.map(s=>L(s.l)), rotX:true, yfmt: fmtN, labels:true,
     series: [{ name: ['BESS projects','BESS项目数'], color: 'var(--s1)', vals: WP_QUEUE.bessByStage.map(s=>s.n) }], h: 210 });
   cq2.append(h('div', { class:'cap' }, L(['31 of 44 BESS projects (~3.9 GW) are still in Enquiry/Initiation — a large but immature and heavily oversubscribed queue relative to the ~1.4 GW operating. Only Capacity Credits, not queue MW, monetise.','44个BESS中有31个（约3.9GW）仍处于问询/启动阶段 — 队列庞大但不成熟、且相对约1.4GW在运严重超额认购。真正变现的是容量信用，而非队列MW。'])));
   cq2.append(why(['~6.0 GW of BESS DSOC in the queue against ~1.4 GW operating and a capacity market already in surplus means the queue cannot clear on economics — most of it will not be built. The useful inference is about congestion rather than competition: a queue this oversubscribed lengthens study timelines and raises the chance that network capacity at a given node is allocated before you reach Access Offer. That makes node selection and queue position a schedule risk with a revenue consequence, and it is why being early at a low-constraint node beats being large at a congested one.',
@@ -256,7 +256,7 @@ function gridBody(main){
   main.append(gq);
 
   const cq3 = card(['Transmission enquiries over time — a step-change since FY22', '输电并网问询趋势 — 自FY22起阶跃上升'], [badge('official'), statusBadge(true)]);
-  barChart(cq3, { xs: WP_QUEUE.enqYears, yfmt: fmtN, labels:true,
+  barChart(cq3, { dataset: WP_QUEUE, xs: WP_QUEUE.enqYears, yfmt: fmtN, labels:true,
     series: [{ name: ['New enquiries (count)','新问询数量'], color: 'var(--s3)', vals: WP_QUEUE.enqCounts }], h: 220 });
   cq3.append(h('div', { class:'cap' }, L(['Enquiries jumped from ~15/yr historically to 45–68/yr since FY2022 (FY24 peak 68). This quarter alone: ' + WP_QUEUE.quarter.newEnq + ' new enquiries, ' + WP_QUEUE.quarter.newApps + ' new applications, ' + WP_QUEUE.quarter.accessOffers + ' access offers issued. Regional split of the queue: Metro 72 · North 67 · South 65 · East 40. Congestion — not demand — is now the binding constraint on connection timing.','问询量由历史约15个/年跃升至FY2022以来的45–68个/年（FY24峰值68）。仅本季度：新问询' + WP_QUEUE.quarter.newEnq + '个、新申请' + WP_QUEUE.quarter.newApps + '个、发出接入报价' + WP_QUEUE.quarter.accessOffers + '个。队列区域分布：都会72 · 北部67 · 南部65 · 东部40。当前并网时点的约束是拥堵而非需求。'])));
   cq3.append(why(['A step change from ~15 to 45–68 enquiries a year is a structural shift in the connection market, not a cycle. It means the binding constraint on a WA project’s COD has moved from finding demand to obtaining network access, and that constraint is administrative rather than economic — it does not clear when prices fall. Two responses: treat the Critical Projects Framework and connection-readiness evidence as a competitive asset worth investing in early, and price schedule risk explicitly through long-stop dates rather than assuming published averages will hold.',

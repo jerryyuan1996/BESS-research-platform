@@ -24,7 +24,7 @@ SEC_B.capacity = function (){
         { l:['T-4 six-year range','T-4六年区间'], v:'£18 – £65', d:['3.6× peak-to-trough','峰谷相差3.6倍'], b:['calc'] },
         { l:['New-build agreement length','新建协议年限'], v:O.cmAgreementYears + '<small> yr</small>', d:['index-linked to inflation, price fixed at award','与通胀挂钩，价格于中标时固定'], b:['official'] },
       ] },
-      { t:'line', cfg:{ xs: M.cmYears, yfmt: v => '£' + fmt1(v), h: 240, ymin: 0,
+      { t:'line', cfg:{ dataset: M, xs: M.cmYears, yfmt: v => '£' + fmt1(v), h: 240, ymin: 0,
         series: [{ name:['T-4 clearing price','T-4出清价'], color:'var(--s1)', vals: M.t4Series }],
         ann: [{ si: 0, i: 5, text: '£' + fmt1(O.t4Price) }] } },
       { t:'cap', text:['T-1 auctions for the same delivery years cleared at £75, £60, £35.79, £20 and £' + fmt1(O.t1Price) + ' — a monotonic decline as the T-4 procurement met the requirement four years earlier.',
@@ -43,7 +43,7 @@ SEC_B.capacity = function (){
           return [{ b: [hh + 'h', hh + '小时'] }, fmtPct(a * 100, 0), fmtPct(b * 100, 0),
             fmtPct((b - a) * 100) + ' pts', fmtC(O.t4Price * b * 1000)];
         }) },
-      { t:'bar', cfg:{ xs: M.derateHours.map(x => x + 'h'), mode:'group', bw: 22, yfmt: v => fmtPct(v * 100, 0), h: 240,
+      { t:'bar', cfg:{ dataset: M, xs: M.derateHours.map(x => x + 'h'), mode:'group', bw: 22, yfmt: v => fmtPct(v * 100, 0), h: 240,
         series: [
           { name:['T-4 2028/29 vintage','T-4 2028/29版本'], color:'var(--s3)', vals: M.derateVintages['T-4 2028/29'] },
           { name:['T-4 ' + O.t4DY + ' vintage','T-4 ' + O.t4DY + '版本'], color:'var(--s1)', vals: M.derateVintages['T-4 ' + O.t4DY] },
@@ -71,7 +71,7 @@ SEC_B.capacity = function (){
     ] },
 
     { t:'card', title:['Capacity revenue by COD year and duration','按投运年度与时长的容量收入'], badges:['calc','illus'], live:true, blocks:[
-      { t:'bar', cfg:{ xs: M.durConfigs.map(x => x + 'h'), mode:'group', bw: 26, yfmt: v => fmtCk(v), labels: false, h: 240,
+      { t:'bar', cfg:{ dataset: M, xs: M.durConfigs.map(x => x + 'h'), mode:'group', bw: 26, yfmt: v => fmtCk(v), labels: false, h: 240,
         series: [
           { name:['At £' + fmt1(O.t4Price) + '/kW/yr (last T-4)','按£' + fmt1(O.t4Price) + '/kW/年（最近T-4）'], color:'var(--s1)', vals: M.durConfigs.map(hh => O.t4Price * interp(M.deratingCurve, hh) * 1000) },
           { name:['At £45/kW/yr (mid-cycle)','按£45/kW/年（周期中值）'], color:'var(--s3)', vals: M.durConfigs.map(hh => 45 * interp(M.deratingCurve, hh) * 1000) },

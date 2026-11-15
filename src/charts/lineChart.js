@@ -1,12 +1,13 @@
-/* Line chart, verbatim from the prototype (lines 406-474).
+/* Line chart, with shared accessibility and exact-value fallback.
    series: [{name:[en,zh], color, vals[], dash, step}] over categorical xs.
    null values break the line rather than interpolating. Crosshair + shared tooltip
    snap to the nearest x index. */
+import { finishChart, pointTooltip, seriesTooltip } from './accessibility.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { fmtN } from '../utils/formatting.js';
 import { tipShow, tipHide } from '../components/tooltip.js';
-import { S, niceTicks, roundTopRect, roundBotRect, legendRow } from './chartUtils.js';
+import { S, niceTicks, legendRow } from './chartUtils.js';
 import { axisText } from './axes.js';
 // Line chart: series [{name, color, vals[], dash, step}] over categorical xs
 function lineChart(parent, cfg){
@@ -60,21 +61,28 @@ function lineChart(parent, cfg){
     let bi = 0, bd = 1e9;
     for (let i = 0; i < n; i++){ const dd = Math.abs(X(i) - mx); if (dd < bd){ bd = dd; bi = i; } }
     cross.setAttribute('x1', X(bi)); cross.setAttribute('x2', X(bi)); cross.setAttribute('visibility', 'visible');
-    let html = `<b>${xs[bi]}</b>`;
-    for (const s of cfg.series){
-      const v = s.vals[bi];
-      html += `<div class="tr"><span><span style="display:inline-block;width:8px;height:8px;border-radius:var(--r-xs);background:${s.color};margin-right:5px"></span>${L(s.name)}</span><b>${v == null ? '—' : (cfg.yfmt || fmtN)(v)}</b></div>`;
-    }
+    const html = seriesTooltip(cfg, bi);
     tipShow(html, ev);
   });
   ov.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); tipHide(); });
   svg.append(ov);
+  // Invisible until focused: preserve the existing line and endpoint rendering.
+  xs.forEach((_, i) => {
+    const v = cfg.series.find(s => s.vals[i] != null)?.vals[i];
+    if (v == null) return;
+    const point = S('circle', { cx: X(i), cy: Y(v), r: 6, fill: 'transparent', 'pointer-events': 'none' });
+    pointTooltip(point, seriesTooltip(cfg, i), {
+      show: () => { cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i)); cross.setAttribute('visibility', 'visible'); },
+      hide: () => cross.setAttribute('visibility', 'hidden'),
+    });
+    svg.append(point);
+  });
   const wrap = h('div', { class: 'chart' });
   wrap.append(svg);
   const lg = legendRow(cfg.series); if (lg) wrap.append(lg);
   if (cfg.series.some(s => s.dash)) wrap.append(h('div', { style: 'font-size:var(--fs-micro);color:var(--muted);margin-top:3px;' },
     L(['* dashed = illustrative', '* 虚线 = 示例数据'])));
-  parent.append(wrap);
+  finishChart(parent, wrap, svg, cfg, 'line');
   return wrap;
 }
 
