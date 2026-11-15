@@ -179,43 +179,50 @@
   "verdicts": {
     "strategic": {
       "archetype": "strategic",
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "where": null,
+      "where": [
+        "Cooperation on an existing eligible grant project",
+        "既有合资格补贴项目的合作开发"
+      ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "An uncontracted four-hour project loses value on the model at the platform's yields.",
-            "未签约的四小时项目按模型测算、按本平台收益率会损失价值。"
+            "The grant-supported reference case remains below the strategic target. A small shortfall is not a tolerance, and any net synergy must be separately evidenced.",
+            "含补贴的参考情景仍低于战略投资者目标；较小差距不构成容忍区间，任何净协同收益均须另行举证。"
           ]
         },
         {
-          "dimension": "revenueCertainty",
+          "dimension": "policyStability",
           "text": [
-            "The reference project secures nothing; batteries that won long capacity contracts in earlier auctions are a different cohort.",
-            "参考项目没有任何锁定收入；在早先拍卖中取得长期容量合同的电池项目属于另一批次。"
+            "Fair evidence: verify the target grant, eligible costs, payment timing and change-of-control conditions; the existing cohort does not prove a new greenfield project can obtain support.",
+            "证据一般：核实目标补贴、合格成本、支付时间和控制权变更条件；既有批次不能证明新绿地项目可获得补贴。"
           ]
         },
         {
-          "dimension": "gridScarcity",
+          "dimension": "capitalAtRisk",
           "text": [
-            "Connection rights are the binding constraint, and refusals have been frequent.",
-            "并网权是硬约束，申请被拒的情况十分常见。"
+            "At the November checkpoint identify an executable cooperation route and quantify net synergies and delivery costs. At the January stop review, absent target and terms require a scoped Pass proposal.",
+            "11月复核时明确可执行合作路径，量化净协同收益和交付成本；1月截止复核时仍无目标及条款，则提交范围限定的放弃建议。"
           ]
         }
       ],
       "despite": [
-        "A project holding one of the earlier seventeen-year capacity contracts can be worth buying at the right price.",
-        "持有早先十七年期容量合同的项目，在价格合适时仍值得收购。"
+        "A verified grant project with executable cost advantages may justify a new valuation; no synergy or grant is added merely by keeping Watch.",
+        "补贴经核实且具可执行成本优势的项目可重新估值；保留观察不会自动新增协同收益或补贴。"
       ],
       "changesIf": [
-        "pl-capacity-successor-framework"
+        "pl-grant-project-terms-review"
       ],
-      "reviewBy": "2027-03-31",
+      "reviewBy": "2027-01-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
-      "lockedUntil": null
+      "asOf": "2026-11-15",
+      "lockedUntil": null,
+      "scoreNote": [
+        "Market fit is not project value. Watch requires grant/transaction evidence and a return recheck.",
+        "市场适配不等于项目价值；观察等待补贴和交易证据及回报复核。"
+      ]
     },
     "infraFund": {
       "archetype": "infraFund",
@@ -345,6 +352,27 @@
       "direction": "up",
       "source": "decision-profile",
       "effect": null
+    },
+    {
+      "id": "pl-grant-project-terms-review",
+      "kind": "event",
+      "market": "pl",
+      "label": [
+        "Analyst checkpoint: grant project and terms",
+        "分析师复核：补贴项目及条款"
+      ],
+      "expected": "2026-11-30",
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": "decision-profile",
+      "note": [
+        "Internal checkpoint, not an official award date. Obtain grant/payment/transfer evidence and executable cost and contract terms. At the 31 January 2027 stop review, no identifiable target and executable terms means submit Pass for this route; any change requires analyst approval.",
+        "此为内部复核日，并非官方授予日期。取得补贴、支付、转让证据及可执行成本和合同条款。2027年1月31日截止复核时，如仍无明确目标和可执行条款，提交该路线的放弃建议；任何判断变更均须分析师批准。"
+      ],
+      "effect": null
     }
   ],
   "plays": {
@@ -383,56 +411,63 @@
       "stage": "ready-to-build",
       "grantPct": 37.3,
       "why": [
-        "The awarded capital grant lowers the cohort’s investment cost; verify each project’s signed grant and capacity-payment deduction. At build cost the reference case still falls short of the fund’s target.",
-        "已授予的资本补助降低了该批次的投资成本；须核实每个项目的已签补助及容量付款扣减。按建设成本测算，参考情景仍未达到基金目标。"
+        "Grant assumed; verify award, payment and any capacity-payment deduction.",
+        "补贴为假设；须核实授予、支付及适用的容量付款扣减。"
       ],
       "action": {
         "text": [
-          "List cohort projects from the NFOŚiGW ranking list of 12 December 2025 whose owners might sell before the end-2028 completion deadline, and check which also hold a capacity contract, since a grant reduces that payment.",
-          "从国家环保基金2025年12月12日排名清单中，列出业主可能在2028年底完工期限前出售的批次项目，并核查哪些同时持有容量合同，因为补贴会减少该项付费。"
+          "Fund/strategic Watch: verify grant and target terms on 30 November; propose scoped Pass if absent on 31 January. No automatic extension.",
+          "基金和战略投资者观察：11月30日核实补贴及项目条款；1月31日仍缺失则提交该范围的放弃建议，不自动顺延。"
         ],
-        "due": null
+        "due": "2026-11-30"
       },
       "calls": {
         "infraFund": {
           "archetype": "infraFund",
-          "call": "opportunistic",
+          "call": "wait",
           "route": "ready-to-build",
           "where": [
-            "A project in NFOŚiGW's 2025 grant cohort",
-            "国家环保基金2025年补贴批次中的项目"
+            "An existing project with a valid grant and transferable rights",
+            "持有效补贴且权利可转让的既有项目"
           ],
           "because": [
             {
               "dimension": "assetReturn",
               "text": [
-                "The awarded grant improves the modelled merchant design, but the investment case at build cost still falls short of the fund’s target.",
-                "已授予的补助改善模型中的市场化方案，但按建设成本测算的投资情景仍未达到基金目标。"
+                "The grant is already included in the reference case, which remains below the fund target. A future grant confirmation is not additional model income.",
+                "参考情景已计入补贴，仍低于基金目标；未来确认补贴不构成额外模型收入。"
               ]
             },
             {
               "dimension": "policyStability",
               "text": [
-                "The round is awarded and the grants are signed; completion is due by the end of 2028.",
-                "本轮补贴已授予并签约；须于2028年底前完工。"
+                "Fair evidence: the programme exists, but a ranking does not prove the target grant, payment or transfer consent. Check the target award date and completion obligations.",
+                "证据一般：补贴计划存在，但排名不能证明目标项目已获补贴、支付或转让同意；须核实实际授予日期和完工义务。"
+              ]
+            },
+            {
+              "dimension": "capitalAtRisk",
+              "text": [
+                "Obtain the target agreement, costs, revenue terms, financing and exit evidence at the November checkpoint. If no target and executable terms exist by the January stop review, submit a scoped Pass decision.",
+                "在11月复核时取得目标协议、成本、收入条款、融资和退出证据。1月截止复核时仍无目标和可执行条款，则提交范围限定的放弃决定。"
               ]
             }
           ],
           "despite": [
-            "Merchant revenue carries the whole case, and the curve that compresses it is fitted on Bulgaria, not Poland.",
-            "整个投资逻辑由市场化收入支撑，而压缩该收入的曲线是依据保加利亚而非波兰拟合的。"
+            "A valid-grant project with better executable terms could justify a fresh valuation. The reference rights price is already zero; construction remains payable.",
+            "具有效补贴和更优可执行条款的项目可重新估值；参考项目权利价格已为零，建设支出仍需支付。"
           ],
           "changesIf": [
-            "pl-capacity-successor-framework"
+            "pl-grant-project-terms-review"
           ],
-          "reviewBy": "2027-03-31",
+          "reviewBy": "2027-01-31",
           "author": "analyst",
-          "asOf": "2026-10-23",
+          "asOf": "2026-11-15",
           "lockedUntil": null
         }
       },
       "author": "analyst",
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-15",
       "lockedUntil": null
     }
   }

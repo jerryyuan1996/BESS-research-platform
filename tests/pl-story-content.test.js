@@ -197,10 +197,12 @@ test('thirteen shots, six chapters, one marker each and a valid story', () => {
   assert.deepEqual(shots.map(s => s.id), Array.from({ length: 13 }, (_, i) => 'pl-' + String(i).padStart(2, '0')));
   assert.equal(story.opening.id, 'pl-00');
   assert.equal(story.playRef, row.play.id);
-  assert.equal(isStale(composed, row), false);
+  assert.equal(isStale(composed, row), true, 'the new Watch has not re-approved the historical story');
+  assert.equal(isStale(composed, { ...row, call: 'opportunistic' }), false);
   assert.equal(story.reviewedAgainst.on, '2026-11-01');
   assert.equal(story.reviewedAgainst.hours, row.play.hours);
-  assert.equal(story.reviewedAgainst.call, row.call);
+  assert.equal(story.reviewedAgainst.call, 'opportunistic');
+  assert.equal(row.call, 'wait');
   assert.equal(story.reviewedAgainst.lens, 'infraFund');
   for (const shot of shots){
     assert.ok(MARKERS[shot.marker.level] || shot.marker.level === 'play', `${shot.id} marker`);
@@ -285,9 +287,10 @@ test('the card and design figures come from the page, not from a pasted string',
   assert.equal(values.grantPlayValue, fmtUSD(HOME_BRIEFING.plays['pl/pl-grant-4h'].econ.value));
   assert.deepEqual(values.merchantBand, ['2 and 4', '2和4']);
   assert.equal(values.marketCall[0], 'Watch');
-  assert.equal(values.call[0], 'Situational');
+  assert.equal(values.call[0], 'Watch');
   assert.match(values.marketNextAction[0], /successor/i);
-  assert.match(values.nextAction[0], /ranking list/i);
+  assert.match(values.nextAction[0], /30 November/);
+  assert.match(values.nextAction[0], /31 January/);
 });
 
 test('pl-05 ships the numbers now, and keeps the Example sentence for a re-gate', () => {
@@ -323,10 +326,12 @@ test('a withheld record never prints as zero', () => {
 });
 
 test('the reviewed tuple returns to research when the lens, call or duration moved', () => {
-  assert.equal(storyMatches(story, row, 'infraFund'), true);
+  const historical = { ...row, call: 'opportunistic' };
+  assert.equal(storyMatches(story, historical, 'infraFund'), true);
+  assert.equal(storyMatches(story, row, 'infraFund'), false, 'approved Watch uses the research fallback');
   assert.equal(storyMatches(story, row, 'strategic'), false);
   assert.equal(storyMatches(story, { ...row, call: 'wait' }, 'infraFund'), false);
-  assert.equal(storyMatches(story, { ...row, play: { ...row.play, hours: 2 } }, 'infraFund'), false);
+  assert.equal(storyMatches(story, { ...historical, play: { ...row.play, hours: 2 } }, 'infraFund'), false);
 });
 
 test('every claim resolves to an openable source, and every source names a locator', () => {

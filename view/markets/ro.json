@@ -205,38 +205,52 @@
   "verdicts": {
     "strategic": {
       "archetype": "strategic",
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "where": null,
+      "where": [
+        "A project with verifiable grant eligibility and an executable floor offer",
+        "补贴资格可核实且具可执行保底报价的项目"
+      ],
       "because": [
         {
-          "dimension": "policyStability",
+          "dimension": "assetReturn",
           "text": [
-            "Tariff, guarantee and connection rules are all moving by regulatory order.",
-            "电价、保函与并网规则均在通过监管法令调整。"
+            "The reference case already includes an assumed capital grant and remains below the strategic target. Keep the no-grant check and value the complete contract waterfall.",
+            "参考情景已计入资本补贴假设，仍低于战略投资者目标；保留无补贴检验，并按完整合同现金分配规则估值。"
           ]
         },
         {
           "dimension": "revenueCertainty",
           "text": [
-            "Nothing is secured in the reference case.",
-            "参考情景下没有任何锁定收入。"
+            "Fair evidence: a public floor-and-sharing precedent supports an investigation, but its price and full terms are undisclosed and no floor is secured for the target.",
+            "证据一般：公开的保底加分成先例支持继续调查，但价格及完整条款未披露，目标项目尚未锁定保底。"
+          ]
+        },
+        {
+          "dimension": "capitalAtRisk",
+          "text": [
+            "Check official grant status and target terms at the November checkpoint. At the January stop review, no identifiable project and executable grant/floor terms means submit Pass for this route.",
+            "11月复核时核查官方补贴状态和目标条款；1月截止复核时仍无明确项目及可执行补贴和保底条款，则提交该路线的放弃建议。"
           ]
         }
       ],
       "despite": [
-        "The highest return of any market here, with connection obtainable by auction.",
-        "回报为各市场之最，且可通过拍卖取得并网容量。"
+        "A priced, enforceable floor could improve revenue stability; fees, sharing, performance and termination must be valued before any investment decision.",
+        "已定价且可执行的保底可能改善收入稳定性；投资决定前须计入费用、分成、履约和终止条件。"
       ],
       "changesIf": [
-        "ro-grant-call-close",
-        "ro-connection-guarantee-order",
-        "ro-grant-status-review"
+        "ro-grant-status-review",
+        "ro-project-grant-floor-terms",
+        "ro-connection-guarantee-order"
       ],
-      "reviewBy": "2027-03-31",
+      "reviewBy": "2027-01-31",
       "author": "analyst",
-      "asOf": "2026-10-31",
-      "lockedUntil": null
+      "asOf": "2026-11-15",
+      "lockedUntil": null,
+      "scoreNote": [
+        "Market fit does not prove grant or floor terms. Watch requires executable terms and a return recheck.",
+        "市场适配不能证明补贴或保底；观察等待可执行条款及回报复核。"
+      ]
     },
     "infraFund": {
       "archetype": "infraFund",
@@ -367,26 +381,30 @@
       "kind": "event",
       "market": "ro",
       "label": [
-        "The EUR 150m storage grant call closes",
-        "1.5亿欧元储能补贴申报截止"
+        "Confirm the amended storage-grant call closing date",
+        "确认储能补贴申报的修订截止日期"
       ],
-      "expected": "2026-10-30",
+      "expected": null,
       "watches": [
         "assetReturn"
       ],
       "direction": "either",
       "source": "decision-profile",
-      "effect": null
+      "effect": null,
+      "note": [
+        "The previously stored 30 October 2026 closing date may have been amended. The official amendment was not verified in this review; no replacement date or award is asserted.",
+        "此前记录的2026年10月30日截止日期可能已被修订；本轮尚未核实官方修订，不断言新的截止日期或授予结果。"
+      ]
     },
     {
       "id": "ro-grant-status-review",
       "kind": "event",
       "market": "ro",
       "label": [
-        "Verify the ministry's stand-alone storage-call timetable and any published outcome",
-        "核验能源部独立储能申报时间表及已公布结果"
+        "Analyst checkpoint: grant rules and eligibility",
+        "分析师复核：补贴规则及资格"
       ],
-      "expected": "2026-11-02",
+      "expected": "2026-11-30",
       "watches": [
         "assetReturn",
         "policyStability"
@@ -398,8 +416,33 @@
         "access": "search-summary"
       },
       "note": [
-        "The call was expected to close on 30 October 2026. The ministry's call page could not be opened on 31 October; a reported extension to 15 November is not verified. This is the analyst's review date, not a published closing date.",
-        "该申报预计于2026年10月30日截止。10月31日无法打开能源部申报页面；有报道称截止日延至11月15日，但尚未核实。此为分析师复核日期，并非公布的截止日期。"
+        "Internal review date, not an official closing or result date. The original 30 October closing date and a reported extension require an accessible official amendment; retrieval failures do not prove no award exists. Confirm target award and payment separately.",
+        "此为内部复核日，并非官方截止或结果日期。原10月30日截止日期及所传延期须由可读取的官方修订文件核实；读取失败不能证明没有授予。另行确认目标项目授予和支付。"
+      ],
+      "effect": null
+    },
+    {
+      "id": "ro-project-grant-floor-terms",
+      "kind": "event",
+      "market": "ro",
+      "label": [
+        "Verify target grant eligibility and a priced floor agreement",
+        "核实目标补贴资格及已报价的保底协议"
+      ],
+      "expected": null,
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "either",
+      "source": {
+        "publisher": "Contract counterparty",
+        "url": "https://www.gen-igroup.com/news/gen-i-and-rpower-sign-long-term-optimisation-agreement-for-one-of-romania-s-largest-battery-energy-storage-projects/",
+        "access": "opened"
+      },
+      "note": [
+        "Seek the actual award and complete floor amount, term, share, fees, credit, performance and termination terms. The 31 January 2027 analyst stop review requires an identifiable target and executable terms; otherwise submit Pass for this route.",
+        "取得实际补贴授予及完整保底金额、期限、分成、费用、信用、履约和终止条款。2027年1月31日分析师截止复核须有明确目标和可执行条款，否则提交该路线的放弃建议。"
       ],
       "effect": null
     }
@@ -415,18 +458,18 @@
       "hours": 2,
       "stage": "operating",
       "why": [
-        "Two hours is the best design here on merchant revenue alone, and the figures shown price no floor; Romania's own fleet growth compresses every duration's value.",
-        "仅按市场化收入测算，两小时是这里的最佳设计，所示数据未计入任何保底；罗马尼亚自身储能规模的增长会压缩各时长设计的价值。"
+        "Capital grant assumed; no floor priced. Verify target grant and contract terms.",
+        "资本补贴为假设，未计入保底；须核实目标补贴及合同条款。"
       ],
       "action": {
         "text": [
-          "Find operating two-hour assets whose seller has, or will sign, an optimiser floor, and get its full terms before any bid: payment, tenor, indexation, share above the floor and credit support. Check the ministry's stand-alone storage-call timetable and any published outcome.",
-          "寻找卖方已签或愿意签订优化商保底的两小时在运资产，并在出价前取得其完整条款：付费、期限、指数化、保底以上收益分成及信用支持。核查能源部独立储能申报时间表及已公布结果。"
+          "Strategic Watch: check grant, priced floor and no-grant valuation on 30 November; propose scoped Pass if no target/terms on 31 January.",
+          "战略投资者观察：11月30日核实补贴、保底报价及无补贴估值；1月31日仍无目标和条款则提交该范围的放弃建议。"
         ],
         "due": "2026-11-30"
       },
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "lockedUntil": null
     }
   }

@@ -39,13 +39,15 @@ test('Poland is released lazily: the button opens it, and it still costs nothing
 test('the reviewed tuple returns to research when the market, lens, call or duration moved', () => {
   const values = storyValues(row, { CALLS, returnPct, marginText });
   const live = { row, rows: storyRows(row).grant ? [storyRows(row).grant, storyRows(row).capacity] : [row], lens: 'infraFund', ui: { CALLS, returnPct, marginText } };
-  assert.ok(reviewed(live), 'the live row opens the story');
-  assert.equal(reviewed({ ...live, row: { ...row, id: 'ie' } }), null, 'another market returns to research');
-  assert.equal(reviewed({ ...live, lens: 'strategic' }), null, 'another lens returns to research');
+  assert.equal(reviewed(live), null, 'the approved Watch returns to research until the historical story is reviewed');
+  const historical = { ...live, row: { ...row, call: 'opportunistic' } };
+  assert.ok(reviewed(historical), 'the previous approved tuple remains valid');
+  assert.equal(reviewed({ ...historical, row: { ...historical.row, id: 'ie' } }), null, 'another market returns to research');
+  assert.equal(reviewed({ ...historical, lens: 'strategic' }), null, 'another lens returns to research');
   assert.equal(reviewed({ ...live, row: { ...row, call: 'wait' } }), null, 'a moved call returns to research');
-  assert.equal(reviewed({ ...live, row: { ...row, play: { ...row.play, hours: 2 } } }), null, 'a moved duration returns to research');
+  assert.equal(reviewed({ ...historical, row: { ...historical.row, play: { ...row.play, hours: 2 } } }), null, 'a moved duration returns to research');
   assert.equal(Number(values.playDuration), story.reviewedAgainst.hours);
-  assert.equal(storyMatches(story, row, 'infraFund'), true);
+  assert.equal(storyMatches(story, row, 'infraFund'), false);
 });
 
 test('each opening card carries its own cohort’s evidence, and no shared financial case', () => {

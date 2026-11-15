@@ -43,7 +43,7 @@ test('Polish opening separates grant and ordinary capacity calls without sharing
   assert.deepEqual(new Set(rows.map(r => r.play.id)), new Set(['pl-grant-4h', 'pl-cap-4h']));
   const grant = rows.find(r => r.play.id === 'pl-grant-4h');
   const ordinary = rows.find(r => r.play.id === 'pl-cap-4h');
-  assert.equal(grant.call, 'opportunistic');
+  assert.equal(grant.call, 'wait');
   assert.equal(ordinary.call, 'wait');
   assert.ok(grant.investment);
   assert.equal(ordinary.investment, undefined, 'the grant financial summary cannot price an ordinary project');

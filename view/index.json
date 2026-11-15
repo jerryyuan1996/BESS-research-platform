@@ -298,22 +298,22 @@
   },
   "pjm": {
     "strategic": {
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "reviewBy": "2027-03-31",
       "play": "pjm-cap-4h"
     },
     "foreignFirstTimer": {
       "call": "wait",
       "route": "ready-to-build",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-15",
       "reviewBy": "2027-03-31"
     },
     "developer": {
@@ -325,10 +325,10 @@
   },
   "pl": {
     "strategic": {
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "asOf": "2026-10-31",
-      "reviewBy": "2027-03-31"
+      "asOf": "2026-11-15",
+      "reviewBy": "2027-01-31"
     },
     "infraFund": {
       "call": "wait",
@@ -352,10 +352,10 @@
   },
   "ro": {
     "strategic": {
-      "call": "opportunistic",
+      "call": "wait",
       "route": "greenfield",
-      "asOf": "2026-10-31",
-      "reviewBy": "2027-03-31"
+      "asOf": "2026-11-15",
+      "reviewBy": "2027-01-31"
     },
     "infraFund": {
       "call": "opportunistic",

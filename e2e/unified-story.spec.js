@@ -2,13 +2,37 @@ import {test,expect} from '@playwright/test';
 import {historySlugs} from './helpers/research-history.js';
 import {INTEGRATED_CHAPTER} from '../src/experience/story/public/integrationModel.js';
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});
-for(const [id,slug] of Object.entries(historySlugs))test(id+' retains the full previous reading in one entrance',async({page},info)=>{
+for(const [id,slug] of Object.entries(historySlugs))test(id+(id==='pl'?' keeps current research while the detailed reference awaits review':' retains the full previous reading in one entrance'),async({page},info)=>{
  test.setTimeout(150000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/');await page.evaluate(()=>localStorage.setItem('hub_lang','zh'));await page.goto('/markets/'+slug);
  await expect(page.locator('.ix-full-research')).toHaveCount(0);const trigger=page.locator('.public-story-trigger');await expect(trigger).toContainText('市场背景与投资逻辑');
  await trigger.click();const dialog=page.locator('.public-story-dialog');
  const hasStory=!['es','sa','ca_on'].includes(id),seen=[];
- if(hasStory){
+ if(id==='pl'){
+  for(const lang of ['zh','en']){
+   for(const chapter of ['history','overview','system','mechanism','investment']){
+    await dialog.locator(`.public-story-nav [data-chapter=${chapter}]`).click();
+    const material=dialog.locator('.unified-material');await expect(material).toBeVisible();
+    if(!await material.evaluate(n=>n.open))await material.locator(':scope > summary').click();
+    await expect(material.locator('.unified-material-body')).toHaveAttribute('aria-busy','false');
+    await expect(material.locator('[data-review-required]')).toHaveCount(1);
+    const detail=material.locator('.unified-detail');
+    if(!await detail.evaluate(n=>n.open))await detail.locator(':scope > summary').click();
+    await expect(material.locator('[data-review-required]')).toBeVisible();
+    await expect(material).toContainText(lang==='zh'?'详细参考内容待复核':'Detailed reference awaiting review');
+    await expect(material).toContainText(lang==='zh'?'基础设施基金补助方案':'infrastructure-fund grant');
+    await expect(material.getByRole('button',{name:/重试详细解释|Retry explanation/})).toHaveCount(0);
+    await expect(material.locator('[data-shot="pl-00"],.ix-story-play')).toHaveCount(0);
+    expect(await dialog.locator('.public-story-body').evaluate(el=>el.scrollWidth<=el.clientWidth+2)).toBe(true);
+   }
+   await expect(dialog.locator('.unified-current-case')).toContainText(lang==='zh'?'保持观察':'Watch');
+   await dialog.locator('.unified-material').screenshot({path:info.outputPath('pl-review-'+lang+'.png')});
+   await dialog.getByRole('button',{name:lang==='zh'?'阅读当前完整研究':'Read current research',exact:true}).click();
+   await expect(dialog.locator('.ix-research-summary')).toHaveAttribute('aria-busy','false');
+   await expect(dialog.locator('.ix-research-summary')).not.toBeEmpty();
+   if(lang==='zh')await dialog.getByRole('button',{name:'切换到英文',exact:true}).click();
+  }
+ }else if(hasStory){
   const owner=id.startsWith('jp_')?'jp':id,module=await import('../src/markets/'+owner+'/story.js');const story=module.story||module.composeStory(id);
   for(const chapter of ['history','overview','system','mechanism','investment']){
    await dialog.locator(`.public-story-nav [data-chapter=${chapter}]`).click();
