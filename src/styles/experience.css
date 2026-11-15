@@ -1,3 +1,4 @@
+@import '../experience/decisionStrip.css';
 /* Shared editorial system for the three investment surfaces. All selectors are
    scoped so that specialist research tools retain their existing interactions. */
 body.ix-experience {
@@ -139,6 +140,16 @@ body.ix-experience {
 .ix-point.enter-now circle,.ix-point.build-position circle { fill:#315f4c; }
 .ix-point.wait circle,.ix-point.research circle,.ix-point.avoid circle { fill:#7b9091; }
 .ix-point:hover circle,.ix-point:focus circle,.ix-point.selected circle { stroke:#143e32; stroke-width:3; }
+.ix-point { --point-color:#7b9091; }
+.ix-point.enter-now,.ix-point.build-position,.ix-point.ix-qualified-clears { --point-color:#315f4c; }
+.ix-point.ix-qualified-price { --point-color:#9a792e; }
+.ix-point.ix-qualified-below { --point-color:#a65338; }
+.ix-matrix-svg .ix-point circle { fill:var(--point-color); stroke:var(--point-color); stroke-width:2; }
+.ix-matrix-svg .ix-point[data-meets-target=false] circle { fill:#fffefa; }
+.ix-matrix-svg .ix-point:focus circle,.ix-matrix-svg .ix-point:hover circle,.ix-matrix-svg .ix-point.selected circle { stroke-width:4; }
+.ix-label-leader { stroke:#98a497; stroke-width:1; pointer-events:none; }
+.ix-legend .clears::before { background:#315f4c; }.ix-legend .price::before { background:#9a792e; }.ix-legend .below::before { background:#a65338; }
+.ix-legend .meets::before { background:#315f4c; border:1px solid #315f4c; }.ix-legend .misses::before { background:transparent; border:1px solid #315f4c; }
 .ix-matrix-svg .ix-point-label { font-size:var(--fs-2xs); fill:#264c3d; font-weight:var(--fw-medium); paint-order:stroke; stroke:#fffefa; stroke-width:4; stroke-linejoin:round; }
 .ix-matrix-detail { background:#eff2e8; padding:22px; border-radius:var(--r-sm); display:flex; flex-direction:column; align-items:flex-start; }
 .ix-matrix-detail .ix-eyebrow { font-size:var(--fs-micro); margin-bottom:16px; }

@@ -1,6 +1,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { marketName, pct, returnPct, share, finite } from './model.js';
+import { meetsTarget, situationalQualifier, QUALIFIER_LABEL } from './traceability.js';
 
 function s(tag, attrs = {}, ...children) {
   const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -20,11 +21,6 @@ export function miniature(values) {
     text(0, 100, 'Y1'), text(375, 100, `Y${values.length}`));
 }
 
-/** Project total capex in USD, for sizing a market's dot. */
-export const capexUSD = row => {
-  const inv = row.investment;
-  return finite(inv?.capexTotal) && finite(inv?.fxToUSD) ? inv.capexTotal * inv.fxToUSD : null;
-};
 /* Actual returns, without a universal hurdle or a target-dependent position. */
 export const MATRIX_BASIS = {
   hold: { label: ['All-equity IRR (%)', '全股权IRR（%）'] },
@@ -38,11 +34,7 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
   const high = Math.max(20, Math.ceil(Math.max(...dots.map(r => value(r) * 100), 0) / 5) * 5);
   const x = v => 76 + v * 864;
   const y = v => 380 - (v * 100 - low) / (high - low) * 326;
-  /* Dot AREA is proportional to project total capex in USD, so a market twice
-     the cheque reads twice the ink. */
-  const radius = r => { const c = capexUSD(r); return finite(c) ? Math.max(4.5, 19 * Math.sqrt(c / 400e6)) : 6; };
-  const usdM = r => { const c = capexUSD(r); return finite(c) ? `USD ${Math.round(c / 1e6)}m capex` : 'capex n/a'; };
-  const svg = s('svg', { viewBox: '0 0 1000 480', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Dot area shows project total capex. Select a market to inspect its case.', '全球机会矩阵。圆点面积代表项目总资本开支。选择市场查看投资方案。']) });
+  const svg = s('svg', { viewBox: '0 0 1000 450', class: 'ix-matrix-svg', role: 'group', 'aria-label': L(['Global opportunity matrix. Filled dots meet the selected return target; hollow dots fall below it. Select a market with Enter or Space.', '全球机会矩阵。实心圆达到所选回报目标，空心圆未达到。按回车或空格选择市场。']) });
   for (let i = 0; i <= 4; i++) {
     svg.append(s('line', { x1: x(i / 4), y1: 54, x2: x(i / 4), y2: 380, class: 'ix-grid-line' }), text(x(i / 4), 403, `${i * 25}%`, { 'text-anchor': 'middle' }));
   }
@@ -50,29 +42,44 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
     svg.append(s('line', { x1: 76, y1: y(tick / 100), x2: 940, y2: y(tick / 100), class: 'ix-grid-line' }), text(62, y(tick / 100) + 4, `${tick}%`, { 'text-anchor': 'end' }));
   }
   svg.append(text(76, 23, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
-    text(320, 454, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
-  /* Largest first, so a small market is never hidden under a large one. */
-  [...dots].sort((a, b) => radius(b) - radius(a)).forEach(row => {
-    const point = s('g', { class: `ix-point ${row.call} ${row.id === selected ? 'selected' : ''}`, role: 'button', tabindex: 0,
-      'aria-label': `${L(marketName(row))}, ${returnPct(row.econ[basis])} IRR, ${share(row.econ.secured)}, ${usdM(row)}`, 'aria-pressed': String(row.id === selected) });
-    const cx = x(row.econ.secured), cy = y(value(row)), r = radius(row);
-    point.append(s('circle', { cx, cy, r }), s('title', {}, `${L(marketName(row))} · ${returnPct(row.econ[basis])} · ${share(row.econ.secured)} · ${usdM(row)}`));
-    point.append(text(cx > 820 ? cx - r - 6 : cx + r + 6, cy - r * .7 - 4 + (row.id==='jp_kyushu'?17:row.id==='jp_hokkaido'?-17:0), row.id.replace('jp_','JP-').toUpperCase(), { 'text-anchor': cx > 820 ? 'end' : 'start', class: 'ix-point-label' }));
+    text(508, 438, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), { 'text-anchor': 'middle', class: 'ix-chart-axis' }));
+  // Place labels around their true coordinates, avoiding labels AND other dots.
+  // Leader lines keep nearby cases legible without moving the underlying data.
+  const occupied = dots.map(row=>({left:x(row.econ.secured)-10,right:x(row.econ.secured)+10,top:y(value(row))-10,bottom:y(value(row))+10}));
+  const overlaps = a => occupied.some(b=>a.left<b.right+4&&a.right>b.left-4&&a.top<b.bottom+4&&a.bottom>b.top-4);
+  [...dots].sort((a,b)=>y(value(a))-y(value(b))||a.id.localeCompare(b.id)).forEach(row => {
+    const meets = meetsTarget(row,basis), qualifier = situationalQualifier(row);
+    const status = L(meets ? ['Meets target','达到目标'] : ['Below target','低于目标']);
+    const label = L(row.market.manifest.shortName);
+    const description = `${L(marketName(row))} · ${L(MATRIX_BASIS[basis].label)} ${returnPct(row.econ[basis])} · ${status} · ${share(row.econ.secured)}` + (qualifier ? ' · ' + L(QUALIFIER_LABEL[qualifier]) : '');
+    const point = s('g', { class: `ix-point ${row.call} ${qualifier?'ix-qualified-'+qualifier:''} ${row.id === selected ? 'selected' : ''}`, role: 'button', tabindex: 0,
+      'data-market':row.id, 'data-meets-target':String(meets), 'aria-label':description, 'aria-pressed': String(row.id === selected) });
+    const cx = x(row.econ.secured), cy = y(value(row)), r = 7;
+    point.append(s('circle', { cx, cy, r }), s('title', {}, description));
+    // Conservative character widths cover both English and Chinese at 13px.
+    const width = [...label].reduce((n,c)=>n+(/[^\x00-\x7f]/.test(c)?14:8),0);
+    let box;
+    const offsets=[-14,14,-38,38,-62,62,-86,86,-110,110,-134,134,-158,158,-182,182];
+    for(const dy of offsets){
+      for(const side of (cx>730?[-1,1]:[1,-1])){
+        const left=side===1?cx+15:cx-15-width,top=cy+dy-13;
+        const candidate={left,right:left+width,top,bottom:top+17};
+        if(left>=78&&candidate.right<=960&&top>=34&&candidate.bottom<=380&&!overlaps(candidate)){box=candidate;break;}
+      }
+      if(box)break;
+    }
+    if(!box)box={left:Math.max(78,Math.min(960-width,cx+15)),right:960,top:cy-27,bottom:cy-10};
+    occupied.push(box);
+    point.append(s('line',{x1:cx,y1:cy,x2:cx<box.left?box.left:box.right,y2:box.top+9,class:'ix-label-leader','aria-hidden':'true'}),
+      text(box.left,box.top+13,label,{'text-anchor':'start',class:'ix-point-label'}));
     const choose = () => {
       for (const p of svg.querySelectorAll('.ix-point')) { p.classList.remove('selected'); p.setAttribute('aria-pressed', 'false'); }
-      point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); svg.append(point); onSelect(row);
+      point.classList.add('selected'); point.setAttribute('aria-pressed', 'true'); onSelect(row);
       document.querySelectorAll('[data-market-row]').forEach(tr=>tr.classList.toggle('is-selected',tr.dataset.marketRow===row.id));
     };
     point.addEventListener('click', choose);
     point.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
     svg.append(point);
-  });
-  /* The selected market draws last, so a neighbour never covers its ring. */
-  const chosen = svg.querySelector('.ix-point.selected');
-  if (chosen) svg.append(chosen);
-  [25,100,400].forEach((m,i)=>{
-    const cx=590+i*125,r=19*Math.sqrt(m/400);
-    svg.append(s('circle',{cx,cy:448,r,fill:'none',stroke:'#68766c'}),text(cx+23,452,'$'+m+'m',{class:'ix-chart-axis'}));
   });
   return svg;
 }
@@ -102,7 +109,7 @@ export function cashFlowChart(data) {
   return svg;
 }
 
-export function revenueWaterfall(bridge) {
+export function revenueWaterfall(bridge, currency = 'USD') {
   const items = [
     { label: ['Fixed', '固定收入'], value: bridge.fixed },
     { label: ['Renewal', '续约收入'], value: bridge.renewal },
@@ -116,7 +123,7 @@ export function revenueWaterfall(bridge) {
   const bars = items.map(item => { const from = item.total ? 0 : cursor; const to = from + item.value; if (!item.total) cursor = to; return { ...item, from, to }; });
   const max = Math.max(1, ...bars.flatMap(b => [b.from, b.to])) * 1.18, min = Math.min(0, ...bars.flatMap(b => [b.from, b.to])) * 1.1;
   const y = n => 215 - (n - min) / (max - min) * 165;
-  const svg = s('svg', { viewBox: '0 0 800 275', class: 'ix-waterfall', role: 'img', 'aria-label': L(['First-year revenue to operating cash flow, USD thousands per MW', '首年收入至经营现金流，千美元每MW']) });
+  const svg = s('svg', { viewBox: '0 0 800 275', class: 'ix-waterfall', role: 'img', 'aria-label': L([`First-year nominal revenue to operating cash flow, ${currency} thousands per MW`, `首年名义收入至经营现金流，千${currency}每MW`]) });
   for (let i = 0; i <= 4; i++) {
     const val = min + (max - min) * i / 4;
     svg.append(s('line', { x1: 50, y1: y(val), x2: 775, y2: y(val), class: 'ix-grid-line' }), text(42, y(val) + 4, fmt(val / 1000), { 'text-anchor': 'end' }));

@@ -96,7 +96,7 @@ export function bankableInvestmentCase(row) {
   const income = [
     [['Revenue route','收入模式'], revenueRoute(row)],
     [['Model contract term','模型合同期限'], i.securedYears>0 ? [`${i.securedYears} years`,`${i.securedYears} 年`] : null],
-    [['Contracted income / MW · year one','首年合同收入／MW'], localMoney(b?.fixed)],
+    [['Contracted income / MW · year one, after model indexation','首年合同收入／MW · 含模型指数化'], localMoney(b?.fixed)],
     [['Trading & ancillary / MW · year one','首年交易及辅助服务／MW'], localMoney(b?.trading)],
     [['Uncontracted renewals / MW · year one','首年未锁定续约收入／MW'],b?.renewal>0?localMoney(b.renewal):null],
     [['Contract indexation assumption','合同指数化假设'], i.secured>0?contractIndexation:null],

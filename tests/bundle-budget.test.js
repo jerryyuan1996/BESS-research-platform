@@ -140,7 +140,9 @@ const BUDGET = {
   // +9.20, most of it their entry-chunk cost above.
   // PR68 investor review: baseline measured 254.88; worst investor first view
   // measured 262.41 after per-investor data splitting (including awaited data).
-  home: 265,
+  // Package 1: shared decision trace, evidence vocabulary and target components.
+  // Measured 276.42 KiB; keep the complete bilingual content (+15 KiB cap).
+  home: 280,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -481,7 +483,8 @@ const BUDGET = {
     // entries; the complete shared briefing measures 43.27 KiB. Allow 0.5 KiB
     // for the longer current source titles/links, retaining every item and all
     // existing entry, home-total and market isolation limits.
-    'briefing-data': 43.5,
+    // Package 1 retains Pass rows and the call's change triggers (44 KiB measured).
+    'briefing-data': 45,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

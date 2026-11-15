@@ -4,6 +4,7 @@ import { nominalAnnual, taxSchedule } from '../acquisition/cashflows.js';
 import { designRunOptions } from '../comparison/designFit.js';
 import { leveredReturn, targetTest } from '../acquisition/leverage.js';
 import { baseStrategy } from '../comparison/strategies.js';
+import { RATE_SNAPSHOT, REFERENCE_PREMIUM } from '../acquisition/parameters.js';
 
 export const INVESTMENT_LIFE = 20;
 export const INVESTMENT_STAGE = 'ready-to-build';
@@ -66,7 +67,11 @@ export function investmentMetrics(reference, { debtBreakdown = false } = {}){
   const fx=input.fxToUSD;
   const holdIRR=reference.holdReturn?.annualReturn??null,lev=reference.levered;
   const leveredIRR=lev?.annualReturn??null;
+  // Expose the components of the existing target; never recalculate that target.
+  const government=RATE_SNAPSHOT[input.currency]?.rate;
+  const investorStage=REFERENCE_PREMIUM[reference.investor]?.[input.stage];
   return {...fundingMetrics(reference),irr:reference.atPrice?.annualReturn??null,holdIRR,
+    targetBuildUp:{government,investorStage,merchant:input.targetReturn-government-investorStage},
     ...(debtBreakdown ? {strategyId:input.strategyId,contract:reference.assumptions.terms,
       inflationPath:input.inflationPath,capitalGrantPerMW:reference.assumptions.terms?.grantPerMW,
       revenueSupport:input.revenueSupport,capitalSupportPerMW:reference.assumptions.capitalSupportPerMW} : {}),

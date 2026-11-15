@@ -76,3 +76,78 @@ test('special value separates design, timing, costs and price and only the activ
   await expect(page.locator('.ix-opportunity-output')).toContainText('Sequential NPV bridge');
   await expect(page.locator('.ix-opportunity-output')).toContainText('Extra acquisition price');
 });
+
+test('traceable calls cover every comparison case and matrix targets follow the toggle',async({page})=>{
+  test.setTimeout(120000);
+  await page.goto('/returns');
+  const strips=page.locator('.ix-opportunity-set .ix-decision-strip');
+  for(const lens of ['strategic','foreignFirstTimer','developer','infraFund']){
+    await page.getByRole('combobox',{name:'Investor profile',exact:true}).selectOption(lens);
+    await expect(page.locator(`.ix-opportunity-set .ix-decision-strip[data-investor=${lens}]`)).toHaveCount(17);
+    const complete=await strips.evaluateAll(nodes=>nodes.every(n=>['call','target','debt','gate','evidence'].every(k=>n.querySelector(`[data-strip-element=${k}]`))&&!/NaN|undefined/.test(n.textContent)));
+    expect(complete).toBe(true);
+  }
+  await expect(strips).toHaveCount(17);
+  for(const strip of await strips.all()){
+    const keys=await strip.locator('[data-strip-element]').evaluateAll(nodes=>nodes.map(n=>n.dataset.stripElement));
+    expect(keys.filter(k=>k!=='event')).toEqual(['call','target','debt','gate','evidence']);
+    expect([5,6]).toContain(keys.length);
+    await expect(strip.locator('.ix-target-build-up')).toContainText('Government rate');
+    await expect(strip.locator('[data-strip-element=evidence]')).toContainText('What would change it');
+  }
+  await expect(page.locator('[data-market-row=de] .ix-call-qualifier')).toHaveText(' · below target');
+  await expect(page.locator('[data-market-row=ro] .ix-call-qualifier')).toHaveText(' · at a price');
+  await expect(page.locator('[data-market-row=fi] .ix-call-qualifier')).toHaveText(' · clears target');
+  await expect(page.locator('.ix-legend')).not.toContainText('capex');
+  await expect(page.locator('.ix-point[data-market=ca_on] .ix-point-label')).not.toHaveText('CA_ON');
+  for(const basis of ['All-equity','Levered']){
+    await page.getByRole('button',{name:basis,exact:true}).click();
+    const dots=await page.locator('.ix-point').evaluateAll(nodes=>nodes.map(n=>({met:n.dataset.meetsTarget,fill:getComputedStyle(n.querySelector('circle')).fill,r:n.querySelector('circle').getAttribute('r')})));
+    expect(new Set(dots.map(d=>d.r)).size).toBe(1);
+    expect(dots.filter(d=>d.met==='false').every(d=>d.fill==='rgb(255, 254, 250)')).toBe(true);
+    const point=page.locator('.ix-point[data-market=jp_tokyo]');
+    await point.focus();await page.keyboard.press('Enter');
+    await expect(point).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('.ix-matrix-detail h3')).toContainText('Tokyo');
+    const overlap=await page.locator('.ix-point-label').evaluateAll(nodes=>{
+      const boxes=nodes.map(n=>n.getBoundingClientRect());
+      return boxes.some((a,i)=>boxes.slice(i+1).some(b=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top));
+    });
+    expect(overlap).toBe(false);
+  }
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+  const chineseOverlap=await page.locator('.ix-point-label').evaluateAll(nodes=>{
+    const boxes=nodes.map(n=>n.getBoundingClientRect());
+    return boxes.some((a,i)=>boxes.slice(i+1).some(b=>a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top));
+  });
+  expect(chineseOverlap).toBe(false);
+});
+
+test('built decision strip and local-currency bridge work bilingually at 375px',async({page},info)=>{
+  test.setTimeout(120000);
+  await page.setViewportSize({width:375,height:844});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  for(const lang of ['en','zh']){
+    for(const route of ['/','/returns','/markets/italy','/markets/finland']){
+      await page.goto(route);
+      if(lang==='zh'&&await page.getByRole('button',{name:'Switch to Chinese',exact:true}).count())await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+      const strips=page.locator('.ix-decision-strip');await expect(strips.first()).toBeVisible();
+      if(route.startsWith('/markets/')){
+        const strip=page.locator('#decision .ix-decision-strip');await expect(strip).toHaveCount(1);
+        await expect(strip.locator('[data-strip-element]')).toHaveCount(6);
+        await expect(strip).toContainText(lang==='en'?'What would change it':'什么会改变判断');
+        await expect(page.locator('#revenue')).toContainText('EUR');
+        await expect(page.locator('#revenue')).not.toContainText('USD');
+        await expect(page.locator('#downside .ix-downside-table')).not.toContainText('USD');
+        const order=await page.locator('#decision').evaluate(n=>Boolean(n.compareDocumentPosition(document.querySelector('.public-overview'))&Node.DOCUMENT_POSITION_PRECEDING));
+        expect(order).toBe(true);
+        await strip.scrollIntoViewIfNeeded();
+        await page.locator('#decision').screenshot({path:info.outputPath(`${route.split('/').pop()}-${lang}-decision-375.png`)});
+      }else{
+        await page.locator(route==='/'?'.ix-featured':'.ix-opportunity-set').screenshot({path:info.outputPath(`${route==='/'?'brief':'comparison'}-${lang}-375.png`)});
+      }
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);
+    }
+  }
+  expect(errors).toEqual([]);
+});

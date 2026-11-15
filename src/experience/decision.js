@@ -4,6 +4,8 @@ import { money, pct, returnPct, share, finite } from './model.js';
 import { link, metric } from './chrome.js';
 import { STAGE_LABEL } from '../acquisition/parameters.js';
 import { gateLabel } from './labels.js';
+import { commitmentGates } from './traceability.js';
+import { decisionStrip } from './decisionStrip.js';
 
 export const margin = (row, basis = 'hold') => {
   const target = basis === 'levered' ? row.econ.test?.leveredTarget : row.econ.test?.target;
@@ -45,10 +47,7 @@ export function basisNote(row) {
 export function decisionReasons(row, compact = false) {
   const d = row.decision || {}, box = h('div', { class:'ix-decision-reasons' });
   if (d.reason) box.append(h('p', {}, h('strong', {}, L(['Why this priority: ', '优先级依据：'])), L(d.reason)));
-  const gates = (row.id === 'it' && row.play?.route === 'cap' ? [
-    ['Verify the earlier capacity award, credited MW, price and transfer rights', '核验早先容量合同、计入 MW、价格与转让权利'],
-    ['Check zonal grid access and trading assumptions', '核验分区并网条件与交易收入假设'],
-  ] : (row.market.comparison.refinement?.investmentGate || [])).slice(0, compact ? 1 : 3);
+  const gates = commitmentGates(row).slice(0, compact ? 1 : 3);
   if (gates.length) box.append(h('p', {}, h('strong', {}, L(['Before committing: ', '投入前必须核查：'])),
     gates.map(g => L(Array.isArray(g) ? g : gateLabel(g))).join(' · ')));
   if (!compact && d.counterpoint) box.append(h('p', {}, h('strong', {}, L(['What limits conviction: ', '限制判断的因素：'])), L(d.counterpoint)));
@@ -63,6 +62,7 @@ export function decisionPanel(row, presentation = null) {
   const pilot = Boolean(presentation);
   const panel = h('section', { class:'ix-panel ix-decision-panel' + (pilot ? ' ic-decision-panel' : ''), id:'decision' },
     h('h2', {}, L(['The decision at this price and stage', '当前价格与阶段下的投资判断'])), pilot ? presentation.identity(row) : basisNote(row));
+  panel.append(decisionStrip(row));
   if (i && pilot) panel.append(presentation.metrics(row, marginText(row)));
   else if (i) panel.append(h('div', { class:'ix-decision-metrics' },
     metric(['Base all-equity IRR','基准全股权IRR'], returnPct(i.holdIRR), marginText(row)),

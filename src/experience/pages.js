@@ -18,11 +18,13 @@ import { labField } from '../comparison/ranges.js';
 import { homeState } from '../home/state.js';
 import { navigate, onStoryPlace } from '../app/router.js';
 import { storyFor } from './story/registry.js';
+import { decisionStrip, callTag } from './decisionStrip.js';
+import { canPromote } from './traceability.js';
 
 const lens = () => LENSES[app.lens] ? app.lens : 'infraFund';
 const button = (label, onclick, cls = '') => h('button', { type: 'button', class: `ix-button ${cls}`, onclick }, L(label));
 const name = row => L(marketName(row));
-const tag = row => h('span', { class: `ix-tag ${row.call}` }, L(CALLS[row.call] || CALLS.research));
+const tag = callTag;
 /* Returns, 29 Oct 2026: the all-equity hold is the headline. The levered equity
    return, the debt ratio and the 5-year-sale test sit beside it, and the target
    test is two-layered: all-equity against the target, levered against target + 2. */
@@ -142,7 +144,7 @@ function renderHome(container, rows) {
       h('div', { class: 'ix-feature-market' }, h('span', { class: 'ix-mono' }, (lead.investment?.currency||lead.market.manifest.currency) + ' / ' + (lead.play?.hours || lead.market.comparison.archetype.durationHours) + 'H'),
         h('h2', {}, name(lead)), h('p', {}, L(routeName(lead)))),
       h('div', { class: 'ix-feature-metrics' }, metric(HOLD_LABEL, returnPct(lead.econ.hold)), metric(LEVERED_LABEL, returnPct(lead.econ.levered), debtText(lead.investment)), metric(['Modelled fixed income', '模型固定收入占比'], share(lead.econ.secured))),
-      basisNote(lead),
+      decisionStrip(lead), basisNote(lead),
       h('p',{class:'ix-feature-risk'},L(['Declared downside: ','既定下行：']),returnPct(lead.investment?.bearHoldIRR)),
       projectFacts(lead.investment),
       lead.investment ? miniature(lead.investment.operatingUSD) : null,
@@ -152,13 +154,13 @@ function renderHome(container, rows) {
     h('span', {}, L(['AN INVESTOR’S PERSPECTIVE', '从投资者的角度出发'])),
     ...[['Revenue quality', '收益质量'], ['Route to ownership', '投资进入路径'], ['Capital discipline', '资本纪律']].map(x => h('span', {}, '↗ ', L(x)))));
 
-  const picks = rows.filter(r => r.play).slice(0, 3);
+  const picks = rows.filter(r => r.play && canPromote(r)).slice(0, 3);
   content.append(h('section', { class: 'ix-section' }, h('div', { class: 'ix-heading-row' }, sectionTitle(['THE CAPITAL AGENDA', '本期投资重点'], ['Three places to start.', '从三个重点机会开始。']), link('/returns', ['View the full opportunity set ↗', '查看全部机会 ↗'], 'ix-text-link')),
     h('div', { class: 'ix-picks' }, picks.map((row, i) => h('article', { class: 'ix-pick', ...countryAttrs(row.id) },
       h('div', { class: 'ix-pick-top' }, h('span', { class: 'ix-number' }, `0${i + 1}`), tag(row)),
       h('h3', {}, name(row)), h('p', {}, L(routeName(row))),
       h('div', { class: 'ix-pick-value' }, returnPct(row.econ.hold), h('span', {}, L(HOLD_LABEL), ' · ', L(LEVERED_LABEL), ' ', returnPct(row.econ.levered))),
-      decisionReasons(row,true),
+      decisionStrip(row),
       h('p',{class:'ix-margin'},L(marginText(row))),
       projectFacts(row.investment),
       link(caseUrl(row), ['Read the market case ↗', '进入市场详情 ↗'], 'ix-text-link'))))));

@@ -132,7 +132,7 @@ export function investorHome(briefing,{marketLink,marketName,onProject}={}){
   root.append(h('div',{class:'ip-compare-guide'},L(['Select up to three opportunities to compare their terms.','可勾选最多三项机会，直接对比条件。']),count),comparison);
   for(const investor of Object.keys(ARCHETYPES)){
     if(filter!=='all'&&filter!==investor)continue;
-    const rows=all[investor],acting=rows.filter(r=>r.decision!=='watch');
+    const rows=all[investor],acting=rows.filter(r=>!['watch','pass'].includes(r.decision));
     const featured=acting.slice(0,2),rest=rows.filter(r=>!featured.includes(r));
     const group=h('section',{class:'ip-investor','data-investor':investor},
       h('header',{},h('h2',{},L(ARCHETYPES[investor].label)),h('p',{},L(INVESTOR_STRATEGY[investor]))));
@@ -141,7 +141,7 @@ export function investorHome(briefing,{marketLink,marketName,onProject}={}){
         if(e.target.checked&&selected.size<3)selected.add(key);else selected.delete(key);drawComparison();}});
       checks.push({input,key});
       const context=L(STAGE_LABEL[r.stage])+` · ${r.hours}h`;
-      return h('article',{class:'ip-opportunity acq-row','data-play':r.playId,'data-stage':r.stage},
+      return h('article',{class:'ip-opportunity acq-row'+(r.call==='avoid'?' is-pass':''),'data-play':r.playId,'data-stage':r.stage},
         h('div',{class:'ip-choice'},h('span',{class:'ip-decision ip-'+r.decision},L(DECISION_LABEL[r.decision])),
           h('h3',{},marketLink(r)),h('p',{class:'ip-asset'},context),r.where?h('p',{class:'acq-basis'},L(r.where)):null,
           h('p',{class:'ip-buy'},L(r.stage==='operating'?['Buy transferable income and a working asset.','寻找合同可承接、设备状态可核实的资产。']:r.stage==='greenfield'?['Secure land and grid access; keep the build budget within reach.','先锁定土地与并网路径，控制后续建设投入。']:['Buy with permits, grid access and remaining costs established.','落实许可、并网和剩余造价后谈收购。'])),

@@ -5,6 +5,7 @@ import { runCase, runBaseCase } from '../comparison/engine.js';
 import { runScenarioSet } from '../comparison/refinement.js';
 import { sizeProjectDebt, riskClassFor } from '../economics/projectDebt.js';
 import { OPPORTUNITY_SUMMARY } from '../opportunities/summaryData.js';
+import { passLast, canPromote } from './traceability.js';
 
 export const CALLS = {
   reference: ['Reference alternative', '备选测算'],
@@ -49,18 +50,19 @@ export function opportunities(lens = 'infraFund') {
   }
   return rows.map((row, index) => {
     const id=row.market.manifest.id,investment=OPPORTUNITY_SUMMARY[lens]?.markets[id];
-    return {...row,rank:index+1,id,investment,decision:OPPORTUNITY_SUMMARY[lens]?.decisions?.[id],legacyEcon:row.econ,
+    return {...row,rank:index+1,id,investor:lens,investment,decision:OPPORTUNITY_SUMMARY[lens]?.decisions?.[id],legacyEcon:row.econ,
       // Headline: the all-equity hold return. The lower-of-hold-and-sale and the
       // levered equity return sit beside it (analyst, 29 Oct 2026).
       econ:{...row.econ,hold:investment?.holdIRR??null,lowerOf:investment?.irr??null,
         levered:investment?.leveredIRR??null,test:investment?.test??null,
         secured:investment?.secured??row.econ.secured}};
-  });
+  }).sort(passLast);
 }
 
 export function featuredOpportunity(rows, lens){
-  return (lens==='foreignFirstTimer'?rows.find(r=>r.id==='fi'):null)||
-    rows.find(r=>r.econ.priced&&r.play)||rows[0];
+  const eligible=rows.filter(canPromote);
+  return (lens==='foreignFirstTimer'?eligible.find(r=>r.id==='fi'):null)||
+    eligible.find(r=>r.econ.priced&&r.play)||eligible[0];
 }
 
 export function caseFor(row) {
