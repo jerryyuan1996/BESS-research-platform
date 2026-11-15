@@ -1,3 +1,4 @@
+import { resourcePage } from '../experience/chrome.js';
 /* ---------------------------------------------------------------------------
    /scout — the scouting tier: a card for each market with no dashboard.
 
@@ -26,11 +27,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
-import { renderHeader } from '../components/header.js';
-import { marketNav } from '../components/navigation.js';
-import { renderFooter } from '../components/footer.js';
-import { spacedCard } from '../components/card.js';
-import { markets } from '../markets/registry.js';
+import { sectionCard } from '../components/card.js';
 import {
   ARCHETYPE_IDS, PILLAR_LABEL, PILLAR_QUESTION, VERDICT_LABEL, VERDICT_MEANING, ROUTE_LABEL, TREND_LABEL,
 } from '../governance/investability.js';
@@ -156,16 +153,15 @@ function card(row){
 export function renderScoutPage(app){
   const page = buildScoutPage(SCOUT_DATA, { on: today() });
 
-  app.append(renderHeader({
-    title: ['Scouting — markets with no dashboard', '观察名单 — 尚无看板的市场'],
+  const main = resourcePage(app, {
+    page: 'scout',
     sub: [
       `${page.total} markets in three regions. A card is a first screen, not an underwriting case.`,
       `三个区域共${page.total}个市场。卡片只是初筛，不是承销结论。`,
     ],
-  }));
-  app.append(marketNav(markets, 'scout'));
+  });
 
-  const intro = spacedCard(['What a scouting card is', '观察卡片是什么'], []);
+  const intro = sectionCard(['What a scouting card is', '观察卡片是什么'], []);
   intro.append(h('div', { class: 'cap' }, L([
     'Scouting proposals are drafted by an AI agent from public pages the analyst listed, then reviewed and applied only by the analyst. Automatic analysis and publication are disabled. Every grade and verdict rests on a quotation that was found, word for word, in a page fetched in that run. No return is modelled: a card grades how a market can be entered, how durable the case is and how capital behaves, and says nothing about what an asset earns.',
     '观察卡片提案由AI智能体依据分析师列出的公开页面起草，仅由分析师审核并应用。自动分析与发布均已关闭。每一项评级和结论都以当次运行所抓取页面中逐字找到的引文为依据。本层不对回报建模：卡片只评估市场如何进入、投资逻辑是否持久以及资本条件如何，不涉及资产能赚多少。',
@@ -175,15 +171,15 @@ export function renderScoutPage(app){
     L([`${page.writtenCount} of ${page.total} cards written. `, `${page.total}张卡片中已写成${page.writtenCount}张。`]),
     L([`Consecutive clean passes by the agent: ${page.streak} of ${page.streakNeeded}. `, `智能体连续无拒绝的运行次数：${page.streak}/${page.streakNeeded}。`]),
     L([`A card holds at most ${MAX_SCOUT_FACTS} facts.`, `每张卡片最多${MAX_SCOUT_FACTS}条事实。`])));
-  app.append(intro);
+  main.append(intro);
 
   for (const { region, rows } of page.regions){
-    const block = spacedCard(region.label, []);
+    const block = sectionCard(region.label, []);
     block.append(h('div', { class: 'sc-region' }, rows.map(card)));
-    app.append(block);
+    main.append(block);
   }
-  app.append(renderFooter([[
+  main.append(h('p', { class: 'cap ix-resource-note' }, L([
     'A card is a file in view/scout/ in the repository, and every change to one is a line in view/changelog.jsonl with the quotation it rests on.',
     '每张卡片是仓库 view/scout/ 中的一个文件；对卡片的每次变更都是 view/changelog.jsonl 中的一行，并附其所依据的引文。',
-  ]]));
+  ])));
 }

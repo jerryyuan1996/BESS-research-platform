@@ -1,3 +1,6 @@
+const logicReaders = { it: () => import('./logicChapter.js') };
+const loadMarketLogic = () => import('./marketLogic.js');
+const loadLogicChapter = id => (logicReaders[id] || loadMarketLogic)();
 /* Public reading shell. Reuses the native dialog, story navigation styles and
    whitelisted history-place API. Investment figures enter through page-owned
    render callbacks, keeping their selected-case and reference-case scopes. */
@@ -96,7 +99,7 @@ export function open(ctx){
     body.replaceChildren(h('p',{class:'public-loading'},L(['Loading this chapter…','正在加载本章…'])));
     body.setAttribute('aria-busy','true');
     try{
-      const [content,renderer,researchHistory,logicSources,integration]=await Promise.all([data||loadPublicContent(ctx.id),chapter==='overview'?import('./marketOverview.js'):chapter==='investment'?import('./integration.js'):['system','mechanism'].includes(chapter)?(ctx.id==='it'?import('./italyLogic.js'):import('./marketLogic.js')):import('./chapter.js'),
+      const [content,renderer,researchHistory,logicSources,integration]=await Promise.all([data||loadPublicContent(ctx.id),chapter==='overview'?import('./marketOverview.js'):chapter==='investment'?import('./integration.js'):['system','mechanism'].includes(chapter)?loadLogicChapter(ctx.id):import('./chapter.js'),
         chapter==='history'||summary.historyOnly&&chapter==='research'?import('./history.js').then(module=>module.loadResearchHistory(ctx.id)):null,
         chapter==='research'?import('./logicSources.js').then(m=>m.LOGIC_SOURCES[ctx.id]):null,import('./integration.js')]);
       if(closed||run!==version)return;

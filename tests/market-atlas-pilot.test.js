@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {atlasCountries,installedBatteries,mixEntries} from '../src/experience/marketAtlasModel.js';
 import {marketIds} from '../src/markets/registry.js';
 import {publicChapters,resolvePublicChapter} from '../src/experience/story/public/chapters.js';
-import {deliveryState,REVENUE_ROUTES} from '../src/experience/story/public/italyLogicContent.js';
+import {deliveryState,REVENUE_ROUTES} from '../src/experience/story/public/logicChapterContent.js';
 import italy from '../src/experience/story/public/content/it.js';
 
 test('atlas counts each country once and excludes Saudi even through an old filter',()=>{

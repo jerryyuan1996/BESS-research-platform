@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {SYSTEMS,ROUTES} from '../src/experience/story/public/marketLogicContent.js';
-import {SYSTEM_STEPS,REVENUE_ROUTES} from '../src/experience/story/public/italyLogicContent.js';
+import {SYSTEM_STEPS,REVENUE_ROUTES} from '../src/experience/story/public/logicChapterContent.js';
 import {historySlugs} from './helpers/research-history.js';
 
 test.beforeEach(async({page})=>{await page.route(/^https:\/\//,r=>r.abort());});

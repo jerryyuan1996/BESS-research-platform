@@ -1,12 +1,8 @@
+import { resourcePage } from '../experience/chrome.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
-import { requestRender } from '../app/state.js';
 import { navigate } from '../app/router.js';
-import { renderHeader } from '../components/header.js';
-import { marketNav } from '../components/navigation.js';
-import { renderFooter } from '../components/footer.js';
-import { markets, comparableMarkets } from '../markets/registry.js';
-import { EXIT_YEARS } from '../comparison/assumptions.js';
+import { comparableMarkets } from '../markets/registry.js';
 import { homeState } from './state.js';
 import { renderInvestmentLab } from './investmentLab.js';
 
@@ -22,21 +18,6 @@ const T = {
   ],
 };
 
-function exitYearSelect(){
-  const select = h('select', {
-    class:'btn',
-    onchange:event => {
-      homeState.exitYear = +event.target.value;
-      requestRender();
-    },
-  }, EXIT_YEARS.map(year => {
-    const option = h('option', { value:year }, L(['Exit year: ', '退出年份：']) + year);
-    if (year === homeState.exitYear) option.selected = true;
-    return option;
-  }));
-  return select;
-}
-
 function backButton(){
   return h('a', {
     class:'btn',
@@ -51,17 +32,11 @@ function backButton(){
 
 export function renderInvestmentLabPage(app){
   const list = comparableMarkets();
-  app.append(renderHeader({
-    hero:true,
-    kicker:L(['Scenario workspace', '情景工作区']),
-    title:T.title,
-    sub:T.sub,
-    controls:[backButton()],
-  }));
-  app.append(marketNav(markets, 'lab'));
-
-  const main = h('main', { class:'investment-lab-page' });
+  const main = resourcePage(app, {
+    page: 'investmentLab', className: 'investment-lab-page',
+    title: T.title, sub: T.sub, kicker: ['Scenario workspace', '情景工作区'],
+  });
+  main.append(backButton());
   renderInvestmentLab(main, list, homeState.exitYear);
-  app.append(main);
-  app.append(renderFooter([T.footer]));
+  main.append(h('p', { class: 'cap ix-resource-note' }, L(T.footer)));
 }

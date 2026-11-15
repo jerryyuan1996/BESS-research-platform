@@ -32,7 +32,7 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { requestRender } from '../app/state.js';
-import { spacedCard, card } from '../components/card.js';
+import { sectionCard, card } from '../components/card.js';
 import { badge } from '../components/badge.js';
 import { chip } from '../components/chip.js';
 import { why } from '../components/decisionLogic.js';
@@ -561,7 +561,7 @@ export function renderInvestmentLab(main, marketList, exitYear){
   const market = withOverrides(seedMarket, overrides);
   const conventions = conventionsWith(homeState.labDebt);
 
-  const c = spacedCard(T.title, [badge('calc'), badge('illus')]);
+  const c = sectionCard(T.title, [badge('calc'), badge('illus')]);
   c.id = 'lab';
   c.classList.add('lab-card');
   c.append(h('div', { class: 'note' }, L(T.intro)));

@@ -15,10 +15,10 @@
    have a pathway. A market without one renders no section rather than an empty
    one, and `hasBuildPathway` is how a renderer asks.
    --------------------------------------------------------------------------- */
-import { WA_BUILD_PATHWAY } from './wa/buildPathway.js';
-import { FI_BUILD_PATHWAY } from './fi/buildPathway.js';
-import { GB_BUILD_PATHWAY } from './gb/buildPathway.js';
-import { RO_BUILD_PATHWAY } from './ro/buildPathway.js';
+import { WA_BUILD_PATHWAY } from '../../src/markets/wa/buildPathway.js';
+import { FI_BUILD_PATHWAY } from '../../src/markets/fi/buildPathway.js';
+import { GB_BUILD_PATHWAY } from '../../src/markets/gb/buildPathway.js';
+import { RO_BUILD_PATHWAY } from '../../src/markets/ro/buildPathway.js';
 
 const PATHWAYS = [
   WA_BUILD_PATHWAY,

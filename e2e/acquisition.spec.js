@@ -71,7 +71,7 @@ test('a real asking price works with partial inputs and updates expected returns
   await panel.locator('.acq-price').click();
   await expect(page.locator('.acq-popover:popover-open')).toContainText('25.0%');
   await page.keyboard.press('Escape');
-  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await expect(panel.locator('.acq-at-price')).toContainText('按你的报价测算的年化回报');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
   await panel.locator('.acq-lab-output').screenshot({path:testInfo.outputPath('acquisition-asking-price-zh.png')});
@@ -110,7 +110,7 @@ test('a completed operating case pairs price and equity target, explains debt an
   await expect(page.locator('.acq-popover:popover-open')).toHaveCount(0);
   const downloadEvent=page.waitForEvent('download');await panel.getByRole('button',{name:'Save this calculation',exact:true}).click();
   const download=await downloadEvent;expect(download.suggestedFilename()).toContain('-operating-acquisition.json');
-  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await expect(panel.locator('.acq-lab-output .acq-basis').first()).toContainText('股东回报');
   await expect(panel.getByRole('button',{name:/目标年化收益率/})).toBeVisible();
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
@@ -167,7 +167,7 @@ test('income, lifetime and return inputs expose workable contract and connection
   const before=await panel.locator('.acq-at-price>p').innerText();
   await panel.getByRole('combobox',{name:'Return ownership route',exact:true}).selectOption('sale');
   await expect(panel.locator('.acq-at-price>p')).not.toHaveText(before);
-  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
   await panel.locator('.acq-workable>summary').click();
   await expect(panel.locator('.acq-workable-content')).toContainText('固定收入合同');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);

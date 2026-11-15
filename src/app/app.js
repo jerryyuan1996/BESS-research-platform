@@ -14,153 +14,39 @@ import { setRenderer } from './state.js';
 import { applyTheme } from './theme.js';
 import { currentRoute, onRouteChange, startRouter, navigate } from './router.js';
 import { markets, bySlug } from '../markets/registry.js';
-import { renderHome } from '../home/homePage.js';
 import { renderMarketPage, invalidateMarketRender } from '../markets/marketPage.js';
 import { renderDataStatus } from '../live/dataStatusPage.js';
-import { marketNav } from '../components/navigation.js';
+import { resourcePage, RESOURCE_TITLES } from '../experience/chrome.js';
 import { validateRegistry } from '../utils/validation.js';
+import { navigationFocus } from './navigationFocus.js';
 
 function renderNotFound(app, route){
-  app.append(h('div', { class: 'hdr' }, h('div', {},
-    h('h1', {}, L(['Page not found', '页面不存在'])),
-    h('div', { class: 'sub' }, route.path))));
-  app.append(marketNav(markets, 'home'));
-  app.append(h('div', { class: 'note' },
-    L(['That route does not exist. Use the navigation above, or ', '该路由不存在。请使用上方导航，或']),
-    h('a', { href: '/', onclick: (e) => { e.preventDefault(); navigate('/'); } },
-      L(['return to the briefing', '返回简报'])), '.'));
+  const main = resourcePage(app, { title: ['Page not found', '页面不存在'], sub: route.path });
+  main.append(h('p', {}, L(['That route does not exist. ', '该路由不存在。']),
+    h('a', { href: '/', onclick: event => { event.preventDefault(); navigate('/'); } },
+      L(['Return to the investment brief', '返回投资简报']))));
 }
 
-/* The Returns page's module, once fetched, so a re-render draws at once. */
-let returnsPage = null;
-
-let labPage = null;
-function renderLab(app){
-  if(labPage)return void labPage.renderInvestmentLabPage(app);
-  const holder=h('div',{},h('p',{class:'note'},L(['Loading the Investment Lab…','正在加载投资测算…'])));
-  app.append(holder);
-  import('../home/investmentLabPage.js').then(module=>{
-    labPage=module;
-    if(!holder.isConnected)return;
-    app.innerHTML='';
-    module.renderInvestmentLabPage(app);
-  }).catch(error=>{
-    console.error('[investment-lab] page failed to load:',error);
-    if(!holder.isConnected)return;
-    app.innerHTML='';
-    renderNotFound(app,{path:'/investment-lab'});
-  });
-}
-
-function renderReturns(app){
-  if (returnsPage) return void returnsPage.renderReturnsPage(app);
-  const holder = h('div', {},
-    h('div', { class: 'hdr' }, h('div', {},
-      h('h1', {}, L(['Returns across markets', '跨市场回报对比'])),
-      h('div', { class: 'sub' }, L(['Loading the returns view…', '正在加载回报对比…'])))),
-    marketNav(markets, 'returns'),
-    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
-      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
-  app.append(holder);
-  import('../home/returnsPage.js').then(m => {
-    returnsPage = m;
-    /* Stale if the reader navigated on: the holder is then detached. */
+const resourceLoaders = {
+  changes: () => import('../changes/changesPage.js'),
+  scout: () => import('../scout/scoutPage.js'),
+  desk: () => import('../desk/deskPage.js'),
+  investmentLab: () => import('../home/investmentLabPage.js'),
+};
+const resourceRenderers = { changes: 'renderChangesPage', scout: 'renderScoutPage',
+  desk: 'renderDeskPage', investmentLab: 'renderInvestmentLabPage' };
+const resourceModules = new Map();
+function renderResource(app, route) {
+  const draw = module => module[resourceRenderers[route.name]](app, { market: route.market, author: route.author });
+  if (resourceModules.has(route.name)) return draw(resourceModules.get(route.name));
+  const holder = resourcePage(app, { page: route.name, busy: true });
+  holder.append(h('p', { role: 'status' }, L(['Loading…', '正在加载…'])));
+  resourceLoaders[route.name]().then(module => {
+    resourceModules.set(route.name, module);
     if (!holder.isConnected) return;
-    app.innerHTML = '';
-    m.renderReturnsPage(app);
-  }).catch(err => {
-    console.error('[returns] page failed to load:', err);
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    renderNotFound(app, { path: '/returns' });
-  });
-}
-
-/* The changelog page's module, once fetched. It brings the whole changelog
-   with it, which is why it is not in the entry chunk. */
-let changesPage = null;
-
-function renderChanges(app, route){
-  const filter = { market: route.market, author: route.author };
-  if (changesPage) return void changesPage.renderChangesPage(app, filter);
-  const holder = h('div', {},
-    h('div', { class: 'hdr' }, h('div', {},
-      h('h1', {}, L(['What changed, and who changed it', '改了什么，由谁改的'])),
-      h('div', { class: 'sub' }, L(['Loading the changelog…', '正在加载变更记录…'])))),
-    marketNav(markets, 'changes'),
-    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
-      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
-  app.append(holder);
-  import('../changes/changesPage.js').then(m => {
-    changesPage = m;
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    /* The route may have changed its filters while the chunk was in flight. */
-    const now = currentRoute();
-    m.renderChangesPage(app, now.name === 'changes' ? { market: now.market, author: now.author } : filter);
-  }).catch(err => {
-    console.error('[changes] page failed to load:', err);
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    renderNotFound(app, { path: '/changes' });
-  });
-}
-
-/* The scouting page's module, once fetched. It brings the scout cards with
-   it: the home page carries each card's four calls and no more. */
-let scoutPage = null;
-
-function renderScout(app){
-  if (scoutPage) return void scoutPage.renderScoutPage(app);
-  const holder = h('div', {},
-    h('div', { class: 'hdr' }, h('div', {},
-      h('h1', {}, L(['Scouting — markets with no dashboard', '观察名单 — 尚无看板的市场'])),
-      h('div', { class: 'sub' }, L(['Loading the scouting cards…', '正在加载观察卡片…'])))),
-    marketNav(markets, 'scout'),
-    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
-      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
-  app.append(holder);
-  import('../scout/scoutPage.js').then(m => {
-    scoutPage = m;
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    m.renderScoutPage(app);
-    /* /scout#se opens on that card, once there is a card to open on. */
-    const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
-    if (target) target.scrollIntoView();
-  }).catch(err => {
-    console.error('[scout] page failed to load:', err);
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    renderNotFound(app, { path: '/scout' });
-  });
-}
-
-/* The analyst desk's module, once fetched. It brings the whole briefing with
-   it, queue and all; the home page carries the briefing less the queue. */
-let deskPage = null;
-
-function renderDesk(app){
-  if (deskPage) return void deskPage.renderDeskPage(app);
-  const holder = h('div', {},
-    h('div', { class: 'hdr' }, h('div', {},
-      h('h1', {}, L(['The analyst desk', '分析台'])),
-      h('div', { class: 'sub' }, L(['Loading the queue…', '正在加载待办…'])))),
-    marketNav(markets, 'desk'),
-    h('div', { class: 'dash-skeleton', 'aria-busy': 'true', 'aria-label': L(['Loading', '加载中']) },
-      h('div', { class: 'sk-bar' }), h('div', { class: 'sk-bar' })));
-  app.append(holder);
-  import('../desk/deskPage.js').then(m => {
-    deskPage = m;
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    m.renderDeskPage(app);
-  }).catch(err => {
-    console.error('[desk] page failed to load:', err);
-    if (!holder.isConnected) return;
-    app.innerHTML = '';
-    renderNotFound(app, { path: '/desk' });
-  });
+    app.replaceChildren();
+    draw(module);
+  }).catch(error => pageLoadFailure(holder, error, route.name));
 }
 
 /* Guards a stale dossier render, exactly as marketPage.js guards a stale market
@@ -170,14 +56,15 @@ let dossierToken = 0;
 function pageLoadFailure(holder,error,page){
   if(!holder.isConnected)return;
   console.error(`[${page}]`,error);
-  holder.replaceChildren(h('p',{},L(['The page could not be loaded.','页面未能加载。'])),
+  holder.removeAttribute('aria-busy');
+  holder.replaceChildren(h('h1',{tabindex:-1},L(['The page could not be loaded.','页面未能加载。'])),
     h('button',{class:'ix-button',onclick:()=>window.location.reload()},L(['Reload','刷新'])));
 }
 
 // Shared lazy-page boundary: discard stale renders and offer one reload path.
 function loadExperiencePage(app,load,draw,page){
   const token=experienceToken;
-  const holder=h('div',{class:'ix-container','aria-busy':'true',style:'padding-top:60px'},h('p',{},L(['Loading','加载中'])));
+  const holder=h('main',{id:'ix-main',class:'ix-container','aria-busy':'true',style:'padding-top:60px'},h('p',{},L(['Loading','加载中'])));
   app.append(holder);
   load().then(module=>{
     if(token!==experienceToken||!holder.isConnected)return;
@@ -201,6 +88,7 @@ function renderPolicy(app,route,market=null){
 
 /** Renders the current route into #app. This is the app's only render entry point. */
 export function render(){
+  ++dossierToken;
   invalidateMarketRender();
   const route = currentRoute();
   if (route.name === 'news') {
@@ -214,6 +102,11 @@ export function render(){
     route.tab = null;
   }
   document.documentElement.lang = htmlLang();
+  const title = RESOURCE_TITLES[route.name] || (route.name === 'market' ? bySlug(route.slug)?.manifest.name : {
+    home: ['Investment brief', '投资简报'], returns: ['Global opportunities', '全球投资机会'],
+    policy: ['Policy & industry intelligence', '政策与行业情报'],
+  }[route.name]) || ['Page not found', '页面不存在'];
+  document.title = `${L(['Global BESS', '全球储能'])} | ${L(title)}`;
 
   const app = $id('app');
   app.innerHTML = '';
@@ -257,7 +150,7 @@ export function render(){
      published build is a typo or a stale link. Failure is handled the same way
      as a market chunk: a reload, not a white screen. */
   if (route.name === 'dossier'){
-    const token = ++dossierToken;
+    const token = dossierToken;
     import('../projects/dossier/page.js')
       .then(m => { if (token === dossierToken) m.renderDossierPage(app, route.slug, route.tab); })
       .catch(err => {
@@ -268,16 +161,7 @@ export function render(){
       });
     return;
   }
-  if (route.name === 'home') return void renderHome(app);
-  /* The old home page. Fetched on demand now that the home page no longer
-     shows it: the league table, the globe and the engine's charts are a large
-     share of what the entry chunk used to carry, and a reader who came for a
-     verdict or a market never needs them. */
-  if (route.name === 'returns') return void renderReturns(app);
-  if (route.name === 'changes') return void renderChanges(app, route);
-  if (route.name === 'scout') return void renderScout(app);
-  if (route.name === 'desk') return void renderDesk(app);
-  if (route.name === 'investmentLab') return void renderLab(app);
+  if (resourceLoaders[route.name]) return void renderResource(app, route);
   if (route.name === 'data') return void renderDataStatus(app);
   renderNotFound(app, route);
 }
@@ -294,7 +178,11 @@ export function boot(){
   }
 
   applyTheme();
-  setRenderer(render);
-  onRouteChange(render);
+  const focus = navigationFocus($id('app'));
+  setRenderer(options => {
+    if (options?.focus === 'language') focus.begin('language');
+    render();
+  });
+  onRouteChange(() => { focus.begin(); render(); });
   startRouter();          // fires an initial notify() → first render
 }

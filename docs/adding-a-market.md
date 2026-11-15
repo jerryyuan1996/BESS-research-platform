@@ -3,9 +3,9 @@
 The whole architecture is built around making this cheap — but "cheap" has a specific meaning
 here, and this page used to overstate it.
 
-**Wiring a market touches one new directory and two lines.** Nothing else in the application needs
-to change: the cards, the nav, the routes, the league table and the $1M engine all derive from the
-registry.
+A market supplies its identity, comparison contract and research modules through the registry.
+The experience pages reuse those modules; their market-specific narratives and reader configuration
+also need to be checked when registering a new market.
 
 **Registering one requires considerably more**, because the structural tests hold every registered
 market to the same contract. Finland was added in August 2026 and failed seventeen assertions on
@@ -14,39 +14,37 @@ first attempt, every one of them naming something real. The full list is in
 
 ---
 
-## The short answer: how do I add Japan?
+## Start a new market
+
+The unused `src/markets/_template/` scaffold was removed with the legacy home. Create a new
+directory and use an existing registered market's module structure as a reference:
 
 ```bash
-cp -r src/markets/_template src/markets/jp
+mkdir src/markets/new_market
 ```
 
-1. Fill in `src/markets/jp/manifest.js` — identity, currency, locale, colour, metadata.
-2. Fill in `src/markets/jp/comparison.js` — the archetype, scores, capabilities, economics.
-3. Register it in `src/markets/registry.js`:
+1. Create `manifest.js` — identity, currency, locale, colour and metadata.
+2. Create `comparison.js` — the archetype, scores, capabilities and economics, using approved
+   assumptions for this market. Copying another market's structure does not validate its values.
+3. Supply the research module surface described below and export it from `index.js`.
+4. Import the new index in `src/markets/registry.js` and append it to the existing `markets` array.
+   Keep every existing entry. Japan is already registered; do not overwrite its directory.
+5. Run `npm test` — registry validation identifies missing or inconsistent fields. Check both
+   languages on the built experience and research pages before treating registration as complete.
 
-```javascript
-import jp from './jp/index.js';
+The current page consumers are:
 
-export const markets = [wa, gb, ie, ro, pl, jp];
-```
-
-4. `npm test` — registry validation tells you if anything is missing or inconsistent.
-
-Japan is now live. With no other edits it appears in:
-
-| Surface | Comes from |
+| Surface | Owner |
 |---|---|
-| Home verdict board, as "not yet graded" | `home/boardModel.js` iterating the registry |
-| Market universe cards on `/returns` | `home/marketGrid.js` iterating the registry |
-| Application navigation | `components/navigation.js` iterating the registry |
-| Route `/markets/japan` | `app/router.js` + `manifest.slug` |
-| League table column | `home/marketComparison.js` iterating the passed market list |
-| Revenue-anatomy stacked bar | `home/normalizationView.js` |
-| `$1M` engine matrix rows | `home/allocationMatrix.js` — one row per *applicable* route |
-| Hold-IRR grouped bar chart | same |
-| Certainty-frontier scatter point | same |
-| `$1M` waterfall market selector | same |
-| Header kicker, market counts, captions | derived, never literal |
+| Investment brief on `/` | `src/experience/pages.js` and `src/experience/model.js` |
+| Global markets on `/returns` | `src/experience/comparisonPage.js` |
+| Market overview on `/markets/<slug>` | `src/experience/marketPage.js` |
+| Shared experience navigation | `src/experience/chrome.js` |
+| Research dashboards and tab routes | `src/markets/marketPage.js`, `src/markets/tabGroups.js` and each market's dashboard |
+
+The old verdict-board, globe, league-table and allocation-matrix renderers are no longer page
+entry points. The comparison-model contract and historical dashboard examples below remain useful
+when preparing a market's modules; validate them against the live schema and tests.
 
 **The dashboard is NOT optional.** This page said it was, and the delivery note for the Japan
 round repeated it. The tests disagree: `every market exposes the full module surface` requires a
@@ -104,8 +102,7 @@ Required (validation fails without them): `id`, `slug`, `flag`, `shortName`, `na
 
 `status`, the old one-chip investment stance, was retired on 2026-10-12 and a manifest that defines it
 is refused: a market's stance
-is now a verdict per investor in `view/markets/<id>.json`. Until a market is graded it appears on the
-home page's verdict board as "not yet graded", with its return.
+is now a verdict per investor in `view/markets/<id>.json`, consumed by the shared experience model.
 
 Two constraints worth knowing before you start:
 
@@ -223,8 +220,8 @@ SEC_B.capacity = function (){
 ```
 
 You get ~40 block types, and every interactive widget — scorecards, augmentation grids, the pipeline
-table, the duration sweep — behaves identically to the other markets for free. Block types and
-the full list are in [`../src/markets/_shared/README.md`](../src/markets/_shared/README.md).
+table, the duration sweep — behaves identically to the other markets for free. The live block dispatch and its rendering primitives are in
+[`src/markets/_shared/engine.js`](../src/markets/_shared/engine.js).
 
 Take this path unless you have a specific reason not to.
 

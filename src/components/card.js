@@ -19,9 +19,20 @@ import { toBadge } from './badge.js';
  * @param {...Node} kids
  */
 export function card(title, badges, ...kids){
-  const head = h('h3', {}, L(title));
+  return headedCard('h3', title, badges, ...kids);
+}
+
+function headedCard(level, title, badges, ...kids){
+  const head = h(level, {}, L(title));
   (badges || []).forEach(b => { if (b) head.append(toBadge(b)); });
   return h('div', { class: 'card' }, head, ...kids);
+}
+
+/** A top-level section follows the page's h1, with the same card appearance. */
+export function sectionCard(title, badges, ...kids){
+  const c = headedCard('h2', title, badges, ...kids);
+  c.style.marginTop = '14px';
+  return c;
 }
 
 /** Cockpit variant: identical markup plus the prototype's 14px top margin. */

@@ -300,9 +300,7 @@ test('"changes this week" counts the seven days ending on the reader\'s date', (
 /* ---- boundaries -------------------------------------------------------------- */
 
 test('the home page writes nothing and reads no private file', async () => {
-  for (const rel of ['src/home/boardModel.js', 'src/home/verdictHome.js', 'src/home/verdictBoard.js',
-                     'src/home/returnEntryMap.js', 'src/home/triggerCalendar.js', 'src/home/changesPanel.js',
-                     'src/markets/viewChanges.js', 'vite-plugin-view-changes.js',
+  for (const rel of ['src/home/boardModel.js', 'src/markets/viewChanges.js', 'vite-plugin-view-changes.js',
                      'src/markets/viewBoard.js', 'src/markets/boardProjection.js', 'vite-plugin-view-board.js']){
     const src = await code(rel);
     assert.ok(!/writeFile|appendFile|scripts\/view\/writer/.test(src), `${rel}: must not write the view store`);

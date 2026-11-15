@@ -14,7 +14,7 @@ import {
   STAGES, STAGE_LABEL, OWNER, OWNER_LABEL, DURATION_BASIS, DURATION_BASIS_LABEL,
   validateBuildPathway, prerequisites, prerequisitesBefore,
 } from '../src/governance/buildPathway.js';
-import { allBuildPathways, buildPathwayFor, hasBuildPathway, pathwayMarketIds } from '../src/markets/buildPathwayRegistry.js';
+import { allBuildPathways, buildPathwayFor, hasBuildPathway, pathwayMarketIds } from './helpers/build-pathways.js';
 import { markets, byId } from '../src/markets/registry.js';
 
 test('every pathway validates', () => {
