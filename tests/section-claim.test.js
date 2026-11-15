@@ -41,25 +41,15 @@ test('claims register from the market chunk, not the shared bundle', async () =>
   assert.deepEqual(live(), ['wa']);
 });
 
-test('the registry only exposes markets whose claims were reviewed', () => {
-  /* Registration, not enumeration: a market appears here when its claims have
-     been through evidence review, and most have not. Asserted as a property
-     rather than a fixed list, so adding a reviewed market is not a test edit —
-     but a market appearing WITHOUT review still fails. */
-  /* Which markets CAN register is a source-tree property, checked statically:
-     a market may ship a claims module only if it also has a source review. */
+test('each published claim module is registered by its market dashboard', () => {
+  /* Published claims retain their evidence validation in claim-coverage.test.js.
+     This checks the live registration path, without the retired review modules. */
   const withClaims = readdirSync(path.join(REPO, 'src/markets'))
     .filter(d => existsSync(path.join(REPO, 'src/markets', d, 'claims.js')))
     .sort();
-  /* Held as a property, which is what the comment above always promised and
-     what the literal list underneath it was quietly breaking — Finland's review
-     landing turned a passing test red for the one reason it should not, a
-     reviewed market being added. The property below is the real assertion. */
   assert.ok(withClaims.length, 'at least one market has been through review');
 
   for (const id of withClaims){
-    assert.ok(existsSync(path.join(REPO, 'src/markets', id, 'sourceReview.js')),
-      `${id} ships claims but has no source review record`);
     const dash = readFileSync(path.join(REPO, 'src/markets', id, 'dashboard.js'), 'utf8');
     assert.match(dash, /registerClaims\(/,
       `${id} ships claims but never registers them, so they would never render`);

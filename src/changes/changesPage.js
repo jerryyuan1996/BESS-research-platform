@@ -1,3 +1,4 @@
+import { resourcePage } from '../experience/chrome.js';
 /* ---------------------------------------------------------------------------
    /changes — every change to the view, with who made it and on what.
 
@@ -18,9 +19,6 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { navigate } from '../app/router.js';
-import { renderHeader } from '../components/header.js';
-import { marketNav } from '../components/navigation.js';
-import { renderFooter } from '../components/footer.js';
 import { markets, byId } from '../markets/registry.js';
 import { scoutMarket } from '../governance/scout.js';
 import { VIEW_CHANGELOG, VIEW_TRIGGER_LABELS, loadChangelogPage } from '../markets/viewChangelog.js';
@@ -116,17 +114,13 @@ export function renderChangesPage(app, filter = {}){
   const labels = new Map(Object.entries(VIEW_TRIGGER_LABELS));
   const go = (next) => navigate(changesHref({ market, author, ...next }));
 
-  app.append(renderHeader({
-    title: ['What changed, and who changed it', '改了什么，由谁改的'],
+  const main = resourcePage(app, {
+    page: 'changes', className: 'verdict-home',
     sub: [
       'Every change to a grade, a verdict, a trigger or the thesis, newest first. Nothing on any other page marks who made a change. This page is the record.',
       '评级、结论、触发事件与投资论点的每一次变更，按时间倒序排列。其他页面不标注变更由谁作出，以本页记录为准。',
     ],
-  }));
-  app.append(marketNav(markets, 'changes'));
-
-  const main = h('main', { class: 'verdict-home' });
-  app.append(main);
+  });
 
   const machine = VIEW_CHANGELOG.filter(e => e.author?.kind && e.author.kind !== 'analyst').length;
   main.append(h('div', { class: 'note' }, L([
@@ -180,8 +174,8 @@ export function renderChangesPage(app, filter = {}){
     }
   }
 
-  app.append(renderFooter([[
+  main.append(h('p', { class: 'cap ix-resource-note' }, L([
     'The record is view/changelog.jsonl in the repository: append-only, one line per change. A change is undone by a later line, never by removing one.',
     '记录即仓库中的 view/changelog.jsonl：只增不改，每项变更一行。撤销变更是追加一行新记录，而不是删除旧记录。',
-  ]]));
+  ])));
 }

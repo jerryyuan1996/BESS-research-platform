@@ -57,29 +57,13 @@ export function decisionReasons(row, compact = false) {
     ' · ', L(['Review due: ', '下次复核：']), d.reviewBy || '—'));
   return box;
 }
-export function decisionPanel(row, presentation = null) {
+export function decisionPanel(row, presentation) {
   const i = row.investment;
-  const pilot = Boolean(presentation);
-  const panel = h('section', { class:'ix-panel ix-decision-panel' + (pilot ? ' ic-decision-panel' : ''), id:'decision' },
-    h('h2', {}, L(['The decision at this price and stage', '当前价格与阶段下的投资判断'])), pilot ? presentation.identity(row) : basisNote(row));
+  const panel = h('section', { class: 'ix-panel ix-decision-panel ic-decision-panel', id: 'decision' },
+    h('h2', {}, L(['The decision at this price and stage', '当前价格与阶段下的投资判断'])), presentation.identity(row));
   panel.append(decisionStrip(row));
-  if (i && pilot) panel.append(presentation.metrics(row, marginText(row)));
-  else if (i) panel.append(h('div', { class:'ix-decision-metrics' },
-    metric(['Base all-equity IRR','基准全股权IRR'], returnPct(i.holdIRR), marginText(row)),
-    metric(['Declared downside IRR','既定下行IRR'], returnPct(i.bearHoldIRR)),
-    metric(['Peak pre-COD equity / project','投运前峰值股权资金／项目'], money(i.peakEquityPerMW * i.powerMW, i.currency)),
-    metric(['Project-rights price ceiling / MW','项目权利对价上限／MW'],
-      i.maxPricePerMW == null ? L(['No supported price','尚不支持出价']) : money(i.maxPricePerMW, i.currency))));
-  else panel.append(h('p', { role:'status' }, L(availability(row))));
-  if (!pilot) panel.append(decisionReasons(row));
-  if (!pilot && row.id === 'es') panel.append(h('p', { class:'ix-basis-note' }, L([
-    'OMIE perfect-foresight day-ahead reference, adjusted for fleet growth using a transferred curve. Execution slippage is not calibrated. Capacity and balancing receipts are excluded; omissions do not establish a conservative floor.',
-    '基于OMIE完全预见的日前参考值，采用迁移的机组增长曲线调整；尚未校准执行滑点。未计容量及平衡收入，这些排除项不代表当前回报就是保守下限。',
-  ])));
-  if (!pilot && row.id === 'fi') panel.append(h('p', { class:'ix-basis-note' }, L([
-    'The screening action requires a floor of at least half of expected revenue. The current reference model has ' + share(i?.secured) + ' first-year fixed revenue: reprice the actual floor before a bid.',
-    '筛选行动要求至少预期收入一半的保底；当前参考模型首年固定比例为' + share(i?.secured) + '。取得实际保底条款后必须重新定价。',
-  ])));
+  if (i) panel.append(presentation.metrics(row, marginText(row)));
+  else panel.append(h('p', { role: 'status' }, L(availability(row))));
   return panel;
 }
 export function contractEvidence(row) {

@@ -192,12 +192,15 @@ const BUDGET = {
        drifted back in. The caps are lowered, never raised. */
     // Owner approved 2026-11-07: CAISO +0.5 KiB (44 -> 44.5, +1.14%) for
     // the EIA inventory integration. All other market/shared caps are unchanged.
-    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 44.5, ercot: 59, de: 64, pjm: 65, it: 75, ro: 34,
+    // Removing the legacy globe moves California, Texas and Japan outlines
+    // from shared code into their respective owners. Transfer 2.5, 2.5 and
+    // 29 KiB from sharedTotal; no complete first-visit allowance grows.
+    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 47, ercot: 61.5, de: 64, pjm: 65, it: 75, ro: 34,
     // R4 Japan sections are now lazy: 86.24 KiB for the dashboard itself,
     // down from 115.51. WA's public tab adapter factors its former monolith
     // into reusable chunks; count its complete owner-only closure below.
     // Measured 215.02 KiB, including gzip overhead across the split files.
-    pl: 40, jp: 92, nem: 30, gb: 62, ie: 75, wa: 216,
+    pl: 40, jp: 121, nem: 30, gb: 62, ie: 75, wa: 216,
   },
 
   /* A market's sections, when it fetches them one at a time.
@@ -298,7 +301,7 @@ const BUDGET = {
      it asks for (researchExcerpt in _shared/engine.js, with researchUnits.js).
      Measured 172.85 on main at 294f801 and 173.71 with it, +0.86. Bytes that
      were added, for all sixteen dashboards at once; 0.29 of room is left. */
-  sharedTotal: 174,
+  sharedTotal: 140,
 
   /* Chunks belonging to one feature, fetched only on that feature's route. */
   features: {
@@ -431,38 +434,6 @@ const BUDGET = {
        left the home page altogether. What remains is method, anchors and
        investor tables, and it grows only when the method does. */
     'investment-method': 17,
-    /* The home page's board, map, calendar and changes panel. Measured 11.35.
-
-       RAISED FROM 14 TO 27 (plan phase 5), and the home budget above fell by
-       more in the same change. The board projection lives here now: every
-       graded market's grades, calls and ledger amounts, and every trigger.
-       Measured 15.36 with four markets graded, from 12.05 with none of it;
-       about 0.75 kB a market, so about 24 at fifteen. Raise it for a market
-       graded and for nothing else.
-
-       LOWERED FROM 27 TO 19 once all fifteen were graded: it measures 15.80,
-       not the 24 estimated. A market's grades and calls compress far better
-       beside fourteen others of the same shape than the first four suggested.
-
-       RAISED FROM 19 TO 23 when the briefing content was applied (guided-
-       experience plan, 2026-10-16): eighteen plays, fifteen theses and the ruled
-       calls now ride in every market's projection. Measured 21.63.
-
-       RAISED FROM 23 TO 24 (2026-10-17) with the supplier quotation and
-       Finland: two score notes, restated theses and plays, Finland's priced
-       play and the WA and Poland plays moved to the engine's best design.
-       Measured 23.23. */
-    /* 25 from 24 (2026-10-23): 24.24 at 9549dd6, already over from the
-       merchant-lines work, and 24.36 with Ontario's row (+0.13). */
-    'verdict-board': 26,   // 2026-10-23: 25.01 after merging main and the two regrades
-    /* The briefing that opens the home page since the guided-experience plan
-       (PR 4): the six answers and the home projection of the briefing — every
-       investor's shortlist, the plays priced by the engine at build time, the
-       catalysts, the build lines and the dated changes, in two languages. No
-       engine and no market data: the build writes the briefing as a literal.
-       Measured 14.44 before the first plays were written; the plays, their
-       lines and actions add roughly 4. */
-    'briefing-home': 20,
     /* The home projection of the briefing itself — every investor's rows, the
        plays priced at build time, the design grids, the catalysts, the build
        lines and the dated changes — shared by the home page and every market's
@@ -488,10 +459,6 @@ const BUDGET = {
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,
-    /* The old home page, now at /returns: market cards, globe, league table,
-       revenue stack, $1M engine, congestion, plus the two sections that were
-       written and never mounted. Measured 67.95. Fetched only on that route. */
-    'returns': 74,
     /* The /changes page with the whole changelog: every line, with the record
        before and after it. Fetched only on that route — the home page carries
        ten lines of five fields each and nothing else of it. Measured 20.63 at
@@ -568,14 +535,7 @@ const SHARED_OUT_OF_ENTRY = {
      Shipping it to every visitor so an unreachable route can say "not found"
      would be the worst version of eager loading there is. */
   'dossier shell': 'No project page exists at that address',
-  /* The home inversion's three lazy pieces. The first two are what the home
-     page fetches after the shell; the third is the old home page, which a
-     reader who came for a verdict or a market never needs. Any of them in the
-     entry means homePage.js or app.js has grown a static import it must not
-     have. */
-  'verdict board': 'Not yet graded — ',
   'method layer': 'Utility, major IPP, state-backed sponsor',
-  'returns page': 'Apples-to-apples league',
   /* The scouting page and the cards it brings. The home board prints each
      card's four calls from a digest; a card itself in the entry would mean
      the shell has grown a static import of the page. */
@@ -748,8 +708,7 @@ test('the home page\'s first view is within its budget', async (t) => {
   /* The three-page investment experience is now the first view. Measure its
      complete dependency closure; specialist dashboards remain on demand. */
   const briefing = features.get('investor-experience');
-  const board = features.get('verdict-board');
-  assert.ok(entry && briefing && board, 'no entry chunk, no investor-experience chunk or no verdict-board chunk');
+  assert.ok(entry && briefing, 'no entry chunk or no investor-experience chunk');
 
   const common = closure(briefing, byName, closure(entry, byName));
   const investorData=['infraFund','strategic','foreignFirstTimer','developer'].map(id=>features.get(id));
@@ -757,7 +716,6 @@ test('the home page\'s first view is within its budget', async (t) => {
   // Count the largest awaited investor chunk even though it is dynamically loaded.
   const first=investorData.map(chunk=>closure(chunk,byName,new Set(common)))
     .sort((a,b)=>gzipOf(b)-gzipOf(a))[0];
-  assert.ok(!first.has(board), 'the verdict board is being loaded with the briefing: it belongs behind the fold');
   assert.ok(kB(gzipOf(first)) <= BUDGET.home,
     `the home page's first view is ${kB(gzipOf(first))} kB gzipped across ${first.size} chunks ` +
     `(${[...first].map(c => c.name).join(', ')}), over its ${BUDGET.home} kB budget.\n` +
@@ -765,12 +723,6 @@ test('the home page\'s first view is within its budget', async (t) => {
     'method vocabulary it labels with. It grows with plays and with markets graded;\n' +
     'anything else that grows it is a module the briefing should not be importing.');
 
-  /* The old home page must not ride along. If the board ever imports a module
-     the Returns page owns, Rollup makes the Returns chunk a static dependency
-     and the inversion has quietly been undone. */
-  const returns = features.get('returns');
-  assert.ok(returns, 'no returns chunk');
-  assert.ok(!first.has(returns), 'the Returns page is being loaded with the home page');
 
   /* Nor may the scout cards. The board prints nine scouting rows from each
      card's four calls; the cards, their quotations and the source list stay
@@ -866,7 +818,7 @@ test('the shared chunks stay out of the first load', async (t) => {
   }
   assert.ok(shared.size > 0, 'no market imports a shared chunk — the split has collapsed');
   const sharedGzip = gzipOf(shared);
-  t.diagnostic('Complete market-shared graph: '+kB(sharedGzip)+' KiB; unchanged cap '+BUDGET.sharedTotal);
+  t.diagnostic('Complete market-shared graph: '+kB(sharedGzip)+' KiB; cap '+BUDGET.sharedTotal);
   assert.ok(kB(sharedGzip) <= BUDGET.sharedTotal,
     `market-shared chunks total ${kB(sharedGzip)} kB gzipped across ${shared.size} files ` +
     `(${[...shared].map(c => c.name).join(', ')}), ` +
@@ -904,7 +856,7 @@ test('each split market has its own chunk, within budget', async (t) => {
       'still exports loadDashboard — or something now imports its dashboard\n' +
       'statically, which merges the chunk back into the entry.');
     const owned=marketOwnedChunks(graph,id),bytes=gzipOf(owned);
-    if(id==='caiso')t.diagnostic('CAISO complete owner payload: '+kB(bytes)+' KiB; unchanged cap '+budget);
+    if(id==='caiso')t.diagnostic('CAISO complete owner payload: '+kB(bytes)+' KiB; cap '+budget);
     assertOwnerIsolation(chunk,id,graph.byName);
     assert.ok(kB(bytes) <= budget,
       `market-${id} and ALL owner data/history are ${kB(bytes)} kB gzipped (${owned.map(c=>c.name).join(', ')}), over its ` +

@@ -2,8 +2,8 @@ import {h} from '../../../utils/dom.js';
 import {L} from '../../../app/i18n.js';
 import {s,uid} from '../kit/svg.js';
 import {sourceButton} from '../../../components/sourcePopup.js';
-import {SYSTEM_STEPS,REVENUE_ROUTES,PAYMENT_STEPS,deliveryState} from './italyLogicContent.js';
-import './italyLogic.css';
+import {SYSTEM_STEPS,REVENUE_ROUTES,PAYMENT_STEPS,deliveryState} from './logicChapterContent.js';
+import './logicChapter.css';
 
 const P=(value,cls='')=>h('p',{class:cls},L(value));
 const replace=(target,...children)=>target.replaceChildren(...children.filter(child=>child!=null));
@@ -104,7 +104,7 @@ function references(data,keys){return sourceButton(()=>h('div',{},h('h4',{},L(['
  h('ul',{},keys.map(key=>data.sources[key]).filter(Boolean).map(source=>h('li',{},h('a',{href:source.url,target:'_blank',rel:'noopener noreferrer'},source.title),source.locator?P(source.locator):null,source.checkedOn?P(['Checked '+source.checkedOn,'核对日期 '+source.checkedOn]):null)))),['Official evidence & scope','官方依据与适用范围']);}
 
 export function renderChapter(data,id,ctx,config=null){
- const system=id==='system',root=h('article',{class:'public-chapter market-logic italy-logic','data-chapter':id,'data-market':data.marketId,'data-public-pilot':data.marketId});
+ const system=id==='system',root=h('article',{class:'public-chapter market-logic','data-chapter':id,'data-market':data.marketId,'data-market-logic':data.marketId});
  const systemConfig=config?.system,systemSteps=systemConfig?.steps||SYSTEM_STEPS,routes=config?.routes||REVENUE_ROUTES;
  let step=0,route=Object.keys(routes)[0],blocked=false,delivered=true,timer=null,playing=false;
  const small=globalThis.matchMedia?.('(max-width:720px)').matches;

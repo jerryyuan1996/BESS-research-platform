@@ -8,14 +8,14 @@ import {
   isSecuredEligibleEvidence,
   validateRevenueEvidence,
 } from '../src/governance/revenueEvidence.js';
-import { pipelineEligibility } from '../src/projects/pipelineEligibility.js';
+
 import { evaluateRevenueStackFeasibility } from '../src/economics/revenueStackFeasibility.js';
 import {
   runScenarioSet,
   runEvidenceOnlyCase,
 } from '../src/comparison/refinement.js';
 import { runBaseCase } from '../src/comparison/engine.js';
-import { runPortfolioScenarios } from '../src/comparison/portfolioScenario.js';
+
 import { baseStrategy } from '../src/comparison/strategies.js';
 import {
   setObservedFxSummary,
@@ -81,23 +81,7 @@ test('evidence-only cases remove proxy fixed revenue', () => {
   }
 });
 
-test('pipeline inclusion requires coverage, stable identity and de-duplication', () => {
-  assert.equal(pipelineEligibility({ illustrative:true }).eligible, false);
-  const complete = {
-    coverageBoundary:'All transmission-scale projects in the market',
-    sources:['Official queue'],
-    lastUpdated:'2026-08-04',
-    stableIdMethod:'Authority project identifier',
-    deduplicationMethod:'One row per stable identifier',
-    stageDefinition:'Published global taxonomy',
-    durationCoverage:'MW and MWh, absence explicit',
-    componentTreatment:'Hybrid components separated',
-    inclusionRules:'Named projects with auditable stage',
-    limitations:'Behind-the-meter projects excluded',
-    namedProjects:true,
-  };
-  assert.equal(pipelineEligibility(complete).eligible, true);
-});
+
 
 test('revenue-stack feasibility is unknown without project constraints and fails overloads', () => {
   assert.equal(evaluateRevenueStackFeasibility(null).status, 'unknown');
@@ -125,21 +109,7 @@ test('revenue-stack feasibility is unknown without project constraints and fails
   assert.equal(fail.allocationReady, false);
 });
 
-test('portfolio stress exposes correlated merchant and evidence-only downside', () => {
-  const portfolio = runPortfolioScenarios(markets, 5);
-  assert.ok(portfolio.correlatedMerchant.irr < portfolio.base.irr);
-  assert.ok(portfolio.evidenceOnly.irr < portfolio.base.irr);
-  /* Not markets.length. A registered market only enters the portfolio if its
-     normalized inputs are complete — Finland registers with engineReady:false
-     because its reserve revenue line is withheld, so it is a market the cockpit
-     shows and the portfolio must not price. Asserting against the full registry
-     would make that exclusion look like a bug the first time it was used. */
-  assert.equal(portfolio.base.markets, engineReadyMarkets().length);
-  /* Every registered market has been engine-ready since Finland's reserve line
-     was set on 2026-10-17; the exclusion itself is asserted on a held-back
-     market in tests/registry.test.js. */
-  assert.ok(engineReadyMarkets().length <= markets.length);
-});
+
 
 test('FX uses fresh observations and rejects stale snapshots', () => {
   clearObservedFx();

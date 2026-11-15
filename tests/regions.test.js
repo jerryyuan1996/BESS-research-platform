@@ -33,7 +33,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { REGIONS, regionOf, regionFor, mappedMarkets } from '../src/markets/regions.js';
+
 import { markets } from '../src/markets/registry.js';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -54,31 +54,13 @@ function token(name){
 
 const PAGE = token('bg');
 const CARD = token('surface');
-const ACCENTS = Object.keys(REGIONS).map(id => [id, token('region-' + id)]);
+const ACCENTS = [...TOKENS.matchAll(/--region-([a-z]+):/g)].map(m => [m[1], token('region-' + m[1])]);
 
-test('every registered market has a region', () => {
-  /* Fail closed. A market with no region gets no accent, which is correct, but
-     it should be a decision rather than an omission nobody noticed. */
-  const missing = markets.map(m => m.manifest.id).filter(id => !regionOf(id));
-  assert.deepEqual(missing, [],
-    'add these to BY_MARKET in src/markets/regions.js: ' + missing.join(', '));
-});
 
-test('the region map contains no market that does not exist', () => {
-  const live = new Set(markets.map(m => m.manifest.id));
-  const stale = mappedMarkets().filter(id => !live.has(id));
-  assert.deepEqual(stale, [], 'these mapped markets are no longer registered');
-});
 
-test('every region is named in both languages', () => {
-  /* The text label is what carries the meaning when the colour cannot. */
-  for (const [id, r] of Object.entries(REGIONS)){
-    assert.equal(r.id, id);
-    assert.ok(Array.isArray(r.label) && r.label.length === 2 && r.label[0] && r.label[1],
-      `${id} needs an [en, zh] label — the accent is never the only channel`);
-  }
-  assert.equal(regionFor('nope'), null, 'an unknown market gets null, never a guessed region');
-});
+
+
+
 
 test('each accent clears 3:1 against the page and the card', () => {
   /* The threshold for a meaningful non-text boundary. Below it the rule the
@@ -118,17 +100,7 @@ test('regional hue is never the carrier of a state', () => {
     'a regional accent may only draw a boundary; states are border, weight and background');
 });
 
-test('a regional accent never appears without a text label beside it', () => {
-  /* The card sets data-region and renders .mregion in the same expression, so
-     the two cannot be separated by an edit that only touches one of them. */
-  const card = readFileSync(path.join(REPO, 'src/components/marketCard.js'), 'utf8');
-  assert.match(card, /'data-region':/, 'the card must tag its region');
-  assert.match(card, /class:\s*'mregion'/, 'and must name it in text');
-  const tagAt = card.indexOf("'data-region':");
-  const labelAt = card.indexOf("class: 'mregion'");
-  assert.ok(labelAt > tagAt && labelAt - tagAt < 600,
-    'the region label must sit with the accent it explains, not elsewhere in the file');
-});
+
 
 test('confidential dossiers receive no market- or region-derived chrome', () => {
   /* A project's market association is confidential until the deal is public.

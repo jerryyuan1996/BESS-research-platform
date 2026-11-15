@@ -9,7 +9,7 @@ import '../src/markets/gridMapRegistry.all.js';
 import { allGridMaps } from '../src/markets/gridMapRegistry.js';
 import {
   gridMapSources, validateGridMapCollection,
-} from '../src/governance/gridMapSources.js';
+} from './helpers/grid-map-validation.js';
 
 test('every allocation dashboard has an investor-grade public-source grid map', () => {
   assert.equal(allGridMaps().length, 18);

@@ -1,4 +1,4 @@
-import {renderChapter as renderLogic} from './italyLogic.js';
+import {renderChapter as renderLogic} from './logicChapter.js';
 import {marketLogic} from './marketLogicContent.js';
 import {LOGIC_SOURCES} from './logicSources.js';
 

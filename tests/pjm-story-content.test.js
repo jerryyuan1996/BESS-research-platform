@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {story,FIELD_BINDINGS} from '../src/markets/pjm/story.js';
 import {storyValues,nextPublishedAuction,storyMatches,WATCHED_TRIGGERS} from '../src/markets/pjm/storyBindings.js';
-import {PJM_STORY_EVIDENCE as E} from '../src/markets/pjm/data/storyEvidence.js';
+import {PJM_STORY_EVIDENCE as E} from './helpers/pjm-story-evidence.js';
 import {validateStory,fillPair,tokensIn} from '../src/experience/story/contract.js';
 import {opportunities,CALLS,returnPct} from '../src/experience/model.js';
 import {HOME_BRIEFING as B} from '../src/briefing/homeData.js';

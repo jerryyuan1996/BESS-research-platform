@@ -12,7 +12,7 @@
    --------------------------------------------------------------------------- */
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -131,9 +131,9 @@ test('no tracked file imports a confidential dossier module', () => {
 
      Checked against the tracked tree rather than a directory walk, for the same
      reason the confidentiality guard is: tracked is the boundary that matters. */
-  const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: REPO, maxBuffer: 1 << 28 })
+  const tracked = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z'], { cwd: REPO, maxBuffer: 1 << 28 })
     .toString().split('\0').filter(Boolean)
-    .filter(f => f.startsWith('src/') && f.endsWith('.js'));
+    .filter(f => f.startsWith('src/') && f.endsWith('.js') && existsSync(path.join(REPO, f)));
 
   assert.ok(tracked.length > 50, 'that is not this repository');
 

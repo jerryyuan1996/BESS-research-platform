@@ -24,7 +24,7 @@ import { FX } from '../src/comparison/assumptions.js';
 import { STAGES } from '../src/governance/buildPathway.js';
 import { allLedgers, ledgerFor } from '../src/entry/ledgerRegistry.js';
 import { ledgerTotals } from '../src/entry/ledger.js';
-import { buildPathwayFor } from '../src/markets/buildPathwayRegistry.js';
+import { buildPathwayFor } from './helpers/build-pathways.js';
 import {
   exposureCurve, stageMonths, slotProblems, markers, SLOTS, AFTER_DECISION, TIMED_LEDGERS,
 } from '../src/entry/exposureCurve.js';

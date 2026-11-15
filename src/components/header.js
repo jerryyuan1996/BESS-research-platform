@@ -5,7 +5,6 @@
    a different third control (cockpit: exit year; WA: forecast COD year). This is
    one header that takes its content as data, plus the two shared controls.
    --------------------------------------------------------------------------- */
-import { siteHeader } from '../experience/chrome.js';
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
 import { app, requestRender, toggleLang } from '../app/state.js';
@@ -13,7 +12,7 @@ import { cycleTheme, THEME_LABELS } from '../app/theme.js';
 
 /** Language toggle. Shows the language you would switch *to*, as the prototype did. */
 export function langButton(){
-  return h('button', { class: 'btn', onclick: () => { toggleLang(); requestRender(); } },
+  return h('button', { class: 'btn', 'data-language-toggle': '', onclick: () => { toggleLang(); requestRender({ focus: 'language' }); } },
     app.lang === 'en' ? '中文' : 'English');
 }
 
@@ -41,8 +40,5 @@ export function renderHeader(cfg){
 
   const ctrls = h('div', { class: 'ctrls' }, langButton(), themeButton(), ...(cfg.controls || []));
   const header=h('div', { class: 'hdr' + (cfg.hero ? ' hero' : '') }, left, ctrls);
-  if(['/investment-lab','/changes','/scout','/desk'].includes(window.location.pathname)){
-    const fragment=document.createDocumentFragment();fragment.append(siteHeader('resources'),header);return fragment;
-  }
   return header;
 }

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { NEM_STORY_EVIDENCE as E } from '../src/markets/nem/data/storyEvidence.js';
+import { NEM_STORY_EVIDENCE as E } from './helpers/nem-story-evidence.js';
 import { NEM_STORY_VALUES as V } from '../src/markets/nem/data/storyEvidenceValues.js';
 import { NEM_STORY_OBSERVED as O } from '../src/markets/nem/data/storyEvidenceObserved.js';
 

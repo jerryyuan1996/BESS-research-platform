@@ -159,8 +159,8 @@ test('only the changes page imports the whole changelog, and it is loaded on dem
   assert.deepEqual(importers, ['src/changes/changesPage.js']);
   const app = await readFile(path.join(REPO, 'src/app/app.js'), 'utf8');
   assert.match(app, /import\('\.\.\/changes\/changesPage\.js'\)/);
-  /* The home panel and the market's Investment Case tab both link to it. */
-  assert.match(await readFile(path.join(REPO, 'src/home/changesPanel.js'), 'utf8'), /href: '\/changes'/);
+  /* The shared footer and the market's Investment Case tab both link to it. */
+  assert.match(await readFile(path.join(REPO, 'src/experience/chrome.js'), 'utf8'), /link\('\/changes'/);
   assert.match(await readFile(path.join(REPO, 'src/components/investmentCase.js'), 'utf8'), /\/changes\?market=\$\{marketId\}/);
 });
 

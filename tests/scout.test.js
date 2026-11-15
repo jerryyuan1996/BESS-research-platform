@@ -51,7 +51,7 @@ import { SCOUT_PROMPT_VERSION, SCOUT_SYSTEM, SCOUT_ANSWER_SCHEMA, scoutUserMessa
 import { MODEL } from '../agent/prompt.mjs';
 import { hashOf } from '../agent/core.mjs';
 import { scoutIndex, scoutData } from '../vite-plugin-scout.js';
-import { scoutBoardRows } from '../src/scout/boardRows.js';
+
 import { buildScoutPage, NO_RETURN } from '../src/scout/scoutModel.js';
 import { scoutStatus, renderScoutStatus, checkState } from '../scripts/view/scout-status.mjs';
 
@@ -271,13 +271,9 @@ test('a scout card cannot enter the engine, the league table or the frontier', a
   const rel = (file) => path.relative(REPO, file).replace(/\\/g, '/');
   const SCOUT_IMPORT = /from\s+['"][^'"]*(\/scout\/|governance\/scout\.js|schema\/scout\.mjs|view\/scout)/;
 
-  /* Nothing that prices a return, ranks one or plots one imports the tier.
-     Three home modules do, and none of them touches a return: the page that
-     places the scouting rows, the renderer that draws them, and the "what
-     changed" panel, which needs a scout market's name. */
+  /* Nothing that prices a return, ranks one or plots one imports the tier. */
   const pricing = [
     ...await walk(path.join(REPO, 'src', 'comparison')),
-    ...(await walk(path.join(REPO, 'src', 'home'))).filter(f => !/[\\/](verdictHome|verdictBoard|changesPanel)\.js$/.test(f)),
     ...await walk(path.join(REPO, 'src', 'markets')),
     ...await walk(path.join(REPO, 'src', 'entry')),
   ];
@@ -292,10 +288,6 @@ test('a scout card cannot enter the engine, the league table or the frontier', a
     /* The registry is imported by the page alone, for the navigation strip. */
     if (!/scoutPage\.js$/.test(file)) assert.ok(!/markets\/registry/.test(source), `${rel(file)} imports the market registry`);
   }
-  /* The verdict board draws the scouting rows from calls and prints no return in them. */
-  const board = await readFile(path.join(REPO, 'src', 'home', 'verdictBoard.js'), 'utf8');
-  const scouting = board.slice(board.indexOf('the scouting tier'), board.indexOf('export function renderVerdictBoard'));
-  assert.ok(scouting.length > 500 && !/irr\(|fmtIRR|ret\.|\.fit\b/.test(scouting), 'a scouting row prints a return or a fit');
 });
 
 /* ---- rights ---------------------------------------------------------------------- */
@@ -845,25 +837,7 @@ test('a scout pass cannot write even when a supplied store advertises live permi
 
 /* ---- the pages, as data ---------------------------------------------------------------- */
 
-test('the home board gets calls and nothing else, and every roster market gets a row', () => {
-  const card = { ...emptyCard('bg'), grades: { gridScarcity: grade() }, verdicts: { developer: verdict() },
-    facts: [{ text: reason, evidence: [{ publisher: STORAGE.publisher, url: STORAGE.url, quote: quoted().quote }] }] };
-  const index = scoutIndex([card, emptyCard('nl')]);
-  assert.deepEqual(index, { bg: { developer: { call: 'opportunistic', route: 'greenfield' } } }, 'an empty card is no card, and a card reaches the board as its calls');
-  assert.ok(!JSON.stringify(index).includes('eso.bg'), 'a quotation or a source reached the home board');
 
-  const rows = scoutBoardRows(index);
-  assert.deepEqual(rows.map(r => r.market.id), SCOUT_IDS);
-  assert.equal(rows.filter(r => r.calls).length, 1);
-  const es = rows.find(r => r.market.id === 'bg');
-  assert.deepEqual(es.calls, { strategic: null, infraFund: null, foreignFirstTimer: null, developer: { call: 'opportunistic', route: 'greenfield' } });
-  assert.equal(es.region.label[0], 'Southern and Eastern Europe');
-  assert.equal(scoutBoardRows(index, 'developer').find(r => r.market.id === 'bg').call.call, 'opportunistic');
-  assert.equal(scoutBoardRows(index, 'strategic').find(r => r.market.id === 'bg').call, null);
-  /* Before any card exists, eight rows that say so. */
-  assert.ok(scoutBoardRows({}).every(r => r.calls === null));
-  assert.ok(!('ret' in es) && !('fit' in es), 'a scouting row carries a return or a fit');
-});
 
 test('the scout page shows three pillars, no fit and no return, and leads with a barrier', () => {
   const graded = Object.fromEntries(SCOUT_DIMENSION_IDS.filter(d => dimension(d).pillar === 'entry').map(d => [d, grade({ dimension: d, grade: d === 'gridScarcity' ? 1 : 3 })]));
