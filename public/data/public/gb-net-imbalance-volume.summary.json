@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-15T14:03:34.620Z",
+  "fetchedAt": "2026-11-16T15:59:56.337Z",
   "coverage": {
-    "from": "2026-09-20T23:00:00.000Z",
-    "to": "2026-11-14T23:30:00.000Z",
+    "from": "2026-09-16T23:00:00.000Z",
+    "to": "2026-11-15T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 2642
+    "points": 2882
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-09-17",
+      "n": 48,
+      "expected": 48,
+      "mean": -108.7589,
+      "min": -907.9467128703703,
+      "max": 984.2916728035576,
+      "netMWh": -5220.4291
+    },
+    {
+      "d": "2026-09-18",
+      "n": 48,
+      "expected": 48,
+      "mean": -421.7853,
+      "min": -1019.6969574808827,
+      "max": 261.6827707078853,
+      "netMWh": -20245.6949
+    },
+    {
+      "d": "2026-09-19",
+      "n": 48,
+      "expected": 48,
+      "mean": -368.071,
+      "min": -818.9540478065152,
+      "max": 711.1917766666667,
+      "netMWh": -17667.4057
+    },
+    {
+      "d": "2026-09-20",
+      "n": 48,
+      "expected": 48,
+      "mean": -321.3579,
+      "min": -1481.4888218813132,
+      "max": 615.651942948718,
+      "netMWh": -15425.1805
+    },
     {
       "d": "2026-09-21",
       "n": 48,
@@ -539,13 +575,22 @@
       "min": -516.1890186904762,
       "max": 568.0979031944445,
       "netMWh": -1786.3597
+    },
+    {
+      "d": "2026-11-15",
+      "n": 48,
+      "expected": 48,
+      "mean": 189.487,
+      "min": -371.8382575604583,
+      "max": 598.6230555555555,
+      "netMWh": 9095.3771
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:c8c5a1f98e93770df3df6ee19c871ec56503dba3709260d683c4fc3e9e571740",
-    "points": 2642
+    "contentChecksum": "sha256:1b4399daae68f1a72cc8824121a167b5b99746f1ae3b1cd911560e8fa2bf4738",
+    "points": 2882
   },
-  "contentChecksum": "sha256:3d3bbbf936fed3f1b23ae62b64b9b2181d24b9ae1cea9e746e44b37ef1a473b0",
-  "summaryChecksum": "sha256:64f6d30e2f86d69438a7de81e36a7b384a51fd8649f24f922baaec9d7a79a8fc"
+  "contentChecksum": "sha256:73e5f7c3f5ea51154c5fe3d0d70dde3aa6a83ab6a7540723709e469f3a56b1b9",
+  "summaryChecksum": "sha256:be9b2e6024548b4ca00ccef327a7394154974967b3cb4a63316451aef4551ea8"
 }

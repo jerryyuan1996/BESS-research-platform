@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-14T13:38:59.656Z",
+  "fetchedAt": "2026-11-16T15:59:56.337Z",
   "coverage": {
     "from": "2026-05-12T06:00:22.000Z",
-    "to": "2026-11-14T10:55:00.000Z",
+    "to": "2026-11-16T15:53:10.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 42
   },
   "units": {
     "record": "published article metadata"
@@ -135,46 +135,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-11-10T10:43:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ngen-croatia-first-standalone-transmission-connected-bess-online-60mw-120mwh-capacity/",
-      "source": "Energy-Storage.news",
-      "title": "NGEN puts Croatia’s first standalone, transmission-connected BESS online, with 60MW/120MWh capacity",
-      "url": "https://www.energy-storage.news/ngen-croatia-first-standalone-transmission-connected-bess-online-60mw-120mwh-capacity/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "BESS owner-operator NGEN has put its Šibenik project into commercial operation in Croatia, claiming it as the first standalone project to connect at the transmission-level."
-    },
-    {
-      "t": "2026-11-10T12:11:44.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/italy-rwe-and-bnz-launch-construction-on-large-scale-battery-projects/",
-      "source": "Energy-Storage.news",
-      "title": "Italy: RWE and BNZ launch construction on large-scale battery projects",
-      "url": "https://www.energy-storage.news/italy-rwe-and-bnz-launch-construction-on-large-scale-battery-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Power firms RWE and BNZ have both announced construction on large-scale BESS projects in Italy, all-in-all totalling nearly 500MWh of capacity."
-    },
-    {
-      "t": "2026-11-10T12:20:17.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/sumitomo-corporation-greenvolt-deploy-bess-japan/",
-      "source": "Energy-Storage.news",
-      "title": "Sumitomo Corporation, Greenvolt deploy BESS at both ends of scale in Japan’s layered market",
-      "url": "https://www.energy-storage.news/sumitomo-corporation-greenvolt-deploy-bess-japan/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Battery energy storage system (BESS) projects in Japan by Sumitomo Corporation and Greenvolt provide an interesting snapshot of the country’s development landscape."
-    },
-    {
-      "t": "2026-11-10T13:02:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/canada-alectra-convergent-complete-320mwh-portfolio-in-ontario-rodan-advances-countrys-largest-btm-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Canada: Alectra-Convergent complete 320MWh portfolio in Ontario, Rodan advances country’s largest BTM BESS",
-      "url": "https://www.energy-storage.news/canada-alectra-convergent-complete-320mwh-portfolio-in-ontario-rodan-advances-countrys-largest-btm-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Alectra Energy Solutions and Convergent Energy & Power have completed a 320MWh BESS portfolio at three sites in Ontario."
-    },
-    {
       "t": "2026-11-10T14:13:31.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/baaja-us-legislation-to-speed-up-permitting-carries-hidden-political-risk-wont-solve-interconnection-queue-wait/",
       "source": "Energy-Storage.news",
@@ -225,16 +185,6 @@
       "summary": "What are semi-solid-state batteries, what potential do they hold for battery energy storage system (BESS) applications, and when are we likely to see them come to market?"
     },
     {
-      "t": "2026-11-11T12:47:25.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/california-orders-utilities-to-develop-joint-der-orchestration-framework/874355/",
-      "source": "Utility Dive",
-      "title": "California orders utilities to develop joint DER orchestration framework",
-      "url": "https://www.utilitydive.com/news/california-orders-utilities-to-develop-joint-der-orchestration-framework/874355/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The October order also directed PG&amp;E, SCE and SDG&amp;E to &ldquo;more explicitly&rdquo; consider flexible demand, a move one regulator said could reduce interconnection delays."
-    },
-    {
       "t": "2026-11-11T14:21:46.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/calibrant-energy-secures-us145-million-for-solar-and-bess-across-us-power-markets-including-pjm-hyperscaler-project/",
       "source": "Energy-Storage.news",
@@ -253,16 +203,6 @@
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Excelsior Energy Capital-backed developer Lydian Energy has brought its 150MW/600MWh Faraday battery energy storage system (BESS) project in Utah County, Utah, US into commercial operation."
-    },
-    {
-      "t": "2026-11-11T16:07:19.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/no-home-left-behind-scaling-vpp-participation-while-maintaining-customer-c/873474/",
-      "source": "Utility Dive",
-      "title": "No home left behind: Scaling VPP participation while maintaining customer control",
-      "url": "https://www.utilitydive.com/news/no-home-left-behind-scaling-vpp-participation-while-maintaining-customer-c/873474/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Utilities that redesign demand response and virtual power plant programs around how customers actually behave will be the ones to boost participation and system flexibility, writes Uplight&rsquo;s Gisela Glandt."
     },
     {
       "t": "2026-11-12T08:51:14.000Z",
@@ -395,86 +335,126 @@
       "summary": "Floors are increasingly the offtake structure of choice in the UK market, and the contracting for them is beginning to standardise, industry experts said."
     },
     {
-      "t": "2026-11-13T15:41:22.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/13/shinsung-eg-unveils-650-w-bifacial-topcon-solar-modules-with-23-25-efficiency/",
-      "source": "pv magazine",
-      "title": "Shinsung E&G unveils 650 W bifacial TOPCon solar modules with 23.25% efficiency",
-      "url": "https://www.pv-magazine.com/2026/11/13/shinsung-eg-unveils-650-w-bifacial-topcon-solar-modules-with-23-25-efficiency/",
+      "t": "2026-11-16T08:38:06.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/the-markets-getting-tough-australia-values-bess-bankability-above-all-says-director-at-wartsila-jv-valo/",
+      "source": "Energy-Storage.news",
+      "title": "‘The market’s getting tough’: Australia values BESS bankability above all, says director at Wärtsilä JV Valo",
+      "url": "https://www.energy-storage.news/the-markets-getting-tough-australia-values-bess-bankability-above-all-says-director-at-wartsila-jv-valo/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "South Korean solar manufacturer Shinsung E&G has introduced new n-type TOPCon solar modules for ground-mounted, floating PV and agrivoltaic applications. The bifacial panels feature power outputs ranging from 640 W to 650 W and maximum conversion efficiencies of 23.25%. The post Shinsung E&G unveils 650 W bifacial T…"
+      "summary": "ESN Premium speaks with to Suraj Narayan, managing director, Australia, at Valo, about the company's new ownership."
     },
     {
-      "t": "2026-11-14T07:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/yanhe-technology-launches-three-perovskite-solar-module-technologies-into-orbit/",
+      "t": "2026-11-16T10:46:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/why-silicon-won-the-solar-race-and-what-emerging-pv-technologies-can-learn-from-thin-film/",
       "source": "pv magazine",
-      "title": "Yanhe Technology launches three perovskite solar module technologies into orbit",
-      "url": "https://www.pv-magazine.com/2026/11/14/yanhe-technology-launches-three-perovskite-solar-module-technologies-into-orbit/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Beijing-based Yanhe Technology has launched three perovskite-based photovoltaic modules into low Earth orbit to assess their performance under space conditions. The mission will test perovskite-silicon tandem, perovskite-CIGS tandem, and flexible single-junction perovskite technologies. The post Yanhe Technology lau…"
+      "title": "Why silicon won the solar race and what emerging PV technologies can learn from thin film",
+      "url": "https://www.pv-magazine.com/2026/11/16/why-silicon-won-the-solar-race-and-what-emerging-pv-technologies-can-learn-from-thin-film/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Researchers in the UK have found that crystalline silicon's dominance in the global PV market was shaped not only by technological performance, but also by the development of a competitive manufacturing ecosystem. Their findings suggest that different investment strategies and policy interventions could have enabled…"
     },
     {
-      "t": "2026-11-14T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/transparent-bamboo-boosts-energy-performance-of-solar-pv-skylights/",
+      "t": "2026-11-16T11:37:58.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/silver-prices-find-50-floor-as-solar-industry-seeks-to-accelerate-shift-toward-copper/",
       "source": "pv magazine",
-      "title": "Transparent bamboo boosts energy performance of solar PV skylights",
-      "url": "https://www.pv-magazine.com/2026/11/14/transparent-bamboo-boosts-energy-performance-of-solar-pv-skylights/",
+      "title": "Silver prices find $50 floor as solar industry seeks to accelerate shift toward copper",
+      "url": "https://www.pv-magazine.com/2026/11/16/silver-prices-find-50-floor-as-solar-industry-seeks-to-accelerate-shift-toward-copper/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Researchers tested 21 glazing configurations using transparent wood and PV modules with different transparency levels. Bamboo-based systems achieved the lowest heat gain and cooling operating costs. The post Transparent bamboo boosts energy performance of solar PV skylights appeared first on pv magazine Global ."
+      "summary": "Silver prices appear to have established a new floor near $50 per ounce after retreating from January's record high. In an interview with pv magazine , Metals Focus Managing Director Philip Newman discusses the growing pressure on solar manufacturers to replace silver with copper, the limited risk of supply shortage…"
     },
     {
-      "t": "2026-11-14T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/masdar-completes-950-million-solar-and-battery-storage-project-in-california/",
+      "t": "2026-11-16T12:05:47.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/solar-wind-and-batteries-can-deliver-firm-power-at-e78-mwh-says-ember/",
       "source": "pv magazine",
-      "title": "Masdar completes $950 million solar and battery storage project in California",
-      "url": "https://www.pv-magazine.com/2026/11/14/masdar-completes-950-million-solar-and-battery-storage-project-in-california/",
+      "title": "Solar, wind and batteries can deliver firm power at $0.086/kWh, says Ember",
+      "url": "https://www.pv-magazine.com/2026/11/16/solar-wind-and-batteries-can-deliver-firm-power-at-e78-mwh-says-ember/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The Abu Dhabi clean energy developer and its joint venture partner Terra-Gen have brought the Lockhart complex online, adding 365 MW of solar generation and 173.7 MW of energy storage to the California grid. The post Masdar completes $950 million solar and battery storage project in California appeared first on pv m…"
+      "summary": "An analysis by Ember finds that adding wind power to solar PV and battery storage systems reduces the median cost of meeting 90% of electricity demand from $105/MWh to $86/MWh. The cost could fall further to $52/MWh by 2050, based on the regional cost projections used in the model. The post Solar, wind and batteries…"
     },
     {
-      "t": "2026-11-14T10:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/the-times-i-regret-are-the-ones-when-i-didnt-value-myself-enough-to-speak-up/",
+      "t": "2026-11-16T12:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/philippines-approves-solar-cell-factory-from-undisclosed-investor/",
       "source": "pv magazine",
-      "title": "‘The times I regret are the ones when I didn’t value myself enough to speak up’",
-      "url": "https://www.pv-magazine.com/2026/11/14/the-times-i-regret-are-the-ones-when-i-didnt-value-myself-enough-to-speak-up/",
+      "title": "Philippines approves solar cell factory from undisclosed investor",
+      "url": "https://www.pv-magazine.com/2026/11/16/philippines-approves-solar-cell-factory-from-undisclosed-investor/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "This week Women in Solar+ Europe gives voice to Tracey Elliott, Director of UK-based Eden Sustainable Power. She says increasing female representation through role models, mentorship, and inclusive workplaces is essential, alongside empowering women to bring their unique perspectives into leadership. The post ‘The t…"
+      "summary": "Manila has signed off on a solar cell plant that dwarfs every other project in a state agency’s pipeline this year, as clean energy reshapes the country’s investment flows. The post Philippines approves solar cell factory from undisclosed investor appeared first on pv magazine Global ."
     },
     {
-      "t": "2026-11-14T10:50:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/great-lakes-irradiance-surges-as-wet-weather-weighs-on-southwest-solar-resource/",
+      "t": "2026-11-16T12:54:32.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/pv-and-batteries-could-help-cut-global-power-costs-by-40-in-2030s/",
       "source": "pv magazine",
-      "title": "Great Lakes irradiance surges as wet weather weighs on Southwest solar resource",
-      "url": "https://www.pv-magazine.com/2026/11/14/great-lakes-irradiance-surges-as-wet-weather-weighs-on-southwest-solar-resource/",
+      "title": "PV and batteries could help cut global power costs by 40% in 2030s",
+      "url": "https://www.pv-magazine.com/2026/11/16/pv-and-batteries-could-help-cut-global-power-costs-by-40-in-2030s/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine, Solcast , a DNV company, reports that North American solar irradiance was 0.8% above average in October 2026, with the Northeast and Great Lakes recording a 14% surplus and record highs in Buffalo and Cleveland. Meanwhile, heavy rainfall and persistent cloud cover pushed irrad…"
+      "summary": "A Schneider Electric Research Institute analysis of 40,500 scenarios finds that coordinated investment in distributed solar, battery energy storage and electrified demand could reduce total global electricity system costs by up to 40% in the 2030s, provided technology costs fall as projected. The post PV and batteri…"
     },
     {
-      "t": "2026-11-14T10:55:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/14/first-attempt-to-address-screen-printing-induced-degradation-in-copper-plated-heterojunction-solar-cells/",
+      "t": "2026-11-16T14:12:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/octopus-energy-launches-plug-in-solar-kit-for-small-businesses/",
       "source": "pv magazine",
-      "title": "First attempt to address screen printing-induced degradation in copper-plated heterojunction solar cells",
-      "url": "https://www.pv-magazine.com/2026/11/14/first-attempt-to-address-screen-printing-induced-degradation-in-copper-plated-heterojunction-solar-cells/",
+      "title": "Octopus Energy launches plug-in solar kit for small businesses",
+      "url": "https://www.pv-magazine.com/2026/11/16/octopus-energy-launches-plug-in-solar-kit-for-small-businesses/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Researchers in China have investigated a previously overlooked degradation mechanism in copper-plated heterojunction solar cells caused by screen-printed photoresist. They found that progressive wear of the screen mesh can damage the cells' passivation layers and reduce efficiency. An optimized emulsion buffer layer…"
+      "summary": "Octopus Energy has launched plug-in solar kits for small businesses across the UK, following strong demand for its residential offering. The company claims the systems could reduce electricity bills by up to 23%. The post Octopus Energy launches plug-in solar kit for small businesses appeared first on pv magazine Gl…"
+    },
+    {
+      "t": "2026-11-16T14:40:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/new-york-launches-second-annual-1gw-bulk-energy-storage-solicitation/",
+      "source": "Energy-Storage.news",
+      "title": "New York launches second annual 1GW ‘bulk’ energy storage solicitation",
+      "url": "https://www.energy-storage.news/new-york-launches-second-annual-1gw-bulk-energy-storage-solicitation/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "New York’s second competitive solicitation for large-scale energy storage has launched, seeking a gigawatt (1GW) of grid-connected resources."
+    },
+    {
+      "t": "2026-11-16T14:46:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/neovolta-anchors-us-manufacturing-ramp-up-with-us116-million-bess-agreement-as-quarterly-loss-narrows/",
+      "source": "Energy-Storage.news",
+      "title": "NeoVolta anchors US manufacturing ramp-up with US$116 million BESS agreement as quarterly loss narrows",
+      "url": "https://www.energy-storage.news/neovolta-anchors-us-manufacturing-ramp-up-with-us116-million-bess-agreement-as-quarterly-loss-narrows/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US-based BESS manufacturer NeoVolta has signed a US$116 million master purchase agreement with an unnamed “leading energy solutions provider.”"
+    },
+    {
+      "t": "2026-11-16T14:50:50.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/flatiron-energy-breaks-ground-on-1-2gwh-massachusetts-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Flatiron Energy breaks ground on 1.2GWh Massachusetts BESS",
+      "url": "https://www.energy-storage.news/flatiron-energy-breaks-ground-on-1-2gwh-massachusetts-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "US energy storage developer Flatiron Energy has broken ground on its 250MW/1,200MWh Energizar Energy Storage Project in Chelsea, Massachusetts, US."
+    },
+    {
+      "t": "2026-11-16T15:53:10.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/16/holosolis-raises-e15-million-welcomes-four-new-shareholders/",
+      "source": "pv magazine",
+      "title": "HoloSolis raises €15 million, welcomes four new shareholders",
+      "url": "https://www.pv-magazine.com/2026/11/16/holosolis-raises-e15-million-welcomes-four-new-shareholders/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The financing will support development of a solar cell and module factory in Hambach, France, with an annual production capacity of 5 GW. The project is expected to create 1,900 jobs, with production scheduled to begin in 2027. The post HoloSolis raises €15 million, welcomes four new shareholders appeared first on p…"
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 42,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 4,
+      "policy": 5,
       "capital": 5,
-      "grid": 32,
-      "technology": 3
+      "grid": 30,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -493,7 +473,7 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 4
       },
       {
         "source": "pv magazine",
@@ -508,6 +488,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:91df746af0e3c8a2134e1bc277ca4ce01bb1e993657364620785e2567f604d90",
-  "envelopeChecksum": "sha256:08523afa701ff4bde2bd4e7446f92a6aeec70ccbbf4749e42f6d2740bfc89143"
+  "contentChecksum": "sha256:567f76ff7ace1a53a6188426029b4189a96edc041f1c734838b39e4aa01394bd",
+  "envelopeChecksum": "sha256:6b814899b53af49f5ce4237a7abbb7b11f31b6a9a4f1f923bd17f97cd8b1826d"
 }
