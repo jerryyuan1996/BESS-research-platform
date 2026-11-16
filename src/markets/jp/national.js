@@ -100,8 +100,8 @@ export const JP_NATIONAL = {
   ],
 
   policy: {
-    ltdaRound3: ['LTDA Round 3 results published 13 May 2026 — final for the reviewed vintage; 6h is partly de-rated, 8h+ receives full credit and sourcing is capped. Round 4 (FY2026) outline published 2 September 2026: bids 27 January–3 February 2027; lithium-ion capped at 400 MW, with cells from makers certified under the Economic Security Promotion Act awarded first; non-lithium batteries capped at 400 MW under a 30% per-country cell limit; six continuous hours minimum; battery bid ceiling ¥70,675–74,417/kW/yr by area.',
-                 'LTDA第三轮结果于2026年5月13日公布 — 对本次复核年份为最终结果；6小时部分折减、8小时以上全额信用并设采购来源上限。第四轮（2026财年）募集要纲已于2026年9月2日公布：投标期为2027年1月27日至2月3日；锂离子电池上限40万kW，使用经《经济安全保障推进法》认定厂商电芯者优先中标；非锂电池上限40万kW，并适用单一国家电芯30%限制；最低连续6小时；蓄电池投标上限按区域为每kW每年¥70,675–74,417。'],
+    ltdaRound3: ['LTDA Round 3 results published 13 May 2026 — final for the reviewed vintage; 6h is partly de-rated, 8h+ receives full credit and sourcing is capped. Round 4 (FY2026) outline published 2 September 2026: bids 19–26 January 2027; lithium-ion capped at 400 MW, with cells from makers certified under the Economic Security Promotion Act awarded first; non-lithium batteries capped at 400 MW under a 30% per-country cell limit; six continuous hours minimum; battery bid ceiling ¥70,675–74,417/kW/yr by area.',
+                 'LTDA第三轮结果于2026年5月13日公布 — 对本次复核年份为最终结果；6小时部分折减、8小时以上全额信用并设采购来源上限。第四轮（2026财年）募集要纲已于2026年9月2日公布：投标期为2027年1月19日至26日；锂离子电池上限40万kW，使用经《经济安全保障推进法》认定厂商电芯者优先中标；非锂电池上限40万kW，并适用单一国家电芯30%限制；最低连续6小时；蓄电池投标上限按区域为每kW每年¥70,675–74,417。'],
     eprxVintage: ['EPRX trading rules and guide effective 1 July 2026 are the current balancing-market rule snapshot.',
                   'EPRX交易规则及指引自2026年7月1日生效，为当前调整力市场规则快照。'],
   },

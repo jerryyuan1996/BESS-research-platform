@@ -2,7 +2,7 @@
   "market": "jp",
   "takenFrom": "src/markets/jp/sections.js at main 16093184fe11f6ce65edb188e62b22001e8801b3, before Release 4 mechanical split",
   "sourceSha256": "75ecb8425e1d1ec764b1a2c0559f001107f76df175f0baf18cfee6226d112dd0",
-  "note": "Every section including the unrouted benchmark, English and Chinese, all three regions and compare. Public source, functions and ordering included. Captured before extraction; never regenerate to hide a content change.",
+  "note": "Every section including the unrouted benchmark, English and Chinese, all three regions and compare. Public source, functions and ordering included. Captured before extraction; never regenerate to hide a content change. Updated once on 16 November 2026 with the analyst's approval: the Round 4 bid window was corrected to 19-26 January 2027 in two sentences, which changes the capacity and home digests only (16 of 104).",
   "readings": {
     "en/tokyo": {
       "benchmark": {
@@ -10,8 +10,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6642,
-        "sha": "22e78667de6196f2"
+        "bytes": 6633,
+        "sha": "8260d5d908c75981"
       },
       "case": {
         "bytes": 515,
@@ -38,8 +38,8 @@
         "sha": "a4505e992b9b0ce7"
       },
       "home": {
-        "bytes": 19533,
-        "sha": "f3e97f21f071919b"
+        "bytes": 19517,
+        "sha": "73051d226f88f728"
       },
       "pipeline": {
         "bytes": 3155,
@@ -64,8 +64,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6642,
-        "sha": "22e78667de6196f2"
+        "bytes": 6633,
+        "sha": "8260d5d908c75981"
       },
       "case": {
         "bytes": 517,
@@ -92,8 +92,8 @@
         "sha": "0a03a6512d6ac632"
       },
       "home": {
-        "bytes": 19600,
-        "sha": "bfd3a5c422c81dda"
+        "bytes": 19584,
+        "sha": "62afdfcde47d5250"
       },
       "pipeline": {
         "bytes": 3157,
@@ -118,8 +118,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6642,
-        "sha": "22e78667de6196f2"
+        "bytes": 6633,
+        "sha": "8260d5d908c75981"
       },
       "case": {
         "bytes": 522,
@@ -146,8 +146,8 @@
         "sha": "c0595bf54148add4"
       },
       "home": {
-        "bytes": 19679,
-        "sha": "8dc3646a591861ad"
+        "bytes": 19663,
+        "sha": "1fa55c1feafccd40"
       },
       "pipeline": {
         "bytes": 3222,
@@ -172,8 +172,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6642,
-        "sha": "22e78667de6196f2"
+        "bytes": 6633,
+        "sha": "8260d5d908c75981"
       },
       "case": {
         "bytes": 698,
@@ -200,8 +200,8 @@
         "sha": "d3ea27d480731358"
       },
       "home": {
-        "bytes": 21150,
-        "sha": "e03ba1dc50728e37"
+        "bytes": 21134,
+        "sha": "605c93980b7c4190"
       },
       "pipeline": {
         "bytes": 3452,
@@ -226,8 +226,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6641,
-        "sha": "7e8527b196372576"
+        "bytes": 6632,
+        "sha": "e983d433b3a06223"
       },
       "case": {
         "bytes": 515,
@@ -254,8 +254,8 @@
         "sha": "84ef0790d2d76415"
       },
       "home": {
-        "bytes": 18735,
-        "sha": "2dcec571a31b220f"
+        "bytes": 18733,
+        "sha": "cafae8fc46ab0dbf"
       },
       "pipeline": {
         "bytes": 3118,
@@ -280,8 +280,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6641,
-        "sha": "7e8527b196372576"
+        "bytes": 6632,
+        "sha": "e983d433b3a06223"
       },
       "case": {
         "bytes": 517,
@@ -308,8 +308,8 @@
         "sha": "230b50f8e8ea07fb"
       },
       "home": {
-        "bytes": 18771,
-        "sha": "1b51dc9b50590bba"
+        "bytes": 18769,
+        "sha": "d532159dad392c51"
       },
       "pipeline": {
         "bytes": 3119,
@@ -334,8 +334,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6641,
-        "sha": "7e8527b196372576"
+        "bytes": 6632,
+        "sha": "e983d433b3a06223"
       },
       "case": {
         "bytes": 522,
@@ -362,8 +362,8 @@
         "sha": "4b1791fe5ae47cd8"
       },
       "home": {
-        "bytes": 18834,
-        "sha": "f816233f8f41af38"
+        "bytes": 18832,
+        "sha": "0575cfd1a022c34c"
       },
       "pipeline": {
         "bytes": 3148,
@@ -388,8 +388,8 @@
         "sha": "1318b3e03cf3ec42"
       },
       "capacity": {
-        "bytes": 6641,
-        "sha": "7e8527b196372576"
+        "bytes": 6632,
+        "sha": "e983d433b3a06223"
       },
       "case": {
         "bytes": 698,
@@ -416,8 +416,8 @@
         "sha": "e3b8ecc2423292c5"
       },
       "home": {
-        "bytes": 20128,
-        "sha": "9db784f732524d21"
+        "bytes": 20126,
+        "sha": "15371c37ef4b38a6"
       },
       "pipeline": {
         "bytes": 3333,
