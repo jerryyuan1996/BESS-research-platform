@@ -27,7 +27,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { briefingFromDisk } from '../src/briefing/disk.js';
 import { renderDigest, weekOf } from '../src/briefing/markdown.js';
 import { classifyEntry, spreadMove } from '../src/briefing/changes.js';
-import { staleReasons } from '../src/briefing/queue.js';
+import { staleReasons, gradeChecks } from '../src/briefing/queue.js';
 import { callSentence, marketList, inSentence } from '../src/briefing/sentences.js';
 import { tagHeadline } from '../src/governance/newsTags.js';
 import {
@@ -182,7 +182,9 @@ test('a grade reason that quotes an engine figure the engine no longer gives is 
     assetReturn: { reason: ['Ninth of fourteen markets on hold IRR, 4.7%.', '…'] },
     revenueCertainty: { reason: ['10% of revenue is secured, for fifteen years.', '…'] },
   } };
-  assert.deepEqual(staleReasons(view, { hold: 0.051, secured: 0.117 }).map(s => s.dimension), ['assetReturn', 'revenueCertainty']);
+  /* The asset-return half was retired on 16 November 2026: that grade is no
+     longer the engine's, so a reason is never compared with the engine. */
+  assert.deepEqual(staleReasons(view, { hold: 0.051, secured: 0.117 }).map(s => s.dimension), ['revenueCertainty']);
   assert.deepEqual(staleReasons(view, { hold: 0.047, secured: 0.10 }), []);
   const b = await briefing();
   assert.ok(b.queue.every(q => isPair(q.text) && typeof q.path === 'string'));
@@ -218,13 +220,44 @@ test('the call names the top play, the waiting ones and the next date, and nothi
     row('jp_tokyo', 'prepare', 'build-position', { priced: true, eligible: false, value: 112000 }, 'LTDA · 6h', { flag: 'ahead' }),
     row('pl', 'watch', 'wait', { priced: true, eligible: true, value: -269000 }, 'Capacity market · 2h'),
   ];
-  const [en, zh] = callSentence(rows, 'infraFund', { label: ['Second MACSE auction', '第二轮MACSE拍卖'], expected: '2026-11-24' }, 'exit');
-  assert.match(en, /^One play clears a fund's bar today: Italy · Capacity market · 4h, at 18\.4% exit IRR/);
+  /* The sentence quotes the investment card's hold return, never an engine one. */
+  const next = { label: ['Second MACSE auction', '第二轮MACSE拍卖'], expected: '2026-11-24' };
+  const [en, zh] = callSentence(rows, 'infraFund', next, (r) => (r.market === 'it' ? 0.1161 : null));
+  assert.match(en, /^One play clears a fund's bar today: Italy · Capacity market · 4h, at 11\.6% all-equity hold return and /);
+  assert.ok(!/exit IRR|18\.4/.test(en), 'no comparison-engine return in the sentence');
+  assert.match(callSentence(rows, 'infraFund', next)[0], /^One play clears a fund's bar today: Italy · Capacity market · 4h, at \+?\$/, 'with no card figure it quotes none');
   assert.match(en, /Tokyo waits on a design that holds its floor/);
   assert.match(en, /Watch Poland\./);
   assert.match(en, /Next decisive date: 24 November 2026\. Second MACSE auction\.$/);
   assert.match(zh, /^今天有一个方案达到基金的门槛/);
-  assert.match(callSentence([], 'developer', null, 'hold')[0], /^No play clears a developer's bar today\.$/);
+  assert.match(callSentence([], 'developer', null)[0], /^No play clears a developer's bar today\.$/);
+  /* Pass and Not accessible are different statements and are worded apart. */
+  const parked = [row('ercot', 'park', 'avoid', { priced: true, eligible: true, value: 1 }, 'Toll · 2h'),
+    row('wa', 'park', 'not-accessible', { priced: true, eligible: true, value: 1 }, 'Capacity · 8h')];
+  const [pen, pzh] = callSentence(parked, 'developer', null);
+  assert.match(pen, /Pass on ERCOT\. Western Australia is closed to a developer\.$/);
+  assert.match(pzh, /暂缓投入ERCOT。西澳.*不开放。$/);
+});
+
+test('a stored return grade the model no longer gives is queued, and the analyst\'s own grades are left alone', async () => {
+  const all = (g) => Object.fromEntries(ARCHETYPE_IDS.map(a => [a, { grade: g }]));
+  const derived = (patch = {}) => ({ grades: { assetReturn: { grade: 4, basis: 'derived', lockedUntil: null, ...patch } } });
+  assert.deepEqual(gradeChecks(derived(), all(4), '2026-11-16'), []);
+  assert.deepEqual(gradeChecks(derived(), all(3), '2026-11-16'), [{ kind: 'mismatch', stored: 4, computed: 3 }]);
+  /* The four cards disagree: no default investor is chosen. */
+  assert.equal(gradeChecks(derived(), { ...all(4), developer: { grade: 3 } }, '2026-11-16')[0].kind, 'divergence');
+  /* A practitioner grade, a pinned grade, a market with no record and one the model does not price. */
+  assert.deepEqual(gradeChecks(derived({ basis: 'practitioner' }), all(5), '2026-11-16'), []);
+  assert.deepEqual(gradeChecks(derived({ lockedUntil: '2026-12-31' }), all(3), '2026-11-16'), []);
+  assert.equal(gradeChecks(derived({ lockedUntil: '2026-11-01' }), all(3), '2026-11-16').length, 1);
+  assert.deepEqual(gradeChecks({ grades: {} }, all(3), '2026-11-16'), []);
+  assert.deepEqual(gradeChecks(derived(), undefined, '2026-11-16'), []);
+  /* A held layer sits on top of the stored grade and is not what is compared. */
+  assert.deepEqual(gradeChecks(derived({ held: { grade: 1 } }), all(4), '2026-11-16'), []);
+  /* The committed store agrees with the model today. (Read without the
+     October draft overlay, which swaps plays and so moves two cards.) */
+  const b = await briefingFromDisk({ now: NOW });
+  assert.deepEqual(b.queue.filter(q => q.kind === 'grade'), []);
 });
 
 /* ---- the wall ------------------------------------------------------------------ */

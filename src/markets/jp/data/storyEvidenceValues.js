@@ -30,8 +30,8 @@ export const JP_STORY_VALUES = {
       "第四轮"
     ],
     "lithiumIonPoolMW": 400,
-    "bidOpenDate": "2027-01-27",
-    "bidCloseDate": "2027-02-03",
+    "bidOpenDate": "2027-01-19",
+    "bidCloseDate": "2027-01-26",
     "fitDate": "2012-07",
     "suspensionDate": "2014-09-25",
     "firstCurtailmentDate": "2018-10-13",
@@ -134,8 +134,8 @@ export const JP_STORY_VALUES = {
     ],
     "H-JP-05": "2022-03",
     "H-JP-06": [
-      "2027-01-27",
-      "2027-02-03"
+      "2027-01-19",
+      "2027-01-26"
     ],
     "H-JP-TK-01": "2026-08-01",
     "H-JP-KY-01": [

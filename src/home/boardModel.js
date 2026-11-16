@@ -28,7 +28,6 @@ import {
 import { ARCHETYPES, NOT_ACCESSIBLE, DISAGREEMENT_LABEL, METRIC } from '../governance/archetypes.js';
 import { byExpected, overdue, isResolved } from '../governance/triggers.js';
 import { assessMarket } from '../entry/assessment.js';
-import { returnGradesFor } from '../comparison/returnGrades.js';
 import { limitInputs } from '../entry/ledger.js';
 import { runScenarioSet } from '../comparison/refinement.js';
 
@@ -161,9 +160,11 @@ const verdictRank = (call) => {
  * @param options.ledgerFor  marketId → ledger or null
  * @param options.privateMetricsFor  marketId → figures from the private overlay;
  *                                   empty in every build
+ * @param options.returnGrades  marketId → investor → the asset-return grade
+ *                              computed on the investment model (the briefing
+ *                              carries it). Omitted, stored grades are scored
  */
-export function buildBoard(markets, { lens = null, on, usdPer, exitYear = 5, viewFor, ledgerFor, privateMetricsFor = () => ({}) }){
-  const returnGrades = returnGradesFor(markets, exitYear);
+export function buildBoard(markets, { lens = null, on, usdPer, exitYear = 5, viewFor, ledgerFor, privateMetricsFor = () => ({}), returnGrades = {} }){
   const rows = markets.map((market, index) => {
     const id = market.manifest.id;
     const view = viewFor(id);

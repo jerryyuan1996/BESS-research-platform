@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 4,
+      "grade": 3,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "The approved source-matched capacity inputs change the engine ordering. This grade follows the existing hold-return fifth rule; the original grade remains in history.",
-        "已批准的同批次容量输入改变了引擎排序。本评级沿用既定长持回报五分位规则；原评级保留在历史中。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history. On this basis the grade moves from 4 to 3; the market's own inputs did not change.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。按此口径，评级由4调整为3；本市场自身输入未变。"
       ],
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },

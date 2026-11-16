@@ -11,13 +11,13 @@
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "Fifteenth of fifteen markets on the design grid's hold IRR, −5.9% (17 October 2026).",
-        "按设计表测算的持有期IRR为−5.9%（2026年10月17日），在十五个市场中排第十五。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。"
       ],
-      "asOf": "2026-10-17",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -191,18 +191,18 @@
   "verdicts": {
     "strategic": {
       "archetype": "strategic",
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "greenfield",
       "where": [
-        "A project with an executed toll",
-        "已签订租赁协议的项目"
+        "The current reference new-build case, at modelled terms",
+        "当前参考新建情景（按模型条款）"
       ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "The reference project loses money on the model, even with a toll.",
-            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+            "At build cost the reference toll case falls well short of this investor's target on both tests.",
+            "按建设成本测算，参考租赁情景在全股权与加杠杆两种口径下均明显达不到该类投资者的目标回报。"
           ]
         },
         {
@@ -224,26 +224,32 @@
         "The easiest market on the platform to connect to, with a large load queue behind it.",
         "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
       ],
-      "changesIf": [],
+      "changesIf": [
+        "ercot-executable-terms"
+      ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
-      "lockedUntil": null
+      "asOf": "2026-11-16",
+      "lockedUntil": null,
+      "scoreNote": [
+        "The composite score describes market fit across several dimensions. Pass applies to the current reference new-build case: at build cost it falls short of this investor's return tests, with or without a toll. The adequacy outlook does not establish executable toll pricing. Verified contract, cost or acquisition terms reopen the case for a fresh target test.",
+        "综合评分描述市场在多个维度的适配程度。“暂缓投入”适用于当前参考新建情景：按建设成本测算，无论是否签订租赁，该情景均未达到该类投资者的回报检验要求。供需充裕度展望不能证明可执行的租赁价格。取得可核验的合同、成本或收购条件后，可重新测算是否达标。"
+      ]
     },
     "infraFund": {
       "archetype": "infraFund",
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "ready-to-build",
       "where": [
-        "A project with an executed toll",
-        "已签订租赁协议的项目"
+        "The current reference new-build case, at modelled terms",
+        "当前参考新建情景（按模型条款）"
       ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "The reference project loses money on the model, even with a toll.",
-            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+            "At build cost the reference toll case falls well short of this investor's target on both tests.",
+            "按建设成本测算，参考租赁情景在全股权与加杠杆两种口径下均明显达不到该类投资者的目标回报。"
           ]
         },
         {
@@ -266,28 +272,33 @@
         "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
       ],
       "changesIf": [
+        "ercot-executable-terms",
         "ercot-february-2027-mora"
       ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-11-07",
+      "asOf": "2026-11-16",
       "lockedUntil": null,
-      "play": "ercot-toll-2h"
+      "play": "ercot-toll-2h",
+      "scoreNote": [
+        "The composite score describes market fit across several dimensions. Pass applies to the current reference new-build case: at build cost it falls short of this investor's return tests, with or without a toll. The adequacy outlook does not establish executable toll pricing. Verified contract, cost or acquisition terms reopen the case for a fresh target test.",
+        "综合评分描述市场在多个维度的适配程度。“暂缓投入”适用于当前参考新建情景：按建设成本测算，无论是否签订租赁，该情景均未达到该类投资者的回报检验要求。供需充裕度展望不能证明可执行的租赁价格。取得可核验的合同、成本或收购条件后，可重新测算是否达标。"
+      ]
     },
     "foreignFirstTimer": {
       "archetype": "foreignFirstTimer",
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "ready-to-build",
       "where": [
-        "A project with an executed toll",
-        "已签订租赁协议的项目"
+        "The current reference new-build case, at modelled terms",
+        "当前参考新建情景（按模型条款）"
       ],
       "because": [
         {
           "dimension": "assetReturn",
           "text": [
-            "The reference project loses money on the model, even with a toll.",
-            "即使采用租赁模式，参考项目在模型中仍然亏损。"
+            "At build cost the reference toll case falls well short of this investor's target on both tests.",
+            "按建设成本测算，参考租赁情景在全股权与加杠杆两种口径下均明显达不到该类投资者的目标回报。"
           ]
         },
         {
@@ -302,11 +313,17 @@
         "The easiest market on the platform to connect to, with a large load queue behind it.",
         "这是本平台各市场中最容易并网的一个，背后还有庞大的大负荷排队。"
       ],
-      "changesIf": [],
+      "changesIf": [
+        "ercot-executable-terms"
+      ],
       "reviewBy": "2027-03-31",
       "author": "analyst",
-      "asOf": "2026-10-12",
-      "lockedUntil": null
+      "asOf": "2026-11-16",
+      "lockedUntil": null,
+      "scoreNote": [
+        "The composite score describes market fit across several dimensions. Pass applies to the current reference new-build case: at build cost it falls short of this investor's return tests, with or without a toll. The adequacy outlook does not establish executable toll pricing. Verified contract, cost or acquisition terms reopen the case for a fresh target test.",
+        "综合评分描述市场在多个维度的适配程度。“暂缓投入”适用于当前参考新建情景：按建设成本测算，无论是否签订租赁，该情景均未达到该类投资者的回报检验要求。供需充裕度展望不能证明可执行的租赁价格。取得可核验的合同、成本或收购条件后，可重新测算是否达标。"
+      ]
     },
     "developer": {
       "archetype": "developer",
@@ -348,6 +365,23 @@
     }
   },
   "triggers": [
+    {
+      "id": "ercot-executable-terms",
+      "kind": "event",
+      "market": "ercot",
+      "label": [
+        "Verified executable toll, cost or acquisition terms that justify a fresh target test",
+        "取得可核验、可执行的租赁、成本或收购条件，足以支持重新测算是否达标"
+      ],
+      "expected": null,
+      "watches": [
+        "assetReturn",
+        "revenueCertainty"
+      ],
+      "direction": "up",
+      "source": "decision-profile",
+      "effect": null
+    },
     {
       "id": "ercot-february-2027-mora",
       "kind": "event",

@@ -11,13 +11,13 @@
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "The approved source-matched capacity inputs change the engine ordering. This grade follows the existing hold-return fifth rule; the original grade remains in history.",
-        "已批准的同批次容量输入改变了引擎排序。本评级沿用既定长持回报五分位规则；原评级保留在历史中。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。"
       ],
-      "asOf": "2026-11-01",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -272,11 +272,11 @@
         "caiso-storage-capacity-foldback"
       ],
       "author": "analyst",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-16",
       "lockedUntil": null,
       "scoreNote": [
-        "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on CAISO's seeds closes. The score rose on 17 October only because Japan's three markets fell below CAISO on hold IRR; CAISO's own numbers did not move.",
-        "依据分析师10月16日的裁定，在CAISO种子参数的研究关卡关闭前维持“择机”判断。评分于10月17日上升，仅因日本三个市场的持有期IRR降至CAISO之下；CAISO自身数据并未变化。"
+        "The call stays at Opportunistic on the analyst's ruling of 16 October, which holds it there until the research gate on CAISO's seeds closes. The score reads one band higher since the asset-return grade moved to the investment model on 16 November 2026; CAISO's own inputs did not change.",
+        "根据分析师10月16日的裁定，在CAISO种子数据的研究关口关闭之前，结论维持“机会型”。自2026年11月16日资产回报评级改按投资模型计算后，评分高出一档；CAISO自身输入未变。"
       ]
     },
     "foreignFirstTimer": {

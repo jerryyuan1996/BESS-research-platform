@@ -94,8 +94,10 @@ export function decorateDecisionResult(market, strategyId, result){
     pipelineEligibility: profile.pipeline || { eligible:false },
     feasibility,
     capexCompleteness: capital,
-    allocationReady: feasibility.status === 'pass' && capital.score === 1
-      && (profile.investmentGate || []).length === 0,
+    /* No aggregate "ready" flag (removed 16 November 2026): it needed project
+       limits, eight declared cost items and no open project check at once,
+       which no market can meet, and nothing read it. The checks themselves
+       stay above; clearing a return target is not proof of readiness. */
   };
 }
 

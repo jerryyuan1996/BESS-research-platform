@@ -11,13 +11,13 @@
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "Thirteenth of fifteen markets on the design grid's hold IRR, 2.5% (23 October 2026).",
-        "按设计表测算的持有期IRR为2.5%（2026年10月23日），在十五个市场中排第十三。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },
@@ -352,17 +352,25 @@
       "kind": "event",
       "market": "jp_hokkaido",
       "label": [
-        "Long-term decarbonisation auction Round 4 bidding closes; certified-cell lithium-ion projects clear first inside a hard 400 MW cap; battery awards have cleared at about ¥12,000–25,000 per awarded kW (trade press)",
-        "长期脱碳电源拍卖第四轮投标截止；使用认定电芯的锂离子项目在40万kW硬性上限内优先中标；据行业媒体，蓄电池中标价约为每中标千瓦¥12,000–25,000"
+        "Long-term decarbonisation auction Round 4 bidding closes (results targeted about three months later); certified-cell lithium-ion projects clear first inside a hard 400 MW cap; battery awards have cleared at about ¥12,000–25,000 per awarded kW (trade press)",
+        "长期脱碳电源拍卖第四轮投标截止（结果预计约三个月后公布）；使用认定电芯的锂离子项目在40万kW硬性上限内优先中标；据行业媒体，蓄电池中标价约为每中标千瓦¥12,000–25,000"
       ],
-      "expected": "2027-02-03",
+      "expected": "2027-01-26",
       "watches": [
         "revenueCertainty",
         "supplyChainOrigin"
       ],
       "direction": "either",
-      "source": "decision-profile",
-      "effect": null
+      "source": {
+        "publisher": "OCCTO",
+        "url": "https://www.occto.or.jp/news/013615.html",
+        "access": "opened"
+      },
+      "effect": null,
+      "note": [
+        "OCCTO's schedule of 9 October 2026: bidding 19–26 January 2027; registration of capacity-calculation particulars 27 January–3 February 2027; results targeted about three months after bidding ends, which may shift.",
+        "电力广域的运营推进机关2026年10月9日日程：投标期为2027年1月19日至26日；容量计算参数登记期为2027年1月27日至2月3日；结果预计在投标结束约三个月后公布，时间可能调整。"
+      ]
     }
   ],
   "plays": {
@@ -381,10 +389,10 @@
       ],
       "action": {
         "text": [
-          "Before Round 4 bids close on 3 February 2027, list Hokkaido award holders that might sell an operating asset, and the price at which each clears the platform’s current secured yield.",
-          "在2027年2月3日第四轮投标截止前，列出可能出售已投运资产的北海道中标方，以及各资产达到平台当前锁定收益率的价格。"
+          "Before Round 4 bids close on 26 January 2027, list Hokkaido award holders that might sell an operating asset, and the price at which each clears the platform’s current secured yield.",
+          "在2027年1月26日第四轮投标截止前，列出可能出售已投运资产的北海道中标方，以及各资产达到平台当前锁定收益率的价格。"
         ],
-        "due": "2027-02-03"
+        "due": "2027-01-26"
       },
       "author": "analyst",
       "asOf": "2026-10-31",

@@ -21,6 +21,7 @@ const KIND = {
   overdue:        [['Catalysts that passed with no outcome recorded', '已过期但尚未录入结果的触发事件'], ['Record what happened, or move the date.', '录入发生了什么，或调整日期。']],
   disagreement:   [['Calls that run against their economics', '与经济性不一致的结论'], ['Rule on the call, or on the design it names.', '对结论或其所针对的设计作出裁定。']],
   'stale-reason': [['Reasons that quote an old engine figure', '引用旧引擎数字的理由'], ['Rewrite the reason; the grade need not move.', '改写理由；评级不必随之变动。']],
+  grade:          [['Return grades the investment model no longer gives', '投资模型已不再对应的回报评级'], ['Regrade through the view writer; nothing regrades it for you.', '通过观点写入工具重新评级；系统不会代为调整。']],
   rule:           [['Rules near or over their line', '接近或越过阈值的规则'], ['A crossing is reported for an analyst decision; a refresh never applies it.', '越过阈值时仅报告并等待分析师决定；刷新不会应用该变更。']],
   review:         [['Reviews due within thirty days', '三十天内到期的复核'], ['Confirm the call, or change it.', '确认结论，或作出调整。']],
   action:         [['Actions past their date', '已逾期的行动'], ['Do it, re-date it, or drop it.', '执行、改期或撤销。']],

@@ -16,7 +16,10 @@ test('Japan fixed-vintage records have per-value primary locators, dates, units 
     for(const key of ['sourceRef','url','locator','unit','dateSemantics','checkedOn','statementType','publicReuseBasis','arithmetic'])assert.ok(typeof p[key]==='string'&&p[key].trim(),`${path}: ${key}`);
     assert.ok(S[p.sourceRef],`${path}: source exists`);
     assert.match(p.url,/^(https:\/\/|\/markets\/)/);
-    assert.equal(p.checkedOn,'2026-11-05');
+    /* The Round 4 bid dates were re-read on 16 November 2026: the bid
+       acceptance period is 19–26 January 2027, and 27 January–3 February is
+       the later registration of particulars, which had been entered instead. */
+    assert.equal(p.checkedOn,['national.bidOpenDate','national.bidCloseDate','history.H-JP-06'].includes(path)?'2026-11-16':'2026-11-05');
     assert.ok(['observed','official-plan','rule','interpretation'].includes(p.statementType));
   }
   const visit=(value,path)=>{
@@ -47,6 +50,7 @@ test('official duration and term records independently equal every area model; n
     const view=JSON.parse(await readFile(new URL(`../view/markets/jp_${region}.json`,import.meta.url),'utf8'));
     const trigger=view.triggers.find(t=>t.id===`jp-${region}-ltda-round-4-bids`);
     assert.equal(trigger.expected,V.national.bidCloseDate);
+    assert.equal(trigger.expected,'2027-01-26');
   }
 });
 

@@ -12,6 +12,9 @@
      disagreement   a call and the economics point opposite ways
      stale-reason   a grade's reason quotes an engine figure the engine no
                     longer gives
+     grade          a stored asset-return grade is not the one the investment
+                    model now computes, or the four investors' cards no longer
+                    give one grade
      rule           a data rule is within RULE_NEAR_SHARE of its line, or over it
      review         a call's or a held view's review date has passed or is near
      action         a play's next action is past its date
@@ -24,7 +27,7 @@
 import { overdue, isResolved } from '../governance/triggers.js';
 import { DUE_SOON_DAYS, REVIEW_SOON_DAYS, RULE_NEAR_SHARE } from '../governance/briefing.js';
 import { freshnessOf, FRESHNESS } from '../live/freshness.js';
-import { dimension as dimensionOf } from '../governance/investability.js';
+import { dimension as dimensionOf, BASIS, ARCHETYPE_IDS } from '../governance/investability.js';
 import { queueText } from './sentences.js';
 import { playTitle } from '../governance/playTitle.js';
 
@@ -32,7 +35,7 @@ const DAY = 86_400_000;
 const addDays = (on, n) => new Date(Date.parse(`${on}T00:00:00Z`) + n * DAY).toISOString().slice(0, 10);
 const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected);
 
-export const QUEUE_ORDER = ['overdue', 'disagreement', 'stale-reason', 'rule', 'review', 'action', 'soon', 'feed'];
+export const QUEUE_ORDER = ['overdue', 'disagreement', 'stale-reason', 'grade', 'rule', 'review', 'action', 'soon', 'feed'];
 
 const fileOf = (marketId) => `view/markets/${marketId}.json`;
 /* A dimension's name as it reads mid-sentence, in both languages. */
@@ -45,20 +48,17 @@ const dimName = (id) => {
 const fieldOf = (summary, field) => String(field).split('.').reduce((o, k) => (o == null ? o : o[k]), summary);
 
 /**
- * Grade reasons that quote an engine figure the engine no longer gives. Two
- * spellings are known, because two derived grades quote the engine:
- * "…on hold IRR, 4.7%" (asset return) and "10% of … revenue is secured"
- * (revenue certainty).
+ * Grade reasons that quote an engine figure the engine no longer gives. One
+ * spelling is read: "10% of … revenue is secured" (revenue certainty), which
+ * the engine still supplies.
+ *
+ * The asset-return half is gone (analyst, 16 November 2026). That grade is
+ * now ranked on the investment model and its reason types no figure, so there
+ * is nothing to compare; gradeChecks below watches the grade itself instead.
  */
 export function staleReasons(view, engine){
   const items = [];
   const reasonOf = (d) => view.grades?.[d]?.reason?.[0] || '';
-  const asset = /hold IRR, (−|-)?(\d+(?:\.\d+)?)%/.exec(reasonOf('assetReturn'));
-  if (asset && engine.hold !== null){
-    const quoted = Number(asset[2]) * (asset[1] ? -1 : 1);
-    const now = Number((engine.hold * 100).toFixed(1));
-    if (Math.abs(quoted - now) >= 0.1) items.push({ dimension: 'assetReturn', quoted: `${quoted}%`, engine: `${now}%` });
-  }
   const secured = /(\d+)% of (?:first-year )?revenue is secured/.exec(reasonOf('revenueCertainty'));
   if (secured && engine.secured !== null){
     const quoted = Number(secured[1]);
@@ -69,15 +69,43 @@ export function staleReasons(view, engine){
 }
 
 /**
+ * Is a market's stored asset-return grade still the one the model computes?
+ *
+ *   mismatch    all four investors' cards give one grade and the stored grade
+ *               is another: the analyst regrades it, nothing here does
+ *   divergence  the four cards give different grades, so one stored grade
+ *               cannot serve them all and no default investor is chosen
+ *
+ * Only a DERIVED grade is checked. A practitioner grade is the analyst's own
+ * and is never held against the model; a pin (`lockedUntil`) holds a grade
+ * until its date; a held layer sits on top and is not the stored grade. A
+ * market with no record, or one the model does not price, is not checked.
+ *
+ * @param byInvestor  investor → { grade } for this market, or undefined
+ */
+export function gradeChecks(view, byInvestor, on){
+  const record = view.grades?.assetReturn;
+  if (!record || record.basis !== BASIS.DERIVED || !byInvestor) return [];
+  if (record.lockedUntil && on && record.lockedUntil >= on) return [];
+  const grades = ARCHETYPE_IDS.map(a => byInvestor[a]?.grade).filter(Number.isInteger);
+  if (!grades.length) return [];
+  if (new Set(grades).size > 1){
+    return [{ kind: 'divergence', grades: ARCHETYPE_IDS.map(a => byInvestor[a]?.grade ?? '–').join(' / ') }];
+  }
+  return grades[0] === record.grade ? [] : [{ kind: 'mismatch', stored: record.grade, computed: grades[0] }];
+}
+
+/**
  * The queue.
  *
  * @param views     every market view
  * @param lenses    { archetype: ordered rows, each with econ and play }
  * @param engine    marketId → { hold, secured } of the base case
+ * @param returnGrades marketId → investor → the computed asset-return grade
  * @param summaries datasetId → published summary
  * @param catalogue the dataset catalogue (governance/datasets.js)
  */
-export function buildQueue({ views, lenses, engine, summaries, catalogue, on, nowMs }){
+export function buildQueue({ views, lenses, engine, returnGrades = {}, summaries, catalogue, on, nowMs }){
   const items = [];
   const push = (kind, market, text, path, extra = {}) => items.push({ kind, market, text, path, ...extra });
 
@@ -132,6 +160,10 @@ export function buildQueue({ views, lenses, engine, summaries, catalogue, on, no
     }
     for (const stale of staleReasons(view, engine[id] || { hold: null, secured: null })){
       push('stale-reason', id, queueText.staleReason(id, dimName(stale.dimension), stale.quoted, stale.engine), `${fileOf(id)} → grades.${stale.dimension}`, { dimension: stale.dimension });
+    }
+    for (const check of gradeChecks(view, returnGrades[id], on)){
+      push('grade', id, check.kind === 'divergence' ? queueText.gradeDivergence(id, check.grades) : queueText.gradeMismatch(id, check.stored, check.computed),
+        `${fileOf(id)} → grades.assetReturn`, { dimension: 'assetReturn', flag: check.kind });
     }
   }
 

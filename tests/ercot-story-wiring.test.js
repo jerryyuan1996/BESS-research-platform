@@ -19,7 +19,7 @@ test('ERCOT is released for ordinary readers and story links', () => {
 test('a changed call, play, duration or lens falls back to the research dialog', () => {
   const row = opportunities('infraFund').find(r => r.id === 'ercot');
   assert.equal(storyMatches(story, row, 'infraFund'), true);
-  for (const changed of [{ ...row, call: 'avoid' }, { ...row, play: { ...row.play, id: 'other' } }, { ...row, play: { ...row.play, hours: 4 } }])
+  for (const changed of [{ ...row, call: 'opportunistic' }, { ...row, play: { ...row.play, id: 'other' } }, { ...row, play: { ...row.play, hours: 4 } }])
     assert.equal(storyMatches(story, changed, 'infraFund'), false);
   for (const lens of ['strategic', 'developer', 'foreignFirstTimer']) assert.equal(storyMatches(story, row, lens), false);
   assert.equal(storyMatches(story, opportunities('infraFund').find(r => r.id === 'pjm'), 'infraFund'), false);

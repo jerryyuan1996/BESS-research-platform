@@ -3,10 +3,9 @@
    Run: node scripts/view/review-investment-evidence.mjs [ISO review timestamp]
    The date fixes the briefing's data-currentness context for a dated review. */
 import { pathToFileURL } from 'node:url';
-import { byId, markets } from '../../src/markets/registry.js';
+import { byId } from '../../src/markets/registry.js';
 import { runBaseCase } from '../../src/comparison/engine.js';
 import { sweepDesign } from '../../src/comparison/designFit.js';
-import { returnGradesFor } from '../../src/comparison/returnGrades.js';
 import { briefingFromDisk, readBriefingInputs } from '../../src/briefing/disk.js';
 import { homeProjection } from '../../src/briefing/model.js';
 import { opportunitySummary } from '../../src/opportunities/summary.js';
@@ -15,7 +14,6 @@ export async function investmentEvidence({ now = new Date() } = {}) {
   const briefing = await briefingFromDisk({ now });
   const { views } = await readBriefingInputs();
   const cards = opportunitySummary(homeProjection(briefing), views).infraFund.markets;
-  const grades = returnGradesFor(markets);
   const result = { asOf: now.toISOString(), investor: 'infraFund', markets: {} };
   for (const id of ['nem', 'pjm', 'wa']) {
     const market = byId(id), base = runBaseCase(market, 5);
@@ -25,7 +23,9 @@ export async function investmentEvidence({ now = new Date() } = {}) {
         assetReturn: view.grades.assetReturn,
         revenueCertainty: view.grades.revenueCertainty,
       },
-      engineGrade: grades[id]['hold-irr'],
+      /* The asset-return grade as the site computes it: the investment model's
+         all-equity hold return on the fund's card, ranked by fifths. */
+      returnGrade: briefing.returnGrades[id]?.infraFund ?? null,
       // Comparison engine: existing 15-year operating case, no investment tax/debt.
       base: {
         hours: market.comparison.archetype.durationHours,

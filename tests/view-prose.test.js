@@ -76,3 +76,23 @@ test('no market types a model return into its analyst prose', async () => {
   }
   assert.deepEqual(found, [], `model returns typed into prose — say it in words, and let the card show the figure:\n  ${found.join('\n  ')}`);
 });
+
+test('an asset-return grade reason names its basis and types no return', async () => {
+  /* Grade reasons are otherwise exempt (2A): they are dated records. The
+     asset-return reason is the exception since 16 November 2026: its grade is
+     ranked on the investment model, the page shows the return and the rank,
+     and a typed copy is exactly what drifted before ("14.6%" beside a card
+     showing 11.6%). A derived reason is dated, names the model and carries no
+     percentage. */
+  const found = [];
+  for (const file of (await readdir(ROOT)).filter(f => f.endsWith('.json'))){
+    const view = JSON.parse(await readFile(path.join(ROOT, file), 'utf8'));
+    const record = view.grades?.assetReturn;
+    if (!record || record.basis !== 'derived') continue;
+    const [en, zh] = record.reason;
+    if (typedReturn(record.reason) || /%/.test(en) || /%|％/.test(zh)) found.push(`${view.marketId}: a figure is typed: ${en}`);
+    if (!en.startsWith(`${record.asOf}: `) || !zh.startsWith(`${record.asOf}：`)) found.push(`${view.marketId}: the reason is not dated with the record's own date`);
+    if (!/investment model/.test(en) || !/投资模型/.test(zh)) found.push(`${view.marketId}: the reason does not name its basis`);
+  }
+  assert.deepEqual(found, []);
+});

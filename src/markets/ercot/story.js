@@ -39,8 +39,10 @@ export const story = {
   systemBoundary: ['ERCOT grid: most of Texas, not synchronously connected to the rest of the US grid', 'ERCOT电网：覆盖得州大部分地区，与美国其他电网没有同步连接'],
   supportedLocales: ['en', 'zh'],
   playRef: 'ercot-toll-2h',
-  /* The G-1 approval date is kept, not today's computation (build evidence §4). */
-  reviewedAgainst: { playRef: 'ercot-toll-2h', hours: 2, call: 'opportunistic', on: '2026-11-01' },
+  /* The approval date is kept, not today's computation (build evidence §4).
+     Re-signed against the fund's Pass call on the analyst's instruction of
+     16 November 2026, without a line-by-line re-read (return-model plan §4.8). */
+  reviewedAgainst: { playRef: 'ercot-toll-2h', hours: 2, call: 'avoid', on: '2026-11-16' },
   sources: SOURCES,
   claims: {
     'CL-ERCOT-02': { sources: ['SRC-ERCOT-01', 'SRC-ERCOT-12', 'SRC-ERCOT-13'] },

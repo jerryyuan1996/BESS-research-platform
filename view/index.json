@@ -9,7 +9,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "operating",
-      "asOf": "2026-10-31",
+      "asOf": "2026-11-16",
       "reviewBy": "2027-03-31",
       "play": "caiso-cap-4h"
     },
@@ -36,7 +36,7 @@
     "infraFund": {
       "call": "opportunistic",
       "route": "ready-to-build",
-      "asOf": "2026-10-30",
+      "asOf": "2026-11-16",
       "reviewBy": "2027-03-31",
       "play": "de-toll-4h"
     },
@@ -55,22 +55,22 @@
   },
   "ercot": {
     "strategic": {
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "greenfield",
-      "asOf": "2026-10-12",
+      "asOf": "2026-11-16",
       "reviewBy": "2027-03-31"
     },
     "infraFund": {
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "ready-to-build",
-      "asOf": "2026-11-07",
+      "asOf": "2026-11-16",
       "reviewBy": "2027-03-31",
       "play": "ercot-toll-2h"
     },
     "foreignFirstTimer": {
-      "call": "opportunistic",
+      "call": "avoid",
       "route": "ready-to-build",
-      "asOf": "2026-10-12",
+      "asOf": "2026-11-16",
       "reviewBy": "2027-03-31"
     },
     "developer": {
