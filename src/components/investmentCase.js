@@ -54,7 +54,7 @@ import { STAGE_LABEL } from '../governance/buildPathway.js';
 import { byExpected } from '../governance/triggers.js';
 import { ITEM_KIND_LABEL, ITEM_STATUS_LABEL, limitInputs } from '../entry/ledger.js';
 import { assessMarket } from '../entry/assessment.js';
-import { returnGradesFor } from '../comparison/returnGrades.js';
+import { HOME_BRIEFING } from '../briefing/homeData.js';
 import { entryReturn } from '../entry/entryReturn.js';
 import { exposureCurve, markers, TIMED_LEDGERS } from '../entry/exposureCurve.js';
 import { exposureChart } from '../charts/exposureChart.js';
@@ -62,7 +62,7 @@ import { longLife } from '../longlife/longLife.js';
 import { DURATION_BASIS_LABEL } from '../governance/buildPathway.js';
 import { caseViewFor, caseLedgerFor } from '../markets/caseRegistry.js';
 import { marketBrief } from './marketBrief.js';
-import { byId, markets } from '../markets/registry.js';
+import { byId } from '../markets/registry.js';
 import { FX, MAINTAINED_FOM_SHARE } from '../comparison/assumptions.js';
 
 /* Tone carries no judgement the label does not already state; it only makes
@@ -107,7 +107,7 @@ function load(marketId){
   const on = today();
   /* Empty in a build, so the published page always gets the public answer. */
   const mine = privateMetrics(marketId);
-  return { view, market, ledger, on, mine, result: assessMarket(view, market, ledger, FX, { on, privateMetrics: mine, returnGrades:returnGradesFor(markets) }) };
+  return { view, market, ledger, on, mine, result: assessMarket(view, market, ledger, FX, { on, privateMetrics: mine, returnGrades: HOME_BRIEFING.returnGrades || {} }) };
 }
 
 /* The analyst's own reason, from the private overlay. Present on his screen in
@@ -306,8 +306,8 @@ export function investmentCasePanel(marketId){
     })))));
   out.push(pillars);
   pillars.append(h('p', {class:'cap'}, L([
-    'Derived return grades use each investor’s hold or exit IRR ranking. The stored analyst grade and verdict remain visible below; active practitioner overrides still apply.',
-    '衍生回报评级按各类投资者的持有或退出IRR分别排序。下方保留分析师原评级与结论；有效的从业者判断覆盖仍适用。',
+    'The return grade ranks the all-equity hold return of each investor’s recommended case on the investment model, among the priced markets. It is a common asset benchmark: each investor’s sale, leverage and target tests are shown on its investment card. A practitioner grade is never overridden, and a held view still applies on top.',
+    '回报评级按各类投资者推荐情景在投资模型中的全股权长持回报，在已定价市场中排序。这是共同的资产基准：各类投资者的出售、杠杆与目标回报检验见其投资卡片。从业者判断评级不会被覆盖，有效的自持观点仍叠加适用。',
   ])));
 
   /* The grades themselves, each beside the anchor it was measured against. */

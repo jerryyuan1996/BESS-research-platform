@@ -20,8 +20,11 @@ test('each opportunity prices its recommended play and respects investor entry s
       assert.ok(ARCHETYPES[investor].entersAt.includes(r.stage),`${investor}: ${r.stage}`);
       assert.equal(r.strategyId,r.play.route);assert.equal(r.durationHours,r.play.hours);
       assert.equal(r.hours,r.play.hours);assert.equal(r.investor,investor);
-      assert.ok(!['avoid','not-accessible'].includes(r.call));
+      assert.notEqual(r.call,'not-accessible');
     }
+    /* A Pass row is kept and shown last; it is never ahead of a live case. */
+    const firstPass=rows.findIndex(r=>r.call==='avoid');
+    if(firstPass>=0)assert.ok(rows.slice(firstPass).every(r=>r.call==='avoid'),`${investor}: Pass rows are last`);
   }
   assert.ok(!briefing.acquisitions.foreignFirstTimer.some(r=>r.market==='nem'));
   assert.ok(briefing.acquisitions.infraFund.some(r=>r.market==='ca_on'&&r.researchAssumed));

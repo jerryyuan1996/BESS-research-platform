@@ -196,14 +196,21 @@ const BUDGET = {
     // from shared code into their respective owners. Transfer 2.5, 2.5 and
     // 29 KiB from sharedTotal; no complete first-visit allowance grows.
     // 2026-11-15: dataset provenance on existing charts; measured 61.51 KiB.
-    ercot: 61.6,
+    // 2026-11-16: three Pass calls carry a scope, a reopening condition and a
+    // score note in ERCOT's own view record; measured 62.23 KiB. Raised 0.9 KiB
+    // under the analyst's standing rule (5 Nov: over a budget, raise the cap,
+    // never cut content). No other market cap moves.
+    ercot: 62.5,
     sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 47, de: 64, pjm: 65, it: 75, ro: 34,
     // R4 Japan sections are now lazy: 86.24 KiB for the dashboard itself,
     // down from 115.51. WA's public tab adapter factors its former monolith
     // into reusable chunks; count its complete owner-only closure below.
     // Measured 215.02 KiB, including gzip overhead across the split files.
     // 2026-11-15: explicit chart dataset vintages; owner graph is 216.10 KiB.
-    pl: 40, jp: 121, nem: 30, gb: 62, ie: 75, wa: 216.2,
+    // 2026-11-16: the corrected Round 4 auction dates carry their official
+    // source and a dated note in each of the three Japan view records;
+    // measured 121.19 KiB. Japan 121 -> 121.5 under the same standing rule.
+    pl: 40, jp: 121.5, nem: 30, gb: 62, ie: 75, wa: 216.2,
   },
 
   /* A market's sections, when it fetches them one at a time.
@@ -458,7 +465,12 @@ const BUDGET = {
     // for the longer current source titles/links, retaining every item and all
     // existing entry, home-total and market isolation limits.
     // Package 1 retains Pass rows and the call's change triggers (44 KiB measured).
-    'briefing-data': 45,
+    // 16 Nov return-model release: the dated call and catalyst changes of the
+    // regrade, the ERCOT Pass calls and the corrected Japan auction dates, plus
+    // each market's computed return grade and rank (46.13 KiB measured). Raised
+    // 45 -> 47 under the analyst's standing rule (5 Nov: raise the cap, never
+    // cut content). No engine is loaded on the home page.
+    'briefing-data': 47,
     /* The analyst desk with the briefing's queue. Rollup keeps only the fields
        the desk reads. Measured 3.44. */
     'desk': 6,

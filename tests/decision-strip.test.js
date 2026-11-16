@@ -25,8 +25,12 @@ test('fund Situational groups reflect the approved Polish grant Watch',()=>{
   const groups=key=>opportunities('infraFund').filter(r=>situationalQualifier(r)===key).map(r=>r.id).sort();
   assert.deepEqual(groups('clears'),['fi','wa']);
   assert.deepEqual(groups('price'),['caiso','gb','jp_hokkaido','jp_kyushu','jp_tokyo','nem','ro']);
-  assert.deepEqual(groups('below'),['de','ercot']);
+  /* ERCOT left the Situational group on 16 November 2026: the fund call is Pass. */
+  assert.deepEqual(groups('below'),['de']);
   assert.equal(opportunities('infraFund').find(r=>r.id==='pl').call,'wait');
+  const rows=opportunities('infraFund');
+  assert.equal(rows.find(r=>r.id==='ercot').call,'avoid');
+  assert.equal(rows.at(-1).id,'ercot','a Pass row is shown, last');
 });
 test('debt flags dilution explicitly, including a negative levered return',()=>{
   assert.equal(debtEffect({holdIRR:.1,leveredIRR:.09}),'dilutes');

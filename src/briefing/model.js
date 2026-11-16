@@ -25,7 +25,7 @@ import { playsOf } from '../governance/plays.js';
 import { byExpected, isResolved } from '../governance/triggers.js';
 import { TIER, MAX_ACTIONS, CATALYST_WINDOW_DAYS } from '../governance/briefing.js';
 import { assessMarket } from '../entry/assessment.js';
-import { returnGradesFor } from '../comparison/returnGrades.js';
+import { headlineReturnGrades } from '../opportunities/returnGrades.js';
 import { runBaseCase } from '../comparison/engine.js';
 import { FX } from '../comparison/assumptions.js';
 import { investorOpportunities } from '../acquisition/opportunities.js';
@@ -58,7 +58,6 @@ const dueOf = (expected) => (expected.length === 7 ? `${expected}-31` : expected
 export function buildBriefing({ markets, views, changelog, ledgerFor, summaries, news = null, reviews = [], catalogue, now }){
   const on = now.toISOString().slice(0, 10);
   const viewById = new Map(views.map(v => [v.marketId, v]));
-  const returnGrades = returnGradesFor(markets, BRIEFING_EXIT_YEAR);
 
   /* ---- each graded market, priced once ---- */
   const entries = [];
@@ -76,8 +75,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
       if (!cache.has(play.id)) cache.set(play.id, designEconomics(market, design, play.route, play.hours, { grantPct: play.grantPct }));
       return cache.get(play.id);
     };
-    const assessment = assessMarket(view, market, ledgerFor(id), FX, { on, returnGrades });
-    entries.push({ market, view, design, assessment, playEcon });
+    entries.push({ market, view, design, assessment: null, playEcon });
     for (const play of playsOf(view)){
       plays[playKey(id, play.id)] = {
         market: id, id: play.id, label: play.label, route: play.route, hours: play.hours, stage: play.stage,
@@ -85,6 +83,17 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
         ...(Number.isFinite(play.grantPct)?{grantPct:play.grantPct}:{}),
       };
     }
+  }
+
+  /* ---- the asset-return grade, then each market's scores ----
+     The grade ranks the return on each investor's card, so it needs to know
+     which play that card shows before any score exists. That is safe: a
+     score only breaks ties between rows of different markets, never between
+     two plays of one market, so the play on a card is fixed without it. */
+  const cardPlay = cardPlays(entries, plays, on);
+  const returnGrades = headlineReturnGrades(markets, cardPlay);
+  for (const entry of entries){
+    entry.assessment = assessMarket(entry.view, entry.market, ledgerFor(entry.market.manifest.id), FX, { on, returnGrades });
   }
 
   /* ---- the shortlist, per investor ---- */
@@ -112,7 +121,8 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     lenses[archetype] = {
       returnField,
       rows: ordered.map(r => ({ ...r, flagText: r.flag ? flagText[r.flag](econOf(r)) : null })),
-      call: callSentence(lensRowsFull[archetype].map(r => ({ ...r, play: r.playRecord })), archetype, nextDecisive, returnField),
+      call: callSentence(lensRowsFull[archetype].map(r => ({ ...r, play: r.playRecord })), archetype, nextDecisive,
+        (r) => (returnGrades[r.market]?.[archetype]?.play?.id === r.play?.id ? returnGrades[r.market][archetype].value : null)),
       next: nextDecisive?.id ?? null,
       actions: actionsFor(lensRowsFull[archetype]),
     };
@@ -145,7 +155,7 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
   const changes = collectChanges({ changelog, views, feeds: priceFeeds(summaries, catalogue), news, on })
     .map(({ id, ...item }) => item);
 
-  const queue = buildQueue({ views, lenses: lensRowsFull, engine, summaries, catalogue, on, nowMs: now.getTime() });
+  const queue = buildQueue({ views, lenses: lensRowsFull, engine, returnGrades, summaries, catalogue, on, nowMs: now.getTime() });
 
   return {
     version: BRIEFING_VERSION,
@@ -154,6 +164,10 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     defaultLens: DEFAULT_LENS,
     acquisitions: investorOpportunities(markets,lenses,plays),
     exitYear: BRIEFING_EXIT_YEAR,
+    /* marketId → investor → the asset-return grade computed on the investment
+       model, as a page needs it: the grade, its rank and the return ranked. */
+    returnGrades: Object.fromEntries(Object.entries(returnGrades).map(([id, by]) => [id, Object.fromEntries(
+      Object.entries(by).map(([investor, g]) => [investor, { grade: g.grade, rank: g.rank, count: g.count, value: Number(g.value.toFixed(4)) }]))])),
     markets: Object.fromEntries(markets.map(m => [m.manifest.id, { name: marketName(m.manifest.id, m.manifest.name), slug: m.manifest.slug }])),
     plays,
     triggers,
@@ -165,6 +179,29 @@ export function buildBriefing({ markets, views, changelog, ledgerFor, summaries,
     queue,
     reviewStatus: views.map(v => statusForMarket({ market: v.marketId, summaries, changelog, reviews })),
   };
+}
+
+/**
+ * The play on each investor's card: the first row of its shortlist for a
+ * market, exactly as opportunities/summary.js picks it. Returns
+ * (investor, marketId) → play, or null where the market has no row and the
+ * card shows its standard design.
+ */
+function cardPlays(entries, plays, on){
+  const byInvestor = {};
+  for (const archetype of ARCHETYPE_IDS){
+    const econOf = (row) => entries.find(e => e.market.manifest.id === row.market)
+      .playEcon(plays[playKey(row.market, row.play)] || row.implicitPlay);
+    const first = new Map();
+    for (const row of orderRows(lensRows(entries, archetype, on), econOf)){
+      if (first.has(row.market)) continue;
+      const stored = plays[playKey(row.market, row.play)];
+      const p = row.implicitPlay;
+      first.set(row.market, stored || { id: p.id, route: p.route, hours: p.hours, econ: econOf(row) });
+    }
+    byInvestor[archetype] = first;
+  }
+  return (investor, marketId) => byInvestor[investor]?.get(marketId) || null;
 }
 
 /** The price summaries a change can be read from, keyed by the market they price. */
@@ -226,7 +263,10 @@ export function designProjection(briefing){
 }
 
 export function homeProjection(briefing){
-  const { queue, reviewStatus = [], ...rest } = briefing;
+  const { queue, reviewStatus = [], returnGrades = {}, ...rest } = briefing;
+  /* A page prints the grade and its rank; the return ranked is already on the card. */
+  rest.returnGrades = Object.fromEntries(Object.entries(returnGrades).map(([id, by]) => [id, Object.fromEntries(
+    Object.entries(by).map(([investor, g]) => [investor, { grade: g.grade, rank: g.rank, count: g.count }]))]));
   const byKind = {};
   for (const item of queue) byKind[item.kind] = (byKind[item.kind] || 0) + 1;
   const disagreements = {};

@@ -240,7 +240,7 @@ export const MARKET_DECISION_PROFILES = {
   }),
   jp_tokyo: profile({
     confidenceScore: 5,
-    consensus: { status:'stale', summary:['LTDA Round 3 concluded on 13 May 2026. Round 4 bids run 27 January–3 February 2027: lithium-ion is capped at 400 MW, certified-cell projects are awarded first, and the battery bid ceiling falls to ¥70,675–74,417/kW/yr.', 'LTDA第三轮已于2026年5月13日结束。第四轮投标期为2027年1月27日至2月3日：锂离子上限40万kW，认定电芯项目优先中标，蓄电池投标上限降至每kW每年¥70,675–74,417。'], sources:['OCCTO LTDA Round 3', 'IC consolidated review'] },
+    consensus: { status:'stale', summary:['LTDA Round 3 concluded on 13 May 2026. Round 4 bids run 19–26 January 2027: lithium-ion is capped at 400 MW, certified-cell projects are awarded first, and the battery bid ceiling falls to ¥70,675–74,417/kW/yr.', 'LTDA第三轮已于2026年5月13日结束。第四轮投标期为2027年1月19日至26日：锂离子上限40万kW，认定电芯项目优先中标，蓄电池投标上限降至每kW每年¥70,675–74,417。'], sources:['OCCTO LTDA Round 3', 'IC consolidated review'] },
     currentUpdate: ['The modelled LTDA payment is cost-derived, not an identified CRA price; Tokyo remains the strongest regional demand case.', '模型LTDA付费由成本衍生，并非具名CRA价格；东京仍为最强区域需求案例。'],
     currentRunRateFactor: 0.9,
     investmentGate: ['Actual CRA price', 'Connection rights', 'Sourcing compliance', 'Regional captured-price backtest'],

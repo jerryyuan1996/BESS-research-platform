@@ -26,7 +26,8 @@ test('investment evidence reads current result fields without rewriting history 
     assert.equal(row.base.securedYears, engine.securedYears);
     assert.equal(row.base.lifeYears, 15);
     assert.equal(row.investmentCard.lifeYears, 20);
-    assert.equal(row.storedGrades.assetReturn.grade, row.engineGrade.grade);
+    /* The stored grade is the investment model's fifth, not the engine's. */
+    assert.equal(row.storedGrades.assetReturn.grade, row.returnGrade.grade);
   }
 });
 
@@ -61,7 +62,10 @@ test('WA baseline, fade-aware designs and tax/financing card retain their own ba
 test('PJM historical rationale is retained; January ERCOT is closed and February is still a watch', () => {
   assert.match(rationaleUpdate('pjm', 'assetReturn').from.reason[0], /2.4%/);
   assert.equal(rationaleUpdate('pjm', 'assetReturn').from.asOf, '2026-10-23');
-  assert.equal(report.markets.pjm.storedGrades.assetReturn.asOf, '2026-11-10');
+  /* The 10 November rationale is history: the 16 November regrade on the
+     investment model superseded it and kept the grade. */
+  assert.equal(report.markets.pjm.storedGrades.assetReturn.asOf, '2026-11-16');
+  assert.equal(report.markets.pjm.storedGrades.assetReturn.grade, rationaleUpdate('pjm', 'assetReturn').to.grade);
   assert.equal(report.ercot.january.outcome.on, '2026-11-06');
   assert.equal(report.ercot.february.expected, '2026-12-04');
   assert.equal(report.ercot.february.outcome, undefined);
@@ -75,7 +79,15 @@ test('approved dated rationales retain grades and complete historical records wi
     const { reason: oldReason, asOf: oldDate, ...oldFields } = entry.from;
     const { reason, asOf, ...newFields } = entry.to;
     assert.deepEqual(newFields, oldFields);
-    assert.deepEqual(entry.to, report.markets[id].storedGrades[dimension]);
+    if (dimension === 'assetReturn') {
+      /* Superseded on 16 November 2026 by the regrade on the investment model:
+         the stored record is that regrade's, and its `from` is this rationale. */
+      const regrade = entries.findLast(e => e.market === id && e.path === entry.path && e.to?.asOf === '2026-11-16');
+      assert.deepEqual(regrade.from, entry.to, `${id}: the regrade replaced exactly this rationale`);
+      assert.deepEqual(regrade.to, report.markets[id].storedGrades[dimension]);
+      assert.deepEqual(regrade.to.evidence, ['investment-model']);
+      assert.match(regrade.to.reason[0], /investment model/);
+    } else assert.deepEqual(entry.to, report.markets[id].storedGrades[dimension]);
     assert.equal(asOf, '2026-11-10');
     assert.ok(oldDate < asOf);
     for (const text of reason) {
@@ -90,6 +102,6 @@ test('approved dated rationales retain grades and complete historical records wi
       JSON.stringify(e.to?.reason) === JSON.stringify(oldReason)), `${id}: original rationale is still in history`);
   }
   assert.match(rationaleUpdate('wa', 'assetReturn').from.reason[0], /19.8%/);
-  assert.match(report.markets.wa.storedGrades.assetReturn.reason[0], /not hold IRR/);
-  assert.match(report.markets.pjm.storedGrades.assetReturn.reason[0], /non-binding/);
+  assert.match(rationaleUpdate('wa', 'assetReturn').to.reason[0], /not hold IRR/);
+  assert.match(rationaleUpdate('pjm', 'assetReturn').to.reason[0], /non-binding/);
 });

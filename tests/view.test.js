@@ -29,7 +29,9 @@ import { SCOUT_LIVE_AUTHORS, emptyCard, parseScoutPath, readScoutPath, writeScou
 import { isScoutId } from '../src/governance/scout.js';
 import { isRule } from '../src/governance/triggers.js';
 import { assessMarket, disagreements } from '../src/entry/assessment.js';
-import { returnGradesFor } from '../src/comparison/returnGrades.js';
+import { fifthGrade } from '../src/comparison/returnGrades.js';
+import { commonGrade } from '../src/opportunities/returnGrades.js';
+import { briefingFromDisk } from '../src/briefing/disk.js';
 import { ledgerFor } from '../src/entry/ledgerRegistry.js';
 import { FX } from '../src/comparison/assumptions.js';
 import { NOT_ACCESSIBLE } from '../src/governance/archetypes.js';
@@ -645,46 +647,41 @@ test('the view has one writer and two doors', async () => {
   }
 });
 
-test('a derived asset-return grade is the market\'s fifth in the engine\'s ranking', async () => {
-  /* Asset return is graded by rank until the terminal-value gate closes
-     (plan section 3.5), and nothing computed the rank: the grades were worked
-     out by hand. This reports. It writes nothing and proposes no grade: a
-     failure says the engine's ordering has moved under a stored grade, which
-     is the moment the analyst would want to look.
+test('a derived asset-return grade is the market\'s fifth in the investment model\'s ranking', async () => {
+  /* Asset return is graded by rank. Since the analyst's sign-off of
+     16 November 2026 the ranking is the investment model's: the all-equity
+     hold return of the case on each investor's card, among the priced markets
+     (src/opportunities/returnGrades.js). This reports. It writes nothing and
+     proposes no grade: a failure says the model's ordering has moved under a
+     stored grade, which is the moment the analyst would want to look.
 
-       fifth = ceil(rank x 5 / n)      rank 1 is the highest hold IRR
+       fifth = ceil(rank x 5 / n)      rank 1 is the highest return
        grade = 6 - fifth
 
-     The convention is read off the store, not chosen here: Great Britain is
-     ninth of fourteen and was graded 2. A market the engine does not price has
-     no rank and is not checked: Finland's grade is a practitioner one. One
-     grade serves a holder and a seller only while hold and exit IRR put every
-     market in the same fifth, and that is asserted. Since 2026-10-17 the two
-     orders differ inside a fifth (WA and Romania swap at the top, NEM and GB
-     in the middle) without moving any market's grade. */
-  const priced = registered
-    .map(m => ({ id: m.manifest.id, result: runBaseCase(m, 5) }))
-    .filter(r => !r.result.na && Number.isFinite(r.result.irrHold));
-  const order = (key) => [...priced].sort((a, b) => b.result[key] - a.result[key]).map(r => r.id);
-  const byHold = order('irrHold'), byExit = order('irrExit');
-  const fifthGrade = (ranking, id) => 6 - Math.ceil((ranking.indexOf(id) + 1) * 5 / ranking.length);
-  // B3 correctly changes the exit ordering. The existing methodology already
-  // requires each investor's return basis; a shared grade is no longer valid.
-  const grades = returnGradesFor(registered,5);
-  for(const id of byHold) assert.equal(grades[id]['hold-irr'].grade,fifthGrade(byHold,id));
-  for(const id of byExit) assert.equal(grades[id]['exit-irr'].grade,fifthGrade(byExit,id));
-
-  const expected = (id) => fifthGrade(byHold, id);
+     One stored grade serves all four investors only while their cards put a
+     market in the same fifth, and that is asserted: the day they differ, no
+     default investor is chosen and the analyst rules. A market the model does
+     not price has no rank and is not checked; Finland's grade is a
+     practitioner one and is never held against the model. */
+  const briefing = await briefingFromDisk({ now: new Date(`${ON}T00:00:00Z`) });
+  const grades = briefing.returnGrades;
+  for (const [id, by] of Object.entries(grades)){
+    for (const g of Object.values(by)) assert.equal(g.grade, fifthGrade(g.rank, g.count), `${id}: the fifths rule`);
+    assert.notEqual(commonGrade(by), null, `${id}: the four investors' cards no longer give one grade; the analyst rules on it`);
+  }
   const drift = [];
   for (const view of await committed.readAll()){
     const record = view.grades.assetReturn;
     if (!record || record.basis !== BASIS.DERIVED) continue;
-    assert.ok(byHold.includes(view.marketId), `${view.marketId}: a derived asset-return grade on a market the engine does not price`);
-    if (record.grade !== expected(view.marketId)){
-      drift.push(`${view.marketId}: stored ${record.grade}, and rank ${byHold.indexOf(view.marketId) + 1} of ${byHold.length} is ${expected(view.marketId)}`);
+    assert.ok(grades[view.marketId], `${view.marketId}: a derived asset-return grade on a market the model does not price`);
+    assert.deepEqual(record.evidence, ['investment-model'], `${view.marketId}: a derived asset-return grade cites the investment model`);
+    const expected = commonGrade(grades[view.marketId]);
+    if (record.grade !== expected){
+      const g = grades[view.marketId].infraFund;
+      drift.push(`${view.marketId}: stored ${record.grade}, and rank ${g.rank} of ${g.count} is ${expected}`);
     }
   }
-  assert.deepEqual(drift, [], 'the engine\'s ranking has moved under a stored grade: the analyst regrades it, nothing here does');
+  assert.deepEqual(drift, [], 'the model\'s ranking has moved under a stored grade: the analyst regrades it, nothing here does');
 });
 
 test('a play label names its design; the stage is added where it is shown', () => {

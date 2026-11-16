@@ -68,6 +68,7 @@ export const VIEW_SECTIONS = ['grades', 'verdicts', 'triggers', 'thesis', 'plays
  */
 export const INTERNAL_EVIDENCE = {
   'comparison-engine': ['The comparison engine', '比较引擎'],
+  'investment-model':  ['The investment model', '投资模型'],
   'entry-ledger':      ['The market\'s capital-at-risk ledger', '该市场的风险资本台账'],
   'build-pathway':     ['The market\'s build pathway', '该市场的建设路径'],
   'market-dashboard':  ['The market\'s own dashboard', '该市场看板'],

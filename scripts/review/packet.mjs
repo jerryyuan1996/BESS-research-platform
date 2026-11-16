@@ -8,7 +8,6 @@ import { ledgerFor } from '../../src/entry/ledgerRegistry.js';
 import { DATASETS } from '../../src/governance/datasets.js';
 import { setObservedFxSummary, clearObservedFx } from '../../src/comparison/fx.js';
 import { runBaseCase } from '../../src/comparison/engine.js';
-import { returnGradesFor } from '../../src/comparison/returnGrades.js';
 import { evaluateRules } from '../../etl/rules.mjs';
 import { ROOT, hash, json, git, revision, readPublicSnapshot, requirePublicSnapshot, locations, atomicWrite, isMain, cliArgs, onlyOptions, safeFile, withReviewLock } from './common.mjs';
 
@@ -20,11 +19,10 @@ export function computePacketFigures(inputs, selected, now){
     const seed = build();
     const fxApplied = inputs.summaries['fx-ecb'] ? setObservedFxSummary(inputs.summaries['fx-ecb'],now.getTime()) : false;
     const current = build();
-    const grades=returnGradesFor(registry);
     const engine = Object.fromEntries(selected.map(id => {
       const m=registry.find(m=>m.manifest.id===id);
       const base=runBaseCase(m,5);
-      return [id,{storedGrades:inputs.views.find(v=>v.marketId===id)?.grades,engineGrade:grades[id]?.['hold-irr'] ?? null,
+      return [id,{storedGrades:inputs.views.find(v=>v.marketId===id)?.grades,returnGrade:current.returnGrades?.[id]?.[current.defaultLens] ?? null,
         base:base.na ? {unavailable:true} : {holdIRR:base.irrHold,securedShare:base.securedShare,securedYears:base.securedYears},
         plays:Object.fromEntries(Object.entries(current.plays).filter(([,p])=>p.market===id))}];
     }));

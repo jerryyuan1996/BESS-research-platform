@@ -6,8 +6,11 @@
    docs/investment-view-revision-plan-2026-10-10.md §3 and has NOT been signed
    off. Two anchor sets (capital at risk, approval transparency) are the plan's
    own text, reused verbatim; the other ten are first drafts written to the same
-   precision and are there to be overwritten. Nothing in the application imports
-   this module yet, so nothing here is published.
+   precision and are there to be overwritten. THE DRAFT IS IN USE AND PUBLISHED:
+   every grade and verdict on the site is read against these words. This header
+   said nothing imported the module until 16 November 2026, when it was
+   corrected. One definition has since been signed off by the analyst, on that
+   date: asset return, re-based on the investment model (ASSET_GRADE_BASIS).
 
    THESE VALUES ARE METHODOLOGY. An anchor is the definition of what a grade
    means, and no observation settles a definition. No ETL job, no rule and no
@@ -103,9 +106,9 @@ const RANK_ANCHORS = {
 };
 
 /**
- * The fourteen dimensions: asset return, which the engine ranks; revenue
- * certainty, read off the engine's secured share and tenor against anchors;
- * and the twelve a person grades.
+ * The fourteen dimensions: asset return, ranked on the investment model;
+ * revenue certainty, read off the engine's secured share and tenor against
+ * anchors; and the twelve a person grades.
  *
  * `n` is the plan's own numbering of the twelve and is null for the two Return
  * dimensions. `measure` says what is being looked at and over what window —
@@ -113,17 +116,29 @@ const RANK_ANCHORS = {
  * is fixed. `open` says what a 5 describes, for the reader who has not learned
  * the scale yet.
  *
- * "The reference project" is always the market's comparison archetype, the
- * same size and duration the engine prices.
+ * "The reference project" is the market's comparison archetype, the same size
+ * and duration the engine prices — with one exception, signed off by the
+ * analyst on 16 November 2026: ASSET RETURN grades the case on the investor's
+ * card (its recommended play, priced ready-to-build on the investment model),
+ * so the grade ranks the return the reader sees beside it. It is a common
+ * asset benchmark; an investor's sale, leverage and target tests are separate.
  */
+
+/** What the asset-return grade ranks. One basis for all four investors. */
+export const ASSET_GRADE_BASIS = 'all-equity-hold';
+export const ASSET_GRADE_BASIS_LABEL = [
+  'All-equity hold return of the case on the investor\'s card',
+  '投资者卡片所示情景的全股权长持回报',
+];
+
 export const DIMENSIONS = [
   /* ---- Return ------------------------------------------------------------- */
   {
     id: 'assetReturn', pillar: 'return', n: null, gradedBy: GRADED_BY.RANK,
     label: ['Asset return', '资产回报'],
-    question: ['What does the engine say the asset earns?', '比较引擎算出的资产回报是多少？'],
-    measure: ['Quintile of the engine IRR among the compared markets, on the return basis the archetype reads (hold or exit).',
-              '比较引擎IRR在各市场中的五分位排名；按该投资者类型所看的口径（持有或退出）取值。'],
+    question: ['What does the investment model say the asset earns?', '投资模型算出的资产回报是多少？'],
+    measure: ['Fifth of the all-equity hold return among the priced markets, for the case on the investor\'s card: its recommended play, priced ready-to-build on the investment model. A common asset benchmark; the sale, leverage and target tests are applied separately.',
+              '按投资者卡片所示情景（其推荐方案，按可开工阶段在投资模型中定价）的全股权长持回报，在已定价市场中的五分位排名。这是共同的资产基准；出售、杠杆与目标回报检验另行适用。'],
     open: ['5 = the highest returns in the set', '5 = 回报居各市场前列'],
     anchors: RANK_ANCHORS,
   },

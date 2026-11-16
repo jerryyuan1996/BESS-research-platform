@@ -36,6 +36,10 @@ import { ledgerTotals, referenceProject, limitInputs } from './ledger.js';
  * @param options.privateMetrics  figures from the private overlay, keyed by
  *                                METRIC; each replaces the public figure and is
  *                                treated as complete
+ * @param options.returnGrades    marketId → investor → { grade, rank, count,
+ *                                value }: the asset-return grade computed on
+ *                                the investment model. Omitted, the stored
+ *                                grade is scored as it stands
  */
 export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics = {}, returnGrades = {} } = {}){
   const project = referenceProject(market.comparison, usdPer?.[market.manifest.currency]);
@@ -53,7 +57,11 @@ export function assessMarket(view, market, ledger, usdPer, { on, privateMetrics 
   const byArchetype = {};
   for (const id of ARCHETYPE_IDS){
     const verdict = view.verdicts?.[id] ?? null;
-    const returnGrade = returnGrades[market.manifest.id]?.[ARCHETYPES[id].returnBasis] || null;
+    /* The computed asset-return grade for THIS investor's card (opportunities/
+       returnGrades.js). It replaces a stored grade only where that grade is
+       derived: a practitioner grade is the analyst's own and is never
+       overridden, and a held layer still sits on top of whichever applies. */
+    const returnGrade = returnGrades[market.manifest.id]?.[id] || null;
     const stored = view.grades?.assetReturn;
     const grades = returnGrade && stored?.basis === 'derived'
       ? { ...view.grades, assetReturn:{...stored,grade:returnGrade.grade} } : view.grades;

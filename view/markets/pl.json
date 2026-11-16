@@ -7,17 +7,17 @@
   "grades": {
     "assetReturn": {
       "dimension": "assetReturn",
-      "grade": 3,
+      "grade": 4,
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "Seventh of fifteen markets on the design grid's hold IRR, 7.4% (23 October 2026).",
-        "按设计表测算的持有期IRR为7.4%（2026年10月23日），在十五个市场中排第七。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history. On this basis the grade moves from 3 to 4; the market's own inputs did not change. The case graded is the grant-funded cohort for the fund, the strategic investor and the developer, and the capacity-contract case for the new entrant; both sit in the same fifth.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。按此口径，评级由3调整为4；本市场自身输入未变。所评情景：基金、战略投资者与开发商为已获补贴批次，首次进入者为容量合同情景；两者处于同一五分位。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },

@@ -30,7 +30,8 @@ test('ERCOT is a complete, valid story of thirteen shots in the six chapters, ag
   assert.deepEqual(story.chapters.map(c => c.id), CHAPTERS);
   assert.deepEqual(shots.map(s => s.id), Array.from({ length: 13 }, (_, i) => `ercot-${String(i).padStart(2, '0')}`));
   assert.deepEqual(story.chapters.map(c => c.shots.map(s => s.id)), [['ercot-01'], ['ercot-02', 'ercot-03', 'ercot-04'], ['ercot-05', 'ercot-06', 'ercot-07'], ['ercot-08', 'ercot-09'], ['ercot-10', 'ercot-11'], ['ercot-12']]);
-  assert.deepEqual(story.reviewedAgainst, { playRef: 'ercot-toll-2h', hours: 2, call: 'opportunistic', on: '2026-11-01' });
+  /* Re-signed against the fund's Pass call on the analyst's instruction of 16 November 2026. */
+  assert.deepEqual(story.reviewedAgainst, { playRef: 'ercot-toll-2h', hours: 2, call: 'avoid', on: '2026-11-16' });
   assert.equal(storyMatches(story, row), true);
   assert.equal(isStale(story, row), false);
   for (const changed of [{ ...row, call: 'wait' }, { ...row, play: { ...row.play, hours: 4 } }, { ...row, play: { ...row.play, id: 'ercot-mer-2h' } }]) {

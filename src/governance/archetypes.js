@@ -7,9 +7,19 @@
    docs/investment-view-revision-plan-2026-10-10.md §3.4–§3.6 and has NOT been
    signed off. The plan gives one row of parameters per archetype and the
    developer's `reads` for grid scarcity and capital at risk; those are reused
-   as the plan, amended the same day, now has them. EVERYTHING ELSE HERE IS A
-   GUESS, there to be overwritten. Nothing in the application imports this
-   module yet, so nothing here is published.
+   as the plan, amended the same day, now has them. Everything else here was
+   drafted to be overwritten.
+
+   THE DRAFT IS IN USE AND PUBLISHED. Every score and every
+   score-against-verdict check on a market page is computed from these
+   numbers. This header said nothing imported the module until 16 November
+   2026, when it was corrected; no value changed. They are the working set
+   until the analyst endorses or edits them — see
+   docs/return-model-alignment-plan-2026-11-15.md, section 7.
+
+   `returnBasis` below names each investor's OWN return objective. The
+   asset-return grade is a separate, common benchmark on one basis for all
+   four: investability.js, ASSET_GRADE_BASIS (analyst, 16 November 2026).
 
    THESE VALUES ARE METHODOLOGY. A weight is a position and a knock-out is a
    position; no observation implies either, so a machine has no standing to

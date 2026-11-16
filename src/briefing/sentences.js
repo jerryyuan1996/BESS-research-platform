@@ -15,7 +15,9 @@
    --------------------------------------------------------------------------- */
 
 import { LENS_NOUN, TIER } from '../governance/briefing.js';
-import { VERDICT_LABEL, ROUTE_LABEL, ARCHETYPE_IDS } from '../governance/investability.js';
+import { VERDICT, VERDICT_LABEL, ROUTE_LABEL, ARCHETYPE_IDS } from '../governance/investability.js';
+
+const PASS_CALL = VERDICT.AVOID;
 import { REVENUE_ROUTE_LABEL } from '../governance/plays.js';
 import { playTitle } from '../governance/playTitle.js';
 
@@ -121,23 +123,27 @@ export const playName = (marketId, play) => [
  * @param rows      the ordered shortlist, each with `econ` and `play` attached
  * @param archetype the lens
  * @param next      the next decisive trigger { label, expected } or null
+ * @param holdOf    row → the all-equity hold return on that play's investment
+ *                  card, or null. The sentence quotes the card's return, never
+ *                  a comparison-engine one (analyst, 16 November 2026); with no
+ *                  card figure it quotes none
  */
-export function callSentence(rows, archetype, next, returnField){
+export function callSentence(rows, archetype, next, holdOf = () => null){
   const noun = LENS_NOUN[archetype] || LENS_NOUN.infraFund;
   const by = (tier) => rows.filter(r => r.tier === tier);
   const en = [], zh = [];
-  const ret = (r) => percent(r.econ[returnField]);
-  const retName = returnField === 'exit' ? ['exit IRR', '退出IRR'] : ['hold IRR', '持有期IRR'];
+  const held = (r) => { const v = typeof holdOf === 'function' ? holdOf(r) : null; return typeof v === 'number' && Number.isFinite(v) ? percent(v) : null; };
+  const retName = ['all-equity hold return', '全股权长持回报'];
 
   const pursue = by(TIER.PURSUE);
   if (pursue.length === 1){
-    const r = pursue[0], name = playName(r.market, r.play), v = perMW(r.econ.value);
-    en.push(`One play clears ${noun[0]}'s bar today: ${name[0]}, at ${ret(r)} ${retName[0]} and ${v[0]}.`);
-    zh.push(`今天有一个方案达到${noun[1]}的门槛：${name[1]}，${retName[1]} ${ret(r)}，${v[1]}。`);
+    const r = pursue[0], name = playName(r.market, r.play), v = perMW(r.econ.value), ret = held(r);
+    en.push(`One play clears ${noun[0]}'s bar today: ${name[0]}, at ${ret ? `${ret} ${retName[0]} and ` : ''}${v[0]}.`);
+    zh.push(`今天有一个方案达到${noun[1]}的门槛：${name[1]}，${ret ? `${retName[1]} ${ret}，` : ''}${v[1]}。`);
   } else if (pursue.length > 1){
-    const r = pursue[0], name = playName(r.market, r.play);
-    en.push(`${countWord(pursue.length, true)} plays clear ${noun[0]}'s bar today, led by ${name[0]} at ${ret(r)} ${retName[0]}.`);
-    zh.push(`今天有${countZh(pursue.length)}个方案达到${noun[1]}的门槛，以${name[1]}为首，${retName[1]} ${ret(r)}。`);
+    const r = pursue[0], name = playName(r.market, r.play), ret = held(r);
+    en.push(`${countWord(pursue.length, true)} plays clear ${noun[0]}'s bar today, led by ${name[0]}${ret ? ` at ${ret} ${retName[0]}` : ''}.`);
+    zh.push(`今天有${countZh(pursue.length)}个方案达到${noun[1]}的门槛，以${name[1]}为首${ret ? `，${retName[1]} ${ret}` : ''}。`);
   } else {
     en.push(`No play clears ${noun[0]}'s bar today.`);
     zh.push(`今天没有方案达到${noun[1]}的门槛。`);
@@ -175,7 +181,16 @@ export function callSentence(rows, archetype, next, returnField){
     zh.push(`观望${list[1]}。`);
   }
 
-  const park = by(TIER.PARK);
+  /* Pass and Not accessible share a tier and are different statements: one
+     says the case does not work for this investor, the other that the market
+     is shut to it. The sentence keeps them apart. */
+  const passed = by(TIER.PARK).filter(r => r.call === PASS_CALL);
+  if (passed.length){
+    const list = marketList(passed.map(r => r.market));
+    en.push(`Pass on ${list[0]}.`);
+    zh.push(`暂缓投入${list[1]}。`);
+  }
+  const park = by(TIER.PARK).filter(r => r.call !== PASS_CALL);
   if (park.length){
     const list = marketList(park.map(r => r.market));
     en.push(`${list[0]} ${marketCount(park.map(r => r.market)) === 1 ? 'is' : 'are'} closed to ${noun[0]}.`);
@@ -355,6 +370,14 @@ export const queueText = {
   staleReason: (market, dimension, quoted, engine) => [
     `${marketName(market)[0]}: the ${dimension[0]} grade's reason quotes ${quoted}; the engine now gives ${engine}.`,
     `${marketName(market)[1]}：${dimension[1]}评级理由引用${quoted}；引擎目前为${engine}。`,
+  ],
+  gradeMismatch: (market, stored, computed) => [
+    `${marketName(market)[0]}: the stored asset-return grade is ${stored}; the investment model now ranks it ${computed}.`,
+    `${marketName(market)[1]}：已存资产回报评级为${stored}；投资模型目前的排名对应${computed}。`,
+  ],
+  gradeDivergence: (market, grades) => [
+    `${marketName(market)[0]}: the four investors' cards no longer give one asset-return grade (${grades}); one stored grade cannot serve them all.`,
+    `${marketName(market)[1]}：四类投资者的卡片不再对应同一资产回报评级（${grades}）；单一已存评级无法同时适用。`,
   ],
 };
 

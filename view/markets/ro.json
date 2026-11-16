@@ -11,13 +11,13 @@
       "trend": "stable",
       "basis": "derived",
       "evidence": [
-        "comparison-engine"
+        "investment-model"
       ],
       "reason": [
-        "Fifth of fifteen markets on the design grid's hold IRR, 13.7% (23 October 2026).",
-        "按设计表测算的持有期IRR为13.7%（2026年10月23日），在十五个市场中排第五。"
+        "2026-11-16: Graded on the investment model: the all-equity hold return of the recommended play, priced ready-to-build, ranked among the priced markets and graded by fifths. The return and rank are shown from the model on this page; the earlier dated rationale remains in history.",
+        "2026-11-16：按投资模型评级：以推荐方案按可开工阶段定价的全股权长持回报，在已定价市场中排序并按五分位评级。回报与排名由本页模型结果给出；原有日期的依据保留在历史中。"
       ],
-      "asOf": "2026-10-23",
+      "asOf": "2026-11-16",
       "author": "analyst",
       "lockedUntil": null
     },
