@@ -304,12 +304,22 @@ body.ix-experience {
 /* Investor review: decision conditions stay readable across surfaces. */
 .ix-home-hero { padding:34px 0 36px; gap:44px; align-items:start; }
 .ix-hero-copy h1 { font-size:clamp(38px,4.1vw,58px); margin-top:12px; }
-.ix-feature-market { padding-top:18px; }
-.ix-feature-metrics { margin-top:18px; gap:14px; }
+.ix-feature-market { padding-top:12px; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:baseline; column-gap:14px; }
+.ix-feature-market h2 { grid-column:1; grid-row:1; font-size:var(--fs-display-sm); margin:0; }
+.ix-feature-market .ix-mono { grid-column:2; grid-row:1; }
+.ix-feature-market p { grid-column:1 / -1; margin-top:2px; }
+.ix-featured { padding:20px 24px 16px; }
+.ix-feature-top { padding-bottom:12px; }
+.ix-feature-metrics { margin-top:14px; gap:14px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+.ix-featured .ix-metric>strong { font-size:var(--fs-display-xs); margin:3px 0 0; }
+.ix-featured .ix-project-facts { margin:10px 0 0; padding-top:10px; gap:12px; }
+.ix-featured .ix-project-facts dd { line-height:1.4; }
+.ix-featured .ix-project-facts dt { margin-bottom:2px; }
+.ix-feature-foot { margin-top:12px; padding-top:10px; }
 .ix-featured .ix-metric>small,.ix-featured .ix-basis-note { color:#e0e8dc; }
-.ix-featured .ix-feature-risk { color:#f3dfbb; font-size:var(--fs-xs); margin:10px 0; }
+.ix-featured .ix-feature-risk { color:#f3dfbb; font-size:var(--fs-2xs); margin:4px 0 0; }
 .ix-basis-note { font-size:var(--fs-xs); color:var(--ix-body); line-height:1.65; margin:12px 0!important; }
-.ix-featured .ix-basis-note { font-size:var(--fs-2xs); }
+.ix-featured .ix-basis-note { font-size:var(--fs-micro); line-height:1.5; margin:0!important; }
 .ix-decision-panel { margin:18px 0; border-left:4px solid var(--ix-green); }
 .ix-decision-metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; margin:22px 0; }
 .ix-decision-metrics .ix-metric strong { font-size:var(--fs-2xl); overflow-wrap:anywhere; }
@@ -346,6 +356,7 @@ body.ix-experience {
 
 .ix-featured .ix-miniature { display:none; }
 @media(max-width:560px) {
+ .ix-feature-metrics { grid-template-columns:1fr 1fr; }
  .ix-results .ix-opportunity-set { min-width:0; width:100%; }
  .ix-opportunity-set,.ix-opportunity-set tbody { display:block; }
  .ix-opportunity-set thead { display:none; }
