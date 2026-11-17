@@ -47,15 +47,35 @@ export const MATRIX_BASIS = {
 	levered: { label: ['Levered equity IRR (%)', '杠杆后股权IRR（%）'] },
 };
 
+/* Plot frame in viewBox units. The inset keeps 0% and 100% dots clear of the frame. */
+const PLOT = { left: 58, right: 978, top: 46, bottom: 372, inset: 30 };
+const DOT = 7;
+const LABEL_HEIGHT = 15;
+
+/* Label positions, nearest first: beside the dot, on a corner, above or below, then stepped away. */
+function labelSpots(cx, cy, width, leftFirst) {
+	const sides = leftFirst ? [-1, 1] : [1, -1];
+	const box = (left, mid) => ({ left, right: left + width, top: mid - LABEL_HEIGHT / 2, bottom: mid + LABEL_HEIGHT / 2 });
+	const beside = (side, gap, mid) => box(side === 1 ? cx + gap : cx - gap - width, mid);
+	const spots = sides.map((side) => beside(side, 12, cy));
+	for (const side of sides) for (const up of [-1, 1]) spots.push(beside(side, 7, cy + up * 15));
+	for (const up of [-1, 1]) spots.push(box(cx - width / 2, cy + up * 18));
+	for (let step = 2; step <= 12; step++)
+		for (const up of [-1, 1]) for (const side of sides) spots.push(beside(side, 16, cy + up * step * 14));
+	return spots;
+}
+
 export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } = {}) {
 	const value = (r) => r.econ[basis];
 	const dots = rows.filter((r) => finite(value(r)) && finite(r.econ.secured));
-	const low = Math.min(0, Math.floor(Math.min(...dots.map((r) => value(r) * 100), 0) / 5) * 5);
-	const high = Math.max(20, Math.ceil(Math.max(...dots.map((r) => value(r) * 100), 0) / 5) * 5);
-	const x = (v) => 76 + v * 864;
-	const y = (v) => 380 - ((v * 100 - low) / (high - low)) * 326;
+	const returns = dots.map((r) => value(r) * 100);
+	const low = Math.min(0, Math.floor(Math.min(...returns, 0) / 5) * 5);
+	const high = Math.max(10, Math.ceil(Math.max(...returns, 0) / 5) * 5);
+	const { left: PL, right: PR, top: PT, bottom: PB, inset } = PLOT;
+	const x = (v) => PL + inset + v * (PR - PL - inset * 2);
+	const y = (v) => PB - ((v * 100 - low) / (high - low)) * (PB - PT);
 	const svg = s('svg', {
-		viewBox: '0 0 1000 450',
+		viewBox: '0 0 1000 432',
 		class: 'ix-matrix-svg',
 		role: 'group',
 		'aria-label': L([
@@ -63,35 +83,89 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
 			'全球机会矩阵。实心圆达到所选回报目标，空心圆未达到。按回车或空格选择市场。',
 		]),
 	});
-	for (let i = 0; i <= 4; i++) {
+	const yTicks = [],
+		xTicks = [];
+	for (let tick = low; tick <= high; tick += 5) {
+		const at = y(tick / 100),
+			label = text(PL - 10, at + 4, `${tick}%`, { 'text-anchor': 'end' });
+		yTicks.push({ at, label });
 		svg.append(
-			s('line', { x1: x(i / 4), y1: 54, x2: x(i / 4), y2: 380, class: 'ix-grid-line' }),
-			text(x(i / 4), 403, `${i * 25}%`, { 'text-anchor': 'middle' }),
+			s('line', { x1: PL, y1: at, x2: PR, y2: at, class: tick === 0 ? 'ix-grid-line ix-grid-base' : 'ix-grid-line' }),
+			label,
 		);
 	}
-	for (let tick = low; tick <= high; tick += 5) {
-		svg.append(
-			s('line', { x1: 76, y1: y(tick / 100), x2: 940, y2: y(tick / 100), class: 'ix-grid-line' }),
-			text(62, y(tick / 100) + 4, `${tick}%`, { 'text-anchor': 'end' }),
-		);
+	for (let i = 0; i <= 4; i++) {
+		const at = x(i / 4),
+			label = text(at, PB + 20, `${i * 25}%`, { 'text-anchor': 'middle' });
+		xTicks.push({ at, label });
+		svg.append(s('line', { x1: at, y1: PB, x2: at, y2: PB + 5, class: 'ix-grid-line ix-grid-base' }), label);
 	}
 	svg.append(
-		text(76, 23, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
-		text(508, 438, L(['Modelled fixed revenue share →', '模型固定收入占比 →']), {
+		text(14, 22, L(MATRIX_BASIS[basis].label), { class: 'ix-chart-axis' }),
+		text((PL + PR) / 2, PB + 46, L(['Modelled fixed revenue share', '模型固定收入占比']), {
 			'text-anchor': 'middle',
 			class: 'ix-chart-axis',
 		}),
+		text(PL, PB + 46, L(['← Market-priced', '← 市场化收入']), { class: 'ix-chart-cue' }),
+		text(PR, PB + 46, L(['Fixed →', '固定收入 →']), { 'text-anchor': 'end', class: 'ix-chart-cue' }),
 	);
-	// Place labels around their true coordinates, avoiding labels AND other dots.
-	// Leader lines keep nearby cases legible without moving the underlying data.
+
+	// The selected market reads off both axes: one guide, drawn beneath every dot.
+	const guide = s('g', { class: 'ix-matrix-guide', 'aria-hidden': 'true' });
+	svg.append(guide);
+	const chip = (left, mid, label) => {
+		const width = label.length * 6.5 + 10;
+		return [
+			s('rect', { x: left, y: mid - 9, width, height: 18, rx: 3 }),
+			text(left + width / 2, mid + 4, label, { 'text-anchor': 'middle' }),
+		];
+	};
+	const showGuide = (row) => {
+		const plotted = row && dots.includes(row),
+			cx = plotted ? x(row.econ.secured) : NaN,
+			cy = plotted ? y(value(row)) : NaN;
+		if (plotted) {
+			const returnLabel = returnPct(value(row)),
+				shareLabel = share(row.econ.secured);
+			guide.replaceChildren(
+				s('line', { x1: PL, y1: cy, x2: cx, y2: cy }),
+				s('line', { x1: cx, y1: cy, x2: cx, y2: PB }),
+				...chip(PL - 6 - (returnLabel.length * 6.5 + 10), cy, returnLabel),
+				...chip(cx - (shareLabel.length * 6.5 + 10) / 2, PB + 16, shareLabel),
+			);
+		} else guide.replaceChildren();
+		// A tick label under a value chip steps aside rather than showing through it.
+		for (const t of yTicks) t.label.style.visibility = Math.abs(t.at - cy) < 16 ? 'hidden' : '';
+		for (const t of xTicks) t.label.style.visibility = Math.abs(t.at - cx) < 32 ? 'hidden' : '';
+	};
+	const deselect = () => {
+		for (const p of svg.querySelectorAll('.ix-point')) {
+			p.classList.remove('selected');
+			p.setAttribute('aria-pressed', 'false');
+		}
+	};
+	svg.addEventListener('ix:deselect', () => {
+		deselect();
+		showGuide(null);
+	});
+
+	// Labels sit beside their dot. A leader line appears only where crowding pushes one away.
 	const occupied = dots.map((row) => ({
-		left: x(row.econ.secured) - 10,
-		right: x(row.econ.secured) + 10,
-		top: y(value(row)) - 10,
-		bottom: y(value(row)) + 10,
+		id: row.id,
+		left: x(row.econ.secured) - DOT - 2,
+		right: x(row.econ.secured) + DOT + 2,
+		top: y(value(row)) - DOT - 2,
+		bottom: y(value(row)) + DOT + 2,
 	}));
-	const overlaps = (a) =>
-		occupied.some((b) => a.left < b.right + 4 && a.right > b.left - 4 && a.top < b.bottom + 4 && a.bottom > b.top - 4);
+	const free = (box, id) =>
+		box.left >= PL + 4 &&
+		box.right <= PR - 4 &&
+		box.top >= PT - 12 &&
+		box.bottom <= PB - 3 &&
+		!occupied.some(
+			(o) =>
+				o.id !== id && box.left < o.right + 2 && box.right > o.left - 2 && box.top < o.bottom + 2 && box.bottom > o.top - 2,
+		);
 	[...dots]
 		.sort((a, b) => y(value(a)) - y(value(b)) || a.id.localeCompare(b.id))
 		.forEach((row) => {
@@ -112,45 +186,41 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
 				'aria-pressed': String(row.id === selected),
 			});
 			const cx = x(row.econ.secured),
-				cy = y(value(row)),
-				r = 7;
-			point.append(s('circle', { cx, cy, r }), s('title', {}, description));
+				cy = y(value(row));
+			// The halo is the pointer target and the selection ring; the dot itself never changes size.
+			point.append(
+				s('circle', { cx, cy, r: DOT, class: 'ix-point-dot' }),
+				s('circle', { cx, cy, r: DOT + 6, class: 'ix-point-halo' }),
+				s('title', {}, description),
+			);
 			// Conservative character widths cover both English and Chinese at 13px.
 			const width = [...label].reduce((n, c) => n + (/[^\x00-\x7f]/.test(c) ? 14 : 8), 0);
-			let box;
-			const offsets = [-14, 14, -38, 38, -62, 62, -86, 86, -110, 110, -134, 134, -158, 158, -182, 182];
-			for (const dy of offsets) {
-				for (const side of cx > 730 ? [-1, 1] : [1, -1]) {
-					const left = side === 1 ? cx + 15 : cx - 15 - width,
-						top = cy + dy - 13;
-					const candidate = { left, right: left + width, top, bottom: top + 17 };
-					if (left >= 78 && candidate.right <= 960 && top >= 34 && candidate.bottom <= 380 && !overlaps(candidate)) {
-						box = candidate;
-						break;
-					}
-				}
-				if (box) break;
-			}
-			if (!box) box = { left: Math.max(78, Math.min(960 - width, cx + 15)), right: 960, top: cy - 27, bottom: cy - 10 };
+			const spots = labelSpots(cx, cy, width, cx > (PL + PR) / 2 + 220);
+			const box = spots.find((spot) => free(spot, row.id)) || spots[0];
 			occupied.push(box);
-			point.append(
-				s('line', {
-					x1: cx,
-					y1: cy,
-					x2: cx < box.left ? box.left : box.right,
-					y2: box.top + 9,
-					class: 'ix-label-leader',
-					'aria-hidden': 'true',
-				}),
-				text(box.left, box.top + 13, label, { 'text-anchor': 'start', class: 'ix-point-label' }),
-			);
+			const nearX = Math.max(box.left, Math.min(box.right, cx)),
+				nearY = Math.max(box.top, Math.min(box.bottom, cy)),
+				gap = Math.hypot(nearX - cx, nearY - cy);
+			if (gap > 17) {
+				const ux = (nearX - cx) / gap,
+					uy = (nearY - cy) / gap;
+				point.append(
+					s('line', {
+						x1: cx + ux * (DOT + 3),
+						y1: cy + uy * (DOT + 3),
+						x2: nearX - ux * 2,
+						y2: nearY - uy * 2,
+						class: 'ix-label-leader',
+						'aria-hidden': 'true',
+					}),
+				);
+			}
+			point.append(text(box.left, box.top + 11.5, label, { 'text-anchor': 'start', class: 'ix-point-label' }));
 			const choose = () => {
-				for (const p of svg.querySelectorAll('.ix-point')) {
-					p.classList.remove('selected');
-					p.setAttribute('aria-pressed', 'false');
-				}
+				deselect();
 				point.classList.add('selected');
 				point.setAttribute('aria-pressed', 'true');
+				showGuide(row);
 				onSelect(row);
 				document
 					.querySelectorAll('[data-market-row]')
@@ -165,6 +235,7 @@ export function opportunityMatrix(rows, selected, onSelect, { basis = 'hold' } =
 			});
 			svg.append(point);
 		});
+	showGuide(dots.find((row) => row.id === selected));
 	return svg;
 }
 

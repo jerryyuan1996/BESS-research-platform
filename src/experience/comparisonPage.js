@@ -7,7 +7,7 @@ import { countryAttrs, projectFacts, operatingPrice } from './projectFacts.js';
 import { basisNote, decisionReasons, contractEvidence, marginText, availability } from './decision.js';
 import { gateLabel } from './labels.js';
 import { decisionStrip } from './decisionStrip.js';
-import { passLast } from './traceability.js';
+import { passLast, QUALIFIER_LABEL } from './traceability.js';
 
 // The comparison table and atlas are needed only on /returns, not on arrival.
 export function createComparisonRenderer(ui) {
@@ -252,21 +252,40 @@ export function createComparisonRenderer(ui) {
 										),
 									),
 								),
-								h(
-									'div',
-									{ class: 'ix-legend' },
-									h('span', { class: 'advance' }, L(['Advance / position', '推进 / 布局'])),
-									h('span', { class: 'clears' }, L(['Situational · clears target', '择机 · 达到目标'])),
-									h('span', { class: 'price' }, L(['Situational · at a price', '择机 · 须按价格买入'])),
-									h('span', { class: 'below' }, L(['Situational · below target', '择机 · 低于目标'])),
-									h('span', { class: 'watch' }, L(['Watch / research / Pass', '观察 / 研究 / 暂缓'])),
-									h('span', { class: 'meets' }, L(['Filled · meets selected return target', '实心 · 达到所选回报目标'])),
-									h('span', { class: 'misses' }, L(['Hollow · below selected return target', '空心 · 低于所选回报目标'])),
-								),
 							)
 						: null,
 				),
 			);
+			// Two encodings, two keys: colour carries the call, fill carries the target test.
+			if (state.view === 'irr')
+				matrixPanel.append(
+					h(
+						'div',
+						{ class: 'ix-legend ix-matrix-key' },
+						h(
+							'div',
+							{ class: 'ix-key-group' },
+							h('strong', {}, L(['Colour · investment call', '颜色 · 投资判断'])),
+							h('span', { class: 'advance' }, L(['Advance / position', '推进 / 布局'])),
+							h(
+								'span',
+								{ class: 'ix-key-split' },
+								L(['Situational', '择机']),
+								h('span', { class: 'clears' }, L(QUALIFIER_LABEL.clears)),
+								h('span', { class: 'price' }, L(QUALIFIER_LABEL.price)),
+								h('span', { class: 'below' }, L(QUALIFIER_LABEL.below)),
+							),
+							h('span', { class: 'watch' }, L(['Watch / research / Pass', '观察 / 研究 / 暂缓'])),
+						),
+						h(
+							'div',
+							{ class: 'ix-key-group' },
+							h('strong', {}, L(['Fill · selected return against target', '填充 · 所选回报对照目标'])),
+							h('span', { class: 'meets' }, L(['Meets target', '达到目标'])),
+							h('span', { class: 'misses' }, L(['Below target', '低于目标'])),
+						),
+					),
+				);
 			if (!filtered.length)
 				matrixPanel.append(
 					h(
@@ -380,10 +399,7 @@ export function createComparisonRenderer(ui) {
 										type: 'button',
 										class: 'ix-unpriced-market',
 										onclick: () => {
-											matrixPanel.querySelectorAll('.ix-point').forEach((p) => {
-												p.classList.remove('selected');
-												p.setAttribute('aria-pressed', 'false');
-											});
+											matrixPanel.querySelector('.ix-matrix-svg')?.dispatchEvent(new Event('ix:deselect'));
 											selectRow(row);
 										},
 									},
@@ -398,8 +414,8 @@ export function createComparisonRenderer(ui) {
 						'p',
 						{ class: 'ix-caption' },
 						L([
-							'Same RTB closing date · nominal after project tax. Filled dots meet this investor’s target on the selected return basis; hollow dots fall below it. Situational colours describe the all-equity case and its stated acquisition price. Fixed share is modelled first-year revenue. The decision strip shows each target and its build-up; contract and operating-life assumptions appear in each case.',
-							'统一RTB交割起点 · 税后名义。实心圆表示所选回报口径达到该投资者目标，空心圆表示未达到。择机颜色说明全股权情景及已列明的收购价格。固定占比采用模型首年收入；投资判断条列出各项目目标及组成，合同与运营期限假设见各市场详情。',
+							'Same RTB closing date · nominal after project tax. The target is this investor’s, on the selected return basis. Situational colours describe the all-equity case and its stated acquisition price. Fixed share is modelled first-year revenue. The decision strip shows each target and its build-up; contract and operating-life assumptions appear in each case.',
+							'统一RTB交割起点 · 税后名义。目标为该投资者在所选回报口径下的目标。择机颜色说明全股权情景及已列明的收购价格。固定占比采用模型首年收入；投资判断条列出各项目目标及组成，合同与运营期限假设见各市场详情。',
 						]),
 					),
 				);
