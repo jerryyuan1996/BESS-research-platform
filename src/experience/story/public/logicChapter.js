@@ -396,6 +396,11 @@ export function renderChapter(data, id, ctx, config = null) {
 		);
 		root.append(routeControls);
 	}
+	// What the route is used for and who stands behind the cash. Rendered only
+	// where the market's content names them; other markets keep the one-line
+	// counterparty in the step panel.
+	const brief = h('div', { class: 'il-route-brief', 'aria-live': 'polite' });
+	if (!system) root.append(brief);
 	const nav = h('div', { class: 'il-steps', role: 'group', 'aria-label': L(['Explanation steps', '逻辑步骤']) });
 	const illustration = h('div', { class: 'il-illustration' }),
 		copy = h('div', { class: 'il-copy', 'aria-live': 'polite' }),
@@ -541,6 +546,41 @@ export function renderChapter(data, id, ctx, config = null) {
 			);
 		} else {
 			const r = routes[route];
+			brief.hidden = !(r.uses?.length || r.parties?.length);
+			replace(
+				brief,
+				r.uses?.length
+					? h(
+							'section',
+							{ class: 'il-uses' },
+							h('h4', {}, L(['What the battery does on this route', '电池在这条路径上的具体用途'])),
+							h(
+								'ol',
+								{},
+								r.uses.map((use) => h('li', {}, h('strong', {}, L(use.title)), h('span', {}, L(use.body)))),
+							),
+						)
+					: null,
+				r.parties?.length
+					? h(
+							'section',
+							{ class: 'il-parties' },
+							h('h4', {}, L(['Who pays, who uses', '谁付费，谁使用'])),
+							h(
+								'dl',
+								{},
+								r.parties.map((party) =>
+									h(
+										'div',
+										{},
+										h('dt', {}, L(party.role)),
+										h('dd', {}, h('strong', {}, L(party.who)), h('span', {}, L(party.note))),
+									),
+								),
+							),
+						)
+					: null,
+			);
 			illustration.replaceChildren(paymentDiagram(route, step, delivered, small, routes));
 			replace(
 				copy,
@@ -559,12 +599,14 @@ export function renderChapter(data, id, ctx, config = null) {
 								]
 							: r.net,
 				),
-				h(
-					'div',
-					{ class: 'il-counterparty' },
-					h('span', {}, L(['Counterparty / user', '交易对手／使用者'])),
-					h('strong', {}, L(r.counterparty)),
-				),
+				r.parties?.length
+					? null
+					: h(
+							'div',
+							{ class: 'il-counterparty' },
+							h('span', {}, L(['Counterparty / user', '交易对手／使用者'])),
+							h('strong', {}, L(r.counterparty)),
+						),
 				step === 2 && r.kind !== 'procurement'
 					? button(
 							delivered

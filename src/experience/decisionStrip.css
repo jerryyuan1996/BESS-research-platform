@@ -74,8 +74,22 @@
 	grid-template-columns: 1fr;
 }
 .ix-featured .ix-decision-strip {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 9px 20px;
+	margin: 12px 0 10px;
+	padding: 10px 0;
 	color: #f3f4e9;
 	border-color: #7d9384;
+}
+.ix-featured .ix-decision-strip dt {
+	margin-bottom: 2px;
+}
+.ix-featured .ix-decision-strip dd,
+.ix-featured .ix-decision-strip small {
+	line-height: 1.4;
+}
+.ix-featured .ix-decision-strip small {
+	margin-top: 2px;
 }
 .ix-featured .ix-decision-strip dt,
 .ix-featured .ix-target-basis {
@@ -113,5 +127,8 @@
 	}
 	.ix-opportunity-set .ix-decision-strip {
 		min-width: 0;
+	}
+	.ix-featured .ix-decision-strip {
+		grid-template-columns: 1fr;
 	}
 }
