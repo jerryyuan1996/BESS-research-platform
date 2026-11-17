@@ -13,12 +13,12 @@
     "licence": "PSE public reporting data — reuse with attribution to PSE S.A.",
     "attribution": "Source: PSE S.A.; ECB reference rates"
   },
-  "fetchedAt": "2026-11-16T16:00:26.461Z",
+  "fetchedAt": "2026-11-17T16:11:36.175Z",
   "coverage": {
-    "from": "2025-11-16T16:00:00.000Z",
-    "to": "2026-11-17T22:00:00.000Z",
+    "from": "2025-11-17T17:00:00.000Z",
+    "to": "2026-11-18T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8791
+    "points": 8790
   },
   "units": {
     "price": "EUR/MWh"
@@ -31,31 +31,31 @@
   "staleAfterHours": 72,
   "derived": {
     "authority": "derived",
-    "points": 8791,
+    "points": 8790,
     "coverageDays": 367,
     "pointsPerHour": 1,
-    "mean": 129.34,
-    "median": 119.94,
-    "stdev": 77.98,
-    "p5": 1.58,
-    "p95": 259.77,
-    "negativeHoursPct": 0.03480832669775907,
-    "spreadMean": 142.08,
+    "mean": 129.42,
+    "median": 120.04,
+    "stdev": 78,
+    "p5": 1.57,
+    "p95": 259.78,
+    "negativeHoursPct": 0.0348122866894198,
+    "spreadMean": 142.13,
     "spreadMedian": 135.88,
-    "spreadP25": 80.81,
+    "spreadP25": 82.3,
     "spreadP75": 179.56,
     "spreadDays": 366,
-    "chargeMean": 61.03,
-    "dischargeMean": 203.11,
+    "chargeMean": 61.09,
+    "dischargeMean": 203.21,
     "durationHours": 4
   },
   "arbitrage": {
     "authority": "derived",
-    "revenuePerMW": 130172,
-    "marginPerCycle": 525.23,
+    "revenuePerMW": 130210,
+    "marginPerCycle": 525.39,
     "inputs": {
-      "chargeMean": 61.03156420765027,
-      "dischargeMean": 203.11049863387984,
+      "chargeMean": 61.0874931693989,
+      "dischargeMean": 203.21463114754104,
       "durationHours": 4,
       "roundTripEfficiency": 0.85,
       "cyclesPerYear": 365,
@@ -70,24 +70,14 @@
   },
   "daily": [
     {
-      "d": "2025-11-16",
-      "n": 7,
-      "mean": 112.24,
-      "min": 99.96,
-      "max": 130.66,
+      "d": "2025-11-17",
+      "n": 6,
+      "mean": 99.72,
+      "min": 85.29,
+      "max": 116.43,
       "spread": null,
       "charge": null,
       "discharge": null
-    },
-    {
-      "d": "2025-11-17",
-      "n": 24,
-      "mean": 117.89,
-      "min": 85.29,
-      "max": 162.17,
-      "spread": 64.93,
-      "charge": 90.16,
-      "discharge": 155.09
     },
     {
       "d": "2025-11-18",
@@ -3738,12 +3728,22 @@
       "spread": 187.97,
       "charge": 160.36,
       "discharge": 348.32
+    },
+    {
+      "d": "2026-11-18",
+      "n": 24,
+      "mean": 149.3,
+      "min": 99.98,
+      "max": 194.61,
+      "spread": 82.57,
+      "charge": 110.63,
+      "discharge": 193.2
     }
   ],
   "sourceSnapshot": {
     "file": "pl-day-ahead.json",
-    "contentChecksum": "sha256:b9f9bdb6481902ec9e748a7f139c640a676e38fa7e299bd06c02d55f3af0f1da",
-    "points": 8791
+    "contentChecksum": "sha256:e206f0272dd264cf180188f071f5ac761fe73c1273c58d0ad23cef0f3600062d",
+    "points": 8790
   },
-  "summaryChecksum": "sha256:cbc850bc768ae82d5ffad0d1fc933ba6902e1f67da788171bb85e5822eed2eda"
+  "summaryChecksum": "sha256:dfd406b4bf9aaed0f484204f3bdcd53164279f351bc4ec218051ec978d16a398"
 }

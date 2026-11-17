@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-16T16:00:06.770Z",
+  "fetchedAt": "2026-11-17T16:11:38.800Z",
   "coverage": {
-    "from": "2025-11-16T16:00:00.000Z",
-    "to": "2026-11-16T22:00:00.000Z",
+    "from": "2025-11-17T17:00:00.000Z",
+    "to": "2026-11-17T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8767
+    "points": 8766
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-16",
-      "n": 8,
-      "mean": 7.42,
-      "min": 7.08,
-      "max": 8,
-      "spread": 7.42,
-      "charge": null,
-      "discharge": 7.42
-    },
-    {
       "d": "2025-11-17",
-      "n": 24,
-      "mean": 7.96,
-      "min": 7.08,
-      "max": 8.9,
-      "spread": 7.96,
+      "n": 7,
+      "mean": 8.1,
+      "min": 7.4,
+      "max": 8.89,
+      "spread": 8.1,
       "charge": null,
-      "discharge": 7.96
+      "discharge": 8.1
     },
     {
       "d": "2025-11-18",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-16",
-      "n": 23,
-      "mean": 15.69,
+      "n": 24,
+      "mean": 15.79,
       "min": 8.9,
       "max": 19,
-      "spread": 15.69,
+      "spread": 15.79,
       "charge": null,
-      "discharge": 15.69
+      "discharge": 15.79
+    },
+    {
+      "d": "2026-11-17",
+      "n": 23,
+      "mean": 24.21,
+      "min": 17,
+      "max": 34.18,
+      "spread": 24.21,
+      "charge": null,
+      "discharge": 24.21
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:4bf09bb6ff1849f2e6e94a3a16ccd763b43558a4d9060b14a2d95cffac4a29ce",
-    "points": 8767
+    "contentChecksum": "sha256:86f4e13c992fd798e3710dbb8693ca590a12ab03fcb3b5d726ae3c27902569ba",
+    "points": 8766
   },
-  "summaryChecksum": "sha256:8eba004cb3b799ae77d47188040561d4c942e96e3642e56fa45ff8407c1b74a2"
+  "summaryChecksum": "sha256:bb44adc927b4a96564db60edb3584818ff73a76edea32b64fb52ed25d106c651"
 }
