@@ -1,5 +1,6 @@
 // Public explanation, approved for market-by-market rollout on 14 Nov 2026.
 // These are qualitative mechanism diagrams, not dispatch or valuation inputs.
+import { ROUTE_BRIEFS } from './marketRouteBriefs.js';
 const step = (label, title, body, takeaway) => ({ label, title, body, takeaway });
 const checkConnection = [
 	'Check usable energy, both connection directions and the hours when restrictions apply.',
@@ -1376,6 +1377,9 @@ const jpRoutes = {
 	),
 };
 for (const id of ['jp_tokyo', 'jp_kyushu', 'jp_hokkaido']) ROUTES[id] = jpRoutes;
+// Each route also says what the battery does and who pays, uses and bears the cost.
+for (const [id, routes] of Object.entries(ROUTES))
+	for (const [key, r] of Object.entries(routes)) Object.assign(r, ROUTE_BRIEFS[id]?.[key]);
 
 export function marketLogic(id) {
 	if (!SYSTEMS[id] || !ROUTES[id]) throw new Error('Market logic unavailable: ' + id);
