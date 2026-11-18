@@ -16,6 +16,9 @@ test('every market has a bilingual causal chain with resolvable source evidence'
   for(const route of Object.values(ROUTES[id])){
    for(const k of ['label','counterparty','promise','right','pay','net','check'])pair(route[k]);
    for(const key of route.sources)assert.match(sources[key]?.url||'',/^https:/,id+'/'+key);
+   assert.ok(route.uses?.length>=2&&route.parties?.length===3,id+': every route says what the battery does and who pays');
+   for(const use of route.uses){pair(use.title);pair(use.body);}
+   for(const party of route.parties){pair(party.role);pair(party.who);pair(party.note);}
   }
   assert.equal(physicalState(s,2,true),'constrained');assert.notEqual(physicalState(s,2,false),'constrained');
  }

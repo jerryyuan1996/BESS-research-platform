@@ -32,6 +32,7 @@ for(const [id,slug] of Object.entries(historySlugs))for(const lang of ['en','zh'
     await expect(logic.locator('.il-copy h4')).toHaveText((n===0?r.promise:n===1?r.right:r.pay)[i]);
    }
    await expect(logic.locator('.il-copy')).toContainText(r.net[i]);
+   await expect(logic.locator('.il-uses li')).toHaveCount(r.uses.length);await expect(logic.locator('.il-parties dt')).toHaveText(r.parties.map(x=>x.role[i]));
    if(id==='sa')await expect(logic.locator('.il-payment.il-flow')).toHaveCount(0);
    else {await logic.locator('.il-condition').click();await expect(logic.locator('.il-payment.il-flow')).toHaveCount(0);await expect(logic.locator('.il-alert')).toBeVisible();}
    expect(await dialog.locator('.public-story-body').evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
