@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-17T16:11:24.984Z",
+  "fetchedAt": "2026-11-18T15:46:55.304Z",
   "coverage": {
-    "from": "2026-09-12T23:00:00.000Z",
-    "to": "2026-11-16T23:30:00.000Z",
+    "from": "2026-09-08T23:00:00.000Z",
+    "to": "2026-11-17T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 3122
+    "points": 3362
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-09-09",
+      "n": 48,
+      "expected": 48,
+      "mean": -23.8694,
+      "min": -417.93416956349205,
+      "max": 268.84100686507935,
+      "netMWh": -1145.7306
+    },
+    {
+      "d": "2026-09-10",
+      "n": 48,
+      "expected": 48,
+      "mean": 3.3465,
+      "min": -635.6487798154973,
+      "max": 633.9267420833334,
+      "netMWh": 160.6336
+    },
+    {
+      "d": "2026-09-11",
+      "n": 48,
+      "expected": 48,
+      "mean": 14.1801,
+      "min": -941.8385359428917,
+      "max": 837.6077735185186,
+      "netMWh": 680.644
+    },
+    {
+      "d": "2026-09-12",
+      "n": 48,
+      "expected": 48,
+      "mean": -208.0689,
+      "min": -1821.0442590025252,
+      "max": 365.96606886213544,
+      "netMWh": -9987.305
+    },
     {
       "d": "2026-09-13",
       "n": 48,
@@ -625,17 +661,26 @@
       "d": "2026-11-16",
       "n": 48,
       "expected": 48,
-      "mean": 1.0313,
-      "min": -390.6986106944444,
+      "mean": -1.7167,
+      "min": -447.6986106944444,
       "max": 423.02029983187134,
-      "netMWh": 49.5018
+      "netMWh": -82.4022
+    },
+    {
+      "d": "2026-11-17",
+      "n": 48,
+      "expected": 48,
+      "mean": 207.0198,
+      "min": -199.39919515873015,
+      "max": 929.7317203651832,
+      "netMWh": 9936.9502
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:cac54bf3d1f45b0265e5478912e07bc47d6c76ee8c28a6b87eb9cf7ef3606ac6",
-    "points": 3122
+    "contentChecksum": "sha256:13cd865389aa010000ddf79b0a9e14c80f98666acd2d00c14aaf2748d91ac7e7",
+    "points": 3362
   },
-  "contentChecksum": "sha256:274433226d3dac2fd606e0c1b10d9fccc45f7603b7d239625cc1eeae52e6f79b",
-  "summaryChecksum": "sha256:44bc89562f1be36e4574231dff653aa4fcdc090d9912a6249390c91a7e1aa800"
+  "contentChecksum": "sha256:47ceab3a5a8b6c25706e9b72900b078506d197b2594d67881bd6bf9fe2d50de1",
+  "summaryChecksum": "sha256:e63d52ab14d6fbe448f288a7b6507ebcf0ddd7b6e235294a557d0166a1edf96f"
 }

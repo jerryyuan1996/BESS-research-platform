@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-17T16:11:38.800Z",
+  "fetchedAt": "2026-11-18T15:47:10.230Z",
   "coverage": {
-    "from": "2025-11-17T17:00:00.000Z",
-    "to": "2026-11-17T22:00:00.000Z",
+    "from": "2025-11-18T16:00:00.000Z",
+    "to": "2026-11-18T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8766
+    "points": 8767
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-17",
-      "n": 7,
-      "mean": 8.1,
-      "min": 7.4,
-      "max": 8.89,
-      "spread": 8.1,
-      "charge": null,
-      "discharge": 8.1
-    },
-    {
       "d": "2025-11-18",
-      "n": 24,
-      "mean": 9.04,
-      "min": 7.4,
+      "n": 8,
+      "mean": 9.2,
+      "min": 7.5,
       "max": 17,
-      "spread": 9.04,
+      "spread": 9.2,
       "charge": null,
-      "discharge": 9.04
+      "discharge": 9.2
     },
     {
       "d": "2025-11-19",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-17",
-      "n": 23,
-      "mean": 24.21,
-      "min": 17,
+      "n": 24,
+      "mean": 23.54,
+      "min": 8,
       "max": 34.18,
-      "spread": 24.21,
+      "spread": 23.54,
       "charge": null,
-      "discharge": 24.21
+      "discharge": 23.54
+    },
+    {
+      "d": "2026-11-18",
+      "n": 23,
+      "mean": 16.69,
+      "min": 8.4,
+      "max": 29.43,
+      "spread": 16.69,
+      "charge": null,
+      "discharge": 16.69
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:86f4e13c992fd798e3710dbb8693ca590a12ab03fcb3b5d726ae3c27902569ba",
-    "points": 8766
+    "contentChecksum": "sha256:a2422ce6ec68ec7928abe9f78f45b2f10cb719d21e8a38aa55003c38b6406d90",
+    "points": 8767
   },
-  "summaryChecksum": "sha256:bb44adc927b4a96564db60edb3584818ff73a76edea32b64fb52ed25d106c651"
+  "summaryChecksum": "sha256:096aa747f5d11ff443fc91d45dae21c55637f58c9be04dd07ee2bfc47114ff37"
 }

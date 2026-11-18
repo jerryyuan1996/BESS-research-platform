@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.ieso.ca/Terms-of-Use",
     "notice": "Copyright © 2004-2022 Independent Electricity System Operator, all rights reserved.\nThis information is subject to the Terms of Use set out in the IESO’s website (www.ieso.ca)"
   },
-  "fetchedAt": "2026-11-17T16:11:24.984Z",
+  "fetchedAt": "2026-11-18T15:46:55.304Z",
   "coverage": {
     "from": "2026-08-08T05:00:00.000Z",
-    "to": "2026-11-18T05:00:00.000Z",
+    "to": "2026-11-19T05:00:00.000Z",
     "resolution": "PT1H",
-    "points": 2448
+    "points": 2472
   },
   "units": {
     "price": "CAD/MWh"
@@ -39,16 +39,16 @@
   "arbitrage": null,
   "zonal": {
     "coverageAudit": {
-      "archiveReports": 102,
-      "archiveDeliveryDays": 102,
+      "archiveReports": 103,
+      "archiveDeliveryDays": 103,
       "archiveFirst": "2026-08-08",
-      "archiveLast": "2026-11-17",
+      "archiveLast": "2026-11-18",
       "availableDeliveryDays": 91,
       "archivedAvailableDeliveryDays": 91,
       "pendingReportFiles": [],
-      "completeRollingDays": 102,
-      "expectedIntervalsBetweenObservedEndpoints": 2448,
-      "actualIntervals": 2448,
+      "completeRollingDays": 103,
+      "expectedIntervalsBetweenObservedEndpoints": 2472,
+      "actualIntervals": 2472,
       "missingDays": [],
       "windowDays": 365
     },
@@ -1074,25 +1074,35 @@
           "DSO-RD": 24
         },
         "meanPrice": 50.810833333333335
+      },
+      {
+        "date": "2026-11-18",
+        "hours": 24,
+        "min": 34.52,
+        "max": 81.74,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 45.95249999999999
       }
     ],
     "latest": {
-      "date": "2026-11-17",
+      "date": "2026-11-18",
       "hours": 24,
-      "min": 33.44,
-      "max": 89.73,
+      "min": 34.52,
+      "max": 81.74,
       "flags": {
         "DSO-RD": 24
       },
-      "meanPrice": 50.810833333333335
+      "meanPrice": 45.95249999999999
     }
   },
   "sourceSnapshot": {
     "file": "ca-on-da-zonal.json",
-    "contentChecksum": "sha256:f569a69e3eb035f6c09eea45e4f1afc2a30e44fa8090ace8873af47a2c9192d4",
-    "archiveChecksum": "sha256:4af74917e7deef6e37f3200a1b60c7c9096d6a2ebb700a4da68d79209bbbd266",
-    "points": 2448
+    "contentChecksum": "sha256:bda2ea6c978ef853f7562415ed99b9752bd0c7815a552d9d63f66bca746ba282",
+    "archiveChecksum": "sha256:b793b22f1d620d400eb9c92e1652766f31bea1d263134dd87937fe683188c6a3",
+    "points": 2472
   },
-  "contentChecksum": "sha256:8362c0418cf64792b139f03eac5dcbf3b312980a8fcd876fcbfaaa08a4ca5658",
-  "summaryChecksum": "sha256:7af3bb6f1392b1b22c6edfb01a8955965f7eb7e66005113ffb8482351b2c4c0d"
+  "contentChecksum": "sha256:10ddfcdc465d1e62733421bea3d9674521fa24fc05b3a6d3aef0907241fd947e",
+  "summaryChecksum": "sha256:bcc414d61e235d8a194fe85c4e1a2d4c53aa18c3719caa19775d6781d06874fc"
 }
