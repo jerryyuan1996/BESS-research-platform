@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-18T15:46:55.304Z",
+  "fetchedAt": "2026-11-19T15:52:40.664Z",
   "coverage": {
     "from": "2026-05-19T06:00:22.000Z",
-    "to": "2026-11-18T15:04:13.000Z",
+    "to": "2026-11-19T13:31:19.000Z",
     "resolution": "event",
-    "points": 42
+    "points": 43
   },
   "units": {
     "record": "published article metadata"
@@ -125,76 +125,6 @@
       "summary": "Battery storage in Germany has a grid connection problem: far more projects want to connect than the grid can take, so Germany has scrapped first come, first served and moved to a maturity-based allocation scheme that rewards projects that are ready to build. But for 50Hertz and Germany's other transmission system o…"
     },
     {
-      "t": "2026-11-13T09:10:33.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/lacour-energy-refers-4000mwh-wind-plus-storage-site-to-australias-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "Lacour Energy refers 4,000MWh wind-plus-storage site to Australia’s EPBC Act",
-      "url": "https://www.energy-storage.news/lacour-energy-refers-4000mwh-wind-plus-storage-site-to-australias-epbc-act/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "West Arthur Energy, a project company owned by Western Australian developer Lacour Energy, has referred a wind generation site with a 4,000MWh battery energy storage system (BESS) to Australia's EPBC Act."
-    },
-    {
-      "t": "2026-11-13T10:01:42.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-catl-sodium-ion-specs-bess-availability-and-the-price-of-speed-to-power/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: CATL sodium-ion specs, BESS availability and the price of speed-to-power",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-catl-sodium-ion-specs-bess-availability-and-the-price-of-speed-to-power/",
-      "category": "technology",
-      "categoryLabel": "Technology",
-      "summary": "Another edition of our BESS Industry Buzz, this week looking at new details on CATL's sodium-ion technology, BESS availability, BAAJA trade-offs and the price of speed to power."
-    },
-    {
-      "t": "2026-11-13T12:24:56.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/toll-makes-way-for-floor-offtake-contracting-beginning-to-standardise-in-uk-bess-market/",
-      "source": "Energy-Storage.news",
-      "title": "Toll makes way for floor, offtake contracting beginning to standardise in UK BESS market",
-      "url": "https://www.energy-storage.news/toll-makes-way-for-floor-offtake-contracting-beginning-to-standardise-in-uk-bess-market/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Floors are increasingly the offtake structure of choice in the UK market, and the contracting for them is beginning to standardise, industry experts said."
-    },
-    {
-      "t": "2026-11-16T08:38:06.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/the-markets-getting-tough-australia-values-bess-bankability-above-all-says-director-at-wartsila-jv-valo/",
-      "source": "Energy-Storage.news",
-      "title": "‘The market’s getting tough’: Australia values BESS bankability above all, says director at Wärtsilä JV Valo",
-      "url": "https://www.energy-storage.news/the-markets-getting-tough-australia-values-bess-bankability-above-all-says-director-at-wartsila-jv-valo/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ESN Premium speaks with to Suraj Narayan, managing director, Australia, at Valo, about the company's new ownership."
-    },
-    {
-      "t": "2026-11-16T14:40:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/new-york-launches-second-annual-1gw-bulk-energy-storage-solicitation/",
-      "source": "Energy-Storage.news",
-      "title": "New York launches second annual 1GW ‘bulk’ energy storage solicitation",
-      "url": "https://www.energy-storage.news/new-york-launches-second-annual-1gw-bulk-energy-storage-solicitation/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New York’s second competitive solicitation for large-scale energy storage has launched, seeking a gigawatt (1GW) of grid-connected resources."
-    },
-    {
-      "t": "2026-11-16T14:46:53.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/neovolta-anchors-us-manufacturing-ramp-up-with-us116-million-bess-agreement-as-quarterly-loss-narrows/",
-      "source": "Energy-Storage.news",
-      "title": "NeoVolta anchors US manufacturing ramp-up with US$116 million BESS agreement as quarterly loss narrows",
-      "url": "https://www.energy-storage.news/neovolta-anchors-us-manufacturing-ramp-up-with-us116-million-bess-agreement-as-quarterly-loss-narrows/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US-based BESS manufacturer NeoVolta has signed a US$116 million master purchase agreement with an unnamed “leading energy solutions provider.”"
-    },
-    {
-      "t": "2026-11-16T14:50:50.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/flatiron-energy-breaks-ground-on-1-2gwh-massachusetts-bess/",
-      "source": "Energy-Storage.news",
-      "title": "Flatiron Energy breaks ground on 1.2GWh Massachusetts BESS",
-      "url": "https://www.energy-storage.news/flatiron-energy-breaks-ground-on-1-2gwh-massachusetts-bess/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "US energy storage developer Flatiron Energy has broken ground on its 250MW/1,200MWh Energizar Energy Storage Project in Chelsea, Massachusetts, US."
-    },
-    {
       "t": "2026-11-17T07:00:52.000Z",
       "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=7xnb9rolyn",
       "source": "Modo Energy",
@@ -203,26 +133,6 @@
       "category": "policy",
       "categoryLabel": "Policy & trade",
       "summary": "For a renewable energy developer, the hardest call isn't which project to build, it's which one to walk away from. In Europe, wind, solar and battery storage returns now hinge on 20-plus commercial levers, from offtake to financing, and knowing which to back is where the value sits. Mehmet Energin, Chief Commercial…"
-    },
-    {
-      "t": "2026-11-17T09:16:49.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/frontier-energy-construction-waroona-solar-plus-storage-bess-western-australia/",
-      "source": "Energy-Storage.news",
-      "title": "Frontier Energy builds ‘largest SWIS-connected hybrid solar-plus-storage plant’ in Western Australia",
-      "url": "https://www.energy-storage.news/frontier-energy-construction-waroona-solar-plus-storage-bess-western-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "ASX-listed Frontier Energy has started construction on Stage 1 of its Waroona Renewable Energy Project in Western Australia (WA), which pairs solar PV with a battery energy storage system (BESS)."
-    },
-    {
-      "t": "2026-11-17T09:19:35.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/power-electronics-grid-forming-pcs-edify-energy-smoky-creek-guthries-gap-queensland/",
-      "source": "Energy-Storage.news",
-      "title": "Power Electronics supplies grid-forming PCS for Edify’s 2.4GWh hybrids in Australia",
-      "url": "https://www.energy-storage.news/power-electronics-grid-forming-pcs-edify-energy-smoky-creek-guthries-gap-queensland/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Spain-headquartered power conversion system (PCS) manufacturer Power Electronics is supplying grid-forming inverters and DC/DC converters for Edify Energy's Smoky Creek and Guthrie's Gap solar-plus-storage projects in Queensland, Australia."
     },
     {
       "t": "2026-11-17T10:05:41.000Z",
@@ -302,7 +212,7 @@
       "url": "https://www.utilitydive.com/news/nyserda-bulk-energy-storage-solicitation/874888/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "&nbsp;The solicitation seeks up to 1 GW of energy storage, with a preference for longer-duration resources able to alleviate grid congestion and displace peaker-plant emissions in downstate New York."
+      "summary": "The solicitation seeks up to 1 GW of energy storage, with a preference for longer-duration resources able to alleviate grid congestion and displace peaker-plant emissions in downstate New York."
     },
     {
       "t": "2026-11-17T18:10:00.000Z",
@@ -315,56 +225,6 @@
       "summary": "An estimated 191 GW of planned data center capacity faces new risk after the midterm elections, with exposure concentrated in Texas, Ohio and Georgia, according to a report from energy analytics firm Orennia."
     },
     {
-      "t": "2026-11-18T07:47:41.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/financing-secured-for-100-mw-of-solar-in-ghana/",
-      "source": "pv magazine",
-      "title": "Financing secured for 100 MW of solar in Ghana",
-      "url": "https://www.pv-magazine.com/2026/11/18/financing-secured-for-100-mw-of-solar-in-ghana/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The $88.6 million financing package supports the first phase of a planned 200 MW solar project that will supply more than 95 industrial customers. The post Financing secured for 100 MW of solar in Ghana appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-18T07:55:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/austrian-company-develops-1-2-kw-stirling-based-heat-and-power-system-to-complement-solar-pv-in-winter/",
-      "source": "pv magazine",
-      "title": "Austrian company develops 1.2 kW Stirling-based heat and power system to complement solar PV in winter",
-      "url": "https://www.pv-magazine.com/2026/11/18/austrian-company-develops-1-2-kw-stirling-based-heat-and-power-system-to-complement-solar-pv-in-winter/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Frauscher Motors has integrated a Stirling generator into a wood-pellet heating system to produce electricity during the heating season, when photovoltaic yields are typically lower. The generator can deliver up to 1.2 kW of electrical power, with a reported electrical conversion efficiency of approximately 28%. The…"
-    },
-    {
-      "t": "2026-11-18T08:29:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/france-unveils-bidding-terms-for-500-mw-technology-neutral-renewables-tender/",
-      "source": "pv magazine",
-      "title": "France unveils bidding terms for 500 MW technology-neutral renewables tender",
-      "url": "https://www.pv-magazine.com/2026/11/18/france-unveils-bidding-terms-for-500-mw-technology-neutral-renewables-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "France’s energy regulator has outlined the terms for a 500 MW technology-neutral renewables tender covering solar, wind and hydropower. The proposed rules introduce an unweighted reference price, raising concerns over market risks, financing costs and limited PV capacity. The post France unveils bidding terms for 50…"
-    },
-    {
-      "t": "2026-11-18T08:54:04.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/eu-reaches-provisional-deal-to-accelerate-renewable-energy-permitting/",
-      "source": "pv magazine",
-      "title": "EU reaches provisional deal to accelerate renewable energy permitting",
-      "url": "https://www.pv-magazine.com/2026/11/18/eu-reaches-provisional-deal-to-accelerate-renewable-energy-permitting/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The Council of the European Union and the European Parliament have reached a provisional agreement on new rules designed to accelerate permitting and grid connections for renewable energy projects across the bloc. EU member states will have 18 months to transpose the directive into national law following its formal…"
-    },
-    {
-      "t": "2026-11-18T08:56:51.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/adb-supports-1-gw-solar-storage-pipeline-in-bangladesh/",
-      "source": "pv magazine",
-      "title": "ADB supports 1 GW solar, storage pipeline in Bangladesh",
-      "url": "https://www.pv-magazine.com/2026/11/18/adb-supports-1-gw-solar-storage-pipeline-in-bangladesh/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The Asian Development Bank is providing advisory services for five additional solar and battery storage projects, through a programme aiming to attract more than $1 billion in private investment. The post ADB supports 1 GW solar, storage pipeline in Bangladesh appeared first on pv magazine Global ."
-    },
-    {
       "t": "2026-11-18T08:59:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/agl-abermain-bess-queensland-cleared-epbc-act/",
       "source": "Energy-Storage.news",
@@ -373,16 +233,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "AGL Energy has received federal environmental clearance for a 500MWh battery energy storage system in Queensland under Australia's EPBC Act."
-    },
-    {
-      "t": "2026-11-18T10:00:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/taiwan-introduces-bidding-framework-for-storage-deployment-at-existing-pv-plants/",
-      "source": "pv magazine",
-      "title": "Taiwan introduces bidding framework for storage deployment at existing PV plants",
-      "url": "https://www.pv-magazine.com/2026/11/18/taiwan-introduces-bidding-framework-for-storage-deployment-at-existing-pv-plants/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New regulations aim to encourage battery storage integration at existing solar PV plants, improve grid flexibility, and create additional revenue opportunities for renewable energy developers. The post Taiwan introduces bidding framework for storage deployment at existing PV plants appeared first on pv magazine Glob…"
     },
     {
       "t": "2026-11-18T11:50:23.000Z",
@@ -415,14 +265,14 @@
       "summary": "Energy-Storage.news speaks with LG Energy Solution Vertech chief product officer Tristan Doherty at RE+ 2026."
     },
     {
-      "t": "2026-11-18T13:40:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/european-solar-module-prices-face-additional-pressure-from-surplus-stock-cancelled-projects/",
-      "source": "pv magazine",
-      "title": "European solar module prices face additional pressure from surplus stock, cancelled projects",
-      "url": "https://www.pv-magazine.com/2026/11/18/european-solar-module-prices-face-additional-pressure-from-surplus-stock-cancelled-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a chat with pv magazine , Bart Wansink, CEO of Netherlands-based Search4Solar, discussed how surplus modules from cancelled projects, high inventory levels and Chinese manufacturing reforms are shaping European solar module prices. He expects prices to stabilise in 2027, although persistent oversupply could delay…"
+      "t": "2026-11-18T14:23:48.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/doe-funded-transmission-projects-could-boost-east-west-transfer-capacity-40/875021/",
+      "source": "Utility Dive",
+      "title": "DOE-funded transmission projects could boost East-West transfer capacity 440%",
+      "url": "https://www.utilitydive.com/news/doe-funded-transmission-projects-could-boost-east-west-transfer-capacity-40/875021/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The latest funding announcement is for a 1.8-GW, high-voltage, direct current transmission line in Wyoming,&nbsp;an area rich in wind resources and slated for major grid expansion projects."
     },
     {
       "t": "2026-11-18T14:53:34.000Z",
@@ -435,26 +285,186 @@
       "summary": "Deals and acquisitions were announced this week as RE+, the biggest clean energy trade show in the US, takes place in Las Vegas, Nevada."
     },
     {
-      "t": "2026-11-18T15:04:13.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/18/perovskite-solar-technology-could-unlock-inr-74000-crore-in-domestic-value-addition-for-india-over-15-years-isma-p3c-study/",
-      "source": "pv magazine",
-      "title": "Perovskite solar manufacturing could generate $7.92 billion in domestic value addition over 15 years in India",
-      "url": "https://www.pv-magazine.com/2026/11/18/perovskite-solar-technology-could-unlock-inr-74000-crore-in-domestic-value-addition-for-india-over-15-years-isma-p3c-study/",
+      "t": "2026-11-18T15:57:17.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/the-grid-will-fall-short-of-ais-power-needs-6-resources-close-the-gap/874125/",
+      "source": "Utility Dive",
+      "title": "The grid will fall short of AI’s power needs. These 6 resources can close the gap.",
+      "url": "https://www.utilitydive.com/news/the-grid-will-fall-short-of-ais-power-needs-6-resources-close-the-gap/874125/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "A new study highlights the potential of perovskite technology to reduce India's dependence on imported solar manufacturing materials and equipment. It also points to higher energy yields, lower electricity generation costs and opportunities for domestic innovation. The post Perovskite solar manufacturing could gener…"
+      "summary": "No single option is fast, firm and large enough on its own, writes&nbsp;Simon Irish, CEO of Terrestrial Energy.&nbsp;Some investments&nbsp;&mdash;&nbsp;flexibility, uprates and transmission&nbsp;&mdash;&nbsp;remain valuable across demand scenarios, he says."
+    },
+    {
+      "t": "2026-11-19T08:49:07.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/indonesia-could-reach-96-7-gw-of-solar-by-2029-with-policy-reforms/",
+      "source": "pv magazine",
+      "title": "Indonesia could reach 96.7 GW of solar by 2029 with policy reforms",
+      "url": "https://www.pv-magazine.com/2026/11/19/indonesia-could-reach-96-7-gw-of-solar-by-2029-with-policy-reforms/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "IESR says Indonesia could achieve most of its 100 GW of solar by 2029 target through coordinated utility-scale procurement, rooftop PV deployment, diesel replacement and rural electrification, but warns regulatory and grid barriers need to be addressed. The post Indonesia could reach 96.7 GW of solar by 2029 with po…"
+    },
+    {
+      "t": "2026-11-19T09:04:30.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/eu-to-launch-e36-million-funding-call-for-advanced-solar-cell-manufacturing/",
+      "source": "pv magazine",
+      "title": "EU to launch €36 million funding call for advanced solar cell manufacturing",
+      "url": "https://www.pv-magazine.com/2026/11/19/eu-to-launch-e36-million-funding-call-for-advanced-solar-cell-manufacturing/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "The initiative aims to strengthen Europe's solar manufacturing industry by supporting high-efficiency solar cells, advanced production equipment, automated manufacturing processes and industrial-scale pilot production lines. The post EU to launch €36 million funding call for advanced solar cell manufacturing appeare…"
+    },
+    {
+      "t": "2026-11-19T09:13:31.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-tomago-bess-first-100-units-installed-nsw/",
+      "source": "Energy-Storage.news",
+      "title": "AGL installs first 100 units at 2,000MWh Tomago BESS in New South Wales, Australia",
+      "url": "https://www.energy-storage.news/agl-tomago-bess-first-100-units-installed-nsw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Australian energy company AGL has installed the first 100 units at its 500MW Tomago battery energy storage system (BESS) in the Hunter region of New South Wales (NSW)."
+    },
+    {
+      "t": "2026-11-19T09:21:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/nz-regulator-corrects-bess-price-band-rule-date/",
+      "source": "Energy-Storage.news",
+      "title": "‘Technical and non-controversial’: New Zealand regulator corrects battery storage price band rule date",
+      "url": "https://www.energy-storage.news/nz-regulator-corrects-bess-price-band-rule-date/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "New Zealand's Electricity Authority has corrected the date from which battery energy storage system (BESS) owners can submit up to 10 price bands in their wholesale market offers."
+    },
+    {
+      "t": "2026-11-19T09:33:01.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/frances-first-canal-top-pv-project-goes-online/",
+      "source": "pv magazine",
+      "title": "France’s first canal-top PV project goes online",
+      "url": "https://www.pv-magazine.com/2026/11/19/frances-first-canal-top-pv-project-goes-online/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The 299 kW installation is expected to generate 404 MWh annually. Société du Canal de Provence estimates that its canal network could accommodate more than 50 MW of solar capacity, with potential annual generation of 70 GWh. The post France’s first canal-top PV project goes online appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-19T09:34:01.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/statkraft-ppa-tolled-merchant-bess-dutch-solar-site/",
+      "source": "Energy-Storage.news",
+      "title": "Statkraft pairs PPA with part-tolled, part-merchant BESS contract at Dutch solar site",
+      "url": "https://www.energy-storage.news/statkraft-ppa-tolled-merchant-bess-dutch-solar-site/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Statkraft has signed a 10-year deal with Ampyr Solar Europe covering the Snelle Loop co-located solar PV and BESS project in the Netherlands."
+    },
+    {
+      "t": "2026-11-19T09:50:44.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-wattmen-500mw-battery-storage-france/",
+      "source": "Energy-Storage.news",
+      "title": "BW ESS and Wattmen to develop 500MW of battery energy storage in France",
+      "url": "https://www.energy-storage.news/bw-ess-wattmen-500mw-battery-storage-france/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BW ESS has partnered with Lyon-based developer Wattmen to develop around 500MW of BESS projects in France over the next three years."
+    },
+    {
+      "t": "2026-11-19T10:08:02.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/bolivia-launches-epc-tender-for-40-mwac-solar-project/",
+      "source": "pv magazine",
+      "title": "Bolivia launches EPC tender for 40 MWac solar project",
+      "url": "https://www.pv-magazine.com/2026/11/19/bolivia-launches-epc-tender-for-40-mwac-solar-project/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Bolivia’s state-owned utility ENDE is seeking an EPC contractor for a project scheduled for completion in June 2028. The solar plant will be financed in part by a loan from German development bank KfW. The post Bolivia launches EPC tender for 40 MWac solar project appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-19T10:45:43.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/most-bess-supply-industry-not-ready-for-eu-2027-battery-regulations-report/",
+      "source": "Energy-Storage.news",
+      "title": "Most of BESS supply industry is not ready for EU’s 2027 Battery Regulations, report says",
+      "url": "https://www.energy-storage.news/most-bess-supply-industry-not-ready-for-eu-2027-battery-regulations-report/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The EU is introducing several major regulations for batteries next year, including the Battery Passport and supply chain due diligence and traceability requirements, but the BESS industry is far from prepared."
+    },
+    {
+      "t": "2026-11-19T10:50:25.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/tesla-seeks-texas-tax-break-for-3-1-billion-polysilicon-plant/",
+      "source": "pv magazine",
+      "title": "Tesla seeks Texas tax break for $3.1 billion polysilicon plant",
+      "url": "https://www.pv-magazine.com/2026/11/19/tesla-seeks-texas-tax-break-for-3-1-billion-polysilicon-plant/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Tesla says it will build a polysilicon plant in Texas only if the state cuts its property tax bill, as it seeks to produce solar’s most China-dominated material at home. The post Tesla seeks Texas tax break for $3.1 billion polysilicon plant appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-19T10:59:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/italy-macse-2-0-to-see-higher-clearing-prices-lower-capex-impact-but-enel-will-still-bid-hard-again-developer-says/",
+      "source": "Energy-Storage.news",
+      "title": "Italy: MACSE 2.0 to see higher clearing prices, lower capex impact, but Enel ‘will still bid hard again’, developer says",
+      "url": "https://www.energy-storage.news/italy-macse-2-0-to-see-higher-clearing-prices-lower-capex-impact-but-enel-will-still-bid-hard-again-developer-says/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "The second MACSE auction for energy storage in Italy is right around the corner and the dynamics are different this time around to last year’s inaugural event, a developer said."
+    },
+    {
+      "t": "2026-11-19T11:37:48.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/what-us-bess-industry-experts-are-saying-about-baaja-at-re-2026/",
+      "source": "Energy-Storage.news",
+      "title": "What US BESS industry experts are saying about BAAJA at RE+ 2026",
+      "url": "https://www.energy-storage.news/what-us-bess-industry-experts-are-saying-about-baaja-at-re-2026/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Bipartisan American Affordability and Jobs Act of 2026 (BAAJA) has been a popular topic of discussion at RE+ 2026 in Las Vegas, Nevada, US."
+    },
+    {
+      "t": "2026-11-19T11:53:02.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/avery-dennison-argent-psa-tape-dielectric-performance-bess-30-year-lifetimes/",
+      "source": "Energy-Storage.news",
+      "title": "‘Good well past 30 years of operation’: Avery Dennison and Argent on PSA tape ageing tests for battery storage",
+      "url": "https://www.energy-storage.news/avery-dennison-argent-psa-tape-dielectric-performance-bess-30-year-lifetimes/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Pressure-sensitive adhesive (PSA) tape suppliers are testing dielectric materials for BESS lifetimes of 30 years or more, as rising pack voltages push tracking performance requirements higher."
+    },
+    {
+      "t": "2026-11-19T12:04:30.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/data-centre-power-buildouts-are-deja-vu-for-us-storage-integrators-with-off-grid-roots/",
+      "source": "Energy-Storage.news",
+      "title": "Data centre power buildouts are déjà vu for US storage integrators with off-grid roots",
+      "url": "https://www.energy-storage.news/data-centre-power-buildouts-are-deja-vu-for-us-storage-integrators-with-off-grid-roots/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As AI-driven data centre demand reshapes the US power landscape, BESS technology providers at RE+ highlighted an unexpected competitive advantage."
+    },
+    {
+      "t": "2026-11-19T12:39:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/solyco-unveils-485-w-full-black-residential-solar-module-with-stainless-steel-protection/",
+      "source": "pv magazine",
+      "title": "Solyco unveils 485 W full-black residential solar module with stainless steel protection",
+      "url": "https://www.pv-magazine.com/2026/11/19/solyco-unveils-485-w-full-black-residential-solar-module-with-stainless-steel-protection/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The German manufacturer's new glass-glass solar panel features back-contact cells, a power conversion efficiency of 23.8% and a bifaciality factor of approximately 70%. It comes with a 30-year product warranty and an 88.85% power output guarantee after 30 years. The post Solyco unveils 485 W full-black residential s…"
+    },
+    {
+      "t": "2026-11-19T13:31:19.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/19/microquanta-achieves-world-record-efficiency-of-23-9-for-19-48-cm%c2%b2-perovskite-solar-module/",
+      "source": "pv magazine",
+      "title": "MicroQuanta, Zhejiang University achieve world-record efficiency of 23.9% for 19.48 cm² perovskite solar module",
+      "url": "https://www.pv-magazine.com/2026/11/19/microquanta-achieves-world-record-efficiency-of-23-9-for-19-48-cm%c2%b2-perovskite-solar-module/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The result was certified by the National PV Industry Measurement and Testing Center (NPVM) of China’s Fujian Metrology Institute. The post MicroQuanta, Zhejiang University achieve world-record efficiency of 23.9% for 19.48 cm² perovskite solar module appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 42,
+    "items": 43,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 8,
-      "capital": 5,
-      "grid": 27,
-      "technology": 2
+      "policy": 11,
+      "capital": 7,
+      "grid": 24,
+      "technology": 1
     },
     "sourceStatus": [
       {
@@ -473,13 +483,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 3
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 8
+        "items": 7
       }
     ]
   },
@@ -488,6 +498,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:970297ee0c4d56bf5eebfd5c911600691099c6c1754f98249f6931f1fab433de",
-  "envelopeChecksum": "sha256:181ba634e124e40724ea27360a7b6edbb4ced902df802cbdc6b56f7983b13621"
+  "contentChecksum": "sha256:e00222c24f460a61f2ba0279ae7e546c17869f305d95e0cf5e702315d3476f1f",
+  "envelopeChecksum": "sha256:8e9e729f9213a03e18be3a30de249c53b94f42ba4dd9f526eea4904d5eeb8a0d"
 }
