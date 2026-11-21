@@ -457,7 +457,12 @@ test('Finland teaching controls preserve the case, URL and history',async({page}
 test('Finland need keeps storage definitions, source gaps and the crossing honest',async({page},info)=>{
   const {dialog}=await openFinland(page),shot=dialog.locator('[data-shot=fi-05]');
   await shot.getByRole('button',{name:'Current scale',exact:true}).click();
-  await expect(shot.locator('[data-series=network-model-technical-capacity]')).toHaveCount(7);
+  const source=await page.request.get('/data/public/fi-storage-capacity.json');
+  await expect(source).toBeOK();
+  const {series}=await source.json();
+  expect(series.length).toBeGreaterThan(0);
+  const expectedRuns=series.filter((point,i)=>i===0 || Date.parse(point.t)-Date.parse(series[i-1].t)>3_600_000).length;
+  await expect(shot.locator('[data-series=network-model-technical-capacity]')).toHaveCount(expectedRuns);
   await expect(shot.locator('[data-crossing=left-censored]')).toHaveCount(1);
   await expect(shot.locator('[data-connected-observation]')).toHaveAttribute('data-precision','early-month');
   await expect(shot.locator('.ix-shot-copy')).toContainText('exact crossing date is unknown');
