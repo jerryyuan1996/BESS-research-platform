@@ -69,11 +69,13 @@ test('teaching controls change local scenes and never the market row or bound va
 test('the signature chart preserves source gaps and marks only the left-censored observation',async()=>{
   const node=build(shots.find(s=>s.id==='fi-05'));clickNamed(node,'Current scale');await settle();
   assert.equal(find(node,n=>n.getAttribute?.('data-crossing')==='left-censored').length,1);
-  const data=await load('fi-storage-capacity');
-  const runs=segments(data.series);
-  assert.equal(runs.length,7,'six source gaps make seven unjoined runs');
-  assert.equal(runs.flat().length,data.series.length,'no point was filled or discarded');
-  assert.equal(find(node,n=>n.getAttribute?.('data-series')==='network-model-technical-capacity').length,7);
+  const {series}=await load('fi-storage-capacity');
+  const expectedStarts=series.filter((point,i)=>i===0 || Date.parse(point.t)-Date.parse(series[i-1].t)>3_600_000);
+  const runs=segments(series);
+  assert.deepEqual(runs.map(run=>run[0]),expectedStarts,'each gap longer than one hour starts a new line');
+  assert.deepEqual(runs.flat(),series,'every source observation is preserved in order');
+  const paths=find(node,n=>n.getAttribute?.('data-series')==='network-model-technical-capacity');
+  assert.deepEqual(paths.map(path=>Number(path.getAttribute('data-points'))),runs.map(run=>run.length));
   clickNamed(node,'Procurement history');
   assert.ok(content(node).includes('Average procured capacity'));
   assert.equal(find(node,n=>n.getAttribute?.('data-crossing')).length,0);
