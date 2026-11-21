@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-20T15:35:20.664Z",
+  "fetchedAt": "2026-11-21T14:46:26.579Z",
   "coverage": {
-    "from": "2025-11-20T16:00:00.000Z",
-    "to": "2026-11-20T22:00:00.000Z",
+    "from": "2025-11-21T15:00:00.000Z",
+    "to": "2026-11-21T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8767
+    "points": 8768
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-20",
-      "n": 8,
-      "mean": 3.31,
-      "min": 3,
-      "max": 3.9,
-      "spread": 3.31,
-      "charge": null,
-      "discharge": 3.31
-    },
-    {
       "d": "2025-11-21",
-      "n": 24,
-      "mean": 4.09,
-      "min": 2.73,
-      "max": 5.6,
-      "spread": 4.09,
+      "n": 9,
+      "mean": 3.84,
+      "min": 3,
+      "max": 4.34,
+      "spread": 3.84,
       "charge": null,
-      "discharge": 4.09
+      "discharge": 3.84
     },
     {
       "d": "2025-11-22",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-20",
-      "n": 23,
-      "mean": 3.57,
+      "n": 24,
+      "mean": 3.58,
       "min": 1.5,
       "max": 6.6,
-      "spread": 3.57,
+      "spread": 3.58,
       "charge": null,
-      "discharge": 3.57
+      "discharge": 3.58
+    },
+    {
+      "d": "2026-11-21",
+      "n": 23,
+      "mean": 4.26,
+      "min": 2.5,
+      "max": 6,
+      "spread": 4.26,
+      "charge": null,
+      "discharge": 4.26
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-down.json",
-    "contentChecksum": "sha256:ed4a23551b84f74a4a94e49296f4739e75f68a4460304e24f3358776f9835696",
-    "points": 8767
+    "contentChecksum": "sha256:8204da09d24085893a67b04c70378eb80b6b06760980818989a9c72f3a6a9709",
+    "points": 8768
   },
-  "summaryChecksum": "sha256:497cee5f50739c71778a3355469a991b81c71b82cda35bb007f5e9f74f0c9232"
+  "summaryChecksum": "sha256:024883b3257b442f20ead23a04ed7db47046e4647288d175660b01fd3cdc9cf5"
 }

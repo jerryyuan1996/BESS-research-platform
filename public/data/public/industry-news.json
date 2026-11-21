@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-20T15:35:03.783Z",
+  "fetchedAt": "2026-11-21T14:46:09.295Z",
   "coverage": {
     "from": "2026-05-19T06:00:22.000Z",
-    "to": "2026-11-20T11:55:51.000Z",
+    "to": "2026-11-21T09:30:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 41
   },
   "units": {
     "record": "published article metadata"
@@ -145,16 +145,6 @@
       "summary": "The latest edition of PV Tech Power is available to download, full of exclusive content for the downstream solar PV and BESS industries."
     },
     {
-      "t": "2026-11-17T18:10:00.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/data-center-slowdown-raises-risks-for-utility-investments/874924/",
-      "source": "Utility Dive",
-      "title": "Data center slowdown would raise risks for utility investments",
-      "url": "https://www.utilitydive.com/news/data-center-slowdown-raises-risks-for-utility-investments/874924/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "An estimated 191 GW of planned data center capacity faces new risk after the midterm elections, with exposure concentrated in Texas, Ohio and Georgia, according to a report from energy analytics firm Orennia."
-    },
-    {
       "t": "2026-11-18T08:59:58.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/agl-abermain-bess-queensland-cleared-epbc-act/",
       "source": "Energy-Storage.news",
@@ -193,16 +183,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "Energy-Storage.news speaks with LG Energy Solution Vertech chief product officer Tristan Doherty at RE+ 2026."
-    },
-    {
-      "t": "2026-11-18T14:23:48.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/doe-funded-transmission-projects-could-boost-east-west-transfer-capacity-40/875021/",
-      "source": "Utility Dive",
-      "title": "DOE-funded transmission projects could boost East-West transfer capacity 440%",
-      "url": "https://www.utilitydive.com/news/doe-funded-transmission-projects-could-boost-east-west-transfer-capacity-40/875021/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "The latest funding announcement is for a 1.8-GW, high-voltage, direct current transmission line in Wyoming,&nbsp;an area rich in wind resources and slated for major grid expansion projects."
     },
     {
       "t": "2026-11-18T14:53:34.000Z",
@@ -342,7 +322,7 @@
       "url": "https://www.utilitydive.com/news/grid-operators-data-center-ride-through-rules-ercot-nerc/873466/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Large load ride-through concerns can be addressed, but the power sector must adopt rules that protect grid reliability while providing certainty to the data center industry, writes ON.energy CEO Alan Cooper."
+      "summary": "The first facilities built to Texas&rsquo; new standard are about to come online, proving that firm, predictable regulation can protect reliability without slowing market development, writes ON.energy CEO Alan Cooper."
     },
     {
       "t": "2026-11-19T17:58:42.000Z",
@@ -353,46 +333,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "The agreement will support Google's Oregon data center operations beginning as early as 2030, advancing development of a technology designed to access geothermal resources deeper underground."
-    },
-    {
-      "t": "2026-11-20T08:04:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/chinas-topcon-solar-module-export-prices-slip-as-makers-clear-low-efficiency-stock-ahead-of-new-standard/",
-      "source": "pv magazine",
-      "title": "China’s TOPCon solar module export prices slip as makers clear low-efficiency stock ahead of new standard",
-      "url": "https://www.pv-magazine.com/2026/11/20/chinas-topcon-solar-module-export-prices-slip-as-makers-clear-low-efficiency-stock-ahead-of-new-standard/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , OPIS, a Dow Jones company, provides a quick look at the main price trends in the global PV industry. The post China’s TOPCon solar module export prices slip as makers clear low-efficiency stock ahead of new standard appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-20T08:24:09.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/mexicos-solar-capacity-could-reach-43-8-gw-by-2035/",
-      "source": "pv magazine",
-      "title": "Mexico’s solar capacity could reach 43.8 GW by 2035",
-      "url": "https://www.pv-magazine.com/2026/11/20/mexicos-solar-capacity-could-reach-43-8-gw-by-2035/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "GlobalData has raised its solar growth forecast for Mexico by 6 GW, citing a growing pipeline of renewable energy projects. However, grid congestion, transmission constraints and regulatory uncertainty could slow deployment. The post Mexico’s solar capacity could reach 43.8 GW by 2035 appeared first on pv magazine G…"
-    },
-    {
-      "t": "2026-11-20T08:55:43.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/jinkosolar-claims-35-24-efficiency-for-perovskite-silicon-tandem-solar-cell/",
-      "source": "pv magazine",
-      "title": "JinkoSolar claims 35.24% efficiency for perovskite-silicon tandem solar cell",
-      "url": "https://www.pv-magazine.com/2026/11/20/jinkosolar-claims-35-24-efficiency-for-perovskite-silicon-tandem-solar-cell/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The result was confirmed by the Shanghai Institute of Microsystem and Information Technology of the Chinese Academy of Sciences. The post JinkoSolar claims 35.24% efficiency for perovskite-silicon tandem solar cell appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-20T09:14:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/high-pressure-drives-irradiance-gains-across-south-east-asia-as-sichuan-misses-out/",
-      "source": "pv magazine",
-      "title": "High pressure drives irradiance gains across South East Asia as Sichuan misses out",
-      "url": "https://www.pv-magazine.com/2026/11/20/high-pressure-drives-irradiance-gains-across-south-east-asia-as-sichuan-misses-out/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine, Solcast , a DNV company, reports that October 2026 saw solar irradiance exceed average levels by over 20% across southern China and Southeast Asia, driven by strong El Niño conditions, persistent high pressure, and reduced cloud cover. However, cloudiness in Sichuan and Chongq…"
     },
     {
       "t": "2026-11-20T09:48:09.000Z",
@@ -413,26 +353,6 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "EDF power solutions Australia has acquired the 250MW Holloway BESS project in New South Wales (NSW) from developer SynCo Global."
-    },
-    {
-      "t": "2026-11-20T10:10:21.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/vietnam-sets-rooftop-solar-monitoring-and-control-acceptance-procedure/",
-      "source": "pv magazine",
-      "title": "Vietnam sets rooftop solar monitoring and control acceptance procedure",
-      "url": "https://www.pv-magazine.com/2026/11/20/vietnam-sets-rooftop-solar-monitoring-and-control-acceptance-procedure/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Vietnam's state-owned utility has introduced a formal acceptance testing procedure for rooftop solar systems connected to its monitoring and control systems. The post Vietnam sets rooftop solar monitoring and control acceptance procedure appeared first on pv magazine Global ."
-    },
-    {
-      "t": "2026-11-20T10:40:38.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/chinese-pv-industry-brief-china-three-gorges-opens-5-24-gw-solar-module-tender/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: China Three Gorges opens 5.24 GW solar module tender",
-      "url": "https://www.pv-magazine.com/2026/11/20/chinese-pv-industry-brief-china-three-gorges-opens-5-24-gw-solar-module-tender/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "China Three Gorges has opened bidding for 5.24 GW of solar modules for 2027, while TCL Zhonghuan plans to increase its stake in a semiconductor subsidiary. In other news, Longi has secured a module supply deal in Australia, and China is stepping up efforts to recycle retired PV panels. The post Chinese PV Industry B…"
     },
     {
       "t": "2026-11-20T11:34:56.000Z",
@@ -463,17 +383,67 @@
       "category": "grid",
       "categoryLabel": "Grid & markets",
       "summary": "In other news, ACME Group has approved a $3.6 billion green ammonia project in India, while researchers in Chile have assessed hydrogen production from curtailed renewable power. Qair has inaugurated a hydrogen plant in France, Plug Power has launched a utility-scale electrolyzer offering, and Protium has advanced t…"
+    },
+    {
+      "t": "2026-11-21T05:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/tariffs-taxes-and-a-bess-price-rise/",
+      "source": "pv magazine",
+      "title": "Tariffs, taxes and a BESS price rise",
+      "url": "https://www.pv-magazine.com/2026/11/21/tariffs-taxes-and-a-bess-price-rise/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Geopolitical tensions and trade policy changes in the United States, China and other markets are driving up battery prices and creating supply chain pressures, write Edward Rackley and Max Reid of CRU Group. The post Tariffs, taxes and a BESS price rise appeared first on pv magazine Global ."
+    },
+    {
+      "t": "2026-11-21T07:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/the-us-solar-manufacturing-landscape-in-2026-2/",
+      "source": "pv magazine",
+      "title": "The U.S. solar manufacturing landscape in 2026",
+      "url": "https://www.pv-magazine.com/2026/11/21/the-us-solar-manufacturing-landscape-in-2026-2/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Having watched the global solar industry move from tens of megawatts annual demand to levels in excess of 500 GW by the early 2020s, the United States is finally making moves to create a silicon-based ecosystem to allow its demand for solar to be met by domestically made components. Finlay Colville examines the rece…"
+    },
+    {
+      "t": "2026-11-21T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/spain-approves-new-data-center-rules-requiring-80-renewable-electricity/",
+      "source": "pv magazine",
+      "title": "Spain approves new data center rules requiring 80% renewable electricity",
+      "url": "https://www.pv-magazine.com/2026/11/21/spain-approves-new-data-center-rules-requiring-80-renewable-electricity/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The new framework introduces energy and water efficiency standards, renewable electricity procurement obligations, and grid flexibility requirements for data centers. A €17.14 billion transmission network plan will support 47.4 GW of new electricity demand through 2030. The post Spain approves new data center rules…"
+    },
+    {
+      "t": "2026-11-21T09:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/celebrating-men-challenging-stereotypes-building-a-stronger-energy-future-together/",
+      "source": "pv magazine",
+      "title": "Celebrating men, challenging stereotypes, building a stronger energy future together",
+      "url": "https://www.pv-magazine.com/2026/11/21/celebrating-men-challenging-stereotypes-building-a-stronger-energy-future-together/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "On International Men's Day, and as Movember raises awareness of men's health and wellbeing, Women in Solar+ Europe (WiSEu) and Solar+ Leaders celebrate the men across the solar and wider energy transition industries who are helping build a more inclusive future. Carmen Madrid, Founder of both initiatives, draws on p…"
+    },
+    {
+      "t": "2026-11-21T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/catl-byd-acwa-among-co-initiators-of-storage-alliance-unveiled-at-cop31/",
+      "source": "pv magazine",
+      "title": "CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31",
+      "url": "https://www.pv-magazine.com/2026/11/21/catl-byd-acwa-among-co-initiators-of-storage-alliance-unveiled-at-cop31/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "An international energy storage cooperation initiative backed by 27 companies and institutions has been formally launched at the UN climate conference in Turkey. The post CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31 appeared first on pv magazine Global ."
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 41,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "policy": 8,
-      "capital": 6,
-      "grid": 29,
+      "capital": 5,
+      "grid": 27,
       "technology": 1
     },
     "sourceStatus": [
@@ -493,13 +463,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 6
+        "items": 4
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 6
       }
     ]
   },
@@ -508,6 +478,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:6b10b9bb8be7a5cf905f5ea221bbaa1046d285247338468f637933d8df5b23f4",
-  "envelopeChecksum": "sha256:b6851eef28f7ca9654ca94e40fe94df3be861ff9d0fcac7dce169c5808d9c724"
+  "contentChecksum": "sha256:1ca2ef0282a68903d52a1d7d4ddc8b2aca745c6644e285665f70ff380b2d1796",
+  "envelopeChecksum": "sha256:30539c4bb731e3533a214fbd5c32d6c234aa0b1544d3794ac598fc6ef299ffe6"
 }
