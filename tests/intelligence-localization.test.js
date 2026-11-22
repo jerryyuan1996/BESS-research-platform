@@ -5,6 +5,7 @@ import {newsTextPair,hasNewsTranslation} from '../src/news/localization.js';
 import {newsItems,filterNews} from '../src/policy/intelligence.js';
 import {policySourceTitle} from '../src/policy/source-titles.zh.js';
 import {NEWS_ZH} from '../src/news/translations.zh.js';
+import {localizeNews} from '../etl/lib/news-translation.mjs';
 // Original RSS fields from a reviewed article that can age out of the daily feed.
 const reviewedArticle={
   t:'2026-11-12T08:53:07.000Z',
@@ -36,6 +37,37 @@ test('Chinese search finds translated headlines without changing geographic tags
   const found=filterNews(items,new URLSearchParams({q:'西澳 Wagerup 200MWh'}));
   assert.deepEqual(found.map(item=>item.url),[reviewedArticle.url]);
   assert.deepEqual(found[0].jurisdictions,['AU-WA']);
+});
+test('daily refresh translates new fields, reuses exact matches and retries missing fields', async () => {
+  const article = { ...reviewedArticle, url: 'https://example.org/storage', title: 'Storage update',
+    summary: 'First phase opens. The post Storage update appeared first on the feed.' };
+  const initial = { ...article };
+  await localizeNews([initial], null, assert.fail, async texts => {
+    assert.deepEqual(texts, ['Storage update', 'First phase opens.']);
+    return ['储能项目进展', '一期项目投运。'];
+  });
+  assert.deepEqual(newsTextPair(initial), [article.title, '储能项目进展']);
+  assert.deepEqual(newsTextPair(initial, 'summary'), [article.summary, '一期项目投运。']);
+
+  const updated = { ...article, summary: 'Second phase opens.' };
+  const messages = [];
+  await localizeNews([updated], {series: [initial]}, msg => messages.push(msg), async texts => {
+    assert.deepEqual(texts, [updated.summary]);
+    throw new Error('offline');
+  });
+  assert.ok(messages.some(message => message.includes('offline')));
+  assert.equal(newsTextPair(updated)[1], '储能项目进展');
+  assert.deepEqual(newsTextPair(updated, 'summary'), [updated.summary, updated.summary]);
+  const retry = { ...updated };
+  await localizeNews([retry], {series: [updated]}, assert.fail, async texts => {
+    assert.deepEqual(texts, [updated.summary]);
+    return ['二期项目投运。'];
+  });
+  const fresh = { ...article, summary: updated.summary };
+  await localizeNews([fresh], {series: [retry]}, assert.fail, assert.fail);
+  assert.deepEqual(fresh.zh, retry.zh);
+  const found = filterNews(newsItems({series: [fresh]}), new URLSearchParams({q:'二期项目'}));
+  assert.deepEqual(found.map(item => item.url), [article.url]);
 });
 test('current policy titles, subtitles and official evidence labels all support Chinese',()=>{
   const index=JSON.parse(readFileSync(new URL('../public/data/public/policy/index.json',import.meta.url)));

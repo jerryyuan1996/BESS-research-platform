@@ -134,6 +134,21 @@ jobs:
           POLICY_DISCOVERY_RESULT: ${{ needs.policy-discovery.result }}
         run: echo "Policy discovery outcome=$POLICY_DISCOVERY_RESULT; policy publication disabled." >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Set up the RSS translation worker
+        if: inputs.only == '' || contains(inputs.only, 'industry-news')
+        uses: astral-sh/setup-uv@v6
+        continue-on-error: true
+        with:
+          enable-cache: true
+          cache-dependency-glob: etl/translate-news.py
+
+      - name: Cache English to Chinese translation weights
+        if: inputs.only == '' || contains(inputs.only, 'industry-news')
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface/hub/models--Sams200--opus-mt-en-zh
+          key: rss-en-zh-${{ hashFiles('etl/translate-news.py') }}
+
       - name: Run ETL
         env:
           ETL_ONLY: ${{ inputs.only }}
