@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-21T14:46:52.610Z",
+  "fetchedAt": "2026-11-22T14:43:06.102Z",
   "coverage": {
     "from": "2026-03-11T12:00:00.000Z",
-    "to": "2026-11-21T13:00:00.000Z",
+    "to": "2026-11-22T13:00:00.000Z",
     "resolution": "PT60M",
-    "points": 6104
+    "points": 6128
   },
   "units": {
     "power": "MW"
@@ -2584,6 +2584,16 @@
     },
     {
       "d": "2026-11-21",
+      "n": 24,
+      "mean": 33709,
+      "min": 33709,
+      "max": 33709,
+      "spread": null,
+      "charge": null,
+      "discharge": null
+    },
+    {
+      "d": "2026-11-22",
       "n": 16,
       "mean": 33709,
       "min": 33709,
@@ -2595,8 +2605,8 @@
   ],
   "sourceSnapshot": {
     "file": "fi-storage-capacity.json",
-    "contentChecksum": "sha256:c54bf8664d0f34d31b970951ecf6e9f911e834b4955d85f5c45a11f9761e14ee",
-    "points": 6104
+    "contentChecksum": "sha256:9f4e61d4076654e3c4897638588b15e1f83412241f8cf4aba20f7a5625138a20",
+    "points": 6128
   },
-  "summaryChecksum": "sha256:ea294ad2048d04fcf34faf54350d9cf6d9b7d37fe1281ce4c0f32cebd85b9e20"
+  "summaryChecksum": "sha256:f0b6741fe20678446116894596e96befa232ed7d8638d1fdbdcbd7642eff8828"
 }
