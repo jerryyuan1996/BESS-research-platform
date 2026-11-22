@@ -1,7 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {newsTextPair,hasNewsTranslation} from '../src/news/localization.js';
-import {NEWS_ZH} from '../src/news/translations.zh.js';
 const snapshot=JSON.parse(readFileSync(new URL('../public/data/public/industry-news.json',import.meta.url)));
 test.beforeEach(async({page})=>{
   await page.addInitScript(()=>localStorage.setItem('hub_lang','zh'));
@@ -29,15 +28,17 @@ test('all feed pages use matching Chinese translations and preserve unmatched so
   await expect(page.locator('[data-map-jurisdiction=DE]')).toBeAttached();
   await page.screenshot({path:`.tmp/intelligence-localized-${info.project.name}.png`,fullPage:info.project.name==='mobile'});
 });
-test('Chinese search and preview share translations; English restores original source text',async({page})=>{
-  const [url,translation]=Object.entries(NEWS_ZH).find(([,r])=>r.title[0].includes('Wagerup'));
-  const item={url,title:translation.title[0],summary:translation.summary[0],source:'Energy-Storage.news',t:'2026-11-12T00:00:00Z',category:'grid'};
+test('Chinese search and preview use translations from a new RSS snapshot; English restores the source',async({page})=>{
+  const title='Battery storage project opens in Western Australia';
+  const summary='The first phase is now operating.';
+  const item={url:'https://example.org/storage-update',title,summary,source:'Example RSS',t:'2026-11-12T00:00:00Z',category:'grid',
+    zh:{title:[title,'西澳储能项目投运'],summary:[summary,'一期工程已投运。']}};
   await page.route('**/data/public/industry-news.json',r=>r.fulfill({json:{...snapshot,series:[item]}}));
-  await page.goto('/policy?type=news&q='+encodeURIComponent('西澳 Wagerup'));
+  await page.goto('/policy?type=news&q='+encodeURIComponent('西澳储能'));
   await expect(page.locator('[data-news-item]')).toHaveCount(1);
-  await page.getByRole('button',{name:newsTextPair(item)[1],exact:true}).click();
+  await page.getByRole('button',{name:'西澳储能项目投运',exact:true}).click();
   const preview=page.getByRole('region',{name:'新闻预览'});
-  await expect(preview).toContainText(newsTextPair(item,'summary')[1]);
+  await expect(preview).toContainText('一期工程已投运。');
   await expect(preview.getByRole('link',{name:'阅读原始报道 ↗'})).toHaveAttribute('href',item.url);
   await page.getByRole('button',{name:'切换到英文',exact:true}).click();
   await expect(page.getByRole('region',{name:'News preview'})).toContainText(item.title);

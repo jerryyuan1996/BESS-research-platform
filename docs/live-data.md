@@ -51,6 +51,13 @@ failures; the snapshots retain their actual fetched timestamps rather than claim
 
 ## Sources
 
+The daily `industry-news` refresh translates each new or revised English RSS title and
+excerpt into Simplified Chinese on the runner. Exact matches reuse editorial translations
+or the previous snapshot. A failed translation keeps the publisher text available and is
+retried while the article remains in the feed. For a local news refresh, install `uv`
+and run `npm run etl:news`. The first uncached translation downloads the pinned
+Helsinki-NLP OPUS-MT model (CTranslate2 conversion by Sams200) and Python dependencies.
+
 | Dataset | Market | Source | Cadence | Key |
 |---|---|---|---|---|
 | `fx-ecb` | global | ECB euro reference rates | daily | — |

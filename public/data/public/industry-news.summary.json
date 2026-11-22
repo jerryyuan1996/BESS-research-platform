@@ -70,8 +70,8 @@
   "daily": [],
   "sourceSnapshot": {
     "file": "industry-news.json",
-    "contentChecksum": "sha256:1ca2ef0282a68903d52a1d7d4ddc8b2aca745c6644e285665f70ff380b2d1796",
+    "contentChecksum": "sha256:5ea764a7d2e543bf70cab6a42ae9b785be1d520a1467ccd64e842db96ab7e19d",
     "points": 41
   },
-  "summaryChecksum": "sha256:9879eadfd5d6f4587c26c8ff82e67580a04e22a2e494b10680732a9deb5fc8c0"
+  "summaryChecksum": "sha256:8540cfe85951ba1c132e0fedc847f9e5d69fef80588969923bf21e572eadba50"
 }

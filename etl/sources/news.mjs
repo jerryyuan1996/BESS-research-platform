@@ -25,6 +25,7 @@
    --------------------------------------------------------------------------- */
 import { httpGetText } from '../lib/fetch.mjs';
 import { buildSnapshot } from '../lib/envelope.mjs';
+import { localizeNews } from '../lib/news-translation.mjs';
 
 const SOURCES = [
   {
@@ -204,6 +205,7 @@ export async function fetchDataset({ dataset, previous, log, now }){
     return { skipped: true, reason: 'every feed failed and nothing was retained' };
   }
 
+  await localizeNews(deduped, previous, log);
   const byCategory = {};
   for (const item of deduped) byCategory[item.category] = (byCategory[item.category] || 0) + 1;
 
