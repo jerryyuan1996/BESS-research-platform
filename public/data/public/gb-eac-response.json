@@ -13,12 +13,12 @@
     "licence": "NESO Open Data Licence",
     "attribution": "Supported by National Energy SO Open Data"
   },
-  "fetchedAt": "2026-11-22T14:42:37.019Z",
+  "fetchedAt": "2026-11-23T18:24:16.216Z",
   "coverage": {
     "from": "2023-11-02T23:00:00.000Z",
-    "to": "2026-11-22T23:00:00.000Z",
+    "to": "2026-11-24T23:00:00.000Z",
     "resolution": "EFA-block",
-    "points": 40176
+    "points": 40248
   },
   "units": {
     "price": "GBP/MW/h",
@@ -401784,6 +401784,726 @@
       "batteryMW": 457,
       "otherMW": 23,
       "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DCH",
+      "v": 3.65,
+      "clearedMW": 1355,
+      "batteryMW": 1336,
+      "otherMW": 19,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DCL",
+      "v": 1.96,
+      "clearedMW": 1375,
+      "batteryMW": 1375,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DMH",
+      "v": -0.33,
+      "clearedMW": 590,
+      "batteryMW": 590,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DML",
+      "v": 6.38,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DRH",
+      "v": -19.62,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-22T23:00:00.000Z",
+      "e": "2026-11-23T03:00:00.000Z",
+      "service": "DRL",
+      "v": 8,
+      "clearedMW": 480,
+      "batteryMW": 455,
+      "otherMW": 25,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DCH",
+      "v": 2.82,
+      "clearedMW": 1401,
+      "batteryMW": 1382,
+      "otherMW": 19,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DCL",
+      "v": 2.42,
+      "clearedMW": 1406,
+      "batteryMW": 1406,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DMH",
+      "v": 0.27,
+      "clearedMW": 510,
+      "batteryMW": 510,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DML",
+      "v": 6.36,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DRH",
+      "v": -14.31,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T03:00:00.000Z",
+      "e": "2026-11-23T07:00:00.000Z",
+      "service": "DRL",
+      "v": 30.18,
+      "clearedMW": 480,
+      "batteryMW": 455,
+      "otherMW": 25,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DCH",
+      "v": 1,
+      "clearedMW": 1346,
+      "batteryMW": 1320,
+      "otherMW": 26,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DCL",
+      "v": 4.9,
+      "clearedMW": 1351,
+      "batteryMW": 1351,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DMH",
+      "v": -2.49,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DML",
+      "v": 13.06,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T07:00:00.000Z",
+      "e": "2026-11-23T11:00:00.000Z",
+      "service": "DRL",
+      "v": 39.27,
+      "clearedMW": 480,
+      "batteryMW": 456,
+      "otherMW": 24,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DCH",
+      "v": 7.75,
+      "clearedMW": 1313,
+      "batteryMW": 1293,
+      "otherMW": 20,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DCL",
+      "v": 2.62,
+      "clearedMW": 1303,
+      "batteryMW": 1303,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DMH",
+      "v": 2.89,
+      "clearedMW": 510,
+      "batteryMW": 510,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DML",
+      "v": 9.94,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T11:00:00.000Z",
+      "e": "2026-11-23T15:00:00.000Z",
+      "service": "DRL",
+      "v": 35.35,
+      "clearedMW": 480,
+      "batteryMW": 455,
+      "otherMW": 25,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DCH",
+      "v": 7.8,
+      "clearedMW": 1371,
+      "batteryMW": 1345,
+      "otherMW": 26,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DCL",
+      "v": 33.25,
+      "clearedMW": 1411,
+      "batteryMW": 1411,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DMH",
+      "v": 16.75,
+      "clearedMW": 467,
+      "batteryMW": 467,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DML",
+      "v": 38.75,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DRH",
+      "v": -15.23,
+      "clearedMW": 494,
+      "batteryMW": 494,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T15:00:00.000Z",
+      "e": "2026-11-23T19:00:00.000Z",
+      "service": "DRL",
+      "v": 84.3,
+      "clearedMW": 480,
+      "batteryMW": 462,
+      "otherMW": 18,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DCH",
+      "v": 0.2,
+      "clearedMW": 1313,
+      "batteryMW": 1282,
+      "otherMW": 31,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DCL",
+      "v": 8.8,
+      "clearedMW": 1359,
+      "batteryMW": 1359,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DMH",
+      "v": -3.9,
+      "clearedMW": 590,
+      "batteryMW": 590,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DML",
+      "v": 20.26,
+      "clearedMW": 530,
+      "batteryMW": 509,
+      "otherMW": 21,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T19:00:00.000Z",
+      "e": "2026-11-23T23:00:00.000Z",
+      "service": "DRL",
+      "v": 50.94,
+      "clearedMW": 480,
+      "batteryMW": 480,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DCH",
+      "v": 0.5,
+      "clearedMW": 1357,
+      "batteryMW": 1338,
+      "otherMW": 19,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DCL",
+      "v": 2.16,
+      "clearedMW": 1377,
+      "batteryMW": 1377,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DMH",
+      "v": -3.53,
+      "clearedMW": 590,
+      "batteryMW": 590,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DML",
+      "v": 7.34,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DRH",
+      "v": -19.97,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-23T23:00:00.000Z",
+      "e": "2026-11-24T03:00:00.000Z",
+      "service": "DRL",
+      "v": 9.06,
+      "clearedMW": 480,
+      "batteryMW": 455,
+      "otherMW": 25,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DCH",
+      "v": 1.13,
+      "clearedMW": 1410,
+      "batteryMW": 1376,
+      "otherMW": 34,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DCL",
+      "v": 2.33,
+      "clearedMW": 1415,
+      "batteryMW": 1415,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DMH",
+      "v": -2.31,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DML",
+      "v": 9.58,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DRH",
+      "v": -19.23,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T03:00:00.000Z",
+      "e": "2026-11-24T07:00:00.000Z",
+      "service": "DRL",
+      "v": 28.87,
+      "clearedMW": 480,
+      "batteryMW": 457,
+      "otherMW": 23,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DCH",
+      "v": 0.4,
+      "clearedMW": 1356,
+      "batteryMW": 1325,
+      "otherMW": 31,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DCL",
+      "v": 2.05,
+      "clearedMW": 1362,
+      "batteryMW": 1362,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DMH",
+      "v": -5,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DML",
+      "v": 7.48,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T07:00:00.000Z",
+      "e": "2026-11-24T11:00:00.000Z",
+      "service": "DRL",
+      "v": 33.12,
+      "clearedMW": 480,
+      "batteryMW": 457,
+      "otherMW": 23,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DCH",
+      "v": 1.18,
+      "clearedMW": 1297,
+      "batteryMW": 1262,
+      "otherMW": 35,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DCL",
+      "v": 2.25,
+      "clearedMW": 1285,
+      "batteryMW": 1285,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DMH",
+      "v": -2.9,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DML",
+      "v": 8.49,
+      "clearedMW": 530,
+      "batteryMW": 530,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 499,
+      "batteryMW": 499,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T11:00:00.000Z",
+      "e": "2026-11-24T15:00:00.000Z",
+      "service": "DRL",
+      "v": 29.21,
+      "clearedMW": 480,
+      "batteryMW": 457,
+      "otherMW": 23,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DCH",
+      "v": 3.89,
+      "clearedMW": 1359,
+      "batteryMW": 1324,
+      "otherMW": 35,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DCL",
+      "v": 5.75,
+      "clearedMW": 1398,
+      "batteryMW": 1398,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DMH",
+      "v": 0,
+      "clearedMW": 522,
+      "batteryMW": 522,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DML",
+      "v": 17.56,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DRH",
+      "v": -18.88,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T15:00:00.000Z",
+      "e": "2026-11-24T19:00:00.000Z",
+      "service": "DRL",
+      "v": 41.85,
+      "clearedMW": 480,
+      "batteryMW": 458,
+      "otherMW": 22,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DCH",
+      "v": 1.15,
+      "clearedMW": 1309,
+      "batteryMW": 1269,
+      "otherMW": 40,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DCL",
+      "v": 4.47,
+      "clearedMW": 1354,
+      "batteryMW": 1354,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DMH",
+      "v": -3.6,
+      "clearedMW": 590,
+      "batteryMW": 590,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DML",
+      "v": 11.63,
+      "clearedMW": 530,
+      "batteryMW": 507,
+      "otherMW": 23,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DRH",
+      "v": -20,
+      "clearedMW": 500,
+      "batteryMW": 500,
+      "otherMW": 0,
+      "origin": "eac-current"
+    },
+    {
+      "t": "2026-11-24T19:00:00.000Z",
+      "e": "2026-11-24T23:00:00.000Z",
+      "service": "DRL",
+      "v": 44.93,
+      "clearedMW": 480,
+      "batteryMW": 480,
+      "otherMW": 0,
+      "origin": "eac-current"
     }
   ],
   "derived": {
@@ -404631,79 +405351,79 @@
         "month": "2026-11",
         "service": "DCH",
         "basis": "clearing",
-        "blocks": 132,
-        "price": 3.2226927913800867,
-        "clearedMW": 1463.840909090909,
-        "batteryMW": 1434.1136363636363,
-        "otherMW": 29.727272727272727,
+        "blocks": 144,
+        "price": 3.176590390327294,
+        "clearedMW": 1454.263888888889,
+        "batteryMW": 1424.6875,
+        "otherMW": 29.57638888888889,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       },
       {
         "month": "2026-11",
         "service": "DCL",
         "basis": "clearing",
-        "blocks": 132,
-        "price": 4.160997366400215,
-        "clearedMW": 1469.9318181818182,
-        "batteryMW": 1458.5454545454545,
-        "otherMW": 11.386363636363637,
+        "blocks": 144,
+        "price": 4.317004044157831,
+        "clearedMW": 1461.298611111111,
+        "batteryMW": 1450.861111111111,
+        "otherMW": 10.4375,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       },
       {
         "month": "2026-11",
         "service": "DMH",
         "basis": "clearing",
-        "blocks": 132,
-        "price": -0.9953155181278746,
-        "clearedMW": 545.1590909090909,
-        "batteryMW": 534.0833333333334,
-        "otherMW": 11.075757575757576,
+        "blocks": 144,
+        "price": -0.9639700446144038,
+        "clearedMW": 544.7916666666666,
+        "batteryMW": 534.6388888888889,
+        "otherMW": 10.152777777777779,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       },
       {
         "month": "2026-11",
         "service": "DML",
         "basis": "clearing",
-        "blocks": 132,
-        "price": 10.271194194784146,
-        "clearedMW": 514.1666666666666,
-        "batteryMW": 507.1287878787879,
-        "otherMW": 7.037878787878788,
+        "blocks": 144,
+        "price": 10.498881161377446,
+        "clearedMW": 514.2361111111111,
+        "batteryMW": 507.4791666666667,
+        "otherMW": 6.756944444444445,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       },
       {
         "month": "2026-11",
         "service": "DRH",
         "basis": "clearing",
-        "blocks": 132,
-        "price": -17.525682822057956,
-        "clearedMW": 499.0984848484849,
-        "batteryMW": 484.18939393939394,
-        "otherMW": 14.909090909090908,
+        "blocks": 144,
+        "price": -17.64362815482651,
+        "clearedMW": 499.125,
+        "batteryMW": 485.4583333333333,
+        "otherMW": 13.666666666666666,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       },
       {
         "month": "2026-11",
         "service": "DRL",
         "basis": "clearing",
-        "blocks": 132,
-        "price": 23.824989802532766,
-        "clearedMW": 479.17424242424244,
-        "batteryMW": 460.4015151515151,
-        "otherMW": 18.772727272727273,
+        "blocks": 144,
+        "price": 24.86259915086001,
+        "clearedMW": 479.24305555555554,
+        "batteryMW": 460.4166666666667,
+        "otherMW": 18.82638888888889,
         "missingTechnology": 0,
         "from": "2026-10-31T23:00:00.000Z",
-        "to": "2026-11-22T23:00:00.000Z"
+        "to": "2026-11-24T23:00:00.000Z"
       }
     ],
     "missingTechnologyBlocks": 0
@@ -404716,6 +405436,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 72,
-  "contentChecksum": "sha256:2ed527c8de5f111be53f0c1f9a2f3ffbe9aaabf48fba90bc97ad75aa5ce460ed",
-  "envelopeChecksum": "sha256:272d55bf886e48e69091c3b6759b35b9a89e5eb66cb41eb498c6e5ac9dfea5c2"
+  "contentChecksum": "sha256:462f9b869daf2e55887b6e4c5ccce91a98e01c55f7dd7fd81603ed3e1cc901e6",
+  "envelopeChecksum": "sha256:f8115de27b1750f6219819bcf3a3f6fc1d461bdda7cc2ed869ee64eb0ab9496b"
 }

@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-22T14:42:46.398Z",
+  "fetchedAt": "2026-11-23T18:24:28.218Z",
   "coverage": {
-    "from": "2025-11-22T15:00:00.000Z",
-    "to": "2026-11-22T22:00:00.000Z",
+    "from": "2025-11-23T19:00:00.000Z",
+    "to": "2026-11-23T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8768
+    "points": 8764
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-22",
-      "n": 9,
-      "mean": 7.47,
-      "min": 7.16,
-      "max": 8.37,
-      "spread": 7.47,
-      "charge": null,
-      "discharge": 7.47
-    },
-    {
       "d": "2025-11-23",
-      "n": 24,
-      "mean": 7.52,
+      "n": 5,
+      "mean": 7.25,
       "min": 7.16,
-      "max": 9.59,
-      "spread": 7.52,
+      "max": 7.49,
+      "spread": 7.25,
       "charge": null,
-      "discharge": 7.52
+      "discharge": 7.25
     },
     {
       "d": "2025-11-24",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-22",
-      "n": 23,
-      "mean": 5.07,
+      "n": 24,
+      "mean": 5.08,
       "min": 4.79,
       "max": 5.73,
-      "spread": 5.07,
+      "spread": 5.08,
       "charge": null,
-      "discharge": 5.07
+      "discharge": 5.08
+    },
+    {
+      "d": "2026-11-23",
+      "n": 23,
+      "mean": 5.21,
+      "min": 4.69,
+      "max": 5.73,
+      "spread": 5.21,
+      "charge": null,
+      "discharge": 5.21
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:aa891948abcf071952de205df569932e55fa932bb7b6694f84364140e3da3c65",
-    "points": 8768
+    "contentChecksum": "sha256:6992cbb4615a61694c270393f17d9c3bf7cee22a0b198f063c5334d06863313d",
+    "points": 8764
   },
-  "summaryChecksum": "sha256:b34ff280d1095eac3d4f7705b6b7381d82be35c249884cf730e18cc626105256"
+  "summaryChecksum": "sha256:1956d37cbb9dbc1ed5e01233d5bd13e8a98508700fe83ecdcfef58e71764359f"
 }

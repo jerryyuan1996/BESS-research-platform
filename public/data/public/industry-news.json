@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-21T14:46:09.295Z",
+  "fetchedAt": "2026-11-23T18:24:16.216Z",
   "coverage": {
     "from": "2026-05-19T06:00:22.000Z",
-    "to": "2026-11-21T09:30:00.000Z",
+    "to": "2026-11-23T18:00:00.000Z",
     "resolution": "event",
-    "points": 41
+    "points": 44
   },
   "units": {
     "record": "published article metadata"
@@ -241,66 +241,6 @@
       }
     },
     {
-      "t": "2026-11-17T15:20:37.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-solars-new-makers-batteries-for-data-centres-and-electrostates-vs-petrostates-pv-tech-power-46-out-now/",
-      "source": "Energy-Storage.news",
-      "title": "US solar’s new makers, batteries for data centres and electrostates vs petrostates: PV Tech Power 46 out now!",
-      "url": "https://www.energy-storage.news/us-solars-new-makers-batteries-for-data-centres-and-electrostates-vs-petrostates-pv-tech-power-46-out-now/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The latest edition of PV Tech Power is available to download, full of exclusive content for the downstream solar PV and BESS industries.",
-      "zh": {
-        "title": [
-          "US solar’s new makers, batteries for data centres and electrostates vs petrostates: PV Tech Power 46 out now!",
-          "《PV Tech Power》第46期：美国光伏制造新势力、数据中心储能与电力大国的崛起"
-        ],
-        "summary": [
-          "The latest edition of PV Tech Power is available to download, full of exclusive content for the downstream solar PV and BESS industries.",
-          "最新一期《PV Tech Power》已开放下载，收录了面向光伏下游和电池储能行业的独家报道。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-18T08:59:58.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-abermain-bess-queensland-cleared-epbc-act/",
-      "source": "Energy-Storage.news",
-      "title": "AGL’s 500MWh Abermain battery storage system cleared under Australia’s EPBC Act",
-      "url": "https://www.energy-storage.news/agl-abermain-bess-queensland-cleared-epbc-act/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "AGL Energy has received federal environmental clearance for a 500MWh battery energy storage system in Queensland under Australia's EPBC Act.",
-      "zh": {
-        "title": [
-          "AGL’s 500MWh Abermain battery storage system cleared under Australia’s EPBC Act",
-          "AGL 昆士兰州500 MWh储能项目通过联邦环境审批"
-        ],
-        "summary": [
-          "AGL Energy has received federal environmental clearance for a 500MWh battery energy storage system in Queensland under Australia's EPBC Act.",
-          "根据澳大利亚《环境保护与生物多样性保护法》（EPBC Act），AGL Energy 在昆士兰州的 Abermain 电池储能项目已获联邦环境许可。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-18T11:50:23.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/ess-inc-files-for-chapter-7-bankruptcy-stem-inc-flags-going-concern-doubts-amidst-athena-optimisation-platform-sale/",
-      "source": "Energy-Storage.news",
-      "title": "ESS Inc files for Chapter 7 bankruptcy; Stem Inc flags ‘going concern’ doubts amidst Athena optimisation platform sale",
-      "url": "https://www.energy-storage.news/ess-inc-files-for-chapter-7-bankruptcy-stem-inc-flags-going-concern-doubts-amidst-athena-optimisation-platform-sale/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "US-headquartered energy storage technology firm ESS Inc has ceased operations and filed for Chapter 7 bankruptcy, while system integrator Stem Inc doubts its near-term ‘ability to continue as a going concern’ and just sold its core software platform Athena.",
-      "zh": {
-        "title": [
-          "ESS Inc files for Chapter 7 bankruptcy; Stem Inc flags ‘going concern’ doubts amidst Athena optimisation platform sale",
-          "ESS Inc 申请破产清算；Stem 出售 Athena 平台并对持续经营能力提出疑虑"
-        ],
-        "summary": [
-          "US-headquartered energy storage technology firm ESS Inc has ceased operations and filed for Chapter 7 bankruptcy, while system integrator Stem Inc doubts its near-term ‘ability to continue as a going concern’ and just sold its core software platform Athena.",
-          "美国储能技术企业 ESS Inc 已停止运营，并依据美国《破产法》第7章申请清算。系统集成商 Stem 对短期持续经营能力表示疑虑，并已出售其核心优化软件平台 Athena。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-18T11:58:27.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/esvolta-fluence-ercot-texas-bess-financing-linxon-epc-partnership/",
       "source": "Energy-Storage.news",
@@ -357,26 +297,6 @@
         "summary": [
           "Deals and acquisitions were announced this week as RE+, the biggest clean energy trade show in the US, takes place in Las Vegas, Nevada.",
           "美国大型清洁能源展 RE+ 本周在内华达州拉斯维加斯举行，多家公司在展会期间公布了交易和收购消息。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-18T15:57:17.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/the-grid-will-fall-short-of-ais-power-needs-6-resources-close-the-gap/874125/",
-      "source": "Utility Dive",
-      "title": "The grid will fall short of AI’s power needs. These 6 resources can close the gap.",
-      "url": "https://www.utilitydive.com/news/the-grid-will-fall-short-of-ais-power-needs-6-resources-close-the-gap/874125/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "No single option is fast, firm and large enough on its own, writes&nbsp;Simon Irish, CEO of Terrestrial Energy.&nbsp;Some investments&nbsp;&mdash;&nbsp;flexibility, uprates and transmission&nbsp;&mdash;&nbsp;remain valuable across demand scenarios, he says.",
-      "zh": {
-        "title": [
-          "The grid will fall short of AI’s power needs. These 6 resources can close the gap.",
-          "美国电网恐难满足人工智能用电需求，哪六类资源可以弥补缺口？"
-        ],
-        "summary": [
-          "No single option is fast, firm and large enough on its own, writes&nbsp;Simon Irish, CEO of Terrestrial Energy.&nbsp;Some investments&nbsp;&mdash;&nbsp;flexibility, uprates and transmission&nbsp;&mdash;&nbsp;remain valuable across demand scenarios, he says.",
-          "Terrestrial Energy 首席执行官 Simon Irish 撰文指出，单一方案难以同时满足快速部署、可靠供电和足够规模三项要求。在多种需求情景下，提升系统灵活性、现有机组增容和输电投资仍有价值。"
         ]
       }
     },
@@ -517,26 +437,6 @@
         "summary": [
           "The Bipartisan American Affordability and Jobs Act of 2026 (BAAJA) has been a popular topic of discussion at RE+ 2026 in Las Vegas, Nevada, US.",
           "在美国内华达州拉斯维加斯举行的 RE+ 2026 展会上，2026年《两党可负担性与就业法案》（BAAJA）成为储能业界热议的话题。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T11:38:50.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/el-nino-challenge-grid-operators-winter-nerc/875156/",
-      "source": "Utility Dive",
-      "title": "Fuel constraints could challenge grid this winter, despite resource improvements: NERC",
-      "url": "https://www.utilitydive.com/news/el-nino-challenge-grid-operators-winter-nerc/875156/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Areas of the Midwest, Southeast and New England must be wary of transmission and pipeline constraints that could cause resource shortfalls during periods of extreme weather, the reliability watchdog said.",
-      "zh": {
-        "title": [
-          "Fuel constraints could challenge grid this winter, despite resource improvements: NERC",
-          "北美电力可靠性公司：尽管资源条件改善，今冬燃料限制仍可能考验电网"
-        ],
-        "summary": [
-          "Areas of the Midwest, Southeast and New England must be wary of transmission and pipeline constraints that could cause resource shortfalls during periods of extreme weather, the reliability watchdog said.",
-          "北美电力可靠性公司（NERC）指出，美国中西部、东南部和新英格兰部分地区应关注输电与燃料管道瓶颈。极端天气期间，这些限制可能造成供给不足。"
         ]
       }
     },
@@ -721,135 +621,295 @@
       }
     },
     {
-      "t": "2026-11-20T11:55:51.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/20/the-hydrogen-stream-china-starts-operating-195-km-hydrogen-pipeline/",
+      "t": "2026-11-23T05:40:55.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/ten-innovative-renewable-energy-startups-give-their-pitch-at-re/",
       "source": "pv magazine",
-      "title": "The Hydrogen Stream: China starts operating 195 km hydrogen pipeline",
-      "url": "https://www.pv-magazine.com/2026/11/20/the-hydrogen-stream-china-starts-operating-195-km-hydrogen-pipeline/",
+      "title": "Ten innovative renewable energy startups give their pitch at RE+",
+      "url": "https://www.pv-magazine.com/2026/11/23/ten-innovative-renewable-energy-startups-give-their-pitch-at-re/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "In other news, ACME Group has approved a $3.6 billion green ammonia project in India, while researchers in Chile have assessed hydrogen production from curtailed renewable power. Qair has inaugurated a hydrogen plant in France, Plug Power has launched a utility-scale electrolyzer offering, and Protium has advanced t…",
+      "summary": "California-based fault-detection startup Magnefy won the fifth annual RE+ Startup Pitch Competition, beating out nine other clean energy finalists tackling challenges in solar robotics, grid cybersecurity, EV charging, and data center power. The post Ten innovative renewable energy startups give their pitch at RE+ a…",
       "zh": {
         "title": [
-          "The Hydrogen Stream: China starts operating 195 km hydrogen pipeline",
-          "氢能动态：中国一条195公里输氢管道投入运行"
+          "Ten innovative renewable energy startups give their pitch at RE+",
+          "10个创新型可再生能源启动企业在可再生能源+上投出他们的一票"
         ],
         "summary": [
-          "In other news, ACME Group has approved a $3.6 billion green ammonia project in India, while researchers in Chile have assessed hydrogen production from curtailed renewable power. Qair has inaugurated a hydrogen plant in France, Plug Power has launched a utility-scale electrolyzer offering, and Protium has advanced t…",
-          "其他动态包括：ACME 集团已批准印度一个36亿美元的绿氨项目；智利研究人员评估了利用弃电制氢的潜力；Qair 在法国启用一座制氢厂；Plug Power 推出了面向公用事业规模项目的电解槽。"
+          "California-based fault-detection startup Magnefy won the fifth annual RE+ Startup Pitch Competition, beating out nine other clean energy finalists tackling challenges in solar robotics, grid cybersecurity, EV charging, and data center power. The post Ten innovative renewable energy startups give their pitch at RE+ a…",
+          "Magnefy赢得了第五届RE+启动小企鹅竞赛, 击败了另外九位清洁能源决赛者,"
         ]
       }
     },
     {
-      "t": "2026-11-21T05:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/tariffs-taxes-and-a-bess-price-rise/",
+      "t": "2026-11-23T08:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/us-senate-passes-permitting-bill-letting-solar-developers-sue-agencies/",
       "source": "pv magazine",
-      "title": "Tariffs, taxes and a BESS price rise",
-      "url": "https://www.pv-magazine.com/2026/11/21/tariffs-taxes-and-a-bess-price-rise/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Geopolitical tensions and trade policy changes in the United States, China and other markets are driving up battery prices and creating supply chain pressures, write Edward Rackley and Max Reid of CRU Group. The post Tariffs, taxes and a BESS price rise appeared first on pv magazine Global .",
+      "title": "US Senate passes permitting bill letting solar developers sue agencies",
+      "url": "https://www.pv-magazine.com/2026/11/23/us-senate-passes-permitting-bill-letting-solar-developers-sue-agencies/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The US Senate has approved a federal permitting overhaul that would shorten court challenges to energy projects and let developers of solar, wind, and other energy projects seek damages from agencies over a pattern of disparate treatment, in a Nov. 19 vote that sends the bill to the House. The post US Senate passes…",
       "zh": {
         "title": [
-          "Tariffs, taxes and a BESS price rise",
-          "关税、税收与电池储能系统价格上涨"
+          "US Senate passes permitting bill letting solar developers sue agencies",
+          "允许太阳能开发商起诉机构"
         ],
         "summary": [
-          "Geopolitical tensions and trade policy changes in the United States, China and other markets are driving up battery prices and creating supply chain pressures, write Edward Rackley and Max Reid of CRU Group. The post Tariffs, taxes and a BESS price rise appeared first on pv magazine Global .",
-          "CRU 集团的 Edward Rackley 和 Max Reid 撰文指出，美国、中国等市场的贸易政策变化叠加地缘政治紧张，正在推高电池价格，给供应链带来压力。"
+          "The US Senate has approved a federal permitting overhaul that would shorten court challenges to energy projects and let developers of solar, wind, and other energy projects seek damages from agencies over a pattern of disparate treatment, in a Nov. 19 vote that sends the bill to the House. The post US Senate passes…",
+          "美国参议院在11月19日的投票中批准了一项联邦允许大修计划,将缩短法院对能源项目的挑战,让太阳能、风能和其他能源项目的开发商就不同待遇的模式向机构寻求损失。"
         ]
       }
     },
     {
-      "t": "2026-11-21T07:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/the-us-solar-manufacturing-landscape-in-2026-2/",
-      "source": "pv magazine",
-      "title": "The U.S. solar manufacturing landscape in 2026",
-      "url": "https://www.pv-magazine.com/2026/11/21/the-us-solar-manufacturing-landscape-in-2026-2/",
+      "t": "2026-11-23T09:07:38.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/greater-operational-flexibility-australias-aemo-leans-on-5-3gw-of-new-battery-storage-for-summer/",
+      "source": "Energy-Storage.news",
+      "title": "‘Greater operational flexibility’: Australia’s AEMO leans on 5.3GW of new battery storage for summer",
+      "url": "https://www.energy-storage.news/greater-operational-flexibility-australias-aemo-leans-on-5-3gw-of-new-battery-storage-for-summer/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "Having watched the global solar industry move from tens of megawatts annual demand to levels in excess of 500 GW by the early 2020s, the United States is finally making moves to create a silicon-based ecosystem to allow its demand for solar to be met by domestically made components. Finlay Colville examines the rece…",
+      "summary": "BESS account for 5.3GW of the 8.4GW of new projects added to Australia's NEM since December 2025, according to AEMO.",
       "zh": {
         "title": [
-          "The U.S. solar manufacturing landscape in 2026",
-          "2026年美国光伏制造业格局"
+          "‘Greater operational flexibility’: Australia’s AEMO leans on 5.3GW of new battery storage for summer",
+          "\" 更大的操作灵活性 \" :澳大利亚的AEMO依靠夏季新电池储存5.3GW"
         ],
         "summary": [
-          "Having watched the global solar industry move from tens of megawatts annual demand to levels in excess of 500 GW by the early 2020s, the United States is finally making moves to create a silicon-based ecosystem to allow its demand for solar to be met by domestically made components. Finlay Colville examines the rece…",
-          "全球光伏年需求已从数十兆瓦增至21世纪20年代初的逾500 GW。Finlay Colville 梳理了美国如何建设硅基光伏产业链，以本土制造的零部件满足国内光伏需求。"
+          "BESS account for 5.3GW of the 8.4GW of new projects added to Australia's NEM since December 2025, according to AEMO.",
+          "据AEMO称,自2025年12月以来,澳大利亚国家EM增加了8.4GW的新项目,BESS占5.3GW。"
         ]
       }
     },
     {
-      "t": "2026-11-21T08:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/spain-approves-new-data-center-rules-requiring-80-renewable-electricity/",
+      "t": "2026-11-23T09:14:42.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/saudi-arabia-expands-self-consumption-rules-to-50-mw/",
       "source": "pv magazine",
-      "title": "Spain approves new data center rules requiring 80% renewable electricity",
-      "url": "https://www.pv-magazine.com/2026/11/21/spain-approves-new-data-center-rules-requiring-80-renewable-electricity/",
+      "title": "Saudi Arabia expands self-consumption rules to 50 MW",
+      "url": "https://www.pv-magazine.com/2026/11/23/saudi-arabia-expands-self-consumption-rules-to-50-mw/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "The new framework introduces energy and water efficiency standards, renewable electricity procurement obligations, and grid flexibility requirements for data centers. A €17.14 billion transmission network plan will support 47.4 GW of new electricity demand through 2030. The post Spain approves new data center rules…",
+      "summary": "Saudi Arabia’s updated framework sets out new connection requirements, fees and net billing rules for renewable energy systems installed for self-consumption. The post Saudi Arabia expands self-consumption rules to 50 MW appeared first on pv magazine Global .",
       "zh": {
         "title": [
-          "Spain approves new data center rules requiring 80% renewable electricity",
-          "西班牙批准数据中心新规，要求80%的用电来自可再生能源"
+          "Saudi Arabia expands self-consumption rules to 50 MW",
+          "沙特阿拉伯将自消费规则扩大到50兆瓦"
         ],
         "summary": [
-          "The new framework introduces energy and water efficiency standards, renewable electricity procurement obligations, and grid flexibility requirements for data centers. A €17.14 billion transmission network plan will support 47.4 GW of new electricity demand through 2030. The post Spain approves new data center rules…",
-          "新规对数据中心提出能源和用水效率标准、可再生电力采购义务及电网灵活性要求。西班牙另有一项171.4亿欧元的输电网计划，将支持到2030年新增的47.4 GW用电需求。"
+          "Saudi Arabia’s updated framework sets out new connection requirements, fees and net billing rules for renewable energy systems installed for self-consumption. The post Saudi Arabia expands self-consumption rules to 50 MW appeared first on pv magazine Global .",
+          "沙特阿拉伯更新后的框架为安装的自耗可再生能源系统规定了新的连接要求、收费和净计费规则。"
         ]
       }
     },
     {
-      "t": "2026-11-21T09:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/celebrating-men-challenging-stereotypes-building-a-stronger-energy-future-together/",
+      "t": "2026-11-23T09:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/hydrogen-shifts-summer-solar-to-winter-in-japanese-apartment-building/",
       "source": "pv magazine",
-      "title": "Celebrating men, challenging stereotypes, building a stronger energy future together",
-      "url": "https://www.pv-magazine.com/2026/11/21/celebrating-men-challenging-stereotypes-building-a-stronger-energy-future-together/",
+      "title": "Hydrogen shifts summer solar to winter in Japanese apartment building",
+      "url": "https://www.pv-magazine.com/2026/11/23/hydrogen-shifts-summer-solar-to-winter-in-japanese-apartment-building/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "On International Men's Day, and as Movember raises awareness of men's health and wellbeing, Women in Solar+ Europe (WiSEu) and Solar+ Leaders celebrate the men across the solar and wider energy transition industries who are helping build a more inclusive future. Carmen Madrid, Founder of both initiatives, draws on p…",
+      "summary": "Japanese contractor Takenaka has run a hydrogen system that stores surplus summer solar power for winter use in an apartment block in central Japan for a full year and says it worked as planned, though it has published no performance data. The post Hydrogen shifts summer solar to winter in Japanese apartment buildin…",
       "zh": {
         "title": [
-          "Celebrating men, challenging stereotypes, building a stronger energy future together",
-          "打破刻板印象：能源转型行业在国际男性日谈包容与协作"
+          "Hydrogen shifts summer solar to winter in Japanese apartment building",
+          "在日本公寓大楼里,氢能把夏季的太阳能转移到冬季"
         ],
         "summary": [
-          "On International Men's Day, and as Movember raises awareness of men's health and wellbeing, Women in Solar+ Europe (WiSEu) and Solar+ Leaders celebrate the men across the solar and wider energy transition industries who are helping build a more inclusive future. Carmen Madrid, Founder of both initiatives, draws on p…",
-          "在国际男性日和关注男性健康的 Movember 活动期间，欧洲光伏女性组织与 Solar+ Leaders 向推动行业更加包容的男性同行致意。两项倡议的创始人 Carmen Madrid 分享了相关观察。"
+          "Japanese contractor Takenaka has run a hydrogen system that stores surplus summer solar power for winter use in an apartment block in central Japan for a full year and says it worked as planned, though it has published no performance data. The post Hydrogen shifts summer solar to winter in Japanese apartment buildin…",
+          "日本承包商竹中经营了一个氢气系统,将夏季剩余太阳能储存在日本中部的一个公寓区,供冬季使用整整一年,并说它按计划工作,尽管它没有公布性能数据。"
         ]
       }
     },
     {
-      "t": "2026-11-21T09:30:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/21/catl-byd-acwa-among-co-initiators-of-storage-alliance-unveiled-at-cop31/",
+      "t": "2026-11-23T10:36:16.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/jordan-plans-200-mw-solar-100-mw-400-mwh-storage-projects/",
       "source": "pv magazine",
-      "title": "CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31",
-      "url": "https://www.pv-magazine.com/2026/11/21/catl-byd-acwa-among-co-initiators-of-storage-alliance-unveiled-at-cop31/",
+      "title": "Jordan plans 200 MW solar, 100 MW/400 MWh storage projects",
+      "url": "https://www.pv-magazine.com/2026/11/23/jordan-plans-200-mw-solar-100-mw-400-mwh-storage-projects/",
       "category": "grid",
       "categoryLabel": "Grid & markets",
-      "summary": "An international energy storage cooperation initiative backed by 27 companies and institutions has been formally launched at the UN climate conference in Turkey. The post CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31 appeared first on pv magazine Global .",
+      "summary": "Investor prequalification for the solar project is expected to open in February 2027, followed by prequalification for the battery storage project a month later. The post Jordan plans 200 MW solar, 100 MW/400 MWh storage projects appeared first on pv magazine Global .",
       "zh": {
         "title": [
-          "CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31",
-          "宁德时代、比亚迪与 ACWA 等在 COP31 共同发起国际储能合作倡议"
+          "Jordan plans 200 MW solar, 100 MW/400 MWh storage projects",
+          "约旦规划了200兆瓦太阳能、100兆瓦/400兆瓦h储存项目"
         ],
         "summary": [
-          "An international energy storage cooperation initiative backed by 27 companies and institutions has been formally launched at the UN climate conference in Turkey. The post CATL, BYD, ACWA among co-initiators of storage alliance unveiled at COP31 appeared first on pv magazine Global .",
-          "在土耳其召开的联合国气候大会上，一项获得27家企业和机构支持的国际储能合作倡议正式启动。"
+          "Investor prequalification for the solar project is expected to open in February 2027, followed by prequalification for the battery storage project a month later. The post Jordan plans 200 MW solar, 100 MW/400 MWh storage projects appeared first on pv magazine Global .",
+          "预计2027年2月将启动太阳能项目投资者资格预审,一个月后将启动电池储存项目资格预审。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/europe-turns-negative-electricity-prices-into-a-flexibility-signal/",
+      "source": "pv magazine",
+      "title": "Europe turns negative electricity prices into a flexibility signal",
+      "url": "https://www.pv-magazine.com/2026/11/23/europe-turns-negative-electricity-prices-into-a-flexibility-signal/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Negative wholesale power prices are a useful investment signal for batteries and demand response in Europe only where subsidy design and grid bottlenecks are not distorting them, says a new Eurelectric report. The post Europe turns negative electricity prices into a flexibility signal appeared first on pv magazine G…",
+      "zh": {
+        "title": [
+          "Europe turns negative electricity prices into a flexibility signal",
+          "欧洲将负电价变成一个灵活信号"
+        ],
+        "summary": [
+          "Negative wholesale power prices are a useful investment signal for batteries and demand response in Europe only where subsidy design and grid bottlenecks are not distorting them, says a new Eurelectric report. The post Europe turns negative electricity prices into a flexibility signal appeared first on pv magazine G…",
+          "一份新的Eurdower报告表示, 负面的批发电价是欧洲电池和需求反应的有效投资信号,"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T11:39:45.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-overbuild-or-augmentation-which-strategy-wins/",
+      "source": "Energy-Storage.news",
+      "title": "BESS overbuild or augmentation: which strategy wins?",
+      "url": "https://www.energy-storage.news/bess-overbuild-or-augmentation-which-strategy-wins/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "BESS assets require careful strategic decisions to be made around augmentation from the beginning, writes Sergey Syrvachev, founder of BESS.courses.",
+      "zh": {
+        "title": [
+          "BESS overbuild or augmentation: which strategy wins?",
+          "BESS 过度建设或增强:哪项战略取胜?"
+        ],
+        "summary": [
+          "BESS assets require careful strategic decisions to be made around augmentation from the beginning, writes Sergey Syrvachev, founder of BESS.courses.",
+          "BESS资产要求从一开始就围绕扩增问题作出谨慎的战略决定,"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T12:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/wind-driven-spray-system-cools-cleans-solar-panels/",
+      "source": "pv magazine",
+      "title": "Wind-driven spray system cools, cleans solar panels",
+      "url": "https://www.pv-magazine.com/2026/11/23/wind-driven-spray-system-cools-cleans-solar-panels/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers have developed a water spray system that cools and cleans PV modules using a wind turbine coupled directly to a mechanical pump. In rooftop tests, the system lowered cell temperature by up to 26.7 C and increased peak power output by 18.6%. The post Wind-driven spray system cools, cleans solar panels app…",
+      "zh": {
+        "title": [
+          "Wind-driven spray system cools, cleans solar panels",
+          "风力喷雾系统冷却、清洁太阳能电池板"
+        ],
+        "summary": [
+          "Researchers have developed a water spray system that cools and cleans PV modules using a wind turbine coupled directly to a mechanical pump. In rooftop tests, the system lowered cell temperature by up to 26.7 C and increased peak power output by 18.6%. The post Wind-driven spray system cools, cleans solar panels app…",
+          "研究人员开发了一个水喷系统,用风力涡轮机与机械泵直接结合,冷却和清洁光电模块。 在屋顶测试中,该系统将细胞温度降低26.7C,并将峰值功率增加18.6%。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T12:09:36.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/lebanon-looks-to-ramp-up-solar-storage-deployments/",
+      "source": "pv magazine",
+      "title": "Lebanon looks to ramp up solar, storage deployments",
+      "url": "https://www.pv-magazine.com/2026/11/23/lebanon-looks-to-ramp-up-solar-storage-deployments/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Lebanon is working towards adding at least 3 GW of electricity generation capacity in the coming years, most of which is expected to come from solar and wind, alongside battery energy storage. The post Lebanon looks to ramp up solar, storage deployments appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Lebanon looks to ramp up solar, storage deployments",
+          "黎巴嫩期待提升太阳能,部署储存装置"
+        ],
+        "summary": [
+          "Lebanon is working towards adding at least 3 GW of electricity generation capacity in the coming years, most of which is expected to come from solar and wind, alongside battery energy storage. The post Lebanon looks to ramp up solar, storage deployments appeared first on pv magazine Global .",
+          "黎巴嫩正在努力在未来几年中至少增加3个全球瓦发电能力,其中多数预计来自太阳能和风能,还有电池能源储存。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T14:00:55.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/italys-recent-electricity-market-decree-could-reduce-bess-revenues-in-2027-28/",
+      "source": "Energy-Storage.news",
+      "title": "Italy’s recent electricity market decree could reduce BESS revenues in 2027/28",
+      "url": "https://www.energy-storage.news/italys-recent-electricity-market-decree-could-reduce-bess-revenues-in-2027-28/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "A recent electricity market decree in Italy could reduce price spikes and therefore grid-scale BESS revenues over the next two years, though the impact should not go beyond that.",
+      "zh": {
+        "title": [
+          "Italy’s recent electricity market decree could reduce BESS revenues in 2027/28",
+          "意大利最近的电力市场法令可能减少2027/28年BESS的收入"
+        ],
+        "summary": [
+          "A recent electricity market decree in Italy could reduce price spikes and therefore grid-scale BESS revenues over the next two years, though the impact should not go beyond that.",
+          "意大利最近颁布了电力市场法令,可以减少价格暴涨,从而在今后两年内降低BESS的电网规模收入,尽管其影响不应超出这一范围。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T14:05:36.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/ferc-miso-interconnection-queue-study/875449/",
+      "source": "Utility Dive",
+      "title": "FERC approves MISO plan to speed legacy interconnection study process",
+      "url": "https://www.utilitydive.com/news/ferc-miso-interconnection-queue-study/875449/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Without the rule changes, the Midcontinent Independent System Operator&rsquo;s queue cycles&nbsp;&mdash; totaling about 125 GW of generation and storage&nbsp;&mdash;&nbsp;would have been delayed, according to the grid operator.",
+      "zh": {
+        "title": [
+          "FERC approves MISO plan to speed legacy interconnection study process",
+          "FERC 批准MISO计划,以加快遗留的互联研究进程"
+        ],
+        "summary": [
+          "Without the rule changes, the Midcontinent Independent System Operator&rsquo;s queue cycles&nbsp;&mdash; totaling about 125 GW of generation and storage&nbsp;&mdash;&nbsp;would have been delayed, according to the grid operator.",
+          "如果不改变规则,根据网格操作员的说法,中东独立系统操作员的排队周期——共约125千兆瓦的产生和储存周期——就会被推迟。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T16:01:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/honduras-starts-paying-solar-prosumers-for-excess-power/",
+      "source": "pv magazine",
+      "title": "Honduras starts paying solar prosumers for excess power",
+      "url": "https://www.pv-magazine.com/2026/11/23/honduras-starts-paying-solar-prosumers-for-excess-power/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Honduras has begun compensating solar self-consumption customers for surplus electricity exported to the distribution grid, with the Zamorano University campus becoming the first eligible user under tariffs of $92.50/MWh to $111.27/MWh. The post Honduras starts paying solar prosumers for excess power appeared first…",
+      "zh": {
+        "title": [
+          "Honduras starts paying solar prosumers for excess power",
+          "洪都拉斯开始为超量电源支付太阳能造价"
+        ],
+        "summary": [
+          "Honduras has begun compensating solar self-consumption customers for surplus electricity exported to the distribution grid, with the Zamorano University campus becoming the first eligible user under tariffs of $92.50/MWh to $111.27/MWh. The post Honduras starts paying solar prosumers for excess power appeared first…",
+          "洪都拉斯已开始补偿太阳能自消费客户向配电网出口的剩余电力,萨莫拉诺大学校园成为第一个符合条件的用户,其费率为9250/MWh至111.27/MWh。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-23T18:00:00.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-mitsubishi-gas-turbines-earnings/875146/",
+      "source": "Utility Dive",
+      "title": "Off-grid costs will push data centers back to utilities: Mitsubishi Heavy Industries CEO",
+      "url": "https://www.utilitydive.com/news/data-centers-mitsubishi-gas-turbines-earnings/875146/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "CEO Eisaku Ito expressed confidence in utilities' long-term expansion plans, arguing that growing demand for electricity does not rely solely on data centers. Even if&nbsp;some projected demand doesn&rsquo;t materialize, the effect would be &ldquo;limited,&rdquo; he said.",
+      "zh": {
+        "title": [
+          "Off-grid costs will push data centers back to utilities: Mitsubishi Heavy Industries CEO",
+          "离网成本将把数据中心推回公用事业:三菱重工业首席执行官"
+        ],
+        "summary": [
+          "CEO Eisaku Ito expressed confidence in utilities' long-term expansion plans, arguing that growing demand for electricity does not rely solely on data centers. Even if&nbsp;some projected demand doesn&rsquo;t materialize, the effect would be &ldquo;limited,&rdquo; he said.",
+          "Eisaku Ito CEO对公用事业的长期扩张计划表示信心,认为日益增长的电力需求并不完全依赖于数据中心。 他说,即使某些预计的需求没有实现,其效果也会“有限 ” 。"
         ]
       }
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 41,
+    "items": 44,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 8,
-      "capital": 5,
-      "grid": 27,
+      "policy": 7,
+      "capital": 4,
+      "grid": 32,
       "technology": 1
     },
     "sourceStatus": [
@@ -875,7 +935,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 9
       }
     ]
   },
@@ -884,6 +944,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:5ea764a7d2e543bf70cab6a42ae9b785be1d520a1467ccd64e842db96ab7e19d",
-  "envelopeChecksum": "sha256:656d64ad606a96cfad1994dd7466549e81f30fde7214e4ab7bed8707961dede6"
+  "contentChecksum": "sha256:3045694bca5da92de7a6a9188047d387a76c3239a951db678b9bf0434c20f427",
+  "envelopeChecksum": "sha256:8ebea7a9fe4f1fbd8782d22bafdaeaf1d4a0a243dac3125159c9db0f517c9976"
 }
