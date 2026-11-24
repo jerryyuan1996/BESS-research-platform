@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-23T18:24:29.899Z",
+  "fetchedAt": "2026-11-24T17:54:30.036Z",
   "coverage": {
-    "from": "2025-11-23T19:00:00.000Z",
-    "to": "2026-11-23T22:00:00.000Z",
+    "from": "2025-11-24T18:00:00.000Z",
+    "to": "2026-11-24T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8764
+    "points": 8765
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-23",
-      "n": 5,
-      "mean": 3.56,
-      "min": 2,
-      "max": 4,
-      "spread": 3.56,
-      "charge": null,
-      "discharge": 3.56
-    },
-    {
       "d": "2025-11-24",
-      "n": 24,
-      "mean": 11.22,
+      "n": 6,
+      "mean": 4.23,
       "min": 2,
-      "max": 74.47,
-      "spread": 11.22,
+      "max": 7.51,
+      "spread": 4.23,
       "charge": null,
-      "discharge": 11.22
+      "discharge": 4.23
     },
     {
       "d": "2025-11-25",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-23",
-      "n": 23,
-      "mean": 2.86,
+      "n": 24,
+      "mean": 2.83,
       "min": 1.6,
       "max": 5,
-      "spread": 2.86,
+      "spread": 2.83,
       "charge": null,
-      "discharge": 2.86
+      "discharge": 2.83
+    },
+    {
+      "d": "2026-11-24",
+      "n": 23,
+      "mean": 8.16,
+      "min": 1.5,
+      "max": 46.56,
+      "spread": 8.16,
+      "charge": null,
+      "discharge": 8.16
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-d-up.json",
-    "contentChecksum": "sha256:8ffc0b129272d243bfcf0610b9d492b75e26d5d4935ad2931d1db2d2296cdc5e",
-    "points": 8764
+    "contentChecksum": "sha256:b7255df18e19b31969271ce57209dac485b3ceae37f349d9455e156f55258a67",
+    "points": 8765
   },
-  "summaryChecksum": "sha256:ed757fa69385835b8b4eb729e8fb30273ac7dd737d1ace5428b2b52759545ebe"
+  "summaryChecksum": "sha256:9f94001270a0e35f700d5d7fce3473991621a90edcdc133df2abcfa9734c7590"
 }

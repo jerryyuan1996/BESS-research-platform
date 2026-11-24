@@ -13,54 +13,34 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-23T18:24:16.216Z",
+  "fetchedAt": "2026-11-24T17:54:23.247Z",
   "coverage": {
-    "from": "2026-05-19T06:00:22.000Z",
-    "to": "2026-11-23T18:00:00.000Z",
+    "from": "2026-05-26T06:00:25.000Z",
+    "to": "2026-11-24T16:11:04.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
   },
   "series": [
     {
-      "t": "2026-05-19T06:00:22.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=5r2eaf1k4r",
-      "source": "Modo Energy",
-      "title": "Clean Power 2030: Inside Mission Control with Chris Stark",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=5r2eaf1k4r",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Chris Stark is leading the UK's Clean Power 2030 mission. As Head of Mission Control at DESNZ, no one sees the constraint costs, grid bottlenecks and reform of National Pricing trade-offs more clearly. The UK is building a clean power system at a pace not seen since the 1960s, connecting record volumes of wind and s…",
-      "zh": {
-        "title": [
-          "Clean Power 2030: Inside Mission Control with Chris Stark",
-          "英国清洁电力2030：Chris Stark 谈任务指挥中心如何推进电网转型"
-        ],
-        "summary": [
-          "Chris Stark is leading the UK's Clean Power 2030 mission. As Head of Mission Control at DESNZ, no one sees the constraint costs, grid bottlenecks and reform of National Pricing trade-offs more clearly. The UK is building a clean power system at a pace not seen since the 1960s, connecting record volumes of wind and s…",
-          "Chris Stark 负责英国能源安全与净零部的清洁电力2030计划。他谈到电网约束成本、输电瓶颈，以及改革全国统一电价需要作出的取舍。英国正以自20世纪60年代以来少有的速度建设清洁电力系统，风电和光伏并网规模创下纪录。"
-        ]
-      }
-    },
-    {
-      "t": "2026-05-26T06:00:24.000Z",
-      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "t": "2026-05-26T06:00:25.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=yfo4y1e2ql",
       "source": "Modo Energy",
       "title": "Where Capital Is Flowing in Spanish Renewables - nTeaser",
-      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=3ewfcky4o4",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=yfo4y1e2ql",
       "category": "capital",
       "categoryLabel": "Capital & M&A",
       "summary": "Three years ago, the best price for a ready-to-build solar project in Spain was €200,000 per megawatt — today it is €50,000. Batteries have moved the opposite way, with ready-to-build prices climbing to around €100,000 per megawatt and a 30GW pipeline now stacking up behind them. Ed Porter sits down with Carmen Izqu…",
       "zh": {
         "title": [
           "Where Capital Is Flowing in Spanish Renewables - nTeaser",
-          "资金正流向西班牙哪些可再生能源项目？｜nTeaser"
+          "资本以西班牙可再生能源流入的地方 - nTeaser"
         ],
         "summary": [
           "Three years ago, the best price for a ready-to-build solar project in Spain was €200,000 per megawatt — today it is €50,000. Batteries have moved the opposite way, with ready-to-build prices climbing to around €100,000 per megawatt and a 30GW pipeline now stacking up behind them. Ed Porter sits down with Carmen Izqu…",
-          "西班牙可开工光伏项目的最高价格从三年前约每兆瓦 20 万欧元降至约 5 万欧元；电池项目则反向上涨至约每兆瓦 10 万欧元，待开发规模约 30GW。"
+          "三年前,西班牙建造一个现成太阳能项目的最佳价格是每兆瓦20万欧元,今天是50 000欧元。 电池走相反方向,即现成建造价格攀升到每兆瓦10万欧元左右,而30GW管道现在堆积在后面。 Ed Porter和Carmen Izqu坐在一起。"
         ]
       }
     },
@@ -241,126 +221,6 @@
       }
     },
     {
-      "t": "2026-11-18T11:58:27.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/esvolta-fluence-ercot-texas-bess-financing-linxon-epc-partnership/",
-      "source": "Energy-Storage.news",
-      "title": "ERCOT: EsVolta finances 290MW, Fluence wins project via Linxon EPC partnership",
-      "url": "https://www.energy-storage.news/esvolta-fluence-ercot-texas-bess-financing-linxon-epc-partnership/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EsVolta has completed over US$180 million in financing for BESS projects in Texas, while Fluence has won a 200MWh project there.",
-      "zh": {
-        "title": [
-          "ERCOT: EsVolta finances 290MW, Fluence wins project via Linxon EPC partnership",
-          "得州 ERCOT 市场：EsVolta 为290 MW储能项目融资，Fluence 携手 Linxon 赢得新项目"
-        ],
-        "summary": [
-          "EsVolta has completed over US$180 million in financing for BESS projects in Texas, while Fluence has won a 200MWh project there.",
-          "EsVolta 已为得州电池储能项目完成逾1.8亿美元融资。Fluence 也通过与工程总承包商 Linxon 的合作，在得州获得了一个200 MWh项目。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-18T12:06:14.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/using-every-ounce-of-value-from-the-assets-lg-energy-solution-vertech-cpo-talks-data-centres-bess-and-software-integration-at-re-2026/",
-      "source": "Energy-Storage.news",
-      "title": "‘Using every ounce of value from the assets’: LG Energy Solution Vertech CPO talks data centres, BESS and software integration at RE+ 2026",
-      "url": "https://www.energy-storage.news/using-every-ounce-of-value-from-the-assets-lg-energy-solution-vertech-cpo-talks-data-centres-bess-and-software-integration-at-re-2026/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Energy-Storage.news speaks with LG Energy Solution Vertech chief product officer Tristan Doherty at RE+ 2026.",
-      "zh": {
-        "title": [
-          "‘Using every ounce of value from the assets’: LG Energy Solution Vertech CPO talks data centres, BESS and software integration at RE+ 2026",
-          "如何充分发挥储能资产价值？LG Energy Solution Vertech 产品负责人谈数据中心与软件集成"
-        ],
-        "summary": [
-          "Energy-Storage.news speaks with LG Energy Solution Vertech chief product officer Tristan Doherty at RE+ 2026.",
-          "在 RE+ 2026 展会上，Energy-Storage.news 采访了 LG Energy Solution Vertech 首席产品官 Tristan Doherty，讨论数据中心、电池储能与软件集成。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-18T14:53:34.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/us-roundup-samsung-sdi-eqt-canadian-solar-deals-re-plus/",
-      "source": "Energy-Storage.news",
-      "title": "US ROUNDUP: Samsung SDI, EQT and Canadian Solar announce deals as RE+ takes place",
-      "url": "https://www.energy-storage.news/us-roundup-samsung-sdi-eqt-canadian-solar-deals-re-plus/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Deals and acquisitions were announced this week as RE+, the biggest clean energy trade show in the US, takes place in Las Vegas, Nevada.",
-      "zh": {
-        "title": [
-          "US ROUNDUP: Samsung SDI, EQT and Canadian Solar announce deals as RE+ takes place",
-          "美国清洁能源交易动态：三星SDI、EQT 和阿特斯在 RE+ 期间公布交易"
-        ],
-        "summary": [
-          "Deals and acquisitions were announced this week as RE+, the biggest clean energy trade show in the US, takes place in Las Vegas, Nevada.",
-          "美国大型清洁能源展 RE+ 本周在内华达州拉斯维加斯举行，多家公司在展会期间公布了交易和收购消息。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T09:13:31.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/agl-tomago-bess-first-100-units-installed-nsw/",
-      "source": "Energy-Storage.news",
-      "title": "AGL installs first 100 units at 2,000MWh Tomago BESS in New South Wales, Australia",
-      "url": "https://www.energy-storage.news/agl-tomago-bess-first-100-units-installed-nsw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australian energy company AGL has installed the first 100 units at its 500MW Tomago battery energy storage system (BESS) in the Hunter region of New South Wales (NSW).",
-      "zh": {
-        "title": [
-          "AGL installs first 100 units at 2,000MWh Tomago BESS in New South Wales, Australia",
-          "AGL 在澳大利亚新南威尔士州2,000 MWh储能项目安装首批100台设备"
-        ],
-        "summary": [
-          "Australian energy company AGL has installed the first 100 units at its 500MW Tomago battery energy storage system (BESS) in the Hunter region of New South Wales (NSW).",
-          "澳大利亚能源企业 AGL 已在新南威尔士州亨特地区的 Tomago 电池储能电站安装首批100台设备。项目功率为500 MW。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T09:21:02.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/nz-regulator-corrects-bess-price-band-rule-date/",
-      "source": "Energy-Storage.news",
-      "title": "‘Technical and non-controversial’: New Zealand regulator corrects battery storage price band rule date",
-      "url": "https://www.energy-storage.news/nz-regulator-corrects-bess-price-band-rule-date/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "New Zealand's Electricity Authority has corrected the date from which battery energy storage system (BESS) owners can submit up to 10 price bands in their wholesale market offers.",
-      "zh": {
-        "title": [
-          "‘Technical and non-controversial’: New Zealand regulator corrects battery storage price band rule date",
-          "新西兰监管机构更正储能批发市场分段报价规则的生效日期"
-        ],
-        "summary": [
-          "New Zealand's Electricity Authority has corrected the date from which battery energy storage system (BESS) owners can submit up to 10 price bands in their wholesale market offers.",
-          "新西兰电力管理局已更正一项规则的起始日期。根据该规则，电池储能业主在批发市场申报时，最多可提交10个价格档位。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T09:34:01.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/statkraft-ppa-tolled-merchant-bess-dutch-solar-site/",
-      "source": "Energy-Storage.news",
-      "title": "Statkraft pairs PPA with part-tolled, part-merchant BESS contract at Dutch solar site",
-      "url": "https://www.energy-storage.news/statkraft-ppa-tolled-merchant-bess-dutch-solar-site/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Statkraft has signed a 10-year deal with Ampyr Solar Europe covering the Snelle Loop co-located solar PV and BESS project in the Netherlands.",
-      "zh": {
-        "title": [
-          "Statkraft pairs PPA with part-tolled, part-merchant BESS contract at Dutch solar site",
-          "Statkraft 为荷兰光储项目签约：光伏采用购电协议，储能部分签约、部分参与市场交易"
-        ],
-        "summary": [
-          "Statkraft has signed a 10-year deal with Ampyr Solar Europe covering the Snelle Loop co-located solar PV and BESS project in the Netherlands.",
-          "Statkraft 与 Ampyr Solar Europe 签署为期10年的协议，涵盖荷兰 Snelle Loop 共址光伏与电池储能项目。储能合同结合了容量使用权安排和市场化交易。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-19T09:50:44.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bw-ess-wattmen-500mw-battery-storage-france/",
       "source": "Energy-Storage.news",
@@ -501,46 +361,6 @@
       }
     },
     {
-      "t": "2026-11-19T17:13:16.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/grid-operators-data-center-ride-through-rules-ercot-nerc/873466/",
-      "source": "Utility Dive",
-      "title": "Grid operators need data center ride-through rules that protect reliability",
-      "url": "https://www.utilitydive.com/news/grid-operators-data-center-ride-through-rules-ercot-nerc/873466/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The first facilities built to Texas&rsquo; new standard are about to come online, proving that firm, predictable regulation can protect reliability without slowing market development, writes ON.energy CEO Alan Cooper.",
-      "zh": {
-        "title": [
-          "Grid operators need data center ride-through rules that protect reliability",
-          "电网运营商需要为数据中心制定保障可靠性的故障穿越规则"
-        ],
-        "summary": [
-          "The first facilities built to Texas&rsquo; new standard are about to come online, proving that firm, predictable regulation can protect reliability without slowing market development, writes ON.energy CEO Alan Cooper.",
-          "ON.energy 首席执行官 Alan Cooper 撰文称，首批依照得州新标准建设的设施即将投运，表明明确且可预期的监管既能保障电网可靠性，也能支持市场继续发展。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T17:58:42.000Z",
-      "id": "Utility Dive:https://www.utilitydive.com/news/google-signs-50-mw-superhot-geothermal-ppa-with-quaise-energy/875217/",
-      "source": "Utility Dive",
-      "title": "Google signs 50-MW superhot geothermal PPA with Quaise Energy",
-      "url": "https://www.utilitydive.com/news/google-signs-50-mw-superhot-geothermal-ppa-with-quaise-energy/875217/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The agreement will support Google's Oregon data center operations beginning as early as 2030, advancing development of a technology designed to access geothermal resources deeper underground.",
-      "zh": {
-        "title": [
-          "Google signs 50-MW superhot geothermal PPA with Quaise Energy",
-          "谷歌与 Quaise Energy 签署50 MW超高温地热购电协议"
-        ],
-        "summary": [
-          "The agreement will support Google's Oregon data center operations beginning as early as 2030, advancing development of a technology designed to access geothermal resources deeper underground.",
-          "该协议最早将于2030年开始为谷歌在俄勒冈州的数据中心供电，并推动开发利用更深地下地热资源的技术。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-20T09:48:09.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/australia-bess-storage-gap-2030-construction-18-months-ieefa-scorecard/",
       "source": "Energy-Storage.news",
@@ -621,46 +441,6 @@
       }
     },
     {
-      "t": "2026-11-23T05:40:55.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/ten-innovative-renewable-energy-startups-give-their-pitch-at-re/",
-      "source": "pv magazine",
-      "title": "Ten innovative renewable energy startups give their pitch at RE+",
-      "url": "https://www.pv-magazine.com/2026/11/23/ten-innovative-renewable-energy-startups-give-their-pitch-at-re/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "California-based fault-detection startup Magnefy won the fifth annual RE+ Startup Pitch Competition, beating out nine other clean energy finalists tackling challenges in solar robotics, grid cybersecurity, EV charging, and data center power. The post Ten innovative renewable energy startups give their pitch at RE+ a…",
-      "zh": {
-        "title": [
-          "Ten innovative renewable energy startups give their pitch at RE+",
-          "10个创新型可再生能源启动企业在可再生能源+上投出他们的一票"
-        ],
-        "summary": [
-          "California-based fault-detection startup Magnefy won the fifth annual RE+ Startup Pitch Competition, beating out nine other clean energy finalists tackling challenges in solar robotics, grid cybersecurity, EV charging, and data center power. The post Ten innovative renewable energy startups give their pitch at RE+ a…",
-          "Magnefy赢得了第五届RE+启动小企鹅竞赛, 击败了另外九位清洁能源决赛者,"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T08:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/us-senate-passes-permitting-bill-letting-solar-developers-sue-agencies/",
-      "source": "pv magazine",
-      "title": "US Senate passes permitting bill letting solar developers sue agencies",
-      "url": "https://www.pv-magazine.com/2026/11/23/us-senate-passes-permitting-bill-letting-solar-developers-sue-agencies/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The US Senate has approved a federal permitting overhaul that would shorten court challenges to energy projects and let developers of solar, wind, and other energy projects seek damages from agencies over a pattern of disparate treatment, in a Nov. 19 vote that sends the bill to the House. The post US Senate passes…",
-      "zh": {
-        "title": [
-          "US Senate passes permitting bill letting solar developers sue agencies",
-          "允许太阳能开发商起诉机构"
-        ],
-        "summary": [
-          "The US Senate has approved a federal permitting overhaul that would shorten court challenges to energy projects and let developers of solar, wind, and other energy projects seek damages from agencies over a pattern of disparate treatment, in a Nov. 19 vote that sends the bill to the House. The post US Senate passes…",
-          "美国参议院在11月19日的投票中批准了一项联邦允许大修计划,将缩短法院对能源项目的挑战,让太阳能、风能和其他能源项目的开发商就不同待遇的模式向机构寻求损失。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-23T09:07:38.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/greater-operational-flexibility-australias-aemo-leans-on-5-3gw-of-new-battery-storage-for-summer/",
       "source": "Energy-Storage.news",
@@ -681,86 +461,6 @@
       }
     },
     {
-      "t": "2026-11-23T09:14:42.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/saudi-arabia-expands-self-consumption-rules-to-50-mw/",
-      "source": "pv magazine",
-      "title": "Saudi Arabia expands self-consumption rules to 50 MW",
-      "url": "https://www.pv-magazine.com/2026/11/23/saudi-arabia-expands-self-consumption-rules-to-50-mw/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Saudi Arabia’s updated framework sets out new connection requirements, fees and net billing rules for renewable energy systems installed for self-consumption. The post Saudi Arabia expands self-consumption rules to 50 MW appeared first on pv magazine Global .",
-      "zh": {
-        "title": [
-          "Saudi Arabia expands self-consumption rules to 50 MW",
-          "沙特阿拉伯将自消费规则扩大到50兆瓦"
-        ],
-        "summary": [
-          "Saudi Arabia’s updated framework sets out new connection requirements, fees and net billing rules for renewable energy systems installed for self-consumption. The post Saudi Arabia expands self-consumption rules to 50 MW appeared first on pv magazine Global .",
-          "沙特阿拉伯更新后的框架为安装的自耗可再生能源系统规定了新的连接要求、收费和净计费规则。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T09:15:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/hydrogen-shifts-summer-solar-to-winter-in-japanese-apartment-building/",
-      "source": "pv magazine",
-      "title": "Hydrogen shifts summer solar to winter in Japanese apartment building",
-      "url": "https://www.pv-magazine.com/2026/11/23/hydrogen-shifts-summer-solar-to-winter-in-japanese-apartment-building/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Japanese contractor Takenaka has run a hydrogen system that stores surplus summer solar power for winter use in an apartment block in central Japan for a full year and says it worked as planned, though it has published no performance data. The post Hydrogen shifts summer solar to winter in Japanese apartment buildin…",
-      "zh": {
-        "title": [
-          "Hydrogen shifts summer solar to winter in Japanese apartment building",
-          "在日本公寓大楼里,氢能把夏季的太阳能转移到冬季"
-        ],
-        "summary": [
-          "Japanese contractor Takenaka has run a hydrogen system that stores surplus summer solar power for winter use in an apartment block in central Japan for a full year and says it worked as planned, though it has published no performance data. The post Hydrogen shifts summer solar to winter in Japanese apartment buildin…",
-          "日本承包商竹中经营了一个氢气系统,将夏季剩余太阳能储存在日本中部的一个公寓区,供冬季使用整整一年,并说它按计划工作,尽管它没有公布性能数据。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T10:36:16.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/jordan-plans-200-mw-solar-100-mw-400-mwh-storage-projects/",
-      "source": "pv magazine",
-      "title": "Jordan plans 200 MW solar, 100 MW/400 MWh storage projects",
-      "url": "https://www.pv-magazine.com/2026/11/23/jordan-plans-200-mw-solar-100-mw-400-mwh-storage-projects/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Investor prequalification for the solar project is expected to open in February 2027, followed by prequalification for the battery storage project a month later. The post Jordan plans 200 MW solar, 100 MW/400 MWh storage projects appeared first on pv magazine Global .",
-      "zh": {
-        "title": [
-          "Jordan plans 200 MW solar, 100 MW/400 MWh storage projects",
-          "约旦规划了200兆瓦太阳能、100兆瓦/400兆瓦h储存项目"
-        ],
-        "summary": [
-          "Investor prequalification for the solar project is expected to open in February 2027, followed by prequalification for the battery storage project a month later. The post Jordan plans 200 MW solar, 100 MW/400 MWh storage projects appeared first on pv magazine Global .",
-          "预计2027年2月将启动太阳能项目投资者资格预审,一个月后将启动电池储存项目资格预审。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T10:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/europe-turns-negative-electricity-prices-into-a-flexibility-signal/",
-      "source": "pv magazine",
-      "title": "Europe turns negative electricity prices into a flexibility signal",
-      "url": "https://www.pv-magazine.com/2026/11/23/europe-turns-negative-electricity-prices-into-a-flexibility-signal/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Negative wholesale power prices are a useful investment signal for batteries and demand response in Europe only where subsidy design and grid bottlenecks are not distorting them, says a new Eurelectric report. The post Europe turns negative electricity prices into a flexibility signal appeared first on pv magazine G…",
-      "zh": {
-        "title": [
-          "Europe turns negative electricity prices into a flexibility signal",
-          "欧洲将负电价变成一个灵活信号"
-        ],
-        "summary": [
-          "Negative wholesale power prices are a useful investment signal for batteries and demand response in Europe only where subsidy design and grid bottlenecks are not distorting them, says a new Eurelectric report. The post Europe turns negative electricity prices into a flexibility signal appeared first on pv magazine G…",
-          "一份新的Eurdower报告表示, 负面的批发电价是欧洲电池和需求反应的有效投资信号,"
-        ]
-      }
-    },
-    {
       "t": "2026-11-23T11:39:45.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/bess-overbuild-or-augmentation-which-strategy-wins/",
       "source": "Energy-Storage.news",
@@ -777,46 +477,6 @@
         "summary": [
           "BESS assets require careful strategic decisions to be made around augmentation from the beginning, writes Sergey Syrvachev, founder of BESS.courses.",
           "BESS资产要求从一开始就围绕扩增问题作出谨慎的战略决定,"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/wind-driven-spray-system-cools-cleans-solar-panels/",
-      "source": "pv magazine",
-      "title": "Wind-driven spray system cools, cleans solar panels",
-      "url": "https://www.pv-magazine.com/2026/11/23/wind-driven-spray-system-cools-cleans-solar-panels/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Researchers have developed a water spray system that cools and cleans PV modules using a wind turbine coupled directly to a mechanical pump. In rooftop tests, the system lowered cell temperature by up to 26.7 C and increased peak power output by 18.6%. The post Wind-driven spray system cools, cleans solar panels app…",
-      "zh": {
-        "title": [
-          "Wind-driven spray system cools, cleans solar panels",
-          "风力喷雾系统冷却、清洁太阳能电池板"
-        ],
-        "summary": [
-          "Researchers have developed a water spray system that cools and cleans PV modules using a wind turbine coupled directly to a mechanical pump. In rooftop tests, the system lowered cell temperature by up to 26.7 C and increased peak power output by 18.6%. The post Wind-driven spray system cools, cleans solar panels app…",
-          "研究人员开发了一个水喷系统,用风力涡轮机与机械泵直接结合,冷却和清洁光电模块。 在屋顶测试中,该系统将细胞温度降低26.7C,并将峰值功率增加18.6%。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-23T12:09:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/lebanon-looks-to-ramp-up-solar-storage-deployments/",
-      "source": "pv magazine",
-      "title": "Lebanon looks to ramp up solar, storage deployments",
-      "url": "https://www.pv-magazine.com/2026/11/23/lebanon-looks-to-ramp-up-solar-storage-deployments/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Lebanon is working towards adding at least 3 GW of electricity generation capacity in the coming years, most of which is expected to come from solar and wind, alongside battery energy storage. The post Lebanon looks to ramp up solar, storage deployments appeared first on pv magazine Global .",
-      "zh": {
-        "title": [
-          "Lebanon looks to ramp up solar, storage deployments",
-          "黎巴嫩期待提升太阳能,部署储存装置"
-        ],
-        "summary": [
-          "Lebanon is working towards adding at least 3 GW of electricity generation capacity in the coming years, most of which is expected to come from solar and wind, alongside battery energy storage. The post Lebanon looks to ramp up solar, storage deployments appeared first on pv magazine Global .",
-          "黎巴嫩正在努力在未来几年中至少增加3个全球瓦发电能力,其中多数预计来自太阳能和风能,还有电池能源储存。"
         ]
       }
     },
@@ -861,26 +521,6 @@
       }
     },
     {
-      "t": "2026-11-23T16:01:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/23/honduras-starts-paying-solar-prosumers-for-excess-power/",
-      "source": "pv magazine",
-      "title": "Honduras starts paying solar prosumers for excess power",
-      "url": "https://www.pv-magazine.com/2026/11/23/honduras-starts-paying-solar-prosumers-for-excess-power/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Honduras has begun compensating solar self-consumption customers for surplus electricity exported to the distribution grid, with the Zamorano University campus becoming the first eligible user under tariffs of $92.50/MWh to $111.27/MWh. The post Honduras starts paying solar prosumers for excess power appeared first…",
-      "zh": {
-        "title": [
-          "Honduras starts paying solar prosumers for excess power",
-          "洪都拉斯开始为超量电源支付太阳能造价"
-        ],
-        "summary": [
-          "Honduras has begun compensating solar self-consumption customers for surplus electricity exported to the distribution grid, with the Zamorano University campus becoming the first eligible user under tariffs of $92.50/MWh to $111.27/MWh. The post Honduras starts paying solar prosumers for excess power appeared first…",
-          "洪都拉斯已开始补偿太阳能自消费客户向配电网出口的剩余电力,萨莫拉诺大学校园成为第一个符合条件的用户,其费率为9250/MWh至111.27/MWh。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-23T18:00:00.000Z",
       "id": "Utility Dive:https://www.utilitydive.com/news/data-centers-mitsubishi-gas-turbines-earnings/875146/",
       "source": "Utility Dive",
@@ -899,18 +539,418 @@
           "Eisaku Ito CEO对公用事业的长期扩张计划表示信心,认为日益增长的电力需求并不完全依赖于数据中心。 他说,即使某些预计的需求没有实现,其效果也会“有限 ” 。"
         ]
       }
+    },
+    {
+      "t": "2026-11-24T00:04:52.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/japans-expanding-bess-market-and-its-uncertain-progress/",
+      "source": "Energy-Storage.news",
+      "title": "Japan’s expanding BESS market and its uncertain progress",
+      "url": "https://www.energy-storage.news/japans-expanding-bess-market-and-its-uncertain-progress/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "As Japan’s battery storage market expands, BloombergNEF's Umer Sadiq discusses its nuances and uncertainties with ESN Premium.",
+      "zh": {
+        "title": [
+          "Japan’s expanding BESS market and its uncertain progress",
+          "日本的BESS市场扩张及其不确定的进展"
+        ],
+        "summary": [
+          "As Japan’s battery storage market expands, BloombergNEF's Umer Sadiq discusses its nuances and uncertainties with ESN Premium.",
+          "随着日本电池储存市场的扩大,BloombergNEF的Umer Sadiq用ESN Premium讨论了其细微差别和不确定性。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T07:00:57.000Z",
+      "id": "Modo Energy:https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=wet7w3yzq4",
+      "source": "Modo Energy",
+      "title": "How Batteries Could Unlock Hidden Grid Capacity in Germany - ECO STOR",
+      "url": "https://modoenergy.com/public-podcast?wchannelid=vtx0dp52da&wmediaid=wet7w3yzq4",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "Germany's grid operators are facing a flood of battery storage connection requests. At Bollingstedt, one of the country's largest BESS projects, grid constraints came up within weeks of it switching on. How developers and grid operators build trust through flexible connection agreements will decide how fast batterie…",
+      "zh": {
+        "title": [
+          "How Batteries Could Unlock Hidden Grid Capacity in Germany - ECO STOR",
+          "德国电池如何解锁隐藏网格能力 - 经合组织"
+        ],
+        "summary": [
+          "Germany's grid operators are facing a flood of battery storage connection requests. At Bollingstedt, one of the country's largest BESS projects, grid constraints came up within weeks of it switching on. How developers and grid operators build trust through flexible connection agreements will decide how fast batterie…",
+          "德国的电网运营商正面临着大量电池存储连接请求。 在Bollingstedt(德国最大的BESS项目之一),电网限制在开关后数周内就出现了。 开发商和电网运营商如何通过灵活的连接协议建立信任将决定Beatie..."
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T09:18:43.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/residential-solar-linked-to-reduced-health-risks-from-extreme-temperatures/",
+      "source": "pv magazine",
+      "title": "Residential solar linked to reduced health risks from extreme temperatures",
+      "url": "https://www.pv-magazine.com/2026/11/24/residential-solar-linked-to-reduced-health-risks-from-extreme-temperatures/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Research from Japan finds residential solar installations can offer protection against heat-related mortality by making electricity more affordable for households to run air conditioning. The post Residential solar linked to reduced health risks from extreme temperatures appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Residential solar linked to reduced health risks from extreme temperatures",
+          "住宅太阳能与降低极端温度对健康造成的风险相关联"
+        ],
+        "summary": [
+          "Research from Japan finds residential solar installations can offer protection against heat-related mortality by making electricity more affordable for households to run air conditioning. The post Residential solar linked to reduced health risks from extreme temperatures appeared first on pv magazine Global .",
+          "日本的研究发现,住宅太阳能设施可以提供防止与热有关的死亡的保护,使家庭更能负担得起电力,以进行空调。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T09:24:23.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/apa-starts-work-on-104mwh-solar-plus-storage-project-in-australia/",
+      "source": "Energy-Storage.news",
+      "title": "APA starts work on 104MWh solar-plus-storage project in Australia",
+      "url": "https://www.energy-storage.news/apa-starts-work-on-104mwh-solar-plus-storage-project-in-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "APA Group has started construction on its 72MW solar PV plant and 52MW/104MWh BESS at Mount Isa in north-west Queensland, Australia.",
+      "zh": {
+        "title": [
+          "APA starts work on 104MWh solar-plus-storage project in Australia",
+          "APA开始在澳大利亚实施104兆瓦太阳能加储存项目"
+        ],
+        "summary": [
+          "APA Group has started construction on its 72MW solar PV plant and 52MW/104MWh BESS at Mount Isa in north-west Queensland, Australia.",
+          "APA集团已开始在澳大利亚昆士兰西北部Isa山建造其72兆瓦太阳能光电池厂和52兆瓦/104兆瓦BESS。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T09:44:39.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/chinese-listed-energy-storage-firms-chint-power-eve-energy-announce-ups-lfp-capacity-additions/",
+      "source": "Energy-Storage.news",
+      "title": "Chinese listed energy storage firms Chint Power, EVE Energy announce UPS, LFP capacity additions",
+      "url": "https://www.energy-storage.news/chinese-listed-energy-storage-firms-chint-power-eve-energy-announce-ups-lfp-capacity-additions/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Chint Power and EVE Energy have unveiled revised capacity investment plans, pursuing a UPS production facility and pivoting ternary battery production to LFP.",
+      "zh": {
+        "title": [
+          "Chinese listed energy storage firms Chint Power, EVE Energy announce UPS, LFP capacity additions",
+          "中国上市能源储存公司Chint Power, EVE Energy 宣布UPS, LFP 容量增加"
+        ],
+        "summary": [
+          "Chint Power and EVE Energy have unveiled revised capacity investment plans, pursuing a UPS production facility and pivoting ternary battery production to LFP.",
+          "Chint Power和EVE能源公司公布了经修订的能力投资计划,推行一个UPS生产设施,并将长期电池生产并入LFP。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T10:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/solar-and-storage-insolvencies-hit-larger-german-companies/",
+      "source": "pv magazine",
+      "title": "Solar and storage insolvencies hit larger German companies",
+      "url": "https://www.pv-magazine.com/2026/11/24/solar-and-storage-insolvencies-hit-larger-german-companies/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Solar and storage companies accounted for 10 of Germany’s 103 major corporate insolvencies in the third quarter of 2026, with cases increasingly involving project developers and battery manufacturers alongside installers and distributors, according to consultancy Falkensteg. The post Solar and storage insolvencies h…",
+      "zh": {
+        "title": [
+          "Solar and storage insolvencies hit larger German companies",
+          "太阳能和储存的破产击中了较大的德国公司"
+        ],
+        "summary": [
+          "Solar and storage companies accounted for 10 of Germany’s 103 major corporate insolvencies in the third quarter of 2026, with cases increasingly involving project developers and battery manufacturers alongside installers and distributors, according to consultancy Falkensteg. The post Solar and storage insolvencies h…",
+          "2026年第三季度,德国103个大公司破产中,太阳能和储存公司占10个,Falkensteg咨询公司称,项目开发商和电池制造商与安装商和经销商一起参与的案件越来越多。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T10:26:24.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/european-bess-market-moves-from-tolls-to-floors-operators-only-just-beginning-to-understand-soc-challenges/",
+      "source": "Energy-Storage.news",
+      "title": "European BESS market moves from tolls to floors, ‘operators only just beginning to understand’ SOC challenges",
+      "url": "https://www.energy-storage.news/european-bess-market-moves-from-tolls-to-floors-operators-only-just-beginning-to-understand-soc-challenges/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Nicolas Chouleur, partner at advisory firm Everoze, shares his views on the key trends and challenges in European BESS asset management today.",
+      "zh": {
+        "title": [
+          "European BESS market moves from tolls to floors, ‘operators only just beginning to understand’ SOC challenges",
+          "欧洲BESS市场从收费到楼层,“操作者才刚刚开始理解SOC的挑战”"
+        ],
+        "summary": [
+          "Nicolas Chouleur, partner at advisory firm Everoze, shares his views on the key trends and challenges in European BESS asset management today.",
+          "Nicolas Chouleur是Everoze咨询公司的合伙人,他同意他对今天欧洲企业和企业服务公司资产管理的主要趋势和挑战的看法。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T10:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/bangladesh-developer-plans-45-mw-solar-plant-with-foreign-funding/",
+      "source": "pv magazine",
+      "title": "Bangladesh developer plans 45 MW solar plant with foreign funding",
+      "url": "https://www.pv-magazine.com/2026/11/24/bangladesh-developer-plans-45-mw-solar-plant-with-foreign-funding/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "A Bangladeshi power producer and an international infrastructure investor plan to build a 45 MW solar plant in Chittagong district at a cost of about $45 million, with output sold to the state utility. The post Bangladesh developer plans 45 MW solar plant with foreign funding appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Bangladesh developer plans 45 MW solar plant with foreign funding",
+          "孟加拉国开发商计划利用外国资金建造45兆瓦太阳能发电厂"
+        ],
+        "summary": [
+          "A Bangladeshi power producer and an international infrastructure investor plan to build a 45 MW solar plant in Chittagong district at a cost of about $45 million, with output sold to the state utility. The post Bangladesh developer plans 45 MW solar plant with foreign funding appeared first on pv magazine Global .",
+          "一个孟加拉国电力生产商和一个国际基础设施投资者计划在吉大港地区建造一个45兆瓦的太阳能发电厂,费用约为4 500万美元,其产出出售给国家公用事业公司。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T11:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/cyprus-plans-to-deploy-over-300-mw-of-battery-storage/",
+      "source": "pv magazine",
+      "title": "Cyprus plans to deploy over 300 MW of battery storage",
+      "url": "https://www.pv-magazine.com/2026/11/24/cyprus-plans-to-deploy-over-300-mw-of-battery-storage/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "With Cyprus having more than 1 GW of installed solar capacity against average electricity demand of around 650 MW, its government is looking to accelerate storage deployment to address rising solar curtailment and improve grid flexibility. The post Cyprus plans to deploy over 300 MW of battery storage appeared first…",
+      "zh": {
+        "title": [
+          "Cyprus plans to deploy over 300 MW of battery storage",
+          "塞浦路斯计划部署300兆瓦以上的电池储存"
+        ],
+        "summary": [
+          "With Cyprus having more than 1 GW of installed solar capacity against average electricity demand of around 650 MW, its government is looking to accelerate storage deployment to address rising solar curtailment and improve grid flexibility. The post Cyprus plans to deploy over 300 MW of battery storage appeared first…",
+          "塞浦路斯的平均电力需求约为650兆瓦,其安装太阳能容量超过1千兆瓦,因此,塞浦路斯政府正寻求加快储存部署,以解决太阳能日益减少的问题,提高电网的灵活性。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T11:43:36.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/global-grid-scale-bess-deployments-up-42-in-ytd-europe-nearly-200/",
+      "source": "Energy-Storage.news",
+      "title": "Global grid-scale BESS deployments up 42% in YTD; Europe nearly 200%",
+      "url": "https://www.energy-storage.news/global-grid-scale-bess-deployments-up-42-in-ytd-europe-nearly-200/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Some 15.6GWh of grid-scale BESS came online last month, bringing the total year-to-date (YTD) figure as of 31 October to 229.8GWh.",
+      "zh": {
+        "title": [
+          "Global grid-scale BESS deployments up 42% in YTD; Europe nearly 200%",
+          "全球电网规模的BESS在YTD部署率上升42%;欧洲近200%"
+        ],
+        "summary": [
+          "Some 15.6GWh of grid-scale BESS came online last month, bringing the total year-to-date (YTD) figure as of 31 October to 229.8GWh.",
+          "上月,大约15.6GWH的网格规模BESS上网,使截至10月31日的全年数字达到229.8GWH。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T12:16:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/pilot-line-recovers-high-purity-silver-silicon-from-pv-panels/",
+      "source": "pv magazine",
+      "title": "Pilot line recovers high-purity silver, silicon from PV panels",
+      "url": "https://www.pv-magazine.com/2026/11/24/pilot-line-recovers-high-purity-silver-silicon-from-pv-panels/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers have tested two routes for separating the layers of end-of-life solar panels on a pilot recycling line, recovering silver and silicon at purities above 99.99% and finding that a shockwave-based process also preserves a layer the heat-based route destroys. The post Pilot line recovers high-purity silver,…",
+      "zh": {
+        "title": [
+          "Pilot line recovers high-purity silver, silicon from PV panels",
+          "试管线从光电池板回收高纯度银、硅"
+        ],
+        "summary": [
+          "Researchers have tested two routes for separating the layers of end-of-life solar panels on a pilot recycling line, recovering silver and silicon at purities above 99.99% and finding that a shockwave-based process also preserves a layer the heat-based route destroys. The post Pilot line recovers high-purity silver,…",
+          "研究人员测试了两条途径,将报废太阳能电池板的层层分离到试点回收线上,回收纯度超过99.99%的银和硅,并发现以冲击波为基础的工艺也保留了以热为基础的线路所摧毁的层。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T12:29:38.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/differ-power-unveils-9-in-1-solar-storage-heat-pump/",
+      "source": "pv magazine",
+      "title": "Differ Power unveils ‘9-in-1’ solar-storage heat pump",
+      "url": "https://www.pv-magazine.com/2026/11/24/differ-power-unveils-9-in-1-solar-storage-heat-pump/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese company has developed a residential heat pump system integrating a 6 kW hybrid inverter and supporting battery storage. The propane-based system comes in three versions with heating capacities ranging from 12 kW to 16 kW and can deliver hot water at temperatures of up to 75 C. The post Differ Power unvei…",
+      "zh": {
+        "title": [
+          "Differ Power unveils ‘9-in-1’ solar-storage heat pump",
+          "不同的电力揭开“9英寸-1”太阳能储存热泵"
+        ],
+        "summary": [
+          "The Chinese company has developed a residential heat pump system integrating a 6 kW hybrid inverter and supporting battery storage. The propane-based system comes in three versions with heating capacities ranging from 12 kW to 16 kW and can deliver hot water at temperatures of up to 75 C. The post Differ Power unvei…",
+          "中国公司开发了住宅热泵系统,其中含有6千瓦混合反转器和辅助电池储存器。 丙烷系统有三个版本,供暖能力从12千瓦到16千瓦不等,可以在高达75C的温度下提供热水。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T12:42:40.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/cmblu-highlights-community-participation-in-california-long-duration-non-lithium-battery-project-for-tribal-and-desert-community-resilience/",
+      "source": "Energy-Storage.news",
+      "title": "CMBLU highlights community participation in California long-duration non-lithium battery project for tribal and desert community resilience",
+      "url": "https://www.energy-storage.news/cmblu-highlights-community-participation-in-california-long-duration-non-lithium-battery-project-for-tribal-and-desert-community-resilience/",
+      "category": "technology",
+      "categoryLabel": "Technology",
+      "summary": "Flow battery company CMBLU Energy and California public utility Imperial Irrigation District (IID) have announced a 10MW/100MWh energy storage project that will mark IID's first deployment of a non-lithium battery system.",
+      "zh": {
+        "title": [
+          "CMBLU highlights community participation in California long-duration non-lithium battery project for tribal and desert community resilience",
+          "CMBLU强调社区参与加利福尼亚州长期非锂电池项目,以促进部落和沙漠社区复原力"
+        ],
+        "summary": [
+          "Flow battery company CMBLU Energy and California public utility Imperial Irrigation District (IID) have announced a 10MW/100MWh energy storage project that will mark IID's first deployment of a non-lithium battery system.",
+          "CMBLU能源公司和加利福尼亚公共事业帝国灌溉区宣布了一个10MW/100MWh能源储存项目,标志着国际开发公司首次部署非锂电池系统。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T12:47:08.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/felicity-solar-showcases-20-kwh-low-voltage-residential-battery/",
+      "source": "pv magazine",
+      "title": "Felicity Solar showcases 20 kWh low-voltage residential battery",
+      "url": "https://www.pv-magazine.com/2026/11/24/felicity-solar-showcases-20-kwh-low-voltage-residential-battery/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese manufacturer’s new lithium iron phosphate battery features a maximum charging power of 10.2 kW, a maximum discharging power of 12.8 kW, and a depth of discharge of 95%. Up to 15 units can be connected in parallel for a total storage capacity of 300 kWh. The post Felicity Solar showcases 20 kWh low-voltag…",
+      "zh": {
+        "title": [
+          "Felicity Solar showcases 20 kWh low-voltage residential battery",
+          "Felicity Solar展示了20千瓦小时低压住宅电池"
+        ],
+        "summary": [
+          "The Chinese manufacturer’s new lithium iron phosphate battery features a maximum charging power of 10.2 kW, a maximum discharging power of 12.8 kW, and a depth of discharge of 95%. Up to 15 units can be connected in parallel for a total storage capacity of 300 kWh. The post Felicity Solar showcases 20 kWh low-voltag…",
+          "中国制造厂家的新锂铁磷酸盐电池组的充电功率最大,为10.2千瓦,最大放电功率最高,为12.8千瓦,排放深度为95%。 最多可同时连接15个装置,总储存容量为300千瓦时。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T13:30:17.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/gorkin-solar-launches-510-w-all-black-bc-panel-with-25-0-efficiency/",
+      "source": "pv magazine",
+      "title": "Gokin Solar launches 510 W all-black BC panel with 25.0% efficiency",
+      "url": "https://www.pv-magazine.com/2026/11/24/gorkin-solar-launches-510-w-all-black-bc-panel-with-25-0-efficiency/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Chinese manufacturer’s new double-glass, all-black modules are designed for high-end rooftop applications across Europe. They feature a temperature coefficient of -0.26% per C and a 30-year linear power output guarantee. The post Gokin Solar launches 510 W all-black BC panel with 25.0% efficiency appeared first…",
+      "zh": {
+        "title": [
+          "Gokin Solar launches 510 W all-black BC panel with 25.0% efficiency",
+          "Gokin Solar 发射 510 W 全黑色 BC 面板, 效率为 25.0%"
+        ],
+        "summary": [
+          "The Chinese manufacturer’s new double-glass, all-black modules are designed for high-end rooftop applications across Europe. They feature a temperature coefficient of -0.26% per C and a 30-year linear power output guarantee. The post Gokin Solar launches 510 W all-black BC panel with 25.0% efficiency appeared first…",
+          "中国制造商的新双玻璃全黑模块是为欧洲高端屋顶应用设计的。 其温度系数为-0.26%/C和30年线性输出保证。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T13:45:31.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/algerias-solar-capacity-surpasses-1-gw/",
+      "source": "pv magazine",
+      "title": "Algeria’s solar capacity surpasses 1 GW",
+      "url": "https://www.pv-magazine.com/2026/11/24/algerias-solar-capacity-surpasses-1-gw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Analysis by Rystad Energy finds that Algeria has added 760 MW of solar capacity this year following the commissioning of three major projects. International financing, grid expansion and regular procurement rounds will be key to achieving its 15 GW renewables target by 2035. The post Algeria’s solar capacity surpass…",
+      "zh": {
+        "title": [
+          "Algeria’s solar capacity surpasses 1 GW",
+          "阿尔及利亚的太阳能容量超过1千兆瓦"
+        ],
+        "summary": [
+          "Analysis by Rystad Energy finds that Algeria has added 760 MW of solar capacity this year following the commissioning of three major projects. International financing, grid expansion and regular procurement rounds will be key to achieving its 15 GW renewables target by 2035. The post Algeria’s solar capacity surpass…",
+          "Rystad Energy的分析发现,今年在三个主要项目投入运行之后,阿尔及利亚增加了760兆瓦的太阳能发电能力,国际融资、电网扩张和定期采购将是到2035年实现其15个全球可再生能源目标的关键。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T14:30:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/24/france-may-tie-5-5-solar-vat-rate-to-rg5-hail-resistance/",
+      "source": "pv magazine",
+      "title": "France may tie 5.5% solar VAT rate to RG5 hail resistance",
+      "url": "https://www.pv-magazine.com/2026/11/24/france-may-tie-5-5-solar-vat-rate-to-rg5-hail-resistance/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "A forthcoming French decree could require RG5 hail-resistant modules and qualified installation for residential PV systems up to 9 kW to qualify for the reduced 5.5% value-added tax (VAT) rate. The post France may tie 5.5% solar VAT rate to RG5 hail resistance appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "France may tie 5.5% solar VAT rate to RG5 hail resistance",
+          "法国可能将5.5%的太阳能增值税率与RG5冰雹抗力挂钩"
+        ],
+        "summary": [
+          "A forthcoming French decree could require RG5 hail-resistant modules and qualified installation for residential PV systems up to 9 kW to qualify for the reduced 5.5% value-added tax (VAT) rate. The post France may tie 5.5% solar VAT rate to RG5 hail resistance appeared first on pv magazine Global .",
+          "法国即将颁布一项法令,要求5个抗冰雹模块和9千瓦以下住宅光电系统合格安装,以达到降低的5.5%增值税率。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T15:54:55.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/vistra-midterms-data-center-ercot-pjm/875626/",
+      "source": "Utility Dive",
+      "title": "Midterms provide clarity on data center development: Vistra CEO",
+      "url": "https://www.utilitydive.com/news/vistra-midterms-data-center-ercot-pjm/875626/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "&ldquo;As we've said for some time, load interconnect queues were overstated across the country and especially in ERCOT, driven by speculation from developers,&rdquo; Vistra CEO James Burke said.",
+      "zh": {
+        "title": [
+          "Midterms provide clarity on data center development: Vistra CEO",
+          "中期方案为数据中心的开发提供了明确性:Vestra CEO"
+        ],
+        "summary": [
+          "&ldquo;As we've said for some time, load interconnect queues were overstated across the country and especially in ERCOT, driven by speculation from developers,&rdquo; Vistra CEO James Burke said.",
+          "“正如我们已经说过的,全国,特别是ERCOT,在开发商的猜测下,负荷互联队列被夸大了。” Vistra CEO James Burke说。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T16:03:19.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/spp-decision-to-prevent-transmission-competition-escalates-electric-prices/874143/",
+      "source": "Utility Dive",
+      "title": "FERC must take action to protect ratepayers from higher transmission costs in SPP",
+      "url": "https://www.utilitydive.com/news/spp-decision-to-prevent-transmission-competition-escalates-electric-prices/874143/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Southwest Power Pool is misusing an exemption meant for urgent reliability needs to avoid competition in favor of incumbent utilities, writes&nbsp;Paul Cicio, chairman of the Electricity Transmission Competition Coalition.",
+      "zh": {
+        "title": [
+          "FERC must take action to protect ratepayers from higher transmission costs in SPP",
+          "FERC必须采取行动,保护付息者免受SPP传输费用上涨的影响"
+        ],
+        "summary": [
+          "The Southwest Power Pool is misusing an exemption meant for urgent reliability needs to avoid competition in favor of incumbent utilities, writes&nbsp;Paul Cicio, chairman of the Electricity Transmission Competition Coalition.",
+          "西南电力联营公司滥用一项豁免,"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-24T16:11:04.000Z",
+      "id": "Utility Dive:https://www.utilitydive.com/news/tva-announces-17b-data-center-deal-under-new-large-load-tariff/875630/",
+      "source": "Utility Dive",
+      "title": "TVA announces $1.7B data center deal under new large-load tariff",
+      "url": "https://www.utilitydive.com/news/tva-announces-17b-data-center-deal-under-new-large-load-tariff/875630/",
+      "category": "capital",
+      "categoryLabel": "Capital & M&A",
+      "summary": "Separately, the utility recently received the first small modular reactor construction permit from the NRC for&nbsp;a BWRX-300 reactor at the Clinch River Site in Oak Ridge, Tennessee but it has &ldquo;not yet decided whether to construct a reactor,&rdquo; it said.",
+      "zh": {
+        "title": [
+          "TVA announces $1.7B data center deal under new large-load tariff",
+          "TVA 宣布以新的大载荷费率进行1.7B数据中心交易"
+        ],
+        "summary": [
+          "Separately, the utility recently received the first small modular reactor construction permit from the NRC for&nbsp;a BWRX-300 reactor at the Clinch River Site in Oak Ridge, Tennessee but it has &ldquo;not yet decided whether to construct a reactor,&rdquo; it said.",
+          "另外,该公司最近从NRC获得了第一个小型模块式反应堆建造许可证,用于田纳西州奥克海脊Clinch河地点的BWRX-300反应堆,但它“尚未决定是否建造反应堆”。"
+        ]
+      }
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "policy": 7,
-      "capital": 4,
-      "grid": 32,
-      "technology": 1
+      "capital": 5,
+      "grid": 31,
+      "policy": 8,
+      "technology": 2
     },
     "sourceStatus": [
       {
@@ -929,13 +969,13 @@
         "source": "Utility Dive",
         "homepage": "https://www.utilitydive.com/",
         "status": "ok",
-        "items": 4
+        "items": 5
       },
       {
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 9
+        "items": 10
       }
     ]
   },
@@ -944,6 +984,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:3045694bca5da92de7a6a9188047d387a76c3239a951db678b9bf0434c20f427",
-  "envelopeChecksum": "sha256:8ebea7a9fe4f1fbd8782d22bafdaeaf1d4a0a243dac3125159c9db0f517c9976"
+  "contentChecksum": "sha256:43d8a00dd704961913d8e0a0f9d0dcc607c141024ae7e4624f1b798f3953f1d6",
+  "envelopeChecksum": "sha256:2da2331093ea621dfb5b4780883b1e805160fda1ece75424bd912791753e6f63"
 }

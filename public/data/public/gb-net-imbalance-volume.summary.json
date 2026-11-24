@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-23T18:24:16.216Z",
+  "fetchedAt": "2026-11-24T17:54:23.247Z",
   "coverage": {
-    "from": "2026-08-19T23:00:00.000Z",
-    "to": "2026-11-22T23:30:00.000Z",
+    "from": "2026-08-15T23:00:00.000Z",
+    "to": "2026-11-23T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 4562
+    "points": 4802
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-08-16",
+      "n": 48,
+      "expected": 48,
+      "mean": 71.1491,
+      "min": -155.42959082264957,
+      "max": 365.689635,
+      "netMWh": 3415.1566
+    },
+    {
+      "d": "2026-08-17",
+      "n": 48,
+      "expected": 48,
+      "mean": -16.7763,
+      "min": -426.42965347222224,
+      "max": 371.47541059403557,
+      "netMWh": -805.2645
+    },
+    {
+      "d": "2026-08-18",
+      "n": 48,
+      "expected": 48,
+      "mean": 273.5019,
+      "min": -373.9566596913857,
+      "max": 943.5196840725696,
+      "netMWh": 13128.0891
+    },
+    {
+      "d": "2026-08-19",
+      "n": 48,
+      "expected": 48,
+      "mean": 38.1232,
+      "min": -329.2946638752723,
+      "max": 756.9722973148148,
+      "netMWh": 1829.9152
+    },
     {
       "d": "2026-08-20",
       "n": 48,
@@ -895,17 +931,26 @@
       "d": "2026-11-22",
       "n": 48,
       "expected": 48,
-      "mean": 53.6168,
+      "mean": 54.0408,
       "min": -354.8777777777778,
       "max": 520.9690433531746,
-      "netMWh": 2573.6084
+      "netMWh": 2593.9584
+    },
+    {
+      "d": "2026-11-23",
+      "n": 48,
+      "expected": 48,
+      "mean": 112.0639,
+      "min": -585.9672238981062,
+      "max": 648.1641679090401,
+      "netMWh": 5379.0691
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:69476b2339bf92c1f9278621e97cdfafb3b10f82877c6fbdac51a01efb82781a",
-    "points": 4562
+    "contentChecksum": "sha256:aeb3e638ab9ca583e40a74f730c2b343cde756c1177ba10c1c7a3e29cdf529ce",
+    "points": 4802
   },
-  "contentChecksum": "sha256:1d255d5196af18bdd8c5fd98203248dea59f90a7cbce43d79711fe5147492d9e",
-  "summaryChecksum": "sha256:4d0ec88d03ddb4579b34550d748d004f2f1df7c9b41c3b4894c8dd2ae52b61d8"
+  "contentChecksum": "sha256:45555f42780dd0cb7b0dfce1936b743e9c9ffdb43db553e1f2ba917854d7f198",
+  "summaryChecksum": "sha256:78ae39a6f10623bc230d3a2a5101cdd8e33d986aaf6e45820363b042d385f639"
 }

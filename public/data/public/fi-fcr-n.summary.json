@@ -13,12 +13,12 @@
     "licence": "CC BY 4.0",
     "attribution": "Source: Fingrid open data (CC BY 4.0)"
   },
-  "fetchedAt": "2026-11-23T18:24:28.218Z",
+  "fetchedAt": "2026-11-24T17:54:28.058Z",
   "coverage": {
-    "from": "2025-11-23T19:00:00.000Z",
-    "to": "2026-11-23T22:00:00.000Z",
+    "from": "2025-11-24T18:00:00.000Z",
+    "to": "2026-11-24T22:00:00.000Z",
     "resolution": "PT60M",
-    "points": 8764
+    "points": 8765
   },
   "units": {
     "price": "EUR/MW/h"
@@ -32,24 +32,14 @@
   "arbitrage": null,
   "daily": [
     {
-      "d": "2025-11-23",
-      "n": 5,
-      "mean": 7.25,
-      "min": 7.16,
-      "max": 7.49,
-      "spread": 7.25,
-      "charge": null,
-      "discharge": 7.25
-    },
-    {
       "d": "2025-11-24",
-      "n": 24,
-      "mean": 9.1,
-      "min": 7.3,
-      "max": 17,
-      "spread": 9.1,
+      "n": 6,
+      "mean": 8.39,
+      "min": 7.96,
+      "max": 8.65,
+      "spread": 8.39,
       "charge": null,
-      "discharge": 9.1
+      "discharge": 8.39
     },
     {
       "d": "2025-11-25",
@@ -3683,19 +3673,29 @@
     },
     {
       "d": "2026-11-23",
-      "n": 23,
-      "mean": 5.21,
+      "n": 24,
+      "mean": 5.73,
       "min": 4.69,
-      "max": 5.73,
-      "spread": 5.21,
+      "max": 17.9,
+      "spread": 5.73,
       "charge": null,
-      "discharge": 5.21
+      "discharge": 5.73
+    },
+    {
+      "d": "2026-11-24",
+      "n": 23,
+      "mean": 17.42,
+      "min": 11.63,
+      "max": 26.1,
+      "spread": 17.42,
+      "charge": null,
+      "discharge": 17.42
     }
   ],
   "sourceSnapshot": {
     "file": "fi-fcr-n.json",
-    "contentChecksum": "sha256:6992cbb4615a61694c270393f17d9c3bf7cee22a0b198f063c5334d06863313d",
-    "points": 8764
+    "contentChecksum": "sha256:fa36fe2b94517ba0ab1a1b6125e827f9b9d7b45273d463fea7ea5f9896eedbcd",
+    "points": 8765
   },
-  "summaryChecksum": "sha256:1956d37cbb9dbc1ed5e01233d5bd13e8a98508700fe83ecdcfef58e71764359f"
+  "summaryChecksum": "sha256:5bb28fa9a0a49001d72d624cd3133636d8ceb6f2f458387fb24de482248346be"
 }
