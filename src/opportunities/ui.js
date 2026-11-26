@@ -124,6 +124,12 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       L([siteMonths+' months from site control to COD. The comparison starts at the chosen entry stage.',
         '从取得场址到投运约 '+siteMonths+' 个月。下方测算从所选投资阶段起算。']))));
   if (o.distribution) section.append(mechanismCard('distribution-network',o.route));
+  if (o.id === 'nem-sub5') {
+    const replay = h('div', {});
+    section.append(replay);
+    import('./nemNetworkReplay.js').then(({ networkReplay }) => replay.replaceChildren(networkReplay(o)))
+      .catch(() => replay.replaceChildren(h('p', {}, L(['Tariff replay is unavailable.', '费率回算暂不可用。']))));
+  }
   const inputs=h('details',{class:'ix-details ix-opportunity-inputs'},
     h('summary',{},L(['Set prices, timing and the differences between the projects','调整价格、时间及两种项目的差异'])));
   const form=h('div',{class:'ix-opportunity-form'}), fieldNodes=new Map();

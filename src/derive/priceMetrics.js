@@ -39,11 +39,15 @@ export function cleanSeries(series){
  * Uses Intl rather than manual offset arithmetic so daylight saving is handled
  * by the platform's tz database instead of by assumption.
  */
+const dateFormatters = new Map();
 export function localDate(ms, timezone){
   try {
-    return new Intl.DateTimeFormat('en-CA', {
-      timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit',
-    }).format(new Date(ms));
+    if (!dateFormatters.has(timezone)) {
+      dateFormatters.set(timezone, new Intl.DateTimeFormat('en-CA', {
+        timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit',
+      }));
+    }
+    return dateFormatters.get(timezone).format(ms);
   } catch {
     // Unknown zone — fall back to UTC rather than throwing. A metric computed on
     // UTC days is wrong-ish; a crashed ETL run publishes nothing at all.

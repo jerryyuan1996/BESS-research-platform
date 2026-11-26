@@ -61,6 +61,7 @@ import * as entsoe from './sources/entsoe.mjs';
 import * as pse from './sources/pse.mjs';
 import * as jepx from './sources/jepx.mjs';
 import * as aemoWem from './sources/aemo-wem.mjs';
+import * as aemoNem from './sources/aemo-nem.mjs';
 import * as news from './sources/news.mjs';
 import * as fingrid from './sources/fingrid.mjs';
 import * as nesoResponse from './sources/neso-response.mjs';
@@ -75,6 +76,7 @@ const CONNECTORS = {
   pse,
   jepx,
   'aemo-wem': aemoWem,
+  'aemo-nem': aemoNem,
   fingrid,
   'neso-response': nesoResponse,
   'neso-reserve': nesoReserve,
@@ -253,6 +255,9 @@ export async function runSelection({
   for (const warning of config.warnings) log(`  warn: ${warning}`);
   if (config.warnings.length > 0) log('');
 
+  // A provider sharing daily archives must keep its backfill budget within this run.
+  const scopedConnectors = Object.fromEntries(Object.entries(connectors).map(([id, connector]) =>
+    [id, connector.createRun ? connector.createRun() : connector]));
   const tasks = datasets.map(dataset => ({
     provider: dataset.connector,
     run: async () => {
@@ -262,7 +267,7 @@ export async function runSelection({
 
       let result;
       try {
-        result = await runDataset(dataset, now, { connectors, log: buffered, dryRun });
+        result = await runDataset(dataset, now, { connectors: scopedConnectors, log: buffered, dryRun });
       } catch (err){
         /* runDataset handles source failures itself; reaching here means a bug
            or a boundary violation. Record it against this dataset and let the

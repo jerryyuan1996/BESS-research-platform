@@ -71,6 +71,7 @@ Helsinki-NLP OPUS-MT model (CTranslate2 conversion by Sams200) and Python depend
 | `ro-day-ahead` | RO | ENTSO-E Transparency | read on the daily combined run | `ENTSOE_TOKEN` |
 | `pl-day-ahead` | PL | PSE reporting API (`csdac-pln`) | read on the daily combined run | — |
 | `wa-wem-prices` | WA | AEMO WEM reference trading price | daily | — |
+| `nem-{nsw1,qld1,vic1,sa1,tas1}-prices` | NEM | AEMO NEMWEB five-minute regional reference prices in AUD/MWh | daily | — |
 | `us-eia-storage-projects` | PJM / ERCOT / CAISO | EIA-860M monthly generator inventory plus exact annual EIA-860 storage evidence | daily index check; bounded monthly/annual revision checks | — |
 | `jp-tokyo-jepx` | JP-Tokyo | JEPX spot | daily | — |
 | `jp-kyushu-jepx` | JP-Kyushu | JEPX spot | daily | — |
@@ -158,6 +159,16 @@ unpublished/missing classification open; it does not fill prices or revise exist
 ### Ontario day-ahead zonal archive
 
 The ca-on-da-zonal feed reads the public IESO day-ahead Ontario zonal report on the existing daily cycle. It retains acquired report versions separately from the unchanged 365-day view, with a bounded earliest-first backlog, complete fixed-EST days and explicit pending coverage. The IESO reproduction statement accompanies both files and the catalogue row. This contextual feed has no financial-input authority and does not replace HOEP, OEMP or nodal prices. See the [source contract](data-sources/ieso-ontario-zonal.md).
+
+### NEM regional prices and FY2026–27 network replay
+
+The five regions share one public DispatchIS ZIP for each missing source date. The collector processes one archive at a time and caps the entire run at 45 distinct dates. A date is complete for a region when all 288 interval-start positions are present on the fixed UTC+10 NEM calendar. NEMWEB publishes the midnight-to-midnight archive on a lag. In the 24 November 2026 original each region had 288 prices, ending between 00:05 that day and midnight the following day. The site's UTC timestamps refer to the start of each five-minute interval. [AEMO dispatch archive](https://www.nemweb.com.au/Reports/ARCHIVE/DispatchIS_Reports/).
+
+The market-price field is `DISPATCH/PRICE.RRP` for the non-intervention run. Negative and zero prices are valid. A point marked `NOT FIRM` was subject to review when issued. Monthly AEMO price-and-demand files provide a settlement reconciliation source. No settlement revision is inferred from an original dispatch file. [AEMO data model](https://tech-specs.docs.public.aemo.com.au/Content/TSP_EMMSDM52May2023/Electricity_Data_Model_5_2.htm) · [Regional settlement series](https://www.aemo.com.au/energy-systems/electricity/national-electricity-market-nem/data-nem/aggregated-data).
+
+All five summaries carry wholesale spread statistics once sufficient coverage exists. NSW1 is the sole merchant-reference series. A future anchor and any change to signed investment assumptions require analyst action.
+
+The Investment Lab replays the selected FY2026–27 distribution tariff against local billing days for the Sub-5 reference battery. It uses one equivalent daily cycle, the configured AC efficiency on charging, and the local daylight-saving clock. The wholesale capture adjustment affects wholesale margin. Published fixed access and maximum-demand charges retain their billing units. Net network value is positive for a credit. At least 28 complete days are required. Shorter rolling histories, missing event notices and a missing site power factor are identified where they affect the bill. Full-year demand ratchets show the current annual rate derived from the latest complete 12-month window. Each tariff row identifies the official schedule and its location.
 
 ### NESO reserve clearing evidence
 

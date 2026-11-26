@@ -54,6 +54,12 @@ everything else. Three constraints apply to it specifically:
   `npm run etl:verify` fails CI on a mismatch. A tuned "observed" value is worse than an honest
   assumption — it carries more authority and attracts less scrutiny.
 
+### Australian NEM dispatch prices and network tariffs
+
+AEMO calculates the five regional reference prices and publishes them in NEMWEB's public DispatchIS reports. Its copyright permission allows reuse of AEMO-created public material with accurate attribution. Published regional extracts credit the Australian Energy Market Operator and link to the source. The collector selects only the market-pricing regional RRP and its publication status. [AEMO copyright permission](https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions) · [Public dispatch archive](https://www.nemweb.com.au/Reports/ARCHIVE/DispatchIS_Reports/).
+
+The six FY2026–27 network schedules are dated transcriptions of public tariff facts with links and page or workbook-cell references. The Investment Lab applies these rates to simulated dispatch using observed prices. Site-specific connection agreements, event notices and customer bills remain outside the public dataset.
+
 ### Credentials
 
 `ENTSOE_TOKEN` is a GitHub Actions secret. It is used only by the ETL in CI, never at build time and
