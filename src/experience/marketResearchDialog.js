@@ -5,6 +5,7 @@ import { navigate } from '../app/router.js';
 import './researchContext.css';
 import { byId } from '../markets/registry.js';
 import { loadMarketResearch } from './marketResearchSource.js';
+import { connectionNotes } from '../opportunities/connectionNotes.js';
 import './marketResearchDialog.css';
 
 const TITLES = {
@@ -119,6 +120,7 @@ export function openMarketResearch(marketId, kind, trigger, initialSection = nul
 			L(['Sources & evidence ↗', '来源与证据 ↗']),
 		);
 		body.setAttribute('aria-labelledby', 'market-reader-tab-' + chapter.id);
+		const connection = chapter.id === 'grid-0' ? connectionNotes[marketId] : null;
 		body.replaceChildren(
 			h(
 				'div',
@@ -127,6 +129,8 @@ export function openMarketResearch(marketId, kind, trigger, initialSection = nul
 				h('h3', {}, L(chapter.title)),
 			),
 			lead,
+			connection ? h('p', { class:'ix-caption' }, L(connection.text), ' ',
+				h('a', { href:connection.source, target:'_blank', rel:'noopener noreferrer' }, L(['Source ↗','来源 ↗']))) : null,
 			h(
 				'div',
 				{ class: 'ix-research-cards' },

@@ -16,6 +16,36 @@
 import { QUOTE_SOURCES } from '../../comparison/supplierQuote.js';
 
 const SRC = {
+  smallResourceAggregator: {
+    file:'AEMO — Small Resource Aggregators in the NEM', status:['Official fact sheet','官方说明'],
+    provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date:'Jul 2024', lastChecked:'2026-11-26', cy:'Small units can sell energy and contingency FCAS via an IRP-SRA. Regulation FCAS is outside this route.',
+    url:'https://www.aemo.com.au/-/media/files/electricity/nem/participant_information/registration/2024/registration-fact-sheet-nem-small-resource-aggregators.pdf',
+  },
+  smallExemptionConsultation: {
+    file:'AEMO — Guide to Registration Exemptions and Production Unit Classifications consultation', status:['Official consultation','官方咨询'],
+    provenance:{authority:'official',publication:'consultation',availability:'public',verification:'verified'},
+    date:'Sep 2026', lastChecked:'2026-11-26', cy:'Consultation timetable and proposed revisions to registration exemptions.',
+    url:'https://www.aemo.com.au/consultations/current-and-closed-consultations/guide-to-registration-exemptions-and-production-unit-classifications',
+  },
+  smallStorageTariffDecision: {
+    file:'AER — Essential Energy tariff structure decision, Attachment 19', status:['Official decision','监管决定'],
+    provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'},
+    date:'Apr 2024', lastChecked:'2026-11-26', cy:'The final tariff structure removed the high-voltage storage rebate parameter and broadened storage eligibility.',
+    url:'https://www.aer.gov.au/system/files/2024-04/AER%20-%20Final%20Decision%20Attachment%2019%20-%20Tariff%20structure%20statement%20-%20Essential%20Energy%20-%202024%E2%80%9329%20Distribution%20revenue%20proposal%20-%20April%202024_0.pdf',
+  },
+  smallStoragePriceLists: {
+    file:'AER — approved distributor price lists, FY2026–27', status:['Tariff coverage pending','费率覆盖待核实'],
+    provenance:{authority:'official',publication:'final',availability:'public',verification:'requires-reverification'},
+    date:'2026–27', lastChecked:'2026-11-26', cy:'The price lists are public. The six storage tariffs, eligible capacities and charge windows still need a verified table.',
+    url:'https://www.aer.gov.au/industry/networks/pricing-proposals',
+  },
+  smallStorageBenchmark: {
+    file:'Gridcog — NEM sub-5 MW solar and storage benchmark', status:['External simulation','外部模拟测算'],
+    provenance:{authority:'third-party',publication:'final',availability:'public',verification:'verified'},
+    date:'Jun 2026', lastChecked:'2026-11-26', cy:'Simulated energy, contingency FCAS and network charges using observed prices. An external comparison for two- and four-hour projects.',
+    url:'https://www.gridcog.com/benchmark-projects/nem-sub-5mw-solar-and-storage---june-2026',
+  },
   fastFrequencyResponse: { file:'AEMO — Fast Frequency Response', status:['Official — Public','官方 — 公开'], provenance:{authority:'official',publication:'final',availability:'public',verification:'verified'}, date:'9 Oct 2023', cy:'Very Fast FCAS: final rule 15 July 2021; market commencement 9 October 2023', url:'https://www.aemo.com.au/initiatives/major-programs/nem-reform-program/nem-reform-program-initiatives/fast-frequency-response', lastChecked:'2026-11-10' },
   /* The supplier quotation and its MSA — capex DC block and the service package (2026-10-17). */
   ...QUOTE_SOURCES,

@@ -1,6 +1,20 @@
 // Mechanism facts come from the linked rule/operator sources. Pricing motives
 // and investment implications are house economic interpretation, not quotes.
 export const REVENUE_MECHANISMS = {
+  'distribution-network': {
+    title:['Distribution network charges and credits','配网费用与抵扣'],
+    payer:['The owner pays the local distributor for network use. Where the tariff rewards exports, the distributor credits the owner.',
+      '业主向当地配网商支付网络使用费。费率鼓励特定时段送电时，配网商向业主提供抵扣。'],
+    problem:['Charging and exporting change the load on a local network at different times. The tariff prices that use.',
+      '充电和送电在不同时段会改变当地配网负荷，配网商按相应规则计费。'],
+    pricing:['The approved price list sets fixed and demand charges and time bands for imports or exports. Apply the eligible tariff to the battery’s dispatch.',
+      '经批准的价表列出固定费、需量费及充放电分时费率。按项目适用的费率和充放电曲线测算。'],
+    drivers:['The distributor, voltage, demand peak and timing of dispatch determine whether the network line is a cost or credit.',
+      '配网商、电压等级、进口需量峰值及充放电时段决定净额是费用还是抵扣。'],
+    discipline:['Obtain the tariff code and both connection limits. Reconcile the charge against metered dispatch and check it separately from the aggregator fee.',
+      '取得费率代码及充放电容量上限，使用计量曲线核对配网费用，并单独核验聚合费。'],
+    sources:[[['AER approved network prices','AER 核准配网价表'],'https://www.aer.gov.au/industry/networks/pricing-proposals']],
+  },
   toll: {
     title:['Fixed toll / revenue floor','固定Toll／收入保底'],
     payer:['Utilities, retailers and power traders; e.g. RWE, Shell or Centrica. An optimiser may only act as an agent, so identify the actual payment obligor.', '交易对手通常是公用事业公司、售电商和电力交易商，如RWE、Shell或Centrica。优化商也可能仅是代理，须识别实际付款义务人。'],
@@ -81,7 +95,7 @@ export const REVENUE_MECHANISMS = {
    knows it without fetching the map. */
 export const MECHANISM_RESEARCH = {
   cis: 'award', ltda: 'award', capacity: 'award', lt2: 'award', macse: 'award',
-  merchant: 'merchant', ancillary: 'ancillary',
+  merchant: 'merchant', 'distribution-network': 'merchant', ancillary: 'ancillary',
 };
 export function revenueMechanismsFor(market, route) {
   const id = market.manifest.id;

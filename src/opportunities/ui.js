@@ -58,19 +58,20 @@ function revenueMechanismCards(row, route, behind) {
       ['Mechanism facts are linked below. Pricing incentives and investment implications are the platform’s economic interpretation.','机制事实附有来源；定价动因和投资含义为平台的经济解读。']),
     h('p',{class:'ix-caption'},L(['Current revenue route: ','当前收入路径：']),routeLabel(route),
       L(['. Applicability is different from a signed project contract.','. 机制适用性与项目已签合同分别判断。'])),
-    ...[...revenueMechanismsFor(row.market,route), ...(row.id==='it'&&route!=='ltda'?['macse']:[])].map((id,i)=>{
-      const m=REVENUE_MECHANISMS[id];
-      return h('details',{class:'ix-mechanism',...{}},
-        h('summary',{},h('span',{class:'ix-step-number'},String(i+1).padStart(2,'0')),h('strong',{},L(m.title))),
-        id==='macse'&&route!=='ltda'?h('p',{class:'ix-caption'},L(['Alternative award route, evaluated separately from the current capacity-market play.','另一条独立的中标路径，与当前容量市场play分别测算。'])):null,
-        h('div',{class:'ix-mechanism-grid'},[
-          [['Who pays','付款方'],'payer'],[['The problem it solves','解决什么矛盾'],'problem'],
-          [['How the price forms','为什么这样定价'],'pricing'],[['Short- and long-term drivers','短期与长期驱动'],'drivers'],
-        ].map(([label,key])=>h('article',{},h('h4',{},L(label)),h('p',{},L(m[key]))))),
-        h('p',{class:'ix-mechanism-discipline'},h('strong',{},L(['Underwriting implication: ','对投资测算的含义：'])),L(m.discipline)),
-        h('div',{class:'ix-mechanism-sources'},m.sources.map(([label,url])=>external(url,label))),
-        behind(id));
-    }));
+    ...[...revenueMechanismsFor(row.market,route), ...(row.id==='it'&&route!=='ltda'?['macse']:[])].map((id,i)=>mechanismCard(id,route,i,behind)));
+}
+function mechanismCard(id, route, index = null, behind = null) {
+  const m=REVENUE_MECHANISMS[id];
+  return h('details',{class:'ix-mechanism'},
+    h('summary',{},index == null ? null : h('span',{class:'ix-step-number'},String(index+1).padStart(2,'0')),h('strong',{},L(m.title))),
+    id==='macse'&&route!=='ltda'?h('p',{class:'ix-caption'},L(['Alternative award route, evaluated separately from the current capacity-market play.','另一条独立的中标路径，与当前容量市场play分别测算。'])):null,
+    h('div',{class:'ix-mechanism-grid'},[
+      [['Who pays','付款方'],'payer'],[['The problem it solves','解决什么矛盾'],'problem'],
+      [['How the price forms','为什么这样定价'],'pricing'],[['Short- and long-term drivers','短期与长期驱动'],'drivers'],
+    ].map(([label,key])=>h('article',{},h('h4',{},L(label)),h('p',{},L(m[key]))))),
+    h('p',{class:'ix-mechanism-discipline'},h('strong',{},L(['Underwriting implication: ','对投资测算的含义：'])),L(m.discipline)),
+    h('div',{class:'ix-mechanism-sources'},m.sources.map(([label,url])=>external(url,label))),
+    behind?.(id));
 }
 
 /* A special opportunity is valid when, at the default inputs, its all-equity
@@ -96,6 +97,8 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
   const state=session.get(key);
   if (requested && available.some(o=>o.id===requested)) state.id=requested;
   const o = opportunityById(state.id);
+  const asOf = o.asOf ?? RESEARCH_DATE;
+  const siteMonths = (o.siteControlMonths ?? o.months).join('–');
   const section = h('section',{class:'ix-section ix-opportunity-comparison',id:'opportunity-comparison'},
     sectionTitle(['LIKE-FOR-LIKE UNDERWRITING','同口径投资测算'],['Conventional play or special opportunity?','常规play，还是特殊机会？'],
       ['Compare value from the same closing date. Both cases use the existing acquisition engine.','从同一交割日比较价值，两边均采用现有收购估值引擎。']));
@@ -115,9 +118,12 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
   section.append(controls,h('div',{class:'ix-opportunity-thesis'},h('h3',{},L(o.label)),h('p',{},L(o.thesis)),
     h('p',{},h('strong',{},L(['Conditions: ','适用条件：'])),L(o.conditions)),
     h('p',{},h('strong',{},L(['What can erase the advantage: ','可能抵消优势的因素：'])),L(o.risk)),
-    h('p',{class:'ix-caption'},external(o.source,['Rule / operator source','规则／运营商来源']),' · '+RESEARCH_DATE,
-      ' · ',L([o.months.join('–')+' months is a research screening range from site control; the comparison below uses an editable closing-to-COD assumption.',
-        o.months.join('–')+'个月为从场址控制起算的研究筛选区间；下方测算使用可编辑的交割至COD假设。']))));
+    o.changesIf ? h('p',{},h('strong',{},L(['Thin evidence. ','证据较弱。'])),L(o.changesIf)) : null,
+    h('p',{class:'ix-caption'},external(o.source,['Rule / operator source','规则／运营商来源']),
+      ...(o.relatedSources ?? []).flatMap(s=>[' · ',external(s.url,s.label)]),' · '+asOf,' · ',
+      L([siteMonths+' months from site control to COD. The comparison starts at the chosen entry stage.',
+        '从取得场址到投运约 '+siteMonths+' 个月。下方测算从所选投资阶段起算。']))));
+  if (o.distribution) section.append(mechanismCard('distribution-network',o.route));
   const inputs=h('details',{class:'ix-details ix-opportunity-inputs'},
     h('summary',{},L(['Set prices, timing and the differences between the projects','调整价格、时间及两种项目的差异'])));
   const form=h('div',{class:'ix-opportunity-form'}), fieldNodes=new Map();
@@ -135,6 +141,12 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
     ['retrofitPerMW',['Special: extra retrofit budget / MW','特殊：额外改造预算／MW'],0,1e12],
     ['avoidedGridPerMW',['Special: avoided works budget / MW','特殊：节省的电网工程预算／MW'],0,1e12],
     ['revenueHaircutPct',['Special: at-risk income haircut (%)','特殊：风险收入下调（%）'],0,100],
+    ...(o.distribution ? [
+      ['networkPerMW',['Annual network charge (−) or credit (+) / MW','年度配网费用（−）或抵扣（+）／MW'],-200000,200000],
+      ['lossFactor',['Distribution route loss factor','配网路径损耗系数'],.80,1.10],
+      ['servicesShare',['Eligible share of service revenue (0–1)','辅助服务收入可计入比例（0–1）'],0,1],
+      ['routeFeePct',['Aggregator or retailer fee (%)','聚合商或售电商费率（%）'],0,30],
+    ] : []),
   ];
   for(const [id,label,min,max,step] of definitions){
     const input=h('input',{type:'number',min,max,step:step||'any','aria-label':L(label),
@@ -169,6 +181,13 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       [['Total purchase price / MW','总收购对价／MW'],money(a.price,currency),money(b.price,currency)],
       [['Remaining construction / grid / MW','剩余建设与并网／MW'],money(a.assumptions.buildBudget,currency),money(b.assumptions.buildBudget,currency)],
       [['First-year operating cost / MW','首年运营成本／MW'],money(a.input.annual[0].opex,currency),money(b.input.annual[0].opex,currency)],
+      ...(c.distribution ? [
+        [['Network charge or credit, year 1 / MW','首年配网费用或抵扣／MW'],L(['No separate line','未单列']),
+          money(b.input.annual[0].network,currency)+' · '+L(c.distribution.networkPerMW===0
+            ? ['Thin evidence, zero assumption','证据较弱，暂按零计'] : ['Reader scenario','读者情景'])],
+        [['Loss factor','损耗系数'],String(c.inputs.economicOverrides?.naqFactor ?? row.market.comparison.economics.naqFactor ?? 1),
+          String(c.distribution.lossFactor ?? c.inputs.economicOverrides?.naqFactor ?? row.market.comparison.economics.naqFactor ?? 1)],
+      ] : []),
       [['Return at the input price','按输入价格计算的回报'],returnLabel(a.atPrice),returnLabel(b.atPrice)],
       [['Long-hold IRR','长期持有IRR'],returnLabel(a.holdReturn),returnLabel(b.holdReturn)],
       [['Sale-route IRR','出售路线IRR'],returnLabel(a.saleReturn),returnLabel(b.saleReturn)],
@@ -191,14 +210,22 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       const common={...c.inputs,nodePremiumPerMW:0};
       const neutral={...common,specialMonths:c.standard.codMonths,
         specialQualificationMonths:c.inputs.baselineQualificationMonths,buildPremiumPct:0,opexPremiumPct:0,
-        retrofitPerMW:0,avoidedGridPerMW:0,revenueHaircutPct:0};
+        retrofitPerMW:0,avoidedGridPerMW:0,revenueHaircutPct:0,...(c.distribution ? {networkPerMW:0} : {})};
       const design=compareOpportunity(row.market,o,investor,selectedPlay(),neutral);
       const time=compareOpportunity(row.market,o,investor,selectedPlay(),{...neutral,
         specialMonths:c.inputs.specialMonths,specialQualificationMonths:c.inputs.specialQualificationMonths});
       const beforePrice=compareOpportunity(row.market,o,investor,selectedPlay(),common);
-      const points=[a.npv,design.alternative?.npv,time.alternative?.npv,beforePrice.alternative?.npv,b.npv];
+      const beforeNetwork=c.distribution?.networkPerMW
+        ? compareOpportunity(row.market,o,investor,selectedPlay(),{...common,networkPerMW:0}) : beforePrice;
+      const points=[a.npv,design.alternative?.npv,time.alternative?.npv,beforeNetwork.alternative?.npv];
       const names=[['Design / revenue route','设计／收入路径'],['COD / qualification timing','投运／资格时间'],
-        ['Build, operating and other adjustments','建设、运营及其他调整'],['Extra acquisition price','额外收购对价']];
+        ['Build, operating and other adjustments','建设、运营及其他调整']];
+      if (c.distribution) {
+        points.push(beforePrice.alternative?.npv);
+        names.push(['Distribution network charge or credit','配网费用或抵扣']);
+      }
+      points.push(b.npv);
+      names.push(['Extra acquisition price','额外收购对价']);
       drivers.append(h('p',{},L(['Sequential NPV bridge at the common target, per MW; interactions depend on this order. Cost savings and timing are separate assumptions to verify.',
         '按统一目标折现的顺序NPV桥接，金额／MW；交互效应与顺序有关。成本节省和提前时间是分别需要核实的假设。'])),
         h('table',{class:'ix-table'},h('tbody',{},names.map((n,i)=>h('tr',{},h('th',{},L(n)),
@@ -223,7 +250,8 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       h('p',{},L(['The platform requires both long hold and the investor’s sale route to meet its target; the reported return is the lower of those routes. Developer sale is at COD; other pre-operation buyers sell after five operating years. Development probabilities are unchanged between alternatives.','平台要求长持和该投资者的出售路线均达到目标，显示两者较低回报。开发商出售时点为COD，其他投运前买方为投运后第5年；两种方案采用相同开发概率。'])),
       h('p',{},L(['Revenue eligibility can follow COD. Annual income is prorated for the qualification delay while operating costs continue; contract expiry is not extended. Cash is booked at each operating year end, not immediately on the eligibility date. Hourly dispatch, calendar-vintage contract changes and individual product qualification still require project modelling.','收入资格可晚于COD。模型按资格延迟比例扣减年度收入，运营费照常发生，合同到期不顺延；现金按运营年末计入，并非资格取得当日收款。小时级调度、具体合同日历及逐产品资格仍需项目模型验证。']))));
     download.onclick=()=>{
-      const payload={asOf:RESEARCH_DATE,opportunity:o,investor,play:selectedPlay(),assumptions:c.inputs,currency,
+      const payload={asOf,opportunity:o,investor,play:selectedPlay(),assumptions:c.inputs,currency,
+        ...(c.distribution ? {distribution:c.distribution} : {}),
         premiumCeilingPerMW:c.safePremium,standard:a,alternative:b,
         cashFlows:Object.fromEntries([['conventional',a],['special',b]].map(([label,r])=>[label,
           Object.fromEntries(['hold','sale'].map(route=>[route,acquisitionCashFlows(r.input,investor,route,r.price).flows]))]))};

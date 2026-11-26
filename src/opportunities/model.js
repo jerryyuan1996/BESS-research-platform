@@ -8,6 +8,16 @@ import { referenceInvestment, evaluateInvestment, pricingOptions } from './inves
 const pv = (flows, rate) => flows.reduce((sum, c) => sum + c.amount / (1 + rate) ** c.at, 0);
 const routes = input => input.stage === 'operating' ? ['hold'] : ['hold','sale'];
 const baseReference = (market, stage, options) => referenceInputs(market, stage, options).find(c => c.key === 'base');
+const distributionBounds = { lossFactor:[.80,1.10], servicesShare:[0,1], routeFeePct:[0,30], networkPerMW:[-200000,200000] };
+
+function monthsToCod(opportunity, stage, conventionalMonths) {
+  if (opportunity.kind === 'award') return conventionalMonths;
+  if (opportunity.kind === 'small' && stage === 'ready-to-build') {
+    return opportunity.rtbTiming === 'same' ? conventionalMonths : opportunity.rtbToCodMonths ?? conventionalMonths;
+  }
+  const [first,last] = opportunity.siteControlMonths ?? opportunity.months;
+  return (first + last) / 2;
+}
 export function defaultOpportunityStage(investor) {
   return 'ready-to-build';
 }
@@ -22,14 +32,19 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   if (!ARCHETYPES[investor]?.entersAt.includes(stage) || stage === 'operating')
     return { unavailable:'Choose an eligible pre-operation entry stage.' };
   if (opportunity.market !== market.manifest.id) return { unavailable:'Market mismatch.' };
+  if (opportunity.kind === 'small' && !(Number.isFinite(opportunity.hours) && opportunity.hours > 0))
+    return { unavailable:'A small route must declare its own duration' };
+  const distribution = opportunity.distribution && Object.fromEntries(
+    Object.keys(distributionBounds).filter(key => key in values || key in opportunity.distribution)
+      .map(key => [key, values[key] ?? opportunity.distribution[key]]));
   const bounds = {
     baselineMonths:[0,240], specialMonths:[0,240], purchasePricePerMW:[0,1e12],
     nodePremiumPerMW:[0,1e12], buildPremiumPct:[-100,300], opexPremiumPct:[-100,300],
     retrofitPerMW:[0,1e12], avoidedGridPerMW:[0,1e12], revenueHaircutPct:[0,100],
     baselineQualificationMonths:[0,120], specialQualificationMonths:[0,120],
-    targetPercent:[.01,100], lifeYears:[6,35],
+    targetPercent:[.01,100], lifeYears:[6,35], ...distributionBounds,
   };
-  for (const [key, value] of Object.entries(values)) {
+  for (const [key, value] of Object.entries({ ...distribution, ...values })) {
     const b = bounds[key];
     if (b && (!Number.isFinite(value) || value < b[0] || value > b[1])) return { unavailable:'Invalid comparison input: ' + key };
   }
@@ -43,16 +58,27 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   if (!supports(market, specialRoute)) return { unavailable:'This special route is not supported by the market model.' };
   const buildPremiumPct = values.buildPremiumPct ?? opportunity.buildPremiumPct ?? 0;
   const opexPremiumPct = values.opexPremiumPct ?? opportunity.opexPremiumPct ?? 0;
-  const retrofit = values.retrofitPerMW ?? 0, avoided = values.avoidedGridPerMW ?? 0;
-  const specialMonths = values.specialMonths ?? (opportunity.kind === 'award'
-    ? baseline.assumptions.codYears * 12 : (opportunity.months[0] + opportunity.months[1]) / 2);
+  const retrofit = values.retrofitPerMW ?? 0;
+  const avoided = values.avoidedGridPerMW ?? opportunity.avoidedConnectionPerMW ?? 0;
+  const conventionalConnection = shared.economicOverrides?.['capexStack.connectionFeePerMW']
+    ?? market.comparison.economics.capexStack?.connectionFeePerMW ?? 0;
+  if (distribution && avoided > conventionalConnection * baseline.economicInputToCash)
+    return { unavailable:'Avoided works exceed the explicit conventional connection cost.' };
+  const specialMonths = values.specialMonths ?? monthsToCod(opportunity,stage,baseline.assumptions.codYears*12);
   const specialPlay = { ...conventionalPlay, route:specialRoute, hours:opportunity.hours ?? conventionalPlay.hours,
     ...(opportunity.kind === 'small' ? { grantPct:0 } : {}) };
   const power = opportunity.powerMW ?? market.comparison.archetype.powerMW;
   const specialMarket = { ...market, comparison:{ ...market.comparison,
     archetype:{ ...market.comparison.archetype, powerMW:power } } };
-  const specialOptions={...shared,play:specialPlay,strategyId:specialRoute,
-    runOptions:pricingOptions(specialMarket,specialPlay)};
+  const economicOverrides = { ...shared.economicOverrides };
+  if (distribution?.lossFactor != null) economicOverrides.naqFactor = distribution.lossFactor;
+  if (distribution?.routeFeePct != null) economicOverrides.feePct = distribution.routeFeePct;
+  if (distribution?.servicesShare != null) {
+    const services = economicOverrides.services ?? specialMarket.comparison.economics.services ?? 0;
+    economicOverrides.services = services * distribution.servicesShare;
+  }
+  const specialOptions={...shared,play:specialPlay,strategyId:specialRoute,economicOverrides,
+    networkNetPerMW:distribution?.networkPerMW,runOptions:pricingOptions(specialMarket,specialPlay)};
   const unmodifiedSpecial=baseReference(specialMarket,stage,specialOptions);
   if(!unmodifiedSpecial)return {unavailable:'The special design cannot be priced.'};
   const budget=unmodifiedSpecial.assumptions.buildBudget*(1+buildPremiumPct/100)+retrofit-avoided;
@@ -100,7 +126,8 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     safePremiumPerMWh:safePremium == null ? null : safePremium / special.input.durationHours,
     comparable:safePremium != null && premium <= safePremium + 1e-6,
     monthsSaved:standard.qualifiedMonths - alternative.qualifiedMonths,
-    inputs:{ ...values, stage, baselineMonths:standard.codMonths, specialMonths,
+    ...(distribution ? {distribution} : {}),
+    inputs:{ ...values, ...distribution, stage, baselineMonths:standard.codMonths, specialMonths,
       targetPercent:targetReturn*100, lifeYears:baseline.input.annual.length, purchasePricePerMW:commonPrice,
       nodePremiumPerMW:premium, buildPremiumPct, opexPremiumPct, retrofitPerMW:retrofit,
       avoidedGridPerMW:avoided, revenueHaircutPct:values.revenueHaircutPct ?? 0,

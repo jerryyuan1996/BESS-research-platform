@@ -37,10 +37,13 @@ export function acquisitionInput(market,stage,overrides={}){
     const capex=cash.capex;
     const canTrade=strategyId!=='toll'||e.tollIsFloor||year>=(e.tollYears??15)&&e.tollRevertsToMerchant;
     const extraReserve=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*(1-(e.degr||2)/100)**year:0;
-    const merchant=(cash.merchant+extraReserve)*(u.unsecuredRevenueFactor??1);
+    // The distributor charges or credits the owner after the optimiser fee.
+    // Convert the signed local-currency amount to the engine's real USD here.
+    const network=(u.networkNetPerMW??0)*result.fxRate;
+    const merchant=(cash.merchant+extraReserve)*(u.unsecuredRevenueFactor??1)+network;
     const opex=cash.opex*(u.operatingCostFactor??1);
     const adjustedRevenue=secured+renewal+merchant;
-    return {secured,renewal,merchant,opex,capex,
+    return {secured,renewal,merchant,network,opex,capex,
       ...(cash.supportEligibleRevenue==null?{}:{supportEligibleRevenue:(cash.supportEligibleRevenue+extraReserve)*(u.unsecuredRevenueFactor??1)}),
       tax:u.taxPolicy?0:taxKnown?Math.max(0,adjustedRevenue-opex)*u.cashTaxRate+adjustedRevenue*(u.turnoverTaxRate??0):null};
   }):[];

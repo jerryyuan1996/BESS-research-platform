@@ -19,7 +19,7 @@ export function nominalAnnual(input,scenario){
   return input.annual.map((year,i)=>{
     const at=scenario.codYears+i+1;
     const nominal=Object.fromEntries(Object.entries(year).map(([key,value])=>{
-      if(!['secured','renewal','merchant','opex','capex','tax'].includes(key))return [key,value];
+      if(!['secured','renewal','merchant','network','opex','capex','tax'].includes(key))return [key,value];
       const indexed=key!=='secured'||input.securedIndexation!=='fixed';
       return [key,indexed?nominalAmount(input,value,at):value];
     }));
@@ -29,14 +29,17 @@ export function nominalAnnual(input,scenario){
       const settled=support.type==='cis'?cisRevenue(eligible,support):{total:Math.max(eligible,support.floor),secured:support.floor};
       nominal.secured=support.assumed?settled.secured:0;
       nominal.renewal=support.assumed?0:settled.secured;
-      nominal.merchant=Math.max(0,settled.total-settled.secured);
+      nominal.merchant=Math.max(0,settled.total-settled.secured)+(nominal.network??0);
     }
     // Optional opportunity scenario: qualification may follow physical COD.
     // Costs continue in full; each annual revenue bucket earns only its
     // eligible fraction. Contract expiry stays anchored to physical COD.
     const lag = input.revenueQualificationMonths ?? 0;
     const eligible = Math.max(0, Math.min(1, i + 1 - lag / 12));
-    if (lag > 0) for (const key of ['secured','renewal','merchant']) nominal[key] *= eligible;
+    if (lag > 0) {
+      for (const key of ['secured','renewal','merchant']) nominal[key] *= eligible;
+      if (nominal.network != null) nominal.network *= eligible;
+    }
     return nominal;
   });
 }

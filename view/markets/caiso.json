@@ -348,6 +348,30 @@
   },
   "triggers": [
     {
+      "id": "caiso-rule21-screen-q",
+      "market": "caiso",
+      "expected": null,
+      "watches": [
+        "revenueCertainty"
+      ],
+      "label": [
+        "CPUC Rule 21 Screen Q decision",
+        "加州公用事业委员会 Rule 21 Screen Q 决定"
+      ],
+      "note": [
+        "Review the commission’s decision in R.25-08-004 for any change to the distribution review threshold for wholesale exports.",
+        "跟进 R.25-08-004 程序的裁定，核查批发送电项目的配网审查门槛有无调整。"
+      ],
+      "source": {
+        "publisher": "CPUC",
+        "url": "https://www.cpuc.ca.gov/industries-and-topics/electrical-energy/infrastructure/rule-21-interconnection/rulemaking-and-regulatory-history",
+        "access": "opened"
+      },
+      "kind": "event",
+      "direction": "either",
+      "effect": null
+    },
+    {
       "id": "caiso-storage-capacity-foldback",
       "kind": "event",
       "market": "caiso",
