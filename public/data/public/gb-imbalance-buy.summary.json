@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-25T17:22:28.964Z",
+  "fetchedAt": "2026-11-26T17:02:14.256Z",
   "coverage": {
-    "from": "2026-08-11T23:00:00.000Z",
-    "to": "2026-11-24T23:30:00.000Z",
+    "from": "2026-08-07T23:00:00.000Z",
+    "to": "2026-11-25T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 5042
+    "points": 5282
   },
   "units": {
     "price": "GBP/MWh"
@@ -45,6 +45,38 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-08-08",
+      "n": 48,
+      "expected": 48,
+      "mean": 82.3789,
+      "min": -14.47,
+      "max": 185
+    },
+    {
+      "d": "2026-08-09",
+      "n": 48,
+      "expected": 48,
+      "mean": 95.9532,
+      "min": -14.07,
+      "max": 172.37
+    },
+    {
+      "d": "2026-08-10",
+      "n": 48,
+      "expected": 48,
+      "mean": 118.6791,
+      "min": 47.76675557961831,
+      "max": 227
+    },
+    {
+      "d": "2026-08-11",
+      "n": 48,
+      "expected": 48,
+      "mean": 126.0975,
+      "min": 66,
+      "max": 202.61
+    },
     {
       "d": "2026-08-12",
       "n": 48,
@@ -881,16 +913,24 @@
       "d": "2026-11-24",
       "n": 48,
       "expected": 48,
-      "mean": 200.3668,
+      "mean": 204.3571,
       "min": 145,
       "max": 264.14
+    },
+    {
+      "d": "2026-11-25",
+      "n": 48,
+      "expected": 48,
+      "mean": 198.8198,
+      "min": 115,
+      "max": 264.52
     }
   ],
   "sourceSnapshot": {
     "file": "gb-imbalance-buy.json",
-    "contentChecksum": "sha256:9741f123a892df42ad4b3f16029f176e856c87ff9bb0b2ca413b63adc3ad3ec0",
-    "points": 5042
+    "contentChecksum": "sha256:b7aeb1b53236b99c84fd7ff1a7ca5fdee6daad74a30890d87585e5b416dfedb8",
+    "points": 5282
   },
-  "contentChecksum": "sha256:5953515ee01c7e182207296600ac13370b9b4a9290a48123341aacddef1c246c",
-  "summaryChecksum": "sha256:c28e93e48f4de53929e9eea6d323f448cbd82ffcca4bd237ab78f5503b4ea110"
+  "contentChecksum": "sha256:78aa1b9f7d5683c5a282e02b469d33516e933940aa400e197de92b15ae766679",
+  "summaryChecksum": "sha256:00e8dd3aa34113a862fe41f588aba8ab4f66c984ccd44fa953cecf717f45b707"
 }

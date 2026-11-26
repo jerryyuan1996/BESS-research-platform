@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.ieso.ca/Terms-of-Use",
     "notice": "Copyright © 2004-2022 Independent Electricity System Operator, all rights reserved.\nThis information is subject to the Terms of Use set out in the IESO’s website (www.ieso.ca)"
   },
-  "fetchedAt": "2026-11-24T17:54:23.247Z",
+  "fetchedAt": "2026-11-26T17:02:14.256Z",
   "coverage": {
     "from": "2026-08-08T05:00:00.000Z",
-    "to": "2026-11-25T05:00:00.000Z",
+    "to": "2026-11-27T05:00:00.000Z",
     "resolution": "PT1H",
-    "points": 2616
+    "points": 2664
   },
   "units": {
     "price": "CAD/MWh"
@@ -39,16 +39,16 @@
   "arbitrage": null,
   "zonal": {
     "coverageAudit": {
-      "archiveReports": 109,
-      "archiveDeliveryDays": 109,
+      "archiveReports": 111,
+      "archiveDeliveryDays": 111,
       "archiveFirst": "2026-08-08",
-      "archiveLast": "2026-11-24",
+      "archiveLast": "2026-11-26",
       "availableDeliveryDays": 91,
       "archivedAvailableDeliveryDays": 91,
       "pendingReportFiles": [],
-      "completeRollingDays": 109,
-      "expectedIntervalsBetweenObservedEndpoints": 2616,
-      "actualIntervals": 2616,
+      "completeRollingDays": 111,
+      "expectedIntervalsBetweenObservedEndpoints": 2664,
+      "actualIntervals": 2664,
       "missingDays": [],
       "windowDays": 365
     },
@@ -1144,25 +1144,45 @@
           "DSO-RD": 24
         },
         "meanPrice": 78.30708333333334
+      },
+      {
+        "date": "2026-11-25",
+        "hours": 24,
+        "min": 44.6,
+        "max": 104.65,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 67.53791666666665
+      },
+      {
+        "date": "2026-11-26",
+        "hours": 24,
+        "min": 33.6,
+        "max": 77.75,
+        "flags": {
+          "DSO-RD": 24
+        },
+        "meanPrice": 55.91125
       }
     ],
     "latest": {
-      "date": "2026-11-24",
+      "date": "2026-11-26",
       "hours": 24,
-      "min": 40.61,
-      "max": 148.5,
+      "min": 33.6,
+      "max": 77.75,
       "flags": {
         "DSO-RD": 24
       },
-      "meanPrice": 78.30708333333334
+      "meanPrice": 55.91125
     }
   },
   "sourceSnapshot": {
     "file": "ca-on-da-zonal.json",
-    "contentChecksum": "sha256:608b272e49cae874580d5b8ad0a8bffc3b8b54fff58d97621b77db4d5fdcdfdc",
-    "archiveChecksum": "sha256:ab4b2c8c5e9c9692af7144c56284aa2aadc04c67cac47b4ae7ea191be78e6344",
-    "points": 2616
+    "contentChecksum": "sha256:dd9aad1d2db1dccbf3fd0c27fc244bafade5aa33d4cdcdaf7e80ee63eeda42cc",
+    "archiveChecksum": "sha256:19160a278f9e8f1e0fbb34e706e206a5364aa759d1bf6a6bc02029144d94fcc9",
+    "points": 2664
   },
-  "contentChecksum": "sha256:2f4a3bf2215c0d63f293c1a0a7516aee1499563f5943ede746963f5d92fe1a20",
-  "summaryChecksum": "sha256:3f4fd16412059d980c8d302f41e6dfd79e514fb4e4b47eef7b99182e14891df9"
+  "contentChecksum": "sha256:cc895d80787685e7cce1ed9efdf674d73dc01c63dd1b600b973b3e80a51db422",
+  "summaryChecksum": "sha256:98cd6781bdc524084206d868d9c75b98eae833e542a179240e1e4235c288c75a"
 }

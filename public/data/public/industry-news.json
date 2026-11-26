@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-25T17:22:28.964Z",
+  "fetchedAt": "2026-11-26T17:02:14.256Z",
   "coverage": {
     "from": "2026-05-26T06:00:25.000Z",
-    "to": "2026-11-25T15:37:20.000Z",
+    "to": "2026-11-26T16:23:59.000Z",
     "resolution": "event",
-    "points": 43
+    "points": 46
   },
   "units": {
     "record": "published article metadata"
@@ -217,106 +217,6 @@
         "summary": [
           "For a renewable energy developer, the hardest call isn't which project to build, it's which one to walk away from. In Europe, wind, solar and battery storage returns now hinge on 20-plus commercial levers, from offtake to financing, and knowing which to back is where the value sits. Mehmet Energin, Chief Commercial…",
           "对开发商而言，最难的是决定放弃哪个项目。如今欧洲风电、光伏和储能项目的回报取决于购电协议、融资等20多项商业因素。OX2 首席商务官 Mehmet Energin 探讨如何判断哪些因素值得押注。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T12:04:30.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/data-centre-power-buildouts-are-deja-vu-for-us-storage-integrators-with-off-grid-roots/",
-      "source": "Energy-Storage.news",
-      "title": "Data centre power buildouts are déjà vu for US storage integrators with off-grid roots",
-      "url": "https://www.energy-storage.news/data-centre-power-buildouts-are-deja-vu-for-us-storage-integrators-with-off-grid-roots/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "As AI-driven data centre demand reshapes the US power landscape, BESS technology providers at RE+ highlighted an unexpected competitive advantage.",
-      "zh": {
-        "title": [
-          "Data centre power buildouts are déjà vu for US storage integrators with off-grid roots",
-          "数据中心扩建供电设施，美国储能集成商的离网经验再受关注"
-        ],
-        "summary": [
-          "As AI-driven data centre demand reshapes the US power landscape, BESS technology providers at RE+ highlighted an unexpected competitive advantage.",
-          "人工智能带动的数据中心用电需求正在重塑美国电力市场。在 RE+ 展会上，储能技术供应商指出，早期积累的离网供电经验正带来意想不到的竞争优势。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-19T16:14:12.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/the-biggest-change-is-scale-giga-storage-on-evolution-of-bess-asset-management-in-europe/",
-      "source": "Energy-Storage.news",
-      "title": "‘The biggest change is scale’: Giga Storage on evolution of BESS asset management in Europe",
-      "url": "https://www.energy-storage.news/the-biggest-change-is-scale-giga-storage-on-evolution-of-bess-asset-management-in-europe/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "We hear from the head of market strategy & public affairs for Netherlands-based BESS platform Giga Storage, on the key trends and challenges in European asset management today.",
-      "zh": {
-        "title": [
-          "‘The biggest change is scale’: Giga Storage on evolution of BESS asset management in Europe",
-          "“最大的变化是规模”：Giga Storage 谈欧洲储能资产管理的演变"
-        ],
-        "summary": [
-          "We hear from the head of market strategy & public affairs for Netherlands-based BESS platform Giga Storage, on the key trends and challenges in European asset management today.",
-          "总部位于荷兰的储能平台 Giga Storage 的市场战略与公共事务负责人，介绍了欧洲储能资产管理的主要趋势和挑战。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-20T09:48:09.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/australia-bess-storage-gap-2030-construction-18-months-ieefa-scorecard/",
-      "source": "Energy-Storage.news",
-      "title": "Australia’s remaining BESS gap to 2030 could be in construction within 18 months, IEEFA scorecard finds",
-      "url": "https://www.energy-storage.news/australia-bess-storage-gap-2030-construction-18-months-ieefa-scorecard/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Australia committed a record 2.4GW of renewable energy projects to construction in the third quarter of 2026, while battery energy storage systems (BESS) committed in the quarter covered 13% of the new storage capacity needed by 2030.",
-      "zh": {
-        "title": [
-          "Australia’s remaining BESS gap to 2030 could be in construction within 18 months, IEEFA scorecard finds",
-          "IEEFA：澳大利亚实现2030年目标尚缺的电池储能容量，或在18个月内全部开工"
-        ],
-        "summary": [
-          "Australia committed a record 2.4GW of renewable energy projects to construction in the third quarter of 2026, while battery energy storage systems (BESS) committed in the quarter covered 13% of the new storage capacity needed by 2030.",
-          "2026年第三季度，澳大利亚有创纪录的2.4 GW可再生能源项目确定投入建设。当季确定建设的电池储能项目，相当于2030年前所需新增储能容量的13%。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-20T10:00:04.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/edf-acquires-250mw-holloway-battery-storage-project-new-south-wales-australia/",
-      "source": "Energy-Storage.news",
-      "title": "‘Close proximity to key grid infrastructure’: EDF buys 1GWh battery storage system in Australia",
-      "url": "https://www.energy-storage.news/edf-acquires-250mw-holloway-battery-storage-project-new-south-wales-australia/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "EDF power solutions Australia has acquired the 250MW Holloway BESS project in New South Wales (NSW) from developer SynCo Global.",
-      "zh": {
-        "title": [
-          "‘Close proximity to key grid infrastructure’: EDF buys 1GWh battery storage system in Australia",
-          "看中电网接入区位，法国电力收购澳大利亚1 GWh电池储能项目"
-        ],
-        "summary": [
-          "EDF power solutions Australia has acquired the 250MW Holloway BESS project in New South Wales (NSW) from developer SynCo Global.",
-          "法国电力旗下 EDF power solutions Australia 已从开发商 SynCo Global 手中收购新南威尔士州250 MW的 Holloway 电池储能项目。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-20T11:34:56.000Z",
-      "id": "Energy-Storage.news:https://www.energy-storage.news/bess-industry-buzz-re-eu-made-premiums-european-revenue-variability/",
-      "source": "Energy-Storage.news",
-      "title": "BESS Industry Buzz: RE+, EU-made premiums, European revenue variability",
-      "url": "https://www.energy-storage.news/bess-industry-buzz-re-eu-made-premiums-european-revenue-variability/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Another BESS Industry Buzz, looking at what people are discussing in the industry plus some of the most notable quotes from the RE+ trade show, which concluded yesterday.",
-      "zh": {
-        "title": [
-          "BESS Industry Buzz: RE+, EU-made premiums, European revenue variability",
-          "储能行业热议：RE+ 展会、欧盟制造溢价与欧洲储能收入差异"
-        ],
-        "summary": [
-          "Another BESS Industry Buzz, looking at what people are discussing in the industry plus some of the most notable quotes from the RE+ trade show, which concluded yesterday.",
-          "本期储能行业观察梳理了近期业内关注的话题，并摘录了昨日闭幕的 RE+ 展会上的代表性观点。"
         ]
       }
     },
@@ -641,46 +541,6 @@
       }
     },
     {
-      "t": "2026-11-25T11:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/campaign-aims-to-bring-solar-plus-storage-to-50000-indigenous-homes/",
-      "source": "pv magazine",
-      "title": "Campaign aims to bring solar-plus-storage to 50,000 Indigenous homes",
-      "url": "https://www.pv-magazine.com/2026/11/25/campaign-aims-to-bring-solar-plus-storage-to-50000-indigenous-homes/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Indigenized Energy says solar-plus-storage projects have helped families reduce monthly bills by hundreds of dollars as it launches a $2.5 billion fundraising effort to support a further 50,000 Indigenous homes. The post Campaign aims to bring solar-plus-storage to 50,000 Indigenous homes appeared first on pv magazi…",
-      "zh": {
-        "title": [
-          "Campaign aims to bring solar-plus-storage to 50,000 Indigenous homes",
-          "运动旨在为50 000个土著家庭提供太阳能加储存"
-        ],
-        "summary": [
-          "Indigenized Energy says solar-plus-storage projects have helped families reduce monthly bills by hundreds of dollars as it launches a $2.5 billion fundraising effort to support a further 50,000 Indigenous homes. The post Campaign aims to bring solar-plus-storage to 50,000 Indigenous homes appeared first on pv magazi…",
-          "太阳能加储存项目帮助家庭每月减少数百美元的账单, 因为它发起25亿美元的筹款活动,"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-25T12:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/greenvolt-power-breaks-ground-at-its-biggest-us-solar-and-battery-storage-project-to-date/",
-      "source": "pv magazine",
-      "title": "Greenvolt Power breaks ground at its biggest US solar and battery storage project to date",
-      "url": "https://www.pv-magazine.com/2026/11/25/greenvolt-power-breaks-ground-at-its-biggest-us-solar-and-battery-storage-project-to-date/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Developer breaks ground at 100 MWac solar, 50 MW/200 MWh battery energy storage system (BESS) project in New Mexico. Commissioning is expected in summer 2028. The post Greenvolt Power breaks ground at its biggest US solar and battery storage project to date appeared first on pv magazine Global .",
-      "zh": {
-        "title": [
-          "Greenvolt Power breaks ground at its biggest US solar and battery storage project to date",
-          "Greenvolt Power 在其迄今最大的太阳能和电池储存项目中突破地面"
-        ],
-        "summary": [
-          "Developer breaks ground at 100 MWac solar, 50 MW/200 MWh battery energy storage system (BESS) project in New Mexico. Commissioning is expected in summer 2028. The post Greenvolt Power breaks ground at its biggest US solar and battery storage project to date appeared first on pv magazine Global .",
-          "开发商在新墨西哥州100兆瓦的太阳能、50兆瓦/200兆瓦电池能源储存系统(BESS)项目上突破地面,预计2028年夏季投入使用。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-25T12:21:20.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/eight-procurement-considerations-buying-sodium-ion-bess/",
       "source": "Energy-Storage.news",
@@ -721,26 +581,6 @@
       }
     },
     {
-      "t": "2026-11-25T13:00:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/belgium-forecast-to-reach-28-6-gw-of-solar-by-2035/",
-      "source": "pv magazine",
-      "title": "Belgium forecast to reach 28.6 GW of solar by 2035",
-      "url": "https://www.pv-magazine.com/2026/11/25/belgium-forecast-to-reach-28-6-gw-of-solar-by-2035/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "GlobalData expects Belgium’s solar capacity to more than double from 2025 levels, with distributed installations leading growth amid rising electricity demand and declining nuclear capacity. The post Belgium forecast to reach 28.6 GW of solar by 2035 appeared first on pv magazine Global .",
-      "zh": {
-        "title": [
-          "Belgium forecast to reach 28.6 GW of solar by 2035",
-          "比利时预测到2035年将达到28.6千兆瓦的太阳能"
-        ],
-        "summary": [
-          "GlobalData expects Belgium’s solar capacity to more than double from 2025 levels, with distributed installations leading growth amid rising electricity demand and declining nuclear capacity. The post Belgium forecast to reach 28.6 GW of solar by 2035 appeared first on pv magazine Global .",
-          "GlobalData预计比利时的太阳能发电能力比2025年高出一倍以上,分布式设施在电力需求增加和核电能力下降的情况下领先增长。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-25T13:12:33.000Z",
       "id": "Energy-Storage.news:https://www.energy-storage.news/trina-storage-launches-genset-battery-hybrid-solution-targeting-ai-data-centre-power-demand/",
       "source": "Energy-Storage.news",
@@ -757,26 +597,6 @@
         "summary": [
           "Energy-Storage.news speaks with Trina Storage’s Mike Watson about the company’s genset-BESS solution and its approach to safety.",
           "与Trina仓库的Mike Watson谈了该公司的genset-BESS解决方案及其安全方法。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-25T13:29:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/utmolight-unsw-achieve-19-6-efficiency-for-2-81-m%c2%b2-perovskite-solar-module/",
-      "source": "pv magazine",
-      "title": "UtmoLight, UNSW achieve 19.6% efficiency for 2.81 m² perovskite solar module",
-      "url": "https://www.pv-magazine.com/2026/11/25/utmolight-unsw-achieve-19-6-efficiency-for-2-81-m%c2%b2-perovskite-solar-module/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "The reported result corresponds to a power output of around 551 W and represents a 15% relative efficiency increase over UtmoLight’s previous benchmark. The module was tested at Germany’s Fraunhofer Institute for Solar Energy Systems (Fraunhofer ISE). The post UtmoLight, UNSW achieve 19.6% efficiency for 2.81 m² per…",
-      "zh": {
-        "title": [
-          "UtmoLight, UNSW achieve 19.6% efficiency for 2.81 m² perovskite solar module",
-          "UtmoLight, UNSW在2.81平方米的千草枯太阳能舱中实现了19.6%的效率"
-        ],
-        "summary": [
-          "The reported result corresponds to a power output of around 551 W and represents a 15% relative efficiency increase over UtmoLight’s previous benchmark. The module was tested at Germany’s Fraunhofer Institute for Solar Energy Systems (Fraunhofer ISE). The post UtmoLight, UNSW achieve 19.6% efficiency for 2.81 m² per…",
-          "所报告的结果相当于约551瓦的功率,比UtmoLight以前的基准提高了15%。 该模块在德国的Fraunhofer太阳能系统研究所(Fraunhofer ISE)进行了测试。"
         ]
       }
     },
@@ -841,54 +661,294 @@
       }
     },
     {
-      "t": "2026-11-25T15:32:57.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/italy-awards-16-gwh-of-battery-storage-in-second-auction/",
-      "source": "pv magazine",
-      "title": "Italy awards 16 GWh of battery storage in second auction",
-      "url": "https://www.pv-magazine.com/2026/11/25/italy-awards-16-gwh-of-battery-storage-in-second-auction/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Italy's second Electricity Storage Capacity Procurement Mechanism (MACSE) auction awarded all 16 GWh of capacity offered for delivery in 2029, with a weighted average price 12% below the level recorded in the previous auction. The post Italy awards 16 GWh of battery storage in second auction appeared first on pv mag…",
+      "t": "2026-11-26T09:30:59.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/european-energy-88mwh-battery-storage-australia/",
+      "source": "Energy-Storage.news",
+      "title": "‘An early Christmas present’: European Energy takes delivery of 88MWh battery storage units in Australia",
+      "url": "https://www.energy-storage.news/european-energy-88mwh-battery-storage-australia/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The first units of a BESS have arrived at European Energy's operational Mokoan solar PV plant in northern Victoria, Australia.",
       "zh": {
         "title": [
-          "Italy awards 16 GWh of battery storage in second auction",
-          "意大利在第二次拍卖中裁定16千兆瓦小时电池储存"
+          "‘An early Christmas present’: European Energy takes delivery of 88MWh battery storage units in Australia",
+          "\" 早期圣诞礼物 \" :欧洲能源公司在澳大利亚运送88兆瓦电池储存装置"
         ],
         "summary": [
-          "Italy's second Electricity Storage Capacity Procurement Mechanism (MACSE) auction awarded all 16 GWh of capacity offered for delivery in 2029, with a weighted average price 12% below the level recorded in the previous auction. The post Italy awards 16 GWh of battery storage in second auction appeared first on pv mag…",
-          "意大利的第二次电力储存能力采购机制(MACSE)拍卖授予了2029年提供的全部16千兆瓦时供交货的能力,加权平均价格比上次拍卖时记录的水平低12%。"
+          "The first units of a BESS have arrived at European Energy's operational Mokoan solar PV plant in northern Victoria, Australia.",
+          "BESS的第一批设备 已经抵达欧洲能源 运行的Mokoan太阳能光电池厂 在澳大利亚的维多利亚北部。"
         ]
       }
     },
     {
-      "t": "2026-11-25T15:37:20.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/25/ress-6-provisional-results-solar-pv-ireland/",
+      "t": "2026-11-26T10:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/mexico-conditionally-approves-621-mw-solar-project-in-veracruz/",
       "source": "pv magazine",
-      "title": "Ireland approves 1,367 MW of solar in sixth renewables auction",
-      "url": "https://www.pv-magazine.com/2026/11/25/ress-6-provisional-results-solar-pv-ireland/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "Ireland’s sixth onshore renewables auction (RESS 6) provisionally greenlit a total of 1,367 MW of solar across 22 projects, according to provisional results published by the grid operator. The weighted average offer price for PV was €0.10242 ($0.1121)/kWh. The post Ireland approves 1,367 MW of solar in sixth renewab…",
+      "title": "Mexico conditionally approves 621 MW solar project in Veracruz",
+      "url": "https://www.pv-magazine.com/2026/11/26/mexico-conditionally-approves-621-mw-solar-project-in-veracruz/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Mexico’s environmental authority has conditionally approved the 621.17 MWp Cerro Colorado solar project in Veracruz, which is planned across the municipalities of Sayula de Alemán and Texistepec. The post Mexico conditionally approves 621 MW solar project in Veracruz appeared first on pv magazine Global .",
       "zh": {
         "title": [
-          "Ireland approves 1,367 MW of solar in sixth renewables auction",
-          "爱尔兰在第六次可再生能源拍卖中批准1 367兆瓦太阳能"
+          "Mexico conditionally approves 621 MW solar project in Veracruz",
+          "墨西哥有条件批准韦拉克鲁斯621兆瓦太阳能项目"
         ],
         "summary": [
-          "Ireland’s sixth onshore renewables auction (RESS 6) provisionally greenlit a total of 1,367 MW of solar across 22 projects, according to provisional results published by the grid operator. The weighted average offer price for PV was €0.10242 ($0.1121)/kWh. The post Ireland approves 1,367 MW of solar in sixth renewab…",
-          "爱尔兰第六次岸上可再生能源拍卖(RESS 6)根据电网运营商公布的临时结果,在22个项目中暂时绿化了1,367兆瓦的太阳能。 PV的加权平均报价为0.10242欧元(0.1121)/kWh。"
+          "Mexico’s environmental authority has conditionally approved the 621.17 MWp Cerro Colorado solar project in Veracruz, which is planned across the municipalities of Sayula de Alemán and Texistepec. The post Mexico conditionally approves 621 MW solar project in Veracruz appeared first on pv magazine Global .",
+          "墨西哥环境当局有条件地批准了韦拉克鲁斯州621.17兆瓦的Cerro Cerro太阳能项目,该项目计划在塞尤拉德阿莱曼市和Tsemexepec市实施。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T10:55:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/switzerland-raises-incentives-for-solar-below-100-kw/",
+      "source": "pv magazine",
+      "title": "Switzerland raises incentives for solar below 100 kW",
+      "url": "https://www.pv-magazine.com/2026/11/26/switzerland-raises-incentives-for-solar-below-100-kw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Switzerland has increased one-time payments for PV systems below 100 kW by CHF 40 ($47.99)/kW and raised the rate for installations below 150 kW that do not consume their own electricity. The post Switzerland raises incentives for solar below 100 kW appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Switzerland raises incentives for solar below 100 kW",
+          "瑞士为低于100千瓦的太阳能提供奖励"
+        ],
+        "summary": [
+          "Switzerland has increased one-time payments for PV systems below 100 kW by CHF 40 ($47.99)/kW and raised the rate for installations below 150 kW that do not consume their own electricity. The post Switzerland raises incentives for solar below 100 kW appeared first on pv magazine Global .",
+          "瑞士将光电池系统的一次性付款增加到100千瓦以下40瑞郎(47.99美元/千瓦),并将不消耗本国电力的装置的一次性付款增加到150千瓦以下。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T11:42:32.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/actuate-energy-orders-1-5gwh-bess-sungrow-2027-2028-pipeline-spain/",
+      "source": "Energy-Storage.news",
+      "title": "Actuate Energy orders 1.5GWh of BESS from Sungrow for 2027/2028 pipeline in Spain",
+      "url": "https://www.energy-storage.news/actuate-energy-orders-1-5gwh-bess-sungrow-2027-2028-pipeline-spain/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "New energy storage platform Actuate Energy and inverter and BESS firm Sungrow have struck a 380MW/1,500MWh agreement for projects in Spain over the next few years.",
+      "zh": {
+        "title": [
+          "Actuate Energy orders 1.5GWh of BESS from Sungrow for 2027/2028 pipeline in Spain",
+          "西班牙Sungrow公司为2027/2028年输油管启动1.5GWE能源订单"
+        ],
+        "summary": [
+          "New energy storage platform Actuate Energy and inverter and BESS firm Sungrow have struck a 380MW/1,500MWh agreement for projects in Spain over the next few years.",
+          "新的能源储存平台启动能源和反向能源公司以及BESS Sungrow公司为西班牙今后几年的项目达成了380兆瓦/1 500兆瓦h的协议。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T12:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/estonian-hybrid-park-energized-with-55-mw-250-mwh-battery/",
+      "source": "pv magazine",
+      "title": "Estonian solar park energized with 55 MW/250 MWh battery",
+      "url": "https://www.pv-magazine.com/2026/11/26/estonian-hybrid-park-energized-with-55-mw-250-mwh-battery/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Project developers say the battery energy storage system, which is tied to a 77.5 MW solar farm operational from 2024, features the Baltics’ largest battery system by storage capacity to date. The post Estonian solar park energized with 55 MW/250 MWh battery appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Estonian solar park energized with 55 MW/250 MWh battery",
+          "爱沙尼亚太阳能公园充电55兆瓦/250兆瓦"
+        ],
+        "summary": [
+          "Project developers say the battery energy storage system, which is tied to a 77.5 MW solar farm operational from 2024, features the Baltics’ largest battery system by storage capacity to date. The post Estonian solar park energized with 55 MW/250 MWh battery appeared first on pv magazine Global .",
+          "项目开发商说,电池能源储存系统与2024年运行的77.5兆瓦太阳能农场相连,其特点是迄今为止波罗的海最大的电池储存能力。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T12:49:04.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/india-adds-11-2-gw-of-rooftop-solar-capacity-in-first-nine-months-of-2026/",
+      "source": "pv magazine",
+      "title": "India adds 11.2 GW of rooftop PV capacity in first nine months of 2026",
+      "url": "https://www.pv-magazine.com/2026/11/26/india-adds-11-2-gw-of-rooftop-solar-capacity-in-first-nine-months-of-2026/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "India’s residential segment accounted for more than 95% of rooftop solar additions in the third quarter of 2026, driven by the government’s PM Surya Ghar program. Cumulative installed rooftop PV capacity reached 32 GW by the end of September. The post India adds 11.2 GW of rooftop PV capacity in first nine months of…",
+      "zh": {
+        "title": [
+          "India adds 11.2 GW of rooftop PV capacity in first nine months of 2026",
+          "印度在2026年前九个月增加了11.2千兆瓦的屋顶光电池容量"
+        ],
+        "summary": [
+          "India’s residential segment accounted for more than 95% of rooftop solar additions in the third quarter of 2026, driven by the government’s PM Surya Ghar program. Cumulative installed rooftop PV capacity reached 32 GW by the end of September. The post India adds 11.2 GW of rooftop PV capacity in first nine months of…",
+          "印度的住宅部分在2026年第三季度由政府总理苏里亚·盖尔(PM Surya Ghar)计划驱动的屋顶太阳能补充量中占95%以上。 到9月底,累计安装的屋顶光电容量达到了32千兆瓦。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T13:00:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/spain-could-reach-10-gw-of-batteries-by-2030-but-bankability-remains-the-major-challenge/",
+      "source": "pv magazine",
+      "title": "Spain could reach 10 GW of batteries by 2030, but bankability remains the major challenge",
+      "url": "https://www.pv-magazine.com/2026/11/26/spain-could-reach-10-gw-of-batteries-by-2030-but-bankability-remains-the-major-challenge/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The hybridization of solar PV plants, the evolution of arbitrage and ancillary services revenues, the future capacity market, and the financing of energy storage projects were the focus of a roundtable organized by pv magazine at Genera 2026. Experts anticipate strong growth in the Spanish market, though they warn o…",
+      "zh": {
+        "title": [
+          "Spain could reach 10 GW of batteries by 2030, but bankability remains the major challenge",
+          "西班牙到2030年可以达到10千兆瓦的电池,但银行能力仍然是主要挑战"
+        ],
+        "summary": [
+          "The hybridization of solar PV plants, the evolution of arbitrage and ancillary services revenues, the future capacity market, and the financing of energy storage projects were the focus of a roundtable organized by pv magazine at Genera 2026. Experts anticipate strong growth in the Spanish market, though they warn o…",
+          "太阳能光电发电厂的混合化、套利和辅助服务收入的演变、未来能力市场以及能源储存项目的融资,是2026年Genera Pv杂志组织的一个圆桌会议的重点。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T13:03:53.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-vault-backlog-hits-us2-3-billion-as-it-closes-financing-for-150mw-texas-bess/",
+      "source": "Energy-Storage.news",
+      "title": "Energy Vault backlog hits US$2.3 billion as it closes financing for 150MW Texas BESS",
+      "url": "https://www.energy-storage.news/energy-vault-backlog-hits-us2-3-billion-as-it-closes-financing-for-150mw-texas-bess/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "NYSE-listed energy infrastructure company Energy Vault has reported its Q3 2026 financial results and the close of non-recourse project financing for its 150MW/300MWh SOSA Energy Centre in Texas, US.",
+      "zh": {
+        "title": [
+          "Energy Vault backlog hits US$2.3 billion as it closes financing for 150MW Texas BESS",
+          "由于关闭了150兆瓦德克萨斯BESS的融资,能源空洞的积压额达到23亿美元。"
+        ],
+        "summary": [
+          "NYSE-listed energy infrastructure company Energy Vault has reported its Q3 2026 financial results and the close of non-recourse project financing for its 150MW/300MWh SOSA Energy Centre in Texas, US.",
+          "NYSE上市的能源基础设施公司Energy Vault报告,其在美国得克萨斯州150MW/300MWh SOSA能源中心的财务结果和无追索权项目资金的结束。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T13:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/rare-periods-of-low-pv-generation-can-be-managed-with-storage/",
+      "source": "pv magazine",
+      "title": "Rare periods of low PV generation can be managed with storage",
+      "url": "https://www.pv-magazine.com/2026/11/26/rare-periods-of-low-pv-generation-can-be-managed-with-storage/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The German Institute for Economic Research (DIW Berlin) says that batteries could help manage shortfalls in solar and wind generation, while underground storage of green hydrogen could provide backup during prolonged periods of low renewable output. The post Rare periods of low PV generation can be managed with stor…",
+      "zh": {
+        "title": [
+          "Rare periods of low PV generation can be managed with storage",
+          "低光电池生成的时期很少,可以通过储存加以管理"
+        ],
+        "summary": [
+          "The German Institute for Economic Research (DIW Berlin) says that batteries could help manage shortfalls in solar and wind generation, while underground storage of green hydrogen could provide backup during prolonged periods of low renewable output. The post Rare periods of low PV generation can be managed with stor…",
+          "德国经济研究所(DIW Berlin)说,电池可以帮助管理太阳能和风能发电的短缺,而地下绿色氢储存可以在可再生产出低的长期提供备份。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T13:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/norwegian-ipp-shifts-south-african-solar-project-to-corporate-buyers/",
+      "source": "pv magazine",
+      "title": "Norwegian IPP shifts South African solar project to corporate buyers",
+      "url": "https://www.pv-magazine.com/2026/11/26/norwegian-ipp-shifts-south-african-solar-project-to-corporate-buyers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Norwegian independent power producer (IPP) Scatec said it plans to withdraw a 288 MW solar project from South Africa’s public renewables procurement program and sell it into the country’s growing corporate power market instead. The post Norwegian IPP shifts South African solar project to corporate buyers appeared fi…",
+      "zh": {
+        "title": [
+          "Norwegian IPP shifts South African solar project to corporate buyers",
+          "挪威IPP公司将南非太阳能项目转由公司购买"
+        ],
+        "summary": [
+          "Norwegian independent power producer (IPP) Scatec said it plans to withdraw a 288 MW solar project from South Africa’s public renewables procurement program and sell it into the country’s growing corporate power market instead. The post Norwegian IPP shifts South African solar project to corporate buyers appeared fi…",
+          "挪威独立发电商Scatec(IPP)说,它计划从南非公共可再生能源采购计划中撤回一个288兆瓦太阳能项目,转而将该项目出售给该国不断增长的公司电力市场。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T14:15:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/gambia-signs-four-solar-ppas-totalling-232-mw/",
+      "source": "pv magazine",
+      "title": "Gambia signs four solar PPAs totalling 232 MW",
+      "url": "https://www.pv-magazine.com/2026/11/26/gambia-signs-four-solar-ppas-totalling-232-mw/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "The Gambia’s state-owned utility has inked four large-scale solar power purchase agreements (PPAs) since late October, with battery storage included in each project. The post Gambia signs four solar PPAs totalling 232 MW appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Gambia signs four solar PPAs totalling 232 MW",
+          "冈比亚签署4个太阳能PPA,总计232兆瓦"
+        ],
+        "summary": [
+          "The Gambia’s state-owned utility has inked four large-scale solar power purchase agreements (PPAs) since late October, with battery storage included in each project. The post Gambia signs four solar PPAs totalling 232 MW appeared first on pv magazine Global .",
+          "冈比亚国有公用事业公司自10月底以来已经启动了四项大规模太阳能购买协议,每个项目都包括电池储存。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T14:20:22.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/energy-storage-awards-2026-fluence-quinbrook-nhoa-win-again-cmblu-contourglobal-among-first-timers/",
+      "source": "Energy-Storage.news",
+      "title": "Energy Storage Awards 2026: Fluence, Quinbrook & NHOA win again, CMBlu & ContourGlobal among first-timers",
+      "url": "https://www.energy-storage.news/energy-storage-awards-2026-fluence-quinbrook-nhoa-win-again-cmblu-contourglobal-among-first-timers/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Last week’s Energy Storage Awards (ESAs) 2026 ceremony saw some repeat winners return, while plenty of newcomers took home trophies, too.",
+      "zh": {
+        "title": [
+          "Energy Storage Awards 2026: Fluence, Quinbrook & NHOA win again, CMBlu & ContourGlobal among first-timers",
+          "2026年能源储存奖:Fluence,Quinbrook & NHOA再次获胜,CMBlu & Contour Global 首次获得者奖"
+        ],
+        "summary": [
+          "Last week’s Energy Storage Awards (ESAs) 2026 ceremony saw some repeat winners return, while plenty of newcomers took home trophies, too.",
+          "上星期的能源储存奖(ESAs)2026年的颁奖典礼上,"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T15:03:14.000Z",
+      "id": "Energy-Storage.news:https://www.energy-storage.news/zelestra-statkraft-8-year-italy-bess-toll-bilateral-market-develops-parallel-macse/",
+      "source": "Energy-Storage.news",
+      "title": "Zelestra and Statkraft agree 8-year Italy BESS toll as ‘bilateral market develops in parallel to MACSE’",
+      "url": "https://www.energy-storage.news/zelestra-statkraft-8-year-italy-bess-toll-bilateral-market-develops-parallel-macse/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "IPP Zelestra and Norwegian state-owned power group Statkraft have agreed a BESS toll in Italy, a few days after the country’s second MACSE auction concluded.",
+      "zh": {
+        "title": [
+          "Zelestra and Statkraft agree 8-year Italy BESS toll as ‘bilateral market develops in parallel to MACSE’",
+          "Zeletra和Statkraft同意意大利8年BESS收费,认为“双边市场与MACSE平行发展”。"
+        ],
+        "summary": [
+          "IPP Zelestra and Norwegian state-owned power group Statkraft have agreed a BESS toll in Italy, a few days after the country’s second MACSE auction concluded.",
+          "在意大利第二次MACSE拍卖结束几天后, IPP Zelestra和挪威国有电力集团Statkraft已同意在意大利支付BESS损失。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-26T16:23:59.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/26/france-triples-planned-renewable-energy-auction-volume-to-1-5-gw/",
+      "source": "pv magazine",
+      "title": "France triples planned renewable energy auction volume to 1.5 GW",
+      "url": "https://www.pv-magazine.com/2026/11/26/france-triples-planned-renewable-energy-auction-volume-to-1-5-gw/",
+      "category": "policy",
+      "categoryLabel": "Policy & trade",
+      "summary": "France will increase the capacity of its upcoming technology-neutral renewable energy auction from 500 MW to 1.5 GW, opening the tender to all renewable power technologies and introducing a common baseload reference price for calculating payments to generators. The post France triples planned renewable energy auctio…",
+      "zh": {
+        "title": [
+          "France triples planned renewable energy auction volume to 1.5 GW",
+          "法国计划将可再生能源拍卖量增至1.5千兆瓦"
+        ],
+        "summary": [
+          "France will increase the capacity of its upcoming technology-neutral renewable energy auction from 500 MW to 1.5 GW, opening the tender to all renewable power technologies and introducing a common baseload reference price for calculating payments to generators. The post France triples planned renewable energy auctio…",
+          "法国将提高其即将进行的技术中性可再生能源拍卖的能力,从500兆瓦提高到1.5千兆瓦,向所有可再生能源技术开放招标,并采用计算发电机付款的共同基数参考价格。"
         ]
       }
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 43,
+    "items": 46,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
       "capital": 4,
-      "grid": 28,
+      "grid": 31,
       "policy": 8,
       "technology": 3
     },
@@ -915,7 +975,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 6
+        "items": 9
       }
     ]
   },
@@ -924,6 +984,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:a74dc3f2e51b857e2293e0d6074febcd6c1dfc5e7d7c7ce1c8dac54498147d8b",
-  "envelopeChecksum": "sha256:eeb75f91043547b2e26d0632d53e7db68a2fd9d88abc19ed5b15fbd7968c79f7"
+  "contentChecksum": "sha256:a1253f15b87bedc668d118ef636cecb476bf14fc988dcfaa314c98bb69afb361",
+  "envelopeChecksum": "sha256:499f76d40c4c29633821bb6442dc6d05ec212356f11181c866d4f8c1e40d53bc"
 }
