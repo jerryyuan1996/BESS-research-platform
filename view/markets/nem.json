@@ -322,6 +322,55 @@
   },
   "triggers": [
     {
+      "id": "nem-exemption-guide-draft",
+      "market": "nem",
+      "expected": "2026-12",
+      "watches": [
+        "revenueCertainty",
+        "policyStability"
+      ],
+      "label": [
+        "AEMO registration exemption guide draft",
+        "AEMO 注册豁免指南草案"
+      ],
+      "note": [
+        "Read the draft expected on 18 December, then the final report. Check the proposed battery threshold before revising the small route.",
+        "查阅预计 12 月 18 日发布的草案，并跟进最终报告。核实拟议的储能门槛后再调整小型项目范围。"
+      ],
+      "source": {
+        "publisher": "AEMO",
+        "url": "https://www.aemo.com.au/consultations/current-and-closed-consultations/guide-to-registration-exemptions-and-production-unit-classifications",
+        "access": "opened"
+      },
+      "kind": "event",
+      "direction": "either",
+      "effect": null
+    },
+    {
+      "id": "nem-storage-tariffs-fy28",
+      "market": "nem",
+      "expected": "2027-07",
+      "watches": [
+        "assetReturn"
+      ],
+      "label": [
+        "FY2027–28 distribution storage tariffs",
+        "2027–28 财年配网储能费率"
+      ],
+      "note": [
+        "Check the new price lists effective 1 July at the six reference distributors and recalculate dispatch against eligible tariff windows.",
+        "核实六家样本配网商于 7 月 1 日生效的新价表，并按适用的费率时段重算充放电。"
+      ],
+      "source": {
+        "publisher": "Australian Energy Regulator",
+        "url": "https://www.aer.gov.au/industry/networks/pricing-proposals",
+        "access": "opened"
+      },
+      "kind": "event",
+      "direction": "either",
+      "effect": null
+    },
+    {
       "id": "nem-successor-scheme-first-round",
       "kind": "event",
       "market": "nem",
