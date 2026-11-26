@@ -90,13 +90,14 @@ test('small routes have actual small MW, no automatic long-term award and explic
   for(const id of ['nem-sub5','ercot-small-dg','jp-tokyo-small','ro-sub5']){
     const o=opportunityById(id),m=byId(o.market);
     const c=compareOpportunity(m,o,'strategic',null,{buildPremiumPct:15,opexPremiumPct:15});
+    const neutral=compareOpportunity(m,o,'strategic',null,{buildPremiumPct:0,opexPremiumPct:0});
     assert.ok(!c.unavailable,id);
     assert.equal(c.alternative.input.powerMW,o.powerMW);
-    assert.equal(c.alternative.input.strategyId,'mer');
+    assert.equal(c.alternative.input.strategyId,o.route);
     assert.equal(c.alternative.input.revenueSupport,null);
     assert.equal(c.alternative.assumptions.capitalSupportPerMW,0);
-    close(c.alternative.assumptions.buildBudget,c.standard.assumptions.buildBudget*1.15);
-    close(c.alternative.input.annual[0].opex,c.standard.input.annual[0].opex*1.15);
+    close(c.alternative.assumptions.buildBudget,neutral.alternative.assumptions.buildBudget*1.15);
+    close(c.alternative.input.annual[0].opex,neutral.alternative.input.annual[0].opex*1.15);
   }
 });
 
