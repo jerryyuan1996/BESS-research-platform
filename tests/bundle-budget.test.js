@@ -142,7 +142,8 @@ const BUDGET = {
   // measured 262.41 after per-investor data splitting (including awaited data).
   // Package 1: shared decision trace, evidence vocabulary and target components.
   // Measured 276.42 KiB; keep the complete bilingual content (+15 KiB cap).
-  home: 280,
+  // The approved small-connection evidence and review events measure 281.21 KiB.
+  home: 282,
 
   /* Per-market chunks, ~12% above measured. Roughly proportional to how much
      analysis each market carries: WA is the largest because it is the one
@@ -201,7 +202,8 @@ const BUDGET = {
     // under the analyst's standing rule (5 Nov: over a budget, raise the cap,
     // never cut content). No other market cap moves.
     ercot: 62.5,
-    sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 47, de: 64, pjm: 65, it: 75, ro: 34,
+     // The Rule 21 review event brings the measured CAISO payload to 47.11 KiB.
+     sa: 16, es: 20, ca_on: 28, fi: 40, caiso: 48, de: 64, pjm: 65, it: 75, ro: 34,
     // R4 Japan sections are now lazy: 86.24 KiB for the dashboard itself,
     // down from 115.51. WA's public tab adapter factors its former monolith
     // into reusable chunks; count its complete owner-only closure below.

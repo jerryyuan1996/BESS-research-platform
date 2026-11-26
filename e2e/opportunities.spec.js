@@ -1,4 +1,33 @@
 import { test, expect } from '@playwright/test';
+import { readFile } from 'node:fs/promises';
+
+test('NEM small distribution inputs, evidence and effective cash flows are available from the lab',async({page})=>{
+  await page.goto('/investment-lab');
+  await page.locator('.lab-ctl').first().getByRole('button',{name:/NEM/}).click();
+  await page.locator('.acq-special-workbench > summary').click();
+  const comparison=page.locator('#opportunity-comparison');
+  await expect(comparison).toContainText('18–21 months from site control');
+  await comparison.locator('.ix-unpriced-details > summary').click();
+  await expect(comparison.getByRole('row',{name:/Power \/ duration/})).toContainText('4.5 MW / 4h');
+  await expect(comparison.getByRole('row',{name:/physical COD/})).toContainText('7.5 months');
+  await expect(comparison.getByRole('row',{name:/Network charge or credit/})).toContainText('Thin evidence');
+  await expect(comparison.getByRole('row',{name:/Loss factor/})).toContainText('0.95');
+  await comparison.locator('.ix-opportunity-inputs > summary').click();
+  const network=comparison.getByRole('spinbutton',{name:/Annual network charge/});
+  await network.fill('-20000');
+  await network.blur();
+  const pending=page.waitForEvent('download');
+  await comparison.getByRole('button',{name:'Download assumptions & cash flows'}).click();
+  const download=await pending;
+  const file=JSON.parse(await readFile(await download.path(),'utf8'));
+  expect(file.asOf).toBe('2026-11-26');
+  expect(file.distribution.networkPerMW).toBe(-20000);
+  expect(file.alternative.input.annual[0].network).toBeCloseTo(-20000,5);
+  expect(file.opportunity.distribution.networkPerMW).toBe(0);
+  await page.goto('/markets/nem');
+  await expect(page.locator('#overview')).toBeVisible();
+  await expect(page.locator('#opportunity-comparison')).toHaveCount(0);
+});
 
 test('special opportunities link to a working bilingual paired valuation',async({page})=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));

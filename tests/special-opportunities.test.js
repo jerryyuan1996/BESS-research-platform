@@ -2,10 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { markets, byId } from '../src/markets/registry.js';
 import { opportunities, LENSES } from '../src/experience/model.js';
-import { compareOpportunity } from '../src/opportunities/model.js';
+import { compareOpportunity, beatsConventional } from '../src/opportunities/model.js';
 import { SPECIAL_OPPORTUNITIES, opportunityById, SCOUT_OPPORTUNITIES } from '../src/opportunities/catalog.js';
 import { acquisitionCashFlows, validateAcquisition } from '../src/acquisition/valuation.js';
-import { nominalAnnual } from '../src/acquisition/cashflows.js';
+import { nominalAnnual, taxSchedule } from '../src/acquisition/cashflows.js';
 import { revenueMechanismsFor, REVENUE_MECHANISMS } from '../src/opportunities/revenue.js';
 const close = (a,b,tolerance=1e-5) => assert.ok(Math.abs(a-b)<tolerance, a+' != '+b);
 const pv = (flows,r) => flows.reduce((s,c)=>s+c.amount/(1+r)**c.at,0);
@@ -142,4 +142,116 @@ test('mechanism explanation follows the actual revenue route and distinguishes M
   assert.equal(revenueMechanismsFor(byId('de'),'toll')[0],'toll');
   assert.deepEqual(revenueMechanismsFor(byId('ercot'),'mer'),['merchant','ancillary']);
   for(const m of Object.values(REVENUE_MECHANISMS))for(const k of ['title','payer','problem','pricing','drivers','discipline'])assert.equal(m[k].length,2);
+});
+
+const nemSmall = opportunityById('nem-sub5');
+const priceNem = (values = {}, card = nemSmall, investor = 'infraFund') =>
+  compareOpportunity(byId('nem'),card,investor,null,values);
+
+test('neutral distribution inputs reproduce the original special cash flows exactly',()=>{
+  const {distribution,...plain} = nemSmall;
+  const previous = priceNem({specialMonths:13.5},plain);
+  const neutral = priceNem({specialMonths:13.5});
+  assert.deepEqual(neutral.alternative.input.annual,previous.alternative.input.annual);
+  assert.deepEqual(neutral.alternative.annual,previous.alternative.annual);
+  assert.deepEqual(neutral.standard.input.annual,previous.standard.input.annual);
+  assert.equal((100*neutral.alternative.holdReturn.annualReturn).toFixed(2),'5.75');
+});
+
+test('signed network cash is outside fees, income haircuts and operating cost uplifts and enters tax once',()=>{
+  const tax = side => side.annual.reduce((sum,year)=>sum+year.tax,0);
+  for (const inputs of [{}, {revenueHaircutPct:30,opexPremiumPct:70,routeFeePct:20}]) {
+    const zero=priceNem(inputs);
+    for (const network of [-20000,50000]) {
+      const run=priceNem({...inputs,networkPerMW:network});
+      assert.deepEqual(run.standard.input.annual,zero.standard.input.annual);
+      assert.ok((run.alternative.npv-zero.alternative.npv)*network>0);
+      assert.ok((tax(run.alternative)-tax(zero.alternative))*network>0);
+      run.alternative.input.annual.forEach((year,i)=>{
+        const base=zero.alternative.input.annual[i];
+        close(year.network,network);
+        close(year.merchant-base.merchant,network);
+        close(year.opex,base.opex);
+        close(run.alternative.annual[i].merchant-zero.alternative.annual[i].merchant,run.alternative.annual[i].network);
+      });
+    }
+  }
+  const lag=priceNem({networkPerMW:20000,specialQualificationMonths:6});
+  const zero=priceNem({specialQualificationMonths:6});
+  close(lag.alternative.annual[0].merchant-zero.alternative.annual[0].merchant,lag.alternative.annual[0].network);
+  const policy={rate:.3,depreciationYears:10,basisPerMW:0,groupRelief:true};
+  const sample={cashFlowBasis:'nominal',taxPolicy:policy,annual:[{secured:0,renewal:0,merchant:120,network:20,opex:0,capex:0,tax:0}]};
+  const scenario={codYears:0};
+  close(taxSchedule(sample,nominalAnnual(sample,scenario),scenario,0).annual[0].tax,36);
+});
+
+test('route-specific economics affect only the small project and reject invalid inputs and unsupported avoided works',()=>{
+  const base=priceNem();
+  for(const values of [{lossFactor:.85},{servicesShare:0},{routeFeePct:20}]){
+    const run=priceNem(values);
+    assert.ok(run.alternative.npv<base.alternative.npv);
+    assert.deepEqual(run.standard.input.annual,base.standard.input.annual);
+  }
+  for (const [field,low,high] of [['lossFactor',.79,1.11],['servicesShare',-.01,1.01],
+    ['routeFeePct',-1,31],['networkPerMW',-200001,200001]]) {
+    for (const value of [low,high,NaN]) {
+      assert.match(priceNem({[field]:value}).unavailable,/Invalid comparison input/);
+      const badCard={...nemSmall,distribution:{...nemSmall.distribution,[field]:value}};
+      assert.match(priceNem({},badCard).unavailable,/Invalid comparison input/);
+    }
+  }
+  assert.match(priceNem({avoidedGridPerMW:1}).unavailable,/explicit conventional connection cost/);
+});
+
+test('small-route timing follows entry stage and each design declares a duration',()=>{
+  const {hours,...missing}=nemSmall;
+  assert.equal(priceNem({},missing).unavailable,'A small route must declare its own duration');
+  close(priceNem().alternative.codMonths,7.5);
+  close(priceNem({stage:'greenfield'},nemSmall,'developer').alternative.codMonths,19.5);
+  close(priceNem({stage:'greenfield',specialMonths:16},nemSmall,'developer').alternative.codMonths,16);
+  close(priceNem({specialMonths:11}).alternative.codMonths,11);
+  const equal=compareOpportunity(byId('ro'),opportunityById('ro-sub5'),'infraFund',null,{baselineMonths:14});
+  close(equal.alternative.codMonths,14);
+});
+
+test('four investors retain their conventional selections and the approved small-route returns',async()=>{
+  const {OPPORTUNITY_SUMMARY}=await import('../src/opportunities/summaryData.js');
+  const signed={
+    'nem-sub5':['5.86','7.37'], 'ercot-small-dg':['-6.30','0.53'], 'ro-sub5':['7.05','11.20'],
+  };
+  const japan=['jp-tokyo-small','jp-kyushu-small','jp-hokkaido-small'];
+  for(const investor of Object.keys(LENSES)){
+    const rows=opportunities(investor);
+    for(const id of [...Object.keys(signed),...japan]){
+      const card=opportunityById(id),row=rows.find(r=>r.id===card.market);
+      const result=compareOpportunity(row.market,card,investor,row.play);
+      assert.ok(!result.unavailable,investor+' '+id);
+      assert.equal(beatsConventional(result),false);
+      if(signed[id]){
+        const formatted=[result.alternative,result.standard].map(side=>(100*side.holdReturn.annualReturn).toFixed(2));
+        assert.deepEqual(formatted,signed[id],investor+' '+id);
+      } else {
+        assert.equal(result.alternative.input.durationHours,4);
+        assert.equal(result.alternative.holdReturn?.annualReturn ?? null,null);
+      }
+    }
+    assert.deepEqual(OPPORTUNITY_SUMMARY[investor].picks.map(o=>o.id),
+      investor==='foreignFirstTimer'?['de-existing-node']:['de-existing-node','pl-awarded']);
+  }
+});
+
+test('the stored review events are idempotent and never change the model or create an Ontario view', async()=>{
+  const {createViewStore}=await import('../scripts/view/writer.mjs');
+  const {smallConnectionChanges}=await import('../scripts/view/content/sub5-triggers-2026-11.mjs');
+  const store=createViewStore();
+  const expected=[['nem','nem-exemption-guide-draft','2026-12',['revenueCertainty','policyStability']],
+    ['nem','nem-storage-tariffs-fy28','2027-07',['assetReturn']],['caiso','caiso-rule21-screen-q',null,['revenueCertainty']]];
+  const fresh=await smallConnectionChanges({read:async()=>({triggers:[]})});
+  assert.deepEqual(fresh.map(c=>[c.market,c.to.id]),expected.map(([market,id])=>[market,id]));
+  for(const [market,id,when,watches] of expected){
+    const record=(await store.read(market)).triggers.find(t=>t.id===id);
+    assert.equal(record.kind,'event');assert.equal(record.effect,null);assert.equal(record.expected,when);
+    assert.deepEqual(record.watches,watches);assert.equal(record.label.length,2);
+  }
+  assert.deepEqual(await smallConnectionChanges(store),[]);
 });
