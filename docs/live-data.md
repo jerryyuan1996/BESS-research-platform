@@ -168,6 +168,8 @@ The market-price field is `DISPATCH/PRICE.RRP` for the non-intervention run. Neg
 
 All five summaries carry wholesale spread statistics once sufficient coverage exists. NSW1 is the sole merchant-reference series. A future anchor and any change to signed investment assumptions require analyst action.
 
+The raw series retains up to 367 NEM calendar days so an entire local billing year fits across leap day, daylight saving and Adelaide's half-hour offset. Charts and tariff calculations each use the latest 12 months of complete days on their respective clocks. Supporting intervals at the window boundaries stay available in the source snapshot.
+
 The Investment Lab replays the selected FY2026–27 distribution tariff against local billing days for the Sub-5 reference battery. It uses one equivalent daily cycle, the configured AC efficiency on charging, and the local daylight-saving clock. The wholesale capture adjustment affects wholesale margin. Published fixed access and maximum-demand charges retain their billing units. Net network value is positive for a credit. At least 28 complete days are required. Shorter rolling histories, missing event notices and a missing site power factor are identified where they affect the bill. Full-year demand ratchets show the current annual rate derived from the latest complete 12-month window. Each tariff row identifies the official schedule and its location.
 
 ### NESO reserve clearing evidence

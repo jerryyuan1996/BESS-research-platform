@@ -5,6 +5,7 @@ import { zipFixture } from '../../tests/helpers/eia-inventory-fixture.mjs';
 import { parseDispatchArchive, REGIONS } from '../lib/aemo-nem-dispatch.mjs';
 import { createRun, incompleteSourceDays } from '../sources/aemo-nem.mjs';
 import { providerLimit } from '../lib/concurrency.mjs';
+import { completeTariffDays, trailingBillingYear } from '../../src/derive/networkValue.js';
 
 const sourceDay = '2026-11-24';
 const now = '2026-11-26T06:17:00.000Z';
@@ -50,9 +51,23 @@ test('the five regions share both archive reads and their backfill budget', asyn
     assert.equal(snapshot.coverage.resolution, 'PT5M');
     const summary = reader.summarize(snapshot);
     assert.equal(summary.dispatch.completeDays, 0);
+    assert.deepEqual(summary.daily, []);
     assert.equal(summary.arbitrage, null);
   }
   assert.deepEqual(calls, [sourceDay]);
+});
+
+test('NEM archives cover a full local billing year at shifted midnights and across leap day', () => {
+  for (const [date, count] of [[now, 365], ['2024-06-26T06:17:00Z', 366]]) {
+    const missing = incompleteSourceDays([], date);
+    const first = Date.parse(missing.at(-1) + 'T00:00:00+10:00');
+    const points = Array.from({ length: missing.length * 288 }, (_, i) => ({ t: new Date(first + i * 300_000).toISOString(), v: 40 }));
+    for (const zone of ['Australia/Brisbane', 'Australia/Adelaide', 'Australia/Melbourne']) {
+      const days = trailingBillingYear(completeTariffDays(points, zone));
+      assert.equal(days.length, count, zone + ' at ' + date);
+      assert.equal((Date.parse(days.at(-1).date) - Date.parse(days[0].date)) / 86_400_000, count - 1);
+    }
+  }
 });
 
 test('a refused source is attempted once across regions and a previous series is preserved', async () => {

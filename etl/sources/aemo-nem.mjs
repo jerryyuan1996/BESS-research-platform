@@ -7,11 +7,14 @@ import { parseDispatchArchive, REGIONS, FIVE_MIN, DAY, AEST, MAX_ARCHIVE_BYTES }
 const root = 'https://www.nemweb.com.au/Reports/ARCHIVE/DispatchIS_Reports/';
 const dayLabel = ms => new Date(ms + AEST).toISOString().slice(0, 10);
 const archiveWindowEnd = now => Date.parse(dayLabel(Date.parse(now)) + 'T00:00:00+10:00') - DAY;
+// A local billing year may contain 366 days. One additional AEST archive
+// supplies the partial local days at the edges in Victoria and South Australia.
+const SOURCE_WINDOW_DAYS = WINDOW_DAYS + 2;
 
 // NEMWEB's date denotes the calendar day of interval starts on the NEM clock.
 // A UTC date with one point, a 04:00 trading day, and a distributor billing day
 // each have different boundaries. Check all 288 distinct source-day slots.
-export function incompleteSourceDays(series, now, windowDays = WINDOW_DAYS) {
+export function incompleteSourceDays(series, now, windowDays = SOURCE_WINDOW_DAYS) {
   const slots = new Map();
   for (const p of series || []) {
     const t = Date.parse(p.t);
@@ -39,7 +42,7 @@ async function downloadDay(day) {
 
 // The orchestrator creates one instance per run. All regional readers share
 // both successes and failures and one 45-date allowance. Only points are kept.
-export function createRun({ readDay = downloadDay, maxDays = MAX_BACKFILL_PER_RUN, windowDays = WINDOW_DAYS } = {}) {
+export function createRun({ readDay = downloadDay, maxDays = MAX_BACKFILL_PER_RUN, windowDays = SOURCE_WINDOW_DAYS } = {}) {
   const archive = new Map();
   let sourceUnavailable = false;
   async function fetchDataset({ dataset, previous, now = new Date().toISOString(), log = () => {} }) {

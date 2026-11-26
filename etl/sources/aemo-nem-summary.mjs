@@ -2,7 +2,7 @@ import { buildSummary } from '../lib/summarize.mjs';
 import { sha256 } from '../lib/envelope.mjs';
 import { derivePriceMetrics } from '../../src/derive/priceMetrics.js';
 import { arbitrageRevenuePerMW } from '../../src/derive/merchantBridge.js';
-import { completeTariffDays, deriveNetworkValue } from '../../src/derive/networkValue.js';
+import { completeTariffDays, deriveNetworkValue, trailingBillingYear } from '../../src/derive/networkValue.js';
 import { STORAGE_TARIFFS } from '../../src/markets/nem/data/storageTariffs.js';
 import { opportunityById } from '../../src/opportunities/catalog.js';
 
@@ -10,10 +10,14 @@ export function summarize(snapshot) {
   const reference = opportunityById('nem-sub5');
   const options = { powerMW: reference.powerMW, durationHours: reference.hours };
   const timezone = 'Australia/Brisbane'; // fixed UTC+10 NEM calendar
-  const days = new Map([[timezone, completeTariffDays(snapshot.series, timezone)]]);
-  const complete = days.get(timezone).flatMap(day => day.points.map(p => ({ t: new Date(p.ms).toISOString(), v: p.v })));
+  const localYear = zone => trailingBillingYear(completeTariffDays(snapshot.series, zone));
+  const marketDays = localYear(timezone);
+  const days = new Map([[timezone, marketDays]]);
+  const complete = marketDays.flatMap(day => day.points.map(p => ({ t: new Date(p.ms).toISOString(), v: p.v })));
   const metrics = derivePriceMetrics(complete, { timezone, durationHours: options.durationHours });
   const summary = buildSummary(snapshot, metrics, { timezone, durationHours: options.durationHours, arbitrage: arbitrageRevenuePerMW(metrics) });
+  const included = new Set(marketDays.map(day => day.date));
+  summary.daily = summary.daily.filter(day => included.has(day.d));
   const region = snapshot.datasetId.split('-')[1].toUpperCase();
   summary.dispatch = { region, calendar: 'AEST UTC+10', completeDays: days.get(timezone).length,
     underReviewAtIssue: snapshot.series.filter(p => p.dispatchStatus === 'NOT FIRM').length };
@@ -21,7 +25,7 @@ export function summarize(snapshot) {
   summary.storageTariffs = {};
   for (const tariff of STORAGE_TARIFFS.filter(t => t.region === region)) {
     const scenarios = tariff.id === 'sapn' ? [['sapn', false], ['sapn-cbd', true]] : [[tariff.id, false]];
-    if (!days.has(tariff.timezone)) days.set(tariff.timezone, completeTariffDays(snapshot.series, tariff.timezone));
+    if (!days.has(tariff.timezone)) days.set(tariff.timezone, localYear(tariff.timezone));
     const billingDays = days.get(tariff.timezone);
     for (const [id, cbd] of scenarios) {
       let result;

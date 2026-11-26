@@ -39,6 +39,19 @@ export function completeTariffDays(series, timezone) {
   return complete;
 }
 
+function billingYear(lastDate) {
+  const end = Date.parse(lastDate + 'T00:00:00Z') + DAY;
+  const start = new Date(end);
+  start.setUTCFullYear(start.getUTCFullYear() - 1);
+  return { from: start.toISOString().slice(0, 10), days: (end - start.getTime()) / DAY };
+}
+
+export function trailingBillingYear(days) {
+  if (!days.length) return [];
+  const { from } = billingYear(days.at(-1).date);
+  return days.filter(day => day.date >= from);
+}
+
 function band(tariff, day, p, events) {
   const h = p.hour;
   switch (tariff.id) {
@@ -149,13 +162,9 @@ function demandBill(tariff, days) {
   if (!tariff.demand) return { annualAtUnity: 0, billing: 'none' };
   const rate = tariff.demand;
   if (rate.basis.startsWith('rolling')) {
-    const last = days.at(-1).date;
-    const end = new Date(last + 'T00:00:00Z');
-    end.setUTCDate(end.getUTCDate() + 1);
-    const start = new Date(end);
-    start.setUTCFullYear(start.getUTCFullYear() - 1);
-    const recent = days.filter(d => Date.parse(d.date + 'T00:00:00Z') >= start.getTime());
-    if (recent.length !== (end - start) / DAY) return { annualAtUnity: null, billing: 'rolling-history' };
+    const year = billingYear(days.at(-1).date);
+    const recent = days.filter(d => d.date >= year.from);
+    if (recent.length !== year.days) return { annualAtUnity: null, billing: 'rolling-history' };
     const max = field => Math.max(...recent.map(d => d.demand[field]));
     const annualAtUnity = rate.basis === 'rollingImportKw' ? max('anytime') * rate.anytime * MONTH
       : (max('anytime') * rate.anytime + max('peak') * rate.peak) * 365;
