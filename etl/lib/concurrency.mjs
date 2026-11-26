@@ -56,6 +56,7 @@ export const PROVIDER_LIMITS = {
  */
 export const PINNED_PROVIDER_LIMITS = {
   fingrid: 1,
+  'aemo-nem': 1, // The five regions share one daily NEMWEB archive.
 };
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));

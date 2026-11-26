@@ -28,12 +28,15 @@ function renderNotFound(app, route){
 }
 
 const resourceLoaders = {
+  data: () => import('../live/dataConventions.js').then(({ investmentConventions }) => ({
+    renderDataStatus: app => renderDataStatus(app, investmentConventions),
+  })),
   changes: () => import('../changes/changesPage.js'),
   scout: () => import('../scout/scoutPage.js'),
   desk: () => import('../desk/deskPage.js'),
   investmentLab: () => import('../home/investmentLabPage.js'),
 };
-const resourceRenderers = { changes: 'renderChangesPage', scout: 'renderScoutPage',
+const resourceRenderers = { data: 'renderDataStatus', changes: 'renderChangesPage', scout: 'renderScoutPage',
   desk: 'renderDeskPage', investmentLab: 'renderInvestmentLabPage' };
 const resourceModules = new Map();
 function renderResource(app, route) {
@@ -162,7 +165,6 @@ export function render(){
     return;
   }
   if (resourceLoaders[route.name]) return void renderResource(app, route);
-  if (route.name === 'data') return void renderDataStatus(app);
   renderNotFound(app, route);
 }
 

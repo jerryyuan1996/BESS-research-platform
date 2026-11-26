@@ -116,6 +116,13 @@ function renderFeeds(main){
         ? `${cov.from.slice(0, 10)} → ${cov.to.slice(0, 10)}`
         : '—';
       const zonalCoverage = summary.zonal?.coverageAudit;
+      if (summary.dispatch) {
+        const { completeDays, underReviewAtIssue } = summary.dispatch;
+        tr.children[3].append(h('br'), h('span', { class:'obs-hint' }, L([
+          completeDays + ' complete NEM days · ' + underReviewAtIssue + ' regional prices flagged for review at dispatch',
+          completeDays + ' 个完整 NEM 日 · ' + underReviewAtIssue + ' 条地区电价在调度发布时列为待复核',
+        ])));
+      }
       if(summary.inventory){
         const input=summary.inventory.sources;
         tr.children[3].append(h('br'),h('span',{class:'obs-hint'},L([
@@ -203,7 +210,7 @@ function renderDerived(main){
 
 /* ---- entry ---------------------------------------------------------------- */
 
-export function renderDataStatus(app){
+export function renderDataStatus(app, investmentConventions){
   const main = resourcePage(app, {
     page: 'data',
     sub: ['What is fetched automatically, how fresh it is, and what automation is permitted to change',
@@ -211,12 +218,7 @@ export function renderDataStatus(app){
   });
 
   sectionHead(main,['Investment conventions','投资比较口径'],['Read these before comparing a return','比较回报前先看这些假设']);
-  main.append(h('div',{class:'card'},h('p',{},L(['RTB closing, 20 operating years, nominal after project tax. Project-rights price defaults to zero; construction and fees remain payable. Levered returns draw debt at COD after equity funds construction.',
-    'RTB交割起算、20年运营、税后名义。项目权利对价默认为零，另需支付建设与费用；杠杆情景先由股权承担建设，在COD提取贷款。'])),
-    h('p',{},L(['Model indexation is a comparison assumption, not a verified contract term. Spain’s future capacity award is fixed nominal if modelled; current Spain receipts exclude capacity and balancing. Saudi returns are withheld pending the SSA price.',
-      '模型指数化是比较假设，并非已核验合同条款。西班牙未来容量合同如被计入须采用名义固定价格；当前西班牙未计容量及平衡收入。沙特待取得SSA付费后才能测算回报。'])),
-    h('p',{},L(['A fresh price feed does not mean the revenue forecast or investment view was re-approved. Feed timestamps appear below; model versions and view-review dates appear in each case.',
-      '电价源刚更新不代表收入预测或投资观点也已重新审核。下方显示数据获取时间，各市场显示模型版本与观点复核日期。']))));
+  main.append(h('div', { class:'card' }, investmentConventions.map(copy => h('p', {}, L(copy)))));
   sectionHead(main, ['Governance', '治理'],
     ['Who is allowed to change what', '谁有权修改什么']);
   renderGovernance(main);

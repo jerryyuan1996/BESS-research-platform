@@ -235,6 +235,20 @@ export const DATASETS = [
     bearsOn: [], republishable: true, requiresKey: true, official: true,
   },
 
+  // AEMO publishes the five NEM regions together. NSW is the investment reference.
+  ...[
+    ['NSW1', 'New South Wales', '新南威尔士州'], ['QLD1', 'Queensland', '昆士兰州'],
+    ['VIC1', 'Victoria', '维多利亚州'], ['SA1', 'South Australia', '南澳州'], ['TAS1', 'Tasmania', '塔斯马尼亚州'],
+  ].map(([region, en, zh]) => ({
+    id: 'nem-' + region.toLowerCase() + '-prices', kind: 'timeseries', marketId: 'nem', connector: 'aemo-nem',
+    title: [en + ' five-minute dispatch prices', zh + '五分钟调度电价'],
+    source: { name: 'AEMO NEMWEB dispatch reports', url: 'https://www.nemweb.com.au/Reports/ARCHIVE/DispatchIS_Reports/',
+      licence: 'AEMO — reuse with attribution', licenceUrl: 'https://www.aemo.com.au/privacy-and-legal-notices/copyright-permissions',
+      attribution: 'Source: Australian Energy Market Operator, regional reference prices from NEMWEB DISPATCHIS.' },
+    refreshHours: 24 * HOURS, staleAfterHours: 4 * DAYS, requiresKey: false, official: true, republishable: true,
+    bearsOn: region === 'NSW1' ? ['economics.merchGross'] : [],
+  })),
+
   // ---- Western Australia ---------------------------------------------------
   {
     id: 'wa-wem-prices',
