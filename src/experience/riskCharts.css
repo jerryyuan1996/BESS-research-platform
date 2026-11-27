@@ -180,7 +180,7 @@
 	}
 	/* Drawn wider (620 units), so it needs larger units for the same text size. */
 	.ix-cumulative-equity svg text {
-		font-size: 22px;
+		font-size: var(--fs-2xl);
 	}
 }
 /* Downside: one closed fold under the section title, on every market. */
