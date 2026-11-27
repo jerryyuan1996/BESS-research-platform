@@ -14,8 +14,27 @@ import { compareOpportunity, defaultOpportunityStage, beatsConventional } from '
 import {selectedSupplyOptions} from './investment.js';
 import { REVENUE_MECHANISMS, MECHANISM_RESEARCH, revenueMechanismsFor } from './revenue.js';
 import { marketResearchLink } from '../experience/marketResearchLink.js';
+import { EVIDENCE_LABEL } from '../governance/briefing.js';
 
 const session = new Map();
+const EVIDENCE_ORDER = ['thin','fair','strong'];
+const READER_SCENARIO = ['Reader scenario','读者情景'];
+const NETWORK_PARTS = ['networkFlatPerMW','networkDispatchPerMW'];
+const sameValue = (a,b) => Number.isFinite(a) && Number.isFinite(b) && Math.abs(a-b) < 1e-9;
+/** The card's own value for an input, and the evidence behind it. A reader's
+ * avoided-works input is checked against the card's avoided-connection seed. */
+const EVIDENCE_KEY = { avoidedGridPerMW:'avoidedConnectionPerMW' };
+const cardValue = (o,id) => { const k=EVIDENCE_KEY[id]??id; return o.distribution && k in o.distribution ? o.distribution[k] : o[k] ?? 0; };
+const cardEvidence = (o,id) => o.distributionEvidence?.[EVIDENCE_KEY[id]??id]?.level;
+/** One evidence level (Strong, Fair or Thin) while every value is the card's
+ * own; a reader's change makes it a reader scenario. Null when the card records
+ * no evidence for these inputs. */
+function evidenceMark(o, ids, values) {
+  const levels = ids.map(id => cardEvidence(o,id));
+  if (levels.some(level => !EVIDENCE_LABEL[level])) return null;
+  if (!ids.every(id => sameValue(values[id], cardValue(o,id)))) return L(READER_SCENARIO);
+  return L(EVIDENCE_LABEL[levels.sort((a,b)=>EVIDENCE_ORDER.indexOf(a)-EVIDENCE_ORDER.indexOf(b))[0]]);
+}
 const external = (url, label) => h('a', { href:url, target:'_blank', rel:'noopener noreferrer' }, L(label), ' ↗');
 const routeLabel = id => L(strategyById(id)?.n || id);
 const moneyMW = (x,c) => Number.isFinite(x) ? money(x,c) + '/MW' : L(['No supported price','尚不支持出价']);
@@ -148,12 +167,14 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
     ['avoidedGridPerMW',['Special: avoided works budget / MW','特殊：节省的电网工程预算／MW'],0,1e12],
     ['revenueHaircutPct',['Special: at-risk income haircut (%)','特殊：风险收入下调（%）'],0,100],
     ...(o.distribution ? [
-      ['networkPerMW',['Annual network charge (−) or credit (+) / MW','年度配网费用（−）或抵扣（+）／MW'],-200000,200000],
+      ['networkFlatPerMW',['Annual network charge (−) or credit (+), fixed and demand / MW','年度配网费用（−）或抵扣（+），固定及需量部分／MW'],-200000,200000],
+      ['networkDispatchPerMW',['Annual network charge (−) or credit (+), energy-linked / MW','年度配网费用（−）或抵扣（+），随电量变化部分／MW'],-200000,200000],
       ['lossFactor',['Distribution route loss factor','配网路径损耗系数'],.80,1.10],
       ['servicesShare',['Eligible share of service revenue (0–1)','辅助服务收入可计入比例（0–1）'],0,1],
       ['routeFeePct',['Aggregator or retailer fee (%)','聚合商或售电商费率（%）'],0,30],
     ] : []),
   ];
+  const fieldLabels=new Map(definitions.map(([id,label])=>[id,label])), markNodes=new Map();
   for(const [id,label,min,max,step] of definitions){
     const input=h('input',{type:'number',min,max,step:step||'any','aria-label':L(label),
       onchange:e=>{
@@ -161,9 +182,12 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
         if(e.target.value==='')delete state.values[id];else state.values[id]=Number(e.target.value);
         draw();
       }});
-    fieldNodes.set(id,input);form.append(h('label',{},L(label),input));
+    const mark=cardEvidence(o,id)?h('span',{class:'ix-caption ix-input-evidence'}):null;
+    if(mark)markNodes.set(id,mark);
+    fieldNodes.set(id,input);form.append(h('label',{},L(label),input,mark));
   }
-  inputs.append(h('p',{class:'ix-caption'},L(['All money inputs use the underlying cash-flow currency per MW, shown below. Cost uplifts are editable house assumptions. Zero retrofit or avoided works is a scenario input, not a verified zero-cost quote.','所有金额均为下方标明的底层现金流原币／MW。成本上浮是可编辑的平台假设。改造或节省费用为零是情景输入，不代表已核实的零成本报价。'])),form);
+  inputs.append(h('p',{class:'ix-caption'},L(['All money inputs use the underlying cash-flow currency per MW, shown below. Cost uplifts are editable house assumptions. Zero retrofit or avoided works is a scenario input, not a verified zero-cost quote.','所有金额均为下方标明的底层现金流原币／MW。成本上浮是可编辑的平台假设。改造或节省费用为零是情景输入，不代表已核实的零成本报价。'])),
+    o.distribution?h('p',{class:'ix-caption'},L(['Fixed and demand network charges stay flat for the whole life. Energy-linked charges and credits follow throughput, so they fall as the battery degrades.','固定及需量配网费用在整个寿命期内保持不变。随电量变化的费用和抵扣跟随充放电量，因此随电池衰减而下降。'])):null,form);
   const output=h('div',{class:'ix-opportunity-output','aria-live':'polite'});
   const reset=h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>{state.values={};stage.value=defaultOpportunityStage(investor);draw();}},L(['Reset scenario','重置情景']));
   const download=h('button',{type:'button',class:'ix-button ix-outline'},L(['Download assumptions & cash flows','下载假设与现金流']));
@@ -171,28 +195,41 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
   function draw(){
     const c=compareOpportunity(row.market,o,investor,selectedPlay(),state.values);
     output.replaceChildren();
-    if(c.unavailable){output.append(h('p',{class:'ix-model-error',role:'alert'},L(['This combination cannot be priced. Check entry stage, duration, budget and available revenue route.','此组合暂无法定价，请检查进入阶段、时长、预算及收入路径的适用性。'])));download.disabled=true;return;}
+    if(c.unavailable){
+      // The model's own reason, in both languages; an out-of-range input is named by its label.
+      const field=c.field&&fieldLabels.get(c.field);
+      output.append(h('p',{class:'ix-model-error',role:'alert'},L(['This combination cannot be priced. ','此组合暂无法定价。']),
+        field?L(['Check this input: ','请检查此项输入：'])+L(field)+L(['.','。']):L(c.reason??[c.unavailable,c.unavailable])));
+      download.disabled=true;return;
+    }
     download.disabled=false;
     for(const [id,input]of fieldNodes)input.value=c.inputs[id];
+    for(const [id,mark]of markNodes)mark.textContent=evidenceMark(o,[id],c.inputs)??'';
     const a=c.standard,b=c.alternative,currency=c.currency;
     output.append(h('p',{class:'ix-comparison-basis'},L([
       currency+' per MW · nominal after project tax · all cash before COD · '+c.inputs.lifeYears+' operating years · '+pct(c.targetReturn)+' common target',
       currency+'／MW · 税后名义回报 · 投运前全现金 · '+c.inputs.lifeYears+'年运营寿命 · 统一目标'+pct(c.targetReturn)
     ])));
+    if(c.avoidedScenario)output.append(h('p',{class:'ix-basis-note','data-avoided-scenario':''},L(c.avoidedScenario.conventionalConnectionPerMW>0
+      ?['Avoided works are a reader scenario. They exceed the conventional connection line, so the excess is taken from the rest of the build budget.',
+        '节省的电网工程预算为读者情景。该金额超过常规方案单列的接入费用，超出部分从其余建设预算中扣减。']
+      :['Avoided works are a reader scenario. The conventional build budget has no separate connection line, so the saving is taken from the whole budget.',
+        '节省的电网工程预算为读者情景。常规方案的建设预算未单列接入费用，因此该节省从整体建设预算中扣减。'])));
     const rows=[
       [['Revenue route','收入路径'],routeLabel(a.input.strategyId),routeLabel(b.input.strategyId)],
       [['Power / duration','功率／时长'],a.input.powerMW+' MW / '+a.input.durationHours+'h',b.input.powerMW+' MW / '+b.input.durationHours+'h'],
       [['Closing → physical COD','交割→实际COD'],a.codMonths.toFixed(1)+L([' months','个月']),b.codMonths.toFixed(1)+L([' months','个月'])],
       [['Closing → revenue eligibility','交割→收入资格'],a.qualifiedMonths.toFixed(1)+L([' months','个月']),b.qualifiedMonths.toFixed(1)+L([' months','个月'])],
       [['Total purchase price / MW','总收购对价／MW'],money(a.price,currency),money(b.price,currency)],
-      [['Remaining construction / grid / MW','剩余建设与并网／MW'],money(a.assumptions.buildBudget,currency),money(b.assumptions.buildBudget,currency)],
+      [['Remaining construction / grid / MW','剩余建设与并网／MW'],money(a.assumptions.buildBudget,currency),
+        money(b.assumptions.buildBudget,currency)+(c.avoidedScenario?' · '+L(READER_SCENARIO):'')],
       [['First-year operating cost / MW','首年运营成本／MW'],money(a.input.annual[0].opex,currency),money(b.input.annual[0].opex,currency)],
       ...(c.distribution ? [
         [['Network charge or credit, year 1 / MW','首年配网费用或抵扣／MW'],L(['No separate line','未单列']),
-          money(b.input.annual[0].network,currency)+' · '+L(c.distribution.networkPerMW===0
-            ? ['Thin evidence, zero assumption','证据较弱，暂按零计'] : ['Reader scenario','读者情景'])],
+          [money(b.input.annual[0].network,currency),evidenceMark(o,NETWORK_PARTS,c.distribution)].filter(Boolean).join(' · ')],
         [['Loss factor','损耗系数'],String(c.inputs.economicOverrides?.naqFactor ?? row.market.comparison.economics.naqFactor ?? 1),
-          String(c.distribution.lossFactor ?? c.inputs.economicOverrides?.naqFactor ?? row.market.comparison.economics.naqFactor ?? 1)],
+          [String(c.distribution.lossFactor ?? c.inputs.economicOverrides?.naqFactor ?? row.market.comparison.economics.naqFactor ?? 1),
+            c.distribution.lossFactor == null ? null : evidenceMark(o,['lossFactor'],c.distribution)].filter(Boolean).join(' · ')],
       ] : []),
       [['Return at the input price','按输入价格计算的回报'],returnLabel(a.atPrice),returnLabel(b.atPrice)],
       [['Long-hold IRR','长期持有IRR'],returnLabel(a.holdReturn),returnLabel(b.holdReturn)],
@@ -216,13 +253,13 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
       const common={...c.inputs,nodePremiumPerMW:0};
       const neutral={...common,specialMonths:c.standard.codMonths,
         specialQualificationMonths:c.inputs.baselineQualificationMonths,buildPremiumPct:0,opexPremiumPct:0,
-        retrofitPerMW:0,avoidedGridPerMW:0,revenueHaircutPct:0,...(c.distribution ? {networkPerMW:0} : {})};
+        retrofitPerMW:0,avoidedGridPerMW:0,revenueHaircutPct:0,...(c.distribution ? {networkFlatPerMW:0,networkDispatchPerMW:0} : {})};
       const design=compareOpportunity(row.market,o,investor,selectedPlay(),neutral);
       const time=compareOpportunity(row.market,o,investor,selectedPlay(),{...neutral,
         specialMonths:c.inputs.specialMonths,specialQualificationMonths:c.inputs.specialQualificationMonths});
       const beforePrice=compareOpportunity(row.market,o,investor,selectedPlay(),common);
-      const beforeNetwork=c.distribution?.networkPerMW
-        ? compareOpportunity(row.market,o,investor,selectedPlay(),{...common,networkPerMW:0}) : beforePrice;
+      const beforeNetwork=c.distribution && NETWORK_PARTS.some(k=>c.distribution[k])
+        ? compareOpportunity(row.market,o,investor,selectedPlay(),{...common,networkFlatPerMW:0,networkDispatchPerMW:0}) : beforePrice;
       const points=[a.npv,design.alternative?.npv,time.alternative?.npv,beforeNetwork.alternative?.npv];
       const names=[['Design / revenue route','设计／收入路径'],['COD / qualification timing','投运／资格时间'],
         ['Build, operating and other adjustments','建设、运营及其他调整']];

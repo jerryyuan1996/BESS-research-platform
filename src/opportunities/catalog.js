@@ -6,18 +6,20 @@ const opportunity = (id, market, kind, label, months, thesis, conditions, risk, 
   ({ id, market, kind, label, months, thesis, conditions, risk, source, ...extra });
 export const SPECIAL_OPPORTUNITIES = [
   opportunity('nem-sub5', 'nem', 'small', ['Sub-5 MW distribution portfolio', '低于 5 MW 的配网储能组合'], [18,21],
-    ['A portfolio of exempt small batteries can use distribution connections and sell through an aggregator, avoiding the transmission connection queue.', '将符合豁免条件的小型储能组成资产组合，经配网接入并由聚合商交易，可避开输电接入排队。'],
+    ['A portfolio of exempt small batteries can use distribution connections and sell through an aggregator, avoiding the transmission connection queue and registration.', '将符合豁免条件的小型储能组成资产组合，经配网接入并由聚合商交易，可避开输电接入排队和注册。'],
     ['Each system must be under 5 MW nameplate. Verify the distributor’s current storage tariff, an offer covering imports and exports, and an IRP-SRA agreement. The aggregator can sell contingency FCAS only.', '每套系统铭牌功率须低于 5 MW。核实当地储能配网费率、覆盖充放电的接入要约和 IRP-SRA 聚合协议。该路径可参与的调频产品仅限事故备用。'],
     ['Peak-period network charges, a saturated contingency market or a higher build cost per MW can absorb the connection advantage.', '高峰时段配网费用、事故备用市场饱和或每 MW 建设成本偏高，都可能抵消接入优势。'],
     'https://www.aemo.com.au/-/media/files/electricity/nem/participant_information/registration/2024/registration-fact-sheet-nem-small-resource-aggregators.pdf',
     { asOf:SMALL_RESEARCH_DATE, powerMW:4.5, hours:4, route:'mer', siteControlMonths:[18,21], rtbToCodMonths:7.5,
       buildPremiumPct:15, opexPremiumPct:15, avoidedConnectionPerMW:0,
-      distribution:{networkPerMW:0,lossFactor:.95,servicesShare:1,routeFeePct:5},
+      // Signed network line, credit positive: fixed access and demand charges
+      // (flat), and energy-band charges and credits (fall with degradation).
+      distribution:{networkFlatPerMW:0,networkDispatchPerMW:0,lossFactor:.95,servicesShare:1,routeFeePct:5},
       evidence:'thin',
       changesIf:['A published small-site quote or a verified tariff credit for evening exports would change the comparison.',
         '披露的小型储能报价或经核实的晚高峰送电抵扣，可改变测算结果。'],
       distributionEvidence:{
-        networkPerMW:{level:'thin',gate:'G48'}, lossFactor:{level:'thin',gate:'G49'},
+        networkFlatPerMW:{level:'thin',gate:'G48'}, networkDispatchPerMW:{level:'thin',gate:'G48'}, lossFactor:{level:'thin',gate:'G49'},
         servicesShare:{level:'thin',gate:'G50'}, routeFeePct:{level:'thin',gate:'G51'},
         buildPremiumPct:{level:'thin',gate:'G52'}, opexPremiumPct:{level:'thin',gate:'G52'},
         avoidedConnectionPerMW:{level:'thin',gate:'G52'},

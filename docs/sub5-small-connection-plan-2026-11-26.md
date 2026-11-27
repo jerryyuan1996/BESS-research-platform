@@ -705,8 +705,12 @@ Branch `claude/nem-prices-and-tariffs` from `main` after PR 1 merges.
 
 ### After PR 2: one PR per market as its gate closes
 
-- **The NEM network seed (G48).** With the table complete, the card's `networkPerMW` seed moves from
-  0 to the computed value at one reference distributor.
+- **The NEM network seed (G48).** With the table complete, the card's two network seeds move from 0
+  to the computed values at one reference distributor.
+  - Since 26 November 2026 the line has two parts. `networkFlatPerMW` carries the fixed access and
+    demand charges and stays flat. `networkDispatchPerMW` carries the energy-band charges and
+    credits and falls with degradation. The replay reports them as `fixedPerMWYear` plus the demand
+    charge, and `variableNetworkPerMWYear`.
   - This is a single-market seed change, so the PR body carries the arithmetic and your merge is
     the sign-off.
   - If Sub-5 then beats the conventional case, it appears on the home page. The assertion in

@@ -8,7 +8,14 @@ import { referenceInvestment, evaluateInvestment, pricingOptions } from './inves
 const pv = (flows, rate) => flows.reduce((sum, c) => sum + c.amount / (1 + rate) ** c.at, 0);
 const routes = input => input.stage === 'operating' ? ['hold'] : ['hold','sale'];
 const baseReference = (market, stage, options) => referenceInputs(market, stage, options).find(c => c.key === 'base');
-const distributionBounds = { lossFactor:[.80,1.10], servicesShare:[0,1], routeFeePct:[0,30], networkPerMW:[-200000,200000] };
+/* The signed network line comes in two parts. Fixed access and demand charges
+   do not follow throughput, so they stay flat. Energy-band charges and credits
+   follow throughput, so the engine degrades them like the reserve line. */
+const distributionBounds = { lossFactor:[.80,1.10], servicesShare:[0,1], routeFeePct:[0,30],
+  networkFlatPerMW:[-200000,200000], networkDispatchPerMW:[-200000,200000] };
+/** Why a comparison could not be priced, in English and Simplified Chinese.
+ * `unavailable` stays the English text; `field` names an out-of-range input. */
+const fail = (en, zh, field = null) => ({ unavailable:en, reason:[en, zh], ...(field ? { field } : {}) });
 
 function monthsToCod(opportunity, stage, conventionalMonths) {
   if (opportunity.kind === 'award') return conventionalMonths;
@@ -27,13 +34,15 @@ export function defaultOpportunityStage(investor) {
  * is replayed through the existing acquisition engine, not its COD-only IRR.
  * No published market economics or analyst play is mutated. */
 export function compareOpportunity(market, opportunity, investor, play = null, values = {}) {
-  values = { ...opportunity.screeningByInvestor?.[investor], ...values };
+  const reader = values;
+  const screening = opportunity.screeningByInvestor?.[investor];
+  values = { ...screening, ...values };
   const stage = values.stage || defaultOpportunityStage(investor);
   if (!ARCHETYPES[investor]?.entersAt.includes(stage) || stage === 'operating')
-    return { unavailable:'Choose an eligible pre-operation entry stage.' };
-  if (opportunity.market !== market.manifest.id) return { unavailable:'Market mismatch.' };
+    return fail('Choose an eligible pre-operation entry stage.', '请选择符合条件的投运前进入阶段。');
+  if (opportunity.market !== market.manifest.id) return fail('Market mismatch.', '市场不匹配。');
   if (opportunity.kind === 'small' && !(Number.isFinite(opportunity.hours) && opportunity.hours > 0))
-    return { unavailable:'A small route must declare its own duration' };
+    return fail('A small route must declare its own duration', '小型路径须声明自身的储能时长');
   const distribution = opportunity.distribution && Object.fromEntries(
     Object.keys(distributionBounds).filter(key => key in values || key in opportunity.distribution)
       .map(key => [key, values[key] ?? opportunity.distribution[key]]));
@@ -46,24 +55,34 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
   };
   for (const [key, value] of Object.entries({ ...distribution, ...values })) {
     const b = bounds[key];
-    if (b && (!Number.isFinite(value) || value < b[0] || value > b[1])) return { unavailable:'Invalid comparison input: ' + key };
+    if (b && (!Number.isFinite(value) || value < b[0] || value > b[1]))
+      return fail('Invalid comparison input: ' + key, '比较输入无效：' + key, key);
   }
-  if (values.lifeYears != null && !Number.isInteger(values.lifeYears)) return { unavailable:'Operating life must be whole years.' };
+  if (values.lifeYears != null && !Number.isInteger(values.lifeYears))
+    return fail('Operating life must be whole years.', '运营寿命须为整年。');
   const standardCase=referenceInvestment(market,investor,play,{...values,stage});
-  if(!standardCase)return {unavailable:'The conventional design has no eligible financial model.'};
+  if(!standardCase)return fail('The conventional design has no eligible financial model.', '常规设计没有适用的财务模型。');
   const conventionalPlay=standardCase.play,shared=standardCase.options,baseline=standardCase.result;
   const targetReturn=standardCase.target;
-  if (!Number.isFinite(targetReturn)) return { unavailable:'The common target could not be established.' };
+  if (!Number.isFinite(targetReturn)) return fail('The common target could not be established.', '无法确定统一目标回报。');
   const specialRoute = opportunity.route || conventionalPlay.route;
-  if (!supports(market, specialRoute)) return { unavailable:'This special route is not supported by the market model.' };
+  if (!supports(market, specialRoute))
+    return fail('This special route is not supported by the market model.', '该市场模型不支持这条特殊收入路径。');
   const buildPremiumPct = values.buildPremiumPct ?? opportunity.buildPremiumPct ?? 0;
   const opexPremiumPct = values.opexPremiumPct ?? opportunity.opexPremiumPct ?? 0;
   const retrofit = values.retrofitPerMW ?? 0;
-  const avoided = values.avoidedGridPerMW ?? opportunity.avoidedConnectionPerMW ?? 0;
-  const conventionalConnection = shared.economicOverrides?.['capexStack.connectionFeePerMW']
-    ?? market.comparison.economics.capexStack?.connectionFeePerMW ?? 0;
-  if (distribution && avoided > conventionalConnection * baseline.economicInputToCash)
-    return { unavailable:'Avoided works exceed the explicit conventional connection cost.' };
+  const readerAvoided = reader.avoidedGridPerMW;
+  const seedAvoided = screening?.avoidedGridPerMW ?? opportunity.avoidedConnectionPerMW ?? 0;
+  const avoided = readerAvoided ?? seedAvoided;
+  const conventionalConnection = (shared.economicOverrides?.['capexStack.connectionFeePerMW']
+    ?? market.comparison.economics.capexStack?.connectionFeePerMW ?? 0) * baseline.economicInputToCash;
+  /* The card's own avoided-works seed is credited only against an explicit
+     conventional connection cost, or the saving would be counted twice. A
+     reader's value is their scenario and prices against the whole build budget. */
+  if (distribution && readerAvoided == null && seedAvoided > conventionalConnection)
+    return fail('Avoided works exceed the explicit conventional connection cost.', '节省的电网工程超过常规方案单列的接入费用。');
+  const avoidedScenario = distribution && readerAvoided > 0 && readerAvoided > conventionalConnection
+    ? { perMW:readerAvoided, conventionalConnectionPerMW:conventionalConnection } : null;
   const specialMonths = values.specialMonths ?? monthsToCod(opportunity,stage,baseline.assumptions.codYears*12);
   const specialPlay = { ...conventionalPlay, route:specialRoute, hours:opportunity.hours ?? conventionalPlay.hours,
     ...(opportunity.kind === 'small' ? { grantPct:0 } : {}) };
@@ -78,11 +97,12 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     economicOverrides.services = services * distribution.servicesShare;
   }
   const specialOptions={...shared,play:specialPlay,strategyId:specialRoute,economicOverrides,
-    networkNetPerMW:distribution?.networkPerMW,runOptions:pricingOptions(specialMarket,specialPlay)};
+    networkFlatNetPerMW:distribution?.networkFlatPerMW,networkDispatchNetPerMW:distribution?.networkDispatchPerMW,
+    runOptions:pricingOptions(specialMarket,specialPlay)};
   const unmodifiedSpecial=baseReference(specialMarket,stage,specialOptions);
-  if(!unmodifiedSpecial)return {unavailable:'The special design cannot be priced.'};
+  if(!unmodifiedSpecial)return fail('The special design cannot be priced.', '特殊设计无法定价。');
   const budget=unmodifiedSpecial.assumptions.buildBudget*(1+buildPremiumPct/100)+retrofit-avoided;
-  if(!(budget>=0))return {unavailable:'Avoided works exceed the remaining construction budget.'};
+  if(!(budget>=0))return fail('Avoided works exceed the remaining construction budget.', '节省的电网工程超过剩余建设预算。');
   const special = baseReference(specialMarket, stage, {
     ...specialOptions, monthsToOperation:specialMonths,
     remainingBuildPerMW:budget, unfixedConstructionPerMW:0,
@@ -95,7 +115,7 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     unsecuredRevenueFactor:baseline.assumptions.revenueFactor * (1 - (values.revenueHaircutPct ?? 0) / 100),
     ...(opportunity.kind === 'small' ? { capitalSupportPerMW:0, supportCase:'none', usSupply:'chinese' } : {}),
   });
-  if (!special) return { unavailable:'The special design fails the route or duration eligibility checks.' };
+  if (!special) return fail('The special design fails the route or duration eligibility checks.', '特殊设计未通过收入路径或时长的适用性检查。');
   // Preserve development success/delay/failure weights. A smaller project is
   // not silently awarded a higher probability of success.
   special.input.scenarios.forEach((s,i) => { s.probability = baseline.input.scenarios[i].probability; });
@@ -127,6 +147,7 @@ export function compareOpportunity(market, opportunity, investor, play = null, v
     comparable:safePremium != null && premium <= safePremium + 1e-6,
     monthsSaved:standard.qualifiedMonths - alternative.qualifiedMonths,
     ...(distribution ? {distribution} : {}),
+    ...(avoidedScenario ? {avoidedScenario} : {}),
     inputs:{ ...values, ...distribution, stage, baselineMonths:standard.codMonths, specialMonths,
       targetPercent:targetReturn*100, lifeYears:baseline.input.annual.length, purchasePricePerMW:commonPrice,
       nodePremiumPerMW:premium, buildPremiumPct, opexPremiumPct, retrofitPerMW:retrofit,

@@ -18,7 +18,8 @@ export function networkReplay(card) {
     } else selected.append(h('option', { value:t.id }, t.distributor + ' · ' + t.code));
   }
   const output = h('div', { 'aria-live':'polite' });
-  const seed = h('p', { class:'ix-basis-note' }, L(['Network amount used in the investment card','投资卡采用的配网净额']), ' · ', money(card.distribution.networkPerMW));
+  const seedTotal = (card.distribution.networkFlatPerMW ?? 0) + (card.distribution.networkDispatchPerMW ?? 0);
+  const seed = h('p', { class:'ix-basis-note' }, L(['Network amount used in the investment card','投资卡采用的配网净额']), ' · ', money(seedTotal));
   selected.addEventListener('change', async () => {
     const key = selected.value;
     output.replaceChildren();

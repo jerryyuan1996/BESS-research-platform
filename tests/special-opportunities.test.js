@@ -158,34 +158,46 @@ test('neutral distribution inputs reproduce the original special cash flows exac
   assert.equal((100*neutral.alternative.holdReturn.annualReturn).toFixed(2),'5.75');
 });
 
-test('signed network cash is outside fees, income haircuts and operating cost uplifts and enters tax once',()=>{
+test('each signed network part is outside fees, income haircuts and operating cost uplifts and enters tax once',()=>{
   const tax = side => side.annual.reduce((sum,year)=>sum+year.tax,0);
+  // Fixed access and demand charges stay flat; energy-band charges and credits
+  // fall with degradation, exactly like the reserve line beside them.
+  const fade = year => (1-(byId('nem').comparison.economics.degr||2)/100)**year;
+  const parts = { networkFlatPerMW:() => 1, networkDispatchPerMW:fade };
   for (const inputs of [{}, {revenueHaircutPct:30,opexPremiumPct:70,routeFeePct:20}]) {
     const zero=priceNem(inputs);
-    for (const network of [-20000,50000]) {
-      const run=priceNem({...inputs,networkPerMW:network});
+    for (const [part,shape] of Object.entries(parts)) for (const network of [-20000,50000]) {
+      const run=priceNem({...inputs,[part]:network});
       assert.deepEqual(run.standard.input.annual,zero.standard.input.annual);
-      assert.ok((run.alternative.npv-zero.alternative.npv)*network>0);
-      assert.ok((tax(run.alternative)-tax(zero.alternative))*network>0);
+      assert.ok((run.alternative.npv-zero.alternative.npv)*network>0,part);
+      assert.ok((tax(run.alternative)-tax(zero.alternative))*network>0,part);
       run.alternative.input.annual.forEach((year,i)=>{
         const base=zero.alternative.input.annual[i];
-        close(year.network,network);
-        close(year.merchant-base.merchant,network);
+        close(year.network,network*shape(i));
+        close(year.merchant-base.merchant,year.network);
         close(year.opex,base.opex);
         close(run.alternative.annual[i].merchant-zero.alternative.annual[i].merchant,run.alternative.annual[i].network);
       });
     }
+    const both=priceNem({...inputs,networkFlatPerMW:-6000,networkDispatchPerMW:-300});
+    both.alternative.input.annual.forEach((year,i)=>close(year.network,-6000-300*fade(i)));
   }
-  const lag=priceNem({networkPerMW:20000,specialQualificationMonths:6});
-  const zero=priceNem({specialQualificationMonths:6});
-  close(lag.alternative.annual[0].merchant-zero.alternative.annual[0].merchant,lag.alternative.annual[0].network);
+  const dispatch=priceNem({networkDispatchPerMW:20000}).alternative.input.annual;
+  assert.ok(dispatch.at(-1).network<dispatch[0].network,'only the dispatch part degrades');
+  const flat=priceNem({networkFlatPerMW:20000}).alternative.input.annual;
+  assert.ok(flat.every(year=>Math.abs(year.network-20000)<1e-6),'the flat part stays flat');
+  for (const part of Object.keys(parts)) {
+    const lag=priceNem({[part]:20000,specialQualificationMonths:6});
+    const zero=priceNem({specialQualificationMonths:6});
+    close(lag.alternative.annual[0].merchant-zero.alternative.annual[0].merchant,lag.alternative.annual[0].network);
+  }
   const policy={rate:.3,depreciationYears:10,basisPerMW:0,groupRelief:true};
   const sample={cashFlowBasis:'nominal',taxPolicy:policy,annual:[{secured:0,renewal:0,merchant:120,network:20,opex:0,capex:0,tax:0}]};
   const scenario={codYears:0};
   close(taxSchedule(sample,nominalAnnual(sample,scenario),scenario,0).annual[0].tax,36);
 });
 
-test('route-specific economics affect only the small project and reject invalid inputs and unsupported avoided works',()=>{
+test('route-specific economics affect only the small project and reject invalid inputs and an unsupported avoided-works seed',()=>{
   const base=priceNem();
   for(const values of [{lossFactor:.85},{servicesShare:0},{routeFeePct:20}]){
     const run=priceNem(values);
@@ -193,14 +205,57 @@ test('route-specific economics affect only the small project and reject invalid 
     assert.deepEqual(run.standard.input.annual,base.standard.input.annual);
   }
   for (const [field,low,high] of [['lossFactor',.79,1.11],['servicesShare',-.01,1.01],
-    ['routeFeePct',-1,31],['networkPerMW',-200001,200001]]) {
+    ['routeFeePct',-1,31],['networkFlatPerMW',-200001,200001],['networkDispatchPerMW',-200001,200001]]) {
     for (const value of [low,high,NaN]) {
       assert.match(priceNem({[field]:value}).unavailable,/Invalid comparison input/);
+      assert.equal(priceNem({[field]:value}).field,field);
       const badCard={...nemSmall,distribution:{...nemSmall.distribution,[field]:value}};
       assert.match(priceNem({},badCard).unavailable,/Invalid comparison input/);
     }
   }
-  assert.match(priceNem({avoidedGridPerMW:1}).unavailable,/explicit conventional connection cost/);
+  // The card's own seed is credited only against an explicit conventional
+  // connection cost, and NEM's conventional costs carry none.
+  const seeded=priceNem({},{...nemSmall,avoidedConnectionPerMW:1});
+  assert.match(seeded.unavailable,/explicit conventional connection cost/);
+  assert.equal(seeded.reason.length,2);
+  // Deliberate change: a reader's avoided-works value is their scenario and
+  // prices against the whole build budget, as it did before the network line.
+  const reader=priceNem({avoidedGridPerMW:50000});
+  assert.ok(!reader.unavailable,reader.unavailable);
+  close(reader.alternative.assumptions.buildBudget,base.alternative.assumptions.buildBudget-50000,1e-6);
+  assert.ok(reader.alternative.npv>base.alternative.npv);
+  assert.deepEqual(reader.standard.input.annual,base.standard.input.annual);
+  close(reader.standard.npv,base.standard.npv);
+  assert.deepEqual(reader.avoidedScenario,{perMW:50000,conventionalConnectionPerMW:0});
+  assert.equal(base.avoidedScenario,undefined);
+  assert.equal(priceNem({avoidedGridPerMW:0}).avoidedScenario,undefined);
+  assert.match(priceNem({avoidedGridPerMW:1e11}).unavailable,/remaining construction budget/);
+});
+
+test('every reason a comparison cannot be priced is given in English and Chinese',()=>{
+  const {hours,...missing}=nemSmall;
+  const cases=[
+    priceNem({stage:'operating'}), priceNem({},missing), priceNem({lifeYears:20.5}),
+    priceNem({routeFeePct:99}), priceNem({avoidedGridPerMW:1e11}),
+    priceNem({},{...nemSmall,avoidedConnectionPerMW:1}),
+    compareOpportunity(byId('de'),nemSmall,'infraFund'),
+  ];
+  for(const c of cases){
+    assert.ok(c.unavailable);
+    assert.equal(c.reason.length,2);
+    assert.equal(c.reason[0],c.unavailable);
+    assert.ok(c.reason[1].length>0 && /[一-鿿]/.test(c.reason[1]),c.reason[1]);
+  }
+});
+
+test('the Sub-5 thesis names both things the route avoids, in both languages',()=>{
+  const [en,zh]=nemSmall.thesis;
+  assert.match(en,/transmission connection queue and registration/);
+  assert.match(zh,/输电接入排队和注册/);
+  // Evidence is recorded for each network part, never shown as a gate code.
+  for(const key of ['networkFlatPerMW','networkDispatchPerMW'])
+    assert.equal(nemSmall.distributionEvidence[key].level,'thin');
+  assert.deepEqual([nemSmall.distribution.networkFlatPerMW,nemSmall.distribution.networkDispatchPerMW],[0,0]);
 });
 
 test('small-route timing follows entry stage and each design declares a duration',()=>{
