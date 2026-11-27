@@ -16,6 +16,15 @@ async function visit(page,slug,locale='en'){
   await expect(page.locator('.market-overview-map')).toHaveAttribute('aria-busy','false');
 }
 const disclosure=(scope,chapter,slot)=>scope.locator(`.ix-research-context[data-research-chapter="${chapter}"]`+(slot?`[data-research-slot=${slot}]`:':not([data-research-slot])'));
+/* A reader reaches research the way the page offers it: by first opening
+   whatever closed section holds it, outermost first. The downside chapter is
+   one such fold, closed until the reader asks for it, and its research sits at
+   the end of it; a mechanism explainer works the same way. */
+async function reveal(panel){
+  const closed=panel.locator('xpath=ancestor::details[not(@open)]');
+  for(let depth=await closed.count();depth>0;depth--)await closed.first().locator(':scope > summary').click();
+  await expect(closed).toHaveCount(0);
+}
 
 test('every chapter of the NEM page carries its research, closed, and opening one fetches only what it shows',async({page})=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -78,6 +87,8 @@ test('Japan shows each area its own research, in Chinese as in English',async({p
   await expect(page.locator('.public-core-storyline')).toHaveAttribute('data-storyline-market','jp_kyushu');
   const downside=disclosure(page,'downside');
   await expect(downside.locator('summary').first()).toHaveText('本节背后的研究');
+  await expect(page.locator('.ix-downside-fold')).not.toHaveAttribute('open','');
+  await reveal(downside);
   await downside.locator('summary').first().click();
   const body=downside.locator('.ix-research-context-body');
   await expect(body).toHaveAttribute('aria-busy','false');
@@ -141,10 +152,10 @@ for (const [owner, slug] of ROLLOUT) for (const locale of ['en','zh']){
     }
     const surfaced=new Set();
     expect(await panels.evaluateAll(nodes => nodes.some(node => node.open))).toBe(false);
+    /* The downside case stays folded on arrival, research and all. */
+    expect(await page.locator('main .ix-downside-fold').evaluateAll(nodes => nodes.some(node => node.open))).toBe(false);
     for (const panel of await panels.all()){
-      const mechanism=panel.locator('xpath=ancestor::details[contains(@class,"ix-mechanism")]');
-      if (await mechanism.count() && !await mechanism.evaluate(node => node.open))
-        await mechanism.locator(':scope > summary').click();
+      await reveal(panel);
       await panel.locator(':scope > summary').click();
       const body=panel.locator('.ix-research-context-body');
       await expect(body).toHaveAttribute('aria-busy','false');
