@@ -58,7 +58,8 @@ test('execution with one or two plans and with or without later cash never print
     const comparison={standard:r,stage:'ready-to-build',...(plans===2?{alternative:r}:{})};
     const before=JSON.stringify(comparison),panel=executionTimelines(comparison,row,'infraFund');
     assert.doesNotMatch(panel.textContent,/\bnull\b|undefined|NaN/);
-    assert.equal(descendants(panel).filter(n=>n.className==='ix-plan-switch').length,plans===2?1:0);
+    assert.equal(descendants(panel).filter(n=>n.className==='ix-timetable').length,plans===2?1:0);
+    assert.equal(descendants(panel).filter(n=>n.className==='ix-key-dates').length,plans===2?0:1);
     assert.equal(descendants(panel).filter(n=>n.className==='ix-details ix-later-cash').length,laterCash?1:0);
     assert.equal(JSON.stringify(comparison),before,'rendering preserves cash-flow inputs');
   }

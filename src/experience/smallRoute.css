@@ -1,0 +1,69 @@
+/* The small-connection route on a market page.
+   Markup: src/opportunities/smallRoute.js. */
+.ix-small-route .ix-section-heading h2 { max-width: 760px; }
+.ix-small-card { padding: 24px 28px; border: 1px solid var(--ix-line); border-radius: var(--r-md); background: var(--ix-panel); min-width: 0; }
+.ix-small-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.ix-small-head h3 { margin: 0; font-size: var(--fs-lg); line-height: 1.35; color: var(--ix-ink); }
+.ix-small-evidence { padding: 3px 10px; border-radius: var(--r-pill); background: #f4e6dc; color: #9a442b; font-size: var(--fs-2xs); font-weight: var(--fw-medium); white-space: nowrap; }
+.ix-small-evidence.is-fair { background: #f3ecd9; color: #785f2b; }
+.ix-small-evidence.is-strong { background: #e1ecd8; color: #2b6250; }
+
+.ix-small-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 32px; align-items: center; margin-top: 20px; }
+
+/* Return bars: the small route against the conventional play and the target. */
+.ix-return-bars { --name: 150px; --gap: 14px; margin: 0; min-width: 0; }
+.ix-return-bars figcaption { margin-bottom: 30px; font-size: var(--fs-2xs); color: var(--ix-muted); }
+.ix-return-plot { position: relative; display: flex; flex-direction: column; gap: 14px; }
+.ix-return-guides { position: absolute; top: -24px; bottom: -6px; left: calc(var(--name) + var(--gap)); right: 64px; pointer-events: none; }
+.ix-return-zero { position: absolute; top: 20px; bottom: 0; border-left: 1px solid #9aa79c; }
+.ix-return-target { position: absolute; top: 0; bottom: 0; border-left: 2px dashed var(--ix-gold); }
+.ix-return-target em { position: absolute; top: 0; left: 6px; padding: 1px 7px; border-radius: var(--r-xs); background: #f6efe1; color: #6f5221; font-style: normal; font-size: var(--fs-micro); font-weight: var(--fw-medium); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ix-return-target.is-right em { left: auto; right: 6px; }
+.ix-return-row { display: grid; grid-template-columns: var(--name) minmax(0, 1fr); align-items: center; gap: var(--gap); }
+.ix-return-name { font-size: var(--fs-xs); line-height: 1.35; color: var(--ix-ink); }
+.ix-return-row.is-small .ix-return-name { font-weight: var(--fw-medium); }
+.ix-return-track { position: relative; height: 26px; margin-right: 64px; }
+.ix-return-bar { position: absolute; top: 3px; height: 20px; border-radius: var(--r-xs); background: #9fb5a6; }
+.ix-return-row.is-small .ix-return-bar { background: var(--ix-green); }
+.ix-return-value { position: absolute; top: 3px; padding-left: 8px; font-size: var(--fs-sm); font-weight: var(--fw-medium); line-height: 20px; color: var(--ix-ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ix-return-value.is-negative { color: var(--ix-risk); }
+.ix-return-value.is-none { color: var(--ix-muted); font-weight: var(--fw-normal); font-style: italic; }
+
+/* Facts: timing, design and the break-even build cost. */
+.ix-small-facts { margin: 0; }
+.ix-small-facts > div { padding: 12px 0; border-top: 1px solid var(--ix-line); }
+.ix-small-facts > div:first-child { padding-top: 0; border-top: 0; }
+.ix-small-facts dt { font-size: var(--fs-2xs); color: var(--ix-muted); }
+.ix-small-facts dd { margin: 3px 0 0; font-size: var(--fs-lg); font-weight: var(--fw-medium); color: var(--ix-ink); font-variant-numeric: tabular-nums; }
+.ix-small-facts small { display: block; margin-top: 3px; font-size: var(--fs-2xs); line-height: 1.5; color: var(--ix-body); }
+.ix-small-facts [data-break-even='pending'] dd { color: var(--ix-muted); font-weight: var(--fw-normal); }
+
+/* What it avoids, what would change it. */
+.ix-small-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 32px; margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--ix-line); }
+.ix-small-card.is-research .ix-small-points { margin-top: 16px; }
+.ix-small-points.is-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ix-small-points dt { margin-bottom: 6px; font-size: var(--fs-micro); font-weight: var(--fw-medium); letter-spacing: .6px; text-transform: uppercase; color: var(--ix-green); }
+.ix-small-points dd { margin: 0; font-size: var(--fs-xs); line-height: 1.7; color: var(--ix-body); }
+.ix-small-card .ix-small-none { margin: 0; max-width: 820px; font-size: var(--fs-sm); line-height: 1.7; color: var(--ix-body); }
+.ix-small-card .ix-small-foot { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 18px 0 0; font-size: var(--fs-xs); }
+.ix-small-foot a { color: var(--ix-green); text-underline-offset: 3px; }
+.ix-small-foot .ix-small-jump { font-weight: var(--fw-medium); }
+.ix-small-workbench { margin-top: 16px; }
+.ix-opportunity-comparison.is-embedded { padding: 0; }
+.ix-opportunity-comparison.is-embedded .ix-opportunity-controls { margin-top: 12px; }
+
+@media (max-width: 900px) {
+	.ix-small-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+	.ix-small-points, .ix-small-points.is-three { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+	.ix-small-card { padding: 18px 14px; }
+	.ix-return-bars { --name: 96px; --gap: 10px; }
+	.ix-return-guides { right: 52px; }
+	.ix-return-track { margin-right: 52px; }
+	.ix-return-value { font-size: var(--fs-xs); }
+}
+@media print {
+	.ix-small-card { break-inside: avoid; }
+	.ix-small-workbench { display: none; }
+}

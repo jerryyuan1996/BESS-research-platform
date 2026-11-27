@@ -13,6 +13,7 @@ import { SPECIAL_OPPORTUNITIES, SCOUT_OPPORTUNITIES, opportunitiesFor, opportuni
 import { compareOpportunity, defaultOpportunityStage, beatsConventional } from './model.js';
 import {selectedSupplyOptions} from './investment.js';
 import { REVENUE_MECHANISMS, MECHANISM_RESEARCH, revenueMechanismsFor } from './revenue.js';
+import { smallRouteSection } from './smallRoute.js';
 import { marketResearchLink } from '../experience/marketResearchLink.js';
 import { EVIDENCE_LABEL } from '../governance/briefing.js';
 
@@ -96,21 +97,34 @@ function mechanismCard(id, route, index = null, behind = null) {
 /* A special opportunity is valid when, at the default inputs, its all-equity
    IRR beats the conventional play's in the same market. */
 const isValid = beatsConventional;
-/** The valid special opportunities for this market and investor, and the
- * conventional case on its own for the delivery timeline when none is valid. */
+/** The valid special opportunities for this market and investor, the
+ * conventional case on its own for the delivery timeline, and the market's
+ * priced small-connection route whether or not it beats the conventional play. */
 export function specialOpportunityScreen(row, investor) {
-  const screened = opportunitiesFor(row.id).map(o => ({ o, c: compareOpportunity(row.market, o, investor, row.play, selectedSupplyOptions(row)) }));
+  const values = selectedSupplyOptions(row);
+  const screened = opportunitiesFor(row.id).map(o => ({ o, c: compareOpportunity(row.market, o, investor, row.play, values) }));
   const priced = screened.find(x => !x.c.unavailable)?.c;
-  return { valid: screened.filter(x => isValid(x.c)).map(x => x.o),
-    conventional: priced ? { standard: priced.standard, stage: priced.stage } : null };
+  const small = screened.find(x => x.o.kind === 'small' && !x.c.unavailable);
+  return { values, valid: screened.filter(x => isValid(x.c)).map(x => x.o),
+    conventional: priced ? { standard: priced.standard, stage: priced.stage } : null,
+    small: small ? { o: small.o, c: small.c, valid: isValid(small.c) } : null };
+}
+
+/** The small-connection route section, with the like-for-like workbench
+ * folded inside it until the reader opens it. */
+export function smallRoutePanel(row, investor, screen) {
+  return smallRouteSection(row, investor, screen,
+    { workbench: o => opportunityComparison(row, investor, { only:[o], embedded:true }) });
 }
 
 /** This same workbench is mounted in the overview and the Investment Lab.
  * Input state is session-local; deal prices are not sent to a service or URL. */
-export function opportunityComparison(row, investor, {compact=false,only=null}={}) {
+export function opportunityComparison(row, investor, {compact=false,only=null,embedded=false}={}) {
   const available = opportunitiesFor(row.id).filter(o => !only || only.some(v => v.id === o.id));
   if (!available.length) return null;
-  const key=[row.id,investor,row.play?.id||'base',row.investment?.usSupply||''].join('/');
+  /* Embedded in the small-route section, the workbench drops its own title and
+     thesis (the section carries them) and keeps a separate session state. */
+  const key=[row.id,investor,row.play?.id||'base',row.investment?.usSupply||'',embedded?'small':''].join('/');
   const requested = new URLSearchParams(window.location.search).get('opportunity');
   if (!session.has(key)) session.set(key,{id:available.find(o=>o.id===requested)?.id||available[0].id,values:selectedSupplyOptions(row)});
   const state=session.get(key);
@@ -118,8 +132,8 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
   const o = opportunityById(state.id);
   const asOf = o.asOf ?? RESEARCH_DATE;
   const siteMonths = (o.siteControlMonths ?? o.months).join('–');
-  const section = h('section',{class:'ix-section ix-opportunity-comparison',id:'opportunity-comparison'},
-    sectionTitle(['LIKE-FOR-LIKE UNDERWRITING','同口径投资测算'],['Conventional play or special opportunity?','常规play，还是特殊机会？'],
+  const section = h('section',{class:'ix-section ix-opportunity-comparison'+(embedded?' is-embedded':''),id:embedded?'small-route-comparison':'opportunity-comparison'},
+    embedded ? null : sectionTitle(['LIKE-FOR-LIKE UNDERWRITING','同口径投资测算'],['Conventional play or special opportunity?','常规play，还是特殊机会？'],
       ['Compare value from the same closing date. Both cases use the existing acquisition engine.','从同一交割日比较价值，两边均采用现有收购估值引擎。']));
   const controls=h('div',{class:'ix-opportunity-controls'});
   const stage=h('select',{'aria-label':L(['Comparison entry stage','比较进入阶段']),onchange:e=>{state.values.stage=e.target.value;draw();}});
@@ -134,9 +148,10 @@ export function opportunityComparison(row, investor, {compact=false,only=null}={
     select.value=selectedPlay()?.id||plays[0].id;
     controls.append(h('label',{},L(['Conventional play','常规play']),select));
   }
-  section.append(controls,h('div',{class:'ix-opportunity-thesis'},h('h3',{},L(o.label)),h('p',{},L(o.thesis)),
-    h('p',{},h('strong',{},L(['Conditions: ','适用条件：'])),L(o.conditions)),
-    h('p',{},h('strong',{},L(['What can erase the advantage: ','可能抵消优势的因素：'])),L(o.risk)),
+  const conditions=[h('p',{},h('strong',{},L(['Conditions: ','适用条件：'])),L(o.conditions)),
+    h('p',{},h('strong',{},L(['What can erase the advantage: ','可能抵消优势的因素：'])),L(o.risk))];
+  section.append(controls,embedded?h('div',{class:'ix-opportunity-thesis'},...conditions):h('div',{class:'ix-opportunity-thesis'},h('h3',{},L(o.label)),h('p',{},L(o.thesis)),
+    ...conditions,
     o.changesIf ? h('p',{},h('strong',{},L(['Thin evidence. ','证据较弱。'])),L(o.changesIf)) : null,
     h('p',{class:'ix-caption'},external(o.source,['Rule / operator source','规则／运营商来源']),
       ...(o.relatedSources ?? []).flatMap(s=>[' · ',external(s.url,s.label)]),' · '+asOf,' · ',

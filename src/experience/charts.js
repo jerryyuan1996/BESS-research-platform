@@ -274,7 +274,7 @@ export function cashFlowChart(t) {
 				h('dd', {}, data.payback ? year(data.payback.at) : L(['Not reached within the model life', '模型期内未回本'])),
 			),
 		),
-		linePlot(title, desc, points, (v) => money(v, t.currency).replace(t.currency + ' ', ''), { step: true, marks }),
+		linePlot(title, desc, points, (v) => money(v, t.currency).replace(t.currency + ' ', ''), { step: true, marks, width: 620 }),
 		h('p', { class: 'ix-caption' }, t.currency + ' · ' + L(['Whole project · years from closing', '全项目 · 自交割起的年数'])),
 		seriesInspector(
 			points,

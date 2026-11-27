@@ -170,3 +170,34 @@ export function beatsConventional(c) {
   const r = opportunityIRRs(c);
   return !!r && r.special != null && r.conventional != null && r.special > r.conventional + 1e-4;
 }
+
+/** The build-cost change (% per MW against the conventional design) at which
+ * the special route's all-equity hold IRR equals the conventional play's, with
+ * every other input as given. A monotone search on the same paired comparison:
+ * a higher build cost never raises the IRR. Null when either IRR is undefined
+ * at the current inputs, or no change within the input bounds closes the gap. */
+export function breakEvenBuildPremium(market, opportunity, investor, play = null, values = {}) {
+  const current = values.buildPremiumPct ?? opportunity.buildPremiumPct ?? 0;
+  const gap = pct => {
+    const r = opportunityIRRs(compareOpportunity(market, opportunity, investor, play, { ...values, buildPremiumPct:pct }));
+    return r && r.special != null && r.conventional != null ? r.special - r.conventional : null;
+  };
+  const now = gap(current);
+  if (now == null) return null;
+  if (Math.abs(now) < 1e-6) return { pct:current, current };
+  /* Step away from the current premium until the gap changes sign. */
+  const direction = now < 0 ? -1 : 1, limit = direction < 0 ? -95 : 300;
+  let inside = current, outside = null;
+  for (let pct = current + direction * 20; direction < 0 ? pct >= limit - 20 : pct <= limit + 20; pct += direction * 20) {
+    const p = direction < 0 ? Math.max(limit, pct) : Math.min(limit, pct), g = gap(p);
+    if (g != null && Math.sign(g) !== Math.sign(now)) { outside = p; break; }
+    if (g != null) inside = p;
+    if (p === limit) break;
+  }
+  if (outside == null) return null;
+  for (let i = 0; i < 14; i++) {
+    const mid = (inside + outside) / 2, g = gap(mid);
+    if (g != null && Math.sign(g) === Math.sign(now)) inside = mid; else outside = mid;
+  }
+  return { pct:(inside + outside) / 2, current };
+}

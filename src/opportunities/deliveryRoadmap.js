@@ -174,6 +174,126 @@ export function deliveryRoadmap(t, plan = 'standard') {
 	);
 }
 
+/** Every plan on one month axis from closing: build to COD, any wait for
+ * revenue eligibility, then the first operating year to its cash settlement.
+ * The first plan is the conventional play; the others show their COD gap
+ * against it. Each lane's label is the button that opens that plan's roadmap
+ * and steps below. `plans` is [{ id, label, design, t }] with t from
+ * deliveryTimeline(). */
+export function timetableComparison(plans, selected, onSelect) {
+	const lanes = plans.map((p) => ({ ...p, end: deliveryPhases(p.t).end }));
+	const end = Math.max(...lanes.map((l) => l.end), 1);
+	const at = (month) => Math.max(0, Math.min(100, (month / end) * 100));
+	const edge = (pct) => (pct > 86 ? ' is-right' : pct < 8 ? ' is-left' : '');
+	const base = lanes[0];
+	const waits = lanes.some((l) => l.t.qualifiedMonths - l.t.codMonths > 0.05);
+	const shift = (lane) => {
+		if (lane === base) return null;
+		const d = base.t.codMonths - lane.t.codMonths,
+			m = n(Math.abs(d));
+		if (Math.abs(d) < 0.05) return h('span', { class: 'ix-timetable-delta' }, L(['Same COD', '投运时间相同']));
+		return h(
+			'span',
+			{ class: 'ix-timetable-delta ' + (d > 0 ? 'is-sooner' : 'is-later') },
+			L(d > 0 ? ['COD ' + m + ' months sooner', '提前 ' + m + ' 个月投运'] : ['COD ' + m + ' months later', '推迟 ' + m + ' 个月投运']),
+		);
+	};
+	const segment = (kind, from, to) =>
+		to - from > 0.05 ? h('span', { class: 'ix-timetable-seg is-' + kind, style: `left:${at(from)}%;width:${at(to) - at(from)}%` }) : null;
+	return h(
+		'figure',
+		{ class: 'ix-timetable' },
+		h(
+			'figcaption',
+			{ class: 'ix-timetable-caption' },
+			h('h3', {}, L(['Timetable against the conventional play', '与常规方案的时间表对比'])),
+			h(
+				'p',
+				{ class: 'ix-caption' },
+				L([
+					'Months from the same closing date. Choose a plan to open its roadmap and steps below.',
+					'自同一交割日起的月数。选择一个方案，查看下方的路线图和步骤。',
+				]),
+			),
+		),
+		h(
+			'div',
+			{ class: 'ix-timetable-chart' },
+			h(
+				'div',
+				{ class: 'ix-timetable-row is-axis', 'aria-hidden': 'true' },
+				h('span'),
+				h(
+					'div',
+					{ class: 'ix-timetable-ticks' },
+					ticks(end).map((m) => h('span', { class: 'ix-roadmap-tick' + edge(at(m)), style: `left:${at(m)}%` }, m ? time(m) : 'T+0')),
+				),
+			),
+			h(
+				'div',
+				{ class: 'ix-timetable-body', role: 'group', 'aria-label': L(['Execution plan', '执行方案']) },
+				h(
+					'div',
+					{ class: 'ix-timetable-grid', 'aria-hidden': 'true' },
+					ticks(end).map((m) => h('span', { class: 'ix-roadmap-gridline', style: `left:${at(m)}%` })),
+					lanes.length > 1 ? h('span', { class: 'ix-timetable-ref', style: `left:${at(base.t.codMonths)}%` }) : null,
+				),
+				lanes.map((lane) => {
+					const t = lane.t,
+						cod = t.codMonths,
+						paid = Math.max(cod, t.qualifiedMonths);
+					return h(
+						'div',
+						{ class: 'ix-timetable-row', 'data-plan': lane.id },
+						h(
+							'button',
+							{
+								type: 'button',
+								class: 'ix-timetable-plan',
+								'data-plan': lane.id,
+								'aria-pressed': String(lane.id === selected),
+								onclick: () => onSelect(lane.id),
+							},
+							h('strong', {}, L(lane.label)),
+							lane.design ? h('small', {}, lane.design) : null,
+							shift(lane),
+							h(
+								'span',
+								{ class: 'sr-only' },
+								L(['COD ', '投运 ']) + time(cod) + ' · ' + L(['first annual cash ', '首笔年度现金 ']) + time(lane.end),
+							),
+						),
+						h(
+							'div',
+							{ class: 'ix-timetable-track', 'aria-hidden': 'true' },
+							h('span', { class: 'ix-timetable-rail' }),
+							segment('build', 0, cod),
+							segment('wait', cod, t.qualifiedMonths),
+							segment('operate', paid, lane.end),
+							h('span', { class: 'ix-timetable-cod', style: `left:clamp(7px,${at(cod)}%,calc(100% - 7px))` }),
+							h('span', { class: 'ix-timetable-cash', style: `left:clamp(8px,${at(lane.end)}%,calc(100% - 8px))` }),
+							h('span', { class: 'ix-timetable-label is-cod' + edge(at(cod)), style: `left:${at(cod)}%` }, 'COD · ' + time(cod)),
+							h(
+								'span',
+								{ class: 'ix-timetable-label is-cash' + edge(at(lane.end)), style: `left:${at(lane.end)}%` },
+								L(['First annual cash · ', '首笔年度现金 · ']) + time(lane.end),
+							),
+						),
+					);
+				}),
+			),
+		),
+		h(
+			'p',
+			{ class: 'ix-timetable-legend', 'aria-hidden': 'true' },
+			h('span', { class: 'is-build' }, L(['Build to COD', '建设至投运'])),
+			waits ? h('span', { class: 'is-wait' }, L(['Waiting for revenue eligibility', '等待收入资格'])) : null,
+			h('span', { class: 'is-operate' }, L(['First operating year', '首个运营年度'])),
+			lanes.length > 1 ? h('span', { class: 'is-ref' }, L(['Conventional COD', '常规方案投运'])) : null,
+		),
+	);
+}
+
 /** One card per step: when, what to deliver, who owns it, and its cash. */
 export function deliverySteps(t) {
 	const { steps } = deliveryPhases(t);
