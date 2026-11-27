@@ -42,17 +42,17 @@ export function deliveryTimeline(reference, investor, marketId, options={}){
   }));
   const checks=local[marketId];
   const milestones=[
-    {month:0,kind:'delivery',title:T_ZERO,owner:['Investor + legal','投资者＋法律顾问'],
+    {month:0,kind:'delivery',phase:['Close & mobilise','交割与启动'],title:T_ZERO,owner:['Investor + legal','投资者＋法律顾问'],
       output:input.stage==='greenfield'?['Secure the site and connection-application route; fund permitting, studies and the later build.','锁定场址和接入申请路径，落实许可、研究及后续建设资金。']:
         ['Transfer site, connection and revenue-contract rights; verify the RTB conditions and funding budget.','交割土地、并网及收入合同权利，核实RTB条件与资金预算。']},
-    {month:Math.min(1,cod*.1),kind:'delivery',title:['Design and procurement release','设计冻结与设备采购'],owner:['EPC + technical adviser','EPC＋技术顾问'],
+    {month:Math.min(1,cod*.1),kind:'delivery',phase:['Design & procurement','设计与采购'],title:['Design and procurement release','设计冻结与设备采购'],owner:['EPC + technical adviser','EPC＋技术顾问'],
       output:['Approve single-line design, usable energy, warranty, grid envelope and purchase orders.','确认一次系统、可用电量、质保、并网运行边界及采购订单。']},
-    {month:cod*.25,kind:'delivery',title:['Civil works and network coordination','土建开工与电网协同'],owner:['EPC + grid operator','EPC＋电网公司'],output:checks[0]},
-    {month:cod*.75,kind:'delivery',title:['Install and test the complete plant','设备安装与整站测试'],owner:['EPC + OEM + grid operator','EPC＋设备商＋电网公司'],
+    {month:cod*.25,kind:'delivery',phase:['Civil works & grid','土建与电网'],title:['Civil works and network coordination','土建开工与电网协同'],owner:['EPC + grid operator','EPC＋电网公司'],output:checks[0]},
+    {month:cod*.75,kind:'delivery',phase:['Install & test','安装与测试'],title:['Install and test the complete plant','设备安装与整站测试'],owner:['EPC + OEM + grid operator','EPC＋设备商＋电网公司'],
       output:['Complete civil/electrical works, protection, metering, communications and energisation readiness.','完成土建与电气工程、保护、计量、通信及送电准备。']},
-    {month:cod,kind:'delivery',title:['Physical COD / commissioning acceptance','实际COD／调试验收'],owner:['Grid operator + owner','电网公司＋业主'],
+    {month:cod,kind:'delivery',phase:['Commission & qualify','调试与资格认定'],title:['Physical COD / commissioning acceptance','实际COD／调试验收'],owner:['Grid operator + owner','电网公司＋业主'],
       output:['Record the accepted export/import envelope and hand over operating responsibilities.','记录获准充放电运行边界，移交运营责任。']},
-    {month:qualified,kind:'delivery',title:['Revenue eligibility achieved','取得收入资格'],owner:['Operator + market / offtaker','运营商＋市场／承购方'],output:checks[1]},
+    {month:qualified,kind:'delivery',phase:['Operate to first annual cash','运营至首笔年度现金'],title:['Revenue eligibility achieved','取得收入资格'],owner:['Operator + market / offtaker','运营商＋市场／承购方'],output:checks[1]},
   ];
   const firstWindow=Math.max(firstAnnual,qualified);
   return {currency:input.currency,powerMW:input.powerMW,route,codMonths:cod,qualifiedMonths:qualified,

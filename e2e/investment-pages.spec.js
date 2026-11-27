@@ -26,7 +26,8 @@ test('Italy headline reconciles and a special route below the conventional IRR i
   await expect(page.locator('#execution')).toContainText('Conventional play');
   await expect(page.locator('#opportunity-comparison')).toHaveCount(0);
   await expect(page.locator('.ix-section-nav a[href="#opportunity-comparison"]')).toHaveCount(0);
-  await expect(page.locator('.ix-delivery-column')).toHaveCount(1);
+  await expect(page.locator('#execution .ix-roadmap')).toHaveCount(1);
+  await expect(page.locator('#execution .ix-steps>li')).toHaveCount(6);
   await expect(page.locator('#execution')).toContainText('T+0');
   await expect(page.locator('#execution')).toContainText('Investment closing and first capital commitment');
   await expect(page.locator('#execution')).toContainText('First operating-year net cash settlement');

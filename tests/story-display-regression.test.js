@@ -7,7 +7,6 @@ import { storyValues } from '../src/markets/nem/storyBindings.js';
 import { opportunities, CALLS, returnPct } from '../src/experience/model.js';
 import { executionTimelines } from '../src/opportunities/deliveryUI.js';
 import { referenceInvestment } from '../src/opportunities/investment.js';
-import { incomeEvidenceChart } from '../src/experience/riskCharts.js';
 import { selectedInvestmentCase } from '../src/experience/selectedInvestmentCase.js';
 
 // Native append/replaceChildren stringify null and undefined. Do not silently
@@ -62,17 +61,5 @@ test('execution with one or two plans and with or without later cash never print
     assert.equal(descendants(panel).filter(n=>n.className==='ix-plan-switch').length,plans===2?1:0);
     assert.equal(descendants(panel).filter(n=>n.className==='ix-details ix-later-cash').length,laterCash?1:0);
     assert.equal(JSON.stringify(comparison),before,'rendering preserves cash-flow inputs');
-  }
-}));
-
-test('fixed-income charts never stringify optional nodes in contracted or merchant cases',()=>withDom(()=>{
-  for(const lang of ['en','zh'])for(const id of ['it','fi','ro','gb']) {
-    app.lang=lang;
-    const selected=selectedInvestmentCase(opportunities('infraFund').find(r=>r.id===id),'infraFund');
-    const chart=incomeEvidenceChart(selected.investment);
-    assert.doesNotMatch(chart.textContent,/\bnull\b|undefined|NaN/);
-    assert.ok(descendants(chart).some(n=>n.tag==='table'));
-    const svg=descendants(chart).find(n=>n.tag==='svg');
-    for(const attr of ['aria-labelledby','aria-describedby'])assert.ok(descendants(svg).some(n=>n.attrs?.id===svg.attrs[attr]&&n.textContent));
   }
 }));

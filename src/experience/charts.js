@@ -252,7 +252,9 @@ export function cashFlowChart(t) {
 	box.setAttribute('data-total', data.series.at(-1)?.cumulative ?? 0);
 	const marks = [
 		{ ...data.peak, value: data.peak.cumulative, label: L(['Peak cash at risk', '峰值在险资金']) },
-		...(data.payback ? [{ ...data.payback, value: data.payback.cumulative, label: L(['Payback', '回本']) }] : []),
+		...(data.payback
+			? [{ ...data.payback, value: data.payback.cumulative, label: L(['Payback', '回本']), place: 'below' }]
+			: []),
 	];
 	box.append(
 		h(

@@ -1,0 +1,111 @@
+/* Step-by-step guidance: key dates, the delivery roadmap and one card per step.
+   Markup: src/opportunities/deliveryRoadmap.js and deliveryUI.js. */
+.ix-delivery-timelines {
+	--phase-0: #9fb5a6;
+	--phase-1: #6f9580;
+	--phase-2: #46745f;
+	--phase-3: #224e40;
+	--phase-4: #a37732;
+	--phase-5: #4f8a5c;
+	--cash-in: #3f7f57;
+	--cash-out: var(--ix-risk);
+}
+[data-phase='0'] { --bar: var(--phase-0); }
+[data-phase='1'] { --bar: var(--phase-1); }
+[data-phase='2'] { --bar: var(--phase-2); }
+[data-phase='3'] { --bar: var(--phase-3); }
+[data-phase='4'] { --bar: var(--phase-4); }
+[data-phase='5'] { --bar: var(--phase-5); }
+
+.ix-plan-heading h3 { font-size: var(--fs-xl); margin: 0; }
+.ix-key-dates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 14px 0 0; border-block: 1px solid var(--ix-line); }
+.ix-key-dates > div { padding: 12px 18px; border-right: 1px solid var(--ix-line); min-width: 0; }
+.ix-key-dates > div:first-child { padding-left: 0; }
+.ix-key-dates > div:last-child { border-right: 0; }
+.ix-key-dates dt { font-size: var(--fs-2xs); color: var(--ix-muted); }
+.ix-key-dates dd { margin: 4px 0 0; font-size: var(--fs-lg); font-weight: var(--fw-medium); color: var(--ix-ink); font-variant-numeric: tabular-nums; }
+
+/* The roadmap */
+.ix-roadmap { --label: 230px; --gap: 18px; margin: 24px 0; padding: 26px 28px 30px; border: 1px solid var(--ix-line); border-radius: var(--r-md); background: var(--ix-panel); min-width: 0; }
+.ix-roadmap-caption h3 { font-size: var(--fs-lg); margin: 0 0 6px; }
+.ix-roadmap-caption .ix-caption { max-width: 780px; margin: 0; }
+.ix-roadmap-chart { margin-top: 24px; overflow-x: clip; }
+.ix-roadmap-row { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); align-items: center; gap: 0 var(--gap); min-height: 46px; }
+.ix-roadmap-label { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: var(--fs-xs); line-height: 1.3; color: var(--ix-ink); }
+.ix-roadmap-label > span { min-width: 0; }
+.ix-roadmap-label b { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--bar); color: #fff; font-size: var(--fs-micro); font-weight: var(--fw-medium); }
+.ix-roadmap-label b.is-cash { background: #f4ede0; color: #7a5b25; border: 1px solid #e6d8bd; }
+.ix-roadmap-label small { display: block; margin-top: 2px; font-size: var(--fs-micro); color: var(--ix-muted); font-variant-numeric: tabular-nums; }
+.ix-roadmap-row.is-axis { min-height: 24px; }
+.ix-roadmap-ticks { position: relative; height: 20px; }
+.ix-roadmap-tick { position: absolute; top: 0; transform: translateX(-50%); font-size: var(--fs-micro); color: var(--ix-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ix-roadmap-tick.is-left { transform: none; }
+.ix-roadmap-tick.is-right { transform: translateX(-100%); }
+.ix-roadmap-body { position: relative; padding-top: 30px; }
+.ix-roadmap-grid { position: absolute; inset: 0 0 0 calc(var(--label) + var(--gap)); pointer-events: none; }
+.ix-roadmap-gridline { position: absolute; top: 0; bottom: 0; border-left: 1px dashed #dde3d8; }
+.ix-roadmap-key { position: absolute; top: 0; bottom: 0; border-left: 2px solid var(--ix-gold); }
+.ix-roadmap-key.is-revenue { border-left-color: var(--phase-5); }
+.ix-roadmap-key em { position: absolute; top: calc(var(--key-row, 0) * 24px); left: 6px; padding: 2px 7px; border-radius: var(--r-xs); background: #f6efe1; color: #6f5221; font-style: normal; font-size: var(--fs-micro); font-weight: var(--fw-medium); white-space: nowrap; }
+.ix-roadmap-key.is-revenue em { background: #e7f0e2; color: #2f5f3a; }
+.ix-roadmap-key.is-right em { left: auto; right: 6px; }
+.ix-roadmap-track { position: relative; height: 18px; border-radius: var(--r-pill); background: #f1f3ec; }
+.ix-roadmap-bar { position: absolute; top: 0; height: 18px; min-width: 8px; border-radius: var(--r-pill); background: var(--bar); box-shadow: inset 0 -2px 0 #0000001a; }
+.ix-roadmap-bar.is-point { width: 14px !important; height: 14px; top: 2px; margin-left: -7px; border-radius: var(--r-xs); transform: rotate(45deg); }
+.ix-roadmap-row.is-cash { align-items: stretch; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--ix-line); }
+.ix-roadmap-row.is-cash .ix-roadmap-label { align-self: center; }
+.ix-roadmap-cash { position: relative; height: 160px; --axis: 80px; }
+.ix-roadmap-cash::before { content: ''; position: absolute; left: 0; right: 0; top: var(--axis); border-top: 1px solid #9aa79c; }
+.ix-cash-pulse { position: absolute; width: 12px; margin-left: -6px; border-radius: var(--r-xs); }
+.ix-cash-pulse.is-in { bottom: calc(100% - var(--axis)); background: var(--cash-in); }
+.ix-cash-pulse.is-out { top: var(--axis); background: var(--cash-out); }
+.ix-cash-pulse-label { position: absolute; left: 50%; transform: translateX(-50%); padding: 0 4px; border-radius: var(--r-xs); background: #fffefae6; font-size: var(--fs-micro); font-weight: var(--fw-medium); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ix-cash-pulse.is-in .ix-cash-pulse-label { bottom: calc(100% + 4px + var(--tier, 0) * 17px); color: #2f6a46; }
+.ix-cash-pulse.is-out .ix-cash-pulse-label { top: calc(100% + 4px + var(--tier, 0) * 17px); color: #83472d; }
+.ix-cash-pulse-label.tier-1 { --tier: 1; }
+.ix-cash-pulse-label.tier-2 { --tier: 2; }
+.ix-cash-pulse-label.is-left { left: 0; transform: none; }
+.ix-cash-pulse-label.is-right { left: auto; right: 0; transform: none; }
+
+/* The steps */
+.ix-execution-layout { display: block; }
+.ix-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ix-step { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 18px 20px 20px; border: 1px solid var(--ix-line); border-top: 4px solid var(--bar); border-radius: var(--r-md); background: var(--ix-panel); }
+.ix-step-head { display: flex; align-items: center; gap: 10px; }
+.ix-step-num { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--bar); color: #fff; font-size: var(--fs-xs); font-weight: var(--fw-medium); }
+.ix-step-phase { flex: 1; min-width: 0; font-size: var(--fs-micro); letter-spacing: .6px; text-transform: uppercase; color: var(--ix-muted); }
+.ix-step-time { flex: none; padding: 2px 10px; border-radius: var(--r-pill); background: #eef3e9; color: var(--ix-green); font-size: var(--fs-xs); font-weight: var(--fw-medium); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ix-step h4 { margin: 4px 0 0; font-size: var(--fs-md); line-height: 1.45; color: var(--ix-ink); }
+.ix-step > p { margin: 0; font-size: var(--fs-xs); line-height: 1.7; color: var(--ix-body); }
+.ix-step > p.ix-step-owner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; color: var(--ix-muted); }
+.ix-step-owner span { font-size: var(--fs-micro); letter-spacing: .6px; text-transform: uppercase; }
+.ix-step-cash { list-style: none; margin: auto 0 0; padding: 12px 0 0; border-top: 1px dashed var(--ix-line); display: flex; flex-direction: column; gap: 10px; }
+.ix-step-cash li { display: grid; gap: 2px; padding-left: 10px; border-left: 3px solid var(--cash-out); }
+.ix-step-cash li.is-in { border-left-color: var(--cash-in); }
+.ix-step-cash strong { font-size: var(--fs-sm); color: #83472d; font-variant-numeric: tabular-nums; }
+.ix-step-cash li.is-in strong { color: #2f6a46; }
+.ix-step-cash span { font-size: var(--fs-2xs); line-height: 1.5; color: var(--ix-body); }
+.ix-step-cash small { font-size: var(--fs-micro); color: var(--ix-muted); font-variant-numeric: tabular-nums; }
+.ix-execution-cash { position: static; margin-top: 18px; }
+.ix-delivery-timelines > .ix-cumulative-equity { margin-top: 28px; }
+
+@media (max-width: 1050px) {
+	.ix-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.ix-roadmap { --label: 190px; }
+}
+@media (max-width: 720px) {
+	.ix-key-dates { grid-template-columns: 1fr 1fr; }
+	.ix-key-dates > div { padding: 10px 12px 10px 0; border-right: 0; }
+	.ix-key-dates > div:nth-child(-n + 2) { border-bottom: 1px solid var(--ix-line); }
+	.ix-roadmap { padding: 18px 14px 22px; --gap: 0px; }
+	.ix-roadmap-row { grid-template-columns: minmax(0, 1fr); gap: 6px; min-height: 0; padding: 7px 0; }
+	.ix-roadmap-row.is-axis .ix-roadmap-label { display: none; }
+	.ix-roadmap-label { position: relative; z-index: 1; width: fit-content; padding-right: 8px; background: var(--ix-panel); }
+	.ix-roadmap-grid { left: 0; }
+	.ix-roadmap-body { padding-top: 34px; }
+	.ix-steps { grid-template-columns: minmax(0, 1fr); }
+	.ix-step { padding: 16px; }
+}
+@media print {
+	.ix-roadmap, .ix-step { break-inside: avoid; }
+}

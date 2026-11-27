@@ -2,15 +2,33 @@ import { h } from '../../../utils/dom.js';
 import { L } from '../../../app/i18n.js';
 import { PUBLIC_READING_CATALOG } from './historyCatalog.js';
 import { marketResearchLink } from '../../marketResearchLink.js';
+import { publicChapters } from './chapters.js';
+
+const BOOK =
+	'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.6c2.9-1.3 5.9-1.2 9 .9 3.1-2.1 6.1-2.2 9-.9v13.1c-2.9-1.3-5.9-1.2-9 .9-3.1-2.1-6.1-2.2-9-.9z"/><path d="M12 6.5v13.1"/></svg>';
 
 export function renderPublicOverview(id, { name, open }) {
 	const c = PUBLIC_READING_CATALOG[id];
 	if (!c) return null;
+	/* The one entrance to the guided reading: an obvious card that says what
+	   is inside (the reader's own chapter list), not a plain button. */
+	const chapters = publicChapters(id, c.historyOnly);
 	const trigger = h(
 		'button',
-		{ type: 'button', class: 'ix-button public-story-trigger', onclick: () => open(trigger) },
-		L(['Market background & investment logic', '市场背景与投资逻辑']),
-		' ↗',
+		{ type: 'button', class: 'ix-button public-story-trigger ix-entry-card', onclick: () => open(trigger) },
+		h('span', { class: 'ix-entry-icon', 'aria-hidden': 'true', html: BOOK }),
+		h(
+			'span',
+			{ class: 'ix-entry-text' },
+			h(
+				'small',
+				{ class: 'ix-entry-kicker' },
+				L([`Guided reading · ${chapters.length} chapters`, `导读 · ${chapters.length} 章`]),
+			),
+			h('strong', {}, L(['Market background & investment logic', '市场背景与投资逻辑'])),
+			h('span', { class: 'ix-entry-chapters' }, chapters.map(([, title]) => L(title)).join(' · ')),
+		),
+		h('span', { class: 'ix-entry-go', 'aria-hidden': 'true' }, '→'),
 	);
 	const context = h('div', { class: 'market-overview-context', 'aria-busy': 'true' });
 	const section = h(

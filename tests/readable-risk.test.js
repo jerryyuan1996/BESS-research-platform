@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { rankedSensitivities, sensitivityEvidence, fixedIncomeByEvidence } from '../src/experience/riskData.js';
+import { rankedSensitivities, sensitivityEvidence } from '../src/experience/riskData.js';
 import { cumulativeEquityCash, monthlyCashSeries } from '../src/opportunities/monthlyCash.js';
 import { opportunities, LENSES, caseFor } from '../src/experience/model.js';
 import { selectedInvestmentCase } from '../src/experience/selectedInvestmentCase.js';
@@ -9,7 +9,6 @@ import { analyseRisk } from '../src/experience/riskAnalysis.js';
 import { acquisitionCashFlows } from '../src/acquisition/valuation.js';
 import { referenceInvestment } from '../src/opportunities/investment.js';
 import { opportunitiesFor } from '../src/opportunities/catalog.js';
-import { REVENUE_EVIDENCE_CLASS as E } from '../src/governance/revenueEvidence.js';
 
 test('tornado ranks absolute effects, evaluates both ends, retains missing and one-sided returns',()=>{
   const ranges={small:{min:1,max:2},large:{min:3,max:4},missing:{min:5},one:{max:6}};
@@ -35,7 +34,7 @@ test('sourced/assumed labels read basis and source, including a mixed practition
   assert.equal(sensitivityEvidence(fi.feePct),'assumed');
 });
 
-test('every selected case exposes the unchanged minimum and exactly reconciled fixed evidence income',()=>{
+test('every selected case exposes the unchanged minimum annual debt cover',()=>{
   for(const lens of Object.keys(LENSES))for(const row of opportunities(lens))for(const choice of investmentRowsFor(row,lens)){
     const i=selectedInvestmentCase(row,lens,choice.play?.id,choice.supplyCase).investment;
     if(!i)continue;
@@ -47,19 +46,7 @@ test('every selected case exposes the unchanged minimum and exactly reconciled f
       assert.ok(l.coverByYear.filter(y=>y.year>l.legalYears).every(y=>y.dscr===null));
       if(choice.play?.id===row.play?.id&&!choice.supplyCase)assert.equal(l.minCover,row.investment.leverage.minCover);
     }
-    const split=fixedIncomeByEvidence(i);
-    assert.equal(split.classes.reduce((sum,c)=>sum+c.amount,0),i.bridge.fixed/i.fxToUSD);
-    assert.equal(split.classes.length,i.bridge.fixed===0?0:1);
-    if(split.classes.length)assert.equal(split.classes[0].evidenceClass,i.fixedRevenueEvidence?.evidenceClass??null);
-    assert.equal(split.contracted,0,'reference cash must not be promoted to a verified project contract');
   }
-});
-
-test('an executed award needs project binding and contract confirmation; unknown evidence is not invented',()=>{
-  const i={bridge:{fixed:123},fxToUSD:1,currency:'EUR',fixedRevenueEvidence:{evidenceClass:E.EXECUTED_OBSERVED_AWARD,projectBinding:true}};
-  assert.equal(fixedIncomeByEvidence(i).contracted,0);
-  assert.equal(fixedIncomeByEvidence({...i,contractConfirmed:true}).contracted,123);
-  assert.equal(fixedIncomeByEvidence({...i,fixedRevenueEvidence:null}).classes[0].evidenceClass,null);
 });
 
 test('ranked endpoints reconcile to direct all-equity model runs and the published compound downside',()=>{

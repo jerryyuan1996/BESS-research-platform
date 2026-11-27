@@ -21,7 +21,18 @@
 }
 .ix-risk-chart svg text {
 	fill: var(--ix-muted);
-	font: var(--fs-md) var(--font-sans);
+	font: var(--fs-sm) var(--font-sans);
+}
+.ix-risk-chart svg text.ix-risk-mark-label {
+	fill: var(--ix-ink);
+	font-weight: var(--fw-medium);
+	paint-order: stroke;
+	stroke: var(--ix-panel);
+	stroke-width: 5px;
+	stroke-linejoin: round;
+}
+.ix-cumulative-equity svg {
+	max-width: 680px;
 }
 .ix-risk-line {
 	fill: none;
@@ -52,23 +63,7 @@
 .ix-risk-up {
 	fill: var(--ix-green);
 }
-.ix-risk-empty {
-	fill: var(--ix-line);
-}
-.ix-evidence-executed_observed_award {
-	fill: var(--ix-green);
-}
-.ix-evidence-published_market_clearing {
-	fill: var(--ix-gold);
-}
-.ix-evidence-disclosed_transaction_benchmark {
-	fill: var(--ix-muted);
-}
-.ix-evidence-derived_private_proxy {
-	fill: var(--ix-risk);
-}
-.ix-risk-readout,
-.ix-risk-evidence-value {
+.ix-risk-readout {
 	font-size: var(--fs-sm);
 	font-variant-numeric: tabular-nums;
 	margin-top: 12px !important;
@@ -100,19 +95,6 @@
 	margin: 5px 0;
 	font-size: var(--fs-xl);
 	font-weight: var(--fw-medium);
-}
-.ix-risk-legend {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px 20px;
-	font-size: var(--fs-xs);
-}
-.ix-risk-legend span {
-	border-bottom: 2px dashed var(--ix-gold);
-}
-.ix-risk-legend .threshold-1 {
-	border-color: var(--ix-risk);
-	border-bottom-style: dotted;
 }
 .ix-tornado-factor {
 	padding: 12px 0;
@@ -197,3 +179,30 @@
 		font-size: var(--fs-lg);
 	}
 }
+/* Downside: one closed fold under the section title, on every market. */
+.ix-downside-fold { margin-top: 8px; border: 1px solid var(--ix-line); border-radius: var(--r-md); background: var(--ix-panel); }
+.ix-downside-fold > .ix-fold-summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 64px; padding: 18px 24px; cursor: pointer; list-style: none; }
+.ix-downside-fold > .ix-fold-summary::-webkit-details-marker { display: none; }
+.ix-fold-text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.ix-fold-text strong { font-size: var(--fs-md); font-weight: var(--fw-medium); color: var(--ix-ink); }
+.ix-fold-teaser { font-size: var(--fs-xs); color: var(--ix-body); font-variant-numeric: tabular-nums; }
+.ix-fold-teaser b { font-weight: var(--fw-medium); color: var(--ix-ink); }
+.ix-fold-teaser b.ix-risk-value { color: var(--ix-risk); }
+.ix-fold-opened { display: none; }
+.ix-downside-fold[open] .ix-fold-opened { display: inline; }
+.ix-downside-fold[open] .ix-fold-closed { display: none; }
+.ix-fold-icon { flex: none; position: relative; width: 38px; height: 38px; border: 1px solid var(--ix-line); border-radius: 50%; transition: background 0.15s, border-color 0.15s; }
+.ix-fold-icon::before, .ix-fold-icon::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px; margin: -1px 0 0 -7px; background: var(--ix-green); transition: transform 0.15s; }
+.ix-fold-icon::after { transform: rotate(90deg); }
+.ix-downside-fold[open] .ix-fold-icon::after { transform: rotate(0); }
+.ix-downside-fold > .ix-fold-summary:hover .ix-fold-icon { background: var(--ix-green); border-color: var(--ix-green); }
+.ix-downside-fold > .ix-fold-summary:hover .ix-fold-icon::before, .ix-downside-fold > .ix-fold-summary:hover .ix-fold-icon::after { background: var(--ix-panel); }
+.ix-downside-fold > .ix-fold-summary:focus-visible { outline: 3px solid var(--ix-gold); outline-offset: 3px; border-radius: var(--r-md); }
+.ix-downside-fold[open] > .ix-fold-summary { border-bottom: 1px solid var(--ix-line); }
+.ix-downside-fold > :not(summary) { margin-inline: 24px; }
+.ix-downside-fold > :last-child { margin-bottom: 24px; }
+@media (max-width: 560px) {
+	.ix-downside-fold > .ix-fold-summary { padding: 14px 16px; }
+	.ix-downside-fold > :not(summary) { margin-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { .ix-fold-icon, .ix-fold-icon::before, .ix-fold-icon::after { transition: none; } }

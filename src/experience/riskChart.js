@@ -128,9 +128,14 @@ export function linePlot(title, description, points, format, { thresholds = [], 
 	marks.forEach((m) =>
 		svg.append(
 			svgEl('circle', { cx: x(m.at), cy: y(m.value), r: 5, class: 'ix-risk-mark' }, svgEl('title', {}, m.label)),
-			svgText(Math.max(left + 8, Math.min(right - 8, x(m.at))), Math.max(top + 14, y(m.value) - 12), m.label, {
-				'text-anchor': x(m.at) > right - 60 ? 'end' : 'start',
-			}),
+			/* Labels sit beside the point, on the side away from a rising
+			   line, with a halo so a crossing line never hides them. */
+			svgText(
+				x(m.at) > (left + right) / 2 ? x(m.at) - 10 : x(m.at) + 10,
+				Math.max(top + 14, Math.min(bottom - 4, y(m.value) + (m.place === 'below' ? 22 : -10))),
+				m.label,
+				{ 'text-anchor': x(m.at) > (left + right) / 2 ? 'end' : 'start', class: 'ix-risk-mark-label' },
+			),
 		),
 	);
 	return svg;
