@@ -48,6 +48,7 @@ import { bankableInvestmentCase, investmentCaseIdentity, investmentDecisionMetri
 import './investmentCase.css';
 import './riskCharts.css';
 import './executionRoadmap.css';
+import './smallRoute.css';
 import { localRevenueBridge } from './traceability.js';
 
 /* One closed disclosure: the research behind a chapter. Nothing is fetched
@@ -411,15 +412,21 @@ export function createMarketRenderer(ui) {
 				else if (storyFor(mf.id)) openFrom(r.story);
 			}),
 		);
-		/* Revenue drivers sit under the overview. The special-opportunity comparison
-     appears only where one is valid, and then at the foot of the case, just
-     above the downside. Otherwise the timeline shows the conventional play alone. */
+		/* Revenue drivers sit under the overview. Every market's small-connection
+     route sits just before the execution guidance, whose timetable compares it
+     with the conventional play. The special-opportunity comparison appears only
+     where one is valid, and then at the foot of the case, above the downside. */
 		const opportunityHost = h(
 			'div',
 			{ 'aria-busy': 'true' },
 			h('p', { class: 'ix-caption' }, L(['Loading revenue drivers…', '正在载入收入动因…'])),
 		);
 		const specialHost = h('div');
+		const smallHost = h('div');
+		/* The execution plans: the conventional case (or a valid special
+		   comparison) and the small route, each replaced when its workbench
+		   redraws. */
+		const timeline = { base: null, small: null, smallId: null };
 		content.append(opportunityHost);
 		const investor = lens();
 		const dropSpecial = () => specialHost.remove();
@@ -437,13 +444,16 @@ export function createMarketRenderer(ui) {
 					opportunityHost.setAttribute('aria-busy', 'false');
 					if (initialRevenue) revenue.querySelector('[open]')?.scrollIntoView();
 					const screen = module.specialOpportunityScreen(row, investor);
+					const small = module.smallRoutePanel(row, investor, screen);
+					if (small) smallHost.replaceChildren(small);
+					else smallHost.remove();
+					timeline.small = screen.small?.c ?? null;
+					timeline.smallId = screen.small?.o.id ?? null;
+					timeline.base = screen.conventional;
 					const special = screen.valid.length ? module.opportunityComparison(row, investor, { only: screen.valid }) : null;
 					if (special) specialHost.replaceChildren(special);
-					else {
-						dropSpecial();
-						if (screen.conventional)
-							content.dispatchEvent(new CustomEvent('opportunitychange', { detail: screen.conventional }));
-					}
+					else dropSpecial();
+					drawTimeline();
 					if (window.location.hash === '#route-options') content.querySelector('#investment-options')?.scrollIntoView();
 					if (window.location.hash === '#opportunity-comparison')
 						specialHost.querySelector('#opportunity-comparison')?.scrollIntoView();
@@ -487,13 +497,22 @@ export function createMarketRenderer(ui) {
 				),
 			);
 		const execution = executionSection(row);
-		content.append(execution, specialHost);
+		content.append(smallHost, execution, specialHost);
 		let timelineVersion = 0;
-		content.addEventListener('opportunitychange', async (event) => {
+		async function drawTimeline() {
 			const version = ++timelineVersion;
+			if (!timeline.base) return;
 			const { executionTimelines } = await import('../opportunities/deliveryUI.js');
 			if (!execution.isConnected || version !== timelineVersion) return;
-			execution.querySelector('.ix-execution-timeline-host').replaceChildren(executionTimelines(event.detail, row, investor));
+			execution
+				.querySelector('.ix-execution-timeline-host')
+				.replaceChildren(executionTimelines(timeline.base, row, investor, { small: timeline.small }));
+		}
+		content.addEventListener('opportunitychange', (event) => {
+			const c = event.detail;
+			if (timeline.smallId && c?.opportunity?.id === timeline.smallId) timeline.small = c;
+			else timeline.base = c;
+			drawTimeline();
 		});
 		if (!data.unavailable) content.append(downsideSection(data));
 		const overview = content.querySelector('#overview');
@@ -531,6 +550,7 @@ export function createMarketRenderer(ui) {
 			].map(([id, en, zh]) => ['revenue-' + id, [en, zh], true]),
 			['bankable', ['Bankable case', '可融资方案']],
 			['revenue', ['Cash flow', '现金流拆解']],
+			['small-route', ['Small-connection route', '小规模接入路径']],
 			['execution', ['Execution', '执行步骤']],
 			['opportunity-comparison', ['Special opportunity', '特殊机会']],
 			['downside', ['Downside', '下行风险']],

@@ -466,6 +466,20 @@ global analogue to Sub-5. Research it first if Chile is registered.
    - **B.** Also show each small route on its market page with its gap and break-even (A$/MW of
      avoided works, or premium %), marked as research rather than an opportunity. This would
      explain to a fund reader why Sub-5 is not on the list. It reopens a signed ruling.
+   - **Reopened 27 November 2026: B on the market pages; A stays on the home page.** In the
+     analyst's words: "Add sub-5 and sub-5 like opportunities in each market page, and compare the
+     timetable with the conventional play in the step-by-step operation guidance."
+     - Every market page carries a small-connection route section (`#small-route`) before the
+       execution guidance. A priced route shows its all-equity hold IRR against the conventional
+       play and the target, months to COD, its design, and the build-cost change at which the two
+       IRRs meet (`breakEvenBuildPremium`, on the same paired comparison). On today's inputs that
+       is +0.3% for the NEM, −29.3% for ERCOT and −16.0% for Romania. Japan has no IRR to match.
+     - The other markets show the rule, what it avoids and what would change it, from section 3
+       (`src/opportunities/smallRoutes.js`).
+     - The execution guidance puts every plan on one month axis from closing, with the COD gap
+       against the conventional play, and each lane opens that plan's roadmap and steps.
+     - The home page list and `beatsConventional` are unchanged, so Sub-5 still does not appear
+       there. No number, call or grade moves.
 3. **Sub-5 cost basis. Taken: A.**
    - **A. Keep +15% build and running costs, marked Thin under G52, until a quotation or a disclosed
      project cost arrives.** Recommended.

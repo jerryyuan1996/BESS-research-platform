@@ -78,10 +78,12 @@ export function seriesInspector(points, label, describe) {
 	return h('div', { class: 'ix-risk-inspector' }, h('label', {}, L(label), range), output);
 }
 /** Null observations break the line; debt-free years are never drawn as zero. */
-export function linePlot(title, description, points, format, { thresholds = [], step = false, marks = [] } = {}) {
-	const svg = chartSVG(title, description),
-		left = 72,
-		right = 414,
+/* `width` widens the drawing box for a chart shown wide, so its text renders
+   near reading size instead of scaling up with the figure. */
+export function linePlot(title, description, points, format, { thresholds = [], step = false, marks = [], width = 440 } = {}) {
+	const svg = chartSVG(title, description, '0 0 ' + width + ' 250'),
+		left = Math.round((72 * width) / 440),
+		right = width - 26,
 		top = 24,
 		bottom = 206;
 	const values = [0, ...points.map((p) => p.value).filter(Number.isFinite), ...thresholds.map((t) => t.value)];

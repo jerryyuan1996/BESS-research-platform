@@ -20,7 +20,7 @@ test('downside gives compound adverse conditions without probability wording jus
   await expect(page.locator('#downside')).not.toContainText(/probab|概率/i);
   expect(await page.locator('#downside').evaluate(e=>e.nextElementSibling.id)).toBe('sources');
 });
-test('the plan switch changes both timeline and monthly lifecycle cash and survives language changes',async({page},info)=>{
+test('the timetable lane changes both timeline and monthly lifecycle cash and survives language changes',async({page},info)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/markets/germany');
   const layout=page.locator('.ix-execution-layout'),later=page.locator('.ix-later-cash');
@@ -28,7 +28,7 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
   const conventional=await page.locator('.ix-plan-heading').innerText();
   await expect(page.locator('.ix-execution-cash .ix-monthly-cash')).toHaveAttribute('data-basis','hold');
   await expect(later).not.toHaveAttribute('open','');
-  await page.locator('.ix-plan-switch [data-plan="alternative"]').click();
+  await page.locator('.ix-timetable-plan[data-plan="alternative"]').click();
   await expect(layout).toHaveAttribute('data-plan','alternative');
   await expect(page.locator('.ix-execution-cash .ix-monthly-cash')).toHaveAttribute('data-plan','alternative');
   await expect(later).toHaveAttribute('data-plan','alternative');
@@ -41,7 +41,7 @@ test('the plan switch changes both timeline and monthly lifecycle cash and survi
   await later.locator('summary').first().click();
   await expect(later.locator('.ix-monthly-cash')).toBeVisible();
   await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
-  await expect(page.locator('.ix-plan-switch [data-plan="alternative"]')).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('.ix-timetable-plan[data-plan="alternative"]')).toHaveAttribute('aria-pressed','true');
   await expect(layout).toHaveAttribute('data-plan','alternative');
   await page.locator('.ix-execution-layout').screenshot({path:info.outputPath('monthly-special-zh.png')});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);

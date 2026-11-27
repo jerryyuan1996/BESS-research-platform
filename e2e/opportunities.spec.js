@@ -120,3 +120,43 @@ test('a connection premium ceiling changes with the actual timing and price',asy
   await page.getByLabel('Extra price for the special route / MW',{exact:true}).blur();
   await expect(page.locator('.ix-premium-result')).toHaveClass(/is-conditional/);
 });
+
+test('a market page carries its small-connection route and the timetable compares it with the conventional play',async({page})=>{
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.goto('/markets/nem');
+  const small=page.locator('#small-route');
+  await expect(small).toHaveAttribute('data-small-kind','priced');
+  await expect(small.locator('h3')).toHaveText('Sub-5 MW distribution portfolio');
+  await expect(small.locator('h2')).toContainText('months sooner to COD');
+  await expect(small.locator('.ix-return-row')).toHaveCount(2);
+  await expect(small.locator('[data-break-even]')).not.toHaveAttribute('data-break-even','pending');
+  await expect(small.locator('.ix-small-evidence')).toHaveText('Thin evidence');
+  /* Shown as research on the market page; still not a listed special opportunity. */
+  await expect(page.locator('#opportunity-comparison')).toHaveCount(0);
+  const lanes=page.locator('#execution .ix-timetable-plan');
+  await expect(lanes).toHaveCount(2);
+  await expect(lanes.nth(0)).toHaveAttribute('aria-pressed','true');
+  await expect(lanes.nth(1)).toContainText('months sooner');
+  await lanes.nth(1).click();
+  await expect(page.locator('.ix-execution-layout')).toHaveAttribute('data-plan','small');
+  await expect(page.locator('#execution .ix-plan-heading h3')).toHaveText('Sub-5 MW distribution portfolio');
+  /* A reader's timing in the folded workbench moves the small lane. */
+  await small.locator('.ix-small-workbench > summary').click();
+  const workbench=page.locator('#small-route-comparison');
+  await workbench.locator('.ix-opportunity-inputs > summary').click();
+  const months=workbench.getByLabel('Special: closing to COD (months)',{exact:true});
+  await months.fill('12');await months.blur();
+  await expect(page.locator('#execution .ix-timetable-row[data-plan="small"] .ix-timetable-label.is-cod')).toContainText('T+12m');
+  await expect(page.locator('.ix-execution-layout')).toHaveAttribute('data-plan','small');
+  await page.getByRole('button',{name:'Switch to Chinese',exact:true}).click();
+  await expect(page.locator('#small-route h2')).toContainText('投运提前');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2)).toBe(false);
+  /* A research route and a market with no route keep one plan in the guidance. */
+  await page.goto('/markets/pjm');
+  await expect(page.locator('#small-route')).toHaveAttribute('data-small-kind','contract');
+  await expect(page.locator('#execution .ix-key-dates')).toHaveCount(1);
+  await expect(page.locator('#execution .ix-timetable')).toHaveCount(0);
+  await page.goto('/markets/great-britain');
+  await expect(page.locator('#small-route')).toHaveAttribute('data-small-kind','none');
+  expect(errors).toEqual([]);
+});

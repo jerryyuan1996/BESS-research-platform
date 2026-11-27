@@ -178,6 +178,10 @@
 	.ix-risk-chart svg text {
 		font-size: var(--fs-lg);
 	}
+	/* Drawn wider (620 units), so it needs larger units for the same text size. */
+	.ix-cumulative-equity svg text {
+		font-size: var(--fs-2xl);
+	}
 }
 /* Downside: one closed fold under the section title, on every market. */
 .ix-downside-fold { margin-top: 8px; border: 1px solid var(--ix-line); border-radius: var(--r-md); background: var(--ix-panel); }

@@ -67,6 +67,48 @@
 .ix-cash-pulse-label.is-left { left: 0; transform: none; }
 .ix-cash-pulse-label.is-right { left: auto; right: 0; transform: none; }
 
+/* The timetable: every plan on one axis; each lane label chooses the plan. */
+.ix-timetable { --label: 230px; --gap: 18px; --build: #2f5d4c; --wait: #d6b06c; --operate: #b4cfae; margin: 20px 0 30px; padding: 24px 28px 18px; border: 1px solid var(--ix-line); border-radius: var(--r-md); background: var(--ix-panel); min-width: 0; }
+.ix-timetable-caption h3 { font-size: var(--fs-lg); margin: 0 0 6px; }
+.ix-timetable-caption .ix-caption { margin: 0; max-width: 780px; }
+.ix-timetable-chart { margin-top: 20px; overflow-x: clip; }
+.ix-timetable-row { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); align-items: center; gap: 0 var(--gap); }
+.ix-timetable-row.is-axis { min-height: 22px; }
+.ix-timetable-ticks { position: relative; height: 20px; }
+.ix-timetable-body { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 6px 0; }
+.ix-timetable-grid { position: absolute; inset: 0 0 0 calc(var(--label) + var(--gap)); pointer-events: none; }
+.ix-timetable-ref { position: absolute; top: 0; bottom: 0; border-left: 2px dashed var(--ix-gold); opacity: .55; }
+.ix-timetable-plan { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: 100%; padding: 10px 12px; border: 1px solid transparent; border-radius: var(--r-sm); background: transparent; color: var(--ix-ink); font: inherit; text-align: left; cursor: pointer; }
+.ix-timetable-plan:hover { background: #f3f5ee; }
+.ix-timetable-plan[aria-pressed='true'] { border-color: #cfdcc8; background: #eef3e9; box-shadow: inset 3px 0 0 var(--ix-green); }
+.ix-timetable-plan:focus-visible { outline: 3px solid var(--ix-gold); outline-offset: 2px; }
+.ix-timetable-plan strong { font-size: var(--fs-sm); font-weight: var(--fw-medium); line-height: 1.35; }
+.ix-timetable-plan small { font-size: var(--fs-micro); line-height: 1.4; color: var(--ix-muted); font-variant-numeric: tabular-nums; }
+.ix-timetable-delta { margin-top: 3px; padding: 1px 9px; border-radius: var(--r-pill); background: #eceee8; color: #55635a; font-size: var(--fs-micro); font-weight: var(--fw-medium); white-space: nowrap; }
+.ix-timetable-delta.is-sooner { background: #e1ecd8; color: #2f5f3a; }
+.ix-timetable-delta.is-later { background: #f4e6dc; color: #83472d; }
+.ix-timetable-track { position: relative; height: 68px; }
+.ix-timetable-rail, .ix-timetable-seg { position: absolute; top: 26px; height: 16px; }
+.ix-timetable-rail { left: 0; right: 0; border-radius: var(--r-pill); background: #f1f3ec; }
+.ix-timetable-seg.is-build { background: var(--build); border-radius: var(--r-pill) 0 0 var(--r-pill); }
+.ix-timetable-seg.is-wait { background: var(--wait); }
+.ix-timetable-seg.is-operate { background: var(--operate); border-radius: 0 var(--r-pill) var(--r-pill) 0; }
+.ix-timetable-cod { position: absolute; top: 28px; width: 12px; height: 12px; margin-left: -6px; border: 2px solid var(--ix-panel); border-radius: var(--r-xs); background: var(--ix-gold); transform: rotate(45deg); }
+.ix-timetable-cash { position: absolute; top: 27px; width: 14px; height: 14px; margin-left: -7px; border: 2px solid var(--ix-panel); border-radius: 50%; background: #3f7f57; }
+.ix-timetable-label { position: absolute; z-index: 1; padding: 0 4px; border-radius: var(--r-xs); background: var(--ix-panel); transform: translateX(-50%); font-size: var(--fs-micro); font-weight: var(--fw-medium); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.ix-timetable-label.is-cod { top: 4px; color: #6f5221; }
+.ix-timetable-label.is-cash { bottom: 2px; color: #2f6a46; }
+.ix-timetable-label.is-left { transform: none; }
+.ix-timetable-label.is-right { transform: translateX(-100%); }
+.ix-timetable .ix-timetable-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0 calc(var(--label) + var(--gap)); font-size: var(--fs-micro); color: var(--ix-muted); }
+.ix-timetable-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.ix-timetable-legend span::before { content: ''; width: 14px; height: 8px; border-radius: var(--r-pill); }
+.ix-timetable-legend .is-build::before { background: var(--build); }
+.ix-timetable-legend .is-wait::before { background: var(--wait); }
+.ix-timetable-legend .is-operate::before { background: var(--operate); }
+.ix-timetable-legend .is-ref::before { width: 0; height: 12px; border-left: 2px dashed var(--ix-gold); border-radius: 0; }
+.ix-plan-heading .ix-caption { margin: 4px 0 0; }
+
 /* The steps */
 .ix-execution-layout { display: block; }
 .ix-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -105,6 +147,12 @@
 	.ix-roadmap-body { padding-top: 34px; }
 	.ix-steps { grid-template-columns: minmax(0, 1fr); }
 	.ix-step { padding: 16px; }
+	.ix-timetable { padding: 18px 14px 16px; --gap: 0px; }
+	.ix-timetable-row { grid-template-columns: minmax(0, 1fr); }
+	.ix-timetable-row.is-axis > span:first-child { display: none; }
+	.ix-timetable-grid { left: 0; }
+	.ix-timetable-plan { position: relative; z-index: 1; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; padding: 8px 10px; background: var(--ix-panel); }
+	.ix-timetable .ix-timetable-legend { margin-left: 0; }
 }
 @media print {
 	.ix-roadmap, .ix-step { break-inside: avoid; }
