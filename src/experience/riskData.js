@@ -1,5 +1,3 @@
-import { REVENUE_EVIDENCE_CLASS } from '../governance/revenueEvidence.js';
-
 /** A citation alone does not make a dispersed or practitioner band observed.
  * Keep the band's full bilingual basis beside this conservative short label. */
 export function sensitivityEvidence(band) {
@@ -34,22 +32,4 @@ export function rankedSensitivities(ranges, baseIRR, evaluate) {
 		})
 		.filter((f) => f.ends.length)
 		.sort((a, b) => (b.effect ?? -1) - (a.effect ?? -1) || a.key.localeCompare(b.key));
-}
-
-/** The model currently carries one evidence record for its fixed-income pool.
- * Do not infer component weights (including a pooled toll/capacity case). */
-export function fixedIncomeByEvidence(investment) {
-	const total = investment.bridge.fixed / investment.fxToUSD;
-	const evidence = investment.fixedRevenueEvidence;
-	return {
-		total,
-		currency: investment.currency,
-		contracted:
-			investment.contractConfirmed &&
-			evidence?.projectBinding &&
-			evidence.evidenceClass === REVENUE_EVIDENCE_CLASS.EXECUTED_OBSERVED_AWARD
-				? total
-				: 0,
-		classes: total === 0 ? [] : [{ evidenceClass: evidence?.evidenceClass ?? null, amount: total, evidence }],
-	};
 }

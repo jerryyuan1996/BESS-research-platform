@@ -20,8 +20,9 @@ import { eventDue, eventCountdown } from './eventDates.js';
    An event that would close a market (down) is not a bell; it sits on the risk
    watch, where the advice is to re-test before committing.
 
-   Nothing here is written by a model. The words are the view store's (event
-   labels, play actions) and the publishers' (headlines).
+   The words are the view store's (event labels, play actions), the
+   publishers' (headlines) and, for the policy shift on each bell, the
+   reviewed analysis in ./policyShift.js. Nothing here is generated at runtime.
    --------------------------------------------------------------------------- */
 import '../styles/news.css';
 import { h } from '../utils/dom.js';
@@ -35,6 +36,7 @@ import { isResolved, byExpected } from '../governance/triggers.js';
 import { playTitle } from '../governance/playTitle.js';
 import { CALLS, LENSES } from '../experience/model.js';
 import { link, eyebrow, sectionTitle } from '../experience/chrome.js';
+import { policyShiftFor, CHANNEL, SHIFT_TYPE, EVIDENCE_LABEL } from './policyShift.js';
 
 const DAY = 86_400_000;
 const RING_DAYS = 45, PREPARE_DAYS = 120, WARN_DAYS = 365;
@@ -128,6 +130,58 @@ function callChips(e){
       h('span', { class: `ix-tag ${c.call}` }, L(CALLS[c.call] || [c.call, c.call])))));
 }
 
+/* What is shifting, how it reaches the case, both outcomes, and how well it
+   is evidenced. A bell with no written entry still says how its watched
+   dimensions reach the case. */
+function shiftBlock(e){
+  const a = policyShiftFor(e.id);
+  const channel = (e.watches || []).map(id => CHANNEL[id]).filter(Boolean);
+  const title = eyebrow(['THE POLICY SHIFT', '政策变化']);
+  if (!a) return channel.length ? h('section', { class: 'nw-shift is-derived', 'aria-label': L(['The policy shift', '政策变化']) }, title,
+    h('p', { class: 'nw-shift-what' }, h('b', {}, L(['How it reaches the case: ', '如何影响方案：'])), channel.map(c => L(c)).join(L(['; ', '；'])), L(['.', '。']))) : null;
+  return h('section', { class: 'nw-shift', 'data-shift-type': a.type, 'aria-label': L(['The policy shift', '政策变化']) },
+    h('div', { class: 'nw-shift-head' }, title,
+      h('span', { class: `nw-evidence ${a.evidence}`, 'data-evidence': a.evidence }, L(['Evidence · ', '证据 · ']), L(EVIDENCE_LABEL[a.evidence]))),
+    h('p', { class: 'nw-shift-what' }, L(a.shift)),
+    h('dl', { class: 'nw-shift-grid' },
+      h('div', { class: 'is-channel' }, h('dt', {}, L(['How it reaches the case', '如何影响方案'])), h('dd', {}, L(a.channel))),
+      h('div', { class: 'is-for' }, h('dt', {}, L(e.direction === 'up' ? ['If it opens', '若市场打开'] : ['If it lands for storage', '若结果利好储能'])), h('dd', {}, L(a.forStorage))),
+      h('div', { class: 'is-against' }, h('dt', {}, L(e.direction === 'up' ? ['If it stays shut', '若未能打开'] : ['If it lands against', '若结果不利'])), h('dd', {}, L(a.against)))),
+    h('p', { class: 'nw-shift-change' }, h('b', {}, L(['What would change it: ', '什么会改变判断：'])), L(a.changeIt)));
+}
+
+const LEAD_TEXT = {
+  award: ['auctions and awards that set secured revenue', '决定锁定收入的拍卖与中标'],
+  rule: ['changes to market rules', '市场规则变化'],
+  grid: ['changes to grid access and network charges', '并网与网费变化'],
+  grant: ['capital-grant decisions', '资本补助决定'],
+  outlook: ['scarcity outlooks', '稀缺程度展望'],
+  other: ['other dated events', '其他已定日期的事件'],
+};
+
+/** The shape of what is coming: kinds of shift, how soon, how well evidenced. */
+function shiftOverview(bells){
+  const types = bells.map(e => policyShiftFor(e.id)?.type || 'other');
+  const counts = [...Object.keys(SHIFT_TYPE), 'other'].map(k => [k, types.filter(t => t === k).length]).filter(([, n]) => n);
+  const [lead, leadCount] = [...counts].sort((a, b) => b[1] - a[1])[0];
+  const markets = new Set(bells.map(e => e.market)).size;
+  const soon = bells.filter(e => e.days !== null && e.days >= 0 && e.days <= 90).length;
+  const passed = bells.filter(e => e.days !== null && e.days < 0).length;
+  const evidence = ['strong', 'fair', 'thin'].map(k => [k, bells.filter(e => policyShiftFor(e.id)?.evidence === k).length]).filter(([, n]) => n);
+  const typeLabel = k => L(SHIFT_TYPE[k] || ['Other events', '其他事件']);
+  return h('div', { class: 'nw-shift-overview' },
+    h('p', { class: 'nw-shift-lead' },
+      h('strong', {}, L([`Most of what is coming is ${LEAD_TEXT[lead][0]}: ${leadCount} of ${bells.length} events.`,
+        `即将到来的事件以${LEAD_TEXT[lead][1]}为主：共${bells.length}项中占${leadCount}项。`])),
+      ' ',
+      L([`They span ${markets} markets; ${soon} land within 90 days` + (passed ? `, and ${passed} ${passed === 1 ? 'has' : 'have'} passed with the outcome still to record.` : '.'),
+        `涉及${markets}个市场；${soon}项在90天内落地` + (passed ? `，另有${passed}项日期已过、结果待记录。` : '。')])),
+    h('div', { class: 'nw-shift-bar', role: 'img', 'aria-label': counts.map(([k, n]) => typeLabel(k) + ' ' + n).join(', ') },
+      counts.map(([k, n]) => h('span', { class: 'nw-shift-seg', 'data-shift-type': k, style: `flex-grow:${n}` }, h('b', {}, String(n)), ' ', typeLabel(k)))),
+    evidence.length ? h('p', { class: 'nw-shift-evidence' }, L(['How well each shift is evidenced: ', '各项变化的证据充分程度：']),
+      evidence.flatMap(([k, n], i) => [i ? ' · ' : '', h('span', { class: `nw-evidence ${k}` }, L(EVIDENCE_LABEL[k])), ' ' + n])) : null);
+}
+
 function bellCard(e, headlines){
   const related = headlines.filter(n => n.markets.includes(e.market)).slice(0, 2);
   return h('article', { class: `nw-bell nw-${e.bell}`, 'data-market': e.market },
@@ -138,6 +192,7 @@ function bellCard(e, headlines){
       h('span', { class: `nw-direction nw-${e.direction}` }, L(DIRECTION_TEXT[e.direction]))),
     h('h3', {}, L(e.label)),
     e.watches?.length ? h('p', { class: 'nw-moves' }, h('b', {}, L(['Would move: ', '将影响：'])), watchText(e)) : null,
+    shiftBlock(e),
     callChips(e),
     h('div', { class: 'nw-position' }, eyebrow(['POSITION BEFORE IT LANDS', '落地前的布局']),
       e.actions.length
@@ -215,6 +270,7 @@ export function renderEventWatch(container,{headlines=[],marketId=null}={}){
         h('ul', { class: 'nw-risks' }, overdue.map(riskRow))) : null),
     h('div', { id: 'calendar' }, sectionTitle(['POLICY & MARKET CALENDAR', '政策与市场日历'], ['The next twelve months.', '未来十二个月。']), calendar(events, today))));
 
+  if(bells.length>1)bellHost.before(shiftOverview(bells));
   bellHost.replaceChildren(...(bells.length?bells.map(e=>bellCard(e,headlines)):[h('p',{class:'nw-quiet'},L(['No opportunity event is dated inside twelve months.','十二个月内暂无已定日期的机会事件。']))]));
   container.append(content);
 }

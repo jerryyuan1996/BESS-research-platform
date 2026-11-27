@@ -1,10 +1,8 @@
 import { h } from '../utils/dom.js';
 import { L } from '../app/i18n.js';
-import { money, multiple, returnPct } from './model.js';
+import { money, returnPct } from './model.js';
 import { labField } from '../comparison/ranges.js';
-import { REVENUE_EVIDENCE_LABEL } from '../governance/revenueEvidence.js';
-import { fixedIncomeByEvidence } from './riskData.js';
-import { chartFigure, chartSVG, chartTable, linePlot, seriesInspector, svgEl, svgText, exactMoney } from './riskChart.js';
+import { chartFigure, chartSVG, chartTable, svgEl, svgText } from './riskChart.js';
 
 const pp = (value) =>
 	Number.isFinite(value) ? (value >= 0 ? '+' : '') + (value * 100).toFixed(2) + L([' pp', ' 个百分点']) : 'N/M';
@@ -90,117 +88,5 @@ export function tornadoChart(factors, baseIRR, currency, scale = 1) {
 		row.append(detail);
 		box.append(row);
 	}
-	return box;
-}
-
-export function debtCoverChart(investment) {
-	const l = investment?.leverage;
-	if (!l?.coverByYear?.length) return null;
-	const title = ['Debt cover by operating year', '逐运营年偿债覆盖'];
-	const desc = [
-		'Cash available ÷ scheduled debt service, before the balloon, on the same basis as the published minimum. Dashed lines are loan-sizing thresholds. No ratio is shown after scheduled debt service ends.',
-		'可用现金流 ÷ 计划还本付息，不含到期尾款，与已公布最低值口径相同。虚线为贷款测算门槛；计划偿债结束后不显示倍数。',
-	];
-	const thresholds = [
-		...(Number.isFinite(l.contractedDSCR)
-			? [{ value: l.contractedDSCR, label: L(['Contracted sizing threshold', '合同收入测算门槛']) }]
-			: []),
-		{ value: l.merchantDSCR, label: L(['Merchant sizing threshold', '市场收入测算门槛']) },
-	];
-	const points = l.coverByYear.map((y) => ({ at: y.year, value: y.dscr })),
-		box = chartFigure('dscr', title, desc);
-	box.append(
-		h('p', { class: 'ix-risk-readout' }, L(['Minimum annual DSCR: ', '最低年度 DSCR：']), multiple(l.minCover)),
-		linePlot(title, desc, points, multiple, { thresholds }),
-		h('p', { class: 'ix-caption' }, L(['Operating year · coverage in multiples', '运营年度 · 覆盖倍数'])),
-		h(
-			'div',
-			{ class: 'ix-risk-legend' },
-			thresholds.map((t, i) => h('span', { class: 'threshold-' + i }, t.label + ' ' + multiple(t.value))),
-		),
-		seriesInspector(
-			points,
-			['Inspect an operating year', '选择运营年度'],
-			(p) =>
-				L(['Year ', '第 ']) +
-				p.at +
-				L([' · ', ' 年 · ']) +
-				(Number.isFinite(p.value) ? multiple(p.value) : L(['No scheduled debt service', '无计划还本付息'])),
-		),
-		chartTable(
-			title,
-			[['Operating year', '运营年'], ['DSCR', '偿债覆盖倍数'], ...thresholds.map((t) => t.label)],
-			points.map((p) => [
-				p.at,
-				Number.isFinite(p.value) ? multiple(p.value) : ['No scheduled debt service', '无计划还本付息'],
-				...thresholds.map((t) => multiple(t.value)),
-			]),
-		),
-	);
-	return box;
-}
-
-export function incomeEvidenceChart(investment) {
-	if (!investment?.bridge) return null;
-	const split = fixedIncomeByEvidence(investment),
-		title = ['Year-one fixed income by evidence', '首年固定收入的证据分类'];
-	const desc = [
-		'Modelled fixed income is not confirmation of a project contract. The existing model gives this income pool one evidence class; no component split is inferred.',
-		'模型固定收入不代表项目合同已确认。现有模型为这组收入提供一个证据类别，不推定内部拆分。',
-	];
-	const box = chartFigure('income-evidence', title, desc),
-		unit = split.currency + ' / MW',
-		name = (c) => REVENUE_EVIDENCE_LABEL[c.evidenceClass] || ['Unclassified', '未分类'];
-	box.append(
-		h(
-			'p',
-			{ class: 'ix-risk-readout' },
-			L(['Modelled fixed income: ', '模型固定收入：']),
-			money(split.total, split.currency),
-			' / MW · ',
-			L(['Project-contracted income evidenced: ', '已有项目合同证据支持的收入：']),
-			money(split.contracted, split.currency),
-		),
-	);
-	const svg = chartSVG(
-		title,
-		L(desc) + ' ' + split.classes.map((c) => L(name(c)) + ': ' + exactMoney(c.amount, split.currency) + ' / MW').join('; '),
-		'0 0 440 50',
-	);
-	svg.append(
-		svgEl('rect', {
-			x: 4,
-			y: 6,
-			width: 432,
-			height: 30,
-			class: split.classes[0]?.evidenceClass ? 'ix-evidence-' + split.classes[0].evidenceClass : 'ix-risk-empty',
-		}),
-	);
-	box.append(
-		svg,
-		h('p', { class: 'ix-caption' }, unit + ' · ' + L(['Year one, nominal', '首年名义值'])),
-		...split.classes.map((c) =>
-			h(
-				'p',
-				{ class: 'ix-risk-evidence-value', tabindex: 0, 'data-evidence-class': c.evidenceClass || 'unclassified' },
-				L(name(c)),
-				': ',
-				money(c.amount, split.currency),
-				' / MW',
-			),
-		),
-		...(split.total === 0 ? [h('p', { tabindex: 0 }, L(['No fixed income in this case.', '本方案无固定收入。']))] : []),
-		chartTable(
-			title,
-			[['Evidence class', '证据类别'], unit, ['Basis', '依据']],
-			split.classes.length
-				? split.classes.map((c) => [
-						name(c),
-						exactMoney(c.amount, split.currency),
-						c.evidence?.basis || ['Not supplied', '未提供'],
-					])
-				: [[['No fixed income', '无固定收入'], exactMoney(split.total, split.currency), '—']],
-		),
-	);
 	return box;
 }

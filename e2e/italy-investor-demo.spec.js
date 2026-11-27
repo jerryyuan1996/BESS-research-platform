@@ -21,7 +21,7 @@ test('Italy decision and financing explain the actual case with visible availabl
   const bankable=page.locator('#bankable');
   await expect(bankable.locator('.ic-bankable-case')).toBeVisible();
   await expect(bankable.locator('.ic-bankable-case details:not(.ix-risk-table)')).toHaveCount(0);
-  await expect(bankable.locator('.ic-bankable-case details.ix-risk-table')).toHaveCount(2);
+  await expect(bankable.locator('.ic-bankable-case [data-risk-chart],.ic-bankable-case details.ix-risk-table')).toHaveCount(0);
   await expect(bankable).toContainText('60.0%');await expect(bankable).toContainText('2.29×');
   await expect(bankable).toContainText('1.20×');await expect(bankable).toContainText('2.00×');
   await expect(bankable.locator('[data-debt-stream=cap]')).toContainText('18.5%');

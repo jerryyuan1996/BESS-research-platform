@@ -47,6 +47,8 @@ export function mountMarketReadingNav(root, chapters) {
 	const jump = (target) => {
 		close();
 		if (target.tagName === 'DETAILS') target.open = true;
+		const fold = target.querySelector?.(':scope > [data-reading-fold]');
+		if (fold) fold.open = true;
 		target.setAttribute('tabindex', '-1');
 		target.focus({ preventScroll: true });
 		target.scrollIntoView({ behavior: reduced() ? 'instant' : 'smooth', block: 'start' });

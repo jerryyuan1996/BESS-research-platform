@@ -3,7 +3,6 @@ import { L } from '../app/i18n.js';
 import { metric } from './chrome.js';
 import { money, pct, returnPct, share, multiple } from './model.js';
 import { operatingPrice } from './projectFacts.js';
-import { debtCoverChart, incomeEvidenceChart } from './riskCharts.js';
 
 const finite = Number.isFinite;
 const number = (value) => Number(value.toFixed(1));
@@ -358,8 +357,6 @@ export function bankableInvestmentCase(row) {
 				: null,
 		),
 		debtBreakdown(row),
-		debtCoverChart(i),
-		incomeEvidenceChart(i),
 		h(
 			'div',
 			{ class: 'ic-bankable-grid' },

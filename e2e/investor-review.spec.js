@@ -37,6 +37,8 @@ test('a month-only event keeps its uncertainty in both languages',async({page})=
 test('risk analysis keeps baseline debt and exposes the twenty-year contract tail',async({page},info)=>{
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('/markets/germany');
+  await expect(page.locator('.ix-downside-fold')).not.toHaveAttribute('open','');
+  await page.locator('.ix-downside-fold>summary').click();
   await expect(page.locator('.ix-risk-analysis-host')).toHaveAttribute('open','');
   await expect(page.locator('.ix-life-year')).toHaveCount(20);
   await expect(page.locator('.ix-risk-analysis')).toContainText('No debt is resized');
@@ -44,15 +46,19 @@ test('risk analysis keeps baseline debt and exposes the twenty-year contract tai
   expect(errors).toEqual([]);
 });
 
-for(const [slug,currency,hasFixed] of [['italy','EUR',true],['finland','EUR',true],['romania','RON',false],['great-britain','GBP',true]]) {
+for(const [slug,currency] of [['italy','EUR'],['finland','EUR'],['romania','RON'],['great-britain','GBP']]) {
   test(slug+' readable risk reconciles charts, keyboard values and bilingual mobile layout',async({page},info)=>{
     test.setTimeout(180000);
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     if(info.project.name==='mobile')await page.setViewportSize({width:375,height:844});
     await page.addInitScript(()=>{localStorage.setItem('hub_lang','en');localStorage.setItem('hub_lens','infraFund');});
     await page.goto('/markets/'+slug);
+    await expect(page.locator('[data-risk-chart=dscr],[data-risk-chart=income-evidence],.ix-income-evidence')).toHaveCount(0);
+    await expect(page.locator('.ix-downside-fold')).not.toHaveAttribute('open','');
     for(const lang of ['en','zh']) {
-      await expect(page.locator('[data-risk-chart]')).toHaveCount(4,{timeout:45000});
+      const fold=page.locator('.ix-downside-fold');
+      if(await fold.getAttribute('open')===null)await fold.locator(':scope>summary').click();
+      await expect(page.locator('[data-risk-chart]')).toHaveCount(2,{timeout:45000});
       await expect(page.locator('.ix-risk-analysis-host')).toHaveAttribute('open','');
       await expect(page.locator('.ix-tornado-factor').first()).toBeVisible();
       const factors=await page.locator('.ix-tornado-factor').evaluateAll(rows=>rows.map(r=>({effect:Number(r.dataset.effect),evidence:r.dataset.evidence})));
@@ -75,20 +81,21 @@ for(const [slug,currency,hasFixed] of [['italy','EUR',true],['finland','EUR',tru
         await expect(chart.locator('details table').first()).toBeVisible();
         await summary.press('Enter');
       }
-      for(const kind of ['dscr','cumulative-equity']) {
+      for(const kind of ['cumulative-equity']) {
         const chart=page.locator('[data-risk-chart='+kind+']'),slider=chart.locator('input[type=range]');
         await slider.focus();await slider.press('End');await expect(slider).toBeFocused();
         await expect(chart.locator('.ix-risk-readout').last()).not.toContainText(/undefined|NaN/);
         expect(await slider.getAttribute('aria-valuetext')).toBeTruthy();
       }
       await expect(page.locator('.ix-cumulative-equity')).toContainText(currency);
-      await expect(page.locator('.ix-income-evidence')).toContainText(currency);
-      await expect(page.locator('.ix-income-evidence [data-evidence-class]')).toHaveCount(hasFixed?1:0);
       await expect(page.locator('.ix-construction-cash')).not.toHaveAttribute('open','');
-      const lead=await page.locator('#execution').evaluate(el=>!!(el.querySelector('.ix-cumulative-equity').compareDocumentPosition(el.querySelector('.ix-execution-layout'))&Node.DOCUMENT_POSITION_FOLLOWING));
-      expect(lead).toBe(true);
+      const sequence=await page.locator('#execution').evaluate(el=>{const [roadmap,steps,life]=['.ix-roadmap','.ix-execution-layout','.ix-cumulative-equity'].map(s=>el.querySelector(s));
+        return !!(roadmap.compareDocumentPosition(steps)&Node.DOCUMENT_POSITION_FOLLOWING)&&!!(steps.compareDocumentPosition(life)&Node.DOCUMENT_POSITION_FOLLOWING);});
+      expect(sequence).toBe(true);
+      await expect(page.locator('#execution .ix-steps>li')).toHaveCount(6);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1)).toBe(false);
-      for(const kind of ['dscr','cumulative-equity','income-evidence','tornado'])await page.locator('[data-risk-chart='+kind+']').screenshot({path:info.outputPath(slug+'-'+lang+'-'+kind+'.png')});
+      for(const kind of ['cumulative-equity','tornado'])await page.locator('[data-risk-chart='+kind+']').screenshot({path:info.outputPath(slug+'-'+lang+'-'+kind+'.png')});
+      await page.locator('.ix-roadmap').screenshot({path:info.outputPath(slug+'-'+lang+'-roadmap.png')});
       if(lang==='en')await page.locator('.ix-language').click();
     }
     expect(errors).toEqual([]);

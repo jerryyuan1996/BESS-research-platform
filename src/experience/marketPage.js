@@ -47,6 +47,7 @@ import './story/public/overview.css';
 import { bankableInvestmentCase, investmentCaseIdentity, investmentDecisionMetrics } from './investmentCase.js';
 import './investmentCase.css';
 import './riskCharts.css';
+import './executionRoadmap.css';
 import { localRevenueBridge } from './traceability.js';
 
 /* One closed disclosure: the research behind a chapter. Nothing is fetched
@@ -767,6 +768,9 @@ export function createMarketRenderer(ui) {
 				);
 			})
 			.finally(() => explanation.setAttribute('aria-busy', 'false'));
+		/* Downside reads as a closed fold on every market. The ranked
+		   sensitivities re-run the model, so they load the first time the fold
+		   opens, and open with it. */
 		const analysis = h(
 			'details',
 			{ class: 'ix-details ix-risk-analysis-host', open: '' },
@@ -791,13 +795,46 @@ export function createMarketRenderer(ui) {
 			}
 		};
 		analysis.addEventListener('toggle', () => {
-			if (analysis.open) loadAnalysis();
+			if (analysis.open && fold.open) loadAnalysis();
 		});
-		loadAnalysis();
-		return h(
-			'section',
-			{ id: 'downside', class: 'ix-section' },
-			sectionTitle(['DOWNSIDE RISK', '下行风险'], ['Know what can weaken the case.', '看清风险，才能守住回报。']),
+		const fold = h(
+			'details',
+			{ class: 'ix-downside-fold', 'data-reading-fold': '' },
+			h(
+				'summary',
+				{ class: 'ix-fold-summary' },
+				h(
+					'span',
+					{ class: 'ix-fold-text' },
+					h(
+						'strong',
+						{},
+						h('span', { class: 'ix-fold-closed' }, L(['Show the downside case', '展开下行情景'])),
+						h('span', { class: 'ix-fold-opened' }, L(['Hide the downside case', '收起下行情景'])),
+					),
+					h(
+						'span',
+						{ class: 'ix-fold-teaser' },
+						L(['Base all-equity IRR ', '基准全股权 IRR ']),
+						h('b', {}, returnPct(row.econ.hold)),
+						' → ',
+						h('b', { class: 'ix-risk-value' }, returnPct(row.investment?.bearHoldIRR)),
+						L([' with every adverse input at once', '（所有不利输入同时发生）']),
+					),
+				),
+				h('span', { class: 'ix-fold-icon', 'aria-hidden': 'true' }),
+			),
+		);
+		fold.addEventListener('toggle', () => {
+			if (fold.open && analysis.open) loadAnalysis();
+		});
+		/* A printed brief keeps the downside. */
+		const printOpen = () => {
+			if (!fold.isConnected) return window.removeEventListener('beforeprint', printOpen);
+			fold.open = true;
+		};
+		window.addEventListener('beforeprint', printOpen);
+		fold.append(
 			analysis,
 			card(
 				h(
@@ -903,6 +940,12 @@ export function createMarketRenderer(ui) {
 				),
 			),
 			researchDisclosure(row.market, 'downside'),
+		);
+		return h(
+			'section',
+			{ id: 'downside', class: 'ix-section' },
+			sectionTitle(['DOWNSIDE RISK', '下行风险'], ['Know what can weaken the case.', '看清风险，才能守住回报。']),
+			fold,
 		);
 	}
 

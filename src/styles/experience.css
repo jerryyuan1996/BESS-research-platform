@@ -413,8 +413,6 @@ body.ix-experience {
 .ix-plan-switch button { padding:10px 22px; border:0; background:transparent; color:var(--ix-green); border-radius:var(--r-xs); }
 .ix-plan-switch button[aria-pressed="true"] { background:var(--ix-green); color:#fff; }
 .ix-plan-heading { margin:12px 0 24px; }
-.ix-execution-layout { display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:40px; align-items:start; }
-.ix-execution-cash { min-width:0; position:sticky; top:88px; }
 .ix-monthly-cash { min-width:0; padding:22px; border:1px solid var(--ix-line); border-radius:var(--r-sm); background:#fffefa; }
 .ix-monthly-cash h4 { margin:0 0 8px; font-size:var(--fs-sm); }
 .ix-monthly-cash .ix-caption { margin:8px 0 16px; }
@@ -430,8 +428,6 @@ body.ix-experience {
   .ix-selected-summary { grid-template-columns:1fr; gap:20px; }
   .ix-selected-summary .ix-selected-metrics { grid-column:auto; grid-row:auto; }
   .ix-selected-summary>.ix-button { justify-self:start; }
-  .ix-execution-layout { grid-template-columns:1fr; gap:24px; }
-  .ix-execution-cash { position:static; }
   .ix-downside-conditions { grid-template-columns:1fr; }
 }
 @media(max-width:560px) {
