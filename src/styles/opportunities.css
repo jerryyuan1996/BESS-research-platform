@@ -37,6 +37,7 @@
 .ix-opportunity-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:22px 0}
 .ix-opportunity-form label{display:flex;flex-direction:column;gap:8px;font-size:var(--fs-sm);line-height:1.5;min-width:0}
 .ix-opportunity-form input{font:inherit;font-size:var(--fs-lg);padding:12px;border:1px solid #bdccc2;border-radius:0;background:#fff;color:#172d22;min-width:0;width:100%;box-sizing:border-box}
+.ix-opportunity-form .ix-input-evidence{margin-top:0!important;line-height:1.4}
 .ix-opportunity-form input:focus,.ix-opportunity-controls select:focus{outline:2px solid #146e4a;outline-offset:2px}
 .ix-comparison-basis{margin:24px 0;font-size:var(--fs-sm);line-height:1.7;color:var(--ix-muted,#57675e)}
 .ix-opportunity-table{min-width:620px;width:100%}

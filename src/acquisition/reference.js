@@ -36,10 +36,14 @@ export function acquisitionInput(market,stage,overrides={}){
     const renewal=(cash.renewal+(hasContract?0:unconfirmed))*(u.unsecuredRevenueFactor??1);
     const capex=cash.capex;
     const canTrade=strategyId!=='toll'||e.tollIsFloor||year>=(e.tollYears??15)&&e.tollRevertsToMerchant;
-    const extraReserve=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*(1-(e.degr||2)/100)**year:0;
+    const fade=(1-(e.degr||2)/100)**year;
+    const extraReserve=canTrade?(u.additionalReserveNetPerMW??0)*result.fxRate*fade:0;
     // The distributor charges or credits the owner after the optimiser fee.
-    // Convert the signed local-currency amount to the engine's real USD here.
-    const network=(u.networkNetPerMW??0)*result.fxRate;
+    // Convert the signed local-currency amounts to the engine's real USD here.
+    // Fixed access and demand charges stay flat; energy-band charges and
+    // credits follow throughput, so they fall with degradation. `network` is
+    // the signed total of both parts.
+    const network=(u.networkFlatNetPerMW??0)*result.fxRate+(u.networkDispatchNetPerMW??0)*result.fxRate*fade;
     const merchant=(cash.merchant+extraReserve)*(u.unsecuredRevenueFactor??1)+network;
     const opex=cash.opex*(u.operatingCostFactor??1);
     const adjustedRevenue=secured+renewal+merchant;
