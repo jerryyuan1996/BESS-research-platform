@@ -7,6 +7,7 @@ import { gridMapForMarket } from '../src/markets/gridMapRegistry.js';
 import { CORE_STORYLINE } from '../src/markets/ro/coreStoryline.js';
 import { CORE_STORYLINE_TEXT as WA_STORYLINE } from '../src/markets/wa/coreStoryline.js';
 import { conciseResearchSpec } from '../src/markets/_shared/conciseResearch.js';
+import { SITE_VALUE } from '../src/acquisition/siteValue.js';
 
 const original = { en: await readResearch({lang:'en'}), zh: await readResearch({lang:'zh'}) };
 const walk = blocks => (blocks || []).filter(Boolean).flatMap(b=>[b,...walk(b.blocks),...walk(b.cards)]);
@@ -153,6 +154,31 @@ for (const market of markets) test(`${market.manifest.id}: own narrative, decisi
       await page.keyboard.press('Escape');
       await expect(dialog).toHaveCount(0);
       await expect(trigger).toBeFocused();
+    }
+    {
+      // The connection-value card sits directly below the grid entrance and opens its own reader.
+      const card = page.locator('[data-market-research="connection"]');
+      await expect(card).toHaveCount(1);
+      expect(await card.evaluate(el=>el.previousElementSibling?.dataset.marketResearch)).toBe('grid');
+      await card.click();
+      const reader = page.locator('.connection-outlook-dialog');
+      await expect(reader).toHaveAttribute('data-market',id);
+      await expect(reader).toHaveAttribute('lang',lang==='en'?'en':'zh-CN');
+      await expect(reader.locator('.co-credit')).toHaveAttribute('data-site-value',SITE_VALUE[id]?.currency??'none');
+      await expect(reader.locator('.co-call-text')).not.toBeEmpty();
+      await expect(reader.locator('.co-section')).toHaveCount(6);
+      await expect(reader.locator('.co-sources a').first()).toHaveAttribute('href',/^https:\/\//);
+      expect(await reader.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+      if(id==='gb' && lang==='en') {
+        const switchLanguage=reader.locator('.market-reader-language');
+        await switchLanguage.click();
+        await expect(reader).toHaveAccessibleName('并网权值多少');
+        await switchLanguage.click();
+        await expect(reader).toHaveAccessibleName('What the connection is worth');
+      }
+      await page.keyboard.press('Escape');
+      await expect(reader).toHaveCount(0);
+      await expect(card).toBeFocused();
     }
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
     if (lang==='zh' && ['gb','nem','jp_kyushu','wa'].includes(id)) {

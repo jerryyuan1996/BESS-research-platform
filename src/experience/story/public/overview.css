@@ -154,6 +154,10 @@
 .market-research-arrow { flex:none; display:grid; place-items:center; width:40px; height:40px; border-radius:50%; background:var(--ix-green); color:#fff; font-size:var(--fs-lg); transition:transform .15s; }
 .market-research-link:hover .market-research-arrow { transform:translateX(3px); }
 #revenue-drivers .market-research-link { margin-top:24px; max-width:640px; }
+.market-research-link.market-connection-link { margin-top:10px; background:#f5f1e6; border-color:#e0d3b4; }
+.market-research-link.market-connection-link:hover { background:#efe8d6; border-color:var(--ix-gold); }
+.market-connection-link .market-research-icon { background:#785f2b; color:#f5ead0; }
+.market-connection-link .market-research-kicker { color:#785f2b!important; }
 @media(min-width:1600px) { .market-overview-map .geo-map-pane { height:360px; } }
 @media(max-width:1050px) {
   .public-overview.market-overview { grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:22px; }

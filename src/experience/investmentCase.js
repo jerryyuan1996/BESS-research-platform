@@ -345,6 +345,12 @@ export function bankableInvestmentCase(row) {
 			'div',
 			{ class: 'ix-kpis ic-bankable-kpis' },
 			finite(i.holdIRR) ? metric(['All-equity IRR (hold)', '全股权 IRR（长持）'], returnPct(i.holdIRR)) : null,
+			finite(i.holdIRRWithSite)
+				? metric(['With end-of-life site value', '计入寿命期末场址价值'], returnPct(i.holdIRRWithSite), [
+						`Site credit of ${money(i.siteValuePerMW, i.currency)}/MW in 2026 money, indexed to retirement`,
+						`按2026年币值计入每MW ${money(i.siteValuePerMW, i.currency)}的场址残值，按通胀折算至退役时点`,
+					])
+				: null,
 			finite(i.leveredIRR) ? metric(['Levered equity IRR', '杠杆后股权 IRR'], returnPct(i.leveredIRR)) : null,
 			finite(l?.gearing)
 				? metric(['Debt ratio', '债务比例'], pct(l.gearing), ['Of build & grid budget', '占建设及并网预算'])

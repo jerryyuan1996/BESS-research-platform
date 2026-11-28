@@ -114,6 +114,7 @@ export function renderPublicOverview(id, { name, open }) {
 				),
 				host,
 				marketResearchLink(id, 'grid'),
+				marketResearchLink(id, 'connection'),
 			),
 		);
 		// The host is connected by the caller before this import resolves.

@@ -77,6 +77,33 @@ test('a real asking price works with partial inputs and updates expected returns
   await panel.locator('.acq-lab-output').screenshot({path:testInfo.outputPath('acquisition-asking-price-zh.png')});
 });
 
+test('the Lab applies the grid site benchmark only when selected and restores the base return at zero',async({page})=>{
+  await page.goto('/markets/great-britain');
+  await page.getByRole('button',{name:'Model this market ↗',exact:true}).click();
+  const lab=page.locator('.acq-lab');
+  await lab.getByRole('combobox',{name:'Acquisition stage',exact:true}).selectOption('ready-to-build');
+  const price=lab.getByRole('spinbutton',{name:'Seller asking price / MW (optional)',exact:true});
+  const site=lab.getByRole('spinbutton',{name:/End-of-life site value/});
+  await expect(site).toHaveValue('');
+  await price.fill('100000');
+  await price.blur();
+  await lab.getByRole('combobox',{name:'Return ownership route',exact:true}).selectOption('hold');
+  const result=lab.locator('.acq-at-price>p');
+  await expect(result).toHaveText(/%$/);
+  const base=await result.innerText();
+  await lab.getByRole('button',{name:'Use reference: GBP 42,000/MW',exact:true}).click();
+  await expect(site).toHaveValue('42000');
+  await expect.poll(async()=>parseFloat(await result.innerText())).toBeGreaterThan(parseFloat(base));
+  await site.fill('0');
+  await site.blur();
+  await expect(site).toHaveValue('0');
+  await expect(result).toHaveText(base);
+  await site.fill('');
+  await site.blur();
+  await expect(site).toHaveValue('');
+  await expect(result).toHaveText(base);
+});
+
 test('a completed operating case pairs price and equity target, explains debt and survives translation',async({page},testInfo)=>{
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/investment-lab');

@@ -535,6 +535,13 @@ export const ASSUMPTION_AUTHORITY = {
      designs must be before the sweep stops telling them apart is a position on
      precision, not an observation. */
   DESIGN_FIT_TOLERANCE: AUTHORITY.METHODOLOGY,
+
+  /* End-of-life site value (src/acquisition/siteValue.js), signed off on
+     27 November 2026. The observed connection prices are ANALYST: a newer
+     public deal price may be proposed, never applied. The 50% survival weight
+     is a ruling, not an observation, so it is METHODOLOGY. */
+  SITE_VALUE: AUTHORITY.ANALYST,
+  SITE_VALUE_WEIGHT: AUTHORITY.METHODOLOGY,
 };
 
 /* ---------------------------------------------------------------------------

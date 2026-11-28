@@ -10,6 +10,7 @@ import { operatingReference } from './operating.js';
 import { incomeScenario } from './scenarios.js';
 import { constructionCeiling } from './construction.js';
 import { referenceTerms } from './terms.js';
+import { siteValueCredit } from './siteValue.js';
 import { ARCHETYPES } from '../governance/archetypes.js';
 
 /** Strict project adapter. Reference assumptions are added explicitly by
@@ -63,7 +64,7 @@ export function acquisitionInput(market,stage,overrides={}){
     stage,strategyId,currency,fxToUSD:fx,powerMW:variant.comparison.archetype.powerMW,durationHours:variant.comparison.archetype.durationHours,
     commercialScenario:chosen,contractYears:operating.primaryTerm,
     annual:cashYears,operatingAgeYears:age,economicLifeYears:life,
-    decommissioningPerMW:u.decommissioningPerMW,fixedFeesPerMW:u.fixedFeesPerMW,
+    decommissioningPerMW:u.decommissioningPerMW,siteValuePerMW:u.siteValuePerMW,fixedFeesPerMW:u.fixedFeesPerMW,
     existingNetDebtPerMW:stage==='operating'?u.existingNetDebtPerMW:0,
     scenarios,developmentRiskConfirmed:u.developmentRiskConfirmed,developmentRiskAssumed:u.developmentRiskAssumed,
     conditionsMet:u.conditionsMet===true && result.feasibility?.status!=='fail',
@@ -175,7 +176,11 @@ export function referenceInputs(market,stage,overrides={}){
     defaults.scalableTaxCreditBasisReduction=u.eligibleTaxCreditBasisPerMW==null?grossCredit*.5:0;
     const complete={...defaults,...u,sources:[...sourceIds.map(id=>({label:REFERENCE_SOURCES[id].label[0],url:REFERENCE_SOURCES[id].url})),...(u.sources||[])]};
     const input=acquisitionInput(market,stage,complete);
-    return {input,key:c.id,fixedRevenueEvidence:r.fixedRevenueEvidence,economicInputToCash:r.fxRate/fx,assumptions:{
+    // The end-of-life site value sits on the case, beside the headline input and
+    // outside the shared assumptions every acquisition payload carries
+    // (docs/site-value-plan-2026-11-27.md).
+    return {input,key:c.id,fixedRevenueEvidence:r.fixedRevenueEvidence,economicInputToCash:r.fxRate/fx,
+      siteValuePerMW:siteValueCredit(market.manifest.id,input.currency),assumptions:{
       taxRate:complete.cashTaxRate,turnoverTaxRate:complete.turnoverTaxRate,age:complete.operatingAgeYears,
       revenueFactor:complete.unsecuredRevenueFactor,opexFactor:complete.operatingCostFactor,
       codYears:Math.min(...input.scenarios.filter(s=>s.operates).map(s=>s.codYears)),
