@@ -13,12 +13,12 @@
     "licence": "Publisher RSS — headline metadata and syndicated excerpt only, linked to the source",
     "attribution": "Headlines and excerpts remain the property of their publishers"
   },
-  "fetchedAt": "2026-11-27T16:47:41.585Z",
+  "fetchedAt": "2026-11-28T15:39:46.358Z",
   "coverage": {
     "from": "2026-05-26T06:00:25.000Z",
-    "to": "2026-11-27T14:24:01.000Z",
+    "to": "2026-11-28T10:58:00.000Z",
     "resolution": "event",
-    "points": 44
+    "points": 45
   },
   "units": {
     "record": "published article metadata"
@@ -761,126 +761,6 @@
       }
     },
     {
-      "t": "2026-11-27T10:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/strong-el-nino-coincides-with-uneven-october-solar-resource-across-south-america/",
-      "source": "pv magazine",
-      "title": "Strong El Niño coincides with uneven October solar resource across South America",
-      "url": "https://www.pv-magazine.com/2026/11/27/strong-el-nino-coincides-with-uneven-october-solar-resource-across-south-america/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "In a new weekly update for pv magazine , Solcast, a DNV company, reports that solar irradiance was above average across much of the northern part of South America last month, while areas in the south-east recorded substantial deficits. The post Strong El Niño coincides with uneven October solar resource across South…",
-      "zh": {
-        "title": [
-          "Strong El Niño coincides with uneven October solar resource across South America",
-          "强烈的厄尔尼诺现象与整个南美洲10月不均衡的太阳能资源同时发生"
-        ],
-        "summary": [
-          "In a new weekly update for pv magazine , Solcast, a DNV company, reports that solar irradiance was above average across much of the northern part of South America last month, while areas in the south-east recorded substantial deficits. The post Strong El Niño coincides with uneven October solar resource across South…",
-          "一家DNV公司Solcast(Solcast)每周为Pv杂志提供最新消息, 报导上月南美洲北部大部分地区太阳辐照率均高于平均水平,"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-27T10:45:36.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/new-record-for-uk-rooftop-solar-more-growth-predicted/",
-      "source": "pv magazine",
-      "title": "New record for UK rooftop solar, more growth predicted",
-      "url": "https://www.pv-magazine.com/2026/11/27/new-record-for-uk-rooftop-solar-more-growth-predicted/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "More than 270,000 solar installations the United Kingdom with six weeks of 2026 still to run. Industry leaders predict further growth in 2027 beyond as new policy support measures strengthen economic case for residential solar. The post New record for UK rooftop solar, more growth predicted appeared first on pv maga…",
-      "zh": {
-        "title": [
-          "New record for UK rooftop solar, more growth predicted",
-          "联合王国屋顶太阳能新记录,预测增长更多"
-        ],
-        "summary": [
-          "More than 270,000 solar installations the United Kingdom with six weeks of 2026 still to run. Industry leaders predict further growth in 2027 beyond as new policy support measures strengthen economic case for residential solar. The post New record for UK rooftop solar, more growth predicted appeared first on pv maga…",
-          "2026年六个星期内,英国的太阳能设施超过270,000个。 随着新的政策支持措施加强了住宅太阳能的经济可行性,工业领先者预测2027年以后会进一步增长。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-27T11:06:15.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/chinese-pv-industry-brief-china-hits-1-33-tw-of-cumulative-solar-capacity/",
-      "source": "pv magazine",
-      "title": "Chinese PV Industry Brief: China hits 1.33 TW of cumulative solar capacity",
-      "url": "https://www.pv-magazine.com/2026/11/27/chinese-pv-industry-brief-china-hits-1-33-tw-of-cumulative-solar-capacity/",
-      "category": "policy",
-      "categoryLabel": "Policy & trade",
-      "summary": "In other news, Jiangsu province has unveiled its 2027 renewable energy auction framework, Trina Solar plans to increase its stake in Trina Storage, and China Huaneng has started construction of a 400 MW offshore solar project, while TrendForce has reported further declines in wafer and cell prices. The post Chinese…",
-      "zh": {
-        "title": [
-          "Chinese PV Industry Brief: China hits 1.33 TW of cumulative solar capacity",
-          "中国光电池工业简报:中国的太阳累积容量达1.33吨"
-        ],
-        "summary": [
-          "In other news, Jiangsu province has unveiled its 2027 renewable energy auction framework, Trina Solar plans to increase its stake in Trina Storage, and China Huaneng has started construction of a 400 MW offshore solar project, while TrendForce has reported further declines in wafer and cell prices. The post Chinese…",
-          "江苏省已公布其2027年可再生能源拍卖框架,Trina Solar计划增加其在Trina储存的股份,中国Huaneng已开始建造一个400兆瓦的近海太阳能项目,而TrindForce则报告说,裂谷和电池价格进一步下降。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-27T11:18:46.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/eu-restrictions-on-inverters-could-cut-european-solar-deployment-by-up-to-6-says-wood-mackenzie/",
-      "source": "pv magazine",
-      "title": "EU restrictions on inverters could cut European solar deployment by up to 6%, says Wood Mackenzie",
-      "url": "https://www.pv-magazine.com/2026/11/27/eu-restrictions-on-inverters-could-cut-european-solar-deployment-by-up-to-6-says-wood-mackenzie/",
-      "category": "capital",
-      "categoryLabel": "Capital & M&A",
-      "summary": "Wood Mackenzie expects EU funding restrictions on projects using inverters from high-risk suppliers to reduce cumulative solar and energy storage installations across the bloc by 3% between 2027 and 2030. Limited local product availability, rising costs, and supply chain constraints are among the main challenges. Th…",
-      "zh": {
-        "title": [
-          "EU restrictions on inverters could cut European solar deployment by up to 6%, says Wood Mackenzie",
-          "欧盟对反转器的限制可以将欧洲太阳能部署量削减6%,"
-        ],
-        "summary": [
-          "Wood Mackenzie expects EU funding restrictions on projects using inverters from high-risk suppliers to reduce cumulative solar and energy storage installations across the bloc by 3% between 2027 and 2030. Limited local product availability, rising costs, and supply chain constraints are among the main challenges. Th…",
-          "Wood Mackenzie预计欧盟对使用高风险供应商倒置器的项目的供资限制,以便在2027年至2030年期间将整个集团的太阳能和能源储存设施累计减少3%。 主要挑战包括当地产品供应有限、成本上升和供应链限制。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-27T12:31:25.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/bangladesh-makes-solar-equipment-recycling-mandatory/",
-      "source": "pv magazine",
-      "title": "Bangladesh makes solar equipment recycling mandatory",
-      "url": "https://www.pv-magazine.com/2026/11/27/bangladesh-makes-solar-equipment-recycling-mandatory/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Bangladesh’s new Special Solar Power Installation Act requires manufacturers, suppliers and service providers to implement take-back schemes for end-of-life solar equipment, marking a step toward sustainable PV waste management. The post Bangladesh makes solar equipment recycling mandatory appeared first on pv magaz…",
-      "zh": {
-        "title": [
-          "Bangladesh makes solar equipment recycling mandatory",
-          "孟加拉国规定必须回收太阳能设备"
-        ],
-        "summary": [
-          "Bangladesh’s new Special Solar Power Installation Act requires manufacturers, suppliers and service providers to implement take-back schemes for end-of-life solar equipment, marking a step toward sustainable PV waste management. The post Bangladesh makes solar equipment recycling mandatory appeared first on pv magaz…",
-          "孟加拉国新的《太阳能特别安装法》要求制造商、供应商和服务提供商对报废太阳能设备实施回收计划,这标志着朝着可持续的光电废物管理迈出了一步。"
-        ]
-      }
-    },
-    {
-      "t": "2026-11-27T13:45:00.000Z",
-      "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/greenhushing-pv-prices-battery-prices-and-the-shifting-bottleneck/",
-      "source": "pv magazine",
-      "title": "Greenhushing, PV prices, battery prices and the shifting bottleneck",
-      "url": "https://www.pv-magazine.com/2026/11/27/greenhushing-pv-prices-battery-prices-and-the-shifting-bottleneck/",
-      "category": "grid",
-      "categoryLabel": "Grid & markets",
-      "summary": "Greenhushing reflects a shift towards prioritising environmental performance over public sustainability commitments, as declining solar PV and battery costs strengthen the economic case for corporate decarbonisation. The solar industry’s next phase of growth will depend less on equipment affordability and more on gr…",
-      "zh": {
-        "title": [
-          "Greenhushing, PV prices, battery prices and the shifting bottleneck",
-          "绿屏、光电池价格、电池价格和不断变化的瓶颈"
-        ],
-        "summary": [
-          "Greenhushing reflects a shift towards prioritising environmental performance over public sustainability commitments, as declining solar PV and battery costs strengthen the economic case for corporate decarbonisation. The solar industry’s next phase of growth will depend less on equipment affordability and more on gr…",
-          "绿化反映了环境业绩相对于公共可持续性承诺的转变,因为太阳能光电池和电池成本的下降强化了企业去碳化的经济理由。 太阳能工业的下一个增长阶段将不再依赖于设备的可负担性,而更多地依赖于光电池.。"
-        ]
-      }
-    },
-    {
       "t": "2026-11-27T14:24:01.000Z",
       "id": "pv magazine:https://www.pv-magazine.com/2026/11/27/japans-30th-solar-auction-allocates-27-7-mw-of-pv-capacity/",
       "source": "pv magazine",
@@ -899,17 +779,157 @@
           "日本在最近的采购活动中选择了7个光电池项目,规模从500千瓦到20兆瓦不等,最低出价为5.00日元(0.031美元/千瓦),加权平均最后价格达到9.13/千瓦。"
         ]
       }
+    },
+    {
+      "t": "2026-11-28T08:00:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/germanys-solar-generation-tops-100-twh-in-2026/",
+      "source": "pv magazine",
+      "title": "Germany’s solar generation tops 100 TWh in 2026",
+      "url": "https://www.pv-magazine.com/2026/11/28/germanys-solar-generation-tops-100-twh-in-2026/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "PV systems in Germany have generated more than 100 TWh of electricity in 2026, nearly tripling output over the past decade, according to data from Fraunhofer ISE. The post Germany’s solar generation tops 100 TWh in 2026 appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Germany’s solar generation tops 100 TWh in 2026",
+          "德国2026年的太阳能发电量最高100吨瓦时"
+        ],
+        "summary": [
+          "PV systems in Germany have generated more than 100 TWh of electricity in 2026, nearly tripling output over the past decade, according to data from Fraunhofer ISE. The post Germany’s solar generation tops 100 TWh in 2026 appeared first on pv magazine Global .",
+          "根据Fraunhofer ISE的数据,德国的光电系统在2026年发电量超过100千瓦时,在过去十年中几乎增加了三倍。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T08:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/how-cellular-base-stations-may-affect-solar-module-performance/",
+      "source": "pv magazine",
+      "title": "How cellular base stations may affect solar module performance",
+      "url": "https://www.pv-magazine.com/2026/11/28/how-cellular-base-stations-may-affect-solar-module-performance/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Researchers in Burkina Faso have found that radio-frequency electromagnetic fields may alter the internal electrical parameters and power output of solar modules. Their outdoor experiments revealed nonlinear effects depending on field intensity and antenna radiation patterns. The post How cellular base stations may…",
+      "zh": {
+        "title": [
+          "How cellular base stations may affect solar module performance",
+          "蜂窝基站如何影响太阳能模块的性能"
+        ],
+        "summary": [
+          "Researchers in Burkina Faso have found that radio-frequency electromagnetic fields may alter the internal electrical parameters and power output of solar modules. Their outdoor experiments revealed nonlinear effects depending on field intensity and antenna radiation patterns. The post How cellular base stations may…",
+          "布基纳法索的研究人员发现,无线电频率电磁场可能会改变太阳元件的内部电参数和功率输出,他们的室外实验显示,根据实地强度和天线辐射模式,会产生非线性影响。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T08:40:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/peru-hits-1-24-gw-of-installed-solar-capacity-across-22-plants/",
+      "source": "pv magazine",
+      "title": "Peru hits 1.24 GW of installed solar capacity across 22 plants",
+      "url": "https://www.pv-magazine.com/2026/11/28/peru-hits-1-24-gw-of-installed-solar-capacity-across-22-plants/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Peru has 1,241 MW of installed PV capacity across 22 operational installations, with three southern regions accounting for 97.3% of the total. The post Peru hits 1.24 GW of installed solar capacity across 22 plants appeared first on pv magazine Global .",
+      "zh": {
+        "title": [
+          "Peru hits 1.24 GW of installed solar capacity across 22 plants",
+          "秘鲁22个工厂的安装太阳能能力达到1.24千兆瓦"
+        ],
+        "summary": [
+          "Peru has 1,241 MW of installed PV capacity across 22 operational installations, with three southern regions accounting for 97.3% of the total. The post Peru hits 1.24 GW of installed solar capacity across 22 plants appeared first on pv magazine Global .",
+          "秘鲁在22个运行设施中安装了1 241兆瓦的光电池,其中3个南部地区占总数的97.3%。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T08:45:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/leading-the-energy-transition-stereotypes-ai-and-what-stays-human/",
+      "source": "pv magazine",
+      "title": "Leading the energy transition: stereotypes, AI and what stays human",
+      "url": "https://www.pv-magazine.com/2026/11/28/leading-the-energy-transition-stereotypes-ai-and-what-stays-human/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "This week, Women in Solar+ Europe (WiSEu) and Solar+ Leaders reflect on two workshops held in Madrid during Genera that examined how bias shapes everyday leadership decisions in the energy transition. The WiSEu breakfast workshop explored who gets heard in meetings, who receives credit for their work and who gets th…",
+      "zh": {
+        "title": [
+          "Leading the energy transition: stereotypes, AI and what stays human",
+          "领导能源转型:陈规定型观念、人工智能和什么是人类"
+        ],
+        "summary": [
+          "This week, Women in Solar+ Europe (WiSEu) and Solar+ Leaders reflect on two workshops held in Madrid during Genera that examined how bias shapes everyday leadership decisions in the energy transition. The WiSEu breakfast workshop explored who gets heard in meetings, who receives credit for their work and who gets th…",
+          "本周,太阳+欧洲妇女(Wiseu)和太阳+领导人反思了在吉纳拉期间在马德里举行的两个研讨会,这两个研讨会审查了在能源转型中如何形成日常领导决策的偏见。 Wiseu早餐研讨会探索了在会议上听取谁的意见,谁的工作得到荣誉,谁的工作得到荣誉...。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T09:30:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/romanian-solar-and-storage-what-gets-financed-and-built/",
+      "source": "pv magazine",
+      "title": "Romanian solar and storage: What gets financed and built?",
+      "url": "https://www.pv-magazine.com/2026/11/28/romanian-solar-and-storage-what-gets-financed-and-built/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Romania’s growing solar and storage market offers significant investment opportunities, but ready-to-build status alone does not guarantee bankability. Investors must assess grid connection conditions, outstanding development obligations and revenue assumptions to determine which projects can secure financing and en…",
+      "zh": {
+        "title": [
+          "Romanian solar and storage: What gets financed and built?",
+          "罗马尼亚太阳能和储存:什么得到资金和建造?"
+        ],
+        "summary": [
+          "Romania’s growing solar and storage market offers significant investment opportunities, but ready-to-build status alone does not guarantee bankability. Investors must assess grid connection conditions, outstanding development obligations and revenue assumptions to determine which projects can secure financing and en…",
+          "罗马尼亚不断扩大的太阳能和储存市场提供了巨大的投资机会,但仅靠即兴建设并不能保证银行的可承受性。 投资者必须评估电网连接条件、未偿发展债务和收入假设,以确定哪些项目能够确保融资和收益假设。"
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T09:33:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/new-model-optimizes-perovskite-silicon-tandem-solar-cells-for-satellites/",
+      "source": "pv magazine",
+      "title": "New model optimizes perovskite-silicon tandem solar cells for satellites",
+      "url": "https://www.pv-magazine.com/2026/11/28/new-model-optimizes-perovskite-silicon-tandem-solar-cells-for-satellites/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "South Korean-led researchers have identified optimal perovskite absorber thicknesses and bandgaps for tandem solar cells operating in different satellite orbits. Their simulations indicate that bromide-rich perovskites offer superior current matching, greater thickness tolerance, and projected efficiencies of up to…",
+      "zh": {
+        "title": [
+          "New model optimizes perovskite-silicon tandem solar cells for satellites",
+          "新的模型优化卫星的千兆瓦-硅同步太阳能电池"
+        ],
+        "summary": [
+          "South Korean-led researchers have identified optimal perovskite absorber thicknesses and bandgaps for tandem solar cells operating in different satellite orbits. Their simulations indicate that bromide-rich perovskites offer superior current matching, greater thickness tolerance, and projected efficiencies of up to…",
+          "韩国牵头的研究人员已经确定了在不同的卫星轨道运行的同步太阳电池的最佳百草枯吸收器厚度和带宽。 他们的模拟表明,富含溴的百草枯能提供更好的当前匹配、更大的厚度耐受度以及预计最高可达到..."
+        ]
+      }
+    },
+    {
+      "t": "2026-11-28T10:58:00.000Z",
+      "id": "pv magazine:https://www.pv-magazine.com/2026/11/28/integrating-agrivoltaics-with-batteries-for-rural-energy-and-food-security-in-west-africa/",
+      "source": "pv magazine",
+      "title": "Integrating agrivoltaics with batteries for rural energy and food security in West Africa",
+      "url": "https://www.pv-magazine.com/2026/11/28/integrating-agrivoltaics-with-batteries-for-rural-energy-and-food-security-in-west-africa/",
+      "category": "grid",
+      "categoryLabel": "Grid & markets",
+      "summary": "Agrivoltaics offers a sustainable solution to competing land-use demands by integrating solar energy generation and agriculture, enhancing food security, water efficiency and rural livelihoods. Combined with battery energy storage, it can strengthen energy reliability, economic viability and climate resilience in ru…",
+      "zh": {
+        "title": [
+          "Integrating agrivoltaics with batteries for rural energy and food security in West Africa",
+          "西非农村能源和粮食安全将农业蒸汽与电池相结合"
+        ],
+        "summary": [
+          "Agrivoltaics offers a sustainable solution to competing land-use demands by integrating solar energy generation and agriculture, enhancing food security, water efficiency and rural livelihoods. Combined with battery energy storage, it can strengthen energy reliability, economic viability and climate resilience in ru…",
+          "通过整合太阳能发电和农业,提高粮食安全、用水效率和农村生计,农业蒸汽工程为相互竞争的土地使用需求提供了可持续的解决方案。 结合电池能源储存,它可以提高能源可靠性、经济可行性和气候抗御力。"
+        ]
+      }
     }
   ],
   "derived": {
     "authority": "derived",
-    "items": 44,
+    "items": 45,
     "sources": 4,
     "sourcesReporting": 4,
     "byCategory": {
-      "capital": 5,
-      "grid": 27,
-      "policy": 9,
+      "capital": 4,
+      "grid": 31,
+      "policy": 7,
       "technology": 3
     },
     "sourceStatus": [
@@ -935,7 +955,7 @@
         "source": "pv magazine",
         "homepage": "https://www.pv-magazine.com/",
         "status": "ok",
-        "items": 7
+        "items": 8
       }
     ]
   },
@@ -944,6 +964,6 @@
   ],
   "refreshHours": 24,
   "staleAfterHours": 168,
-  "contentChecksum": "sha256:fe8a7cb6ec51d2d96f871710f1c285e1159600ad059919f17ebfdd54e8beb518",
-  "envelopeChecksum": "sha256:ed0fd7394b066da860cde53c4e04564561bb95fd981b211eac055412b341a218"
+  "contentChecksum": "sha256:bf8bef07b38dcf2438ebffb11943df3ca4c113e1e588a139e0cb90b891b9e2db",
+  "envelopeChecksum": "sha256:7777a37c98258f7e8f952d43ff840715ffd09ee141681c058f2886e664af6d02"
 }

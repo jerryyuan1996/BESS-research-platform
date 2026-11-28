@@ -14,12 +14,12 @@
     "licenceUrl": "https://www.elexon.co.uk/bsc/data/balancing-mechanism-reporting-agent/copyright-licence-bmrs-data/",
     "attribution": "Contains BMRS data © Elexon Limited copyright and database right 2026."
   },
-  "fetchedAt": "2026-11-27T16:47:41.585Z",
+  "fetchedAt": "2026-11-28T15:39:46.358Z",
   "coverage": {
-    "from": "2026-08-03T23:00:00.000Z",
-    "to": "2026-11-26T23:30:00.000Z",
+    "from": "2026-07-30T23:00:00.000Z",
+    "to": "2026-11-27T23:30:00.000Z",
     "resolution": "PT30M",
-    "points": 5522
+    "points": 5762
   },
   "units": {
     "energy": "MWh"
@@ -45,6 +45,42 @@
   },
   "dailyTimezone": "Europe/London",
   "daily": [
+    {
+      "d": "2026-07-31",
+      "n": 48,
+      "expected": 48,
+      "mean": 32.6263,
+      "min": -488.4546512037037,
+      "max": 437.9561984434144,
+      "netMWh": 1566.0606
+    },
+    {
+      "d": "2026-08-01",
+      "n": 48,
+      "expected": 48,
+      "mean": 8.5845,
+      "min": -451.31400793650795,
+      "max": 439.2040625,
+      "netMWh": 412.0573
+    },
+    {
+      "d": "2026-08-02",
+      "n": 48,
+      "expected": 48,
+      "mean": 92.3143,
+      "min": -222.24222194444445,
+      "max": 362.7966471581111,
+      "netMWh": 4431.0858
+    },
+    {
+      "d": "2026-08-03",
+      "n": 48,
+      "expected": 48,
+      "mean": -31.6383,
+      "min": -630.4810809188634,
+      "max": 518.3416666666667,
+      "netMWh": -1518.6393
+    },
     {
       "d": "2026-08-04",
       "n": 48,
@@ -1075,17 +1111,26 @@
       "d": "2026-11-26",
       "n": 48,
       "expected": 48,
-      "mean": 96.4944,
+      "mean": 99.2812,
       "min": -549.1785444034196,
       "max": 782.0045864401709,
-      "netMWh": 4631.731
+      "netMWh": 4765.4977
+    },
+    {
+      "d": "2026-11-27",
+      "n": 48,
+      "expected": 48,
+      "mean": 19.0112,
+      "min": -838.6390901676564,
+      "max": 569.2243945000364,
+      "netMWh": 912.5378
     }
   ],
   "sourceSnapshot": {
     "file": "gb-net-imbalance-volume.json",
-    "contentChecksum": "sha256:ded3914904946c05b9a437415b52690ebce957253d2a9f26c319d7c2517d9acf",
-    "points": 5522
+    "contentChecksum": "sha256:2bff25c758e25153e87a04c17c639a3ff1c92e5f98c56b6918e873394fda4940",
+    "points": 5762
   },
-  "contentChecksum": "sha256:ae32a5c63722b9aa8f63a959468f051df9d53eb4b61343d72e7fe20fac0eef10",
-  "summaryChecksum": "sha256:52dbf3f9233d1e3f6e679769648c4842e4e0643f511fcf902b31f851373251c3"
+  "contentChecksum": "sha256:02dad67fabb1f7fd3080271174cf7a8752a2d13e379369920a8deaa28ff3a91c",
+  "summaryChecksum": "sha256:224670a7b64059c541a70f32e2ab1dc22375c39b95ebc8bfc49f84d6e8a79e53"
 }
