@@ -22,7 +22,13 @@ export async function expectInvestorLayout(page,id,locale){
     const labels=locale==='en'
       ? ['All-equity IRR (hold)','Levered equity IRR','Debt ratio','Minimum annual DSCR']
       : ['全股权 IRR（长持）','杠杆后股权 IRR','债务比例','最低年度 DSCR'];
-    if(Object.hasOwn(SITE_VALUE,id)) labels.splice(1,0,locale==='en'?'With end-of-life site value':'计入寿命期末场址价值');
+    if(Object.hasOwn(SITE_VALUE,id)){
+      const label=locale==='en'?'With end-of-life site value':'计入寿命期末场址价值';
+      labels.splice(1,0,label);
+      const scenario=bankable.locator('.ic-bankable-kpis .ix-metric').filter({hasText:label});
+      await expect(scenario.locator('strong')).toHaveText(/^-?\d+\.\d{2}%$/);
+      await expect(scenario.locator('small')).toContainText(locale==='en'?/[+-]?\d+\.\d{2} percentage points/:/[+-]?\d+\.\d{2} 个百分点/);
+    }
     await expect(bankable.locator('.ic-bankable-kpis .ix-metric > span')).toHaveText(labels);
     await expect(bankable).not.toContainText(/NaN|undefined|Unknown|未知/);
     const debt=await bankable.locator('.ic-debt-table tbody tr').count();expect(debt).toBeGreaterThanOrEqual(1);

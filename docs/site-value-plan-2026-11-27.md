@@ -94,7 +94,7 @@ Weights, discount rates and exit yields are untouched. The credit is an analyst 
 - **Step 1.** The table lives in `src/acquisition/siteValue.js`, not `parameters.js`, so the card and the model import one source. It is registered in `ASSUMPTION_AUTHORITY`: prices are ANALYST, the 50% weight is METHODOLOGY.
 - **Step 2.** Both routes index the base-year credit using the project's inflation rate or dated path. This also applies when operating cash flows are supplied in nominal money. The model then deducts the 1.5% sale fee and sale-gain tax on a site with no remaining basis. The illustrative table in §3 shows the amounts before fee and tax.
 - **Step 2, scope.** The levered return and the cross-market comparison engine are unchanged.
-- **Step 3.** The bankable case shows "With end-of-life site value" beside all-equity hold IRR. The Lab accepts a project-specific amount in 2026 money. The four markets with a benchmark offer a button to apply it. Zero or a blank field uses the base case.
+- **Step 3.** The bankable case shows "With end-of-life site value" beside all-equity hold IRR, with the sensitivity and its percentage-point change displayed to two decimal places. The Lab accepts a project-specific amount in 2026 money. The four markets with a benchmark offer a button to apply it. Zero or a blank field uses the base case.
 - **Step 4.** Results are in `docs/site-value-impact-2026-11-27.md`. The script reproduces every published grade and rank before applying the credit.
   - Hold return: GB +0.22 (strategic, developer) and +0.25 (fund, first foreign buyer); Italy +0.03; Spain +0.23; ERCOT +0.63 points.
   - Spain moves from rank 13 to 12. **No asset-return grade changes for any investor.** The other 13 markets are identical.
