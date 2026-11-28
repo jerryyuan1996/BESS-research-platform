@@ -1,6 +1,7 @@
 import {expect} from '@playwright/test';
 import {countryForMarket} from '../../src/experience/story/public/overviewModel.js';
 import {ELECTRICITY_OVERVIEW as DATA} from '../../src/experience/story/public/data/electricity2024.js';
+import {SITE_VALUE} from '../../src/acquisition/siteValue.js';
 const number=v=>new Intl.NumberFormat('en-GB',{maximumFractionDigits:1}).format(v);
 
 export async function expectInvestorLayout(page,id,locale){
@@ -18,7 +19,17 @@ export async function expectInvestorLayout(page,id,locale){
     await expect(bankable.locator('details:not(.ix-risk-table)')).toHaveCount(0);
     await expect(bankable.locator('[data-risk-chart],details.ix-risk-table')).toHaveCount(0);
     await expect(bankable.locator('.ic-debt-table')).toBeVisible();
-    await expect(bankable.locator('.ic-bankable-kpis .ix-metric')).toHaveCount(4);
+    const labels=locale==='en'
+      ? ['All-equity IRR (hold)','Levered equity IRR','Debt ratio','Minimum annual DSCR']
+      : ['全股权 IRR（长持）','杠杆后股权 IRR','债务比例','最低年度 DSCR'];
+    if(Object.hasOwn(SITE_VALUE,id)){
+      const label=locale==='en'?'With end-of-life site value':'计入寿命期末场址价值';
+      labels.splice(1,0,label);
+      const scenario=bankable.locator('.ic-bankable-kpis .ix-metric').filter({hasText:label});
+      await expect(scenario.locator('strong')).toHaveText(/^-?\d+\.\d{2}%$/);
+      await expect(scenario.locator('small')).toContainText(locale==='en'?/[+-]?\d+\.\d{2} percentage points/:/[+-]?\d+\.\d{2} 个百分点/);
+    }
+    await expect(bankable.locator('.ic-bankable-kpis .ix-metric > span')).toHaveText(labels);
     await expect(bankable).not.toContainText(/NaN|undefined|Unknown|未知/);
     const debt=await bankable.locator('.ic-debt-table tbody tr').count();expect(debt).toBeGreaterThanOrEqual(1);
     expect(await bankable.locator('.ic-debt-table th,.ic-debt-table td').evaluateAll(cells=>cells.every(c=>c.scrollWidth<=c.clientWidth+1))).toBe(true);

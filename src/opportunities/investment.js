@@ -21,9 +21,12 @@ export function evaluateInvestment(reference, investor, price, targetReturn){
   const first=input.scenarios.find(s=>s.operates);
   const annual=taxSchedule(input,nominalAnnual(input,first),first,price).annual;
   const operating=annual.map(y=>y.secured+y.renewal+y.merchant-y.opex-y.capex-y.tax);
+  // The end-of-life site value is a second hold return beside the headline, never inside it.
+  const siteValuePerMW=reference.siteValuePerMW??null;
   return {...reference,investor,ceiling:valueAcquisition(input,investor),
     atPrice:returnAtAcquisitionPrice(input,investor,price),
     holdReturn:returnAtAcquisitionPrice(input,investor,price,{route:'hold'}),
+    holdReturnWithSite:siteValuePerMW>0?returnAtAcquisitionPrice({...input,siteValuePerMW},investor,price,{route:'hold'}):null,
     saleReturn:returnAtAcquisitionPrice(input,investor,price,{route:'sale'}),
     npv:Math.min(...investmentRoutes(input).map(route=>
       investmentPV(acquisitionCashFlows(input,investor,route,price).flows,targetReturn))),
@@ -71,6 +74,8 @@ export function investmentMetrics(reference, { debtBreakdown = false } = {}){
   const government=RATE_SNAPSHOT[input.currency]?.rate;
   const investorStage=REFERENCE_PREMIUM[reference.investor]?.[input.stage];
   return {...fundingMetrics(reference),irr:reference.atPrice?.annualReturn??null,holdIRR,
+    holdIRRWithSite:reference.holdReturnWithSite?.annualReturn??null,
+    siteValuePerMW:reference.siteValuePerMW??null,
     targetBuildUp:{government,investorStage,merchant:input.targetReturn-government-investorStage},
     ...(debtBreakdown ? {strategyId:input.strategyId,contract:reference.assumptions.terms,
       fixedRevenueEvidence:reference.fixedRevenueEvidence,

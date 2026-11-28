@@ -11,6 +11,7 @@ import { explanation } from '../components/explanation.js';
 import { acquisitionPrice } from './view.js';
 import { incomeOptions } from './scenarios.js';
 import { workableTerms } from './workableTerms.js';
+import { siteValueCredit } from './siteValue.js';
 
 const inputs=new Map();
 const reasons={
@@ -71,12 +72,13 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
   card.append(h('p',{class:'acq-basis'},L(['Blank fields use the public reference assumptions. Change any known project input to update the price and return.','留空项采用公开资料与参考假设；拿到真实项目后，修改已知项即可更新价格和回报。'])));
   const inputCurrency=MARKET_REFERENCE[id]?.currency||market.manifest.currency;
   fields.append(h('div',{class:'acq-form-note'},L([`Money inputs below are ${inputCurrency} per MW.`,`以下金额单位均为${inputCurrency}／MW。`])));
-  const number=(key,label,{max=1e12,min=0,step='any'}={})=>{
+  const number=(key,label,{max=1e12,min=0,step='any',action=null}={})=>{
     const input=h('input',{type:'number',min,max,step,'aria-label':L(label),onchange:event=>{
       if(!event.target.checkValidity()){event.target.reportValidity();return;}
       change(key,event.target.value===''?undefined:Number(event.target.value));
     }});if(state[key]!=null)input.value=state[key];
-    fields.append(h('label',{},L(label),input));
+    const field=h('label',{},L(label),input);
+    fields.append(action?h('div',{class:'acq-site-value'},field,action):field);
   };
   number('purchasePricePerMW',['Seller asking price / MW (optional)','卖方报价／MW（选填）']);
   number('targetPercent',['Your target annual return (%)','你要求的目标年化回报（%）'],{max:100});
@@ -94,6 +96,12 @@ export function renderAcquisitionLab(parent,market,strategyId,economicOverrides=
   number('depreciationYears',['Tax depreciation period (years, assumed)','税务折旧年限（假设）'],{min:1,max:40,step:1});
   number('inflationPercent',['Inflation assumption (%)','通胀假设（%）'],{max:20});
   number('decommissioningPerMW',['Decommissioning / MW, native currency','退役费用／MW，原币']);
+  const credit=siteValueCredit(id,inputCurrency);
+  const creditLabel=credit==null?null:inputCurrency+' '+credit.toLocaleString('en-GB')+'/MW';
+  number('siteValuePerMW',['End-of-life site value / MW, 2026 money (blank = zero)','寿命期末场址价值／MW，2026年币值（留空为零）'],{
+    action:credit==null?null:h('button',{type:'button',class:'ix-button ix-outline',onclick:()=>change('siteValuePerMW',credit)},
+      L(['Use reference: '+creditLabel,'采用参考值：'+creditLabel])),
+  });
   number('fixedFeesPerMW',['Fixed transaction fees / MW, native currency','固定交易费用／MW，原币']);
   if(state.stage==='operating'){
     number('initialWorksPerMW',['Immediate refurbishment budget / MW, native currency','接手后立即所需改造预算／MW，原币']);

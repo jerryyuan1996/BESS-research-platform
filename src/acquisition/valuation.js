@@ -1,5 +1,5 @@
 import { RATE_SNAPSHOT, INVESTOR_PREMIUM, STAGES, FEES, DEBT } from './parameters.js';
-import { nominalAmount, nominalAnnual, taxSchedule } from './cashflows.js';
+import { nominalAmount, nominalAnnual, priceIndex, taxSchedule } from './cashflows.js';
 
 const finite = x => typeof x === 'number' && Number.isFinite(x);
 const nonnegative = x => finite(x) && x >= 0;
@@ -42,6 +42,7 @@ export function validateAcquisition(input){
   if(!Array.isArray(input.sources) || !input.sources.length || !input.sources.every(source=>
     typeof source==='string'?source.trim().length>0:source&&typeof source==='object'&&
       [source.label,source.url].some(value=>typeof value==='string'&&value.trim().length>0))) missing.push('source or stated assumption provenance');
+  if(input.siteValuePerMW!=null && !nonnegative(input.siteValuePerMW)) missing.push('end-of-life site value');
   if(input.additionalPremium!=null && !nonnegative(input.additionalPremium)) missing.push('additional risk premium');
   if(input.targetReturn!=null&&(!nonnegative(input.targetReturn)||input.targetReturn>1))missing.push('target return');
   if(input.revenueQualificationMonths!=null&&(!nonnegative(input.revenueQualificationMonths)||input.revenueQualificationMonths>120))missing.push('revenue qualification timing');
@@ -78,6 +79,17 @@ export function debtRiskClass(years,base){
 }
 const cashOf = y => y.secured+y.merchant+y.renewal-y.opex-y.capex-y.tax;
 
+/** End-of-life site value (src/acquisition/siteValue.js): the credit indexed to
+ * the last operating year, sold through the sale fee, and taxed as a gain on a
+ * site whose tax basis is written off by then. Zero unless the case supplies it. */
+function siteProceeds(input,at){
+  const credit=input.siteValuePerMW??0;
+  if(!(credit>0))return 0;
+  const rate=input.saleTax?.rate??input.taxPolicy?.rate??0;
+  // This input is in base-year money even when the user supplies nominal operating cash flows.
+  return credit*priceIndex(input,at)*(1-FEES.sale)*(1-rate);
+}
+
 function finance(input,price,base,annual=input.annual){
   if(!input.debt) return {loan:0,flows:[],reserve:0,fee:0};
   const d=input.debt, rule=DEBT[d.riskClass];
@@ -113,13 +125,14 @@ export function acquisitionCashFlows(input,investor,route,price,base=RATE_SNAPSH
       const taxed=taxSchedule(input,nominalAnnual(input,s),s,price,debt.interest);
       const annual=taxed.annual;
       const retirement=nominalAmount(input,input.decommissioningPerMW,s.codYears+life);
+      const site=siteProceeds(input,s.codYears+life);
       const end=route==='hold'?life:exitYear;
       annual.slice(0,end).forEach((y,i)=>add(cashOf(y)+(debt.flows[i]??0),s.codYears+i+1));
-      if(route==='hold')add(-retirement,s.codYears+life);
+      if(route==='hold'){add(-retirement,s.codYears+life);if(site)add(site,s.codYears+life);}
       else {
         const buyerRate=input.buyerDiscountRate??base+.03+.04*merchantShare(annual.slice(exitYear),base)+(input.additionalPremium??0);
         const receivables=sum(transferred.map(c=>pv(nominalAmount(input,c.amount,c.priceAt??c.at),c.at-s.codYears-exitYear,buyerRate)));
-        const terminal=sum(annual.slice(exitYear).map((y,i)=>pv(cashOf(y),i+1,buyerRate)))-pv(retirement,life-exitYear,buyerRate)+receivables;
+        const terminal=sum(annual.slice(exitYear).map((y,i)=>pv(cashOf(y),i+1,buyerRate)))-pv(retirement,life-exitYear,buyerRate)+pv(site,life-exitYear,buyerRate)+receivables;
         const usedDepreciation=input.taxPolicy&&input.saleTax.transactionType!=='share'?sum(taxed.depreciation.slice(0,exitYear)):0;
         const buyerCredit=exitYear===0&&transferred.some(c=>c.kind.includes('investment-credit'))?(input.taxCreditBasisReduction??0):0;
         const taxBasis=Math.max(0,nominalAmount(input,input.saleTax.basisPerMW+buyerCredit,s.codYears/2)+(input.saleTax.includePurchase?price:0)-usedDepreciation);

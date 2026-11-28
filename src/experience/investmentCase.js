@@ -223,6 +223,18 @@ function debtBreakdown(row) {
 			: null,
 	);
 }
+function siteValueMetric(investment) {
+	const { holdIRR, holdIRRWithSite, siteValuePerMW, currency } = investment;
+	if (![holdIRR, holdIRRWithSite, siteValuePerMW].every(finite)) return null;
+	const difference = 100 * (holdIRRWithSite - holdIRR);
+	const points = (difference > 0 ? '+' : '') + difference.toFixed(2);
+	const credit = currency + ' ' + siteValuePerMW.toLocaleString('en-GB') + '/MW';
+	return metric(['With end-of-life site value', '计入寿命期末场址价值'], (holdIRRWithSite * 100).toFixed(2) + '%', [
+		`${points} percentage points vs. base. Site credit in 2026 money: ${credit}.`,
+		`较基准 ${points} 个百分点。按2026年币值计入的场址残值为 ${credit}。`,
+	]);
+}
+
 export function bankableInvestmentCase(row) {
 	const i = row.investment,
 		l = i?.leverage,
@@ -345,6 +357,7 @@ export function bankableInvestmentCase(row) {
 			'div',
 			{ class: 'ix-kpis ic-bankable-kpis' },
 			finite(i.holdIRR) ? metric(['All-equity IRR (hold)', '全股权 IRR（长持）'], returnPct(i.holdIRR)) : null,
+			siteValueMetric(i),
 			finite(i.leveredIRR) ? metric(['Levered equity IRR', '杠杆后股权 IRR'], returnPct(i.leveredIRR)) : null,
 			finite(l?.gearing)
 				? metric(['Debt ratio', '债务比例'], pct(l.gearing), ['Of build & grid budget', '占建设及并网预算'])

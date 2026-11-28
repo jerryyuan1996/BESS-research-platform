@@ -1,0 +1,30 @@
+/* The connection-value reader reuses the research dialog's shell and header. */
+.connection-outlook-dialog { width:min(920px,calc(100vw - 64px)); }
+.co-body { flex:1; min-height:0; overflow:auto; overscroll-behavior:contain; padding:26px 34px 34px; }
+.co-body:focus-visible { outline:3px solid var(--ix-gold); outline-offset:-3px; }
+.co-call { padding:20px 22px; border-radius:var(--r-md); background:#e9eee4; border-left:4px solid var(--ix-green); }
+.co-call .ix-eyebrow { margin:0 0 10px; color:var(--ix-gold); }
+.co-call-head { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin:0 0 10px; }
+.co-outlook { display:inline-flex; padding:4px 12px; border-radius:var(--r-pill); font-weight:var(--fw-medium); font-size:var(--fs-sm); background:var(--ix-green); color:#fffefa; }
+.co-outlook.holding { background:#5d6d63; }
+.co-outlook.peaking { background:#785f2b; }
+.co-outlook.falling { background:#9a442b; }
+.co-evidence { font-size:var(--fs-xs); color:var(--ix-muted); }
+.co-evidence.thin { color:#9a442b; }
+.co-evidence.fair { color:#785f2b; }
+.co-evidence.strong { color:#2b6250; }
+.co-call-text { margin:0; font:var(--fw-normal) var(--fs-lg)/1.55 var(--ix-serif); color:var(--ix-ink); }
+.co-section { padding:20px 0 4px; border-bottom:1px solid var(--ix-line); }
+.co-section:last-child { border-bottom:0; }
+.co-section h3 { margin:0 0 8px; font-size:var(--fs-md); font-weight:var(--fw-medium); color:var(--ix-ink); }
+.co-section p { margin:0 0 12px; color:var(--ix-body); line-height:1.7; max-width:78ch; }
+.co-grade { display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline; }
+.co-grade strong { font:var(--fw-medium) var(--fs-xl)/1.2 var(--ix-serif); color:var(--ix-ink); }
+.co-grade-scale,.co-asof { font-size:var(--fs-xs); color:var(--ix-muted)!important; }
+.co-status { display:inline-block; padding:3px 10px; border:1px solid var(--ix-gold); border-radius:var(--r-pill); font-size:var(--fs-2xs); color:#785f2b!important; }
+.co-credit strong { color:var(--ix-ink); }
+.co-method { font-size:var(--fs-xs); }
+.co-sources { margin:0 0 10px; padding-left:18px; font-size:var(--fs-xs); line-height:1.8; }
+.co-sources a { color:var(--ix-green); overflow-wrap:anywhere; }
+@media(max-width:900px) { .connection-outlook-dialog { width:calc(100vw - 20px); } .co-body { padding:20px; } }
+@media(max-width:560px) { .connection-outlook-dialog { width:100%; } .co-body { padding:18px 16px 26px; } .co-call { padding:16px; } .co-call-text { font-size:var(--fs-md); } }
